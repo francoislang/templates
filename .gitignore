@@ -19,3 +19,6 @@
 # Windows (par précaution)
 Thumbs.db
 ehthumbs.db
+
+# Photos (trop lourdes pour Git — livrer en zip ou via Netlify Drop)
+elevage-border-collie-mas-andre/photo-border-collies/
