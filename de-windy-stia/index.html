@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>De Windy'Stia — Élevage Berger Australien | Voiron, Isère (38)</title>
+  <meta name="description" content="Élevage familial de Berger Australien à Voiron, Isère. Plus de 10 ans de passion, chiots LOF socialisés, parents agility et exposition. Suivi à vie. Tél. 06 88 97 67 45.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.de-windy-stia.fr/">
+  <meta property="og:title"       content="De Windy'Stia — Berger Australien, Voiron Isère">
+  <meta property="og:description" content="10 ans d'élevage familial de Berger Australien en Isère. Chiots LOF, parents agility et exposition. 1 500 €.">
+  <!-- REMPLACER : photo hero pour partage réseaux sociaux -->
+  <meta property="og:image"       content="photo-berger-australien/mathias-dargnat-0-h6yTsWfv0-unsplash.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "De Windy'Stia",
+        "description": "Élevage familial de Berger Australien à Voiron, Isère",
+        "telephone": "+33688976745",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Voiron",
+          "postalCode": "38500",
+          "addressRegion": "Isère",
+          "addressCountry": "FR"
+        },
+        "taxID": "528477029",
+        "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "description": "Sur rendez-vous téléphonique" }
+      },
+      { "@type": "AnimalShelter", "name": "De Windy'Stia — Berger Australien LOF" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — adapter à chaque client ici
+       ============================================== */
+    :root {
+      --grn:  #2C5F2E;   /* MODIFIER : vert forêt */
+      --trr:  #B86F45;   /* MODIFIER : terracotta naturel */
+      --bg:   #F8F5F0;   /* MODIFIER : fond beige chaud */
+      --crm:  #EDE7DC;   /* MODIFIER : crème secondaire */
+      --txt:  #1E2A1E;   /* MODIFIER : texte vert très foncé */
+      --stn:  #8A8070;   /* MODIFIER : pierre/gris chaud */
+      --FD:   'Libre Baskerville', serif; /* MODIFIER : police titres */
+      --FN:   'Nunito', sans-serif;       /* MODIFIER : police corps */
+      --nav:  68px;
+      --r:    10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .76rem 2rem;
+      font-family: var(--FN); font-weight: 700; font-size: .88rem;
+      letter-spacing: .05em;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+      border-radius: 6px;
+    }
+    .btn--primary { background: var(--grn); color: #fff; }
+    .btn--primary:hover { background: #1e4320; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(44,95,46,.3); }
+    .btn--outline { background: transparent; color: var(--grn); border: 2px solid var(--grn); }
+    .btn--outline:hover { background: var(--grn); color: #fff; transform: translateY(-2px); }
+    .btn--trr { background: var(--trr); color: #fff; }
+    .btn--trr:hover { background: #9a5c38; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(184,111,69,.3); }
+    .btn--white { background: rgba(255,255,255,.15); color: #fff; border: 1.5px solid rgba(255,255,255,.5); backdrop-filter: blur(6px); }
+    .btn--white:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(248,245,240,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(44,95,46,.1);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
+    .nav__logo {
+      font-family: var(--FD); font-size: 1.1rem; font-weight: 700;
+      color: var(--grn); line-height: 1.15; margin-right: auto;
+    }
+    .nav__logo span { display: block; font-family: var(--FN); font-size: .6rem; font-weight: 600; color: var(--stn); letter-spacing: .2em; text-transform: uppercase; margin-top: .1rem; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a {
+      font-size: .88rem; font-weight: 600; color: var(--txt);
+      transition: color .2s; position: relative;
+    }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 2px; background: var(--grn); transition: width .2s; }
+    .nav__links > li > a:hover { color: var(--grn); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.2rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .6rem; margin-left: .25rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #fff; border: 1px solid rgba(44,95,46,.1);
+      border-radius: var(--r); padding: .5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,.09);
+      min-width: 190px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .2s, visibility .2s, transform .2s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a { display: block; padding: .55rem 1.2rem; font-size: .86rem; font-weight: 600; color: var(--txt); transition: background .15s, color .15s; }
+    .drop__menu a:hover { background: var(--crm); color: var(--grn); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 2px; background: var(--txt); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--bg); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: 1rem; font-weight: 600; color: var(--txt); padding: .75rem 0; border-bottom: 1px solid var(--crm); }
+    .nav__mobile a:hover { color: var(--grn); }
+    .nav__mobile .mob-sub { padding-left: 1.2rem; font-size: .9rem !important; color: var(--stn) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100svh; min-height: 580px;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      /* REMPLACER : grande photo Berger Australien plein écran */
+      background: url('photo-berger-australien/mathias-dargnat-0-h6yTsWfv0-unsplash.jpg') center/cover no-repeat;
+      transform: scale(1.06); transition: transform 9s ease;
+    }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    .hero__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(30,42,30,.25) 0%, rgba(30,42,30,.45) 60%, rgba(30,42,30,.7) 100%);
+    }
+    .hero__content { position: relative; z-index: 1; color: #fff; padding: 0 1.5rem; max-width: 680px; }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: .6rem; margin-bottom: 1.6rem;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(8px); border-radius: 50px;
+      font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      padding: .45rem 1.2rem; color: rgba(255,255,255,.9);
+    }
+    .hero__badge::before { content: '🐾'; font-size: .8rem; }
+    .hero__title {
+      font-family: var(--FD); font-size: clamp(2.4rem, 6vw, 5rem);
+      line-height: 1.1; margin-bottom: .8rem;
+      text-shadow: 0 2px 24px rgba(0,0,0,.3);
+    }
+    .hero__title em { font-style: italic; }
+    .hero__divider { display: flex; align-items: center; justify-content: center; gap: .8rem; margin-bottom: 1.2rem; opacity: .6; }
+    .hero__divider::before, .hero__divider::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(255,255,255,.5); }
+    .hero__divider span { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; }
+    .hero__sub { font-size: clamp(.9rem, 1.8vw, 1.05rem); font-weight: 300; opacity: .88; margin-bottom: 2.4rem; line-height: 1.72; }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.55); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__scroll::after {
+      content: ''; width: 1px; height: 36px; background: rgba(255,255,255,.4);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ---- STATS ---- */
+    .stats { background: var(--grn); color: #fff; display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat { padding: 1.8rem 1rem; border-right: 1px solid rgba(255,255,255,.12); text-align: center; }
+    .stat:last-child { border-right: none; }
+    .stat__n { font-family: var(--FD); font-size: 2rem; line-height: 1; }
+    .stat__l { font-size: .73rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .65; margin-top: .4rem; }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 6rem 4vw; }
+    .sec__head { text-align: center; margin-bottom: 3.5rem; }
+    .sec__eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--stn); margin-bottom: .8rem; }
+    .sec__title { font-family: var(--FD); font-size: clamp(1.9rem, 4vw, 3rem); color: var(--txt); line-height: 1.15; }
+    .sec__title em { font-style: italic; color: var(--grn); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-size: .97rem; color: #777; line-height: 1.78; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 500px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 73%; height: 82%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(44,95,46,.18);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 47%; height: 50%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 10px 36px rgba(0,0,0,.12);
+      border: 4px solid var(--bg);
+    }
+    .about__stamp {
+      position: absolute; right: 3%; top: 34%;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--trr); color: #fff;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: var(--FD); font-size: 1.05rem; font-weight: 700; line-height: 1.1;
+      box-shadow: 0 8px 24px rgba(184,111,69,.4); z-index: 2;
+    }
+    .about__stamp small { font-family: var(--FN); font-size: .46rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .85; margin-top: .15rem; }
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.7rem, 3vw, 2.5rem); margin-bottom: 1.2rem; line-height: 1.2; }
+    .about__text h2 em { font-style: italic; color: var(--grn); }
+    .about__text p { color: #666; line-height: 1.82; margin-bottom: 1rem; font-size: .97rem; }
+    .about__pillars { display: flex; flex-direction: column; gap: .7rem; margin: 1.6rem 0; }
+    .pillar { display: flex; align-items: flex-start; gap: .9rem; }
+    .pillar__ico { width: 36px; height: 36px; border-radius: 8px; background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .pillar__txt strong { display: block; font-size: .88rem; font-weight: 700; margin-bottom: .1rem; }
+    .pillar__txt span { font-size: .82rem; color: #888; }
+
+    /* ---- ACTIVITÉS ---- */
+    .activites { background: var(--crm); }
+    .act__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .act__card { background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 3px 18px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .act__card:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,.11); }
+    .act__img { height: 200px; overflow: hidden; }
+    .act__img img { transition: transform .6s; }
+    .act__card:hover .act__img img { transform: scale(1.06); }
+    .act__body { padding: 1.4rem 1.5rem; }
+    .act__ico { font-size: 1.3rem; margin-bottom: .5rem; }
+    .act__title { font-family: var(--FD); font-size: 1.1rem; color: var(--txt); margin-bottom: .4rem; }
+    .act__desc { font-size: .88rem; color: #888; line-height: 1.7; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--grn); color: #fff; overflow: hidden; }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
+    .race__imgs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 240px 240px; gap: 6px; }
+    .race__imgs .ri { overflow: hidden; }
+    .race__imgs .ri:nth-child(1) { grid-row: span 2; }
+    .race__content { padding: 4rem 3.5rem; display: flex; flex-direction: column; justify-content: center; }
+    .race__content .sec__eyebrow { color: rgba(255,255,255,.6); text-align: left; }
+    .race__content h2 { font-family: var(--FD); font-size: clamp(2rem, 3.5vw, 3rem); margin-bottom: 1.2rem; line-height: 1.1; }
+    .race__content h2 em { font-style: italic; }
+    .race__content p { font-size: .95rem; line-height: 1.82; opacity: .82; margin-bottom: 1rem; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin: 1.8rem 0; }
+    .race__spec { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 8px; padding: .8rem 1rem; }
+    .race__spec strong { display: block; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: .2rem; }
+    .race__spec span { font-size: .9rem; font-weight: 600; }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--crm); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.8rem; }
+    .dog__card { background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 3px 18px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .dog__card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,.12); }
+    .dog__img { height: 260px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .6s; }
+    .dog__card:hover .dog__img img { transform: scale(1.06); }
+    .dog__sex { position: absolute; top: .8rem; right: .8rem; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    .dog__sex--f { background: rgba(255,200,210,.9); color: #7A1432; }
+    .dog__sex--m { background: rgba(180,220,240,.9); color: #1a3c8b; }
+    .dog__body { padding: 1.3rem 1.5rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.35rem; margin-bottom: .25rem; }
+    .dog__born { font-size: .78rem; color: #bbb; margin-bottom: .8rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .8rem; }
+    .dog__tag { background: var(--crm); border-radius: 4px; padding: .24rem .75rem; font-size: .71rem; font-weight: 700; color: var(--grn); letter-spacing: .04em; }
+    .dog__desc { font-size: .88rem; color: #888; line-height: 1.7; }
+
+    /* ---- CHIOTS ---- */
+    .chiots { background: var(--bg); }
+    .chiots__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.6rem; }
+    .pup { background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 3px 18px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .pup:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,.11); }
+    .pup__img { height: 210px; overflow: hidden; position: relative; }
+    .pup__img img { transition: transform .6s; }
+    .pup:hover .pup__img img { transform: scale(1.07); }
+    .pup__badge {
+      position: absolute; top: .8rem; left: .8rem;
+      padding: .28rem .85rem; border-radius: 4px;
+      font-size: .69rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+    }
+    .badge--avail { background: #22c55e; color: #fff; }
+    .badge--resa  { background: #f59e0b; color: #fff; }
+    .badge--venir { background: var(--grn); color: #fff; }
+    .pup__body { padding: 1.1rem 1.3rem; }
+    .pup__name { font-family: var(--FD); font-size: 1.15rem; margin-bottom: .3rem; }
+    .pup__meta { font-size: .79rem; color: #bbb; margin-bottom: .7rem; }
+    .pup__price { font-size: 1.1rem; font-weight: 700; color: var(--grn); }
+    .pup__price small { font-size: .74rem; font-weight: 400; color: #bbb; display: block; margin-top: .1rem; }
+    .chiots__note { max-width: 1180px; margin: 2rem auto 0; padding: 1.5rem 2rem; background: var(--crm); border-left: 3px solid var(--grn); border-radius: 0 8px 8px 0; font-size: .9rem; color: #666; line-height: 1.72; }
+    .chiots__cta { text-align: center; margin-top: 2rem; }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--crm); }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .gi { overflow: hidden; border-radius: 8px; position: relative; cursor: pointer; }
+    .gi img { height: 220px; transition: transform .5s; }
+    .gi:nth-child(1) { grid-row: span 2; }
+    .gi:nth-child(1) img { height: 100%; }
+    .gi:hover img { transform: scale(1.07); }
+    .gi__over { position: absolute; inset: 0; background: rgba(44,95,46,.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: #fff; font-size: 1.8rem; }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.93); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 6px; }
+    #lb-close { position: absolute; top: 1.2rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; opacity: .7; }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.2rem; padding: 1rem; opacity: .6; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--bg); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .temo { background: #fff; border-radius: var(--r); padding: 1.8rem; box-shadow: 0 3px 18px rgba(0,0,0,.06); border-top: 3px solid var(--grn); }
+    .temo__stars { color: #F59E0B; font-size: .95rem; margin-bottom: 1rem; }
+    .temo__text { font-size: .91rem; line-height: 1.8; color: #555; margin-bottom: 1.4rem; font-style: italic; }
+    .temo__author { display: flex; align-items: center; gap: .8rem; }
+    .temo__av { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--crm); }
+    .temo__name { font-weight: 700; font-size: .86rem; }
+    .temo__dog { font-size: .74rem; color: #aaa; }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--crm); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.6rem; margin-bottom: 1.5rem; line-height: 1.2; }
+    .cinfo { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 1.8rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .85rem; }
+    .cinfo__ico { width: 38px; height: 38px; border-radius: 8px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .cinfo__label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #bbb; margin-bottom: .12rem; }
+    .cinfo__val { font-size: .93rem; font-weight: 600; }
+    .cinfo__val a:hover { color: var(--grn); }
+    .acaced {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--grn); color: #fff; border-radius: 6px;
+      padding: .5rem 1rem; font-size: .78rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase; margin-top: 1rem;
+    }
+    .contact__form { background: #fff; border-radius: var(--r); padding: 2.4rem; box-shadow: 0 6px 36px rgba(0,0,0,.07); }
+    .form__title { font-family: var(--FD); font-size: 1.35rem; margin-bottom: .4rem; }
+    .form__sub { font-size: .86rem; color: #aaa; margin-bottom: 1.8rem; line-height: 1.6; }
+    .form__section { font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--stn); margin: 1.4rem 0 .8rem; padding-bottom: .4rem; border-bottom: 1px solid var(--crm); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; }
+    .form__group label { font-size: .78rem; font-weight: 700; color: var(--txt); letter-spacing: .03em; }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .72rem .95rem;
+      border: 2px solid var(--crm); border-radius: 6px;
+      font-family: var(--FN); font-size: .89rem; color: var(--txt);
+      background: var(--bg); outline: none; transition: border-color .2s, background .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--grn); background: #fff; }
+    .form__group textarea { resize: vertical; min-height: 110px; }
+    .form__hint { font-size: .72rem; color: #ccc; margin-top: .18rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .88rem; font-size: .95rem; }
+    .form__rgpd { font-size: .71rem; color: #ccc; text-align: center; margin-top: .8rem; line-height: 1.5; }
+
+    /* ---- CONDITIONS ---- */
+    .conditions { background: var(--bg); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(0,0,0,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.05rem 0; font-weight: 700; font-size: .95rem; color: var(--txt); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .acc__q .arr { font-size: .8rem; color: var(--grn); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.1rem; font-size: .9rem; color: #777; line-height: 1.8; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .5rem 0 .5rem 1.2rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .3rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--txt); color: rgba(255,255,255,.6); padding: 3.5rem 4vw 2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.1rem; color: #fff; margin-bottom: .5rem; line-height: 1.2; }
+    .footer__logo span { display: block; font-family: var(--FN); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-top: .2rem; }
+    footer p { font-size: .82rem; line-height: 1.7; margin-bottom: .35rem; }
+    .footer__col h4 { font-size: .7rem; font-weight: 700; letter-spacing: .17em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; }
+    .footer__col a { display: block; font-size: .82rem; margin-bottom: .38rem; transition: color .2s; }
+    .footer__col a:hover { color: #fff; }
+    .footer__bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .76rem; margin: 0; }
+    .footer__bottom a { color: rgba(255,255,255,.5); }
+    .footer__bottom a:hover { color: #fff; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 960px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 340px; }
+      .race__imgs { grid-template-rows: 180px 180px; }
+      .temo__grid, .act__grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.12); }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.2rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1) { grid-row: span 1; }
+      .gi:nth-child(1) img { height: 220px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .race__specs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <!-- MODIFIER : nom de l'élevage -->
+  <a href="#" class="nav__logo">
+    De Windy'Stia
+    <span>Berger Australien · Voiron, Isère</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Chiens <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#repro">Reproducteurs</a></li>
+      </ul>
+    </li>
+    <li><a href="#chiots">Chiots</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--primary nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Nav mobile -->
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">La Race</a>
+  <a href="#repro" class="mob-sub">— Reproducteurs</a>
+  <a href="#chiots">Chiots</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary" style="margin-top:1rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+  <!-- REMPLACER : grande photo Berger Australien plein écran -->
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__content">
+    <!-- MODIFIER : badge et accroche -->
+    <div class="hero__badge">Élevage familial · Voiron, Isère (38)</div>
+    <h1 class="hero__title">De Windy'<em>Stia</em></h1>
+    <div class="hero__divider"><span>Berger Australien</span></div>
+    <p class="hero__sub">Plus de 10 ans de passion pour le Berger Australien. Chiots LOF élevés en famille, socialisés avec soin, suivis à vie.</p>
+    <div class="hero__btns">
+      <a href="#chiots" class="btn btn--trr">Voir les chiots</a>
+      <a href="#about" class="btn btn--white">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
+</section>
+
+<!-- ====== STATS ====== -->
+<div class="stats">
+  <!-- MODIFIER : chiffres clés -->
+  <div class="stat reveal">
+    <div class="stat__n">10+</div>
+    <div class="stat__l">Années d'élevage</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.1s">
+    <div class="stat__n">LOF</div>
+    <div class="stat__l">Chiots confirmés</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.2s">
+    <div class="stat__n">38</div>
+    <div class="stat__l">Isère</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.3s">
+    <div class="stat__n">♾</div>
+    <div class="stat__l">Suivi à vie</div>
+  </div>
+</div>
+
+<!-- ====== À PROPOS ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <!-- REMPLACER : photo principale (Berger Australien avec les éleveurs, jardin, Isère) -->
+      <div class="about__main"><img src="photo-berger-australien/celine-druguet-4Bfl0pqWZtc-unsplash.jpg" alt="De Windy'Stia — élevage familial Voiron Isère"></div>
+      <!-- REMPLACER : photo accent (chiot ou chien de près) -->
+      <div class="about__accent"><img src="photo-berger-australien/zuzanna-bak-QcHnw5U002o-unsplash.jpg" alt="Berger Australien De Windy'Stia"></div>
+      <div class="about__stamp">10+<small>ans</small></div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <!-- MODIFIER : texte de présentation -->
+      <p class="sec__eyebrow">Notre approche</p>
+      <h2>Passionnés du <em>Berger Australien</em></h2>
+      <p>Chez De Windy'Stia, nous élevons le Berger Australien depuis plus de 10 ans, à Voiron, en Isère. Notre élevage est familial — nos chiens vivent avec nous au quotidien et nos chiots grandissent dans cet environnement chaleureux dès la naissance.</p>
+      <p>Membres de club, nous participons aux compétitions d'agility et aux expositions canines. Cette pratique nous permet de sélectionner des reproducteurs au caractère équilibré et à la morphologie conforme au standard.</p>
+      <div class="about__pillars">
+        <div class="pillar">
+          <div class="pillar__ico">🏡</div>
+          <div class="pillar__txt"><strong>Élevage en milieu familial</strong><span>Chiots socialisés dès la naissance dans un cadre de vie naturel</span></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar__ico">🎓</div>
+          <div class="pillar__txt"><strong>Socialisation approfondie</strong><span>Propreté, rappel, autocontrôle — bases solides avant le départ</span></div>
+        </div>
+        <div class="pillar">
+          <div class="pillar__ico">🤝</div>
+          <div class="pillar__txt"><strong>Suivi à vie</strong><span>Nous restons disponibles pour chaque famille adoptante, sans limite</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--primary">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== ACTIVITÉS ====== -->
+<section class="activites">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Ce qui nous anime</p>
+    <h2 class="sec__title">Sport, <em>passion</em> et famille</h2>
+    <p class="sec__sub">Nos chiens ne sont pas seulement des reproducteurs — ils font partie de notre quotidien.</p>
+  </div>
+  <div class="act__grid">
+    <!-- MODIFIER : 3 cartes d'activités -->
+    <div class="act__card reveal">
+      <div class="act__img">
+        <!-- REMPLACER : photo agility (chien en action) -->
+        <img src="photo-berger-australien/fi-dogs-Cn1fR5H9l4s-unsplash.jpg" alt="Agility — De Windy'Stia">
+      </div>
+      <div class="act__body">
+        <div class="act__ico">🏆</div>
+        <div class="act__title">Agility</div>
+        <p class="act__desc">Nous participons aux compétitions d'agility — un gage de caractère équilibré et d'aptitude sportive.</p>
+      </div>
+    </div>
+    <div class="act__card reveal" style="transition-delay:.1s">
+      <div class="act__img">
+        <!-- REMPLACER : photo exposition canine -->
+        <img src="photo-berger-australien/oskar-kadaksoo-4EriTfpwOmY-unsplash.jpg" alt="Exposition canine — De Windy'Stia">
+      </div>
+      <div class="act__body">
+        <div class="act__ico">🎖</div>
+        <div class="act__title">Expositions</div>
+        <p class="act__desc">Membres de club, nous présentons nos chiens en exposition pour valider la conformité au standard.</p>
+      </div>
+    </div>
+    <div class="act__card reveal" style="transition-delay:.2s">
+      <div class="act__img">
+        <!-- REMPLACER : photo vie de famille (chiot, jardin) -->
+        <img src="photo-berger-australien/melissa-whitecross-SPOAwMdCxAo-unsplash.jpg" alt="Vie de famille — De Windy'Stia">
+      </div>
+      <div class="act__body">
+        <div class="act__ico">🏡</div>
+        <div class="act__title">Vie de famille</div>
+        <p class="act__desc">Nos chiots grandissent à la maison — bruits, enfants, quotidien : rien ne leur est étranger au départ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__imgs">
+      <!-- REMPLACER : 3 photos Berger Australien -->
+      <div class="ri"><img src="photo-berger-australien/jametlene-reskp-VDrErQEF9e4-unsplash.jpg" alt="Berger Australien bleu merle"></div>
+      <div class="ri"><img src="photo-berger-australien/amber-mayo-ZNV1wvoxcxM-unsplash.jpg" alt="Berger Australien"></div>
+      <div class="ri"><img src="photo-berger-australien/andrew-a-Vr0wc-HIUHo-unsplash.jpg" alt="Berger Australien"></div>
+    </div>
+    <div class="race__content reveal">
+      <p class="sec__eyebrow">La race</p>
+      <h2>Le Berger <em>Australien</em></h2>
+      <p>Malgré son nom, l'Aussie est né aux États-Unis, sélectionné pour le travail du bétail. Intelligent, athlétique et d'une loyauté sans faille, c'est l'un des chiens les plus polyvalents qui soit : sport, travail, famille — il excelle partout.</p>
+      <p>Sa robe spectaculaire — bleu merle, rouge merle, tricolore, bicolore — et ses yeux souvent vairons en font un chien immédiatement reconnaissable. Son caractère vif et sa sensibilité en font un compagnon d'exception pour les familles actives.</p>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>États-Unis 🇺🇸</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>46–58 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>16–32 kg</span></div>
+        <div class="race__spec"><strong>Longévité</strong><span>12–15 ans</span></div>
+        <div class="race__spec"><strong>Robes</strong><span>Merle, tricolore</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 1 — Bergers</span></div>
+      </div>
+      <a href="#chiots" class="btn btn--white">Voir nos chiots</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Nos <em>reproducteurs</em></h2>
+    <p class="sec__sub">Sélectionnés pour leur morphologie, leur caractère et leurs performances en agility et exposition.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : Queen -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <!-- REMPLACER : photo de Queen -->
+        <img src="photo-berger-australien/brayden-prato-CfGjX3yeYbY-unsplash.jpg" alt="Queen — Berger Australien femelle reproductrice De Windy'Stia">
+        <span class="dog__sex dog__sex--f">♀</span>
+      </div>
+      <div class="dog__body">
+        <div class="dog__name">Queen</div>
+        <div class="dog__born">Mère de la portée actuelle</div>
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Confirmée</span>
+          <span class="dog__tag">Agility</span>
+        </div>
+        <p class="dog__desc">Queen est notre principale reproductrice. Caractère équilibré, aptitudes sportives confirmées en compétition d'agility. Elle transmet à ses chiots son naturel calme et sa grande intelligence.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : Onyx -->
+    <div class="dog__card reveal" style="transition-delay:.15s">
+      <div class="dog__img">
+        <!-- REMPLACER : photo d'Onyx -->
+        <img src="photo-berger-australien/brayden-prato-XTti5PmvSE0-unsplash.jpg" alt="Onyx — Berger Australien mâle reproducteur De Windy'Stia">
+        <span class="dog__sex dog__sex--m">♂</span>
+      </div>
+      <div class="dog__body">
+        <div class="dog__name">Onyx</div>
+        <div class="dog__born">Père de la portée actuelle</div>
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Confirmé</span>
+          <span class="dog__tag">Exposition</span>
+        </div>
+        <p class="dog__desc">Onyx apporte à nos portées des qualités morphologiques et un caractère vif et joueur. Sa robe spectaculaire et son regard expressif reflètent le meilleur du standard Berger Australien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CHIOTS ====== -->
+<section class="chiots" id="chiots">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Disponibilités</p>
+    <h2 class="sec__title">Nos <em>chiots</em></h2>
+    <p class="sec__sub">2e portée de Queen et Onyx — 7 chiots Berger Australien LOF, élevés en famille à Voiron.</p>
+  </div>
+  <div class="chiots__grid">
+    <!-- MODIFIER : chiots -->
+    <div class="pup reveal">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 1 -->
+        <img src="photo-berger-australien/amber-mayo-ZNV1wvoxcxM-unsplash.jpg" alt="Chiot Berger Australien — De Windy'Stia">
+        <span class="pup__badge badge--avail">Disponible</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">À nommer</div>
+        <div class="pup__meta">Femelle · Bleu merle</div>
+        <div class="pup__price">1 500 €<small>LOF · Vaccinée · Identifiée</small></div>
+      </div>
+    </div>
+    <div class="pup reveal" style="transition-delay:.08s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 2 -->
+        <img src="photo-berger-australien/melissa-whitecross-SPOAwMdCxAo-unsplash.jpg" alt="Chiot Berger Australien — De Windy'Stia">
+        <span class="pup__badge badge--avail">Disponible</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">À nommer</div>
+        <div class="pup__meta">Mâle · Tricolore</div>
+        <div class="pup__price">1 500 €<small>LOF · Vacciné · Identifié</small></div>
+      </div>
+    </div>
+    <div class="pup reveal" style="transition-delay:.16s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 3 -->
+        <img src="photo-berger-australien/fi-dogs-Cn1fR5H9l4s-unsplash.jpg" alt="Chiot Berger Australien — De Windy'Stia">
+        <span class="pup__badge badge--resa">Réservé</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">À nommer</div>
+        <div class="pup__meta">Femelle · Rouge merle</div>
+        <div class="pup__price">1 500 €<small>LOF · Vaccinée · Identifiée</small></div>
+      </div>
+    </div>
+    <div class="pup reveal" style="transition-delay:.24s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 4 -->
+        <img src="photo-berger-australien/zuzanna-bak-QcHnw5U002o-unsplash.jpg" alt="Chiot Berger Australien — De Windy'Stia">
+        <span class="pup__badge badge--resa">Réservé</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">À nommer</div>
+        <div class="pup__meta">Mâle · Bleu merle</div>
+        <div class="pup__price">1 500 €<small>LOF · Vacciné · Identifié</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="chiots__note reveal">
+    💬 Portée de 7 chiots issus de Queen et Onyx. Chaque chiot repart avec carnet de santé complet, primo-vaccination, identification I-CAD, attestation de cession et pedigree LOF. Nous prenons le temps de vous connaître avant de confirmer toute adoption — un échange téléphonique est indispensable.
+  </div>
+  <div class="chiots__cta">
+    <a href="#contact" class="btn btn--primary" style="margin-top:1.5rem">Nous contacter pour un chiot</a>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>Aussies</em></h2>
+    <p class="sec__sub">La vie quotidienne à l'élevage.</p>
+  </div>
+  <div class="gal__grid">
+    <!-- REMPLACER : 5 photos galerie (chiens, chiots, Isère, nature) -->
+    <div class="gi" onclick="openLb(this)"><img src="photo-berger-australien/mathias-dargnat-0-h6yTsWfv0-unsplash.jpg" alt="Galerie De Windy'Stia"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="photo-berger-australien/jametlene-reskp-VDrErQEF9e4-unsplash.jpg" alt="Galerie De Windy'Stia"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="photo-berger-australien/oskar-kadaksoo-4EriTfpwOmY-unsplash.jpg" alt="Galerie De Windy'Stia"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="photo-berger-australien/andrew-a-Vr0wc-HIUHo-unsplash.jpg" alt="Galerie De Windy'Stia"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="photo-berger-australien/celine-druguet-4Bfl0pqWZtc-unsplash.jpg" alt="Galerie De Windy'Stia"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Aussie</em></h2>
+    <p class="sec__sub">Des familles heureuses partout en France.</p>
+  </div>
+  <div class="temo__grid">
+    <!-- MODIFIER : témoignages -->
+    <div class="temo reveal">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">« Notre Aussie Luna est arrivée parfaitement socialisée. Elle connaissait déjà son prénom, était propre et s'est adaptée en quelques jours. Un travail remarquable depuis la naissance. »</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=80" alt="Sophie"></div>
+        <div><div class="temo__name">Sophie &amp; Julien</div><div class="temo__dog">Berger Australien · Lyon</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">« Ce qui m'a convaincu, c'est la transparence totale sur les parents et les conditions d'élevage. On a pu visiter, rencontrer Queen et Onyx, et voir dans quel environnement allait naître notre chiot. »</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=81" alt="Marc"></div>
+        <div><div class="temo__name">Marc D.</div><div class="temo__dog">Berger Australien · Grenoble</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">« Le suivi à vie, ce n'est pas une promesse en l'air — ils sont encore disponibles deux ans après pour répondre à nos questions. Un éleveur qui aime vraiment ses chiens et les familles qui les adoptent. »</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=82" alt="Camille"></div>
+        <div><div class="temo__name">Camille L.</div><div class="temo__dog">Berger Australien · Valence</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Venez nous <em>rendre visite</em></h2>
+    <p class="sec__sub">Appelez-nous avant de vous déplacer — un échange téléphonique est indispensable. Nous ne répondons pas aux simples demandes de prix par message.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <!-- MODIFIER : coordonnées -->
+      <h3>De Windy'Stia</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Localisation</div>
+            <!-- MODIFIER : ville -->
+            <div class="cinfo__val">Voiron, 38500<br>Isère, Auvergne-Rhône-Alpes</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <!-- MODIFIER : téléphone -->
+            <div class="cinfo__val"><a href="tel:+33688976745">06 88 97 67 45</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <!-- MODIFIER : lien Facebook -->
+            <div class="cinfo__val"><a href="#" target="_blank" rel="noopener">De Windy'Stia</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Visites</div>
+            <div class="cinfo__val">Sur rendez-vous téléphonique<br><small style="color:#bbb;font-size:.8rem">Appelez avant de vous déplacer</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="acaced">✓ Pro · SIREN 528477029 · ACACED</div>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML uniquement.
+           Activer avec Netlify Forms (ajouter netlify à <form>)
+           ou Formspree (action="https://formspree.io/f/XXXX") -->
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Appelez directement le <strong>06 88 97 67 45</strong> ou laissez votre message. Nous vous rappellerons pour faire connaissance.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone *</label>
+            <input type="tel" id="tel" name="tel" required placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="robe">Robe souhaitée</label>
+            <select id="robe" name="robe">
+              <option value="">Sans préférence</option>
+              <option value="bleu-merle">Bleu merle</option>
+              <option value="rouge-merle">Rouge merle</option>
+              <option value="tricolore">Tricolore</option>
+              <option value="bicolore">Bicolore</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="logement">Type de logement *</label>
+            <select id="logement" name="logement" required>
+              <option value="">— Choisir —</option>
+              <option value="maison-jardin">Maison avec jardin</option>
+              <option value="maison-sans">Maison sans jardin</option>
+              <option value="appartement">Appartement</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="activite">Activité envisagée</label>
+            <select id="activite" name="activite">
+              <option value="">— Choisir —</option>
+              <option value="famille">Compagnon de famille</option>
+              <option value="sport">Sport (agility, frisbee…)</option>
+              <option value="travail">Troupeau, canicross</option>
+              <option value="expo">Expositions</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Présentez-vous et votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux, style de vie, activité souhaitée avec le chien, expérience avec la race..."></textarea>
+          <span class="form__hint">Plus vous nous donnez de détails, mieux nous pourrons vous conseiller.</span>
+        </div>
+        <button type="submit" class="btn btn--primary form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage. Conformément au RGPD.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONDITIONS ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <!-- MODIFIER : FAQ -->
+    <div class="acc">
+      <button class="acc__q">Qu'est-ce qui est inclus avec le chiot ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot De Windy'Stia repart avec :</p>
+        <ul>
+          <li>Carnet de santé à jour (primo-vaccination, vermifugation)</li>
+          <li>Identification I-CAD (puce électronique)</li>
+          <li>Certificat vétérinaire de bonne santé</li>
+          <li>Attestation de cession obligatoire</li>
+          <li>Pedigree LOF (confirmé ou confirmable)</li>
+          <li>Suivi et conseils personnalisés à vie</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe la sélection des familles ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Nous prenons le temps de vous connaître avant toute adoption. Un premier échange téléphonique est indispensable — nous ne confirmons pas d'adoption sur simple message. Nous souhaitons comprendre votre mode de vie pour vous orienter vers le chiot qui vous correspond. La visite sur place est fortement encouragée.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quel est le prix et comment réserver ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Les chiots Berger Australien LOF sont proposés à <strong>1 500 €</strong>. Après notre échange et la confirmation de l'adoption, un acompte sécurise la réservation. Le solde est réglé le jour de la remise du chiot, à partir de 8 semaines révolues. Contactez-nous au <strong>06 88 97 67 45</strong>.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Le Berger Australien est-il fait pour moi ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>L'Aussie est un chien de travail intelligent et très actif. Il a besoin d'exercice quotidien soutenu et de stimulation mentale. Ce n'est pas un chien sédentaire — il s'épanouit dans une famille active qui peut lui proposer des activités (agility, frisbee, randonnée, canicross). En revanche, si vous cherchez un compagnon loyal, vif et extraordinaire à vivre, l'Aussie est fait pour vous.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">En quoi consiste le suivi à vie ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Nous restons disponibles pour chaque famille adoptante, sans limite de durée. Questions sur le comportement, l'alimentation, la santé ou la socialisation — nous répondons toujours. Si pour une raison quelconque vous ne pouvez plus garder votre chien, nous préférons être informés et pouvons aider à trouver une solution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <!-- MODIFIER : nom et informations -->
+      <div class="footer__logo">De Windy'Stia<span>Berger Australien LOF · Voiron, Isère (38)</span></div>
+      <p>Élevage familial de Berger Australien depuis plus de 10 ans à Voiron. Chiots LOF socialisés, parents agility et exposition. Suivi à vie.</p>
+      <p style="margin-top:.8rem">
+        📞 <a href="tel:+33688976745">06 88 97 67 45</a><br>
+        📍 Voiron, 38500 Isère
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">La Race</a>
+      <a href="#repro">Reproducteurs</a>
+      <a href="#chiots">Chiots disponibles</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations légales</h4>
+      <!-- MODIFIER : SIREN -->
+      <p>SIREN : 528477029</p>
+      <p>Éleveur professionnel</p>
+      <p>Certifié ACACED</p>
+      <p>Voiron (38), Isère, France</p>
+      <a href="#" style="margin-top:.8rem">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <!-- MODIFIER : année -->
+    <p>© 2025 De Windy'Stia · Tous droits réservés</p>
+    <p><a href="#">Mentions légales</a> · <a href="#">RGPD</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO LOAD ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  /* ---- ACCORDION ---- */
+  document.querySelectorAll('.acc__q').forEach(q => q.addEventListener('click', () => {
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  }));
+</script>
+</body>
+</html>
