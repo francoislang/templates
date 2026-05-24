@@ -1,24 +1,56 @@
-# macOS
+# ─── macOS ────────────────────────────────────────────────────────────────────
 .DS_Store
 .DS_Store?
 ._*
+.AppleDouble
+.AppleDB
+.AppleDesktop
+.LSOverride
 .Spotlight-V100
 .Trashes
-.AppleDouble
-.LSOverride
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+Icon
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# WebStorm / JetBrains
+# ─── JetBrains / WebStorm ─────────────────────────────────────────────────────
 .idea/
+*.iml
+*.iws
+*.ipr
+out/
 
-# Fichiers temporaires
+# ─── Fichiers temporaires ─────────────────────────────────────────────────────
 *.bak
 *.tmp
 *.swp
+*.swo
 *~
+*.orig
 
-# Windows (par précaution)
+# ─── Windows (par précaution) ─────────────────────────────────────────────────
 Thumbs.db
+Thumbs.db:encryptable
 ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
 
-# Photos (trop lourdes pour Git — livrer en zip ou via Netlify Drop)
+# ─── Photos ───────────────────────────────────────────────────────────────────
+# Trop lourdes pour Git — livrer en zip ou via Netlify Drop
 elevage-border-collie-mas-andre/photo-border-collies/
+domaine-du-quinquis/photo-cavalier-king-charles/
+ferme-aredienne-des-salines/photo-west-highland/
+mellan-schnauzers/photo-schnauzer/
+de-windy-stia/photo-berger-australien/
+la-dolce-vita/photo-lagotto/
+marais-de-bremes/photo-cavalier/
+bois-de-chantalouette/photo-berger-australien/
+joyaux-d-anubis/photo-carlin/
+des-cotons-de-soie-d-or/photo-pomeranie/
+gaec-du-chateau-d-alboy/photo-berger-podhale/
