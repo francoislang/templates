@@ -147,6 +147,7 @@
       transition: opacity .25s, transform .25s;
     }
     .nav__item:hover .nav__sub { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0); }
+    .nav__sub::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
     .nav__sub a { display: block; padding: .7rem 1.25rem; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text) !important; transition: color .2s, background .2s; border-bottom: 1px solid rgba(0,0,0,.05); }
     .nav__sub a:last-child { border-bottom: none; }
     .nav__sub a:hover { color: var(--gold) !important; background: rgba(201,168,76,.06); }
