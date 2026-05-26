@@ -1,0 +1,39 @@
+template: la-dolce-vita
+elevage:
+  nom: La Dolce Vita
+  race: Lagotto Romagnolo
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+15149964724'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de Lagotto Romagnolo à Morin-Heights, Québec.
+    Programme Puppy Culture, tests génétiques, chiots CCC. Marie-Ève Tremblay. Tél.
+    514-996-4724.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  esp: '#2A1A0E'
+  trr: '#B85C2A'
+  olv: '#4D5E3B'
+  gld: '#C9A45E'
+  crm: '#F5EFE0'
+  bg: '#FAF8F2'
+  stn: '#9A8E7E'
+  txt: '#2A1A0E'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/jack-plant-G9xKUgTnKlc-unsplash_fyxvza.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/anna-storsul-CyeByt2cVk8-unsplash_j2q7af.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/anna-storsul-c6EpHoH2h_A-unsplash_a7p2hx.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/bianca-ackermann-FkTaaQyy2so-unsplash_x5j1qr.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stephen-kidd-SEGx-jGhGs4-unsplash_mznxf8.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stephen-kidd-Sp2oFqXJtcU-unsplash_kg0db1.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/anna-storsul-gqojnrlAaGk-unsplash_kbmdbh.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/bianca-ackermann-zDcuyct-WEs-unsplash_qltbck.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/jack-plant-M45mWS_CPVE-unsplash_lxeszr.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stephen-kidd-Pkfahkp4Ius-unsplash_if5eny.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stephen-kidd-VpR8MrEh4Gs-unsplash_gqng4z.jpg

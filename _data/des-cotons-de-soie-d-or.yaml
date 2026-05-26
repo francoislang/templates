@@ -1,0 +1,38 @@
+template: des-cotons-de-soie-d-or
+elevage:
+  nom: Des Cotons de Soie d'Or
+  race: Loulou de Poméranie
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33659588632'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage professionnel de Loulou de Poméranie (Spitz nain) à Lys-lez-Lannoy,
+    près de Lille. Chiots orange, sable et crème, testés ADN, pedigree. Vitória Manuela
+    Justo Marques. Tél. 06 59 58 86 32.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  amb: '#B86820'
+  gld: '#D4962A'
+  sbl: '#7A5814'
+  crm: '#FDF2E3'
+  bg: '#FEF8F0'
+  stn: '#9A8060'
+  txt: '#2A1A0A'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ian-deneumostier-W6wBjQ17r4w-unsplash_gnwqen.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/sharon-yang-1BXuh85w6SE-unsplash_lr3ki2.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/pegah-mostafavi-zadeh-4dBce3hxiVY-unsplash_c3nznz.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/danique-veldhuis-brYiSKZ0I_k-unsplash_faxpwu.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stefanus-fandhy-A3KtBL7ptHE-unsplash_oo3ddt.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/flouffy-JxNPry3jPsQ-unsplash_hxadc0.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stefanus-fandhy-Uv1G3yfL2Gg-unsplash_flhz0k.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ian-deneumostier-APVBt7gCujU-unsplash_ydwj2e.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ian-deneumostier-VOVzREXqsNk-unsplash_k7yezf.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mohamad-alnaimi-lHJ9K-tZ3cM-unsplash_gxlysp.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/sharon-yang-D5PUnH4zKls-unsplash_pnfucm.jpg

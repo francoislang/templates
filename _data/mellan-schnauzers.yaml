@@ -1,0 +1,36 @@
+template: mellan-schnauzers
+elevage:
+  nom: Mellan Schnauzers
+  race: Schnauzer
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33385854127'
+  siren: '887804029'
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de Schnauzer Nain poivre et sel à Bourbon-Lancy,
+    Saône-et-Loire (71). Chiots LOF confirmés, pedigree, tests oculaires et Combitest
+    Laboklin. ACACED. Tél. 03 85 85 41 27.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  ink: '#1C1C26'
+  wine: '#7B2D42'
+  slvr: '#8A8FA6'
+  bg: '#F6F5F1'
+  crm: '#EDE7DB'
+  txt: '#1C1C26'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/flouffy-qEO5MpLyOks-unsplash_jhnv5w.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-curry-c7JBpJfG52A-unsplash_ny9il7.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mariola-grobelska-DdM_n_yR6Bc-unsplash_jurmuc.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/alejandro-morelos-Jm3U2aR1ekM-unsplash_mvmpmu.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/irene-BmisHZUE750-unsplash_caniui.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-arthur-collins-T-51lB9tz2k-unsplash_qaeutf.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/alda-gonzalez-cuevas-B89WRI24mNU-unsplash_zncdae.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/shayna-douglas-Dbgk8MatsqI-unsplash_j33mdm.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/melanie-giordano-h6i5rC2IVSY-unsplash_gqkstw.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-arthur-collins-dalum0O0AzU-unsplash_axbbf6.jpg

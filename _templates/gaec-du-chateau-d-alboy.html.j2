@@ -1,0 +1,1164 @@
+{#- template: gaec-du-chateau-d-alboy -#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>{{ elevage.nom }} — Élevage {{ elevage.race }} | {{ elevage.departement }}</title>
+  <meta name="description" content="{{ elevage.description_seo }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://gaec-chateau-alboy.fr/">
+  <meta property="og:title"       content="{{ elevage.nom }} — {{ elevage.race }}, {{ elevage.departement }}">
+  <meta property="og:description" content="{{ elevage.description_seo }}">
+  <meta property="og:image"       content="https://picsum.photos/1200/630?random=10">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "AnimalShelter"],
+        "name": "GAEC du Château d'Alboy",
+        "description": "Élevage professionnel de Berger Polonais de Podhale (Berger des Tatras) à Montrozier, Aveyron. GAEC — chiens LOF travaillant au troupeau.",
+        "telephone": "+33769459234",
+        "legalName": "GAEC du Château d'Alboy",
+        "taxID": "985295252",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Alboy",
+          "addressLocality": "Montrozier",
+          "postalCode": "12630",
+          "addressRegion": "Aveyron",
+          "addressCountry": "FR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 44.3921,
+          "longitude": 2.6247
+        },
+        "url": "https://gaec-chateau-alboy.fr/",
+        "sameAs": ["https://www.facebook.com/GAECduChateaudalboy"],
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "description": "Sur rendez-vous téléphonique"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — adapter à chaque client ici
+       ============================================== */
+    :root {
+      --sto:  #3D3530;   /* MODIFIER : pierre sombre aveyronnaise */
+      --sge:  #5C6E4A;   /* MODIFIER : vert sauge des causses */
+      --lim:  #C8BAA0;   /* MODIFIER : calcaire/limestone */
+      --wht:  #F8F7F5;   /* MODIFIER : blanc neigeux — couleur du chien */
+      --bg:   #F2EFE8;   /* MODIFIER : fond blanc cassé pierre */
+      --crm:  #E8E2D4;   /* MODIFIER : crème calcaire */
+      --txt:  #2A2318;   /* texte foncé */
+      --FD:   'EB Garamond', serif;      /* MODIFIER : police titres */
+      --FN:   'Source Sans 3', sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .78rem 2.2rem;
+      font-family: var(--FN); font-weight: 700; font-size: .78rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+      border-radius: 2px;
+    }
+    .btn--primary { background: var(--sge); color: #fff; }
+    .btn--primary:hover { background: #485840; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(92,110,74,.35); }
+    .btn--dark { background: var(--sto); color: #fff; }
+    .btn--dark:hover { background: #2a2420; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(61,53,48,.3); }
+    .btn--outline { background: transparent; color: var(--sto); border: 1.5px solid var(--sto); }
+    .btn--outline:hover { background: var(--sto); color: #fff; transform: translateY(-2px); }
+    .btn--white { background: rgba(255,255,255,.13); color: #fff; border: 1px solid rgba(255,255,255,.48); backdrop-filter: blur(8px); }
+    .btn--white:hover { background: rgba(255,255,255,.24); transform: translateY(-2px); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(242,239,232,.96);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(61,53,48,.07);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 28px rgba(0,0,0,.08); }
+    .nav__logo {
+      font-family: var(--FD); font-size: 1.2rem; font-weight: 600; font-style: italic;
+      color: var(--sto); line-height: 1.1; margin-right: auto; letter-spacing: .01em;
+    }
+    .nav__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .56rem; font-weight: 700; color: var(--sge); letter-spacing: .26em; text-transform: uppercase; margin-top: .12rem; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a {
+      font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--txt); transition: color .2s; position: relative;
+    }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--sge); transition: width .25s; }
+    .nav__links > li > a:hover { color: var(--sge); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.4rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .52rem; margin-left: .22rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 14px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: var(--wht); border: 1px solid rgba(61,53,48,.09);
+      border-radius: var(--r); padding: .45rem 0;
+      box-shadow: 0 14px 44px rgba(0,0,0,.1);
+      min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .2s, visibility .2s, transform .2s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a { display: block; padding: .52rem 1.3rem; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); transition: background .15s, color .15s; }
+    .drop__menu a:hover { background: var(--crm); color: var(--sge); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--txt); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--bg); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); padding: .8rem 0; border-bottom: 1px solid var(--crm); }
+    .nav__mobile a:hover { color: var(--sge); }
+    .nav__mobile .mob-sub { padding-left: 1.2rem; font-size: .78rem !important; color: var(--lim) !important; font-weight: 400 !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100svh; min-height: 620px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    /* MODIFIER : image hero — paysage Aveyron ou chien blanc dans les causses */
+    .hero__bg {
+      position: absolute; inset: 0;
+      background: url('https://picsum.photos/1920/1080?random=1') center/cover no-repeat;
+      transform: scale(1.07); transition: transform 11s ease;
+    }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    /* Overlay vert sauge doux — evoque l'herbe des causses */
+    .hero__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        155deg,
+        rgba(61,53,48,.15) 0%,
+        rgba(92,110,74,.38) 40%,
+        rgba(42,35,24,.72) 100%
+      );
+    }
+    /* grain texture subtil — rend hommage à la pierre aveyronnaise */
+    .hero__grain {
+      position: absolute; inset: 0; opacity: .04; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    /* Ligne décorative en bas du hero — évoque l'horizon des causses */
+    .hero__line {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent 0%, var(--lim) 35%, var(--wht) 50%, var(--lim) 65%, transparent 100%);
+      opacity: .4;
+    }
+    .hero__content {
+      position: relative; z-index: 1; color: #fff;
+      text-align: center; padding: 0 1.5rem; max-width: 800px;
+    }
+    .hero__eyebrow {
+      font-family: var(--FN); font-size: .66rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(200,186,160,.9); margin-bottom: 1.6rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .hero__eyebrow::before, .hero__eyebrow::after { content: ''; display: block; width: 44px; height: 1px; background: rgba(200,186,160,.55); }
+    .hero__title {
+      font-family: var(--FD); font-size: clamp(3rem, 7.5vw, 7.5rem);
+      font-weight: 600; font-style: italic; line-height: .98;
+      margin-bottom: 1.1rem; text-shadow: 0 2px 36px rgba(0,0,0,.28);
+      letter-spacing: -.01em;
+    }
+    /* "d'Alboy" en blanc immaculé — couleur du chien */
+    .hero__title .blanc { color: var(--wht); }
+    .hero__subtitle {
+      font-family: var(--FN); font-size: .7rem; font-weight: 700;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: rgba(248,247,245,.6); margin-bottom: 1.8rem;
+    }
+    .hero__sub {
+      font-size: clamp(.88rem, 1.6vw, 1.02rem); font-weight: 300;
+      color: rgba(255,255,255,.8); line-height: 1.78;
+      max-width: 540px; margin: 0 auto 2.6rem;
+    }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll {
+      position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.45); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+      font-family: var(--FN); font-weight: 700;
+    }
+    .hero__scroll::after {
+      content: ''; width: 1px; height: 38px; background: rgba(255,255,255,.32);
+      animation: scrollLine 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ---- BANDEAU INFOS ---- */
+    .bandeau {
+      background: var(--sto); color: rgba(255,255,255,.7);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .ban__item {
+      padding: 1.7rem 1rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .ban__item:last-child { border-right: none; }
+    .ban__n { font-family: var(--FD); font-size: 1.55rem; font-style: italic; color: var(--lim); line-height: 1; margin-bottom: .3rem; }
+    .ban__l { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .5; }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 6.5rem 4vw; }
+    .sec__head { text-align: center; margin-bottom: 3.6rem; }
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .6rem; font-weight: 700;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--sge);
+      margin-bottom: .9rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after { content: ''; display: block; width: 22px; height: 1px; background: var(--sge); opacity: .55; }
+    .sec__title { font-family: var(--FD); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: var(--sto); line-height: 1.1; }
+    .sec__title em { font-style: italic; color: var(--sge); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-family: var(--FN); font-size: .94rem; color: #8a8070; line-height: 1.82; font-weight: 300; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 540px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 73%; height: 80%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 24px 68px rgba(61,53,48,.18);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 46%; height: 50%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,.12);
+      border: 4px solid var(--bg);
+    }
+    /* médaillon GAEC */
+    .about__medal {
+      position: absolute; right: 5%; top: 30%; z-index: 2;
+      width: 82px; height: 82px; border-radius: 50%;
+      background: var(--sge); color: #fff;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(92,110,74,.4);
+      font-family: var(--FD); font-size: .88rem; font-style: italic; font-weight: 600; text-align: center; line-height: 1.2;
+    }
+    .about__medal small { font-family: var(--FN); font-size: .42rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-top: .18rem; opacity: .7; }
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.7rem, 3vw, 2.65rem); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.13; }
+    .about__text h2 em { font-style: italic; color: var(--sge); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #6a6055; line-height: 1.86; margin-bottom: 1rem; font-size: .95rem; }
+    .about__list { margin: 1.7rem 0; display: flex; flex-direction: column; gap: .62rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .9rem; font-family: var(--FN); font-size: .9rem; color: #6a6055; line-height: 1.6; font-weight: 300; }
+    .about__li-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--sge); flex-shrink: 0; margin-top: .55rem; }
+    .about__li strong { color: var(--sto); font-weight: 700; }
+
+    /* ---- TRAVAIL AU TROUPEAU ---- */
+    .troupeau { background: var(--sge); color: #fff; position: relative; overflow: hidden; }
+    .troupeau::before {
+      content: ''; position: absolute; top: -80px; right: -80px;
+      width: 340px; height: 340px; border-radius: 50%;
+      background: rgba(255,255,255,.04); pointer-events: none;
+    }
+    .troupeau::after {
+      content: ''; position: absolute; bottom: -60px; left: -60px;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: rgba(255,255,255,.03); pointer-events: none;
+    }
+    .troupeau__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 1; }
+    .troupeau__img { position: relative; height: 460px; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.22); }
+    .troupeau__img img { position: absolute; inset: 0; height: 100%; }
+    .troupeau__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(61,53,48,.45), transparent 60%); }
+    .troupeau__content .sec__eyebrow { color: rgba(200,186,160,.85); justify-content: flex-start; }
+    .troupeau__content .sec__eyebrow::before, .troupeau__content .sec__eyebrow::after { background: rgba(200,186,160,.5); }
+    .troupeau__content h2 { font-family: var(--FD); font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 600; font-style: italic; color: #fff; line-height: 1.1; margin-bottom: 1.3rem; }
+    .troupeau__content p { font-family: var(--FN); font-size: .94rem; font-weight: 300; line-height: 1.84; color: rgba(255,255,255,.78); margin-bottom: 1rem; }
+    .troupeau__badge {
+      display: inline-flex; align-items: center; gap: .6rem;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+      border-radius: 3px; padding: .65rem 1.1rem;
+      font-family: var(--FN); font-size: .8rem; font-weight: 700;
+      color: rgba(255,255,255,.9); letter-spacing: .04em;
+      margin-top: .4rem;
+    }
+    .troupeau__badge svg { width: 16px; height: 16px; fill: rgba(200,186,160,.8); flex-shrink: 0; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img { position: relative; height: 540px; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 64px rgba(61,53,48,.16); }
+    .race__img img { position: absolute; inset: 0; height: 100%; }
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .95rem; line-height: 1.86; color: #6a6055; margin-bottom: 1rem; }
+    /* Encart "blanc comme neige" — signature de la race */
+    .race__signature {
+      display: flex; align-items: flex-start; gap: .9rem;
+      background: var(--sto); color: rgba(255,255,255,.8);
+      border-radius: var(--r); padding: 1.3rem 1.5rem;
+      margin: 1.6rem 0; font-family: var(--FN); font-size: .85rem; line-height: 1.72; font-weight: 300;
+    }
+    .race__signature-ico { font-size: 1.5rem; flex-shrink: 0; margin-top: .05rem; }
+    .race__signature strong { color: var(--lim); font-weight: 700; display: block; margin-bottom: .2rem; font-size: .88rem; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-bottom: 2rem; }
+    .race__spec { background: var(--wht); border-radius: var(--r); padding: .88rem 1rem; border-left: 2px solid var(--sge); }
+    .race__spec strong { display: block; font-family: var(--FN); font-size: .56rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #b0a898; margin-bottom: .25rem; }
+    .race__spec span { font-family: var(--FD); font-size: .95rem; font-weight: 600; font-style: italic; color: var(--sto); }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--bg); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 1.8rem; }
+    .dog__card { border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 22px rgba(0,0,0,.07); background: var(--wht); transition: transform .3s, box-shadow .3s; }
+    .dog__card:hover { transform: translateY(-5px); box-shadow: 0 20px 56px rgba(0,0,0,.12); }
+    .dog__img { height: 310px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .65s; }
+    .dog__card:hover .dog__img img { transform: scale(1.06); }
+    .dog__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(61,53,48,.78) 0%, transparent 55%);
+    }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.4rem 1.5rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.85rem; font-weight: 600; font-style: italic; color: #fff; line-height: 1; }
+    .dog__sex-label { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lim); margin-top: .22rem; }
+    .dog__body { padding: 1.3rem 1.5rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+    .dog__tag { background: var(--crm); border-radius: 2px; padding: .2rem .7rem; font-family: var(--FN); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--sto); }
+    .dog__tag--star { background: var(--sge); color: #fff; }
+    .dog__desc { font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #8a8070; line-height: 1.75; }
+
+    /* ---- PROCHAINE PORTÉE ---- */
+    .portee { background: var(--sto); color: #fff; }
+    .portee__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .portee__img { position: relative; height: 460px; border-radius: var(--r); overflow: hidden; }
+    .portee__img img { position: absolute; inset: 0; height: 100%; }
+    .portee__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(61,53,48,.55), transparent 60%); }
+    .portee__content .sec__eyebrow { color: rgba(200,186,160,.8); justify-content: flex-start; }
+    .portee__content .sec__eyebrow::before, .portee__content .sec__eyebrow::after { background: rgba(200,186,160,.45); }
+    .portee__content .sec__title { color: #fff; text-align: left; }
+    .portee__content .sec__title em { color: var(--lim); }
+    .portee__content p { font-family: var(--FN); font-size: .94rem; font-weight: 300; line-height: 1.84; color: rgba(255,255,255,.72); margin-bottom: 1rem; }
+    /* Compteur chiots */
+    .portee__stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .8rem; margin: 1.8rem 0; }
+    .portee__stat { background: rgba(255,255,255,.07); border-radius: var(--r); padding: 1rem .8rem; text-align: center; border: 1px solid rgba(200,186,160,.12); }
+    .portee__stat-n { font-family: var(--FD); font-size: 1.8rem; font-style: italic; color: var(--lim); line-height: 1; margin-bottom: .25rem; }
+    .portee__stat-l { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+    .portee__prix {
+      display: flex; align-items: center; gap: 1rem;
+      background: rgba(255,255,255,.06); border-left: 3px solid var(--lim);
+      border-radius: 0 var(--r) var(--r) 0; padding: 1rem 1.2rem; margin: 1.2rem 0;
+    }
+    .portee__prix-n { font-family: var(--FD); font-size: 2.2rem; font-style: italic; color: var(--lim); line-height: 1; }
+    .portee__prix-txt { font-family: var(--FN); font-size: .8rem; font-weight: 300; color: rgba(255,255,255,.6); line-height: 1.5; }
+    .portee__prix-txt strong { color: rgba(255,255,255,.85); font-weight: 700; display: block; font-size: .82rem; }
+    .portee__docs { margin: 1rem 0 1.6rem; display: flex; flex-direction: column; gap: .5rem; }
+    .portee__doc { display: flex; align-items: center; gap: .75rem; font-family: var(--FN); font-size: .86rem; font-weight: 300; color: rgba(255,255,255,.65); }
+    .portee__doc::before { content: '✓'; font-weight: 700; color: var(--lim); font-size: .78rem; }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--bg); }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+    }
+    .gi { overflow: hidden; border-radius: 5px; position: relative; cursor: pointer; }
+    .gi img { height: 230px; transition: transform .55s; }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: 100%; }
+    .gi:hover img { transform: scale(1.07); }
+    .gi__over { position: absolute; inset: 0; background: rgba(92,110,74,.42); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: #fff; font-family: var(--FD); font-size: 1.9rem; font-style: italic; }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.95); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    #lb-close { position: absolute; top: 1.3rem; right: 1.6rem; color: #fff; font-size: 2rem; cursor: pointer; opacity: .55; transition: opacity .2s; }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.4rem; padding: 1rem; opacity: .45; cursor: pointer; transition: opacity .2s; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .temo { background: var(--wht); border-radius: var(--r); padding: 1.8rem; box-shadow: 0 2px 18px rgba(0,0,0,.05); position: relative; }
+    .temo__quote { font-family: var(--FD); font-size: 4.5rem; font-style: italic; color: var(--sge); opacity: .15; position: absolute; top: .4rem; left: 1.1rem; line-height: 1; }
+    .temo__stars { color: var(--sge); font-size: .88rem; margin-bottom: 1rem; letter-spacing: .06em; }
+    .temo__text { font-family: var(--FN); font-size: .9rem; font-weight: 300; line-height: 1.84; color: #6a6055; margin-bottom: 1.4rem; font-style: italic; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .8rem; }
+    .temo__av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; color: var(--sto); }
+    .temo__dog { font-size: .72rem; color: #b0a898; font-weight: 300; }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.75rem; font-style: italic; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.12; color: var(--sto); }
+    .cinfo { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .85rem; }
+    .cinfo__ico { width: 38px; height: 38px; border-radius: 7px; background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .cinfo__label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #c0b8a8; margin-bottom: .12rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 600; color: var(--sto); }
+    .cinfo__val a:hover { color: var(--sge); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: #b0a898; margin-top: .1rem; }
+    .certif-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--sto); color: rgba(255,255,255,.82); border-radius: 3px;
+      padding: .45rem 1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; margin-top: .6rem; margin-right: .5rem;
+    }
+    .contact__form { background: var(--crm); border-radius: var(--r); padding: 2.5rem; }
+    .form__title { font-family: var(--FD); font-size: 1.4rem; font-style: italic; font-weight: 600; margin-bottom: .4rem; color: var(--sto); }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: #a09888; margin-bottom: 1.8rem; line-height: 1.6; }
+    .form__section { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--lim); margin: 1.4rem 0 .8rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(61,53,48,.08); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .32rem; margin-bottom: .9rem; }
+    .form__group label { font-family: var(--FN); font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--txt); }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .73rem .95rem;
+      border: 1.5px solid rgba(61,53,48,.1); border-radius: var(--r);
+      font-family: var(--FN); font-size: .9rem; font-weight: 300; color: var(--txt);
+      background: var(--wht); outline: none; transition: border-color .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--sge); }
+    .form__group textarea { resize: vertical; min-height: 110px; }
+    .form__hint { font-size: .7rem; color: #c0b8a8; margin-top: .16rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .95rem; font-size: .82rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .7rem; font-weight: 300; color: #c0b8a8; text-align: center; margin-top: .8rem; line-height: 1.5; }
+
+    /* ---- CONDITIONS / FAQ ---- */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(61,53,48,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.15rem 0; font-family: var(--FN); font-weight: 700; font-size: .92rem; letter-spacing: .01em; color: var(--txt); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .acc__q .arr { font-size: .76rem; color: var(--sge); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.1rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #7a7065; line-height: 1.84; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .5rem 0 .5rem 1.2rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .3rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--sto); color: rgba(255,255,255,.48); padding: 4.5rem 4vw 2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.9fr 1fr 1fr; gap: 3rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.3rem; font-style: italic; font-weight: 600; color: #fff; letter-spacing: .01em; margin-bottom: .5rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .56rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: .22rem; }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.74; margin-bottom: .3rem; }
+    .footer__col h4 { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.75); margin-bottom: 1rem; }
+    .footer__col a { display: block; font-family: var(--FN); font-size: .8rem; font-weight: 300; margin-bottom: .38rem; transition: color .2s; }
+    .footer__col a:hover { color: #fff; }
+    .footer__bottom { max-width: 1200px; margin: 2.2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .72rem; margin: 0; }
+    .footer__bottom a { color: var(--lim); }
+    .footer__bottom a:hover { color: #fff; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 960px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .troupeau__wrap, .portee__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 360px; }
+      .race__img, .troupeau__img { height: 320px; }
+      .portee__img { height: 290px; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.07); }
+      .portee__stats { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.3rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 220px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .race__specs { grid-template-columns: 1fr; }
+      .portee__stats { grid-template-columns: 1fr 1fr; }
+      .portee__stat:last-child { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <!-- MODIFIER : logo -->
+  <a href="#" class="nav__logo">
+    GAEC du Château d'Alboy
+    <span>Berger de Podhale · Aveyron</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Chiens <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#troupeau">Travail au troupeau</a></li>
+        <li><a href="#repro">Uky &amp; Stuart</a></li>
+      </ul>
+    </li>
+    <li><a href="#portee">Portée disponible</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <!-- MODIFIER : bouton CTA -->
+  <a href="#contact" class="btn btn--primary nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">La Race</a>
+  <a href="#troupeau" class="mob-sub">— Travail au troupeau</a>
+  <a href="#repro" class="mob-sub">— Uky &amp; Stuart</a>
+  <a href="#portee">Portée disponible</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary" style="margin-top:1rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <div class="hero__line"></div>
+  <div class="hero__content">
+    <!-- MODIFIER : accroche géographique hero -->
+    <div class="hero__eyebrow">Alboy · Montrozier · Aveyron</div>
+    <h1 class="hero__title">Château<br><span class="blanc">d'Alboy</span></h1>
+    <p class="hero__subtitle">Berger Polonais de Podhale</p>
+    <p class="hero__sub">Un élevage professionnel GAEC au cœur de l'Aveyron — des Bergers des Tatras entièrement blancs, gardiens de troupeaux depuis des siècles, élevés avec passion dans les causses aveyronnais.</p>
+    <div class="hero__btns">
+      <!-- MODIFIER : liens CTA hero -->
+      <a href="#portee" class="btn btn--primary">Portée disponible</a>
+      <a href="#about" class="btn btn--white">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
+</section>
+
+<!-- ====== BANDEAU 4 STATS ====== -->
+<div class="bandeau">
+  <div class="ban__item reveal">
+    <div class="ban__n">GAEC</div>
+    <div class="ban__l">Élevage professionnel</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n">LOF</div>
+    <div class="ban__l">Chiens inscrits</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">1 500 €</div>
+    <div class="ban__l">TVA récupérable</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n" style="font-size:1.2rem;font-style:normal">Aveyron</div>
+    <div class="ban__l">Proche Rodez</div>
+  </div>
+</div>
+
+<!-- ====== À PROPOS ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <!-- MODIFIER : remplacer par photos réelles de l'élevage -->
+      <div class="about__main"><img src="https://picsum.photos/800/640?random=20" alt="GAEC du Château d'Alboy — élevage Berger de Podhale, Aveyron"></div>
+      <div class="about__accent"><img src="https://picsum.photos/600/480?random=21" alt="Angeline Tassié — éleveuse GAEC Château d'Alboy"></div>
+      <div class="about__medal">GAEC<small>Pro agri.</small></div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un GAEC aveyronnais,<br><em>une race d'exception</em></h2>
+      <p>Le GAEC du Château d'Alboy est une exploitation agricole professionnelle nichée à Alboy, près de Montrozier, en Aveyron. Angeline Tassié y pratique l'élevage avec la même rigueur et la même passion que ses ancêtres : respect du troupeau, du territoire et des animaux qui le gardent.</p>
+      <p>Ici, le Berger Polonais de Podhale n'est pas un chien de compagnie ordinaire — il travaille. Uky et Stuart, nos reproducteurs, patrouillent chaque jour aux côtés du troupeau, perpétuant une tradition séculaire héritée des bergers des Tatras. Race rare et méconnue en France, le Berger de Podhale mérite pourtant toute l'attention des amoureux de chiens authentiques.</p>
+      <div class="about__list">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage professionnel GAEC</strong> — structure agricole reconnue, certification de capacité n° 122699</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Chiens LOF</strong> — inscrits au Livre des Origines Français</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Travail réel au troupeau</strong> — parents actifs, caractère équilibré et tempérament naturel</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Indemnes de dysplasie</strong> — santé vérifiée sur plusieurs générations</div></div>
+      </div>
+      <!-- MODIFIER : téléphone -->
+      <a href="tel:{{ elevage.telephone }}" class="btn btn--dark">07 69 45 92 34</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__img reveal">
+      <!-- MODIFIER : remplacer par photo réelle du chien -->
+      <img src="https://picsum.photos/800/960?random=30" alt="Berger Polonais de Podhale — Berger des Tatras, blanc immaculé">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le Berger<br><em>de Podhale</em></h2>
+      <p>Originaire des montagnes des Tatras, aux confins de la Pologne et de la Slovaquie, le Berger Polonais de Podhale — aussi appelé Berger des Tatras ou Tatra Shepherd — est l'un des grands gardiens de troupeaux les plus anciens d'Europe. Utilisé depuis des siècles par les bergers des Carpates pour protéger moutons et bovins des prédateurs, il porte dans ses gènes l'instinct de vigilance, de courage et de douceur avec le troupeau dont il a la charge.</p>
+      <p>Sa robe entièrement blanche — blanc pur, blanc crème, jamais tachée — n'est pas un caprice esthétique : elle lui permet d'être reconnu par les bergers dans l'obscurité et de se fondre avec le troupeau pour dérouter les prédateurs. Race rare en France, le Podhale commence à trouver sa place auprès des éleveurs aveyronnais qui cherchent un chien de protection authentique et efficace.</p>
+      <div class="race__signature">
+        <div class="race__signature-ico">❄️</div>
+        <div><strong>Entièrement blanc — une signature génétique unique</strong>Le standard exige une robe d'un blanc uniforme, reflet de la neige des Tatras. Toute tache, aussi petite soit-elle, est rédhibitoire. Cette pureté fait du Podhale un chien immédiatement reconnaissable et d'une beauté saisissante.</div>
+      </div>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>Pologne 🇵🇱</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>55 – 70 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>45 – 70 kg</span></div>
+        <div class="race__spec"><strong>Robe</strong><span>Blanc immaculé</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 1</span></div>
+        <div class="race__spec"><strong>Inscription</strong><span>LOF en France</span></div>
+      </div>
+      <a href="#portee" class="btn btn--primary">Voir la portée disponible</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== TRAVAIL AU TROUPEAU ====== -->
+<section class="troupeau" id="troupeau">
+  <div class="troupeau__wrap">
+    <div class="troupeau__img reveal">
+      <!-- MODIFIER : photo chien travaillant avec le troupeau -->
+      <img src="https://picsum.photos/800/920?random=40" alt="Berger de Podhale travaillant au troupeau — GAEC du Château d'Alboy">
+    </div>
+    <div class="troupeau__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Ce qui nous différencie</p>
+      <h2>Des chiens qui<br><em>travaillent vraiment</em></h2>
+      <p>Dans la grande majorité des élevages canins, les reproducteurs vivent en chenil ou en famille. Au GAEC du Château d'Alboy, Uky et Stuart ont un métier : ils gardent le troupeau. Chaque matin, ils rejoignent les bêtes, patrouillent le périmètre, alertent en cas d'intrusion et veillent la nuit.</p>
+      <p>Ce travail quotidien n'est pas anodin pour les acheteurs de chiots. Un chien qui n'a jamais travaillé, qui n'a jamais eu à gérer une situation réelle, ne transmet à sa descendance qu'une moitié de son potentiel. Les fils et filles d'Uky et Stuart héritent d'instincts actifs, d'une capacité d'adaptation éprouvée et d'un équilibre émotionnel forgé par l'expérience — pas par la vie de salon.</p>
+      <p>C'est la différence entre un chien de race et un chien de travail.</p>
+      <div class="troupeau__badge">
+        <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Meilleur de Race 2022 — Stuart, père de la portée
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos reproducteurs</p>
+    <h2 class="sec__title">Uky <em>&amp;</em> Stuart</h2>
+    <p class="sec__sub">Deux Bergers de Podhale exemplaires — indemnes de dysplasie sur plusieurs générations, LOF, actifs au troupeau.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : fiche Uky -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <!-- MODIFIER : photo réelle d'Uky -->
+        <img src="https://picsum.photos/700/560?random=50" alt="Uky — Berger de Podhale femelle reproductrice, GAEC Château d'Alboy">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Uky</div>
+          <div class="dog__sex-label">♀ Mère de la portée</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Indemne dysplasie</span>
+          <span class="dog__tag">Travail troupeau</span>
+        </div>
+        <p class="dog__desc">Uky incarne parfaitement la douceur et la vigilance du Berger de Podhale. Présente au troupeau depuis sa première saison, elle fait preuve d'un instinct naturel remarquable. Sa robe d'un blanc immaculé et sa robustesse en font une mère idéale dont les qualités se transmettent fidèlement à ses chiots.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : fiche Stuart -->
+    <div class="dog__card reveal" style="transition-delay:.15s">
+      <div class="dog__img">
+        <!-- MODIFIER : photo réelle de Stuart -->
+        <img src="https://picsum.photos/700/560?random=51" alt="Stuart — Berger de Podhale mâle reproducteur, Meilleur Jeune et Meilleur de Race 2022">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Stuart</div>
+          <div class="dog__sex-label">♂ Père de la portée</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Indemne dysplasie</span>
+          <span class="dog__tag dog__tag--star">Meilleur Jeune 2022</span>
+          <span class="dog__tag dog__tag--star">Meilleur de Race 2022</span>
+        </div>
+        <p class="dog__desc">Stuart est un étalon d'exception. Lauréat du titre de Meilleur Jeune et Meilleur de Race en 2022, il réunit conformité au standard, ampleur de robe et tempérament équilibré. Actif au troupeau au quotidien, il apporte à ses descendants l'alliance rare du gabarit, de la beauté et du caractère de travail.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PORTÉE DISPONIBLE ====== -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <div class="portee__img reveal">
+      <!-- MODIFIER : photo réelle des chiots -->
+      <img src="https://picsum.photos/800/920?random=60" alt="Chiots Berger Polonais de Podhale — GAEC du Château d'Alboy, née novembre 2025">
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Portée<br><em>disponible</em></h2>
+      <p>Uky et Stuart nous ont offert une magnifique portée le <strong>11 novembre 2025</strong>. Neuf chiots en pleine santé, tous d'un blanc immaculé, déjà en cours de socialisation au contact du troupeau et de la vie agricole de l'exploitation.</p>
+      <p>Les chiots sont disponibles à partir de <strong>mi-janvier 2026</strong>, soit à l'âge de 8 à 9 semaines, après sevrage complet et première vaccination.</p>
+      <div class="portee__stats">
+        <div class="portee__stat">
+          <div class="portee__stat-n">9</div>
+          <div class="portee__stat-l">Chiots nés</div>
+        </div>
+        <div class="portee__stat">
+          <div class="portee__stat-n">5</div>
+          <div class="portee__stat-l">Mâles</div>
+        </div>
+        <div class="portee__stat">
+          <div class="portee__stat-n">4</div>
+          <div class="portee__stat-l">Femelles</div>
+        </div>
+      </div>
+      <div class="portee__prix">
+        <!-- MODIFIER : prix -->
+        <div class="portee__prix-n">1 500 €</div>
+        <div class="portee__prix-txt">
+          <strong>TVA récupérable pour les professionnels</strong>
+          Prix par chiot · TVA applicable en tant que GAEC · Récupérable par tout acheteur assujetti à la TVA
+        </div>
+      </div>
+      <div class="portee__docs">
+        <div class="portee__doc">Identification par micropuce</div>
+        <div class="portee__doc">Carnet de vaccination à jour</div>
+        <div class="portee__doc">Vermifugé selon protocole vétérinaire</div>
+        <div class="portee__doc">Certificat de santé vétérinaire</div>
+        <div class="portee__doc">Inscription LOF (Livre des Origines Français)</div>
+      </div>
+      <!-- MODIFIER : téléphone -->
+      <a href="tel:{{ elevage.telephone }}" class="btn btn--primary">Contacter Angeline — 07 69 45 92 34</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">La vie au <em>Château d'Alboy</em></h2>
+    <p class="sec__sub">Chiens, troupeau et causses aveyronnais — le quotidien de l'élevage.</p>
+  </div>
+  <div class="gal__grid">
+    <!-- MODIFIER : remplacer les src par les photos réelles du dossier photo-berger-podhale/ -->
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/800/800?random=61" alt="Berger de Podhale — GAEC Château d'Alboy"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/600/460?random=62" alt="Uky au troupeau"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/600/460?random=63" alt="Stuart — Meilleur de Race 2022"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/600/460?random=64" alt="Chiots Berger de Podhale novembre 2025"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/800/800?random=65" alt="Château d'Alboy — Aveyron"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="https://picsum.photos/600/460?random=66" alt="Paysage des causses aveyronnais"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Podhale</em></h2>
+    <p class="sec__sub">Des familles et des éleveurs conquis par cette race d'exception.</p>
+  </div>
+  <div class="temo__grid">
+    <div class="temo reveal">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Notre Berger de Podhale acheté chez Angeline est devenu le gardien naturel de notre exploitation. Sans aucun dressage particulier, il a pris sa place auprès du troupeau en quelques jours. Un chien remarquable, d'une intelligence et d'une douceur étonnantes.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=80" alt="Jean-Pierre"></div>
+        <div><div class="temo__name">Jean-Pierre &amp; Sylvie R.</div><div class="temo__dog">Berger de Podhale · Aveyron</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Nous avons fait 2 heures de route depuis Toulouse sans hésiter. Le cadre de l'élevage, le sérieux d'Angeline, la qualité des parents — tout était à la hauteur de nos espérances. Notre chiot est magnifique, bien dans sa tête, et déjà très impressionnant à 6 mois.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=81" alt="Caroline"></div>
+        <div><div class="temo__name">Caroline &amp; Marc T.</div><div class="temo__dog">Berger de Podhale · Haute-Garonne</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Je cherchais un Berger des Tatras depuis trois ans. Le GAEC du Château d'Alboy est une des rares adresses sérieuses en France pour cette race. La mère travaille au troupeau, le père est champion — on ne pouvait pas espérer mieux comme garantie de qualité.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=82" alt="Nathalie"></div>
+        <div><div class="temo__name">Nathalie B.</div><div class="temo__dog">Berger de Podhale · Hérault</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Prendre <em>rendez-vous</em></h2>
+    <p class="sec__sub">Les visites sont possibles avant et après la naissance, sur réservation téléphonique. Contactez Angeline directement.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <!-- MODIFIER : nom éleveur -->
+      <h3>Angeline Tassié</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Adresse</div>
+            <!-- MODIFIER : adresse -->
+            <div class="cinfo__val">Alboy<br>12630 Montrozier, Aveyron</div>
+            <div class="cinfo__sub">Proche Rodez · 2h de Toulouse &amp; Montpellier · 2h30 de Clermont-Ferrand</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <!-- MODIFIER : téléphone -->
+            <div class="cinfo__val"><a href="tel:{{ elevage.telephone }}">07 69 45 92 34</a></div>
+            <div class="cinfo__sub">Sur réservation téléphonique</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <!-- MODIFIER : lien Facebook réel -->
+            <div class="cinfo__val"><a href="https://www.facebook.com/GAECduChateaudalboy" target="_blank" rel="noopener">GAEC du Château d'Alboy</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🗓️</div>
+          <div>
+            <div class="cinfo__label">Disponibilité chiots</div>
+            <div class="cinfo__val">Mi-janvier 2026</div>
+            <div class="cinfo__sub">Portée née le 11 novembre 2025 · 9 chiots</div>
+          </div>
+        </div>
+      </div>
+      <!-- MODIFIER : numéro de certificat de capacité si changement -->
+      <span class="certif-badge">✓ Cert. capacité n° 122699</span>
+      <span class="certif-badge">✓ LOF</span>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML uniquement.
+           Activer avec Netlify Forms (ajouter netlify à <form>)
+           ou Formspree (action="https://formspree.io/f/XXXX") -->
+      <div class="form__title">Demande de renseignements</div>
+      <!-- MODIFIER : téléphone dans sous-titre formulaire -->
+      <div class="form__sub">Appelez directement Angeline au <strong>07 69 45 92 34</strong> ou laissez votre message ci-dessous.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <!-- MODIFIER : format téléphone -->
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="usage">Usage envisagé</label>
+            <select id="usage" name="usage">
+              <option value="">— Choisir —</option>
+              <option value="troupeau">Protection de troupeau</option>
+              <option value="compagnon">Compagnon de famille</option>
+              <option value="exposition">Exposition / concours</option>
+              <option value="elevage">Élevage</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="logement">Cadre de vie *</label>
+            <select id="logement" name="logement" required>
+              <option value="">— Choisir —</option>
+              <option value="exploitation">Exploitation agricole</option>
+              <option value="maison-terrain">Maison avec grand terrain</option>
+              <option value="maison-jardin">Maison avec jardin</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="experience">Expérience avec la race</label>
+            <select id="experience" name="experience">
+              <option value="">— Choisir —</option>
+              <option value="oui">J'ai déjà eu un Podhale</option>
+              <option value="molossoide">Expérience avec grands chiens</option>
+              <option value="autre">J'ai eu d'autres chiens</option>
+              <option value="non">Premier chien</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Présentez-vous et votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Décrivez votre situation (exploitation, famille, terrain), vos motivations pour le Berger de Podhale, et toute question sur la race ou la portée..."></textarea>
+          <span class="form__hint">Plus vous nous en dites, mieux Angeline pourra vous accompagner dans votre choix.</span>
+        </div>
+        <button type="submit" class="btn btn--primary form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage commercial.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Questions fréquentes</p>
+    <h2 class="sec__title">FAQ — Le <em>Berger de Podhale</em></h2>
+    <p class="sec__sub">Tout ce que vous devez savoir avant d'adopter un Berger des Tatras.</p>
+  </div>
+  <div class="conditions__wrap">
+    <div class="acc">
+      <button class="acc__q">Le Berger de Podhale est-il une race rare en France ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, le Berger Polonais de Podhale (aussi appelé Berger des Tatras ou Tatra Shepherd) est une race très peu représentée en France. Bien qu'il soit inscrit au LOF et reconnu par la FCI (Groupe 1), les élevages sérieux se comptent sur les doigts d'une main sur le territoire français. Cette rareté est l'une des raisons qui ont conduit Angeline à se spécialiser dans cette race — pour contribuer à sa diffusion éthique et à la préservation de ses qualités de travail.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quelle est la taille d'un Berger de Podhale adulte ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Le Berger de Podhale est un grand chien imposant. Selon le standard FCI :</p>
+        <ul>
+          <li>Mâle : 65 à 70 cm au garrot, 50 à 70 kg</li>
+          <li>Femelle : 60 à 65 cm au garrot, 45 à 55 kg</li>
+        </ul>
+        <p>Sa robe épaisse et sa corpulence lui donnent une présence encore plus marquée que ces chiffres ne le laissent supposer. C'est un chien qui occupe l'espace — et qui assume pleinement cette présence pour protéger son troupeau.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Peut-on garder un Berger de Podhale en appartement ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Non. Le Berger de Podhale est un chien de travail fait pour les grands espaces. Il a besoin :</p>
+        <ul>
+          <li>D'un grand terrain clôturé (minimum 1 000 m²)</li>
+          <li>D'un rôle ou d'une mission (troupeau, propriété à surveiller, etc.)</li>
+          <li>D'un propriétaire expérimenté avec les grands chiens</li>
+        </ul>
+        <p>En appartement ou dans un logement sans terrain, le Berger de Podhale serait malheureux et pourrait développer des comportements problématiques. Nous refuserons toute adoption dans ce cadre de vie.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Pourquoi le fait que les parents travaillent au troupeau est-il important ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Un chien qui travaille développe des qualités que la vie sédentaire ne peut pas forger : capacité d'évaluation des situations, gestion de l'espace, résilience aux imprévus, équilibre émotionnel. Au GAEC du Château d'Alboy, Uky et Stuart gardent le troupeau au quotidien. Leurs chiots héritent de gènes "actifs" — des instincts qui ont été mis à l'épreuve dans la réalité. C'est une garantie de caractère que les élevages de compagnie ne peuvent pas offrir.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">La TVA est-elle récupérable sur le prix du chiot ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui. Le GAEC du Château d'Alboy est une structure agricole professionnelle assujettie à la TVA. À ce titre, la TVA incluse dans le prix de vente (1 500 € TTC) est récupérable par tout acheteur professionnel lui-même assujetti à la TVA — agriculteurs, éleveurs, exploitants. Pour les particuliers non-assujettis, le prix est de 1 500 € TTC. Renseignez-vous auprès de votre comptable ou de l'administration fiscale pour confirmer votre éligibilité.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Les visites de l'élevage sont-elles possibles ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, Angeline encourage les visites — avant et après la naissance des chiots — sur réservation téléphonique au <strong>07 69 45 92 34</strong>. Vous pourrez rencontrer Uky et Stuart, voir l'élevage, observer les chiots dans leur environnement et poser toutes vos questions. L'élevage est situé à Alboy, 12630 Montrozier (Aveyron), à proximité immédiate de Rodez, et accessible en environ 2 heures depuis Toulouse ou Montpellier, 2h30 depuis Clermont-Ferrand.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot à l'adoption ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot du GAEC du Château d'Alboy repart avec les documents suivants :</p>
+        <ul>
+          <li>Identification par micropuce</li>
+          <li>Carnet de santé avec première(s) vaccination(s)</li>
+          <li>Attestation de vermifugation selon protocole vétérinaire</li>
+          <li>Certificat de bonne santé établi par un vétérinaire</li>
+          <li>Inscription LOF (Livre des Origines Français)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <!-- MODIFIER : nom dans le footer -->
+      <div class="footer__logo">GAEC du Château d'Alboy<span>Berger Polonais de Podhale · Aveyron, France</span></div>
+      <p>Élevage professionnel de Berger Polonais de Podhale (Berger des Tatras) en Aveyron. Chiens LOF, travaillant au troupeau. Portée née le 11 novembre 2025.</p>
+      <p style="margin-top:.8rem">
+        <!-- MODIFIER : téléphone footer -->
+        📞 <a href="tel:{{ elevage.telephone }}">07 69 45 92 34</a><br>
+        <!-- MODIFIER : adresse footer -->
+        📍 Alboy, 12630 Montrozier — Aveyron
+      </p>
+      <p style="margin-top:.6rem">
+        <!-- MODIFIER : Facebook footer -->
+        📘 <a href="https://www.facebook.com/GAECduChateaudalboy" target="_blank" rel="noopener">GAEC du Château d'Alboy</a>
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">La Race</a>
+      <a href="#troupeau">Travail au troupeau</a>
+      <a href="#repro">Uky &amp; Stuart</a>
+      <a href="#portee">Portée disponible</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations légales</h4>
+      <!-- MODIFIER : SIREN si changement -->
+      <p>GAEC du Château d'Alboy</p>
+      <p>SIREN : 985 295 252</p>
+      <p>Cert. de capacité n° 122699</p>
+      <p>Chiens LOF · TVA applicable</p>
+      <p style="margin-top:.8rem">Montrozier, 12630 Aveyron</p>
+      <a href="#" style="margin-top:.8rem">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <!-- MODIFIER : année / nom dans le copyright -->
+    <p>© 2025 GAEC du Château d'Alboy — Angeline Tassié · SIREN 985295252 · Tous droits réservés</p>
+    <p><a href="#">Mentions légales</a> · <a href="#">RGPD</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV SCROLL ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER MOBILE ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO LOAD — zoom out subtil au chargement ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL — IntersectionObserver ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb    = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx   = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d)  { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLb();
+    if (e.key === 'ArrowLeft')   lbNav(-1);
+    if (e.key === 'ArrowRight')  lbNav(1);
+  });
+
+  /* ---- ACCORDION FAQ ---- */
+  document.querySelectorAll('.acc__q').forEach(q => q.addEventListener('click', () => {
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  }));
+</script>
+</body>
+</html>

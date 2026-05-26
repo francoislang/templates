@@ -1,0 +1,37 @@
+template: de-windy-stia
+elevage:
+  nom: De Windy'Stia
+  race: Berger Australien
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33688976745'
+  siren: '528477029'
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de Berger Australien à Voiron, Isère. Plus de
+    10 ans de passion, chiots LOF socialisés, parents agility et exposition. Suivi
+    à vie. Tél. 06 88 97 67 45.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  grn: '#2C5F2E'
+  trr: '#B86F45'
+  bg: '#F8F5F0'
+  crm: '#EDE7DC'
+  txt: '#1E2A1E'
+  stn: '#8A8070'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mathias-dargnat-0-h6yTsWfv0-unsplash_bexo00.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/celine-druguet-4Bfl0pqWZtc-unsplash_sbwtr7.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/zuzanna-bak-QcHnw5U002o-unsplash_hmrwwj.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/fi-dogs-Cn1fR5H9l4s-unsplash_dmmlxa.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/oskar-kadaksoo-4EriTfpwOmY-unsplash_oez7io.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/melissa-whitecross-SPOAwMdCxAo-unsplash_z8zupd.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/jametlene-reskp-VDrErQEF9e4-unsplash_fzpxpp.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/amber-mayo-ZNV1wvoxcxM-unsplash_exuknt.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/andrew-a-Vr0wc-HIUHo-unsplash_brysid.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/brayden-prato-CfGjX3yeYbY-unsplash_oguyq5.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/brayden-prato-XTti5PmvSE0-unsplash_bxwqlv.jpg

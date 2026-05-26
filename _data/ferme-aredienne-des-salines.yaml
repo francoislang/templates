@@ -1,0 +1,35 @@
+template: ferme-aredienne-des-salines
+elevage:
+  nom: La Ferme Arédienne des Salines
+  race: West Highland White Terrier
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33652611550'
+  siren: '417748068'
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de West Highland White Terrier (Westie) à Saint-Yrieix-la-Perche,
+    Haute-Vienne (87). Chiens élevés à la maison avec amour. Chiots LOF disponibles.
+    Yannick Vidaud — ACACED.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  grn: '#2E4D30'
+  wht: '#FFFFFF'
+  stn: '#8B7D6B'
+  ivry: '#FAF8F3'
+  crm: '#F0EBE1'
+  txt: '#1C2818'
+  acc: '#C05B2A'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/celine-granetin-jNFY_EXGveI-unsplash_orwb6p.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/bradley-andrews-z33rw9CCavs-unsplash_zgadw7.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/edvinas-kumslytis-QzNRbOxM-NI-unsplash_fdmoer.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/judy-beth-morris-0VDVNdamGi4-unsplash_ya4bpm.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/lydia-tan-f5KQq4Wfxg8-unsplash_oeprqn.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/maria-baranova-el4HY7Nx7yc-unsplash_evtard.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/nicolas-pinilla-ecRodMgVOCk-unsplash_dbg86o.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/richard-glendenning-FUxzSfMUN1E-unsplash_p6d8bw.jpg
