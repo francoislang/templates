@@ -1,0 +1,99 @@
+elevage:
+  nom: "Du Bois de Chantalouette"
+  race: "Berger Australien"
+  departement: "Isère (38)"
+  region: "Isère"
+  code_postal: "38"
+  telephone: ""
+  siren: ""
+  url: "https://www.duboisdechangalouette.fr/"
+  facebook: "https://www.facebook.com/Elevage-du-Bois-de-Chantalouette-665972940447663"
+  facebook_label: "Élevage du Bois de Chantalouette"
+  since: "2024"
+  description_seo: "Élevage familial de Berger Australien en Isère (38). Chiots LOF, dysplasie dépistée, élevés en famille. Portée Arya × Yankee née le 4 mars 2026 — 8 chiots disponibles début mai. Bleu merle, rouge tri, noir tri, rouge merle."
+  description_hero: "Un élevage familial passionné dédié au Berger Australien en Isère — chiots LOF, parents testés dysplasie, élevés au cœur de la nature alpine avec énergie et bienveillance."
+  description_about: |
+    Niché en Isère, au cœur d'un cadre naturel exceptionnel, l'élevage Du Bois de Chantalouette est né d'une passion profonde pour le Berger Australien — une race d'une intelligence et d'une énergie remarquables qui nous a conquis par sa versatilité, sa sensibilité et l'intensité de son regard merle.
+
+    Nos chiots grandissent en milieu familial dès leur naissance. Manipulés et socialisés au quotidien, exposés à la vie de la maison, aux bruits, aux enfants et aux autres animaux, ils arrivent dans leur nouvelle famille équilibrés, confiants et prêts à tout découvrir.
+
+couleurs:
+  primaire: "#1B3A4B"
+  accent: "#D4622A"
+  fond: "#F7F4EF"
+
+photos:
+  hero: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mathias-dargnat-0-h6yTsWfv0-unsplash_bexo00.jpg"
+  og: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mathias-dargnat-0-h6yTsWfv0-unsplash_bexo00.jpg"
+  about_1: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/celine-druguet-4Bfl0pqWZtc-unsplash_sbwtr7.jpg"
+  about_2: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/zuzanna-bak-QcHnw5U002o-unsplash_hmrwwj.jpg"
+  race: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/jametlene-reskp-VDrErQEF9e4-unsplash_fzpxpp.jpg"
+  galerie:
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mathias-dargnat-0-h6yTsWfv0-unsplash_bexo00.jpg"
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/melissa-whitecross-SPOAwMdCxAo-unsplash_z8zupd.jpg"
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/oskar-kadaksoo-4EriTfpwOmY-unsplash_oez7io.jpg"
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/amber-mayo-ZNV1wvoxcxM-unsplash_exuknt.jpg"
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/andrew-a-Vr0wc-HIUHo-unsplash_brysid.jpg"
+    - "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/celine-druguet-4Bfl0pqWZtc-unsplash_sbwtr7.jpg"
+
+portee:
+  mere: "Arya"
+  pere: "Yankee"
+  date_naissance: "4 mars 2026"
+  nb_chiots: 8
+  nb_males: 4
+  nb_femelles: 4
+  disponibilite: "début mai 2026"
+  disponibilite_court: "Mai"
+  photo: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/fi-dogs-Cn1fR5H9l4s-unsplash_dmmlxa.jpg"
+  coloris:
+    - swatch: "bm"
+      nom: "Bleu merle"
+      statut: "Disponible"
+    - swatch: "rt"
+      nom: "Rouge tri"
+      statut: "Disponible"
+    - swatch: "nt"
+      nom: "Noir tri"
+      statut: "Disponible"
+    - swatch: "rm"
+      nom: "Rouge merle"
+      statut: "Disponible"
+  timeline:
+    - numero: "1"
+      date: "4 mars 2026"
+      description: "Naissance de la portée — 4 mâles, 4 femelles"
+    - numero: "2"
+      date: "Mars → Mai"
+      description: "Socialisation et stimulations quotidiennes en famille"
+    - numero: "3"
+      date: "Début mai 2026"
+      description: "Chiots disponibles — prêts à rejoindre leur famille"
+
+reproducteurs:
+  - prenom: "Arya"
+    sexe: "femelle"
+    role: "Mère · Reproductrice"
+    sexe_symbole: "♀"
+    photo: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/brayden-prato-CfGjX3yeYbY-unsplash_oguyq5.jpg"
+    description: "Arya est le cœur de notre élevage. Berger Australien d'une sensibilité et d'une intelligence remarquables, elle transmet à ses chiots son tempérament équilibré et sa joie de vivre. Ses résultats de dépistage dysplasie (hanches et coudes) sont exemplaires."
+  - prenom: "Yankee"
+    sexe: "male"
+    role: "Père · Reproducteur"
+    sexe_symbole: "♂"
+    photo: "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/brayden-prato-XTti5PmvSE0-unsplash_bxwqlv.jpg"
+    description: "Yankee apporte à nos portées sa robustesse et son énergie positive. Vif, joueur, doté d'un solide instinct de travail et d'un attachement profond pour sa famille, il est le complément idéal d'Arya. Dépistage dysplasie complet et favorable."
+
+temoignages:
+  - texte: "Notre bleu merle Odin est arrivé parfaitement socialisé — curieux, confiant, déjà familiarisé avec les enfants et les autres chiens. L'élevage Du Bois de Chantalouette nous a accompagnés avec une bienveillance et une disponibilité exceptionnelles."
+    auteur: "Claire &amp; Romain D."
+    chiot: "Berger Australien bleu merle · Grenoble"
+    avatar: "https://picsum.photos/80/80?random=40"
+  - texte: "Je pratique le canicross en compétition et je cherchais un partenaire d'exception. Yankee m'a orienté vers une femelle rouge merle — c'est une athlète née, mais aussi la plus affectueuse des compagnes de vie. Un élevage sérieux, passionné, honnête."
+    auteur: "Thomas L."
+    chiot: "Berger Australien rouge merle · Vizille"
+    avatar: "https://picsum.photos/80/80?random=41"
+  - texte: "Nous étions une famille sans expérience de la race. L'élevage a pris le temps de nous conseiller, vérifier que le Berger Australien nous correspondait vraiment, puis nous guider. Notre noir tri Pixel est une merveille de chiot — intelligent, joyeux, et déjà en cours d'agility !"
+    auteur: "Famille Martin"
+    chiot: "Berger Australien noir tri · Chambéry"
+    avatar: "https://picsum.photos/80/80?random=42"
