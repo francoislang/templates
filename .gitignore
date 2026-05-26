@@ -41,6 +41,9 @@ ehthumbs_vista.db
 Desktop.ini
 $RECYCLE.BIN/
 
+# ─── Secrets ──────────────────────────────────────────────────────────────────
+.env
+
 # ─── Photos ───────────────────────────────────────────────────────────────────
 # Trop lourdes pour Git — livrer en zip ou via Netlify Drop
 elevage-border-collie-mas-andre/photo-border-collies/
