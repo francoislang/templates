@@ -14,8 +14,21 @@ HEADERS = {
 BASE = "https://www.chien.com"
 DELAY = 1.5  # secondes entre requêtes
 
+# Mapping slug URL chien.com → nom de race interne
+SLUG_TO_RACE = {
+    "elevage-border-collie": "Border Collie",
+    "elevage-berger-australien": "Berger Australien",
+    "elevage-cavalier-king-charles-spaniel": "Cavalier King Charles",
+    "elevage-schnauzer-nain": "Schnauzer",
+    "elevage-westie-west-highland-white-terrier": "West Highland White Terrier",
+    "elevage-lagotto-romagnolo": "Lagotto Romagnolo",
+    "elevage-berger-polonais-podhale": "Berger Polonais de Podhale",
+    "elevage-carlin-pug-mops": "Carlin",
+    "elevage-loulou-de-pomeranie": "Loulou de Poméranie",
+}
 
-def _get(url: str) -> requests.Response | None:
+
+def _get(url: str) :
     try:
         r = requests.get(url, headers=HEADERS, timeout=15)
         return r if r.status_code == 200 else None
@@ -31,35 +44,30 @@ def fetch_listing_page(page: int) -> list[str]:
         return []
     soup = BeautifulSoup(r.text, "html.parser")
     urls = []
+    # Profils : adresse/elevage-{race}/{slug}-{id}.php (2 segments après adresse/)
+    profile_re = re.compile(r"adresse/elevage-[^/]+/[^/]+-\d+\.php$")
     for a in soup.select("a[href]"):
-        href = a["href"]
-        if "elevage-" in href and href.endswith(".php") and "/adresse/" in href:
+        href = a.get("href", "")
+        if profile_re.search(href):
             full = href if href.startswith("http") else BASE + "/" + href.lstrip("/")
             urls.append(full)
     return list(dict.fromkeys(urls))
 
 
-def fetch_profile(url: str) -> dict | None:
+def fetch_profile(url: str):
     """Extrait les infos d'un éleveur depuis sa page profil."""
+    # Extraire la race depuis le slug URL — plus fiable que le HTML
+    slug_match = re.search(r"/adresse/(elevage-[^/]+)/", url)
+    if not slug_match:
+        return None
+    race = SLUG_TO_RACE.get(slug_match.group(1))
+    if not race:
+        return None
+
     r = _get(url)
     if not r:
         return None
     soup = BeautifulSoup(r.text, "html.parser")
-
-    # Races
-    races = []
-    for h3 in soup.find_all("h3"):
-        text = h3.get_text(strip=True)
-        if text.startswith("Élevage de "):
-            races.append(text.replace("Élevage de ", "").strip())
-        elif text.startswith("Éleveur de "):
-            races.append(text.replace("Éleveur de ", "").strip())
-
-    # Filtrer : on ne garde que les races pour lesquelles on a un template
-    supported = set(supported_breeds())
-    matching_races = [r for r in races if r in supported]
-    if not matching_races:
-        return None
 
     # Nom
     h1 = soup.find("h1")
@@ -67,11 +75,14 @@ def fetch_profile(url: str) -> dict | None:
     if not name:
         return None
 
-    # Téléphone
-    phone = _extract_after_label(soup, r"Téléphone")
+    # Téléphone — regex sur le texte brut de la page
+    text = soup.get_text(" ")
+    phone_m = re.search(r'(?:0|\+33\s?)[1-9](?:[\s.\-]?\d{2}){4}', text)
+    phone = phone_m.group(0).strip() if phone_m else ""
 
-    # Adresse
-    location = _extract_after_label(soup, r"Adresse")
+    # Ville — dans le breadcrumb ou le texte après "Ville"
+    ville_m = re.search(r'Ville\s*[\xa0:]+\s*(\d{5})', text)
+    location = ville_m.group(1) if ville_m else ""
 
     # Site actuel
     website_link = soup.select_one("a[href*='/t/out-']")
@@ -81,7 +92,7 @@ def fetch_profile(url: str) -> dict | None:
 
     return {
         "name": name,
-        "races": matching_races,
+        "races": [race],
         "phone": phone,
         "location": location,
         "website": website,
