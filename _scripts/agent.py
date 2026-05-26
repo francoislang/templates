@@ -21,6 +21,17 @@ def _normalize(phone: str) -> str:
     return phone.replace(" ", "").replace("-", "").replace(".", "")
 
 
+def _build_pitch(name: str, race: str, city: str, demo_url: str) -> str:
+    lieu = f"dans le {city}" if city else "en France"
+    demo = f"J'ai d'ailleurs préparé une démo pour vous : {demo_url}" if demo_url else "Je peux vous préparer une démo gratuite."
+    return (
+        f"Bonjour, je suis développeur web spécialisé pour les éleveurs. "
+        f"J'ai vu votre annonce sur chien.com pour votre élevage {name} de {race} {lieu}. "
+        f"{demo} "
+        f"Est-ce que vous avez 2 minutes pour en parler ?"
+    )
+
+
 def run() -> None:
     telegram.send("🔍 Agent démarré — recherche d'éleveurs sur chien.com…")
 
@@ -60,7 +71,10 @@ def run() -> None:
             warnings.append(f"pas de template pour {race}")
 
         demo_url = site_result[1] if site_result else None
-        notes = " | ".join(warnings) if warnings else None
+
+        pitch = _build_pitch(name=name, race=race, city=city, demo_url=demo_url)
+        notes_parts = warnings + ([f"Pitch : {pitch}"] if pitch else [])
+        notes = " | ".join(notes_parts) if notes_parts else None
 
         notion.add_entry(elevage=name, races=races, phone=phone, demo_url=demo_url, notes=notes)
 
@@ -71,6 +85,7 @@ def run() -> None:
             "name": name, "race": race, "phone": phone, "city": city,
             "demo_url": demo_url, "has_photos": has_photos,
             "has_template": site_result is not None, "warnings": warnings,
+            "pitch": pitch,
         })
 
     # 4. Commit + push si des sites ont été générés
@@ -96,8 +111,10 @@ def run() -> None:
             lines.append(f"   📍 {r['city']}")
         if r["demo_url"]:
             lines.append(f"   🌐 {r['demo_url']}")
+        if r.get("pitch"):
+            lines.append(f"\n💬 _{r['pitch']}_")
         for w in r["warnings"]:
-            lines.append(f"   ⚠️ Action requise : {w}")
+            lines.append(f"   ⚠️ {w}")
         lines.append("")
 
     telegram.send("\n".join(lines))
