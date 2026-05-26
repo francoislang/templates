@@ -1,0 +1,31 @@
+template: joyaux-d-anubis
+elevage:
+  nom: Joyaux d'Anubis
+  race: Carlin
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+32489233193'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de Carlins crème masque noir à Bruxelles. Tests
+    génétiques, passeport européen, garantie légale 2 ans. Amit Sefoski. Tél. 04 89
+    23 31 93.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  ony: '#160F08'
+  gld: '#C9A84C'
+  amb: '#8B5E1A'
+  crm: '#F5EDE0'
+  bg: '#FAF5EE'
+  stn: '#9A8272'
+  txt: '#160F08'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/stephane-yaich-uL9-o9wQSTg-unsplash_mqjykg.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/guilherme-g-Im-xzsbqH18-unsplash_wlu1vy.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/guilherme-g-jch8a7SR_GA-unsplash_xhml6t.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/kolia-rosenthal-JIRnWM2m6WU-unsplash_y7adud.jpg

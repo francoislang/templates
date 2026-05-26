@@ -1,0 +1,30 @@
+template: gaec-du-chateau-d-alboy
+elevage:
+  nom: GAEC du Château d'Alboy
+  race: Berger Polonais de Podhale
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33769459234'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage professionnel GAEC du Château d'Alboy — Berger Polonais
+    de Podhale (Berger des Tatras) à Montrozier, Aveyron. Angeline Tassié. Chiens
+    LOF travaillant au troupeau. Tél. 07 69 45 92 34.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  sto: '#3D3530'
+  sge: '#5C6E4A'
+  lim: '#C8BAA0'
+  wht: '#F8F7F5'
+  bg: '#F2EFE8'
+  crm: '#E8E2D4'
+  txt: '#2A2318'
+photos:
+  hero: ''
+  about_1: ''
+  about_2: ''
+  galerie: []

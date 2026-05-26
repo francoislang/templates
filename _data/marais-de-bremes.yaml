@@ -1,0 +1,38 @@
+template: marais-de-bremes
+elevage:
+  nom: Des Marais de Bremes
+  race: Cavalier King Charles
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33610362445'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage Des Marais de Bremes — Cavalier King Charles Spaniel LOF
+    depuis 1983. Christine Delattre, Ardres (62610). Champions de France, présence
+    internationale. Chiots disponibles sur rendez-vous.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  bur: '#6B2737'
+  ros: '#C4728A'
+  sge: '#4A6741'
+  crm: '#FDF0E8'
+  bg: '#FAF6F0'
+  stn: '#9A8A7E'
+  txt: '#2A1A14'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/sean-p-mXNUpZ2PGDE-unsplash_vde8cx.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/izabelly-marques-okJVa73g6fg-unsplash_wcagfc.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/geoff-oliver-zZ09_2Do9hY-unsplash_hay5or.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/anton-ivanov-AIPA3dj9g0U-unsplash_s7wyqc.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/braden-egli-Q-niCxOLuAQ-unsplash_p0gaqd.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/harrison-lin-EXGobe2o3-E-unsplash_zmthdc.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/austin-kirk-7bhSz2zMQas-unsplash_ubwhd3.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/harrison-lin-dgotlr1Elp4-unsplash_josv5r.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/izabelly-marques--d-q58LA1ds-unsplash_l3uak2.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/austin-kirk-QZenflkkwt0-unsplash_mxb7aq.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/izabelly-marques-xwH5yCIJt1g-unsplash_optj7o.jpg

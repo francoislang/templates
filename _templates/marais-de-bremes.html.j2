@@ -1,0 +1,1193 @@
+{#- template: marais-de-bremes -#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>{{ elevage.nom }} — Élevage {{ elevage.race }} | {{ elevage.departement }}</title>
+  <meta name="description" content="{{ elevage.description_seo }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.desmaraisdebremes.fr/">
+  <meta property="og:title"       content="{{ elevage.nom }} — {{ elevage.race }}, {{ elevage.departement }}">
+  <meta property="og:description" content="{{ elevage.description_seo }}">
+  <!-- MODIFIER : remplacer par une vraie photo OG -->
+  <meta property="og:image"       content="photo-cavalier/hero.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Des Marais de Bremes",
+        "description": "Élevage de Cavalier King Charles Spaniel LOF depuis 1983 à Ardres, Pas-de-Calais",
+        "telephone": "+33610362445",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Ardres",
+          "postalCode": "62610",
+          "addressRegion": "Pas-de-Calais",
+          "addressCountry": "FR"
+        },
+        "foundingDate": "1983",
+        "founder": {
+          "@type": "Person",
+          "name": "Christine Delattre"
+        }
+      },
+      {
+        "@type": "AnimalShelter",
+        "name": "Des Marais de Bremes — Cavalier King Charles Spaniel LOF",
+        "description": "Élevage sélectif de Cavalier King Charles Spaniel depuis 1983, Champions de France, présence internationale"
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — adapter à chaque client ici
+       ============================================== */
+    :root {
+      --bur:  #6B2737;   /* bordeaux profond */
+      --ros:  #C4728A;   /* rose ancien */
+      --sge:  #4A6741;   /* vert sauge */
+      --crm:  #FDF0E8;   /* crème ivoire */
+      --bg:   #FAF6F0;   /* fond blanc chaud */
+      --stn:  #9A8A7E;   /* pierre chaude */
+      --txt:  #2A1A14;   /* texte brun profond */
+      --bur-dk: #4D1A26; /* bordeaux très sombre */
+      --FD:   'Playfair Display', serif;
+      --FN:   'Lato', sans-serif;
+      --nav:  72px;
+      --r:    8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .78rem 2.2rem;
+      font-family: var(--FN); font-weight: 700; font-size: .78rem;
+      letter-spacing: .15em; text-transform: uppercase;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+      border-radius: 2px;
+    }
+    .btn--primary { background: var(--bur); color: #fff; }
+    .btn--primary:hover { background: var(--bur-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(107,39,55,.32); }
+    .btn--dark { background: var(--txt); color: #fff; }
+    .btn--dark:hover { background: #3d2018; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,26,20,.3); }
+    .btn--outline { background: transparent; color: var(--bur); border: 1.5px solid var(--bur); }
+    .btn--outline:hover { background: var(--bur); color: #fff; transform: translateY(-2px); }
+    .btn--sage { background: var(--sge); color: #fff; }
+    .btn--sage:hover { background: #3a5232; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,103,65,.32); }
+    .btn--white { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.45); backdrop-filter: blur(6px); }
+    .btn--white:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(250,246,240,.97);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(107,39,55,.08);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 28px rgba(0,0,0,.07); }
+    .nav__logo {
+      font-family: var(--FD); font-size: 1.2rem; font-weight: 600; font-style: italic;
+      color: var(--bur); line-height: 1.1; margin-right: auto; letter-spacing: .02em;
+    }
+    .nav__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .56rem; font-weight: 700; color: var(--stn); letter-spacing: .24em; text-transform: uppercase; margin-top: .15rem; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a {
+      font-size: .7rem; font-weight: 700; letter-spacing: .13em; text-transform: uppercase;
+      color: var(--txt); transition: color .2s; position: relative;
+    }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--ros); transition: width .2s; }
+    .nav__links > li > a:hover { color: var(--bur); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.2rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .52rem; margin-left: .22rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #fff; border: 1px solid rgba(107,39,55,.08);
+      border-radius: var(--r); padding: .5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,.09);
+      min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .2s, visibility .2s, transform .2s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a { display: block; padding: .55rem 1.3rem; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); transition: background .15s, color .15s; }
+    .drop__menu a:hover { background: var(--crm); color: var(--bur); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--txt); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--bg); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .84rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); padding: .8rem 0; border-bottom: 1px solid var(--crm); }
+    .nav__mobile a:hover { color: var(--bur); }
+    .nav__mobile .mob-sub { padding-left: 1.2rem; font-size: .76rem !important; color: var(--stn) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100svh; min-height: 620px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      /* MODIFIER : remplacer par la vraie photo hero */
+      background: url('{{ photos.hero }}') center/cover no-repeat;
+      transform: scale(1.06); transition: transform 10s ease;
+    }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    .hero__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(155deg, rgba(107,39,55,.18) 0%, rgba(107,39,55,.44) 50%, rgba(42,26,20,.72) 100%);
+    }
+    /* grain texture subtil */
+    .hero__grain {
+      position: absolute; inset: 0; opacity: .04; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    /* motif décoratif — fleur de lys subtile en bas à droite */
+    .hero__deco {
+      position: absolute; bottom: 3rem; right: 4vw; z-index: 1;
+      width: 120px; height: 120px; opacity: .12;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='50' rx='40' ry='40' fill='none' stroke='%23fff' stroke-width='1'/%3E%3Cellipse cx='50' cy='50' rx='30' ry='30' fill='none' stroke='%23fff' stroke-width='0.5'/%3E%3Cline x1='10' y1='50' x2='90' y2='50' stroke='%23fff' stroke-width='0.5'/%3E%3Cline x1='50' y1='10' x2='50' y2='90' stroke='%23fff' stroke-width='0.5'/%3E%3C/svg%3E");
+    }
+    .hero__content {
+      position: relative; z-index: 1; color: #fff;
+      text-align: center; padding: 0 1.5rem; max-width: 780px;
+    }
+    .hero__eyebrow {
+      font-family: var(--FN); font-size: .65rem; font-weight: 700;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: rgba(253,240,232,.8); margin-bottom: 1.6rem;
+      display: flex; align-items: center; justify-content: center; gap: 1.2rem;
+    }
+    .hero__eyebrow::before, .hero__eyebrow::after {
+      content: ''; display: block; width: 44px; height: 1px;
+      background: rgba(196,114,138,.7);
+    }
+    .hero__title {
+      font-family: var(--FD); font-size: clamp(2.8rem, 7vw, 6.4rem);
+      font-weight: 600; font-style: italic; line-height: 1.0;
+      margin-bottom: .8rem; text-shadow: 0 2px 36px rgba(0,0,0,.28);
+      letter-spacing: -.01em;
+    }
+    .hero__subtitle {
+      font-family: var(--FN); font-size: .68rem; font-weight: 700;
+      letter-spacing: .34em; text-transform: uppercase;
+      color: rgba(196,114,138,.85); margin-bottom: 1.6rem;
+    }
+    .hero__sub {
+      font-size: clamp(.88rem, 1.6vw, 1.02rem); font-weight: 300;
+      color: rgba(255,255,255,.84); line-height: 1.8;
+      max-width: 540px; margin: 0 auto 2.4rem;
+    }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.45); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__scroll::after {
+      content: ''; width: 1px; height: 36px; background: rgba(255,255,255,.3);
+      animation: scrollLine 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ---- BANDEAU INFOS ---- */
+    .bandeau {
+      background: var(--bur); color: rgba(255,255,255,.75);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ban__item {
+      padding: 1.7rem 1rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .ban__item:last-child { border-right: none; }
+    .ban__n { font-family: var(--FD); font-size: 1.7rem; font-style: italic; color: rgba(253,240,232,.9); line-height: 1; margin-bottom: .3rem; }
+    .ban__l { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; opacity: .5; }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 6.5rem 4vw; }
+    .sec__head { text-align: center; margin-bottom: 3.5rem; }
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .6rem; font-weight: 700;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--ros);
+      margin-bottom: .9rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after { content: ''; display: block; width: 22px; height: 1px; background: var(--ros); opacity: .5; }
+    .sec__title { font-family: var(--FD); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: var(--bur); line-height: 1.12; }
+    .sec__title em { font-style: italic; color: var(--ros); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-family: var(--FN); font-size: .93rem; color: var(--stn); line-height: 1.82; font-weight: 300; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 520px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 72%; height: 80%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 24px 64px rgba(107,39,55,.14);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 50%; height: 52%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,.1);
+      border: 4px solid var(--bg);
+    }
+    /* médaillon décoratif */
+    .about__medal {
+      position: absolute; right: 3%; top: 30%; z-index: 2;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--bur); color: rgba(253,240,232,.95);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(107,39,55,.42);
+      font-family: var(--FD); font-size: .8rem; font-style: italic; font-weight: 600; text-align: center; line-height: 1.2;
+      border: 2px solid rgba(196,114,138,.4);
+    }
+    .about__medal small { font-family: var(--FN); font-size: .42rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-top: .25rem; opacity: .65; }
+    .about__text {}
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.15; color: var(--bur); }
+    .about__text h2 em { font-style: italic; color: var(--ros); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #726058; line-height: 1.88; margin-bottom: 1rem; font-size: .95rem; }
+    .about__list { margin: 1.6rem 0; display: flex; flex-direction: column; gap: .7rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .9rem; font-family: var(--FN); font-size: .9rem; color: #726058; line-height: 1.65; font-weight: 300; }
+    .about__li-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ros); flex-shrink: 0; margin-top: .58rem; }
+    .about__li strong { color: var(--bur); font-weight: 700; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img { position: relative; height: 530px; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 60px rgba(107,39,55,.12); }
+    .race__img img { position: absolute; inset: 0; height: 100%; }
+    .race__content {}
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .95rem; line-height: 1.88; color: #726058; margin-bottom: 1rem; }
+    .race__info-box {
+      display: flex; align-items: flex-start; gap: .9rem;
+      background: var(--bur); color: rgba(253,240,232,.88);
+      border-radius: var(--r); padding: 1.3rem 1.5rem;
+      margin: 1.6rem 0; font-family: var(--FN); font-size: .86rem; line-height: 1.72; font-weight: 300;
+    }
+    .race__info-box-ico { font-size: 1.35rem; flex-shrink: 0; margin-top: .1rem; }
+    .race__info-box strong { color: rgba(253,240,232,1); font-weight: 700; display: block; margin-bottom: .22rem; font-size: .88rem; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-bottom: 2rem; }
+    .race__spec { background: #fff; border-radius: var(--r); padding: .88rem 1rem; border-left: 2.5px solid var(--ros); }
+    .race__spec strong { display: block; font-family: var(--FN); font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #c4a898; margin-bottom: .25rem; }
+    .race__spec span { font-family: var(--FD); font-size: .95rem; font-weight: 600; font-style: italic; color: var(--bur); }
+
+    /* ---- COLORIS ---- */
+    .coloris { background: var(--bg); }
+    .coloris__wrap { max-width: 1100px; margin: 0 auto; }
+    .coloris__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3.5rem; }
+    .color__card { background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .color__card:hover { transform: translateY(-4px); box-shadow: 0 14px 40px rgba(0,0,0,.11); }
+    .color__img { height: 200px; overflow: hidden; }
+    .color__img img { transition: transform .55s; }
+    .color__card:hover .color__img img { transform: scale(1.07); }
+    .color__body { padding: 1.2rem 1.2rem 1.5rem; }
+    .color__name { font-family: var(--FD); font-size: 1.1rem; font-style: italic; font-weight: 600; color: var(--bur); margin-bottom: .4rem; }
+    .color__desc { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: var(--stn); line-height: 1.7; }
+    .color__dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-bottom: .6rem; }
+    .dot-blenheim { background: linear-gradient(135deg, #C8860A 50%, #F5EFE0 50%); }
+    .dot-tricolor { background: linear-gradient(135deg, #2A1A14 33%, #fff 33% 66%, #C8860A 66%); }
+    .dot-ruby { background: #8B2635; }
+    .dot-bt { background: linear-gradient(135deg, #2A1A14 50%, #C8860A 50%); }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--crm); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.8rem; }
+    .dog__card { border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,.07); background: #fff; transition: transform .3s, box-shadow .3s; }
+    .dog__card:hover { transform: translateY(-5px); box-shadow: 0 18px 52px rgba(0,0,0,.12); }
+    .dog__img { height: 300px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .6s; }
+    .dog__card:hover .dog__img img { transform: scale(1.06); }
+    .dog__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(107,39,55,.72) 0%, transparent 55%);
+    }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.4rem 1.5rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.75rem; font-weight: 600; font-style: italic; color: #fff; line-height: 1; }
+    .dog__sex-label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(253,240,232,.75); margin-top: .22rem; }
+    .dog__body { padding: 1.3rem 1.5rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+    .dog__tag { background: var(--crm); border-radius: 3px; padding: .22rem .72rem; font-family: var(--FN); font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--bur); }
+    .dog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #8a7068; line-height: 1.78; }
+
+    /* ---- PALMARÈS ---- */
+    .palmares {
+      background: var(--bur-dk);
+      color: rgba(253,240,232,.85);
+      position: relative; overflow: hidden;
+    }
+    .palmares::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .palmares__wrap { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
+    .palmares .sec__eyebrow { color: var(--ros); justify-content: center; }
+    .palmares .sec__eyebrow::before, .palmares .sec__eyebrow::after { background: var(--ros); }
+    .palmares .sec__title { color: rgba(253,240,232,.95); }
+    .palmares .sec__title em { color: var(--ros); }
+    .palmares .sec__sub { color: rgba(253,240,232,.55); }
+    .palmares__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+    .palm__item {
+      background: rgba(253,240,232,.05);
+      border: 1px solid rgba(196,114,138,.18);
+      border-radius: var(--r); padding: 2rem 1.6rem; text-align: center;
+      transition: background .2s, border-color .2s;
+    }
+    .palm__item:hover { background: rgba(253,240,232,.09); border-color: rgba(196,114,138,.35); }
+    .palm__ico { font-size: 2rem; margin-bottom: 1rem; display: block; }
+    .palm__title { font-family: var(--FD); font-size: 1.15rem; font-style: italic; font-weight: 600; color: rgba(253,240,232,.95); margin-bottom: .5rem; line-height: 1.25; }
+    .palm__desc { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: rgba(253,240,232,.55); line-height: 1.72; }
+    .palm__year { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ros); margin-top: .8rem; display: block; }
+
+    /* ---- CHIOTS ---- */
+    .chiots { background: var(--bg); }
+    .chiots__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .chiots__img { position: relative; height: 440px; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 60px rgba(107,39,55,.12); }
+    .chiots__img img { position: absolute; inset: 0; height: 100%; }
+    .chiots__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(107,39,55,.45), transparent 60%); }
+    .chiots__content {}
+    .chiots__content .sec__eyebrow { justify-content: flex-start; }
+    .chiots__content .sec__title { text-align: left; }
+    .chiots__content p { font-family: var(--FN); font-size: .95rem; font-weight: 300; line-height: 1.85; color: #726058; margin-bottom: 1rem; }
+    .chiots__steps { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .8rem; }
+    .chiots__step { display: flex; align-items: flex-start; gap: 1.1rem; }
+    .chiots__step-dot {
+      width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--ros);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--FD); font-size: .95rem; font-style: italic; color: var(--ros);
+      flex-shrink: 0;
+    }
+    .chiots__step-txt strong { display: block; font-family: var(--FN); font-size: .82rem; font-weight: 700; color: var(--bur); margin-bottom: .1rem; letter-spacing: .04em; }
+    .chiots__step-txt span { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: var(--stn); }
+    .chiots__badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(74,103,65,.12); border: 1px solid rgba(74,103,65,.25);
+      color: var(--sge); border-radius: 4px;
+      padding: .5rem 1rem; font-family: var(--FN); font-size: .72rem; font-weight: 700;
+      letter-spacing: .09em; text-transform: uppercase; margin-bottom: 1.4rem;
+    }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--crm); }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+    }
+    .gi { overflow: hidden; border-radius: 6px; position: relative; cursor: pointer; }
+    .gi img { height: 220px; transition: transform .55s; }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: 100%; }
+    .gi:hover img { transform: scale(1.07); }
+    .gi__over { position: absolute; inset: 0; background: rgba(107,39,55,.38); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: #fff; font-family: var(--FD); font-size: 1.9rem; font-style: italic; }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.94); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    #lb-close { position: absolute; top: 1.2rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; opacity: .6; }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.2rem; padding: 1rem; opacity: .5; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--bg); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .temo { background: #fff; border-radius: var(--r); padding: 1.9rem; box-shadow: 0 2px 18px rgba(0,0,0,.05); position: relative; border-top: 2px solid var(--crm); }
+    .temo__quote { font-family: var(--FD); font-size: 4.5rem; font-style: italic; color: var(--ros); opacity: .15; position: absolute; top: .4rem; left: 1.2rem; line-height: 1; }
+    .temo__stars { color: var(--ros); font-size: .88rem; margin-bottom: 1rem; letter-spacing: .06em; }
+    .temo__text { font-family: var(--FN); font-size: .9rem; font-weight: 300; line-height: 1.84; color: #7a6860; margin-bottom: 1.4rem; font-style: italic; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .8rem; }
+    .temo__av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; color: var(--bur); }
+    .temo__dog { font-size: .72rem; color: var(--stn); margin-top: .1rem; }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--crm); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.7rem; font-style: italic; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.15; color: var(--bur); }
+    .cinfo { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .85rem; }
+    .cinfo__ico { width: 38px; height: 38px; border-radius: 8px; background: rgba(107,39,55,.08); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .cinfo__label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #c4a898; margin-bottom: .12rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 700; color: var(--txt); }
+    .cinfo__val a:hover { color: var(--bur); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: var(--stn); margin-top: .1rem; }
+    .certif-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--bur); color: rgba(253,240,232,.9); border-radius: 4px;
+      padding: .48rem 1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700;
+      letter-spacing: .09em; text-transform: uppercase; margin-top: 1rem;
+    }
+    .contact__form { background: var(--bg); border-radius: var(--r); padding: 2.4rem; box-shadow: 0 4px 24px rgba(0,0,0,.05); }
+    .form__title { font-family: var(--FD); font-size: 1.4rem; font-style: italic; font-weight: 600; margin-bottom: .4rem; color: var(--bur); }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: var(--stn); margin-bottom: 1.8rem; line-height: 1.62; }
+    .form__section { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--stn); margin: 1.4rem 0 .8rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(107,39,55,.07); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .32rem; margin-bottom: .9rem; }
+    .form__group label { font-family: var(--FN); font-size: .66rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--txt); }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .72rem .95rem;
+      border: 1.5px solid rgba(107,39,55,.1); border-radius: var(--r);
+      font-family: var(--FN); font-size: .89rem; font-weight: 300; color: var(--txt);
+      background: #fff; outline: none; transition: border-color .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--bur); }
+    .form__group textarea { resize: vertical; min-height: 110px; }
+    .form__hint { font-size: .7rem; color: #c4a898; margin-top: .16rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .9rem; font-size: .8rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .68rem; font-weight: 300; color: #c4a898; text-align: center; margin-top: .8rem; line-height: 1.55; }
+
+    /* ---- CONDITIONS (FAQ) ---- */
+    .conditions { background: var(--bg); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(107,39,55,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.15rem 0; font-family: var(--FN); font-weight: 700; font-size: .92rem; letter-spacing: .02em; color: var(--txt); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .acc__q .arr { font-size: .75rem; color: var(--bur); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.15rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #7a6860; line-height: 1.84; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .5rem 0 .5rem 1.2rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .3rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--bur-dk); color: rgba(253,240,232,.45); padding: 4.5rem 4vw 2.2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.3rem; font-style: italic; font-weight: 600; color: rgba(253,240,232,.9); letter-spacing: .02em; margin-bottom: .5rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .55rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(253,240,232,.28); margin-top: .2rem; }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.75; margin-bottom: .3rem; }
+    .footer__col h4 { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(253,240,232,.72); margin-bottom: 1rem; }
+    .footer__col a { display: block; font-family: var(--FN); font-size: .8rem; font-weight: 300; margin-bottom: .4rem; transition: color .2s; }
+    .footer__col a:hover { color: rgba(253,240,232,.9); }
+    .footer__bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.4rem; border-top: 1px solid rgba(253,240,232,.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .72rem; margin: 0; }
+    .footer__bottom a { color: var(--ros); }
+    .footer__bottom a:hover { color: rgba(253,240,232,.9); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .palmares__grid { grid-template-columns: repeat(2, 1fr); }
+      .coloris__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 960px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .chiots__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 340px; }
+      .race__img { height: 320px; }
+      .chiots__img { height: 280px; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.07); }
+    }
+    @media (max-width: 640px) {
+      section { padding: 4rem 1.2rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 220px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .race__specs { grid-template-columns: 1fr; }
+      .palmares__grid { grid-template-columns: 1fr; }
+      .coloris__grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <a href="#" class="nav__logo">
+    Des Marais de Bremes
+    <span>Cavalier King Charles · Ardres, Pas-de-Calais</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Cavaliers <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#coloris">Les Coloris</a></li>
+        <li><a href="#repro">Nos Reproducteurs</a></li>
+      </ul>
+    </li>
+    <li><a href="#palmares">Palmarès</a></li>
+    <li><a href="#chiots">Chiots</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--primary nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">La Race</a>
+  <a href="#coloris" class="mob-sub">— Les Coloris</a>
+  <a href="#repro" class="mob-sub">— Nos Reproducteurs</a>
+  <a href="#palmares">Palmarès</a>
+  <a href="#chiots">Chiots</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary" style="margin-top:1rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <div class="hero__deco"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">Ardres · Pas-de-Calais · Depuis 1983</div>
+    <h1 class="hero__title">Des Marais<br>de Bremes</h1>
+    <p class="hero__subtitle">Cavalier King Charles Spaniel</p>
+    <p class="hero__sub">De jolies boules de poils pleines de douceur et d'amour — élevées en cadre campagnard depuis plus de 40 ans, avec le souci constant de préserver la beauté, le caractère et la santé de la race royale.</p>
+    <div class="hero__btns">
+      <a href="#chiots" class="btn btn--primary">Chiots disponibles</a>
+      <a href="#about" class="btn btn--white">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
+</section>
+
+<!-- ====== BANDEAU ====== -->
+<div class="bandeau">
+  <div class="ban__item reveal">
+    <div class="ban__n">1983</div>
+    <div class="ban__l">Année de fondation</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n" style="font-size:1.15rem;font-style:normal;font-weight:700">LOF</div>
+    <div class="ban__l">Livre des Origines Français</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n" style="font-size:1.1rem;font-style:normal">Ardres</div>
+    <div class="ban__l">62610 · Pas-de-Calais</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n" style="font-size:1rem;font-style:normal">Sur RDV</div>
+    <div class="ban__l">Visites sur rendez-vous</div>
+  </div>
+</div>
+
+<!-- ====== À PROPOS ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <div class="about__main"><img src="{{ photos.about_1 }}" alt="Élevage Des Marais de Bremes — Christine Delattre, Ardres"></div>
+      <div class="about__accent"><img src="{{ photos.about_2 }}" alt="Cavalier King Charles Spaniel — Des Marais de Bremes"></div>
+      <div class="about__medal">40<small>Ans d'expérience</small></div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre histoire</p>
+      <h2>Un élevage de passion,<br><em>une vie dédiée au Cavalier</em></h2>
+      <p>Nichée dans la campagne verdoyante du Pas-de-Calais, à Ardres, l'élevage Des Marais de Bremes est l'œuvre d'une vie. Christine Delattre a fondé cet élevage en 1983, animée par un amour profond pour le Cavalier King Charles Spaniel et la conviction que cette race d'exception méritait un élevage à la hauteur de son histoire royale.</p>
+      <p>Depuis plus de quarante ans, chaque portée est élevée avec le même soin méticuleux, dans un cadre campagnard calme et bienveillant. Nos Cavaliers grandissent entourés d'affection, de liberté et d'attention — de jolies boules de poils pleines de douceur et d'amour, comme nous aimons les appeler.</p>
+      <div class="about__list">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>40 ans d'expérience</strong> — fondé en 1983, un élevage à la longévité exceptionnelle</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>LOF confirmé</strong> — tous nos reproducteurs sont inscrits au Livre des Origines Français</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Palmarès international</strong> — Champions de France, présence aux États-Unis</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Cadre campagnard</strong> — chiots nés et élevés dans un environnement calme et naturel</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Visites sur rendez-vous</strong> — Christine vous reçoit personnellement pour chaque visite</div></div>
+      </div>
+      <a href="#contact" class="btn btn--primary">Prendre rendez-vous</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__img reveal">
+      <img src="{{ photos.galerie_0 }}" alt="Cavalier King Charles Spaniel — portrait">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le Cavalier<br><em>King Charles Spaniel</em></h2>
+      <p>Né dans les cours royales d'Angleterre, le Cavalier King Charles Spaniel est l'une des races de compagnie les plus aimées et les plus raffinées au monde. Son nom même évoque l'histoire — celui du roi Charles II d'Angleterre, qui en était éperdument amoureux et ne s'en séparait jamais, jusque dans ses appartements d'état.</p>
+      <p>Avec ses grands yeux doux et expressifs, ses longues oreilles soyeuses et son tempérament naturellement affectueux, le Cavalier s'adapte avec grâce à tout environnement. Il est aussi bien à sa place dans un manoir anglais qu'dans une maison de campagne française — élégant sans être hautain, joueur sans être envahissant.</p>
+      <div class="race__info-box">
+        <div class="race__info-box-ico">👑</div>
+        <div><strong>La race des rois et des familles</strong>Classé 5ème race de compagnie la plus populaire en Europe, le Cavalier King Charles séduit autant par sa silhouette gracieuse que par son caractère doux, patient et profondément attaché à ses humains.</div>
+      </div>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>Royaume-Uni 🇬🇧</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>30–33 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>5,4–8 kg</span></div>
+        <div class="race__spec"><strong>Longévité</strong><span>12–15 ans</span></div>
+        <div class="race__spec"><strong>Robe</strong><span>Soyeuse, légèrement ondulée</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 9 — Compagnie</span></div>
+      </div>
+      <a href="#coloris" class="btn btn--primary">Découvrir les coloris</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LES COLORIS ====== -->
+<section class="coloris" id="coloris">
+  <div class="coloris__wrap">
+    <div class="sec__head">
+      <p class="sec__eyebrow">Standard de la race</p>
+      <h2 class="sec__title">Les quatre <em>coloris</em></h2>
+      <p class="sec__sub">Le Cavalier King Charles Spaniel est reconnu en quatre robes distinctes, chacune d'une beauté singulière — toutes élevées avec le même soin chez Des Marais de Bremes.</p>
+    </div>
+    <div class="coloris__grid">
+      <div class="color__card reveal">
+        <div class="color__img"><img src="{{ photos.galerie_1 }}" alt="Cavalier Blenheim"></div>
+        <div class="color__body">
+          <div class="color__dot dot-blenheim"></div>
+          <div class="color__name">Blenheim</div>
+          <p class="color__desc">Robe blanche ornée de taches marron châtain, avec la tache caractéristique en losange sur le crâne — la plus répandue et la plus emblématique de la race.</p>
+        </div>
+      </div>
+      <div class="color__card reveal" style="transition-delay:.08s">
+        <div class="color__img"><img src="{{ photos.galerie_2 }}" alt="Cavalier Tricolore"></div>
+        <div class="color__body">
+          <div class="color__dot dot-tricolor"></div>
+          <div class="color__name">Tricolore</div>
+          <p class="color__desc">Blanc nacré avec des taches noires et des marques feu au-dessus des yeux, sur les joues et sous la queue — d'une élégance absolue.</p>
+        </div>
+      </div>
+      <div class="color__card reveal" style="transition-delay:.16s">
+        <div class="color__img"><img src="{{ photos.galerie_3 }}" alt="Cavalier Ruby"></div>
+        <div class="color__body">
+          <div class="color__dot dot-ruby"></div>
+          <div class="color__name">Ruby</div>
+          <p class="color__desc">Entièrement acajou riche et profond, sans aucune tache blanche — une robe d'une intensité remarquable, rare et très prisée des amateurs.</p>
+        </div>
+      </div>
+      <div class="color__card reveal" style="transition-delay:.24s">
+        <div class="color__img"><img src="{{ photos.galerie_4 }}" alt="Cavalier Black and Tan"></div>
+        <div class="color__body">
+          <div class="color__dot dot-bt"></div>
+          <div class="color__name">Black &amp; Tan</div>
+          <p class="color__desc">Noir jais brillant rehaussé de marques feu précises au-dessus des yeux, sur le museau, les oreilles et les pattes — sophistiqué et saisissant.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Nos <em>reproducteurs</em></h2>
+    <p class="sec__sub">Sélectionnés pour leur excellence de caractère, leur beauté conforme au standard et leur santé, nos reproducteurs sont les ambassadeurs de l'élevage Des Marais de Bremes.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : Lady Scarlett -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <img src="{{ photos.galerie_5 }}" alt="Lady Scarlett — Cavalier King Charles Spaniel femelle reproductrice Des Marais de Bremes">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Lady Scarlett</div>
+          <div class="dog__sex-label">Reproductrice principale · Blenheim</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Testée</span>
+          <span class="dog__tag">Championne</span>
+        </div>
+        <p class="dog__desc">Incarnation de la douceur et du raffinement du Cavalier, Lady Scarlett est notre reproductrice star. Lauréate de plusieurs expositions, elle transmet à ses chiots un tempérament exemplaire et une robe Blenheim d'une richesse rare.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : Lord Byron -->
+    <div class="dog__card reveal" style="transition-delay:.12s">
+      <div class="dog__img">
+        <img src="{{ photos.galerie_6 }}" alt="Lord Byron — Cavalier King Charles Spaniel mâle reproducteur Des Marais de Bremes">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Lord Byron</div>
+          <div class="dog__sex-label">Reproducteur · Tricolore</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Testé</span>
+          <span class="dog__tag">Champion de France</span>
+        </div>
+        <p class="dog__desc">Lord Byron, notre Champion de France tricolore, est le seigneur de l'élevage. Sa prestance naturelle et son caractère d'une douceur absolue en font un reproducteur d'exception, dont les chiots héritent la grâce et le charme royaux.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : Miss Violette -->
+    <div class="dog__card reveal" style="transition-delay:.24s">
+      <div class="dog__img">
+        <img src="{{ photos.galerie_7 }}" alt="Miss Violette — Cavalier King Charles Spaniel femelle reproductrice Des Marais de Bremes">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Miss Violette</div>
+          <div class="dog__sex-label">Reproductrice · Ruby</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Testée</span>
+          <span class="dog__tag">Ruby</span>
+        </div>
+        <p class="dog__desc">Miss Violette est notre petite rubis au caractère solaire. Sa robe acajou profond et ses yeux de velours en font une Cavalier de toute beauté. Affectueuse, joueuse et particulièrement attachée aux enfants, elle donne naissance à des chiots d'une qualité remarquable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PALMARÈS ====== -->
+<section class="palmares" id="palmares">
+  <div class="palmares__wrap">
+    <div class="sec__head">
+      <p class="sec__eyebrow">Excellence &amp; Reconnaissance</p>
+      <h2 class="sec__title">Notre <em>palmarès</em></h2>
+      <p class="sec__sub">Plus de quarante ans de passion ont été récompensés sur les plus grandes scènes de l'exposition canine, en France comme à l'international.</p>
+    </div>
+    <div class="palmares__grid">
+      <div class="palm__item reveal">
+        <span class="palm__ico">🏆</span>
+        <div class="palm__title">Champions de France</div>
+        <p class="palm__desc">Plusieurs de nos sujets ont obtenu le titre de Champion de France, la plus haute distinction de l'exposition canine française, décernée par la Société Centrale Canine.</p>
+        <span class="palm__year">Titre National · SCC</span>
+      </div>
+      <div class="palm__item reveal" style="transition-delay:.1s">
+        <span class="palm__ico">🌍</span>
+        <div class="palm__title">Présence Internationale</div>
+        <p class="palm__desc">L'excellence de nos élevages a franchi l'Atlantique. Des sujets Des Marais de Bremes ont été exportés et primés aux États-Unis, portant haut les couleurs de notre élevage normand.</p>
+        <span class="palm__year">Rayonnement · États-Unis</span>
+      </div>
+      <div class="palm__item reveal" style="transition-delay:.2s">
+        <span class="palm__ico">🎖️</span>
+        <div class="palm__title">40 ans de sélection</div>
+        <p class="palm__desc">Depuis 1983, chaque génération est le fruit d'une sélection rigoureuse sur le caractère, la morphologie et la santé. Un engagement constant pour préserver et sublimer la race.</p>
+        <span class="palm__year">Depuis 1983 · Ardres</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CHIOTS ====== -->
+<section class="chiots" id="chiots">
+  <div class="chiots__wrap">
+    <div class="chiots__img reveal">
+      <img src="{{ photos.galerie_1 }}" alt="Chiots Cavalier King Charles Spaniel — Des Marais de Bremes">
+    </div>
+    <div class="chiots__content reveal" style="transition-delay:.15s">
+      <div class="chiots__badge">✓ Chiots disponibles à la vente</div>
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Chiots &amp;<br><em>futures portées</em></h2>
+      <p>Des Marais de Bremes propose régulièrement des chiots à la vente, ainsi que de futures portées planifiées. Chaque chiot est élevé avec le même soin que nous y consacrons depuis 1983 — en famille, dans notre cadre campagnard d'Ardres.</p>
+      <p>Tous nos chiots partent vaccinés, vermifugés, identifiés par puce électronique et inscrits au Livre des Origines Français (LOF). Un suivi et des conseils personnalisés sont assurés par Christine pour chaque famille adoptante.</p>
+      <div class="chiots__steps">
+        <div class="chiots__step">
+          <div class="chiots__step-dot">1</div>
+          <div class="chiots__step-txt"><strong>Premier contact</strong><span>Appelez Christine au <!-- MODIFIER : téléphone --> 06 10 36 24 45 ou écrivez via le formulaire</span></div>
+        </div>
+        <div class="chiots__step">
+          <div class="chiots__step-dot">2</div>
+          <div class="chiots__step-txt"><strong>Visite sur rendez-vous</strong><span>Venez rencontrer nos Cavaliers et les chiots disponibles à Ardres</span></div>
+        </div>
+        <div class="chiots__step">
+          <div class="chiots__step-dot">3</div>
+          <div class="chiots__step-txt"><strong>Adoption</strong><span>Chiot remis avec tous les documents — carnet de santé, pedigree LOF, puce électronique</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--primary">Renseignements &amp; disponibilités</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">La vie aux <em>Marais de Bremes</em></h2>
+    <p class="sec__sub">Quelques instants de la vie quotidienne à l'élevage — la campagne du Pas-de-Calais et ses jolies boules de poils.</p>
+  </div>
+  <div class="gal__grid">
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.hero }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.about_2 }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_4 }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_3 }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.about_1 }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_6 }}" alt="Galerie Des Marais de Bremes"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Cavalier</em></h2>
+    <p class="sec__sub">Des familles heureuses, conquises par la douceur incomparable du Cavalier King Charles.</p>
+  </div>
+  <div class="temo__grid">
+    <div class="temo reveal">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Nous avons adopté notre Blenheim chez Christine il y a trois ans et ce fut l'une des plus belles décisions de notre vie. Un chiot parfaitement socialisé, d'une douceur absolue. Le suivi de Christine après l'adoption a été exemplaire — une vraie passionnée.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=70" alt="Isabelle M."></div>
+        <div><div class="temo__name">Isabelle &amp; Paul M.</div><div class="temo__dog">Cavalier Blenheim · Lille</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Le sérieux et la passion de Mme Delattre sont immédiatement perceptibles. Notre petit Lord est issu d'une lignée de Champions — il est magnifique, parfaitement dans le standard, et son caractère est exceptionnel. Nous recommandons l'élevage Des Marais de Bremes sans réserve.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=71" alt="Bertrand L."></div>
+        <div><div class="temo__name">Bertrand L.</div><div class="temo__dog">Cavalier Tricolore · Calais</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Quarante ans d'élevage, ça se voit immédiatement. Dès la visite, on sent l'amour que Christine porte à ses chiens. Notre Ruby est une petite merveille, affectueuse, équilibrée et en parfaite santé. Une éleveuse en qui on peut avoir confiance les yeux fermés.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=72" alt="Marie-Claire V."></div>
+        <div><div class="temo__name">Marie-Claire V.</div><div class="temo__dog">Cavalier Ruby · Boulogne-sur-Mer</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Rencontrons-<em>nous</em></h2>
+    <p class="sec__sub">Pour toute demande de renseignements sur nos chiots disponibles ou nos futures portées, contactez Christine directement par téléphone ou via le formulaire.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <h3>Des Marais de Bremes</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Adresse</div>
+            <!-- MODIFIER : adresse exacte si souhaitée -->
+            <div class="cinfo__val">Ardres, 62610<br>Pas-de-Calais</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <!-- MODIFIER : téléphone -->
+            <div class="cinfo__val"><a href="tel:{{ elevage.telephone }}">06 10 36 24 45</a></div>
+            <div class="cinfo__sub">Christine Delattre — appels et SMS bienvenus</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <!-- MODIFIER : lien Facebook page élevage -->
+            <div class="cinfo__val"><a href="#" target="_blank" rel="noopener">Des Marais de Bremes</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Visites</div>
+            <div class="cinfo__val">Sur rendez-vous uniquement</div>
+            <div class="cinfo__sub">Appelez Christine pour convenir d'un horaire</div>
+          </div>
+        </div>
+      </div>
+      <div class="certif-badge">✓ LOF — Livre des Origines Français</div>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML uniquement.
+           Activer avec Netlify Forms (ajouter netlify à <form>)
+           ou Formspree (action="https://formspree.io/f/XXXX") -->
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Appelez directement Christine au <strong>06 10 36 24 45</strong> ou laissez votre message ici — elle vous répondra dans les meilleurs délais.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="coloris">Coloris souhaité</label>
+            <select id="coloris" name="coloris">
+              <option value="">Sans préférence</option>
+              <option value="blenheim">Blenheim</option>
+              <option value="tricolore">Tricolore</option>
+              <option value="ruby">Ruby</option>
+              <option value="black-tan">Black &amp; Tan</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="objet">Objet de la demande</label>
+            <select id="objet" name="objet">
+              <option value="">— Choisir —</option>
+              <option value="chiot-dispo">Chiot disponible maintenant</option>
+              <option value="future-portee">Inscription future portée</option>
+              <option value="info">Renseignements généraux</option>
+              <option value="visite">Demande de visite</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="experience">Expérience avec la race</label>
+            <select id="experience" name="experience">
+              <option value="">— Choisir —</option>
+              <option value="oui">J'ai déjà eu un Cavalier</option>
+              <option value="autre">J'ai eu d'autres chiens</option>
+              <option value="non">Premier chien</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__group">
+          <label for="message">Présentez-vous et votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux, logement, style de vie, raisons de votre intérêt pour le Cavalier King Charles..."></textarea>
+          <span class="form__hint">Plus vous nous en dites, mieux Christine pourra vous accompagner dans votre choix.</span>
+        </div>
+        <button type="submit" class="btn btn--primary form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande et ne sont jamais transmises à des tiers.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations pratiques</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+    <p class="sec__sub">Tout ce que vous devez savoir avant d'accueillir un Cavalier King Charles Spaniel dans votre foyer.</p>
+  </div>
+  <div class="conditions__wrap">
+    <div class="acc">
+      <button class="acc__q">Qu'est-ce que l'inscription LOF et pourquoi est-elle importante ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Le LOF (Livre des Origines Français) est le registre officiel des chiens de race pure en France, géré par la Société Centrale Canine. Un chiot LOF est issu de parents eux-mêmes inscrits au LOF, ce qui garantit la traçabilité de sa généalogie sur plusieurs générations. Chez Des Marais de Bremes, tous nos chiots partent avec leur pedigree LOF, preuve de l'authenticité de la race et gage de sérieux de l'élevage. Le LOF permet également de participer aux expositions canines officielles.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot à son départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot Des Marais de Bremes repart avec :</p>
+        <ul>
+          <li>Carnet de santé européen à jour (primo-vaccination et rappel)</li>
+          <li>Identification par puce électronique (obligatoire)</li>
+          <li>Certificat vétérinaire de bonne santé</li>
+          <li>Pedigree LOF (Livre des Origines Français)</li>
+          <li>Vermifugation à jour</li>
+          <li>Conseils personnalisés de Christine pour les premiers jours</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Le Cavalier King Charles est-il adapté aux familles avec enfants ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Le Cavalier King Charles est l'une des races les mieux adaptées à la vie en famille avec enfants. Son tempérament naturellement doux, patient et affectueux en fait un compagnon idéal pour les plus jeunes. Il n'est ni agressif ni craintif, et s'adapte avec grâce au rythme de la vie familiale. Sa taille compacte le rend également pratique dans toutes les configurations de logement — appartement ou maison avec jardin. Il appréciera cependant toujours une promenade quotidienne et des moments de jeu.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels sont les points de santé à surveiller chez le Cavalier ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Comme toute race pure, le Cavalier King Charles peut être prédisposé à certaines affections à surveiller : les troubles cardiaques (valvulopathie mitrale), les affections oculaires et la syringomyélie. Chez Des Marais de Bremes, nous sélectionnons nos reproducteurs avec la plus grande rigueur pour minimiser ces risques. Nous vous recommandons des bilans vétérinaires réguliers et un suivi cardiologue annuel à partir de 5 ans. Un régime alimentaire adapté et une activité physique modérée contribuent à la longévité de votre Cavalier.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe une visite à l'élevage ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Les visites se font exclusivement sur rendez-vous, en appelant Christine au 06 10 36 24 45. Nous vous accueillons à Ardres (62610) dans notre cadre campagnard. Vous pourrez rencontrer les parents des chiots, observer les chiots disponibles dans leur environnement naturel, et poser toutes vos questions à Christine en toute sérénité. Ces visites sont importantes pour nous : elles nous permettent de vous connaître et de vous aider à trouver le chiot qui vous correspondra le mieux, dans le respect de chaque animal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <div class="footer__logo">Des Marais de Bremes<span>Cavalier King Charles Spaniel · LOF · Ardres, Pas-de-Calais</span></div>
+      <p>Élevage familial de Cavalier King Charles Spaniel depuis 1983. Champions de France, présence internationale. Christine Delattre, Ardres (62610).</p>
+      <p style="margin-top:.8rem">
+        <!-- MODIFIER : téléphone -->
+        📞 <a href="tel:{{ elevage.telephone }}">06 10 36 24 45</a><br>
+        📍 Ardres, 62610 Pas-de-Calais<br>
+        <!-- MODIFIER : lien Facebook -->
+        📘 <a href="#" target="_blank" rel="noopener">Facebook</a>
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">La Race</a>
+      <a href="#coloris">Les Coloris</a>
+      <a href="#repro">Nos Reproducteurs</a>
+      <a href="#palmares">Palmarès</a>
+      <a href="#chiots">Chiots</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations</h4>
+      <p>LOF — Livre des Origines Français</p>
+      <p>Société Centrale Canine</p>
+      <p>Champions de France</p>
+      <p>Élevage depuis 1983</p>
+      <a href="#conditions" style="margin-top:.8rem">Questions fréquentes</a>
+      <!-- MODIFIER : liens légaux si besoin -->
+      <a href="#">Mentions légales</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 Des Marais de Bremes — Christine Delattre · Tous droits réservés</p>
+    <p><a href="#">Mentions légales</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO LOAD ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  /* ---- ACCORDION ---- */
+  document.querySelectorAll('.acc__q').forEach(q => q.addEventListener('click', () => {
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  }));
+</script>
+</body>
+</html>

@@ -1,0 +1,1035 @@
+{#- template: la-dolce-vita -#}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>{{ elevage.nom }} — Élevage {{ elevage.race }} | {{ elevage.departement }}</title>
+  <meta name="description" content="{{ elevage.description_seo }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://www.ladolcevita-lagotto.ca/">
+  <meta property="og:title"       content="{{ elevage.nom }} — {{ elevage.race }}, {{ elevage.departement }}">
+  <meta property="og:description" content="{{ elevage.description_seo }}">
+  <meta property="og:image"       content="{{ photos.hero }}">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices -->
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "La Dolce Vita",
+        "description": "Élevage familial de Lagotto Romagnolo à Morin-Heights, Québec",
+        "telephone": "+15149964724",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "49 rue du Val-Simon",
+          "addressLocality": "Morin-Heights",
+          "postalCode": "J0R 1H0",
+          "addressRegion": "Québec",
+          "addressCountry": "CA"
+        }
+      },
+      { "@type": "AnimalShelter", "name": "La Dolce Vita — Lagotto Romagnolo CCC" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — adapter à chaque client ici
+       ============================================== */
+    :root {
+      --esp:  #2A1A0E;   /* MODIFIER : espresso foncé */
+      --trr:  #B85C2A;   /* MODIFIER : terracotta toscan */
+      --olv:  #4D5E3B;   /* MODIFIER : olive toscan */
+      --gld:  #C9A45E;   /* MODIFIER : or chaud */
+      --crm:  #F5EFE0;   /* MODIFIER : parchemin crème */
+      --bg:   #FAF8F2;   /* MODIFIER : fond blanc cassé chaud */
+      --stn:  #9A8E7E;   /* MODIFIER : pierre chaude */
+      --txt:  #2A1A0E;   /* texte espresso */
+      --FD:   'Bodoni Moda', serif;   /* MODIFIER : police titres */
+      --FN:   'Josefin Sans', sans-serif; /* MODIFIER : police corps */
+      --nav:  70px;
+      --r:    8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .76rem 2.1rem;
+      font-family: var(--FN); font-weight: 700; font-size: .8rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+      border-radius: 2px;
+    }
+    .btn--primary { background: var(--trr); color: #fff; }
+    .btn--primary:hover { background: #9a4820; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,92,42,.32); }
+    .btn--dark { background: var(--esp); color: #fff; }
+    .btn--dark:hover { background: #3d2a15; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,26,14,.3); }
+    .btn--outline { background: transparent; color: var(--esp); border: 1.5px solid var(--esp); }
+    .btn--outline:hover { background: var(--esp); color: #fff; transform: translateY(-2px); }
+    .btn--white { background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.45); backdrop-filter: blur(6px); }
+    .btn--white:hover { background: rgba(255,255,255,.22); transform: translateY(-2px); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(250,248,242,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(42,26,14,.08);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
+    .nav__logo {
+      font-family: var(--FD); font-size: 1.25rem; font-weight: 600; font-style: italic;
+      color: var(--esp); line-height: 1.1; margin-right: auto; letter-spacing: .02em;
+    }
+    .nav__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .58rem; font-weight: 600; color: var(--stn); letter-spacing: .24em; text-transform: uppercase; margin-top: .1rem; }
+    .nav__links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav__links > li > a {
+      font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--txt); transition: color .2s; position: relative;
+    }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--trr); transition: width .2s; }
+    .nav__links > li > a:hover { color: var(--trr); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.4rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .55rem; margin-left: .25rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #fff; border: 1px solid rgba(42,26,14,.08);
+      border-radius: var(--r); padding: .5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,.09);
+      min-width: 190px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .2s, visibility .2s, transform .2s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a { display: block; padding: .55rem 1.3rem; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); transition: background .15s, color .15s; }
+    .drop__menu a:hover { background: var(--crm); color: var(--trr); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--txt); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--bg); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .85rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); padding: .8rem 0; border-bottom: 1px solid var(--crm); }
+    .nav__mobile a:hover { color: var(--trr); }
+    .nav__mobile .mob-sub { padding-left: 1.2rem; font-size: .78rem !important; color: var(--stn) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100svh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background: url('{{ photos.hero }}') center/cover no-repeat;
+      transform: scale(1.06); transition: transform 10s ease;
+    }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    .hero__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(42,26,14,.2) 0%, rgba(42,26,14,.5) 55%, rgba(42,26,14,.78) 100%);
+    }
+    /* grain texture subtil */
+    .hero__grain {
+      position: absolute; inset: 0; opacity: .035; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    .hero__content {
+      position: relative; z-index: 1; color: #fff;
+      text-align: center; padding: 0 1.5rem; max-width: 760px;
+    }
+    .hero__eyebrow {
+      font-family: var(--FN); font-size: .68rem; font-weight: 600;
+      letter-spacing: .28em; text-transform: uppercase;
+      color: var(--gld); margin-bottom: 1.6rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .hero__eyebrow::before, .hero__eyebrow::after { content: ''; display: block; width: 40px; height: 1px; background: var(--gld); opacity: .6; }
+    .hero__title {
+      font-family: var(--FD); font-size: clamp(3rem, 7vw, 7rem);
+      font-weight: 600; font-style: italic; line-height: 1.0;
+      margin-bottom: 1rem; text-shadow: 0 2px 32px rgba(0,0,0,.3);
+    }
+    .hero__subtitle {
+      font-family: var(--FN); font-size: .72rem; font-weight: 700;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(255,255,255,.65); margin-bottom: 1.8rem;
+    }
+    .hero__sub {
+      font-size: clamp(.88rem, 1.6vw, 1rem); font-weight: 300;
+      color: rgba(255,255,255,.82); line-height: 1.76;
+      max-width: 520px; margin: 0 auto 2.4rem;
+    }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,.5); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__scroll::after {
+      content: ''; width: 1px; height: 36px; background: rgba(255,255,255,.35);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ---- BANDEAU INFOS ---- */
+    .bandeau {
+      background: var(--esp); color: rgba(255,255,255,.75);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ban__item {
+      padding: 1.6rem 1rem; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .ban__item:last-child { border-right: none; }
+    .ban__n { font-family: var(--FD); font-size: 1.6rem; font-style: italic; color: var(--gld); line-height: 1; margin-bottom: .3rem; }
+    .ban__l { font-family: var(--FN); font-size: .6rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 6.5rem 4vw; }
+    .sec__head { text-align: center; margin-bottom: 3.5rem; }
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .62rem; font-weight: 700;
+      letter-spacing: .24em; text-transform: uppercase; color: var(--trr);
+      margin-bottom: .9rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after { content: ''; display: block; width: 24px; height: 1px; background: var(--trr); opacity: .5; }
+    .sec__title { font-family: var(--FD); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 600; color: var(--esp); line-height: 1.12; }
+    .sec__title em { font-style: italic; color: var(--trr); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-family: var(--FN); font-size: .93rem; color: #888; line-height: 1.82; font-weight: 300; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 520px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 72%; height: 80%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 24px 64px rgba(42,26,14,.18);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 48%; height: 52%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,.12);
+      border: 4px solid var(--bg);
+    }
+    /* médaillon décoratif */
+    .about__medal {
+      position: absolute; right: 4%; top: 32%; z-index: 2;
+      width: 78px; height: 78px; border-radius: 50%;
+      background: var(--gld); color: var(--esp);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(201,164,94,.45);
+      font-family: var(--FD); font-size: .85rem; font-style: italic; font-weight: 600; text-align: center; line-height: 1.2;
+    }
+    .about__medal small { font-family: var(--FN); font-size: .44rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-top: .2rem; opacity: .75; }
+    .about__text {}
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.7rem, 3vw, 2.6rem); font-weight: 600; margin-bottom: 1.2rem; line-height: 1.15; }
+    .about__text h2 em { font-style: italic; color: var(--trr); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #666; line-height: 1.85; margin-bottom: 1rem; font-size: .95rem; }
+    .about__list { margin: 1.6rem 0; display: flex; flex-direction: column; gap: .65rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .9rem; font-family: var(--FN); font-size: .9rem; color: #666; line-height: 1.6; font-weight: 300; }
+    .about__li-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gld); flex-shrink: 0; margin-top: .55rem; }
+    .about__li strong { color: var(--esp); font-weight: 600; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img { position: relative; height: 520px; border-radius: var(--r); overflow: hidden; box-shadow: 0 24px 60px rgba(42,26,14,.15); }
+    .race__img img { position: absolute; inset: 0; height: 100%; }
+    .race__content {}
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .95rem; line-height: 1.85; color: #666; margin-bottom: 1rem; }
+    .race__truffe {
+      display: flex; align-items: flex-start; gap: .9rem;
+      background: var(--esp); color: rgba(255,255,255,.8);
+      border-radius: var(--r); padding: 1.2rem 1.4rem;
+      margin: 1.6rem 0; font-family: var(--FN); font-size: .85rem; line-height: 1.7; font-weight: 300;
+    }
+    .race__truffe-ico { font-size: 1.4rem; flex-shrink: 0; margin-top: .1rem; }
+    .race__truffe strong { color: var(--gld); font-weight: 600; display: block; margin-bottom: .2rem; font-size: .88rem; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin-bottom: 2rem; }
+    .race__spec { background: #fff; border-radius: var(--r); padding: .85rem 1rem; border-left: 2px solid var(--gld); }
+    .race__spec strong { display: block; font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #bbb; margin-bottom: .25rem; }
+    .race__spec span { font-family: var(--FD); font-size: .95rem; font-weight: 600; font-style: italic; color: var(--esp); }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--bg); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.8rem; }
+    .dog__card { border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 20px rgba(0,0,0,.07); background: #fff; transition: transform .3s, box-shadow .3s; }
+    .dog__card:hover { transform: translateY(-5px); box-shadow: 0 18px 52px rgba(0,0,0,.12); }
+    .dog__img { height: 300px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .6s; }
+    .dog__card:hover .dog__img img { transform: scale(1.06); }
+    .dog__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(42,26,14,.75) 0%, transparent 55%);
+    }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.4rem 1.5rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.8rem; font-weight: 600; font-style: italic; color: #fff; line-height: 1; }
+    .dog__sex-label { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gld); margin-top: .2rem; }
+    .dog__body { padding: 1.3rem 1.5rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+    .dog__tag { background: var(--crm); border-radius: 3px; padding: .22rem .7rem; font-family: var(--FN); font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--esp); }
+    .dog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #888; line-height: 1.75; }
+
+    /* ---- PROCHAINE PORTÉE ---- */
+    .portee { background: var(--esp); color: #fff; }
+    .portee__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .portee__img { position: relative; height: 440px; border-radius: var(--r); overflow: hidden; }
+    .portee__img img { position: absolute; inset: 0; height: 100%; }
+    .portee__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,26,14,.5), transparent 60%); }
+    .portee__content {}
+    .portee__content .sec__eyebrow { color: var(--gld); justify-content: flex-start; }
+    .portee__content .sec__eyebrow::before, .portee__content .sec__eyebrow::after { background: var(--gld); }
+    .portee__content .sec__title { color: #fff; text-align: left; }
+    .portee__content .sec__title em { color: var(--gld); }
+    .portee__content p { font-family: var(--FN); font-size: .95rem; font-weight: 300; line-height: 1.82; color: rgba(255,255,255,.72); margin-bottom: 1rem; }
+    .portee__timeline { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .7rem; }
+    .portee__step { display: flex; align-items: flex-start; gap: 1rem; }
+    .portee__step-dot {
+      width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--gld);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--FD); font-size: .9rem; font-style: italic; color: var(--gld);
+      flex-shrink: 0;
+    }
+    .portee__step-txt strong { display: block; font-family: var(--FN); font-size: .82rem; font-weight: 700; color: #fff; margin-bottom: .1rem; letter-spacing: .04em; }
+    .portee__step-txt span { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: rgba(255,255,255,.6); }
+
+    /* ---- PROGRAMME ---- */
+    .programme { background: var(--crm); }
+    .prog__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .prog__card { background: #fff; border-radius: var(--r); padding: 2rem 1.8rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); border-top: 2px solid var(--gld); }
+    .prog__ico { font-size: 1.6rem; margin-bottom: 1rem; }
+    .prog__title { font-family: var(--FD); font-size: 1.1rem; font-style: italic; color: var(--esp); margin-bottom: .6rem; }
+    .prog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #888; line-height: 1.75; }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--bg); }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+    }
+    .gi { overflow: hidden; border-radius: 6px; position: relative; cursor: pointer; }
+    .gi img { height: 220px; transition: transform .55s; }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: 100%; }
+    .gi:hover img { transform: scale(1.07); }
+    .gi__over { position: absolute; inset: 0; background: rgba(184,92,42,.4); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: #fff; font-family: var(--FD); font-size: 1.8rem; font-style: italic; }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.94); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    #lb-close { position: absolute; top: 1.2rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; opacity: .6; }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2.2rem; padding: 1rem; opacity: .5; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .temo { background: var(--bg); border-radius: var(--r); padding: 1.8rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); position: relative; }
+    .temo__quote { font-family: var(--FD); font-size: 4rem; font-style: italic; color: var(--gld); opacity: .2; position: absolute; top: .5rem; left: 1.2rem; line-height: 1; }
+    .temo__stars { color: var(--gld); font-size: .9rem; margin-bottom: 1rem; letter-spacing: .05em; }
+    .temo__text { font-family: var(--FN); font-size: .9rem; font-weight: 300; line-height: 1.82; color: #666; margin-bottom: 1.4rem; font-style: italic; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .8rem; }
+    .temo__av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; }
+    .temo__dog { font-size: .72rem; color: #bbb; }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.7rem; font-style: italic; font-weight: 600; margin-bottom: 1.5rem; line-height: 1.15; }
+    .cinfo { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .85rem; }
+    .cinfo__ico { width: 38px; height: 38px; border-radius: 8px; background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; }
+    .cinfo__label { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #ccc; margin-bottom: .12rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 600; }
+    .cinfo__val a:hover { color: var(--trr); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: #bbb; margin-top: .1rem; }
+    .certif-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--esp); color: rgba(255,255,255,.85); border-radius: 4px;
+      padding: .45rem 1rem; font-family: var(--FN); font-size: .7rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase; margin-top: 1rem;
+    }
+    .contact__form { background: var(--crm); border-radius: var(--r); padding: 2.4rem; }
+    .form__title { font-family: var(--FD); font-size: 1.4rem; font-style: italic; font-weight: 600; margin-bottom: .4rem; }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: #aaa; margin-bottom: 1.8rem; line-height: 1.6; }
+    .form__section { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--stn); margin: 1.4rem 0 .8rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(42,26,14,.08); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .32rem; margin-bottom: .9rem; }
+    .form__group label { font-family: var(--FN); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--txt); }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .72rem .95rem;
+      border: 1.5px solid rgba(42,26,14,.1); border-radius: var(--r);
+      font-family: var(--FN); font-size: .89rem; font-weight: 300; color: var(--txt);
+      background: #fff; outline: none; transition: border-color .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--trr); }
+    .form__group textarea { resize: vertical; min-height: 110px; }
+    .form__hint { font-size: .7rem; color: #ccc; margin-top: .16rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .9rem; font-size: .82rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .7rem; font-weight: 300; color: #ccc; text-align: center; margin-top: .8rem; line-height: 1.5; }
+
+    /* ---- CONDITIONS ---- */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(42,26,14,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.1rem 0; font-family: var(--FN); font-weight: 700; font-size: .92rem; letter-spacing: .02em; color: var(--txt); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .acc__q .arr { font-size: .78rem; color: var(--trr); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.1rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #777; line-height: 1.82; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .5rem 0 .5rem 1.2rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .3rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--esp); color: rgba(255,255,255,.5); padding: 4rem 4vw 2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.3rem; font-style: italic; font-weight: 600; color: #fff; letter-spacing: .02em; margin-bottom: .5rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-style: normal; font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: .2rem; }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.72; margin-bottom: .3rem; }
+    .footer__col h4 { font-family: var(--FN); font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 1rem; }
+    .footer__col a { display: block; font-family: var(--FN); font-size: .8rem; font-weight: 300; margin-bottom: .38rem; transition: color .2s; }
+    .footer__col a:hover { color: #fff; }
+    .footer__bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .74rem; margin: 0; }
+    .footer__bottom a { color: var(--gld); }
+    .footer__bottom a:hover { color: #fff; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 960px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .portee__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 340px; }
+      .race__img { height: 320px; }
+      .portee__img { height: 280px; }
+      .temo__grid, .prog__grid { grid-template-columns: 1fr; }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,.07); }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.2rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 220px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .race__specs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <a href="#" class="nav__logo">
+    La Dolce Vita
+    <span>Lagotto Romagnolo · Morin-Heights, Québec</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Chiens <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#repro">Alice &amp; Théo</a></li>
+      </ul>
+    </li>
+    <li><a href="#portee">Prochaine portée</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--primary nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">La Race</a>
+  <a href="#repro" class="mob-sub">— Alice &amp; Théo</a>
+  <a href="#portee">Prochaine portée</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--primary" style="margin-top:1rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">Morin-Heights · Québec</div>
+    <h1 class="hero__title">La Dolce Vita</h1>
+    <p class="hero__subtitle">Lagotto Romagnolo</p>
+    <p class="hero__sub">Un élevage familial éthique dédié au Lagotto Romagnolo — chiens affectueux, intelligents, hypoallergéniques, élevés selon le programme Puppy Culture.</p>
+    <div class="hero__btns">
+      <a href="#portee" class="btn btn--primary">Prochaine portée</a>
+      <a href="#about" class="btn btn--white">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
+</section>
+
+<!-- ====== BANDEAU ====== -->
+<div class="bandeau">
+  <div class="ban__item reveal">
+    <div class="ban__n">CCC</div>
+    <div class="ban__l">Club Canin Canadien</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n" style="font-size:1.1rem;font-style:normal">Puppy Culture</div>
+    <div class="ban__l">Programme éducatif</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">Nov.</div>
+    <div class="ban__l">Prochaine adoption</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n">✓</div>
+    <div class="ban__l">Tests génétiques</div>
+  </div>
+</div>
+
+<!-- ====== À PROPOS ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <div class="about__main"><img src="{{ photos.about_1 }}" alt="La Dolce Vita — Marie-Ève Tremblay, Morin-Heights"></div>
+      <div class="about__accent"><img src="{{ photos.about_2 }}" alt="Lagotto Romagnolo — La Dolce Vita"></div>
+      <div class="about__medal">CCC<small>Certifiée</small></div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un élevage familial,<br><em>une passion italienne</em></h2>
+      <p>Chez La Dolce Vita, nous élevons le Lagotto Romagnolo à Morin-Heights, en Estrie, avec un engagement profond pour le bien-être animal et l'éthique d'élevage. Marie-Ève Tremblay, éleveuse professionnelle certifiée CCC, élève chaque portée avec le même soin et la même rigueur.</p>
+      <p>Nos chiots grandissent en milieu familial dès leur naissance et bénéficient du programme Puppy Culture — une méthode de socialisation précoce reconnue qui favorise leur équilibre émotionnel et leur confiance.</p>
+      <div class="about__list">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Programme Puppy Culture</strong> — socialisation précoce structurée dès la naissance</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Tests génétiques complets</strong> — dépistage des maladies héréditaires</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage en milieu familial</strong> — chiots habitués à la vie quotidienne</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Suivi personnalisé</strong> — accompagnement des familles adoptantes</div></div>
+      </div>
+      <a href="#contact" class="btn btn--dark">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__img reveal">
+      <img src="{{ photos.galerie_0 }}" alt="Lagotto Romagnolo — portrait">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le Lagotto<br><em>Romagnolo</em></h2>
+      <p>Originaire de la région de Romagne en Italie, le Lagotto est l'une des races les plus anciennes du monde. Chien de chasse aquatique reconverti en chien truffier, il est aujourd'hui avant tout un compagnon affectueux, loyal et d'une intelligence remarquable.</p>
+      <p>Sa robe bouclée et hypoallergénique, son tempérament doux et sa capacité d'apprentissage exceptionnelle en font un chien idéal pour les familles et les personnes allergiques. Il adore l'eau, la neige et les activités en plein air.</p>
+      <div class="race__truffe">
+        <div class="race__truffe-ico">🍄</div>
+        <div><strong>Le chien truffier par excellence</strong>Son flair exceptionnel en fait le seul chien officiellement reconnu pour la recherche de truffes en Italie — une aptitude naturelle que vous pouvez développer même en loisir.</div>
+      </div>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>Italie 🇮🇹</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>41–48 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>13–16 kg</span></div>
+        <div class="race__spec"><strong>Longévité</strong><span>15–17 ans</span></div>
+        <div class="race__spec"><strong>Robe</strong><span>Bouclée, hypoallergénique</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 8 — Rapporteurs</span></div>
+      </div>
+      <a href="#portee" class="btn btn--primary">Prochaine portée</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Alice <em>&amp;</em> Théo</h2>
+    <p class="sec__sub">Nos reproducteurs — sélectionnés pour leur caractère, leur santé et leur conformité au standard de la race.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : Alice -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <img src="{{ photos.galerie_1 }}" alt="Alice — Lagotto Romagnolo femelle reproductrice La Dolce Vita">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Alice</div>
+          <div class="dog__sex-label">Reproductrice principale</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">CCC</span>
+          <span class="dog__tag">Testée</span>
+          <span class="dog__tag">Hypoallergénique</span>
+        </div>
+        <p class="dog__desc">Alice incarne toutes les qualités du Lagotto — douce, vive, joueuse et d'un attachement profond pour sa famille. Ses tests génétiques sont complets et ses chiots héritent de son excellent caractère.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : Théo -->
+    <div class="dog__card reveal" style="transition-delay:.15s">
+      <div class="dog__img">
+        <img src="{{ photos.galerie_2 }}" alt="Théo — Lagotto Romagnolo mâle reproducteur La Dolce Vita">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Théo</div>
+          <div class="dog__sex-label">Reproducteur</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">CCC</span>
+          <span class="dog__tag">Testé</span>
+          <span class="dog__tag">Bouclé</span>
+        </div>
+        <p class="dog__desc">Théo apporte à nos portées sa robustesse et son caractère espiègle et affectueux. Sa robe bouclée typique et sa curiosité naturelle se retrouvent dans chacun de ses chiots.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PROCHAINE PORTÉE ====== -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <div class="portee__img reveal">
+      <img src="{{ photos.galerie_3 }}" alt="Chiots Lagotto Romagnolo — La Dolce Vita">
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Prochaine<br><em>portée</em></h2>
+      <p>Alice et Théo sont sur le point de nous offrir une nouvelle portée. L'accouplement est prévu en juin, ce qui amène les adoptions en novembre. Inscrivez-vous dès maintenant pour être parmi les premières familles contactées.</p>
+      <p>Chaque chiot est suivi individuellement dès sa naissance selon le programme Puppy Culture. Nous prenons le temps de connaître chaque famille pour trouver le meilleur match possible.</p>
+      <div class="portee__timeline">
+        <div class="portee__step">
+          <div class="portee__step-dot">1</div>
+          <div class="portee__step-txt"><strong>Juin</strong><span>Accouplement prévu</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">2</div>
+          <div class="portee__step-txt"><strong>Août — Septembre</strong><span>Naissance et début du programme Puppy Culture</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">3</div>
+          <div class="portee__step-txt"><strong>Novembre</strong><span>Adoptions — chiots prêts à rejoindre leur famille</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--primary">S'inscrire sur liste d'attente</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PROGRAMME PUPPY CULTURE ====== -->
+<section class="programme">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Notre méthode</p>
+    <h2 class="sec__title">Le programme <em>Puppy Culture</em></h2>
+    <p class="sec__sub">Une approche scientifique de la socialisation précoce — pour des chiots équilibrés, confiants et prêts pour la vie en famille.</p>
+  </div>
+  <div class="prog__grid">
+    <div class="prog__card reveal">
+      <div class="prog__ico">🧠</div>
+      <div class="prog__title">Stimulation neurologique</div>
+      <p class="prog__desc">Dès les premiers jours, des exercices de stimulation neurologique précoce favorisent le développement cognitif et la résistance au stress.</p>
+    </div>
+    <div class="prog__card reveal" style="transition-delay:.1s">
+      <div class="prog__ico">🌍</div>
+      <div class="prog__title">Socialisation structurée</div>
+      <p class="prog__desc">Exposition progressive à des sons, textures, personnes et situations variées — les chiots apprennent à appréhender le monde avec confiance.</p>
+    </div>
+    <div class="prog__card reveal" style="transition-delay:.2s">
+      <div class="prog__ico">💬</div>
+      <div class="prog__title">Communication &amp; lien</div>
+      <p class="prog__desc">Le programme développe la capacité du chiot à communiquer ses besoins et à créer un lien fort et sain avec ses futurs humains.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>Lagottos</em></h2>
+    <p class="sec__sub">La vie à La Dolce Vita — Morin-Heights.</p>
+  </div>
+  <div class="gal__grid">
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_4 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_5 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_6 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_7 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.about_1 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="{{ photos.galerie_0 }}" alt="Galerie La Dolce Vita"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Lagotto</em></h2>
+    <p class="sec__sub">Des familles heureuses à travers le Québec.</p>
+  </div>
+  <div class="temo__grid">
+    <div class="temo reveal">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Notre Lagotto Pio est arrivé parfaitement socialisé grâce au programme Puppy Culture. À 10 semaines, il était déjà curieux, confiant et prêt à tout découvrir. Marie-Ève nous a accompagnés à chaque étape.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=70" alt="Isabelle"></div>
+        <div><div class="temo__name">Isabelle &amp; François</div><div class="temo__dog">Lagotto Romagnolo · Montréal</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Nous cherchions un Lagotto depuis longtemps — La Dolce Vita était exactement ce que nous espérions. Transparence totale sur les tests génétiques, parents magnifiques, et un suivi exceptionnel après l'adoption.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=71" alt="Marc-André"></div>
+        <div><div class="temo__name">Marc-André B.</div><div class="temo__dog">Lagotto Romagnolo · Québec</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Allergique aux chiens depuis toujours, j'avais peur de me lancer. Le Lagotto de La Dolce Vita a changé ma vie — robe hypoallergénique, caractère doux et affectueux. Une race extraordinaire, un élevage exemplaire.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=72" alt="Sophie"></div>
+        <div><div class="temo__name">Sophie L.</div><div class="temo__dog">Lagotto Romagnolo · Sherbrooke</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Nous <em>écrire</em></h2>
+    <p class="sec__sub">Pour s'inscrire sur la liste d'attente ou poser vos questions, contactez Marie-Ève par téléphone ou via le formulaire ci-dessous.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <h3>La Dolce Vita</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Adresse</div>
+            <!-- MODIFIER : adresse -->
+            <div class="cinfo__val">49 rue du Val-Simon<br>Morin-Heights, QC J0R 1H0</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <!-- MODIFIER : téléphone -->
+            <div class="cinfo__val"><a href="tel:{{ elevage.telephone }}">514-996-4724</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <!-- MODIFIER : lien Facebook -->
+            <div class="cinfo__val"><a href="#" target="_blank" rel="noopener">La Dolce Vita Lagotto</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Prochaine adoption</div>
+            <div class="cinfo__val">Novembre</div>
+            <div class="cinfo__sub">Accouplement prévu en juin</div>
+          </div>
+        </div>
+      </div>
+      <div class="certif-badge">✓ Club Canin Canadien (CCC)</div>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML uniquement.
+           Activer avec Netlify Forms (ajouter netlify à <form>)
+           ou Formspree (action="https://formspree.io/f/XXXX") -->
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Appelez directement Marie-Ève au <strong>514-996-4724</strong> ou laissez votre message ici.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">Courriel *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@courriel.ca">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="514-XXX-XXXX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="usage">Usage envisagé</label>
+            <select id="usage" name="usage">
+              <option value="">— Choisir —</option>
+              <option value="compagnon">Compagnon de famille</option>
+              <option value="allergie">Allergie (hypoallergénique)</option>
+              <option value="truffe">Recherche de truffes</option>
+              <option value="sport">Sport / activités</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="logement">Type de logement *</label>
+            <select id="logement" name="logement" required>
+              <option value="">— Choisir —</option>
+              <option value="maison-jardin">Maison avec cour</option>
+              <option value="maison-sans">Maison sans cour</option>
+              <option value="condo">Condo / appartement</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="experience">Expérience avec la race</label>
+            <select id="experience" name="experience">
+              <option value="">— Choisir —</option>
+              <option value="oui">J'ai déjà eu un Lagotto</option>
+              <option value="autre">J'ai eu d'autres chiens</option>
+              <option value="non">Premier chien</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Présentez-vous et votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux, style de vie, raisons de votre choix pour le Lagotto Romagnolo..."></textarea>
+          <span class="form__hint">Plus vous nous en dites, mieux nous pourrons vous accompagner.</span>
+        </div>
+        <button type="submit" class="btn btn--primary form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONDITIONS ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <div class="acc">
+      <button class="acc__q">Qu'est-ce que le programme Puppy Culture ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Puppy Culture est un programme de socialisation et d'éducation précoce basé sur des recherches scientifiques en comportement canin. Il commence dès les premiers jours de vie du chiot et couvre la stimulation neurologique, la socialisation, la communication et les premières bases de l'éducation. Les chiots qui bénéficient de ce programme sont généralement plus confiants, moins anxieux et plus faciles à éduquer.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot La Dolce Vita repart avec :</p>
+        <ul>
+          <li>Carnet de santé à jour (vaccinations, vermifugation)</li>
+          <li>Identification par micropuce</li>
+          <li>Certificat vétérinaire de bonne santé</li>
+          <li>Enregistrement CCC (Club Canin Canadien)</li>
+          <li>Résultats des tests génétiques des parents</li>
+          <li>Guide de démarrage Puppy Culture</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Le Lagotto est-il vraiment hypoallergénique ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Le Lagotto Romagnolo possède une robe bouclée qui ne perd quasiment pas ses poils — contrairement à la plupart des races. Il produit moins de dander (peaux mortes) et ses sécrétions sont généralement mieux tolérées par les personnes allergiques. Si vous souffrez d'allergies, nous vous recommandons une visite pour passer du temps avec nos chiens avant de vous engager.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe le processus d'adoption ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>1. Vous nous contactez pour vous inscrire sur liste d'attente et nous présenter. 2. Nous échangeons par téléphone pour mieux vous connaître et répondre à vos questions. 3. Une fois la portée née, nous sélectionnons les familles et planifions les visites. 4. L'adoption a lieu à partir de 8 à 10 semaines, selon le développement du chiot. Un acompte peut être demandé pour confirmer la réservation.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Puis-je visiter l'élevage ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, les visites sont les bienvenues sur rendez-vous. Nous vous encourageons à venir rencontrer Alice et Théo, voir l'environnement dans lequel grandissent nos chiots et poser toutes vos questions. Morin-Heights est accessible depuis Montréal en moins d'une heure. Contactez-nous au 514-996-4724 pour planifier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <div class="footer__logo">La Dolce Vita<span>Lagotto Romagnolo · Morin-Heights, Québec</span></div>
+      <p>Élevage familial éthique de Lagotto Romagnolo à Morin-Heights, Estrie. Programme Puppy Culture, tests génétiques, chiots CCC. Marie-Ève Tremblay.</p>
+      <p style="margin-top:.8rem">
+        📞 <a href="tel:{{ elevage.telephone }}">514-996-4724</a><br>
+        📍 49 rue du Val-Simon, Morin-Heights, QC J0R 1H0
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">La Race</a>
+      <a href="#repro">Alice &amp; Théo</a>
+      <a href="#portee">Prochaine portée</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations</h4>
+      <p>Club Canin Canadien (CCC)</p>
+      <p>Programme Puppy Culture</p>
+      <p>Tests génétiques certifiés</p>
+      <p>Morin-Heights, Québec, Canada</p>
+      <a href="#" style="margin-top:.8rem">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2025 La Dolce Vita — Marie-Ève Tremblay · Tous droits réservés</p>
+    <p><a href="#">Mentions légales</a> · <a href="#">RGPD</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO LOAD ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  /* ---- ACCORDION ---- */
+  document.querySelectorAll('.acc__q').forEach(q => q.addEventListener('click', () => {
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  }));
+</script>
+</body>
+</html>

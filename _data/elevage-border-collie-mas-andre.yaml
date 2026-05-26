@@ -1,0 +1,41 @@
+template: elevage-border-collie-mas-andre
+elevage:
+  nom: Élevage du Val Doré
+  race: Border Collie
+  departement: ''
+  region: ''
+  code_postal: ''
+  telephone: '+33600000000'
+  siren: null
+  url: ''
+  facebook: null
+  description_seo: Élevage familial de Border Collie dans le Var. Chiots LOF disponibles,
+    élevés avec passion par Marie Fontaine depuis 2016. Éducateur canin inclus.
+  description_hero: ''
+  description_about: ''
+  since: ''
+couleurs:
+  gold: '#C9A84C'
+  green: '#2C4A3E'
+  cream: '#F8F4EE'
+  light: '#FAF7F2'
+  text: '#2A1F14'
+  muted: '#9B8E82'
+  cognac: '#8B5E3C'
+  dark: '#1A1209'
+photos:
+  hero: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ayla-verschueren-JMhbVgl5sPc-unsplash_cwp9y8.jpg
+  about_1: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/rafaella-waasdorp-tJgi9elrKOY-unsplash_snucwg.jpg
+  about_2: https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/elena-mozhvilo-UBe0cuOPLCI-unsplash_ug0sss.jpg
+  galerie:
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/robbe-nees-ThaFiJkRjXc-unsplash_zmvfjj.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ramiro-pianarosa-cHHVhLMo79g-unsplash_wpqtwa.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/robin-jonathan-deutsch-uY2Slo5qpHc-unsplash_ckk4uq.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/jasper-garratt-u5BAz-SpCKo-unsplash_uwntxf.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/make-with-james-4C_PLwHXJn8-unsplash_qzudxr.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/make-with-james-DVOHsQ44CFk-unsplash_ancd1k.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/sheila-swayze-FlIjUhjk-8U-unsplash_knag8u.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/tereza-ruba-4uEG5mngAU4-unsplash_kj3mm1.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/ayla-verschueren-rrkycckNMCU-unsplash_qvadom.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/rafaella-waasdorp-9pEHhB78-1s-unsplash_ovujc1.jpg
+  - https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/rafaella-waasdorp-__WFnbq5JUU-unsplash_qrd6t5.jpg
