@@ -14,8 +14,10 @@ HEADERS = {
 BASE = "https://www.chien.com"
 DELAY = 1.5  # secondes entre requêtes
 
-# Mapping slug URL chien.com → nom de race interne
+# Mapping slug URL chien.com → nom de race
+# Toutes les races sont listées — le générateur teste si un template existe
 SLUG_TO_RACE = {
+    # Races avec templates existants
     "elevage-border-collie": "Border Collie",
     "elevage-berger-australien": "Berger Australien",
     "elevage-cavalier-king-charles-spaniel": "Cavalier King Charles",
@@ -25,6 +27,37 @@ SLUG_TO_RACE = {
     "elevage-berger-polonais-podhale": "Berger Polonais de Podhale",
     "elevage-carlin-pug-mops": "Carlin",
     "elevage-loulou-de-pomeranie": "Loulou de Poméranie",
+    # Races sans template — capturées comme prospects
+    "elevage-labrador-retriever": "Labrador Retriever",
+    "elevage-golden-retriever": "Golden Retriever",
+    "elevage-berger-allemand": "Berger Allemand",
+    "elevage-chihuahua": "Chihuahua",
+    "elevage-caniche": "Caniche",
+    "elevage-bouledogue-francais": "Bouledogue Français",
+    "elevage-shiba-inu": "Shiba Inu",
+    "elevage-husky-siberien": "Husky Sibérien",
+    "elevage-malinois-berger-belge": "Malinois",
+    "elevage-samoyede": "Samoyède",
+    "elevage-bichon-frise": "Bichon Frisé",
+    "elevage-spitz-nain": "Spitz Nain",
+    "elevage-jack-russell-terrier": "Jack Russell Terrier",
+    "elevage-beagle": "Beagle",
+    "elevage-bulldog-anglais": "Bulldog Anglais",
+    "elevage-dogue-de-bordeaux": "Dogue de Bordeaux",
+    "elevage-rottweiler": "Rottweiler",
+    "elevage-dalmatien": "Dalmatien",
+    "elevage-setter-irlandais": "Setter Irlandais",
+    "elevage-cocker-anglais": "Cocker Anglais",
+    "elevage-yorkshire-terrier": "Yorkshire Terrier",
+    "elevage-maltais": "Maltais",
+    "elevage-berger-de-beauce-beauceron": "Beauceron",
+    "elevage-leonberg": "Leonberg",
+    "elevage-saint-bernard": "Saint-Bernard",
+    "elevage-terre-neuve": "Terre-Neuve",
+    "elevage-epagneul-breton": "Épagneul Breton",
+    "elevage-braque-allemand": "Braque Allemand",
+    "elevage-teckel": "Teckel",
+    "elevage-pomsky": "Pomsky",
 }
 
 

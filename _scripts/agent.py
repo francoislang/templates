@@ -101,20 +101,28 @@ def run() -> None:
         )
 
     # 5. Notification Telegram
-    lines = [f"✅ *{len(results)} éleveurs traités* ({sites_created} sites générés)\n"]
+    avec_site = [r for r in results if r["demo_url"]]
+    sans_template = [r for r in results if not r["has_template"]]
 
-    for r in results:
-        icon = "✅" if r["demo_url"] and r["has_photos"] else "⚠️"
+    lines = [f"🐕 *{len(results)} éleveurs trouvés* — {sites_created} sites générés\n"]
+
+    for r in avec_site:
+        icon = "✅" if r["has_photos"] else "⚠️"
         lines.append(f"{icon} *{r['name']}* — {r['race']}")
         lines.append(f"   📞 {r['phone']}")
         if r["city"]:
             lines.append(f"   📍 {r['city']}")
-        if r["demo_url"]:
-            lines.append(f"   🌐 {r['demo_url']}")
+        lines.append(f"   🌐 {r['demo_url']}")
         if r.get("pitch"):
-            lines.append(f"\n💬 _{r['pitch']}_")
+            lines.append(f"   💬 _{r['pitch']}_")
         for w in r["warnings"]:
             lines.append(f"   ⚠️ {w}")
+        lines.append("")
+
+    if sans_template:
+        lines.append("📋 *Sans template — à créer si intéressant :*")
+        for r in sans_template:
+            lines.append(f"   • {r['name']} ({r['race']}) — {r['phone']}")
         lines.append("")
 
     telegram.send("\n".join(lines))
