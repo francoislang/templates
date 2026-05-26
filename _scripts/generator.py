@@ -10,13 +10,6 @@ import config
 from cloudinary_check import BREED_TEMPLATE
 
 
-# Mapping race → fichier template Jinja2
-BREED_TEMPLATE_FILE = {
-    "Berger Australien": "berger-australien.html.j2",
-    # autres races à ajouter au fur et à mesure
-}
-
-
 def slugify(text: str) -> str:
     text = unicodedata.normalize("NFD", text)
     text = "".join(c for c in text if unicodedata.category(c) != "Mn")
@@ -25,18 +18,20 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 
-def generate_from_config(config_path: str) -> tuple[str, str] | None:
+def generate_from_config(config_path: str):
     """
     Génère un site HTML à partir d'un fichier YAML de configuration.
-    Utilise le template Jinja2 correspondant à la race.
-    Retourne (slug, github_pages_url) ou None si pas de template pour cette race.
+    Utilise data["template"] pour choisir le fichier .html.j2.
+    Retourne (slug, github_pages_url) ou None si le template est introuvable.
     """
     with open(config_path) as f:
         data = yaml.safe_load(f)
 
-    race = data["elevage"]["race"]
-    template_file = BREED_TEMPLATE_FILE.get(race)
-    if not template_file:
+    template_name = data.get("template")
+    if not template_name:
+        return None
+    template_file = f"{template_name}.html.j2"
+    if not (config.REPO_ROOT / "_templates" / template_file).exists():
         return None
 
     env = Environment(
@@ -65,7 +60,7 @@ def generate_from_config(config_path: str) -> tuple[str, str] | None:
 
 
 def generate_site(name: str, race: str, phone: str, city: str = "",
-                  website: str = "") -> tuple[str, str] | None:
+                  website: str = ""):
     """
     Compatibilité avec agent.py — copie le template de la race, met à jour le titre.
     Retourne (slug, github_pages_url) ou None si pas de template pour cette race.
