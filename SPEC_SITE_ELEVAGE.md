@@ -1,77 +1,96 @@
-# Spec — Site vitrine élevage canin
+# Spec — Créer un nouveau template d'élevage
+
+Guide de référence pour créer un nouveau template Jinja2 pour une race non encore couverte.
 
 ## Contexte
 
-Site vitrine statique pour un éleveur canin français. Le site sera utilisé comme démo commerciale à envoyer à des prospects (éleveurs avec des sites datés ou inexistants). Une fois vendu, seuls les textes, couleurs et photos changent.
+Chaque template est un fichier `.html.j2` dans `_templates/`. Il est rendu par Jinja2 à partir d'un fichier `_data/{slug}.yaml`. Le résultat est un `index.html` autonome (CSS + JS inline) hébergé sur GitHub Pages.
 
-## Objectif
+Voir `_templates/README.md` pour la liste des variables disponibles et `_data/README.md` pour le format YAML complet.
 
-Générer un fichier `index.html` unique (HTML + CSS + JS intégrés, pas de fichiers séparés) moderne, responsive, et optimisé SEO local. Le site doit être visuellement impressionnant comparé aux sites d'éleveurs typiques (souvent faits sur FrontPage ou Jimdo circa 2010).
+## Contraintes techniques
 
-## Stack technique
-
-- **Un seul fichier** `index.html` (CSS et JS inline)
-- Zéro dépendance externe (pas de framework, pas de npm)
-- Google Fonts autorisé (via CDN)
-- Compatible Netlify Drop (glisser-déposer pour mise en ligne)
-
-## Design
-
-- **Ambiance** : naturelle, chaleureuse, professionnelle — inspirée des élevages haut de gamme
-- **Couleurs** : tons dorés / crème / vert forêt (adaptables via variables CSS en haut du fichier)
-- **Typographie** : une font display élégante + une font body lisible (Google Fonts)
-- **Responsive** : mobile-first, parfait sur téléphone
-- **Animations** : légères, au scroll (fade-in) — rien de lourd
+- **Un seul fichier** `index.html` — CSS et JS inline, pas de fichiers séparés
+- Zéro dépendance npm — Google Fonts via CDN autorisé
+- Compatible GitHub Pages (statique, pas de backend)
+- Les images viennent de **Cloudinary** (`res.cloudinary.com/dhwukxhgc`)
+- Python 3.9 — ne pas utiliser les annotations de type génériques modernes
 
 ## Structure des sections (une seule page, navigation ancre)
 
-1. **Hero** — grande photo plein écran, nom de l'élevage, accroche, bouton "Découvrir"
-2. **À propos** — présentation de l'éleveur, histoire, valeurs, passion
-3. **Nos chiens** — grid de cartes (photo + nom + description courte) pour les reproducteurs
-4. **Chiots disponibles** — section avec badges "Disponible" / "Réservé"
-5. **Galerie** — grille photos masonry simple
-6. **Contact** — adresse, téléphone, email, formulaire simple (HTML only, pas de backend)
-7. **Footer** — mentions légales, SIRET, réseaux sociaux
+1. **Hero** — grande photo plein écran, `{{ elevage.nom }}`, `{{ elevage.description_hero }}`, CTA
+2. **À propos** — `{{ elevage.description_about }}`, photos `about_1` et `about_2`
+3. **La race** — photo `race`, description générique de la race (hardcodée dans le template)
+4. **Reproducteurs** — `{% for r in reproducteurs %}` — photo, prénom, rôle, description
+5. **Portée disponible** — `{% if portee %}` — dates, coloris, timeline (optionnel)
+6. **Galerie** — `{% for url in photos.galerie %}` — grille photos
+7. **Témoignages** — `{% for t in temoignages %}` — texte, auteur, race + ville
+8. **Contact** — `{{ elevage.telephone }}`, `{{ elevage.url }}`, `{{ elevage.facebook }}`
+9. **Footer** — `{{ elevage.siren }}`, mentions légales, réseaux sociaux
 
-## SEO local
+## SEO
 
-- Balises `<title>` et `<meta description>` optimisées
-- Schema.org JSON-LD type `LocalBusiness` + `AnimalShelter`
-- Open Graph pour partage Facebook/Instagram
-- `sitemap.xml` et `robots.txt` à générer séparément
-- Balises alt sur toutes les images
+Inclure dans le `<head>` :
 
-## Contenu placeholder
+```html
+<title>Élevage {{ elevage.nom }} — {{ elevage.race }} | {{ elevage.departement }}</title>
+<meta name="description" content="{{ elevage.description_seo }}">
 
-Utiliser du contenu fictif cohérent pour la démo :
-- **Nom de l'élevage** : "Élevage du Val Doré"
-- **Race** : Golden Retriever
-- **Éleveur** : Marie Fontaine
-- **Localisation** : Proche d'Avignon, Var (83)
-- **Téléphone** : 06 XX XX XX XX
-- **Email** : contact@elevage-val-dore.fr
+<!-- Open Graph -->
+<meta property="og:title" content="Élevage {{ elevage.nom }}">
+<meta property="og:image" content="{{ photos.og }}">
 
-Toutes les variables facilement modifiables doivent être **commentées dans le code** avec `<!-- MODIFIER : ... -->` pour que le développeur sache quoi changer à chaque nouveau client.
-
-## Variables CSS à exposer en haut du fichier
-
-```css
-:root {
-  --color-primary: /* ton doré */;
-  --color-secondary: /* vert forêt */;
-  --color-bg: /* crème clair */;
-  --color-text: /* brun foncé */;
-  --font-display: /* font titre */;
-  --font-body: /* font texte */;
+<!-- Schema.org -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "{{ elevage.nom }}",
+  "telephone": "{{ elevage.telephone }}"
 }
+</script>
 ```
 
-## Images
+## Couleurs
 
-Utiliser des images placeholder via `https://picsum.photos` pour la démo. Commenter chaque image avec `<!-- REMPLACER : photo [description] -->`.
+Injecter les couleurs du YAML dans des variables CSS :
 
-## Livrable
+```html
+<style>
+:root {
+  --color-primary: {{ couleurs.primaire }};
+  --color-accent: {{ couleurs.accent }};
+  --color-bg: {{ couleurs.fond }};
+}
+</style>
+```
 
-Un seul fichier : `index.html`
+## Design
 
-Le fichier doit pouvoir être glissé directement sur netlify.com/drop et être immédiatement en ligne sans aucune configuration supplémentaire.
+- **Ambiance** : naturelle, chaleureuse, professionnelle
+- **Typographie** : une font display distinctive + une font body lisible (Google Fonts) — éviter Inter, Roboto, Arial
+- **Responsive** : mobile-first
+- **Animations** : légères au scroll (fade-in) — rien de lourd
+- Chaque template doit avoir une identité visuelle propre — ne pas tous les faire identiques
+
+## Workflow pour ajouter une nouvelle race
+
+1. Dupliquer un template existant proche visuellement : `cp _templates/berger-australien.html.j2 _templates/{nouvelle-race}.html.j2`
+2. Adapter le contenu spécifique à la race (description générique, vocabulaire)
+3. Créer un YAML de test dans `_data/test-{race}.yaml` avec `template: {nouvelle-race}`
+4. Ajouter l'entrée dans `BREED_TEMPLATE` dans `_scripts/cloudinary_check.py`
+5. Tester la génération :
+   ```python
+   from _scripts.generator import generate_from_config
+   generate_from_config("_data/test-{race}.yaml")
+   ```
+6. Vérifier le rendu dans un navigateur
+7. Supprimer le dossier de test, commiter le template
+
+## Ajouter des photos Cloudinary pour une nouvelle race
+
+Les photos sont uploadées sur Cloudinary (`dhwukxhgc`) et référencées dans le YAML.  
+Format d'URL : `https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/{public_id}.jpg`
+
+Sans photos Cloudinary pour une race, l'agent le signale dans la notification Telegram
+(`⚠️ photos {race} manquantes`) et François doit les uploader manuellement.
