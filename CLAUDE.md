@@ -60,7 +60,7 @@ Logs : `tail -f /tmp/agent-elevage.log`
 | `NOTION_SECRET` | Token d'intégration Notion |
 | `NOTION_DATABASE_ID` | `3690be11a07480b9bb50c4d1ceaace89` (base Prospection) |
 | `CLOUDINARY_CLOUD_NAME` | `dhwukxhgc` |
-| `GITHUB_REPO` | `francoislang/template-elevage` |
+| `GITHUB_REPO` | `francoislang/templates` |
 | `SITES_PER_DAY` | Nombre max de démos/jour (défaut : 10) |
 
 ## Stack technique
@@ -68,7 +68,7 @@ Logs : `tail -f /tmp/agent-elevage.log`
 - **Python 3.9** (important : pas de `list[str]` en annotation, pas de `X | Y` union types)
 - **Jinja2** : templates HTML paramétrés (`_templates/*.html.j2`)
 - **YAML** : configs par client (`_data/*.yaml`)
-- **GitHub Pages** : hébergement statique des démos (`francoislang/template-elevage`)
+- **GitHub Pages** : hébergement statique des démos (`francoislang/templates`)
 - **Cloudinary** : CDN photos (`res.cloudinary.com/dhwukxhgc`)
 - **Notion API** : base de prospection
 - **BeautifulSoup + requests** : scraping chien.com
