@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Agent principal : scrape chien.com → vérifie Notion → génère les sites → notifie Telegram.
+Agent principal : scrape chien.com -> verifie Notion -> genere les sites -> notifie Telegram.
 Usage : python _scripts/agent.py
 """
 import subprocess
@@ -21,34 +21,61 @@ def _normalize(phone: str) -> str:
     return phone.replace(" ", "").replace("-", "").replace(".", "")
 
 
-def _build_pitch(name: str, race: str, city: str, demo_url: str) -> str:
-    lieu = f"dans le {city}" if city else "en France"
-    demo = f"J'ai d'ailleurs préparé une démo pour vous : {demo_url}" if demo_url else "Je peux vous préparer une démo gratuite."
-    return (
-        f"Bonjour, je suis développeur web spécialisé pour les éleveurs. "
-        f"J'ai vu votre annonce sur chien.com pour votre élevage {name} de {race} {lieu}. "
+def _build_pitch(name: str, race: str, ville: str, departement: str,
+                 description: str, demo_url: str, email: str = "",
+                 website: str = "", siren: str = "") -> str:
+    """Genere un pitch personnalise avec les infos extraites."""
+    lieu = ""
+    if ville:
+        lieu = f"a {ville}"
+        if departement:
+            lieu += f" ({departement})"
+    elif departement:
+        lieu = f"dans le {departement}"
+    else:
+        lieu = "en France"
+
+    demo = ""
+    if demo_url:
+        demo = f"J'ai d'ailleurs prepare une demo pour vous : {demo_url}"
+    else:
+        demo = "Je peux vous preparer une demo gratuite."
+
+    pitch = (
+        f"Bonjour, je suis developpeur web specialise pour les eleveurs. "
+        f"J'ai vu votre annonce sur chien.com pour votre elevage {name} "
+        f"de {race} {lieu}. "
         f"{demo} "
         f"Est-ce que vous avez 2 minutes pour en parler ?"
     )
 
+    if not demo_url and description:
+        pitch += (
+            f"\n\nJ'ai lu votre presentation : "
+            f"\"{description[:200]}...\" "
+            f"Je pense pouvoir creer un site qui reflete vraiment votre travail."
+        )
+
+    return pitch
+
 
 def run() -> None:
-    telegram.send("🔍 Agent démarré — recherche d'éleveurs sur chien.com…")
+    telegram.send("🔍 Agent démarré — recherche d'eleveurs sur chien.com…")
 
-    # 1. Récupérer les téléphones déjà dans Notion
+    # 1. Recuperer les telephones deja dans Notion
     existing = notion.get_existing_phones()
 
-    # 2. Scraper chien.com
-    candidates = scraper.scrape(pages=5)
+    # 2. Scraper chien.com (PAGES_TO_SCRAPE pages, max SITES_PER_DAY eleveurs)
+    candidates = scraper.scrape(pages=config.PAGES_TO_SCRAPE, max_results=config.SITES_PER_DAY)
 
-    # 3. Filtrer les nouveaux (pas dans Notion, téléphone présent)
+    # 3. Filtrer les nouveaux (pas dans Notion, telephone present)
     new_breeders = [
         b for b in candidates
         if b.get("phone") and _normalize(b["phone"]) not in existing
     ][:config.SITES_PER_DAY]
 
     if not new_breeders:
-        telegram.send("ℹ️ Aucun nouvel éleveur trouvé aujourd'hui.")
+        telegram.send("ℹ️ Aucun nouvel eleveur trouve aujourd'hui.")
         return
 
     results = []
@@ -58,11 +85,18 @@ def run() -> None:
         name = breeder["name"]
         races = breeder["races"]
         phone = breeder["phone"]
-        city = breeder.get("location", "")
         race = races[0]
+        ville = breeder.get("ville", "")
+        departement = breeder.get("departement", "")
+        description = breeder.get("description", "")
+        email = breeder.get("email", "")
+        siren = breeder.get("siren", "")
 
         has_photos = cloudinary_check.has_photos_for_breed(race)
-        site_result = generator.generate_site(name=name, race=race, phone=phone, city=city)
+        site_result = generator.generate_site(
+            name=name, race=race, phone=phone,
+            city=ville or departement
+        )
 
         warnings = []
         if not has_photos:
@@ -72,27 +106,47 @@ def run() -> None:
 
         demo_url = site_result[1] if site_result else None
 
-        pitch = _build_pitch(name=name, race=race, city=city, demo_url=demo_url)
-        notes_parts = warnings + ([f"Pitch : {pitch}"] if pitch else [])
+        pitch = _build_pitch(
+            name=name, race=race, ville=ville, departement=departement,
+            description=description, demo_url=demo_url, email=email,
+            website=breeder.get("website", ""), siren=siren,
+        )
+
+        # Notes enrichies
+        notes_parts = warnings[:]
+        if email:
+            notes_parts.append(f"Email: {email}")
+        if breeder.get("website"):
+            notes_parts.append(f"Site actuel: {breeder['website']}")
+        if siren:
+            notes_parts.append(f"SIREN: {siren}")
+        if description:
+            notes_parts.append(f"Description: {description[:200]}...")
+        notes_parts.append(f"Pitch: {pitch}")
         notes = " | ".join(notes_parts) if notes_parts else None
 
-        notion.add_entry(elevage=name, races=races, phone=phone, demo_url=demo_url, notes=notes)
+        notion.add_entry(
+            elevage=name, races=races, phone=phone,
+            demo_url=demo_url, notes=notes
+        )
 
         if site_result:
             sites_created += 1
 
         results.append({
-            "name": name, "race": race, "phone": phone, "city": city,
+            "name": name, "race": race, "phone": phone, "ville": ville,
+            "departement": departement, "email": email,
             "demo_url": demo_url, "has_photos": has_photos,
             "has_template": site_result is not None, "warnings": warnings,
             "pitch": pitch,
+            "description": description,
         })
 
-    # 4. Commit + push si des sites ont été générés
+    # 4. Commit + push si des sites ont ete generes
     if sites_created > 0:
         subprocess.run(
             ["git", "-C", str(config.REPO_ROOT), "commit",
-             "-m", f"Add {sites_created} demo site(s) via agent"],
+             "-m", f"Ajout de {sites_created} site(s) de demo via agent"],
             check=True, capture_output=True
         )
         subprocess.run(
@@ -100,18 +154,23 @@ def run() -> None:
             check=True, capture_output=True
         )
 
-    # 5. Notification Telegram
+    # 5. Notification Telegram enrichie
     avec_site = [r for r in results if r["demo_url"]]
     sans_template = [r for r in results if not r["has_template"]]
 
-    lines = [f"🐕 *{len(results)} éleveurs trouvés* — {sites_created} sites générés\n"]
+    lines = [f"🐕 *{len(results)} eleveurs trouves* — {sites_created} sites generes\n"]
 
     for r in avec_site:
         icon = "✅" if r["has_photos"] else "⚠️"
         lines.append(f"{icon} *{r['name']}* — {r['race']}")
         lines.append(f"   📞 {r['phone']}")
-        if r["city"]:
-            lines.append(f"   📍 {r['city']}")
+        if r.get("email"):
+            lines.append(f"   📧 {r['email']}")
+        if r.get("ville"):
+            loc = r['ville']
+            if r.get('departement'):
+                loc += f" ({r['departement']})"
+            lines.append(f"   📍 {loc}")
         lines.append(f"   🌐 {r['demo_url']}")
         if r.get("pitch"):
             lines.append(f"   💬 _{r['pitch']}_")
@@ -120,9 +179,12 @@ def run() -> None:
         lines.append("")
 
     if sans_template:
-        lines.append("📋 *Sans template — à créer si intéressant :*")
+        lines.append("📋 *Sans template — a creer si interessant :*")
         for r in sans_template:
-            lines.append(f"   • {r['name']} ({r['race']}) — {r['phone']}")
+            extra = ""
+            if r.get("ville"):
+                extra = f" — {r['ville']}"
+            lines.append(f"   • {r['name']} ({r['race']}){extra} — {r['phone']}")
         lines.append("")
 
     telegram.send("\n".join(lines))

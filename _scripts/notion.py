@@ -32,13 +32,13 @@ def get_existing_phones() -> set[str]:
 def add_entry(elevage: str, races: list[str], phone: str,
               demo_url: str = None, notes: str = None) -> str:
     props = {
-        "Élevage": {"title": [{"text": {"content": elevage}}]},
+        "Elevage": {"title": [{"text": {"content": elevage}}]},
         "Race": {"multi_select": [{"name": r} for r in races]},
         "Contact": {"phone_number": phone},
-        "Statut": {"status": {"name": "À contacter"}},
+        "Statut": {"status": {"name": "A contacter"}},
     }
     if demo_url:
-        props["Démo envoyée"] = {"url": demo_url}
+        props["Demo envoyee"] = {"url": demo_url}
     if notes:
         props["Notes"] = {"rich_text": [{"text": {"content": notes}}]}
     r = requests.post(
@@ -52,7 +52,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
 def update_entry(page_id: str, demo_url: str = None, notes: str = None) -> None:
     props = {}
     if demo_url:
-        props["Démo envoyée"] = {"url": demo_url}
+        props["Demo envoyee"] = {"url": demo_url}
     if notes:
         props["Notes"] = {"rich_text": [{"text": {"content": notes}}]}
     if props:
