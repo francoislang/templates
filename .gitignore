@@ -25,6 +25,9 @@ Temporary Items
 *.ipr
 out/
 
+# ─── Environnement / secrets ──────────────────────────────────────────────────
+.env
+
 # ─── Fichiers temporaires ─────────────────────────────────────────────────────
 *.bak
 *.tmp
