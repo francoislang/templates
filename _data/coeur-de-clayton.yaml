@@ -1,0 +1,64 @@
+template: berger-americain-miniature
+
+elevage:
+  nom: "Coeur de Clayton"
+  race: "Berger Americain Miniature"
+  departement: "Haute-Savoie (74)"
+  region: "Haute-Savoie"
+  code_postal: "74270"
+  telephone: "09.82.60.02.67"
+  siren: "891658502"
+  url: ""
+  facebook: ""
+  facebook_label: ""
+  since: "2014"
+  description_seo: "Elevage professionnel Coeur de Clayton de Berger Americain Miniature a Frangy (74270), Haute-Savoie. Chiots LOF, socialisation avancee, lignee therapeutique depuis 2014."
+  description_hero: "Un elevage professionnel ne de l'amour inconditionnel pour cette race depuis 2014"
+  description_about: |
+    Mon elevage est ne de l'amour inconditionnel pour cette race en 2014. Mon objectif est de participer a l'amelioration de la race en selectionnant les meilleurs sujets, qu'ils soient issus d'un pedigree francais ou americain, ainsi que de travailler plus considerablement sur la sociabilisation.
+
+    Je travaille sur une lignee de chiens d'aide a la personne et therapeutique, de ce fait je selectionne mes reproducteurs de temperaments reflechi, sachant se poser (pas d'hyperactivite) mais toujours pret a suivre et faire plaisir, en travaillant des le plus jeune age leur confiance en eux et la gestion de leurs emotions.
+
+    Mon elevage evolue avec 3 interets : le temps accorde a chaque chien, une sociabilisation des chiots consciencieuse, et une selection des reproducteurs rigoureuse.
+
+couleurs:
+  primaire: "#2D5A3D"
+  accent: "#C8924A"
+  fond: "#F5F2EB"
+
+photos:
+  hero: "https://images.pexels.com/photos/5568925/pexels-photo-5568925.jpeg"
+  og: "https://images.pexels.com/photos/32854630/pexels-photo-32854630.jpeg"
+  about_1: "https://images.pexels.com/photos/13218809/pexels-photo-13218809.jpeg"
+  about_2: "https://images.pexels.com/photos/13218767/pexels-photo-13218767.jpeg"
+  race: "https://images.pexels.com/photos/32854622/pexels-photo-32854622.jpeg"
+  galerie:
+    - "https://images.pexels.com/photos/5568925/pexels-photo-5568925.jpeg"
+    - "https://images.pexels.com/photos/32854630/pexels-photo-32854630.jpeg"
+    - "https://images.pexels.com/photos/13218809/pexels-photo-13218809.jpeg"
+    - "https://images.pexels.com/photos/13218767/pexels-photo-13218767.jpeg"
+    - "https://images.pexels.com/photos/32854622/pexels-photo-32854622.jpeg"
+
+reproducteurs:
+  - prenom: "Reproducteurs"
+    sexe: "femelle"
+    role: "Lignee therapeutique"
+    sexe_symbole: "♀"
+    photo: "https://images.pexels.com/photos/32854630/pexels-photo-32854630.jpeg"
+    description: "Mes reproducteurs sont selectionnes pour leur temperament reflechi et equilibre. Je travaille sur une lignee de chiens d'aide a la personne et therapeutique."
+  - prenom: "Eleveuse"
+    sexe: "male"
+    role: "Passionnee depuis 2014"
+    sexe_symbole: "♂"
+    photo: "https://images.pexels.com/photos/13218809/pexels-photo-13218809.jpeg"
+    description: "Elevage professionnel raisonne, ne de l'amour inconditionnel pour le Berger Americain Miniature. Certifie ACACED, SIREN 891658502."
+
+temoignages:
+  - texte: "Concernant la race j'aurais beaucoup a vous raconter... Il y a les sportifs et ceux qui se menagent un peu trop, mais en general tous sont des pots de colle demandeurs de calins. Ce n'est pas un chien qui aboie plus qu'un autre, c'est tout simplement une histoire d'education."
+    auteur: "L'Eleveuse"
+    chiot: "Berger Americain Miniature · Haute-Savoie"
+    avatar: "https://images.pexels.com/photos/5568925/pexels-photo-5568925.jpeg"
+  - texte: "Mon objectif est de participer a l'amelioration de la race en selectionnant les meilleurs sujets. La distance pouvant etre un obstacle, je prendrai le temps de communiquer par telephone et par visio."
+    auteur: "L'Eleveuse"
+    chiot: "Elevage Coeur de Clayton"
+    avatar: "https://images.pexels.com/photos/13218767/pexels-photo-13218767.jpeg"

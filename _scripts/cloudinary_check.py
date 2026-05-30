@@ -13,7 +13,8 @@ BREED_TEMPLATE = {
     "Berger Polonais de Podhale": "gaec-du-chateau-d-alboy",
     "Carlin": "joyaux-d-anubis",
     "Loulou de Poméranie": "des-cotons-de-soie-d-or",
-    "Berger de Brie": "bois-de-chantalouette",  # réutilise berger australien comme fallback
+    "Berger de Brie": "bois-de-chantalouette",
+    "Berger Americain Miniature": "coeur-de-clayton",  # réutilise berger australien comme fallback
 }
 
 _CLOUDINARY_RE = re.compile(
