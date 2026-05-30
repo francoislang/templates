@@ -61,7 +61,8 @@ Logs : `tail -f /tmp/agent-elevage.log`
 | `NOTION_DATABASE_ID` | `3690be11a07480b9bb50c4d1ceaace89` (base Prospection) |
 | `CLOUDINARY_CLOUD_NAME` | `dhwukxhgc` |
 | `GITHUB_REPO` | `francoislang/templates` |
-| `SITES_PER_DAY` | Nombre max de démos/jour (défaut : 10) |
+| `SITES_PER_DAY` | Nombre max de demos/jour (defaut : 10) |
+| `PAGES_TO_SCRAPE` | Pages de listing a parcourir (defaut : 5) |
 
 ## Stack technique
 

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Élevage Coeur de Clayton — Berger Américain Miniature | Haute-Savoie</title>
+  <meta name="description" content="Élevage professionnel Coeur de Clayton de Berger Américain Miniature à Frangy (74270), Haute-Savoie. Chiots LOF, socialisation avancée, lignée thérapeutique.">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://francoislang.github.io/templates/coeur-de-clayton">
+  <meta property="og:title" content="Cœur de Clayton — Berger Américain Miniature, Haute-Savoie">
+  <meta property="og:description" content="Élevage professionnel de Berger Américain Miniature depuis 2014. Spécialisé en socialisation avancée et chiens d'aide thérapeutique.">
+  <meta property="og:image" content="https://upload.chien.com/img/23-_big-70668-coeur-de-clayton.jpg?1654617522">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FAF8F5;
+      color: #2C2420;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44, 36, 32, 0.08);
+    }
+    nav .container {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 72px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: #4A6B5D;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 0.9rem; font-weight: 500;
+      color: #6B625A; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: #4A6B5D; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #E8E0D8 0%, #FAF8F5 50%, #F0EAE2 100%);
+      padding-top: 72px;
+    }
+    .hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700; line-height: 1.1;
+      color: #2C2420; margin-bottom: 8px;
+    }
+    .hero-content .race-tag {
+      display: inline-block;
+      background: #4A6B5D; color: #FAF8F5;
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 500;
+      margin-bottom: 24px;
+    }
+    .hero-content p {
+      font-size: 1.1rem; line-height: 1.7;
+      color: #6B625A; margin-bottom: 32px;
+    }
+    .hero-content .location {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; color: #8A7E73; margin-bottom: 24px;
+    }
+    .hero-image {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(44, 36, 32, 0.15);
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary {
+      background: #4A6B5D; color: #FAF8F5;
+    }
+    .btn-primary:hover {
+      background: #3D5B4F; transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74, 107, 93, 0.25);
+    }
+    .btn-outline {
+      background: transparent; color: #4A6B5D;
+      border: 2px solid #4A6B5D;
+    }
+    .btn-outline:hover {
+      background: #4A6B5D; color: #FAF8F5;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    /* Stats */
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+      margin-top: 48px; padding-top: 32px;
+      border-top: 1px solid rgba(44, 36, 32, 0.1);
+    }
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem; font-weight: 700; color: #4A6B5D;
+    }
+    .stat-label { font-size: 0.85rem; color: #8A7E73; margin-top: 4px; }
+
+    /* Section */
+    section { padding: 100px 0; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 600;
+      margin-bottom: 16px; color: #2C2420;
+    }
+    .section-subtitle {
+      font-size: 1.05rem; color: #8A7E73;
+      max-width: 600px; line-height: 1.7; margin-bottom: 48px;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .about-text p {
+      font-size: 1rem; line-height: 1.8; color: #5A524A;
+      margin-bottom: 16px;
+    }
+    .about-image {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(44, 36, 32, 0.1);
+    }
+
+    /* Valeurs */
+    .values-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .value-card {
+      background: #FAF8F5; border: 1px solid #E8E0D8;
+      border-radius: 16px; padding: 32px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(44, 36, 32, 0.08);
+    }
+    .value-icon {
+      font-size: 2rem; margin-bottom: 12px;
+    }
+    .value-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; margin-bottom: 8px; color: #2C2420;
+    }
+    .value-card p {
+      font-size: 0.9rem; line-height: 1.6; color: #6B625A;
+    }
+
+    /* Race section */
+    .race-bg { background: #F0EAE2; }
+    .race-content {
+      max-width: 800px; margin: 0 auto; text-align: center;
+    }
+    .race-content p {
+      font-size: 1.05rem; line-height: 1.8; color: #5A524A;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; margin-bottom: 16px;
+    }
+    .contact-info p { color: #5A524A; line-height: 1.7; margin-bottom: 8px; }
+    .contact-info .phone {
+      font-size: 1.5rem; font-weight: 600;
+      color: #4A6B5D; margin: 16px 0;
+    }
+    .contact-details { margin-top: 24px; }
+    .contact-details div {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid #E8E0D8;
+    }
+    .contact-details div:last-child { border-bottom: none; }
+    .contact-details .label { color: #8A7E73; min-width: 100px; }
+    .contact-details .value { color: #2C2420; font-weight: 500; }
+
+    /* Footer */
+    footer {
+      background: #2C2420; color: #B5ADA5;
+      padding: 48px 0; text-align: center;
+    }
+    footer p { font-size: 0.85rem; line-height: 1.6; }
+    footer a { color: #E8E0D8; text-decoration: underline; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero .container { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .stats { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .values-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      section { padding: 64px 0; }
+      .section-title { font-size: 2rem; }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-in.visible {
+      opacity: 1; transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="container">
+    <span class="nav-logo">Coeur de Clayton</span>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#values">Nos valeurs</a></li>
+      <li><a href="#race">La race</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="race-tag">Berger Américain Miniature</span>
+      <h1>Cœur de Clayton</h1>
+      <p class="location">📍 Frangy (74270) — Haute-Savoie</p>
+      <p>
+        Un élevage professionnel né de l'amour inconditionnel pour cette race depuis 2014.
+        Spécialisé dans la socialisation avancée des chiots et l'élevage de chiens d'aide 
+        à la personne et thérapeutique.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Me contacter →</a>
+        <a href="#about" class="btn btn-outline">En savoir plus</a>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-value">2014</div>
+          <div class="stat-label">Année de création</div>
+        </div>
+        <div>
+          <div class="stat-value">Pro</div>
+          <div class="stat-label">Statut professionnel</div>
+        </div>
+        <div>
+          <div class="stat-value">ACACED</div>
+          <div class="stat-label">Certificat de capacité</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://upload.chien.com/img/23-_big-70668-coeur-de-clayton.jpg?1654617522" 
+           alt="Élevage Coeur de Clayton" 
+           style="height: 600px; object-fit: cover;">
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <h2 class="section-title">À propos de l'élevage</h2>
+        <p class="section-subtitle">L'histoire d'une passionnée qui a fait de sa vocation un métier</p>
+        <p>
+          Mon élevage est né de l'amour inconditionnel pour cette race en 2014. Mon objectif est de 
+          participer à l'amélioration de la race en sélectionnant les meilleurs sujets, qu'ils soient 
+          issus d'un pedigree français ou américain.
+        </p>
+        <p>
+          Je travaille sur une lignée de chiens d'aide à la personne et thérapeutique. Je sélectionne 
+          mes reproducteurs pour leur tempérament réfléchi, sachant se poser mais toujours prêts à 
+          suivre et faire plaisir, en travaillant dès le plus jeune âge leur confiance en eux et 
+          la gestion de leurs émotions.
+        </p>
+        <p>
+          Je prendrai le temps de communiquer par téléphone et par visio, afin de vous diriger vers 
+          un chiot en fonction de ses premiers traits de tempérament. Je peux également vous aider 
+          pour son transport.
+        </p>
+      </div>
+      <div class="about-image fade-in">
+        <img src="https://upload.chien.com/img/23-70668-coeur-de-clayton.jpg?1654617522" 
+             alt="Coeur de Clayton - chiots" 
+             style="height: 500px; object-fit: cover;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Valeurs -->
+<section id="values" class="race-bg">
+  <div class="container">
+    <div style="text-align: center;">
+      <h2 class="section-title">Notre philosophie</h2>
+      <p class="section-subtitle" style="margin: 0 auto 48px;">
+        Un élevage professionnel mais raisonné, où chaque chien a sa place
+      </p>
+    </div>
+    <div class="values-grid">
+      <div class="value-card fade-in">
+        <div class="value-icon">⏰</div>
+        <h3>Du temps pour chaque chien</h3>
+        <p>
+          Je préfère éviter un élevage en surnombre et la surproduction, afin d'offrir à mes chiens 
+          une présence de qualité et une vie en communauté dans de grands espaces en herbe.
+        </p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon">🐾</div>
+        <h3>Socialisation consciencieuse</h3>
+        <p>
+          Tous mes chiots sont socialisés au maximum avant leur départ : sorties individuelles, 
+          jeux, bruits de la maison, rencontre avec d'autres animaux, balades en vélo, piscine, paddle...
+        </p>
+      </div>
+      <div class="value-card fade-in">
+        <div class="value-icon">🏆</div>
+        <h3>Sélection rigoureuse</h3>
+        <p>
+          Sur le physique : pour un berger mini à l'apparence de l'Australien standard. 
+          Sur le mental : des chiens réfléchis, ni craintifs ni hyperactifs, au tempérament équilibré.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Race -->
+<section id="race">
+  <div class="container">
+    <div class="race-content fade-in">
+      <h2 class="section-title">Le Berger Américain Miniature</h2>
+      <p class="section-subtitle" style="margin: 0 auto 48px;">
+        Un petit chien au grand cœur
+      </p>
+      <p>
+        Le Berger Américain Miniature est un chien vif, intelligent et dévoué à sa famille. 
+        C'est une version réduite du Berger Australien, avec la même agilité et le même instinct 
+        de troupeau, mais dans un format plus compact idéal pour la vie en appartement comme 
+        pour les grands espaces.
+      </p>
+      <br>
+      <p>
+        « Ce n'est pas un chien qui aboie plus qu'un autre, c'est tout simplement une histoire 
+        d'éducation. C'est un chien qui vous achètera d'un regard et vous fera céder un jour, 
+        parce que c'est une boule d'amour. »
+      </p>
+      <br>
+      <p>
+        Il y a les sportifs et ceux qui se ménagent un peu trop, mais en général tous sont des 
+        pots de colle demandeurs de câlins. Un compagnon idéal pour ceux qui cherchent un chien 
+        à la fois actif et câlin.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="race-bg">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h2 class="section-title">Contactez-moi</h2>
+        <p class="section-subtitle">
+          Je conseille un chiot en fonction de son tempérament et de votre mode de vie. 
+          Un vrai échange de vive voix est indispensable — n'hésitez pas à me contacter.
+        </p>
+        <div class="phone">📞 09.82.60.02.67</div>
+        <div class="contact-details">
+          <div>
+            <span class="label">📍 Adresse</span>
+            <span class="value">74270 Frangy, Haute-Savoie</span>
+          </div>
+          <div>
+            <span class="label">🆔 SIREN</span>
+            <span class="value">891 658 502</span>
+          </div>
+          <div>
+            <span class="label">📋 Statut</span>
+            <span class="value">Professionnel — Certifié ACACED</span>
+          </div>
+          <div>
+            <span class="label">🐕 Race</span>
+            <span class="value">Berger Américain Miniature</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in" style="background: #FAF8F5; border-radius: 20px; padding: 40px; border: 1px solid #E8E0D8;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 24px;">
+          Une question ? Un projet ?
+        </h3>
+        <p style="color: #6B625A; line-height: 1.7; margin-bottom: 24px;">
+          Que vous cherchiez un compagnon ou simplement des informations sur la race, 
+          je suis à votre écoute. Appelez-moi ou retrouvez mon annonce sur Chien.com.
+        </p>
+        <a href="https://www.chien.com/adresse/elevage-berger-americain-miniature/coeur-de-clayton-70668.php" 
+           class="btn btn-primary" target="_blank" rel="noopener">
+          Voir l'annonce originale →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>© 2026 — Élevage Cœur de Clayton — Berger Américain Miniature</p>
+    <p style="margin-top: 8px;">
+      SIREN 891 658 502 | Frangy, Haute-Savoie
+    </p>
+    <p style="margin-top: 16px; font-size: 0.8rem; color: #8A7E73;">
+      Site réalisé avec ❤️ — Données issues de 
+      <a href="https://www.chien.com/adresse/elevage-berger-americain-miniature/coeur-de-clayton-70668.php" target="_blank">Chien.com</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer pour les animations au scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
