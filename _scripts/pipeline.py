@@ -280,45 +280,45 @@ def run(dry_run: bool = False):
         else:
             print("   ⚠️ Echec du push (peut-etre rien a commit)")
 
-    # 5. Notification Telegram
+    # 5. Notification Telegram — UN message par eleveur
     print(f"\n📱 Notification Telegram...")
 
-    avec_site = [r for r in results if r["demo_url"]]
     sans_template = [r for r in results if not r["has_template"]]
 
-    lines = [f"🐕 *{len(results)} eleveurs trouves* — {sites_created} sites generes\n"]
-
-    for r in avec_site:
-        lines.append(f"✅ *{r['name']}* — {r['race']}")
-        lines.append(f"   📞 {r['phone']}")
+    for r in results:
+        msg_parts = [f"🐕 {r['name']} — {r['race']}"]
+        msg_parts.append(f"📞 {r['phone']}")
         if r.get("email"):
-            lines.append(f"   📧 {r['email']}")
+            msg_parts.append(f"📧 {r['email']}")
         if r.get("ville"):
             loc = r["ville"]
             if r.get("departement"):
                 loc += f" ({r['departement']})"
-            lines.append(f"   📍 {loc}")
-        lines.append(f"   🌐 {r['demo_url']}")
-        lines.append(f"   💬 _{r['pitch'][:300]}..._")
-        lines.append("")
+            msg_parts.append(f"📍 {loc}")
+        if r["demo_url"]:
+            msg_parts.append(f"🌐 {r['demo_url']}")
+        else:
+            msg_parts.append(f"⚠️ Pas de template pour {r['race']}")
 
+        # Pitch complet, sans italique, sans troncature
+        msg_parts.append("")
+        msg_parts.append("--- PITCH A ENVOYER ---")
+        msg_parts.append(r['pitch'])
+        msg_parts.append("--- FIN DU PITCH ---")
+
+        if dry_run:
+            print(f"\nMessage pour {r['name']}:\n" + "\n".join(msg_parts))
+        else:
+            telegram.send("\n".join(msg_parts))
+
+    # Resumer les resultats en un seul message
+    resume = f"🐕 {len(results)} eleveurs trouves — {sites_created} sites generes"
     if sans_template:
-        lines.append("📋 *Sans template — a creer si interessant :*")
-        for r in sans_template:
-            extra = f" — {r['ville']}" if r.get("ville") else ""
-            lines.append(f"   • {r['name']} ({r['race']}){extra} — {r['phone']}")
-        lines.append("")
+        resume += f"\n📋 Sans template: {', '.join(r['name'] + ' (' + r['race'] + ')' for r in sans_template)}"
 
-    message = "\n".join(lines)
-
-    if dry_run:
-        print(f"\n{'='*50}")
-        print("🔷 DRY RUN — AUCUNE MODIFICATION EFFECTUEE")
-        print(f"{'='*50}")
-        print(message[:500])
-    else:
-        telegram.send(message)
-        print("   ✅ Notification envoyee")
+    if not dry_run:
+        telegram.send(resume)
+    print("   ✅ Notifications envoyees")
 
     return results
 
