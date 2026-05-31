@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>DEVIS DEV-2026-0002</title>
+<style>
+    @page { margin: 20mm; }
+    body { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 12px; color: #222; line-height: 1.5; }
+    .header { display: flex; justify-content: space-between; margin-bottom: 40px; }
+    .header-left h1 { font-size: 28px; color: #2D5A3D; margin: 0 0 5px 0; }
+    .header-left p { margin: 2px 0; color: #555; font-size: 11px; }
+    .header-right { text-align: right; }
+    .header-right h2 { font-size: 24px; color: #333; margin: 0; }
+    .header-right .numero { font-size: 14px; color: #2D5A3D; font-weight: bold; }
+    .infos { display: flex; justify-content: space-between; margin-bottom: 30px; }
+    .infos-box { width: 45%; }
+    .infos-box h3 { font-size: 13px; color: #2D5A3D; margin: 0 0 5px 0; border-bottom: 2px solid #2D5A3D; padding-bottom: 3px; }
+    .infos-box p { margin: 3px 0; font-size: 11px; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th { background: #2D5A3D; color: white; padding: 10px 8px; text-align: left; font-size: 11px; }
+    td { padding: 8px; border-bottom: 1px solid #eee; font-size: 11px; }
+    .total-row td { font-weight: bold; font-size: 14px; color: #2D5A3D; border-top: 2px solid #2D5A3D; }
+    .footer { margin-top: 50px; font-size: 10px; color: #999; text-align: center; border-top: 1px solid #ddd; padding-top: 10px; }
+    .conditions { font-size: 10px; color: #666; margin-top: 20px; }
+    .signature { margin-top: 60px; }
+    .signature-line { display: inline-block; border-top: 1px solid #333; width: 250px; padding-top: 5px; font-size: 11px; }
+    .badge-tva { display: inline-block; background: #f0f0f0; padding: 2px 8px; border-radius: 3px; font-size: 10px; color: #666; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-left">
+        <h1>TON NOM Ton Prenom</h1>
+        <p>Ton adresse</p>
+        <p>00000 Ta ville</p>
+        <p>ton@email.com | 06 00 00 00 00</p>
+        <p><strong>Micro-entrepreneur</strong> - SIRET TON_SIRET</p>
+        <p><span class="badge-tva">TVA non applicable, art. 293 B du CGI</span></p>
+    </div>
+    <div class="header-right">
+        <h2>DEVIS</h2>
+        <p class="numero">DEV-2026-0002</p>
+        <p>Date: 31/05/2026</p>
+        <p>Valable 30 jours</p>
+    </div>
+</div>
+
+<div class="infos">
+    <div class="infos-box">
+        <h3>CLIENT</h3>
+        <p><strong>Joyaux d'Anubis</strong></p>
+        <p>Race: carlin</p>
+        <p>Tel: 0489233193</p>
+        
+    </div>
+    <div class="infos-box">
+        <h3>PRESTATION</h3>
+        <p>Site vitrine elevage canin - Formule complete</p>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th style="width:50%">Designation</th>
+        <th style="width:10%;text-align:center">Qté</th>
+        <th style="width:20%;text-align:right">Prix unitaire HT</th>
+        <th style="width:20%;text-align:right">Total HT</th>
+    </tr>
+    <tr>
+        <td>Site vitrine elevage canin - Formule complete - carlin</td>
+        <td style="text-align:center">1</td>
+        <td style="text-align:right">1200.00 €</td>
+        <td style="text-align:right">1200.00 €</td>
+    </tr>
+    
+    <tr class="total-row">
+        <td colspan="3" style="text-align:right;">Total TTC</td>
+        <td style="text-align:right;">1200.00 €</td>
+    </tr>
+</table>
+
+<p style="text-align:right; font-size:11px; color:#666;">
+    Soit 1200 euros
+</p>
+
+<div class="conditions">
+    <p><strong>Conditions de paiement :</strong> Virement bancaire</p>
+    <p><strong>Echeance :</strong> 30/06/2026</p>
+    <p><strong>IBAN :</strong> FR00 0000 0000 0000 0000 0000 000 | <strong>BIC :</strong> XXXXXXXXX</p>
+    <p><strong>Retard de paiement :</strong> Application d'une penalite de 3 fois le taux d'interet legal et d'une indemnite forfaitaire de 40€ pour frais de recouvrement (art. L441-6 C.com.)</p>
+</div>
+
+<div class="signature">
+    <p>Fait a Ta ville, le 31/05/2026</p>
+    <div class="signature-line">Signature et cachet (precede de la mention "Bon pour accord")</div>
+</div>
+
+<div class="footer">
+    <p>TON NOM Ton Prenom - SIRET TON_SIRET - Micro-entrepreneur</p>
+</div>
+
+</body>
+</html>
