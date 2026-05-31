@@ -26,6 +26,7 @@ CLOUDINARY_UPLOAD_URL = (
 
 # Pexels API (gratuite, 200 req/h sans compte, beaucoup plus avec une cle)
 PEXELS_API_KEY = config.PEXELS_API_KEY or ""
+PIXABAY_API_KEY = config.PIXABAY_API_KEY or ""
 UNSPLASH_ACCESS_KEY = config.UNSPLASH_ACCESS_KEY or ""
 
 
@@ -163,6 +164,46 @@ def search_duckduckgo(query: str, count: int = 5) -> list[dict]:
         return []
 
 
+def search_pixabay(query: str, count: int = 5) -> list[dict]:
+    """
+    Cherche des photos sur Pixabay (API gratuite, 5000 req/h).
+    Retourne une liste de {url, auteur, source}.
+    """
+    if not PIXABAY_API_KEY:
+        return []
+
+    url = "https://pixabay.com/api/"
+    params = {
+        "key": PIXABAY_API_KEY,
+        "q": query,
+        "per_page": min(count, 200),
+        "image_type": "photo",
+        "orientation": "horizontal",
+        "min_width": 1920,
+        "min_height": 1080,
+        "safesearch": "true",
+        "category": "animals",
+    }
+    try:
+        r = requests.get(url, params=params, timeout=15)
+        r.raise_for_status()
+        data = r.json()
+
+        results = []
+        for hit in data.get("hits", [])[:count]:
+            img_url = hit.get("largeImageURL") or hit.get("webformatURL")
+            if img_url:
+                results.append({
+                    "url": img_url,
+                    "author": hit.get("user", "Pixabay"),
+                    "source": "pixabay",
+                })
+        return results
+    except Exception as e:
+        print(f"  ⚠️ Pixabay: {e}", file=sys.stderr)
+        return []
+
+
 def search_images(query: str, count: int = 5, sources: list[str] = None) -> list[dict]:
     """
     Cherche des photos depuis plusieurs sources avec fallback.
@@ -175,7 +216,7 @@ def search_images(query: str, count: int = 5, sources: list[str] = None) -> list
     Retourne une liste de dicts tries par qualite.
     """
     if sources is None:
-        sources = ["pexels", "unsplash", "duckduckgo"]
+        sources = ["pexels", "pixabay", "unsplash", "duckduckgo"]
 
     print(f"  🔍 Recherche de photos pour '{query}'...")
     all_results = []
@@ -184,6 +225,7 @@ def search_images(query: str, count: int = 5, sources: list[str] = None) -> list
         print(f"     -> Source: {source}")
         fn = {
             "pexels": search_pexels,
+            "pixabay": search_pixabay,
             "unsplash": search_unsplash,
             "duckduckgo": search_duckduckgo,
         }.get(source)
@@ -415,9 +457,10 @@ def main():
 
     if args.list_sources:
         print("Sources disponibles...")
-        print("  pexels     - Photos professionnelles (API gratuite, recommande)")
-        print("  unsplash   - Photos haute resolution (API sans cle)")
-        print("  duckduckgo - Fallback Internet (pas d'API requise)")
+        print("  pexels     - Photos professionnelles (API gratuite, 200 req/h)")
+        print("  pixabay    - Photos libres de droit (API gratuite, 5000 req/h)")
+        print("  unsplash   - Photos haute resolution")
+        print("  duckduckgo - Fallback Internet")
         return
 
     if args.race:

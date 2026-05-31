@@ -75,7 +75,7 @@ def generate_demo_site(profile: dict) -> str | None:
     # Chercher des photos Cloudinary/Pexels pour cette race
     try:
         from photos import get_photos_for_race
-        photos_race = get_photos_for_race(race, count=6)
+        photos_race = get_photos_for_race(race, count=15)
     except Exception:
         pass
 
