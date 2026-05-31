@@ -66,17 +66,29 @@ def generate_demo_site(profile: dict) -> str | None:
     phone = profile.get("phone", "")
     ville = profile.get("ville", "")
     departement = profile.get("departement", "")
+    description = profile.get("description", "")
+    siren = profile.get("siren", "")
+    website = profile.get("website", "")
+    photo_url = profile.get("photo_url", "")
+    photos_race = []
 
-    # Essayer de generer avec le template existant
+    # Chercher des photos Cloudinary/Pexels pour cette race
+    try:
+        from photos import get_photos_for_race
+        photos_race = get_photos_for_race(race, count=6)
+    except Exception:
+        pass
+
     site_result = generator.generate_site(
         name=name, race=race, phone=phone,
         city=ville or departement,
+        description=description, siren=siren,
+        departement=departement, website=website,
+        photo_url=photo_url, photos_race=photos_race,
     )
 
     if site_result:
-        return site_result[1]  # URL GitHub Pages
-
-    # Pas de template : on retourne None, le site sera cree manuellement
+        return site_result[1]
     return None
 
 

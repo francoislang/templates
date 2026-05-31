@@ -4,267 +4,239 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Best of Farmdream — Élevage Rhodesian Ridgeback | Alpes-Maritimes</title>
-  <meta name="description" content="Derrière chaque chiot se cache une histoire… la nôtre commence en Rhodésie. Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes.">
+  <meta name="description" content="Derrière chaque chiot se cache une histoire… et la mienne est loin d’être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c’est là que notre">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="The Best of Farmdream — Rhodesian Ridgeback">
-  <meta property="og:description" content="Élevage familial de Rhodesian Ridgeback passionné depuis des années.">
+  <meta property="og:url" content="">
+  <meta property="og:title" content="The Best of Farmdream — Rhodesian Ridgeback, Alpes-Maritimes">
+  <meta property="og:description" content="Derrière chaque chiot se cache une histoire… et la mienne est loin d’être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c’est là que notre">
   <meta property="og:image" content="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "AnimalShelter"],
+        "name": "The Best of Farmdream",
+        "description": "Élevage de Rhodesian Ridgeback en Alpes-Maritimes",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Alpes-Maritimes",
+          "postalCode": "",
+          "addressCountry": "FR"
+        },
+        "telephone": "06.51.19.52.24"
+      }
+    ]
+  }
+  </script>
   <style>
+    :root {
+      --slt: #1B3A4B; --sky: #5B8FA8; --snd: #E8D5B7; --emb: #D4622A; --bg: #F7F4EF; --crm: #EDE4D3;
+      --txt: #1B2D38; --muted: #7A8E99; --FD: 'Cinzel', serif; --FN: 'Raleway', sans-serif; --nav: 68px; --r: 10px;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #FDF8F3;
-      color: #2B211B;
-      overflow-x: hidden;
-    }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
     img { display: block; width: 100%; height: 100%; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .btn { display: inline-block; padding: .8rem 2.2rem; border-radius: 50px; font-weight: 600; font-size: .9rem; transition: all .25s; border: none; cursor: pointer; }
+    .btn_primary { background: var(--slt); color: white; }
+    .btn_primary:hover { background: var(--sky); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,58,75,.25); }
+    .ghost_btn { background: transparent; color: var(--slt); border: 2px solid var(--slt); }
+    .ghost_btn:hover { background: var(--slt); color: white; }
 
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(253, 248, 243, 0.92);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(139, 90, 58, 0.1);
-    }
-    nav .container {
-      display: flex; justify-content: space-between; align-items: center;
-      height: 72px;
-    }
-    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #8B5A3A; }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a { font-size: 0.9rem; font-weight: 500; color: #8B7D72; transition: color .3s; }
-    .nav-links a:hover { color: #8B5A3A; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(247,244,239,.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27,45,56,.08); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; height: var(--nav); }
+    .nav_logo { font-family: var(--FD); font-size: 1.2rem; color: var(--slt); }
+    .nav_rub a { font-size: .85rem; font-weight: 600; color: var(--muted); margin-left: 2.5rem; transition: color .3s; }
+    .nav_rub a:hover { color: var(--slt); }
+    .container { max-width: 1200px; margin: auto; padding: 0 24px; }
 
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      background: linear-gradient(145deg, #F5ECE4 0%, #FDF8F3 40%, #F0E4D8 100%);
-      padding-top: 72px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; top: -20%; right: -10%; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201, 158, 120, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    .hero .container {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-      align-items: center; position: relative; z-index: 1;
-    }
-    .hero-content h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 3.8rem; font-weight: 400; line-height: 1.08;
-      color: #2B211B; margin-bottom: 12px;
-    }
-    .hero-content .race-tag {
-      display: inline-block;
-      background: #8B5A3A; color: #FDF8F3;
-      padding: 6px 18px; border-radius: 4px;
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-    .hero-content p { font-size: 1.05rem; line-height: 1.8; color: #6B5D52; margin-bottom: 32px; }
-    .hero-content .location {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.95rem; color: #8B7D72; margin-bottom: 24px;
-    }
-    .hero-image {
-      border-radius: 16px; overflow: hidden;
-      box-shadow: 0 24px 64px rgba(43, 33, 27, 0.18);
-      transform: rotate(1deg);
-    }
-    .hero-image img { height: 600px; transition: transform .6s; }
-    .hero-image:hover img { transform: scale(1.03); }
-    .btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px; border-radius: 6px;
-      font-weight: 600; font-size: 0.9rem; letter-spacing: 0.3px;
-      transition: all .3s; border: none; cursor: pointer;
-    }
-    .btn-primary { background: #8B5A3A; color: #FDF8F3; }
-    .btn-primary:hover { background: #734B30; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139, 90, 58, 0.3); }
-    .btn-outline { background: transparent; color: #8B5A3A; border: 2px solid #8B5A3A; }
-    .btn-outline:hover { background: #8B5A3A; color: #FDF8F3; }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-
-    .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-      margin-top: 48px; padding-top: 32px;
-      border-top: 1px solid rgba(139, 90, 58, 0.12);
-    }
-    .stat-value { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: #8B5A3A; }
-    .stat-label { font-size: 0.8rem; color: #8B7D72; margin-top: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav); background: linear-gradient(135deg, var(--crm) 0%, var(--bg) 50%, var(--snd) 100%); }
+    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero_txt h1 { font-family: var(--FD); font-size: 3.2rem; line-height: 1.1; color: var(--slt); margin-bottom: 8px; }
+    .race_tag { display: inline-block; background: var(--slt); color: white; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; letter-spacing: .5px; margin-bottom: 20px; }
+    .hero_txt p { font-size: 1rem; line-height: 1.7; color: var(--muted); margin-bottom: 28px; }
+    .hero_txt .loc { font-size: .9rem; color: var(--muted); margin-bottom: 20px; }
+    .hero_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 20px 60px rgba(27,58,75,.15); }
+    .hero_img img { height: 550px; }
+    .hero_btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero_stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(27,58,75,.1); }
+    .hero_stats .val { font-family: var(--FD); font-size: 1.6rem; color: var(--slt); }
+    .hero_stats .lbl { font-size: .8rem; color: var(--muted); margin-top: 2px; }
 
     section { padding: 100px 0; }
-    .section-title { font-family: 'DM Serif Display', serif; font-size: 2.8rem; font-weight: 400; margin-bottom: 16px; color: #2B211B; }
-    .section-subtitle { font-size: 1rem; color: #8B7D72; max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+    .sec_title { font-family: var(--FD); font-size: 2.4rem; color: var(--slt); margin-bottom: 12px; }
+    .sec_sub { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 48px; }
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .about-text p { font-size: 1rem; line-height: 1.8; color: #5A4A3F; margin-bottom: 16px; }
-    .about-image { border-radius: 16px; overflow: hidden; box-shadow: 0 16px 48px rgba(43, 33, 27, 0.1); }
+    .about_g { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about_g p { font-size: .95rem; line-height: 1.8; color: var(--muted); margin-bottom: 14px; }
+    .about_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 12px 40px rgba(27,58,75,.08); }
 
-    .savannah-bg { background: #F5ECE4; position: relative; }
-    .savannah-bg::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, #C99E78, #8B5A3A, #C99E78);
-    }
-    .race-content { max-width: 720px; margin: 0 auto; text-align: center; }
-    .race-content p { font-size: 1rem; line-height: 1.8; color: #5A4A3F; }
+    .alt_bg { background: var(--crm); }
 
-    .quote {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; font-style: italic;
-      color: #8B5A3A; line-height: 1.5;
-      padding: 40px 0; text-align: center;
-      max-width: 700px; margin: 0 auto;
-    }
-    .quote::before { content: '\201C'; font-size: 3rem; color: #C99E78; display: block; margin-bottom: -10px; }
+    .race_c { max-width: 720px; margin: 0 auto; text-align: center; }
+    .race_c p { font-size: 1rem; line-height: 1.8; color: var(--muted); }
+    .race_c .quote { font-family: var(--FD); font-style: italic; font-size: 1.3rem; color: var(--slt); padding: 30px 0; }
 
-    .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 48px; }
-    .contact-info h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 16px; }
-    .contact-info p { color: #5A4A3F; line-height: 1.7; margin-bottom: 8px; }
-    .contact-phone { font-size: 1.6rem; font-weight: 600; color: #8B5A3A; margin: 20px 0; letter-spacing: 1px; }
-    .contact-details { margin-top: 24px; }
-    .contact-details div { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px solid #E8DDD2; }
-    .contact-details div:last-child { border-bottom: none; }
-    .contact-details .label { color: #8B7D72; min-width: 90px; font-size: 0.85rem; }
-    .contact-details .value { color: #2B211B; font-weight: 500; }
-    .contact-card {
-      background: #FDF8F3; border-radius: 16px; padding: 40px;
-      border: 1px solid #E8DDD2; box-shadow: 0 8px 32px rgba(43, 33, 27, 0.06);
-    }
+    .repro_g { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .repro_c { background: white; border-radius: var(--r); overflow: hidden; box-shadow: 0 4px 16px rgba(27,58,75,.06); transition: transform .3s; }
+    .repro_c:hover { transform: translateY(-4px); }
+    .repro_c img { height: 320px; }
+    .repro_c .info { padding: 24px; }
+    .repro_c .info .name { font-family: var(--FD); font-size: 1.1rem; color: var(--slt); }
+    .repro_c .info .role { font-size: .85rem; color: var(--muted); }
+    .repro_c .info .desc { font-size: .9rem; padding: 0 !important; margin-top: 8px; }
 
-    footer { background: #2B211B; color: #B5A599; padding: 48px 0; text-align: center; }
-    footer p { font-size: 0.85rem; line-height: 1.6; }
-    footer a { color: #D4C9BE; text-decoration: underline; }
+    .gal_g { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .gal_g img { height: 260px; border-radius: var(--r); }
 
-    @media (max-width: 768px) {
+    .tem_g { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
+    .tem_c { background: white; border-radius: var(--r); padding: 28px; box-shadow: 0 4px 12px rgba(27,58,75,.04); }
+    .tem_c .txt { font-style: italic; font-size: .9rem; line-height: 1.7; color: var(--muted); }
+    .tem_c .auth { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .tem_c .auth img { width: 40px; height: 40px; border-radius: 50%; }
+    .tem_c .auth .name { font-weight: 600; font-size: .85rem; }
+    .tem_c .auth .chiot { font-size: .75rem; color: var(--muted); }
+
+    .contact_g { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .contact_g .info h3 { font-family: var(--FD); font-size: 1.3rem; margin-bottom: 12px; }
+    .contact_g .info p { font-size: .95rem; color: var(--muted); line-height: 1.7; }
+    .contact_g .info .phone { font-size: 1.4rem; font-weight: 700; color: var(--slt); margin: 16px 0; letter-spacing: .5px; }
+    .contact_g .info .dtl { margin-top: 20px; }
+    .contact_g .info .dtl > div { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(27,58,75,.06); }
+    .contact_g .info .dtl > div:last-child { border-bottom: none; }
+    .contact_g .info .dtl .lb { color: var(--muted); min-width: 80px; font-size: .85rem; }
+    .contact_g .info .dtl .vl { font-weight: 500; }
+    .contact_card { background: white; border-radius: var(--r); padding: 36px; box-shadow: 0 8px 24px rgba(27,58,75,.04); }
+    .contact_card h3 { font-family: var(--FD); font-size: 1.3rem; margin-bottom: 16px; }
+    .contact_card p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+
+    footer { background: var(--slt); color: rgba(255,255,255,.6); padding: 40px 0; text-align: center; }
+    footer p { font-size: .85rem; line-height: 1.6; }
+    footer a { color: var(--snd); text-decoration: underline; }
+
+    @media(max-width:768px){
       .hero .container { grid-template-columns: 1fr; gap: 32px; }
-      .hero-content h1 { font-size: 2.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .nav-links { display: none; }
+      .hero_txt h1 { font-size: 2.2rem; }
+      .hero_stats { grid-template-columns: 1fr; }
+      .about_g { grid-template-columns: 1fr; gap: 32px; }
+      .contact_g { grid-template-columns: 1fr; gap: 32px; }
+      .gal_g { grid-template-columns: 1fr 1fr; }
+      .nav_rub { display: none; }
       section { padding: 64px 0; }
-      .section-title { font-size: 2rem; }
-      .hero-image img { height: 350px; }
-      .stats { grid-template-columns: 1fr; }
+      .sec_title { font-size: 1.8rem; }
     }
-
-    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
   </style>
 </head>
 <body>
 <nav>
   <div class="container">
-    <span class="nav-logo">Farmdream</span>
-    <ul class="nav-links">
-      <li><a href="#about">L'histoire</a></li>
-      <li><a href="#race">Rhodesian Ridgeback</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <span class="nav_logo">The Best of Farmdream</span>
+    <div class="nav_rub">
+      <a href="#about">À propos</a>
+      <a href="#race">La race</a>
+      
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container">
-    <div class="hero-content">
-      <span class="race-tag">Rhodesian Ridgeback</span>
+    <div class="hero_txt">
+      <span class="race_tag">Rhodesian Ridgeback</span>
       <h1>The Best of Farmdream</h1>
-      <p class="location">📍 Alpes-Maritimes</p>
-      <p>Derrière chaque chiot se cache une histoire… et la nôtre commence en Rhodésie, terre d'origine de cette race noble et fascinante.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">📞 Me contacter</a>
-        <a href="#about" class="btn btn-outline">Lire l'histoire</a>
+      <p class="loc">Alpes-Maritimes</p>
+      <p>Derrière chaque chiot se cache une histoire… et la mienne est loin d’être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c’est là que notre passion pour cette race a pris racine. À mes débu</p>
+      <div class="hero_btns">
+        <a href="#contact" class="btn btn_primary">Me contacter</a>
+        <a href="#about" class="btn ghost_btn">Découvrir</a>
       </div>
-      <div class="stats">
-        <div><div class="stat-value">Rhodesian Ridgeback</div><div class="stat-label">Race</div></div>
-        <div><div class="stat-value">Particulier</div><div class="stat-label">Statut</div></div>
-        <div><div class="stat-value">Alpes-Maritimes</div><div class="stat-label">Localisation</div></div>
+      <div class="hero_stats">
+        <div><div class="val">Rhodesian Ridgeback</div><div class="lbl">Race</div></div>
+        
+        <div><div class="val">Alpes-Maritimes</div><div class="lbl">Localisation</div></div>
       </div>
     </div>
-    <div class="hero-image fade-in">
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="The Best of Farmdream">
+    <div class="hero_img reveal">
+      <img src="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903" alt="The Best of Farmdream">
     </div>
   </div>
 </section>
+
 
 <section id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text fade-in">
-        <h2 class="section-title">Notre histoire</h2>
-        <p>Mon compagnon de vie a grandi en Rhodésie, et c'est là que notre passion pour cette race a pris racine. À mes débuts, le chemin fut semé d'embûches, mais une motivation constante m'a toujours guidée : approfondir ma connaissance des Rhodesian Ridgebacks.</p>
-        <p>Ces chiens ont un tempérament unique : drôles et espiègles, ils adoptent parfois des positions de sommeil surprenantes, boudent la pluie, et possèdent bien d'autres particularités. C'est une race fascinante qui demande une approche douce et respectueuse.</p>
-        <p>La construction de la confiance est primordiale. Au début maladroits, nos chiens apprennent à nos côtés, mais quand la confiance s'installe, elle devient indéfectible. Chaque chiot est le fruit de cette philosophie : des chiens équilibrés, confiants, et profondément attachés à leur famille.</p>
+    <div class="about_g">
+      <div class="reveal">
+        <h2 class="sec_title">À propos</h2>
+        
+          <p>Derrière chaque chiot se cache une histoire… et la mienne est loin d’être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c’est là que notre passion pour cette race a pris racine. À mes débuts, le chemin fut semé d’embûches, mais une motivation constante m’a toujours guidée : approfondir ma connaissance des Rhodesian Ridgebacks. Ces chiens ont un tempérament unique : drôles et espiègles, ils adoptent parfois des positions de sommeil surprenantes, boudent la pluie, et possèdent bien d’autres atouts. Leurs défauts sont rares… et apparaissent surtout si leur éducation a été négligée. En tant que membre du club de race, j’élève mes protégés au cœur de la maison, entourés d’attention et de soins dès leur naissance. Tous sont identifiés par puce, vaccinés, vermifugés et inscrits au Livre des Origines Français (LOF). De plus, chaque petit est examiné par un vétérinaire afin de garantir une santé optimale. Notre lien ne s’arrête pas à l’adoption : je reste en contact avec les familles et les accompagne dans l’éducation et le suivi de leur animal, même une fois adulte.</p>
+        
       </div>
-      <div class="about-image fade-in">
-        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237579/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Rhodesian Ridgeback" style="height: 500px;">
+      
+      <div class="about_img reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="The Best of Farmdream" style="height:480px">
       </div>
+      
     </div>
   </div>
 </section>
 
-<section id="race" class="savannah-bg">
+
+<section id="race" class="alt_bg">
   <div class="container">
-    <div class="race-content fade-in">
-      <h2 class="section-title">Le Rhodesian Ridgeback</h2>
-      <p class="section-subtitle" style="margin: 0 auto 48px;">Chien de garde et de compagnie, originaire d'Afrique du Sud</p>
-      <p>Le Rhodesian Ridgeback est un chien puissant, élégant et digne, reconnaissable à la crête de poils inversés sur son dos — la « ride » qui lui donne son nom. Originellement élevé pour la chasse au lion, il allie courage et douceur, faisant de lui un excellent compagnon familial.</p>
+    <div class="race_c reveal">
+      <h2 class="sec_title">Le Rhodesian Ridgeback</h2>
+      <p>Le Rhodesian Ridgeback est une race de chien reconnue pour ses qualités et son caractère unique. Chaque chien est le fruit d'une sélection rigoureuse et d'un travail quotidien pour préserver les meilleures caractéristiques de la race.</p>
       <br>
-      <p>Intelligent et indépendant, il nécessite une éducation cohérente mais bienveillante. C'est un chien loyal, protecteur, et étonnamment doux avec les enfants. Son caractère équilibré en fait un gardien discret et efficace.</p>
-      <div class="quote">Quand la confiance s'installe entre un Rhodesian Ridgeback et son maître, elle devient indéfectible.</div>
-      <p>Chaque Rhodesian Ridgeback a sa propre personnalité : drôle, espiègle, parfois cabochard, mais toujours profondément attachant. Un compagnon pour la vie.</p>
+      <p>Pour en savoir plus sur cette magnifique race et découvrir ses particularités, n'hésitez pas à contacter directement l'élevage. Un véritable passionné saura vous guider vers le compagnon qui vous correspond.</p>
     </div>
   </div>
 </section>
 
-<section id="contact">
+
+
+<section id="contact" class="alt_bg">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info fade-in">
-        <h2 class="section-title">Contact</h2>
-        <p>Passionné par cette race ? Vous avez des questions ou souhaitez en savoir plus sur le Rhodesian Ridgeback ? N'hésitez pas à me contacter.</p>
-        <div class="contact-phone">📞 06.51.19.52.24</div>
-        <div class="contact-details">
-          <div><span class="label">📍 Lieu</span><span class="value">Alpes-Maritimes</span></div>
-          <div><span class="label">🐕 Race</span><span class="value">Rhodesian Ridgeback</span></div>
-          <div><span class="label">📋 Statut</span><span class="value">Particulier</span></div>
+    <div class="contact_g">
+      <div class="info reveal">
+        <h2 class="sec_title">Contact</h2>
+        <p>Derrière chaque chiot se cache une histoire… et la mienne est loin d’être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c’est là que notre passion pour cette race a pris racine. À mes débu</p>
+        <div class="phone">📞 06.51.19.52.24</div>
+        <div class="dtl">
+          <div><span class="lb">📍 Lieu</span><span class="vl">Alpes-Maritimes</span></div>
+          <div><span class="lb">🐕 Race</span><span class="vl">Rhodesian Ridgeback</span></div>
+          
+          
         </div>
       </div>
-      <div class="contact-card fade-in">
-        <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 16px;">The Best of Farmdream</h3>
-        <p style="color: #5A4A3F; line-height: 1.7; margin-bottom: 24px;">
-          Élevage familial passionné de Rhodesian Ridgeback.<br>
-          Alpes-Maritimes, France.
-        </p>
-        <a href="tel:0651195224" class="btn btn-primary" style="width: 100%; justify-content: center;">
-          📞 06.51.19.52.24
-        </a>
+      <div class="contact_card reveal">
+        <h3>The Best of Farmdream</h3>
+        <p>Élevage Rhodesian Ridgeback — Alpes-Maritimes.</p>
+        <a href="tel:06.51.19.52.24" class="btn btn_primary" style="display:block;text-align:center;">📞 06.51.19.52.24</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p>© 2026 — The Best of Farmdream — Rhodesian Ridgeback</p>
-    <p style="margin-top: 8px; font-size: 0.8rem;">Alpes-Maritimes, France</p>
-  </div>
+  <p>© 2026 — The Best of Farmdream — Rhodesian Ridgeback</p>
+  
+  <p style="margin-top:4px;font-size:.75rem;">Alpes-Maritimes</p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver(e => { e.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(e => { e.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }); }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
