@@ -101,17 +101,13 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
     phone = profile.get("phone", "")
     ville = profile.get("ville", "")
     departement = profile.get("departement", "")
-    description = profile.get("description", "")
-    siren = profile.get("siren", "")
-    acaced = profile.get("acaced", "")
-    email = profile.get("email", "")
 
     # Construction du lieu
     lieu = "en France"
     if ville and departement:
-        lieu = f"a {ville} ({departement})"
+        lieu = f"à {ville} ({departement})"
     elif ville:
-        lieu = f"a {ville}"
+        lieu = f"à {ville}"
     elif departement:
         lieu = f"dans le {departement}"
 
@@ -119,45 +115,26 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
     demo_phrase = ""
     if demo_url:
         demo_phrase = (
-            f"\n\nJ'ai prepare une demo gratuite pour vous voir le rendu possible "
-            f"pour votre elevage : {demo_url}"
+            f"\n\nJ'ai préparé une démo gratuite pour vous montrer le rendu "
+            f"possible pour votre élevage : {demo_url}"
         )
     else:
         demo_phrase = (
-            f"\n\nJe peux vous preparer une demo gratuite de site internet "
-            f"pour votre elevage si vous etes interesse."
+            f"\n\nJe peux vous préparer une démo gratuite de site internet "
+            f"pour votre élevage si vous êtes intéressé."
         )
 
-    # Extraire un accroche de la description
-    accroche = ""
-    if description and len(description) > 20:
-        # Prendre une phrase courte et percutante
-        phrases = re.split(r'[.!?\n]', description)
-        for p in phrases:
-            p = p.strip()
-            if 30 < len(p) < 200:
-                accroche = f' J\'ai vu votre description : "{p[:150]}..."'
-                break
-
-    # Credibilite (SIREN, ACACED)
-    credibilite = ""
-    if siren:
-        credibilite += f" Je vois que vous etes un elevage professionnel (SIREN {siren})."
-    if acaced:
-        credibilite += " Certifie ACACED, c'est serieux."
-    if email:
-        credibilite += f" Je vous ecris aussi a {email}."
-
     pitch = (
-        f"Bonjour {name},"
-        f"\n\nJe suis developpeur web specialise dans la creation de sites "
-        f"pour les eleveurs canins.{credibilite}"
-        f"{accroche}"
-        f"\n\nJ'ai une offre speciale : un site vitrine cle en main pour votre "
-        f"elevage de {race} {lieu}, heberge, personnalise avec vos photos, "
+        f"Bonjour,"
+        f"\n\nJe suis développeur web spécialisé dans la création de sites "
+        f"pour les éleveurs canins."
+        f"\n\nJ'ai une offre spéciale : un site vitrine clé en main pour votre "
+        f"élevage de {race} {lieu}, hébergé, personnalisé avec vos photos, "
         f"visible sur Google."
         f"{demo_phrase}"
         f"\n\nEst-ce que vous avez 2 minutes pour qu'on en parle ?"
+        f"\n\nFrançois-Frédéric Lang"
+        f"\nlangfrancoisfrederic@gmail.com"
     )
 
     return pitch
