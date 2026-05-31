@@ -213,17 +213,33 @@ def search_images(query: str, count: int = 5, sources: list[str] = None) -> list
 
 def upload_to_cloudinary(image_url: str, public_id: str) -> str | None:
     """
-    Uploade une image vers Cloudinary.
+    Uploade une image vers Cloudinary via API signee.
     Retourne l'URL Cloudinary ou None.
     """
-    if not image_url:
+    if not image_url or not config.CLOUDINARY_API_SECRET:
         return None
 
+    import hashlib
+    timestamp = int(time.time())
+    folder = "breeds"
+    
+    # Signature de l'upload
+    params = {
+        "timestamp": timestamp,
+        "public_id": public_id,
+        "folder": folder,
+    }
+    signature_parts = "&".join(f"{k}={v}" for k, v in sorted(params.items()))
+    signature_parts += config.CLOUDINARY_API_SECRET
+    signature = hashlib.sha1(signature_parts.encode()).hexdigest()
+    
     data = {
         "file": image_url,
-        "upload_preset": "ml_default",
+        "api_key": config.CLOUDINARY_API_KEY,
+        "timestamp": timestamp,
         "public_id": public_id,
-        "folder": "breeds",
+        "folder": folder,
+        "signature": signature,
     }
     try:
         r = requests.post(CLOUDINARY_UPLOAD_URL, data=data, timeout=30)
@@ -233,6 +249,99 @@ def upload_to_cloudinary(image_url: str, public_id: str) -> str | None:
     except Exception as e:
         print(f"  ⚠️ Cloudinary upload: {e}", file=sys.stderr)
         return None
+
+
+def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False) -> list[str]:
+    """
+    Recupere les photos pour une race.
+    - Si la race a deja des photos sur Cloudinary -> les retourne
+    - Sinon -> scrape depuis Pexels + upload sur Cloudinary
+
+    Args:
+        race: Nom de la race
+        count: Nombre de photos souhaite (defaut: 15)
+        force_refresh: Si True, rescrape meme si deja en Cloudinary
+
+    Retourne une liste d'URLs Cloudinary.
+    """
+    # 1. Verifier si la race a deja des photos sur Cloudinary
+    if not force_refresh:
+        existing = get_cloudinary_photos_for_race(race)
+        if existing:
+            print(f"  ✅ {len(existing)} photos deja sur Cloudinary pour '{race}'")
+            return existing[:count]
+
+    # 2. Scraper depuis Pexels
+    print(f"  📸 Aucune photo Cloudinary trouvee, scraping Pexels pour '{race}'...")
+    images = search_images(race, count=count)
+
+    if not images:
+        print(f"  ❌ Aucune photo trouvee pour '{race}'")
+        return []
+
+    # 3. Uploader sur Cloudinary
+    urls = []
+    for i, img in enumerate(images[:count]):
+        safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_")
+        public_id = f"{safe_race}_{i+1}"
+        cloud_url = upload_to_cloudinary(img["url"], public_id)
+        if cloud_url:
+            urls.append(cloud_url)
+            print(f"  ✅ [{i+1}/{count}] Uploadee: {cloud_url[:60]}...")
+        else:
+            urls.append(img["url"])
+            print(f"  ⚠️ [{i+1}/{count}] Upload failed, URL directe")
+        time.sleep(0.5)
+
+    print(f"  ✅ {len(urls)} photos pretes pour '{race}'")
+    return urls
+
+
+def get_cloudinary_photos_for_race(race: str) -> list[str]:
+    """
+    Recupere les URLs Cloudinary d'une race deja uploadee.
+    Verifie via l'API Cloudinary si des photos existent dans le dossier breeds/.
+    """
+    import hashlib
+    safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_")
+
+    # Methode: chercher les photos via Cloudinary Admin API
+    # Si CLOUDINARY_API_SECRET est defini, on peut chercher
+    if not config.CLOUDINARY_API_SECRET:
+        return []
+
+    try:
+        # Construire la signature pour l API Admin
+        timestamp = int(time.time())
+        folder = f"breeds/"
+        
+        # Simplifie: on verifie si des URLs standard existent deja
+        # en testant l existence du premier fichier
+        test_url = (
+            f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
+            f"image/upload/q_auto/f_auto/breeds/{safe_race}_1.jpg"
+        )
+        r = requests.head(test_url, timeout=5)
+        if r.status_code == 200:
+            # La race existe, construire les URLs
+            urls = []
+            for i in range(1, 16):
+                url = (
+                    f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
+                    f"image/upload/q_auto/f_auto/breeds/{safe_race}_{i}.jpg"
+                )
+                urls.append(url)
+            # Verifier combien existent reellement
+            existing_urls = []
+            for url in urls:
+                r2 = requests.head(url, timeout=3)
+                if r2.status_code == 200:
+                    existing_urls.append(url)
+            return existing_urls
+        return []
+    except Exception as e:
+        print(f"  ⚠️ Cloudinary check: {e}")
+        return []
 
 
 def get_photos(query: str, count: int = 5, upload: bool = False,
@@ -282,6 +391,7 @@ def main():
         description="Scraper de photos d'animaux (Pexels + Unsplash + DuckDuckGo)"
     )
     parser.add_argument("--search", "-s", help="Terme de recherche")
+    parser.add_argument("--race", help="Nom de la race (verifie Cloudinary d'abord)")
     parser.add_argument("--count", "-c", type=int, default=3,
                         help="Nombre de photos (defaut: 3)")
     parser.add_argument("--upload", "-u", action="store_true",
@@ -297,10 +407,19 @@ def main():
     args = parser.parse_args()
 
     if args.list_sources:
-        print("Sources disponibles (dans l'ordre de fallback) :")
+        print("Sources disponibles...")
         print("  pexels     - Photos professionnelles (API gratuite, recommande)")
         print("  unsplash   - Photos haute resolution (API sans cle)")
         print("  duckduckgo - Fallback Internet (pas d'API requise)")
+        return
+
+    if args.race:
+        urls = get_photos_for_race(args.race, count=args.count)
+        if args.url_only and urls:
+            for url in urls:
+                print(url)
+        if not urls:
+            print(f"\n❌ Aucune photo trouvee pour '{args.race}'")
         return
 
     if not args.search:
