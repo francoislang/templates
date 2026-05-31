@@ -3,187 +3,171 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ elevage.nom }} — Élevage {{ elevage.race }} | {{ elevage.departement or "France" }}</title>
-  <meta name="description" content="{{ elevage.description_seo }}">
-  
+  <title>{{ elevage.nom }} — Élevage {{ elevage.race }}{% if elevage.departement %} | {{ elevage.departement }}{% endif %}</title>
+  <meta name="description" content="{% if elevage.description_seo %}{{ elevage.description_seo }}{% else %}Élevage {{ elevage.race }} — {{ elevage.nom }}{% if elevage.departement %} — {{ elevage.departement }}{% endif %}{% endif %}">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{ elevage.nom }} — {{ elevage.race }}">
-  <meta property="og:description" content="{{ elevage.description_seo }}">
-  <meta property="og:image" content="{{ photos.og or photos.hero }}">
-  
+  <meta property="og:url" content="">
+  <meta property="og:title" content="{{ elevage.nom }} — {{ elevage.race }}{% if elevage.departement %}, {{ elevage.departement }}{% endif %}">
+  <meta property="og:description" content="{% if elevage.description_seo %}{{ elevage.description_seo }}{% else %}Élevage {{ elevage.race }}{% endif %}">
+  <meta property="og:image" content="{% if photos.og %}{{ photos.og }}{% elif photos.hero %}{{ photos.hero }}{% endif %}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["LocalBusiness", "AnimalShelter"],
+        "name": "{{ elevage.nom }}",
+        "description": "Élevage de {{ elevage.race }}{% if elevage.departement %} en {{ elevage.departement }}{% endif %}",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "{{ elevage.departement }}",
+          "postalCode": "{{ elevage.code_postal }}",
+          "addressCountry": "FR"
+        },
+        "telephone": "{{ elevage.telephone }}"
+      }
+    ]
+  }
+  </script>
   <style>
+    :root {
+      --slt: #1B3A4B; --sky: #5B8FA8; --snd: #E8D5B7; --emb: #D4622A; --bg: #F7F4EF; --crm: #EDE4D3;
+      --txt: #1B2D38; --muted: #7A8E99; --FD: 'Cinzel', serif; --FN: 'Raleway', sans-serif; --nav: 68px; --r: 10px;
+    }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #FAF8F5;
-      color: #2C2420;
-      overflow-x: hidden;
-    }
-    img { display: block; width: 100%; height: auto; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .75s ease, transform .75s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+    .btn { display: inline-block; padding: .8rem 2.2rem; border-radius: 50px; font-weight: 600; font-size: .9rem; transition: all .25s; border: none; cursor: pointer; }
+    .btn_primary { background: var(--slt); color: white; }
+    .btn_primary:hover { background: var(--sky); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,58,75,.25); }
+    .ghost_btn { background: transparent; color: var(--slt); border: 2px solid var(--slt); }
+    .ghost_btn:hover { background: var(--slt); color: white; }
 
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(44, 36, 32, 0.08);
-    }
-    nav .container {
-      display: flex; justify-content: space-between; align-items: center;
-      height: 72px;
-    }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #4A6B5D; }
-    .nav-links { display: flex; gap: 32px; }
-    .nav-links a { font-size: 0.9rem; font-weight: 500; color: #6B625A; transition: color 0.3s; }
-    .nav-links a:hover { color: #4A6B5D; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(247,244,239,.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(27,45,56,.08); }
+    nav .container { display: flex; justify-content: space-between; align-items: center; height: var(--nav); }
+    .nav_logo { font-family: var(--FD); font-size: 1.2rem; color: var(--slt); }
+    .nav_rub a { font-size: .85rem; font-weight: 600; color: var(--muted); margin-left: 2.5rem; transition: color .3s; }
+    .nav_rub a:hover { color: var(--slt); }
+    .container { max-width: 1200px; margin: auto; padding: 0 24px; }
 
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      background: linear-gradient(135deg, #E8E0D8 0%, #FAF8F5 50%, #F0EAE2 100%);
-      padding-top: 72px;
-    }
-    .hero .container {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
-      align-items: center;
-    }
-    .hero-content h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem; font-weight: 700; line-height: 1.1;
-      color: #2C2420; margin-bottom: 8px;
-    }
-    .hero-content .race-tag {
-      display: inline-block; background: #4A6B5D; color: #FAF8F5;
-      padding: 6px 16px; border-radius: 20px;
-      font-size: 0.85rem; font-weight: 500; margin-bottom: 24px;
-    }
-    .hero-content p { font-size: 1.1rem; line-height: 1.7; color: #6B625A; margin-bottom: 32px; }
-    .hero-content .location {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.95rem; color: #8A7E73; margin-bottom: 24px;
-    }
-    .hero-image { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(44, 36, 32, 0.15); }
-    .hero-image img { height: 600px; object-fit: cover; }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 14px 32px; border-radius: 12px;
-      font-weight: 600; font-size: 0.95rem;
-      transition: all 0.3s; border: none; cursor: pointer;
-    }
-    .btn-primary { background: #4A6B5D; color: #FAF8F5; }
-    .btn-primary:hover { background: #3D5B4F; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 107, 93, 0.25); }
-    .btn-primary i { font-style: normal; }
-    .btn-outline { background: transparent; color: #4A6B5D; border: 2px solid #4A6B5D; }
-    .btn-outline:hover { background: #4A6B5D; color: #FAF8F5; }
-    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-
-    .stats {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 32px;
-      margin-top: 48px; padding-top: 32px;
-      border-top: 1px solid rgba(44, 36, 32, 0.1);
-    }
-    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #4A6B5D; }
-    .stat-label { font-size: 0.85rem; color: #8A7E73; margin-top: 4px; }
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav); background: linear-gradient(135deg, var(--crm) 0%, var(--bg) 50%, var(--snd) 100%); }
+    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero_txt h1 { font-family: var(--FD); font-size: 3.2rem; line-height: 1.1; color: var(--slt); margin-bottom: 8px; }
+    .race_tag { display: inline-block; background: var(--slt); color: white; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; letter-spacing: .5px; margin-bottom: 20px; }
+    .hero_txt p { font-size: 1rem; line-height: 1.7; color: var(--muted); margin-bottom: 28px; }
+    .hero_txt .loc { font-size: .9rem; color: var(--muted); margin-bottom: 20px; }
+    .hero_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 20px 60px rgba(27,58,75,.15); }
+    .hero_img img { height: 550px; }
+    .hero_btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .hero_stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; padding-top: 28px; border-top: 1px solid rgba(27,58,75,.1); }
+    .hero_stats .val { font-family: var(--FD); font-size: 1.6rem; color: var(--slt); }
+    .hero_stats .lbl { font-size: .8rem; color: var(--muted); margin-top: 2px; }
 
     section { padding: 100px 0; }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 16px; color: #2C2420; }
-    .section-subtitle { font-size: 1.05rem; color: #8A7E73; max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+    .sec_title { font-family: var(--FD); font-size: 2.4rem; color: var(--slt); margin-bottom: 12px; }
+    .sec_sub { font-size: 1rem; color: var(--muted); max-width: 560px; margin-bottom: 48px; }
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .about-text p { font-size: 1rem; line-height: 1.8; color: #5A524A; margin-bottom: 16px; }
-    .about-image { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(44, 36, 32, 0.1); }
+    .about_g { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about_g p { font-size: .95rem; line-height: 1.8; color: var(--muted); margin-bottom: 14px; }
+    .about_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 12px 40px rgba(27,58,75,.08); }
 
-    .race-bg { background: #F0EAE2; }
-    .race-content { max-width: 800px; margin: 0 auto; text-align: center; }
-    .race-content p { font-size: 1.05rem; line-height: 1.8; color: #5A524A; }
+    .alt_bg { background: var(--crm); }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
-    .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 16px; }
-    .contact-info p { color: #5A524A; line-height: 1.7; margin-bottom: 8px; }
-    .contact-info .phone { font-size: 1.5rem; font-weight: 600; color: #4A6B5D; margin: 16px 0; }
-    .contact-details { margin-top: 24px; }
-    .contact-details div { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E8E0D8; }
-    .contact-details div:last-child { border-bottom: none; }
-    .contact-details .label { color: #8A7E73; min-width: 100px; }
-    .contact-details .value { color: #2C2420; font-weight: 500; }
+    .race_c { max-width: 720px; margin: 0 auto; text-align: center; }
+    .race_c p { font-size: 1rem; line-height: 1.8; color: var(--muted); }
+    .race_c .quote { font-family: var(--FD); font-style: italic; font-size: 1.3rem; color: var(--slt); padding: 30px 0; }
 
-    .galerie-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .galerie-grid img { height: 280px; object-fit: cover; border-radius: 12px; }
+    .repro_g { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; }
+    .repro_c { background: white; border-radius: var(--r); overflow: hidden; box-shadow: 0 4px 16px rgba(27,58,75,.06); transition: transform .3s; }
+    .repro_c:hover { transform: translateY(-4px); }
+    .repro_c img { height: 320px; }
+    .repro_c .info { padding: 24px; }
+    .repro_c .info .name { font-family: var(--FD); font-size: 1.1rem; color: var(--slt); }
+    .repro_c .info .role { font-size: .85rem; color: var(--muted); }
+    .repro_c .info .desc { font-size: .9rem; padding: 0 !important; margin-top: 8px; }
 
-    footer { background: #2C2420; color: #B5ADA5; padding: 48px 0; text-align: center; }
-    footer p { font-size: 0.85rem; line-height: 1.6; }
-    footer a { color: #E8E0D8; text-decoration: underline; }
+    .gal_g { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .gal_g img { height: 260px; border-radius: var(--r); }
 
-    @media (max-width: 768px) {
+    .tem_g { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 24px; }
+    .tem_c { background: white; border-radius: var(--r); padding: 28px; box-shadow: 0 4px 12px rgba(27,58,75,.04); }
+    .tem_c .txt { font-style: italic; font-size: .9rem; line-height: 1.7; color: var(--muted); }
+    .tem_c .auth { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+    .tem_c .auth img { width: 40px; height: 40px; border-radius: 50%; }
+    .tem_c .auth .name { font-weight: 600; font-size: .85rem; }
+    .tem_c .auth .chiot { font-size: .75rem; color: var(--muted); }
+
+    .contact_g { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .contact_g .info h3 { font-family: var(--FD); font-size: 1.3rem; margin-bottom: 12px; }
+    .contact_g .info p { font-size: .95rem; color: var(--muted); line-height: 1.7; }
+    .contact_g .info .phone { font-size: 1.4rem; font-weight: 700; color: var(--slt); margin: 16px 0; letter-spacing: .5px; }
+    .contact_g .info .dtl { margin-top: 20px; }
+    .contact_g .info .dtl > div { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid rgba(27,58,75,.06); }
+    .contact_g .info .dtl > div:last-child { border-bottom: none; }
+    .contact_g .info .dtl .lb { color: var(--muted); min-width: 80px; font-size: .85rem; }
+    .contact_g .info .dtl .vl { font-weight: 500; }
+    .contact_card { background: white; border-radius: var(--r); padding: 36px; box-shadow: 0 8px 24px rgba(27,58,75,.04); }
+    .contact_card h3 { font-family: var(--FD); font-size: 1.3rem; margin-bottom: 16px; }
+    .contact_card p { font-size: .9rem; color: var(--muted); line-height: 1.7; margin-bottom: 20px; }
+
+    footer { background: var(--slt); color: rgba(255,255,255,.6); padding: 40px 0; text-align: center; }
+    footer p { font-size: .85rem; line-height: 1.6; }
+    footer a { color: var(--snd); text-decoration: underline; }
+
+    @media(max-width:768px){
       .hero .container { grid-template-columns: 1fr; gap: 32px; }
-      .hero-content h1 { font-size: 2.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-      .galerie-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
+      .hero_txt h1 { font-size: 2.2rem; }
+      .hero_stats { grid-template-columns: 1fr; }
+      .about_g { grid-template-columns: 1fr; gap: 32px; }
+      .contact_g { grid-template-columns: 1fr; gap: 32px; }
+      .gal_g { grid-template-columns: 1fr 1fr; }
+      .nav_rub { display: none; }
       section { padding: 64px 0; }
-      .section-title { font-size: 2rem; }
-      .hero-image img { height: 400px; }
+      .sec_title { font-size: 1.8rem; }
     }
-
-    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-
 <nav>
   <div class="container">
-    <span class="nav-logo">{{ elevage.nom }}</span>
-    <ul class="nav-links">
-      <li><a href="#about">À propos</a></li>
-      <li><a href="#race">La race</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <span class="nav_logo">{{ elevage.nom }}</span>
+    <div class="nav_rub">
+      <a href="#about">À propos</a>
+      <a href="#race">La race</a>
+      {% if photos.galerie %}<a href="#galerie">Galerie</a>{% endif %}
+      <a href="#contact">Contact</a>
+    </div>
   </div>
 </nav>
 
 <section class="hero">
   <div class="container">
-    <div class="hero-content">
-      <span class="race-tag">{{ elevage.race }}</span>
+    <div class="hero_txt">
+      <span class="race_tag">{{ elevage.race }}</span>
       <h1>{{ elevage.nom }}</h1>
-      <p class="location">
-        📍 {{ elevage.departement or "France" }}{% if elevage.code_postal %} — {{ elevage.code_postal }}{% endif %}
-      </p>
+      <p class="loc">{% if elevage.code_postal %}{{ elevage.code_postal }} — {% endif %}{{ elevage.departement or "France" }}</p>
       <p>{{ elevage.description_hero or ("Élevage " + elevage.race) }}</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary"><i>📞</i> Me contacter</a>
-        <a href="#about" class="btn btn-outline">En savoir plus</a>
+      <div class="hero_btns">
+        <a href="#contact" class="btn btn_primary">Me contacter</a>
+        <a href="#about" class="btn ghost_btn">Découvrir</a>
       </div>
-      <div class="stats">
-        <div>
-          <div class="stat-value">{{ elevage.race }}</div>
-          <div class="stat-label">Race</div>
-        </div>
-        {% if elevage.since %}
-        <div>
-          <div class="stat-value">{{ elevage.since }}</div>
-          <div class="stat-label">Depuis</div>
-        </div>
-        {% endif %}
-        {% if elevage.siren %}
-        <div>
-          <div class="stat-value">Pro</div>
-          <div class="stat-label">{{ "Certifi" + "\\u00e9" if elevage.siren else "" }}</div>
-        </div>
-        {% endif %}
+      <div class="hero_stats">
+        <div><div class="val">{{ elevage.race }}</div><div class="lbl">Race</div></div>
+        {% if elevage.since %}<div><div class="val">{{ elevage.since }}</div><div class="lbl">Depuis</div></div>{% endif %}
+        <div><div class="val">{{ elevage.departement or "France" }}</div><div class="lbl">Localisation</div></div>
       </div>
     </div>
-    <div class="hero-image fade-in">
-      <img src="{{ photos.hero or photos.about_1 or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' }}" alt="{{ elevage.nom }}">
+    <div class="hero_img reveal">
+      <img src="{% if photos.hero %}{{ photos.hero }}{% else %}https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg{% endif %}" alt="{{ elevage.nom }}">
     </div>
   </div>
 </section>
@@ -191,14 +175,16 @@
 {% if elevage.description_about %}
 <section id="about">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-text fade-in">
-        <h2 class="section-title">À propos</h2>
-        <p>{{ elevage.description_about.replace(chr(10), '</p><p>') | safe }}</p>
+    <div class="about_g">
+      <div class="reveal">
+        <h2 class="sec_title">À propos</h2>
+        {% for paragraph in elevage.description_about.split('\n') %}
+          {% if paragraph.strip() %}<p>{{ paragraph.strip() }}</p>{% endif %}
+        {% endfor %}
       </div>
       {% if photos.about_1 %}
-      <div class="about-image fade-in">
-        <img src="{{ photos.about_1 }}" alt="{{ elevage.nom }}" style="height: 500px; object-fit: cover;">
+      <div class="about_img reveal">
+        <img src="{{ photos.about_1 }}" alt="{{ elevage.nom }}" style="height:480px">
       </div>
       {% endif %}
     </div>
@@ -206,21 +192,13 @@
 </section>
 {% endif %}
 
-<section id="race" class="race-bg">
+<section id="race" class="alt_bg">
   <div class="container">
-    <div class="race-content fade-in">
-      <h2 class="section-title">Le {{ elevage.race }}</h2>
-      <p>
-        {{ elevage.race }} est une race de chien reconnue pour ses qualités exceptionnelles.
-        Chaque élevage sélectionne ses reproducteurs avec soin pour préserver les meilleures 
-        caractéristiques de la race.
-      </p>
+    <div class="race_c reveal">
+      <h2 class="sec_title">Le {{ elevage.race }}</h2>
+      <p>Le {{ elevage.race }} est une race de chien reconnue pour ses qualités et son caractère unique. Chaque chien est le fruit d'une sélection rigoureuse et d'un travail quotidien pour préserver les meilleures caractéristiques de la race.</p>
       <br>
-      <p>
-        Pour en savoir plus sur cette race, n'hésitez pas à contacter directement l'élevage 
-        qui saura vous renseigner sur le standard, le caractère et les besoins spécifiques 
-        du {{ elevage.race }}.
-      </p>
+      <p>Pour en savoir plus sur cette magnifique race et découvrir ses particularités, n'hésitez pas à contacter directement l'élevage. Un véritable passionné saura vous guider vers le compagnon qui vous correspond.</p>
     </div>
   </div>
 </section>
@@ -228,78 +206,51 @@
 {% if photos.galerie %}
 <section id="galerie">
   <div class="container">
-    <div style="text-align: center;">
-      <h2 class="section-title">Galerie</h2>
-      <p class="section-subtitle" style="margin: 0 auto 48px;">Quelques photos de la race</p>
+    <div style="text-align:center;">
+      <h2 class="sec_title">Galerie photos</h2>
+      <p class="sec_sub" style="margin:0 auto 48px;">Quelques instants de vie de l'élevage</p>
     </div>
-    <div class="galerie-grid">
+    <div class="gal_g">
       {% for url in photos.galerie %}
-      <img src="{{ url }}" alt="{{ elevage.race }}" class="fade-in">
+      <img src="{{ url }}" alt="{{ elevage.race }}" class="reveal" loading="lazy">
       {% endfor %}
     </div>
   </div>
 </section>
 {% endif %}
 
-<section id="contact" class="race-bg">
+<section id="contact" class="alt_bg">
   <div class="container">
-    <div class="contact-grid">
-      <div class="contact-info fade-in">
-        <h2 class="section-title">Contact</h2>
-        <p>Intéressé par un chiot ou simplement des informations ? Contactez l'élevage.</p>
+    <div class="contact_g">
+      <div class="info reveal">
+        <h2 class="sec_title">Contact</h2>
+        <p>{{ elevage.description_hero or ("Élevage " + elevage.race + ". N'hésitez pas à nous contacter pour toute information.") }}</p>
         <div class="phone">📞 {{ elevage.telephone }}</div>
-        <div class="contact-details">
-          <div>
-            <span class="label">📍 Lieu</span>
-            <span class="value">{{ elevage.departement or "France" }}</span>
-          </div>
-          <div>
-            <span class="label">🐕 Race</span>
-            <span class="value">{{ elevage.race }}</span>
-          </div>
-          {% if elevage.siren %}
-          <div>
-            <span class="label">🆔 SIREN</span>
-            <span class="value">{{ elevage.siren }}</span>
-          </div>
-          {% endif %}
+        <div class="dtl">
+          <div><span class="lb">📍 Lieu</span><span class="vl">{{ elevage.departement or "France" }}</span></div>
+          <div><span class="lb">🐕 Race</span><span class="vl">{{ elevage.race }}</span></div>
+          {% if elevage.siren %}<div><span class="lb">🆔 SIREN</span><span class="vl">{{ elevage.siren }}</span></div>{% endif %}
+          {% if elevage.code_postal %}<div><span class="lb">📮 Code</span><span class="vl">{{ elevage.code_postal }}</span></div>{% endif %}
         </div>
       </div>
-      <div class="fade-in" style="background: #FAF8F5; border-radius: 20px; padding: 40px; border: 1px solid #E8E0D8;">
-        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 24px;">
-          Une question ?
-        </h3>
-        <p style="color: #6B625A; line-height: 1.7; margin-bottom: 24px;">
-          N'hésitez pas à contacter {{ elevage.nom }} pour toute information sur la race 
-          ou pour connaître les disponibilités.
-        </p>
-        <a href="tel:{{ elevage.telephone }}" class="btn btn-primary" style="display: inline-flex;">
-          <i>📞</i> {{ elevage.telephone }}
-        </a>
+      <div class="contact_card reveal">
+        <h3>{{ elevage.nom }}</h3>
+        <p>Élevage {{ elevage.race }}{% if elevage.departement %} — {{ elevage.departement }}{% endif %}.</p>
+        <a href="tel:{{ elevage.telephone }}" class="btn btn_primary" style="display:block;text-align:center;">📞 {{ elevage.telephone }}</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="container">
-    <p>© 2026 — {{ elevage.nom }} — {{ elevage.race }}</p>
-    {% if elevage.siren %}
-    <p style="margin-top: 8px;">SIREN {{ elevage.siren }} | {{ elevage.departement or "France" }}</p>
-    {% endif %}
-    <p style="margin-top: 16px; font-size: 0.8rem; color: #8A7E73;">
-      Site réalisé avec ❤️ — Données issues de l'annonce Chien.com
-    </p>
-  </div>
+  <p>© 2026 — {{ elevage.nom }} — {{ elevage.race }}</p>
+  {% if elevage.siren %}<p>SIREN {{ elevage.siren }}</p>{% endif %}
+  <p style="margin-top:4px;font-size:.75rem;">{{ elevage.departement or "France" }}</p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  const observer = new IntersectionObserver(e => { e.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }); }, { threshold: .15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

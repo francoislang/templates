@@ -60,18 +60,17 @@ def generate_from_config(config_path: str):
 
 
 def generate_site(name: str, race: str, phone: str, city: str = "",
-                  website: str = ""):
-    """
-    Genere un site vitrine via YAML+Jinja2.
-    Retourne (slug, github_pages_url) ou None si pas de template pour cette race.
-    """
+                  website: str = "", description: str = "",
+                  siren: str = "", departement: str = "",
+                  photo_url: str = "",
+                  photos_race: list[str] = None) -> tuple | None:
+    """Genere un site vitrine via Jinja2 avec les donnees du scraper."""
     template_folder = BREED_TEMPLATE.get(race)
     if not template_folder:
         return None
 
     template_file = f"{template_folder}.html.j2"
-    template_path = config.REPO_ROOT / "_templates" / template_file
-    if not template_path.exists():
+    if not (config.REPO_ROOT / "_templates" / template_file).exists():
         return None
 
     slug = slugify(name)
@@ -79,53 +78,34 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
     target_dir.mkdir(exist_ok=True)
     target_file = target_dir / "index.html"
 
-    # Ne pas ecraser si le site existe deja
     if target_file.exists():
-        github_url = (
-            f"https://{config.GITHUB_REPO.split('/')[0]}.github.io"
-            f"/{config.GITHUB_REPO.split('/')[1]}/{slug}"
-        )
+        github_url = f"https://{config.GITHUB_REPO.split('/')[0]}.github.io/{config.GITHUB_REPO.split('/')[1]}/{slug}"
         return slug, github_url
 
-    # Construire les donnees YAML minimales pour Jinja2
+    ph = photos_race or []
     data = {
         "template": template_folder,
         "elevage": {
-            "nom": name,
-            "race": race,
-            "departement": city or "",
-            "region": city or "",
-            "code_postal": "",
-            "telephone": phone,
-            "siren": "",
-            "url": website or "",
-            "facebook": "",
-            "facebook_label": "",
-            "since": "",
-            "description_seo": f"Elevage {name} de {race} en France - Site vitrine officiel",
-            "description_hero": f"Elevage {name} — {race}",
-            "description_about": "",
+            "nom": name, "race": race,
+            "departement": departement or city or "",
+            "region": departement or city or "",
+            "code_postal": "", "telephone": phone,
+            "siren": siren or "", "url": website or "",
+            "facebook": "", "facebook_label": "", "since": "",
+            "description_seo": (description[:150] if description else f"Elevage {name} de {race}"),
+            "description_hero": (description[:200] if description else f"Elevage {name} — {race}"),
+            "description_about": description or "",
         },
-        "couleurs": {
-            "primaire": "#1B3A4B",
-            "accent": "#D4622A",
-            "fond": "#F7F4EF",
-        },
+        "couleurs": {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"},
         "photos": {
-            "hero": "",
-            "og": "",
-            "about_1": "",
-            "about_2": "",
-            "race": "",
-            "galerie": [],
+            "hero": photo_url or (ph[0] if ph else ""),
+            "og": photo_url or (ph[0] if ph else ""),
+            "about_1": ph[1] if len(ph) > 1 else (ph[0] if ph else ""),
+            "about_2": ph[2] if len(ph) > 2 else "",
+            "race": ph[3] if len(ph) > 3 else (ph[0] if ph else ""),
+            "galerie": ph[4:] if len(ph) > 4 else [],
         },
-        "reproducteurs": [
-            {"prenom": "Reproducteur", "sexe": "femelle", "role": "Lignee", "sexe_symbole": "♀", "photo": "", "description": ""},
-            {"prenom": "Reproducteur", "sexe": "male", "role": "Lignee", "sexe_symbole": "♂", "photo": "", "description": ""},
-        ],
-        "temoignages": [
-            {"texte": "", "auteur": "", "chiot": "", "avatar": ""},
-        ],
+        "reproducteurs": [], "temoignages": [],
     }
 
     # Rendre le template Jinja2
