@@ -1,606 +1,842 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Best of Farmdream - Élevage Rhodesian Ridgeback - Alpes-Maritimes</title>
-    <meta name="description" content="Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes. Découvrez notre histoire unique et nos magnifiques chiens aux racines rhodésiennes.">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="The Best of Farmdream - Élevage Rhodesian Ridgeback">
-    <meta property="og:description" content="Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes">
-    <meta property="og:image" content="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903">
-    <meta property="og:url" content="">
-    <meta property="og:type" content="website">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --terracotta: #C65D47;
-            --ocher: #D4A574;
-            --warm-sand: #F5E6D3;
-            --deep-brown: #8B4513;
-            --cream: #FAF6F0;
-            --charcoal: #2C2C2C;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--charcoal);
-            background-color: var(--cream);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(250, 246, 240, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--terracotta);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--charcoal);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--terracotta);
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(198, 93, 71, 0.3), rgba(139, 69, 19, 0.3)),
-                        url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease-out;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--terracotta);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(198, 93, 71, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(198, 93, 71, 0.4);
-        }
-        
-        /* Section Styles */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--deep-brown);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .section-title.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* About Section */
-        .about {
-            background: var(--warm-sand);
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .about-text {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.8s ease;
-        }
-        
-        .about-text.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .about-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--terracotta);
-            margin-bottom: 20px;
-        }
-        
-        .about-text p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .about-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateX(50px);
-            transition: all 0.8s ease;
-        }
-        
-        .about-image.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        /* Race Section */
-        .race {
-            background: var(--cream);
-        }
-        
-        .race-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .race-image {
-            position: relative;
-            overflow: hidden;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        .race-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .race-text h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--terracotta);
-            margin-bottom: 20px;
-        }
-        
-        .race-features {
-            list-style: none;
-            margin-top: 30px;
-        }
-        
-        .race-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(198, 93, 71, 0.2);
-            font-weight: 500;
-        }
-        
-        .race-features li:before {
-            content: "•";
-            color: var(--terracotta);
-            margin-right: 10px;
-            font-size: 1.2rem;
-        }
-        
-        /* Gallery Section */
-        .gallery {
-            background: var(--warm-sand);
-        }
-        
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-        
-        .gallery-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.7));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-        }
-        
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        
-        .gallery-text {
-            color: white;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-        }
-        
-        /* Contact Section */
-        .contact {
-            background: var(--deep-brown);
-            color: white;
-            text-align: center;
-        }
-        
-        .contact .section-title {
-            color: var(--ocher);
-        }
-        
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-        
-        .contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 40px 30px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .contact-item h4 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--ocher);
-        }
-        
-        .contact-item p {
-            font-size: 1.1rem;
-        }
-        
-        .phone-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        
-        .phone-link:hover {
-            color: var(--ocher);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--charcoal);
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .about-content,
-            .race-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "PetStore",
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>The Best of Farmdream — Élevage Rhodesian Ridgeback | Alpes-Maritimes, France</title>
+  <meta name="description" content="Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes. Tests génétiques, passeport européen, garantie légale 2 ans. Tél. 06.51.19.52.24.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://thebestoffarmdream.fr/">
+  <meta property="og:title"       content="The Best of Farmdream — Rhodesian Ridgeback, Alpes-Maritimes">
+  <meta property="og:description" content="Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes. Tests génétiques, passeport européen, garantie légale 2 ans.">
+  <meta property="og:image"       content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
         "name": "The Best of Farmdream",
-        "description": "Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes",
-        "telephone": "06.51.19.52.24",
+        "description": "Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes, France. Chiots de qualité, tests génétiques, passeport européen, garantie légale 2 ans.",
+        "telephone": "+33651195224",
         "address": {
-            "@type": "PostalAddress",
-            "addressRegion": "Alpes-Maritimes",
-            "addressCountry": "FR"
-        },
-        "image": "https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903"
+          "@type": "PostalAddress",
+          "addressLocality": "Alpes-Maritimes",
+          "addressCountry": "FR"
+        }
+      },
+      { "@type": "AnimalShelter", "name": "The Best of Farmdream — Élevage Rhodesian Ridgeback Alpes-Maritimes" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — The Best of Farmdream
+       Design : Art déco / Joaillier / Tons chauds
+       ============================================== */
+    :root {
+      --ony:  #2C1810;   /* brun profond */
+      --gld:  #D4A574;   /* or chaud rhodesian */
+      --amb:  #A0522D;   /* sienna / terre cuite */
+      --crm:  #F5EDE0;   /* parchemin */
+      --bg:   #FBF7F0;   /* ivoire chaud */
+      --stn:  #8B7355;   /* pierre sable */
+      --txt:  #2C1810;   /* texte */
+      --FD:   'Cinzel', serif;       /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #D4A574 0%, #E8C96A 45%, #A0522D 100%);
     }
-    </script>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">The Best of Farmdream</div>
-                <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#about">À propos</a></li>
-                    <li><a href="#race">La race</a></li>
-                    <li><a href="#gallery">Galerie</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- ORNEMENT DÉCORATIF — utilisé dans les section headers ---- */
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 0 auto .4rem;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gld-gradient);
+    }
+    .ornament .symbol {
+      font-size: 1.2rem; color: var(--gld);
+      font-family: var(--FD);
+    }
+
+    /* ==============================================
+       HEADER + NAVIGATION
+       ============================================== */
+    .main-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(251, 247, 240, .92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212, 165, 116, .15);
+      transition: all .3s ease;
+    }
+    .main-header.scrolled {
+      background: rgba(251, 247, 240, .96);
+      box-shadow: 0 2px 20px rgba(44, 24, 16, .08);
+    }
+    .header-content {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav);
+    }
+    .logo {
+      font-family: var(--FD); font-size: 1.5rem; font-weight: 600;
+      color: var(--gld);
+    }
+    .nav-list {
+      display: flex; gap: 2rem;
+    }
+    .nav-link {
+      font-weight: 500; font-size: .95rem;
+      transition: color .3s ease;
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--gld-gradient);
+      transition: width .3s ease;
+    }
+    .nav-link:hover { color: var(--gld); }
+    .nav-link:hover::after { width: 100%; }
+
+    .mobile-toggle { display: none; flex-direction: column; gap: 4px; }
+    .mobile-toggle span { width: 24px; height: 2px; background: var(--txt); transition: all .3s; }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .mobile-toggle { display: flex; }
+      .nav-list {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--bg); flex-direction: column; gap: 0;
+        padding: 1rem 0; border-top: 1px solid rgba(212, 165, 116, .2);
+        transform: translateY(-100%); opacity: 0; visibility: hidden;
+        transition: all .3s ease;
+      }
+      .nav-list.open {
+        transform: translateY(0); opacity: 1; visibility: visible;
+      }
+      .nav-link { padding: .8rem 2rem; display: block; }
+    }
+
+    /* ==============================================
+       HERO SECTION
+       ============================================== */
+    .hero {
+      height: 100vh; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-bg {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -2;
+    }
+    .hero-overlay {
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+      background: linear-gradient(135deg, rgba(44, 24, 16, .4) 0%, rgba(160, 82, 45, .3) 100%);
+    }
+    .hero-content {
+      text-align: center; color: white; z-index: 1;
+      max-width: 800px; padding: 0 2rem;
+    }
+    .hero-title {
+      font-family: var(--FD); font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700; margin-bottom: 1rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,.3);
+    }
+    .hero-subtitle {
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      font-weight: 300; margin-bottom: 2rem; opacity: .9;
+      text-shadow: 1px 1px 4px rgba(0,0,0,.3);
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: .8rem;
+      background: var(--gld-gradient); color: white;
+      padding: .8rem 2rem; border-radius: var(--r);
+      font-weight: 500; font-size: 1.1rem;
+      transition: all .3s ease; box-shadow: 0 4px 16px rgba(212, 165, 116, .3);
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 165, 116, .4);
+    }
+
+    /* ==============================================
+       SECTIONS COMMUNES
+       ============================================== */
+    .section {
+      padding: 5rem 0;
+    }
+    .container {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 3rem;
+    }
+    .section-title {
+      font-family: var(--FD); font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--ony); margin-bottom: .5rem; font-weight: 600;
+    }
+    .section-subtitle {
+      font-size: 1.2rem; color: var(--stn); font-weight: 300;
+    }
+
+    /* ==============================================
+       À PROPOS
+       ============================================== */
+    .about { background: white; }
+    .about-content {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-text h3 {
+      font-family: var(--FD); font-size: 1.8rem; color: var(--ony);
+      margin-bottom: 1rem; font-weight: 500;
+    }
+    .about-text p {
+      line-height: 1.7; color: var(--stn); font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .about-features {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin-top: 2rem;
+    }
+    .feature-item {
+      display: flex; align-items: center; gap: .8rem;
+      padding: 1rem; background: var(--bg); border-radius: var(--r);
+    }
+    .feature-icon {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--gld-gradient); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .feature-text {
+      font-weight: 500; color: var(--ony);
+    }
+    .about-image {
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 20px 40px rgba(44, 24, 16, .1);
+      height: 500px;
+    }
+
+    @media (max-width: 768px) {
+      .about-content { grid-template-columns: 1fr; gap: 2rem; }
+      .about-features { grid-template-columns: 1fr; }
+    }
+
+    /* ==============================================
+       RACE SECTION
+       ============================================== */
+    .race-content {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .race-info h3 {
+      font-family: var(--FD); font-size: 2rem; color: var(--ony);
+      margin-bottom: 1rem; font-weight: 500;
+    }
+    .race-info p {
+      line-height: 1.7; color: var(--stn); font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    .race-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .stat-item {
+      text-align: center; padding: 1.5rem; background: white;
+      border-radius: var(--r); box-shadow: 0 4px 20px rgba(44, 24, 16, .05);
+    }
+    .stat-number {
+      font-family: var(--FD); font-size: 2rem; font-weight: 600;
+      color: var(--gld); margin-bottom: .5rem;
+    }
+    .stat-label {
+      color: var(--stn); font-weight: 500;
+    }
+    .race-image {
+      border-radius: var(--r); overflow: hidden;
+      height: 500px;
+      box-shadow: 0 20px 40px rgba(44, 24, 16, .1);
+    }
+
+    @media (max-width: 768px) {
+      .race-content { grid-template-columns: 1fr; gap: 2rem; }
+      .race-stats { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    /* ==============================================
+       GALERIE
+       ============================================== */
+    .gallery { background: white; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative; aspect-ratio: 1; border-radius: var(--r);
+      overflow: hidden; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(44, 24, 16, .08);
+      transition: all .3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(44, 24, 16, .12);
+    }
+    .gallery-item::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(44, 24, 16, .2); opacity: 0; z-index: 1;
+      transition: opacity .3s ease;
+    }
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    /* ==============================================
+       CONTACT
+       ============================================== */
+    .contact {
+      background: linear-gradient(135deg, var(--ony) 0%, var(--amb) 100%);
+      color: white;
+    }
+    .contact-content {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start;
+    }
+    .contact-info h3 {
+      font-family: var(--FD); font-size: 1.8rem;
+      margin-bottom: 1.5rem; font-weight: 500;
+    }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255, 255, 255, .1); backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--gld); flex-shrink: 0;
+    }
+    .contact-text h4 {
+      font-weight: 600; margin-bottom: .5rem; color: var(--gld);
+    }
+    .contact-text p {
+      opacity: .9; line-height: 1.6;
+    }
+
+    .contact-form {
+      background: rgba(255, 255, 255, .05); backdrop-filter: blur(10px);
+      padding: 2rem; border-radius: var(--r);
+      border: 1px solid rgba(255, 255, 255, .1);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block; margin-bottom: .5rem; font-weight: 500;
+      color: var(--gld);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: .8rem; border: 1px solid rgba(255, 255, 255, .2);
+      background: rgba(255, 255, 255, .1); border-radius: var(--r);
+      color: white; font-family: inherit;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, .6);
+    }
+    .form-group textarea {
+      resize: vertical; min-height: 120px;
+    }
+    .form-submit {
+      width: 100%; padding: 1rem; background: var(--gld-gradient);
+      color: white; border-radius: var(--r); font-weight: 600;
+      transition: all .3s ease; font-size: 1.1rem;
+    }
+    .form-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 165, 116, .3);
+    }
+
+    @media (max-width: 768px) {
+      .contact-content { grid-template-columns: 1fr; gap: 3rem; }
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    .main-footer {
+      background: var(--ony); color: white; padding: 3rem 0 2rem;
+    }
+    .footer-content {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2rem;
+    }
+    .footer-about h4 {
+      font-family: var(--FD); font-size: 1.5rem; color: var(--gld);
+      margin-bottom: 1rem; font-weight: 500;
+    }
+    .footer-about p {
+      line-height: 1.6; opacity: .8;
+    }
+    .footer-links h4 {
+      font-weight: 600; margin-bottom: 1rem; color: var(--gld);
+    }
+    .footer-links ul li {
+      margin-bottom: .5rem;
+    }
+    .footer-links a {
+      opacity: .8; transition: all .3s ease;
+    }
+    .footer-links a:hover {
+      opacity: 1; color: var(--gld);
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      padding-top: 2rem; text-align: center; opacity: .6;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* ==============================================
+       SCROLL TO TOP
+       ============================================== */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--gld-gradient); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; opacity: 0; visibility: hidden;
+      transition: all .3s ease; z-index: 100;
+    }
+    .scroll-top.visible {
+      opacity: 1; visibility: visible;
+    }
+    .scroll-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 165, 116, .3);
+    }
+
+    /* ==============================================
+       RESPONSIVE ADJUSTMENTS
+       ============================================== */
+    @media (max-width: 480px) {
+      .section { padding: 3rem 0; }
+      .container { padding: 0 1rem; }
+      .hero-content { padding: 0 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="main-header" id="header">
+    <div class="header-content">
+      <a href="#" class="logo">The Best of Farmdream</a>
+      <nav class="main-nav">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="#hero" class="nav-link">Accueil</a></li>
+          <li><a href="#about" class="nav-link">À propos</a></li>
+          <li><a href="#race" class="nav-link">La race</a></li>
+          <li><a href="#gallery" class="nav-link">Galerie</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="mobile-toggle" id="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback The Best of Farmdream">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content reveal">
+      <h1 class="hero-title">The Best of Farmdream</h1>
+      <p class="hero-subtitle">Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes</p>
+      <a href="#contact" class="hero-cta">
+        <span>📞</span>
+        Nous contacter
+      </a>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <span class="symbol">◆</span>
+        </div>
+        <h2 class="section-title">Notre passion</h2>
+        <p class="section-subtitle">Un élevage familial dédié au Rhodesian Ridgeback</p>
+      </div>
+      
+      <div class="about-content">
+        <div class="about-text reveal">
+          <h3>Excellence et tradition</h3>
+          <p>
+            Bienvenue chez The Best of Farmdream, notre élevage familial situé dans le magnifique cadre des Alpes-Maritimes. Depuis des années, nous nous consacrons avec passion à l'élevage du Rhodesian Ridgeback, cette race majestueuse originaire d'Afrique du Sud.
+          </p>
+          <p>
+            Nos chiens évoluent dans un environnement privilégié, entourés d'amour et de soins attentifs. Chaque portée est élevée avec le plus grand soin, dans le respect des standards de la race et du bien-être animal.
+          </p>
+          
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon">🧬</div>
+              <span class="feature-text">Tests génétiques</span>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="accueil" class="hero">
-        <div class="hero-content">
-            <h1>The Best of Farmdream</h1>
-            <p>Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes</p>
-            <a href="#contact" class="cta-button">Nous contacter</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Notre Histoire</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Une Passion Née en Rhodésie</h3>
-                    <p>Derrière chaque chiot se cache une histoire... et la mienne est loin d'être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c'est là que notre passion pour cette race a pris racine.</p>
-                    <p>À mes débuts, le chemin fut semé d'embûches, mais une motivation constante m'a toujours guidée : approfondir ma connaissance des Rhodesian Ridgebacks.</p>
-                    <p>Aujourd'hui, dans les magnifiques Alpes-Maritimes, nous perpétuons cette tradition d'excellence et d'amour pour ces chiens exceptionnels.</p>
-                </div>
-                <div class="about-image">
-                    <img src="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903" alt="The Best of Farmdream">
-                </div>
+            <div class="feature-item">
+              <div class="feature-icon">📋</div>
+              <span class="feature-text">Passeport européen</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Race Section -->
-    <section id="race" class="race">
-        <div class="container">
-            <h2 class="section-title">Le Rhodesian Ridgeback</h2>
-            <div class="race-content">
-                <div class="race-image">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Rhodesian Ridgeback">
-                </div>
-                <div class="race-text">
-                    <h3>Le Chien Lion d'Afrique</h3>
-                    <p>Le Rhodesian Ridgeback est une race unique, originaire d'Afrique du Sud. Reconnaissable par sa crête dorsale caractéristique, ce chien allie élégance, force et loyauté.</p>
-                    <p>Développé pour chasser le lion en meute, le Ridgeback est un compagnon courageux et dévoué, parfaitement adapté à la vie de famille moderne.</p>
-                    
-                    <ul class="race-features">
-                        <li>Taille: 61-69 cm (mâles), 61-66 cm (femelles)</li>
-                        <li>Poids: 36-41 kg (mâles), 29-34 kg (femelles)</li>
-                        <li>Espérance de vie: 10-12 ans</li>
-                        <li>Caractère: Loyal, courageux, intelligent</li>
-                        <li>Particularité: Crête dorsale unique</li>
-                    </ul>
-                </div>
+            <div class="feature-item">
+              <div class="feature-icon">🏆</div>
+              <span class="feature-text">Lignées championnes</span>
             </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Nos Rhodesian Ridgebacks</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback 1">
-                    <div class="gallery-overlay">
-                        <div class="gallery-text">Magnificence naturelle</div>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Rhodesian Ridgeback 2">
-                    <div class="gallery-overlay">
-                        <div class="gallery-text">Élégance et puissance</div>
-                    </div>
-                </div>
+            <div class="feature-item">
+              <div class="feature-icon">❤️</div>
+              <span class="feature-text">Suivi personnalisé</span>
             </div>
+          </div>
         </div>
-    </section>
+        
+        <div class="about-image reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Élevage Rhodesian Ridgeback Alpes-Maritimes">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Contactez-nous</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h4>Téléphone</h4>
-                    <p><a href="tel:0651195224" class="phone-link">06.51.19.52.24</a></p>
-                </div>
-                <div class="contact-item">
-                    <h4>Localisation</h4>
-                    <p>Alpes-Maritimes<br>France</p>
-                </div>
-                <div class="contact-item">
-                    <h4>Élevage</h4>
-                    <p>The Best of Farmdream<br>Rhodesian Ridgeback</p>
-                </div>
+  <!-- LA RACE -->
+  <section class="section race" id="race">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <span class="symbol">◆</span>
+        </div>
+        <h2 class="section-title">Le Rhodesian Ridgeback</h2>
+        <p class="section-subtitle">Le lion hound d'Afrique du Sud</p>
+      </div>
+      
+      <div class="race-content">
+        <div class="race-image reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_3.jpg" alt="Rhodesian Ridgeback caractéristiques">
+        </div>
+        
+        <div class="race-info reveal">
+          <h3>Une race d'exception</h3>
+          <p>
+            Le Rhodesian Ridgeback est une race unique, reconnaissable par la crête caractéristique qui orne son dos. Originaire d'Afrique du Sud, ce chien était traditionnellement utilisé pour la chasse au lion, d'où son surnom de "lion hound".
+          </p>
+          <p>
+            Intelligent, loyal et protecteur, le Ridgeback est un compagnon exceptionnel pour la famille. Sa nature équilibrée en fait un chien aussi à l'aise dans l'action que dans la détente au foyer.
+          </p>
+          
+          <div class="race-stats">
+            <div class="stat-item">
+              <div class="stat-number">32-37 kg</div>
+              <div class="stat-label">Poids adulte</div>
             </div>
+            <div class="stat-item">
+              <div class="stat-number">61-69 cm</div>
+              <div class="stat-label">Taille au garrot</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">12-15 ans</div>
+              <div class="stat-label">Espérance de vie</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">★★★★★</div>
+              <div class="stat-label">Tempérament</div>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 The Best of Farmdream - Élevage Rhodesian Ridgeback</p>
+  <!-- GALERIE -->
+  <section class="section gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <span class="symbol">◆</span>
         </div>
-    </footer>
+        <h2 class="section-title">Notre galerie</h2>
+        <p class="section-subtitle">Découvrez nos magnifiques Rhodesian Ridgebacks</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_4.jpg" alt="Rhodesian Ridgeback 1">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_5.jpg" alt="Rhodesian Ridgeback 2">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_6.jpg" alt="Rhodesian Ridgeback 3">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_7.jpg" alt="Rhodesian Ridgeback 4">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_8.jpg" alt="Rhodesian Ridgeback 5">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_9.jpg" alt="Rhodesian Ridgeback 6">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_10.jpg" alt="Rhodesian Ridgeback 7">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_11.jpg" alt="Rhodesian Ridgeback 8">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rhodesian_ridgeback/rhodesian_ridgeback_12.jpg" alt="Rhodesian Ridgeback 9">
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <span class="symbol">◆</span>
+        </div>
+        <h2 class="section-title" style="color: white;">Nous contacter</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,.8);">Prêt à accueillir votre nouveau compagnon ?</p>
+      </div>
+      
+      <div class="contact-content">
+        <div class="contact-info reveal">
+          <h3>Prenons contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-text">
+              <h4>Téléphone</h4>
+              <p>06.51.19.52.24</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <h4>Localisation</h4>
+              <p>Alpes-Maritimes, France</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🏠</div>
+            <div class="contact-text">
+              <h4>Élevage</h4>
+              <p>Visite sur rendez-vous uniquement<br>
+              Respect du bien-être animal</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📋</div>
+            <div class="contact-text">
+              <h4>Nos garanties</h4>
+              <p>Tests génétiques • Passeport européen<br>
+              Garantie légale 2 ans • Suivi personnalisé</p>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form reveal">
+          <div class="form-group">
+            <label for="name">Nom *</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone" placeholder="Votre numéro">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet..."></textarea>
+          </div>
+          
+          <button type="submit" class="form-submit">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h4>The Best of Farmdream</h4>
+          <p>
+            Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes. 
+            Nous nous engageons à élever des chiens en parfaite santé, 
+            équilibrés et socialisés, pour le bonheur des familles.
+          </p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#hero">Accueil</a></li>
+            <li><a href="#about">À propos</a></li>
+            <li><a href="#race">La race</a></li>
+            <li><a href="#gallery">Galerie</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+33651195224">06.51.19.52.24</a></li>
+            <li><a href="#contact">Formulaire de contact</a></li>
+            <li>Alpes-Maritimes, France</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 The Best of Farmdream. Tous droits réservés. Élevage de Rhodesian Ridgeback.</p>
+      </div>
+    </div>
+  </footer>
 
-        // Observe elements for animation
-        document.querySelectorAll('.section-title, .about-text, .about-image, .gallery-item').forEach(el => {
-            observer.observe(el);
-        });
+  <!-- SCROLL TO TOP -->
+  <button class="scroll-top" id="scrollTop">↑</button>
 
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+  <script>
+    // Navigation mobile
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const navList = document.getElementById('nav-list');
+    
+    mobileToggle.addEventListener('click', () => {
+      navList.classList.toggle('open');
+    });
 
-        // Gallery item staggered animation
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        galleryItems.forEach((item, index) => {
-            item.style.transitionDelay = `${index * 0.2}s`;
-        });
-    </script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scroll pour les liens de navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Fermer le menu mobile si ouvert
+          navList.classList.remove('open');
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Scroll to top button
+    const scrollTopBtn = document.getElementById('scrollTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Form handling
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Ici vous pouvez ajouter la logique d'envoi du formulaire
+      alert('Merci pour votre message ! Nous vous recontacterons rapidement.');
+      
+      // Reset form
+      this.reset();
+    });
+  </script>
 </body>
 </html>
