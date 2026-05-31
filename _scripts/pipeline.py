@@ -25,7 +25,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 import config
 import scraper
-import notion
+import crm       # GitHub Projects (remplace notion)
 import telegram
 import generator
 
@@ -195,14 +195,14 @@ def run(dry_run: bool = False):
 
     # 2. Filtrer les deja dans Notion
     print("📋 Verification Notion (doublons)...")
-    existing_phones = notion.get_existing_phones() if not dry_run else set()
+    existing = crm.get_existing_phones() if not dry_run else set()
 
     def normalize(p):
         return p.replace(" ", "").replace("-", "").replace(".", "")
 
     new_breeders = [
         b for b in candidates
-        if b.get("phone") and normalize(b["phone"]) not in existing_phones
+        if b.get("phone") and normalize(b["phone"]) not in existing
     ][:config.SITES_PER_DAY]
 
     print(f"   -> {len(new_breeders)} nouveaux eleveurs a traiter")
@@ -254,7 +254,7 @@ def run(dry_run: bool = False):
             notes_parts.append(f"Pitch: {pitch}")
             notes = " | ".join(notes_parts)
 
-            notion.add_entry(
+            crm.add_entry(
                 elevage=name, races=breeder["races"], phone=phone,
                 demo_url=demo_url, notes=notes
             )

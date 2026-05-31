@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 import config
 import telegram
-import notion
+import crm  # GitHub CRM (remplace notion)
 import scraper
 import cloudinary_check
 import generator
@@ -63,7 +63,7 @@ def run() -> None:
     telegram.send("🔍 Agent démarré — recherche d'eleveurs sur chien.com…")
 
     # 1. Recuperer les telephones deja dans Notion
-    existing = notion.get_existing_phones()
+    existing = crm.get_existing_phones()
 
     # 2. Scraper chien.com (PAGES_TO_SCRAPE pages, max SITES_PER_DAY eleveurs)
     candidates = scraper.scrape(pages=config.PAGES_TO_SCRAPE, max_results=config.SITES_PER_DAY)
@@ -125,7 +125,7 @@ def run() -> None:
         notes_parts.append(f"Pitch: {pitch}")
         notes = " | ".join(notes_parts) if notes_parts else None
 
-        notion.add_entry(
+        crm.add_entry(
             elevage=name, races=races, phone=phone,
             demo_url=demo_url, notes=notes
         )
