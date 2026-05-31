@@ -44,15 +44,15 @@ PROJECT_ID = "PVT_kwHOBcibjc4BZSav"
 
 # Mapping statut -> option ID (a completer apres configuration des colonnes)
 STATUS_OPTIONS = {
-    "Nouveau": None,
-    "A contacter": None,
-    "En discussion": None,
-    "Devis envoye": None,
-    "Devis signe": None,
-    "Facture envoyee": None,
-    "Facture payee": None,
-    "Site livre": None,
-    "Perdu": None,
+    "Nouveau": "0653063d",
+    "A contacter": "291531de",
+    "En discussion": "a105cdf6",
+    "Devis envoye": "a2d9cc78",
+    "Devis signe": "66334337",
+    "Facture envoyee": "9ceca521",
+    "Facture payee": "eb490bde",
+    "Site livre": "effcf55f",
+    "Perdu": "2e252a0e",
 }
 
 
