@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kawaii Mame Shiba — Élevage Shiba Inu | France</title>
+  <meta name="description" content="Elevage Kawaii Mame Shiba de Shiba Inu en France - Site vitrine officiel">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kawaii Mame Shiba — Shiba Inu">
+  <meta property="og:description" content="Elevage Kawaii Mame Shiba de Shiba Inu en France - Site vitrine officiel">
+  <meta property="og:image" content="">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #FAF8F5;
+      color: #2C2420;
+      overflow-x: hidden;
+    }
+    img { display: block; width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(44, 36, 32, 0.08);
+    }
+    nav .container {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 72px;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #4A6B5D; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: #6B625A; transition: color 0.3s; }
+    .nav-links a:hover { color: #4A6B5D; }
+
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #E8E0D8 0%, #FAF8F5 50%, #F0EAE2 100%);
+      padding-top: 72px;
+    }
+    .hero .container {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+      align-items: center;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem; font-weight: 700; line-height: 1.1;
+      color: #2C2420; margin-bottom: 8px;
+    }
+    .hero-content .race-tag {
+      display: inline-block; background: #4A6B5D; color: #FAF8F5;
+      padding: 6px 16px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 500; margin-bottom: 24px;
+    }
+    .hero-content p { font-size: 1.1rem; line-height: 1.7; color: #6B625A; margin-bottom: 32px; }
+    .hero-content .location {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; color: #8A7E73; margin-bottom: 24px;
+    }
+    .hero-image { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(44, 36, 32, 0.15); }
+    .hero-image img { height: 600px; object-fit: cover; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px; border-radius: 12px;
+      font-weight: 600; font-size: 0.95rem;
+      transition: all 0.3s; border: none; cursor: pointer;
+    }
+    .btn-primary { background: #4A6B5D; color: #FAF8F5; }
+    .btn-primary:hover { background: #3D5B4F; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 107, 93, 0.25); }
+    .btn-primary i { font-style: normal; }
+    .btn-outline { background: transparent; color: #4A6B5D; border: 2px solid #4A6B5D; }
+    .btn-outline:hover { background: #4A6B5D; color: #FAF8F5; }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 32px;
+      margin-top: 48px; padding-top: 32px;
+      border-top: 1px solid rgba(44, 36, 32, 0.1);
+    }
+    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: #4A6B5D; }
+    .stat-label { font-size: 0.85rem; color: #8A7E73; margin-top: 4px; }
+
+    section { padding: 100px 0; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 600; margin-bottom: 16px; color: #2C2420; }
+    .section-subtitle { font-size: 1.05rem; color: #8A7E73; max-width: 600px; line-height: 1.7; margin-bottom: 48px; }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text p { font-size: 1rem; line-height: 1.8; color: #5A524A; margin-bottom: 16px; }
+    .about-image { border-radius: 20px; overflow: hidden; box-shadow: 0 12px 40px rgba(44, 36, 32, 0.1); }
+
+    .race-bg { background: #F0EAE2; }
+    .race-content { max-width: 800px; margin: 0 auto; text-align: center; }
+    .race-content p { font-size: 1.05rem; line-height: 1.8; color: #5A524A; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 16px; }
+    .contact-info p { color: #5A524A; line-height: 1.7; margin-bottom: 8px; }
+    .contact-info .phone { font-size: 1.5rem; font-weight: 600; color: #4A6B5D; margin: 16px 0; }
+    .contact-details { margin-top: 24px; }
+    .contact-details div { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E8E0D8; }
+    .contact-details div:last-child { border-bottom: none; }
+    .contact-details .label { color: #8A7E73; min-width: 100px; }
+    .contact-details .value { color: #2C2420; font-weight: 500; }
+
+    .galerie-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .galerie-grid img { height: 280px; object-fit: cover; border-radius: 12px; }
+
+    footer { background: #2C2420; color: #B5ADA5; padding: 48px 0; text-align: center; }
+    footer p { font-size: 0.85rem; line-height: 1.6; }
+    footer a { color: #E8E0D8; text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .hero .container { grid-template-columns: 1fr; gap: 32px; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .galerie-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      section { padding: 64px 0; }
+      .section-title { font-size: 2rem; }
+      .hero-image img { height: 400px; }
+    }
+
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <span class="nav-logo">Kawaii Mame Shiba</span>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#race">La race</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <span class="race-tag">Shiba Inu</span>
+      <h1>Kawaii Mame Shiba</h1>
+      <p class="location">
+        📍 France
+      </p>
+      <p>Elevage Kawaii Mame Shiba — Shiba Inu</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary"><i>📞</i> Me contacter</a>
+        <a href="#about" class="btn btn-outline">En savoir plus</a>
+      </div>
+      <div class="stats">
+        <div>
+          <div class="stat-value">Shiba Inu</div>
+          <div class="stat-label">Race</div>
+        </div>
+        
+        
+      </div>
+    </div>
+    <div class="hero-image fade-in">
+      <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg" alt="Kawaii Mame Shiba">
+    </div>
+  </div>
+</section>
+
+
+
+<section id="race" class="race-bg">
+  <div class="container">
+    <div class="race-content fade-in">
+      <h2 class="section-title">Le Shiba Inu</h2>
+      <p>
+        Shiba Inu est une race de chien reconnue pour ses qualités exceptionnelles.
+        Chaque élevage sélectionne ses reproducteurs avec soin pour préserver les meilleures 
+        caractéristiques de la race.
+      </p>
+      <br>
+      <p>
+        Pour en savoir plus sur cette race, n'hésitez pas à contacter directement l'élevage 
+        qui saura vous renseigner sur le standard, le caractère et les besoins spécifiques 
+        du Shiba Inu.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="contact" class="race-bg">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <h2 class="section-title">Contact</h2>
+        <p>Intéressé par un chiot ou simplement des informations ? Contactez l'élevage.</p>
+        <div class="phone">📞 07.56.80.93.38</div>
+        <div class="contact-details">
+          <div>
+            <span class="label">📍 Lieu</span>
+            <span class="value">France</span>
+          </div>
+          <div>
+            <span class="label">🐕 Race</span>
+            <span class="value">Shiba Inu</span>
+          </div>
+          
+        </div>
+      </div>
+      <div class="fade-in" style="background: #FAF8F5; border-radius: 20px; padding: 40px; border: 1px solid #E8E0D8;">
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 24px;">
+          Une question ?
+        </h3>
+        <p style="color: #6B625A; line-height: 1.7; margin-bottom: 24px;">
+          N'hésitez pas à contacter Kawaii Mame Shiba pour toute information sur la race 
+          ou pour connaître les disponibilités.
+        </p>
+        <a href="tel:07.56.80.93.38" class="btn btn-primary" style="display: inline-flex;">
+          <i>📞</i> 07.56.80.93.38
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 — Kawaii Mame Shiba — Shiba Inu</p>
+    
+    <p style="margin-top: 16px; font-size: 0.8rem; color: #8A7E73;">
+      Site réalisé avec ❤️ — Données issues de l'annonce Chien.com
+    </p>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
