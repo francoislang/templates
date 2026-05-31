@@ -60,6 +60,7 @@ SLUG_TO_RACE = {
     "elevage-braque-allemand": "Braque Allemand",
     "elevage-teckel": "Teckel",
     "elevage-pomsky": "Pomsky",
+    "elevage-rhodesian-ridgeback": "Rhodesian Ridgeback",
     "elevage-alaskan-malamute": "Alaskan Malamute",
     "elevage-berger-blanc-suisse": "Berger Blanc Suisse",
     "elevage-berger-belge-malinois": "Malinois",
