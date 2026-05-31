@@ -183,9 +183,10 @@ def run(dry_run: bool = False):
     """Execute le pipeline complet."""
     telegram.send("🔍 Pipeline demarre — recherche d'eleveurs...")
 
-    # 1. Recuperer les telephones existants (pour dedup)
+    # 1. Recuperer les telephones et noms existants (pour dedup)
     print("📋 Recuperation des existants pour dedup...")
-    existing = crm.get_existing_phones() if not dry_run else set()
+    existing_phones = crm.get_existing_phones() if not dry_run else set()
+    existing_names = crm.get_existing_names() if not dry_run else set()
 
     def normalize(p):
         return p.replace(" ", "").replace("-", "").replace(".", "")
@@ -213,8 +214,10 @@ def run(dry_run: bool = False):
             if not profile or not profile.get("phone"):
                 continue
             
-            if normalize(profile["phone"]) in existing:
-                continue  # deja connu, on passe au suivant
+            if normalize(profile["phone"]) in existing_phones:
+                continue  # deja connu par telephone
+            if profile["name"].strip().lower() in existing_names:
+                continue  # deja connu par nom d'elevage
             
             new_breeders.append(profile)
             print(f"      #{len(new_breeders)}: {profile['name']} ({profile['races'][0]}) — {profile['phone']}")
