@@ -96,7 +96,7 @@ def get_existing_phones() -> set[str]:
             break
         for issue in r.json():
             # Chercher le telephone dans le corps de l issue
-            body = issue.get("body", "") + issue.get("title", "")
+            body = (issue.get("body") or "") + (issue.get("title") or "")
             phones_found = re.findall(r'0[1-9](?:[\s.\-]?\d{2}){4}', body)
             for p in phones_found:
                 phones.add(_extract_number(p))
