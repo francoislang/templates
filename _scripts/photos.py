@@ -211,41 +211,52 @@ def search_images(query: str, count: int = 5, sources: list[str] = None) -> list
     return unique[:count]
 
 
-def upload_to_cloudinary(image_url: str, public_id: str) -> str | None:
+def upload_to_cloudinary(image_url: str, public_id: str, race: str = "") -> str | None:
     """
     Uploade une image vers Cloudinary via API signee.
-    Retourne l'URL Cloudinary ou None.
+    Utilise le dossier photo-{race} si fourni.
     """
     if not image_url or not config.CLOUDINARY_API_SECRET:
         return None
 
     import hashlib
     timestamp = int(time.time())
-    folder = "breeds"
+    
+    # Dossier: photo-{race} par ex photo-carlin
+    safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_") if race else ""
+    folder = f"photo-{safe_race}" if safe_race else ""
     
     # Signature de l'upload
     params = {
         "timestamp": timestamp,
         "public_id": public_id,
-        "folder": folder,
     }
-    signature_parts = "&".join(f"{k}={v}" for k, v in sorted(params.items()))
-    signature_parts += config.CLOUDINARY_API_SECRET
-    signature = hashlib.sha1(signature_parts.encode()).hexdigest()
+    if folder:
+        params["folder"] = folder
+    
+    sig_str = "&".join(f"{k}={v}" for k, v in sorted(params.items()))
+    sig_str += config.CLOUDINARY_API_SECRET
+    signature = hashlib.sha1(sig_str.encode()).hexdigest()
     
     data = {
         "file": image_url,
         "api_key": config.CLOUDINARY_API_KEY,
         "timestamp": timestamp,
         "public_id": public_id,
-        "folder": folder,
         "signature": signature,
     }
+    if folder:
+        data["folder"] = folder
+    
     try:
         r = requests.post(CLOUDINARY_UPLOAD_URL, data=data, timeout=30)
         r.raise_for_status()
         result = r.json()
-        return result.get("secure_url") or result.get("url")
+        url = result.get("secure_url") or result.get("url")
+        # Ajouter les transformations q_auto/f_auto comme les autres photos
+        if url and "/image/upload/" in url:
+            url = url.replace("/image/upload/", "/image/upload/q_auto/f_auto/")
+        return url
     except Exception as e:
         print(f"  ⚠️ Cloudinary upload: {e}", file=sys.stderr)
         return None
@@ -284,7 +295,7 @@ def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False)
     for i, img in enumerate(images[:count]):
         safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_")
         public_id = f"{safe_race}_{i+1}"
-        cloud_url = upload_to_cloudinary(img["url"], public_id)
+        cloud_url = upload_to_cloudinary(img["url"], public_id, race=race)
         if cloud_url:
             urls.append(cloud_url)
             print(f"  ✅ [{i+1}/{count}] Uploadee: {cloud_url[:60]}...")
@@ -311,15 +322,11 @@ def get_cloudinary_photos_for_race(race: str) -> list[str]:
         return []
 
     try:
-        # Construire la signature pour l API Admin
-        timestamp = int(time.time())
-        folder = f"breeds/"
-        
-        # Simplifie: on verifie si des URLs standard existent deja
-        # en testant l existence du premier fichier
+        # Dans le dossier photo-{race}
+        folder_name = f"photo-{safe_race}"
         test_url = (
             f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
-            f"image/upload/q_auto/f_auto/breeds/{safe_race}_1.jpg"
+            f"image/upload/q_auto/f_auto/{folder_name}/{safe_race}_1.jpg"
         )
         r = requests.head(test_url, timeout=5)
         if r.status_code == 200:
@@ -328,7 +335,7 @@ def get_cloudinary_photos_for_race(race: str) -> list[str]:
             for i in range(1, 16):
                 url = (
                     f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
-                    f"image/upload/q_auto/f_auto/breeds/{safe_race}_{i}.jpg"
+                    f"image/upload/q_auto/f_auto/{folder_name}/{safe_race}_{i}.jpg"
                 )
                 urls.append(url)
             # Verifier combien existent reellement
