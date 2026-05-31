@@ -183,30 +183,51 @@ def run(dry_run: bool = False):
     """Execute le pipeline complet."""
     telegram.send("🔍 Pipeline demarre — recherche d'eleveurs...")
 
-    # 1. Scraper
-    print("📡 Scraping chien.com...")
-    candidates = scraper.scrape(pages=config.PAGES_TO_SCRAPE,
-                                max_results=config.SITES_PER_DAY)
-    print(f"   -> {len(candidates)} eleveurs potentiels trouves")
-
-    if not candidates:
-        telegram.send("ℹ️ Aucun eleveur trouve aujourd'hui.")
-        return
-
-    # 2. Filtrer les deja dans Notion
-    print("📋 Verification Notion (doublons)...")
+    # 1. Recuperer les telephones existants (pour dedup)
+    print("📋 Recuperation des existants pour dedup...")
     existing = crm.get_existing_phones() if not dry_run else set()
 
     def normalize(p):
         return p.replace(" ", "").replace("-", "").replace(".", "")
 
-    new_breeders = [
-        b for b in candidates
-        if b.get("phone") and normalize(b["phone"]) not in existing
-    ][:config.SITES_PER_DAY]
-
-    print(f"   -> {len(new_breeders)} nouveaux eleveurs a traiter")
-
+    # 2. Scraper profil par profil jusqu'a trouver 10 nouveaux
+    print("📡 Scraping chien.com profil par profil...")
+    new_breeders = []
+    page = 1
+    max_pages = 20  # securite: ne pas scraper plus de 20 pages
+    SITES_PER_DAY = config.SITES_PER_DAY
+    
+    while len(new_breeders) < SITES_PER_DAY and page <= max_pages:
+        profile_urls = scraper.fetch_listing_page(page)
+        if not profile_urls:
+            print(f"   Page {page} vide, arret du scraping")
+            break
+        
+        print(f"   Page {page}: {len(profile_urls)} profils trouves")
+        
+        for url in profile_urls:
+            if len(new_breeders) >= SITES_PER_DAY:
+                break
+            
+            profile = scraper.fetch_profile(url)
+            if not profile or not profile.get("phone"):
+                continue
+            
+            if normalize(profile["phone"]) in existing:
+                continue  # deja connu, on passe au suivant
+            
+            new_breeders.append(profile)
+            print(f"      #{len(new_breeders)}: {profile['name']} ({profile['races'][0]}) — {profile['phone']}")
+            import time
+            time.sleep(scraper.DELAY)
+        
+        page += 1
+        if len(new_breeders) < SITES_PER_DAY:
+            import time
+            time.sleep(2)
+    
+    print(f"   -> {len(new_breeders)} nouveaux eleveurs trouves sur {page-1} page(s)")
+    
     if not new_breeders:
         telegram.send("ℹ️ Aucun nouvel eleveur (deja tous dans Notion).")
         return
