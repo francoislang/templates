@@ -1,1040 +1,783 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>The Best of Farmdream — Élevage Rhodesian Ridgeback | Alpes-Maritimes</title>
-  <meta name="description" content="Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes. Chiots LOF, élevés en maison, accompagnement personnalisé. Tel. 06.51.19.52.24.">
-
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website">
-  <meta property="og:url"         content="">
-  <meta property="og:title"       content="The Best of Farmdream — Rhodesian Ridgeback, Alpes-Maritimes">
-  <meta property="og:description" content="Élevage familial de Rhodesian Ridgeback — Derrière chaque chiot se cache une histoire unique.">
-  <meta property="og:image"       content="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
-
-  <!-- Schema.org -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": ["LocalBusiness", "AnimalShelter"],
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Best of Farmdream - Élevage Rhodesian Ridgeback - Alpes-Maritimes</title>
+    <meta name="description" content="Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes. Découvrez notre histoire unique et nos chiens d'exception.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "PetStore",
         "name": "The Best of Farmdream",
-        "description": "Élevage de Rhodesian Ridgeback en Alpes-Maritimes",
-        "telephone": "06.51.19.52.24",
+        "description": "Élevage de Rhodesian Ridgeback dans les Alpes-Maritimes",
         "address": {
-          "@type": "PostalAddress",
-          "addressRegion": "Alpes-Maritimes",
-          "addressCountry": "FR"
+            "@type": "PostalAddress",
+            "addressLocality": "Alpes-Maritimes",
+            "addressCountry": "FR"
+        },
+        "telephone": "06.51.19.52.24",
+        "url": "https://thebestoffarmdream.fr",
+        "makesOffer": {
+            "@type": "Offer",
+            "itemOffered": {
+                "@type": "Product",
+                "name": "Chiot Rhodesian Ridgeback"
+            }
         }
-      }
-    ]
-  }
-  </script>
+    }
+    </script>
 
-  <style>
-    /* ==============================================
-       VARIABLES — The Best of Farmdream
-       Palette : Terre cuite / Ocre / Savane africaine
-       ============================================== */
-    :root {
-      --terracotta: #B8432F;
-      --terracotta-light: #C8653A;
-      --ocre:      #D49A3F;
-      --ocre-dark: #B87D2A;
-      --ocre-gradient: linear-gradient(135deg, #D49A3F 0%, #E8BF60 40%, #B87D2A 100%);
-      --savane:    #2C1810;
-      --savane-light: #3D2317;
-      --sienne:    #7A4E2D;
-      --ivoire:    #F8F0E0;
-      --parchemin: #EDE4D0;
-      --bg:        #FAF5EE;
-      --text:      #2C1810;
-      --muted:     #8A7060;
-      --beige:     #E8DDCC;
-      --FD:        'Playfair Display', serif;
-      --FN:        'Raleway', sans-serif;
-      --nav:       72px;
-      --r:         4px;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--FN); background: var(--bg); color: var(--text); overflow-x: hidden; }
-    img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+        :root {
+            --primary-color: #B8734D;
+            --secondary-color: #D4A574;
+            --accent-color: #8B4513;
+            --dark-color: #2C1810;
+            --light-color: #F5F0E8;
+            --text-dark: #3A2317;
+            --text-light: #6B4E37;
+        }
 
-    /* ---- SCROLL REVEAL ---- */
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
-    .reveal.on { opacity: 1; transform: none; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    /* ---- ORNEMENT DÉCORATIF AFRICAIN ---- */
-    .ornament {
-      display: flex; align-items: center; justify-content: center;
-      gap: .8rem; margin: 0 auto .4rem;
-    }
-    .ornament::before, .ornament::after {
-      content: '';
-      display: block;
-      height: 1px;
-      width: 40px;
-      background: var(--ocre-gradient);
-    }
-    .ornament-diamond {
-      width: 8px; height: 8px;
-      background: var(--terracotta);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-    .ornament-diamond-gold {
-      width: 6px; height: 6px;
-      background: var(--ocre);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-color);
+        }
 
-    /* ---- BOUTONS ---- */
-    .btn {
-      display: inline-block; padding: .8rem 2.2rem;
-      font-family: var(--FN); font-weight: 600; font-size: .72rem;
-      letter-spacing: .2em; text-transform: uppercase;
-      transition: background .25s, color .25s, transform .18s, box-shadow .25s;
-      border-radius: var(--r);
-    }
-    .btn--ocre {
-      background: var(--ocre-gradient);
-      color: var(--savane);
-      box-shadow: 0 4px 20px rgba(212,154,63,.35);
-    }
-    .btn--ocre:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(212,154,63,.5);
-      filter: brightness(1.08);
-    }
-    .btn--savane {
-      background: var(--savane);
-      color: var(--ivoire);
-      border: 1px solid rgba(212,154,63,.25);
-    }
-    .btn--savane:hover {
-      background: var(--savane-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(44,24,16,.4);
-      border-color: var(--ocre);
-    }
-    .btn--outline {
-      background: transparent;
-      color: var(--ivoire);
-      border: 1px solid rgba(212,154,63,.5);
-    }
-    .btn--outline:hover {
-      background: rgba(212,154,63,.12);
-      border-color: var(--ocre);
-      transform: translateY(-2px);
-    }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-    /* ---- NAV ---- */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: var(--nav);
-      background: rgba(44,24,16,.95);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(212,154,63,.15);
-      display: flex; align-items: center; padding: 0 4vw;
-      transition: box-shadow .3s, border-color .3s;
-    }
-    nav.scrolled {
-      box-shadow: 0 4px 32px rgba(0,0,0,.5);
-      border-bottom-color: rgba(212,154,63,.3);
-    }
-    .nav__logo {
-      font-family: var(--FD); font-size: 1.05rem; font-weight: 600;
-      color: var(--ocre); line-height: 1.1; margin-right: auto;
-      letter-spacing: .04em;
-    }
-    .nav__logo span {
-      display: block; font-family: var(--FN); font-size: .55rem;
-      font-weight: 500; color: rgba(248,240,224,.45);
-      letter-spacing: .22em; text-transform: uppercase; margin-top: .15rem;
-    }
-    .nav__links { display: flex; align-items: center; gap: 2rem; }
-    .nav__links > li > a {
-      font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
-      color: rgba(248,240,224,.7); transition: color .2s; position: relative;
-    }
-    .nav__links > li > a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px; background: var(--ocre); transition: width .25s;
-    }
-    .nav__links > li > a:hover { color: var(--ocre); }
-    .nav__links > li > a:hover::after { width: 100%; }
-    .nav__cta { margin-left: 1.2rem; }
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(184, 115, 77, 0.1);
+        }
 
-    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
-    .nav__burger span { width: 22px; height: 1.5px; background: var(--ocre); border-radius: 2px; transition: transform .25s, opacity .25s; }
-    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .nav__burger.open span:nth-child(2) { opacity: 0; }
-    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    .nav__mobile {
-      display: none; position: fixed; inset: 0; z-index: 90;
-      background: var(--savane); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
-      flex-direction: column; gap: .2rem; overflow-y: auto;
-    }
-    .nav__mobile.open { display: flex; }
-    .nav__mobile a {
-      font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-      color: rgba(248,240,224,.7); padding: .85rem 0;
-      border-bottom: 1px solid rgba(212,154,63,.1);
-      transition: color .2s;
-    }
-    .nav__mobile a:hover { color: var(--ocre); }
-    .nav__mobile .btn { margin-top: 1.2rem; text-align: center; }
+        .header.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
 
-    /* ---- HERO ---- */
-    .hero {
-      position: relative; height: 100svh; min-height: 620px;
-      display: flex; align-items: center; justify-content: center;
-      margin-top: var(--nav); overflow: hidden;
-    }
-    .hero__bg {
-      position: absolute; inset: 0;
-      background: url('https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903') center/cover no-repeat;
-      transform: scale(1.06); transition: transform 12s ease;
-    }
-    .hero.loaded .hero__bg { transform: scale(1); }
-    .hero__over {
-      position: absolute; inset: 0;
-      background: linear-gradient(
-        170deg,
-        rgba(44,24,16,.88) 0%,
-        rgba(44,24,16,.68) 40%,
-        rgba(44,24,16,.88) 100%
-      );
-    }
-    .hero__grain {
-      position: absolute; inset: 0; opacity: .04; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    }
-    /* Lignes décoratives latérales — style savane */
-    .hero__deco-left, .hero__deco-right {
-      position: absolute; top: 50%; width: 1px; height: 35%;
-      background: linear-gradient(to bottom, transparent, rgba(212,154,63,.4), transparent);
-      transform: translateY(-50%);
-    }
-    .hero__deco-left { left: 5vw; }
-    .hero__deco-right { right: 5vw; }
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
 
-    /* Motif triangulaire décoratif — inspiration africaine */
-    .hero__pattern {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent, transparent 15px,
-        rgba(212,154,63,.05) 15px, rgba(212,154,63,.05) 16px
-      );
-      pointer-events: none;
-    }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
 
-    .hero__content {
-      position: relative; z-index: 1; color: var(--ivoire);
-      text-align: center; padding: 0 1.5rem; max-width: 820px;
-    }
-    .hero__eyebrow {
-      font-family: var(--FN); font-size: .62rem; font-weight: 600;
-      letter-spacing: .32em; text-transform: uppercase;
-      color: var(--ocre); margin-bottom: 2rem;
-      display: flex; align-items: center; justify-content: center; gap: 1rem;
-    }
-    .hero__eyebrow::before, .hero__eyebrow::after {
-      content: ''; display: block; width: 48px; height: 1px;
-      background: linear-gradient(to right, transparent, var(--ocre));
-    }
-    .hero__eyebrow::after { background: linear-gradient(to left, transparent, var(--ocre)); }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
 
-    /* Cadre décoratif ocre inspiré des motifs africains */
-    .hero__title-wrap {
-      position: relative; display: inline-block;
-      padding: 1.6rem 2.8rem;
-      margin-bottom: 1.4rem;
-    }
-    .hero__title-wrap::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 50px; height: 50px;
-      border-color: rgba(212,154,63,.55);
-      border-style: solid;
-      border-width: 1px 0 0 1px;
-    }
-    .hero__title-wrap::after {
-      content: '';
-      position: absolute;
-      bottom: 0; right: 0;
-      width: 50px; height: 50px;
-      border-color: rgba(212,154,63,.55);
-      border-style: solid;
-      border-width: 0 1px 1px 0;
-    }
-    .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl {
-      position: absolute;
-      width: 50px; height: 50px;
-      border-color: rgba(212,154,63,.55);
-      border-style: solid;
-    }
-    .hero__title-wrap .corner-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
-    .hero__title-wrap .corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+        .nav-links a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
 
-    .hero__title {
-      font-family: var(--FD); font-size: clamp(2.4rem, 6vw, 5.8rem);
-      font-weight: 600; line-height: 1.05;
-      background: var(--ocre-gradient);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: .03em;
-    }
-    .hero__subtitle {
-      font-family: var(--FN); font-size: .7rem; font-weight: 600;
-      letter-spacing: .32em; text-transform: uppercase;
-      color: rgba(248,240,224,.55); margin-bottom: 1.6rem;
-    }
-    .hero__sub {
-      font-size: clamp(.88rem, 1.5vw, 1rem); font-weight: 300;
-      color: rgba(248,240,224,.78); line-height: 1.82;
-      max-width: 540px; margin: 0 auto 2.6rem;
-    }
-    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .hero__scroll {
-      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-      color: rgba(248,240,224,.35); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
-      display: flex; flex-direction: column; align-items: center; gap: .5rem;
-    }
-    .hero__scroll::after {
-      content: '';
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(212,154,63,.5), transparent);
-      animation: scrollLine 2.2s ease-in-out infinite;
-    }
-    @keyframes scrollLine {
-      0%,100%{opacity:0;transform:scaleY(0);transform-origin:top}
-      50%{opacity:1;transform:scaleY(1)}
-    }
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
 
-    /* ---- BANDEAU STATS ---- */
-    .bandeau {
-      background: var(--savane);
-      color: rgba(248,240,224,.6);
-      display: grid; grid-template-columns: repeat(4,1fr);
-      border-top: 1px solid rgba(212,154,63,.2);
-      border-bottom: 1px solid rgba(212,154,63,.12);
-    }
-    .ban__item {
-      padding: 1.8rem 1rem; text-align: center;
-      border-right: 1px solid rgba(212,154,63,.08);
-      position: relative;
-    }
-    .ban__item:last-child { border-right: none; }
-    .ban__item::before {
-      content: '';
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 28px; height: 1px; background: var(--ocre); opacity: .5;
-    }
-    .ban__n {
-      font-family: var(--FD); font-size: 1.4rem; font-weight: 600;
-      color: var(--ocre); line-height: 1; margin-bottom: .4rem;
-      letter-spacing: .04em;
-    }
-    .ban__l {
-      font-family: var(--FN); font-size: .58rem; font-weight: 600;
-      letter-spacing: .18em; text-transform: uppercase; opacity: .5;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    /* ---- SECTIONS GÉNÉRIQUES ---- */
-    section { padding: 7rem 4vw; }
-    .sec__head { text-align: center; margin-bottom: 4rem; }
-    .sec__eyebrow {
-      display: inline-flex; align-items: center; gap: .8rem;
-      font-family: var(--FN); font-size: .6rem; font-weight: 700;
-      letter-spacing: .26em; text-transform: uppercase; color: var(--terracotta);
-      margin-bottom: 1rem;
-    }
-    .sec__eyebrow::before, .sec__eyebrow::after {
-      content: ''; display: block; width: 28px; height: 1px;
-      background: var(--terracotta); opacity: .5;
-    }
-    .sec__head::after {
-      content: '◇';
-      display: block;
-      color: var(--ocre);
-      font-size: .6rem;
-      letter-spacing: .5em;
-      margin-top: 1.2rem;
-      opacity: .45;
-    }
-    .sec__title {
-      font-family: var(--FD); font-size: clamp(1.9rem, 3.8vw, 3rem);
-      font-weight: 600; color: var(--savane); line-height: 1.1;
-      letter-spacing: .02em;
-    }
-    .sec__title em { font-style: italic; color: var(--terracotta); }
-    .sec__sub {
-      max-width: 560px; margin: 1rem auto 0;
-      font-family: var(--FN); font-size: .92rem; color: var(--muted);
-      line-height: 1.85; font-weight: 300;
-    }
-    .sec__head--light .sec__title { color: var(--ivoire); }
-    .sec__head--light .sec__sub { color: rgba(248,240,224,.55); }
-    .sec__head--light::after { opacity: .35; }
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-    /* ---- HISTOIRE (About) ---- */
-    .histoire { background: var(--bg); }
-    .histoire__grid {
-      max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-    }
-    .histoire__imgs { position: relative; height: 540px; }
-    .histoire__main {
-      position: absolute; left: 0; top: 0; width: 72%; height: 78%;
-      border-radius: var(--r); overflow: hidden;
-      box-shadow: 0 28px 70px rgba(44,24,16,.22);
-      border: 1px solid rgba(212,154,63,.15);
-    }
-    .histoire__accent {
-      position: absolute; right: 0; bottom: 0; width: 44%; height: 50%;
-      border-radius: var(--r); overflow: hidden;
-      box-shadow: 0 14px 40px rgba(0,0,0,.18);
-      border: 3px solid var(--bg);
-      outline: 1px solid rgba(212,154,63,.2);
-    }
-    /* Badge médaillon africain */
-    .histoire__medal {
-      position: absolute; right: 4%; top: 28%; z-index: 2;
-      width: 80px; height: 80px; border-radius: 50%;
-      background: var(--ocre-gradient); color: var(--savane);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      box-shadow: 0 8px 32px rgba(212,154,63,.5);
-      font-family: var(--FD); font-size: .7rem; font-weight: 700; text-align: center; line-height: 1.2;
-      letter-spacing: .04em;
-    }
-    .histoire__medal small {
-      font-family: var(--FN); font-size: .42rem; font-weight: 700;
-      letter-spacing: .14em; text-transform: uppercase; margin-top: .2rem; opacity: .75;
-    }
-    .histoire__text h2 {
-      font-family: var(--FD); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-      font-weight: 600; margin-bottom: 1.4rem; line-height: 1.15;
-      letter-spacing: .02em;
-    }
-    .histoire__text h2 em { font-style: italic; color: var(--terracotta); }
-    .histoire__text p {
-      font-family: var(--FN); font-weight: 300;
-      color: var(--muted); line-height: 1.9; margin-bottom: 1.1rem; font-size: .95rem;
-    }
-    .histoire__list { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .7rem; }
-    .histoire__li {
-      display: flex; align-items: flex-start; gap: .95rem;
-      font-family: var(--FN); font-size: .9rem; color: var(--muted);
-      line-height: 1.65; font-weight: 300;
-    }
-    .histoire__li-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--ocre-gradient); flex-shrink: 0; margin-top: .55rem;
-      box-shadow: 0 0 6px rgba(212,154,63,.5);
-    }
-    .histoire__li strong { color: var(--savane); font-weight: 600; }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(184, 115, 77, 0.8), rgba(212, 165, 116, 0.6));
+        }
 
-    /* ---- LA RACE ---- */
-    .race { background: var(--parchemin); }
-    .race__wrap {
-      max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
-    }
-    .race__img {
-      position: relative; height: 540px; border-radius: var(--r); overflow: hidden;
-      box-shadow: 0 28px 65px rgba(44,24,16,.18);
-      border: 1px solid rgba(212,154,63,.18);
-    }
-    .race__img img { position: absolute; inset: 0; height: 100%; }
-    .race__img::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(44,24,16,.3) 0%, transparent 50%);
-    }
-    .race__content p {
-      font-family: var(--FN); font-weight: 300; font-size: .94rem;
-      line-height: 1.9; color: var(--muted); margin-bottom: 1rem;
-    }
-    .race__info-box {
-      display: flex; align-items: flex-start; gap: .9rem;
-      background: var(--savane); color: rgba(248,240,224,.8);
-      border-radius: var(--r); padding: 1.3rem 1.5rem;
-      margin: 1.8rem 0; font-family: var(--FN); font-size: .86rem; line-height: 1.75; font-weight: 300;
-      border-left: 2px solid var(--ocre);
-    }
-    .race__info-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
-    .race__info-box strong {
-      color: var(--ocre); font-weight: 600; display: block;
-      margin-bottom: .25rem; font-size: .88rem; letter-spacing: .04em;
-    }
-    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 2.2rem; }
-    .race__spec {
-      background: #fff; border-radius: var(--r); padding: .9rem 1.1rem;
-      border-left: 2px solid var(--ocre);
-      box-shadow: 0 2px 10px rgba(44,24,16,.05);
-    }
-    .race__spec strong {
-      display: block; font-family: var(--FN); font-size: .56rem; font-weight: 700;
-      letter-spacing: .16em; text-transform: uppercase; color: #b8a090; margin-bottom: .28rem;
-    }
-    .race__spec span {
-      font-family: var(--FD); font-size: .9rem; font-weight: 500; color: var(--savane);
-    }
-    .race__quote {
-      font-family: var(--FD); font-style: italic;
-      font-size: 1.15rem; line-height: 1.6; color: var(--terracotta);
-      padding: 1.5rem 0 .5rem;
-      text-align: center;
-    }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1s ease-out;
+        }
 
-    /* ---- GALERIE ---- */
-    .galerie { background: var(--bg); }
-    .gal__grid {
-      max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
-    }
-    .gi { overflow: hidden; border-radius: var(--r); position: relative; cursor: pointer; }
-    .gi img { height: 230px; transition: transform .6s cubic-bezier(.16,1,.3,1); }
-    .gi:nth-child(1), .gi:nth-child(4) { grid-row: span 2; }
-    .gi:nth-child(1) img, .gi:nth-child(4) img { height: 100%; }
-    .gi:hover img { transform: scale(1.08); }
-    .gi__over {
-      position: absolute; inset: 0;
-      background: rgba(44,24,16,.55);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .3s;
-    }
-    .gi:hover .gi__over { opacity: 1; }
-    .gi__over span {
-      color: var(--ocre); font-family: var(--FD); font-size: 1.6rem;
-      width: 48px; height: 48px; border: 1px solid rgba(212,154,63,.5);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
 
-    /* ---- LIGHTBOX ---- */
-    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.96); align-items: center; justify-content: center; }
-    #lb.open { display: flex; }
-    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: var(--r); border: 1px solid rgba(212,154,63,.2); }
-    #lb-close { position: absolute; top: 1.4rem; right: 1.8rem; color: var(--ocre); font-size: 1.6rem; cursor: pointer; opacity: .6; font-family: var(--FD); }
-    #lb-close:hover { opacity: 1; }
-    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--ocre); font-size: 2.4rem; padding: 1.2rem; opacity: .45; cursor: pointer; }
-    #lb-prev:hover, #lb-next:hover { opacity: 1; }
-    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
 
-    /* ---- CONTACT ---- */
-    .contact {
-      background: linear-gradient(135deg, var(--savane) 0%, var(--savane-light) 100%);
-      color: var(--ivoire);
-    }
-    .contact .sec__eyebrow { color: var(--ocre); }
-    .contact .sec__eyebrow::before, .contact .sec__eyebrow::after { background: var(--ocre); }
-    .contact .sec__title { color: var(--ivoire); }
-    .contact .sec__title em { color: var(--ocre); }
-    .contact .sec__sub { color: rgba(248,240,224,.5); }
-    .contact .sec__head::after { opacity: .3; content: '◇'; color: var(--ocre); }
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(184, 115, 77, 0.3);
+        }
 
-    .contact__wrap {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start;
-    }
-    .contact__info h3 {
-      font-family: var(--FD); font-size: 1.6rem; font-weight: 600;
-      margin-bottom: 1.6rem; line-height: 1.15; letter-spacing: .02em;
-      color: var(--ocre);
-    }
-    .cinfo { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.2rem; }
-    .cinfo__item { display: flex; align-items: flex-start; gap: .9rem; }
-    .cinfo__ico {
-      width: 40px; height: 40px; border-radius: var(--r);
-      background: rgba(248,240,224,.08); display: flex; align-items: center; justify-content: center;
-      font-size: .95rem; flex-shrink: 0;
-      border: 1px solid rgba(212,154,63,.2);
-    }
-    .cinfo__label {
-      font-family: var(--FN); font-size: .58rem; font-weight: 700;
-      letter-spacing: .16em; text-transform: uppercase;
-      color: rgba(212,154,63,.6); margin-bottom: .14rem;
-    }
-    .cinfo__val {
-      font-family: var(--FN); font-size: .93rem; font-weight: 600; color: var(--ivoire);
-    }
-    .cinfo__val a { transition: color .2s; }
-    .cinfo__val a:hover { color: var(--ocre); }
-    .cinfo__sub { font-size: .78rem; font-weight: 300; color: rgba(248,240,224,.4); margin-top: .1rem; }
-    .certif-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: rgba(248,240,224,.06); color: rgba(248,240,224,.7); border-radius: 2px;
-      padding: .5rem 1.1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase;
-      border: 1px solid rgba(212,154,63,.25);
-    }
-    .certif-badge span { color: var(--ocre); font-size: .9rem; }
-    .contact__form {
-      background: rgba(248,240,224,.06);
-      border-radius: var(--r); padding: 2.6rem;
-      border: 1px solid rgba(212,154,63,.15);
-    }
-    .form__title {
-      font-family: var(--FD); font-size: 1.3rem; font-weight: 600;
-      margin-bottom: .4rem; color: var(--ocre); letter-spacing: .02em;
-    }
-    .form__sub {
-      font-family: var(--FN); font-size: .84rem; font-weight: 300;
-      color: rgba(248,240,224,.5); margin-bottom: 2rem; line-height: 1.65;
-    }
-    .form__group { display: flex; flex-direction: column; gap: .34rem; margin-bottom: 1rem; }
-    .form__group label {
-      font-family: var(--FN); font-size: .66rem; font-weight: 700;
-      letter-spacing: .1em; text-transform: uppercase; color: rgba(248,240,224,.7);
-    }
-    .form__group input, .form__group textarea {
-      width: 100%; padding: .75rem 1rem;
-      border: 1px solid rgba(212,154,63,.2); border-radius: var(--r);
-      font-family: var(--FN); font-size: .88rem; font-weight: 300;
-      color: var(--ivoire); background: rgba(248,240,224,.04);
-      outline: none; transition: border-color .2s, box-shadow .2s;
-    }
-    .form__group input:focus, .form__group textarea:focus {
-      border-color: var(--ocre); box-shadow: 0 0 0 3px rgba(212,154,63,.12);
-    }
-    .form__group textarea { resize: vertical; min-height: 115px; }
-    .form__submit { width: 100%; margin-top: .4rem; padding: .95rem; font-size: .78rem; }
-    .form__rgpd {
-      font-family: var(--FN); font-size: .7rem; font-weight: 300;
-      color: rgba(248,240,224,.35); text-align: center;
-      margin-top: .85rem; line-height: 1.55;
-    }
-    .phone-big {
-      font-family: var(--FD); font-size: 1.6rem; font-weight: 600;
-      color: var(--ocre); margin: 1.2rem 0 1.8rem;
-      letter-spacing: .04em;
-    }
+        .cta-button:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(184, 115, 77, 0.4);
+        }
 
-    /* ---- FOOTER ---- */
-    footer {
-      background: var(--savane);
-      color: rgba(248,240,224,.45);
-      padding: 4.5rem 4vw 2.2rem;
-    }
-    .footer__wrap {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3.5rem;
-    }
-    .footer__logo {
-      font-family: var(--FD); font-size: 1.2rem; font-weight: 600;
-      color: var(--ocre); letter-spacing: .04em; margin-bottom: .55rem;
-    }
-    .footer__logo span {
-      display: block; font-family: var(--FN); font-size: .54rem;
-      letter-spacing: .24em; text-transform: uppercase;
-      color: rgba(248,240,224,.25); margin-top: .25rem;
-    }
-    .footer__logo-line {
-      width: 48px; height: 1px;
-      background: linear-gradient(to right, var(--ocre), transparent);
-      margin: .8rem 0 1.1rem;
-    }
-    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.78; margin-bottom: .3rem; }
-    .footer__col h4 {
-      font-family: var(--FN); font-size: .58rem; font-weight: 700;
-      letter-spacing: .22em; text-transform: uppercase;
-      color: rgba(248,240,224,.7); margin-bottom: 1.2rem;
-      padding-bottom: .5rem;
-      border-bottom: 1px solid rgba(212,154,63,.15);
-    }
-    .footer__col a {
-      display: block; font-family: var(--FN); font-size: .8rem;
-      font-weight: 300; margin-bottom: .42rem; transition: color .2s;
-    }
-    .footer__col a:hover { color: var(--ocre); }
-    .footer__bottom {
-      max-width: 1200px; margin: 2.2rem auto 0; padding-top: 1.5rem;
-      border-top: 1px solid rgba(212,154,63,.1);
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem;
-    }
-    .footer__bottom p { font-size: .72rem; margin: 0; }
-    .footer__bottom a { color: var(--ocre); }
-    .footer__bottom a:hover { color: var(--ivoire); }
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
 
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 1020px) {
-      .nav__links, .nav__cta { display: none; }
-      .nav__burger { display: flex; }
-      .histoire__grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .race__wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact__wrap { grid-template-columns: 1fr; gap: 3rem; }
-      .footer__wrap { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
-      .histoire__imgs { height: 360px; }
-      .race__img { height: 340px; }
-      .bandeau { grid-template-columns: repeat(2,1fr); }
-      .ban__item:nth-child(2) { border-right: none; }
-      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(212,154,63,.08); }
-    }
-    @media (max-width: 700px) {
-      section { padding: 4.5rem 1.4rem; }
-      .gal__grid { grid-template-columns: 1fr 1fr; }
-      .gi:nth-child(1), .gi:nth-child(4) { grid-row: span 1; }
-      .gi:nth-child(1) img, .gi:nth-child(4) img { height: 230px; }
-      .hero__btns { flex-direction: column; align-items: center; }
-      .race__specs { grid-template-columns: 1fr; }
-      .hero__title-wrap { padding: 1.2rem 1.6rem; }
-      .hero__title-wrap::before, .hero__title-wrap::after,
-      .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { width: 30px; height: 30px; }
-      .hero__deco-left, .hero__deco-right { display: none; }
-      .footer__wrap { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 480px) {
-      .bandeau { grid-template-columns: 1fr 1fr; }
-    }
-  </style>
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(135deg, var(--light-color), #FBF8F3);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(184, 115, 77, 0.2);
+            transform: rotate(2deg);
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* Race Section */
+        .race {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .race .section-title {
+            color: white;
+        }
+
+        .race-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .race-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .race-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .race-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(184, 115, 77, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(184, 115, 77, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(184, 115, 77, 0.8), rgba(212, 165, 116, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--light-color), #FBF8F3);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(184, 115, 77, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--light-color);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-text h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(184, 115, 77, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E5E5E5;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--accent-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-bg {
+                background-attachment: scroll;
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item {
+                min-height: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="logo">The Best of Farmdream</a>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#histoire">Notre Histoire</a></li>
+                <li><a href="#race">La Race</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<!-- ====== NAVIGATION ====== -->
-<nav id="nav">
-  <a href="#" class="nav__logo">
-    The Best of Farmdream
-    <span>Rhodesian Ridgeback · Alpes-Maritimes</span>
-  </a>
-  <ul class="nav__links">
-    <li><a href="#histoire">Histoire</a></li>
-    <li><a href="#race">La Race</a></li>
-    <li><a href="#galerie">Galerie</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="tel:0651195224" class="btn btn--ocre nav__cta">📞 Appeler</a>
-  <button class="nav__burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="nav__mobile" id="mob-nav">
-  <a href="#histoire">Histoire</a>
-  <a href="#race">La Race</a>
-  <a href="#galerie">Galerie</a>
-  <a href="#contact">Contact</a>
-  <a href="tel:0651195224" class="btn btn--ocre">📞 06.51.19.52.24</a>
-</div>
-
-<!-- ====== HERO ====== -->
-<section class="hero" id="hero">
-  <div class="hero__bg"></div>
-  <div class="hero__over"></div>
-  <div class="hero__grain"></div>
-  <div class="hero__pattern"></div>
-  <div class="hero__deco-left"></div>
-  <div class="hero__deco-right"></div>
-  <div class="hero__content">
-    <div class="hero__eyebrow">Alpes-Maritimes · France</div>
-    <div class="hero__title-wrap">
-      <div class="corner-tr"></div>
-      <div class="corner-bl"></div>
-      <h1 class="hero__title">The Best of Farmdream</h1>
-    </div>
-    <p class="hero__subtitle">Élevage Familial de Rhodesian Ridgeback</p>
-    <p class="hero__sub">Chiens au tempérament unique — drôles, espiègles, fidèles. Élevés au cœur de la maison, dans les Alpes-Maritimes.</p>
-    <div class="hero__btns">
-      <a href="#contact" class="btn btn--ocre">Me contacter</a>
-      <a href="#histoire" class="btn btn--outline">Découvrir mon histoire</a>
-    </div>
-  </div>
-  <div class="hero__scroll">Découvrir</div>
-</section>
-
-<!-- ====== BANDEAU STATS ====== -->
-<div class="bandeau">
-  <div class="ban__item reveal">
-    <div class="ban__n">Rhodesian Ridgeback</div>
-    <div class="ban__l">Race élevée</div>
-  </div>
-  <div class="ban__item reveal" style="transition-delay:.08s">
-    <div class="ban__n">Particulier</div>
-    <div class="ban__l">Statut</div>
-  </div>
-  <div class="ban__item reveal" style="transition-delay:.16s">
-    <div class="ban__n">LOF</div>
-    <div class="ban__l">Livre des Origines</div>
-  </div>
-  <div class="ban__item reveal" style="transition-delay:.24s">
-    <div class="ban__n">Alpes-Maritimes</div>
-    <div class="ban__l">Localisation</div>
-  </div>
-</div>
-
-<!-- ====== HISTOIRE (About) ====== -->
-<section class="histoire" id="histoire">
-  <div class="histoire__grid">
-    <div class="histoire__imgs reveal">
-      <div class="histoire__main">
-        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237579/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="The Best of Farmdream — Rhodesian Ridgeback">
-      </div>
-      <div class="histoire__accent">
-        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback — The Best of Farmdream">
-      </div>
-      <div class="histoire__medal">
-        ❖<small>Passion</small>
-      </div>
-    </div>
-    <div class="histoire__text reveal" style="transition-delay:.15s">
-      <p class="sec__eyebrow">Notre histoire</p>
-      <h2>Une passion née en <em>Rhodésie</em></h2>
-      <p>Derrière chaque chiot se cache une histoire… et la mienne est loin d'être ordinaire ! Mon compagnon de vie a grandi en Rhodésie, et c'est là que notre passion pour cette race a pris racine. À mes débuts, le chemin fut semé d'embûches, mais une motivation constante m'a toujours guidée : approfondir ma connaissance des Rhodesian Ridgebacks.</p>
-      <p>Ces chiens ont un tempérament unique : drôles et espiègles, ils adoptent parfois des positions de sommeil surprenantes, boudent la pluie, et possèdent bien d'autres particularités. La construction de la confiance est primordiale. Au début maladroits, nos chiens apprennent à nos côtés, mais quand la confiance s'installe, elle devient indéfectible.</p>
-      <div class="histoire__list">
-        <div class="histoire__li"><div class="histoire__li-dot"></div><div><strong>Passionnée depuis toujours</strong> — une histoire d'amour avec la race qui a commencé en Rhodésie</div></div>
-        <div class="histoire__li"><div class="histoire__li-dot"></div><div><strong>Chiens élevés en maison</strong> — nos protégés grandissent entourés d'attention et de soins</div></div>
-        <div class="histoire__li"><div class="histoire__li-dot"></div><div><strong>Accompagnement à vie</strong> — suivi personnalisé, bien après l'adoption</div></div>
-        <div class="histoire__li"><div class="histoire__li-dot"></div><div><strong>Identification LOF</strong> — puce, vaccins, vermifugation, examen vétérinaire</div></div>
-      </div>
-      <a href="#contact" class="btn btn--savane">Prendre contact</a>
-    </div>
-  </div>
-</section>
-
-<!-- ====== LA RACE ====== -->
-<section class="race" id="race">
-  <div class="race__wrap">
-    <div class="race__img reveal">
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback — portrait">
-    </div>
-    <div class="race__content reveal" style="transition-delay:.12s">
-      <p class="sec__eyebrow">La race</p>
-      <h2 class="sec__title">Le <em>Rhodesian Ridgeback</em></h2>
-      <p>Le Rhodesian Ridgeback est une race de chien d'origine sud-africaine, développée dans la région de l'actuel Zimbabwe (anciennement Rhodésie). Son nom vient de la crête (« ridge ») de poils qui pousse à contre-sens le long de son dos — une caractéristique unique partagée avec le seul Rhodesian Ridgeback et le Thai Ridgeback.</p>
-      <p>Race de travail polyvalente, le Rhodesian Ridgeback était utilisé par les Boers et les tribus locales pour la chasse au gros gibier, notamment le lion — d'où son surnom de « Lion Dog ». C'est un chien puissant, athlétique, élégant, au caractère digne et affectueux.</p>
-      <div class="race__info-box">
-        <div class="race__info-ico">🦁</div>
-        <div>
-          <strong>Le chien au cœur de lion</strong>
-          Le Rhodesian Ridgeback est un compagnon fidèle, courageux mais doux. Il possède un tempérament équilibré : calme à la maison, énergique en extérieur. Il est connu pour son humour et ses positions de sommeil surprenantes.
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">The Best of Farmdream</h1>
+            <p class="hero-subtitle">Élevage passionné de Rhodesian Ridgeback</p>
+            <a href="#contact" class="cta-button">Nous Contacter</a>
         </div>
-      </div>
-      <div class="race__specs">
-        <div class="race__spec"><strong>Origine</strong><span>Afrique du Sud 🇿🇦</span></div>
-        <div class="race__spec"><strong>Taille</strong><span>61–69 cm</span></div>
-        <div class="race__spec"><strong>Poids</strong><span>30–40 kg</span></div>
-        <div class="race__spec"><strong>Longévité</strong><span>10–12 ans</span></div>
-        <div class="race__spec"><strong>Robe</strong><span>Froment clair à rouge</span></div>
-        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 6 — Chiens courants</span></div>
-      </div>
-      <a href="#contact" class="btn btn--savane">En savoir plus</a>
-    </div>
-  </div>
-  <div class="race__quote reveal">
-    "Un tempérament unique : drôles et espiègles, ils adoptent parfois des positions de sommeil surprenantes, boudent la pluie, et possèdent bien d'autres particularités."
-  </div>
-</section>
+    </section>
 
-<!-- ====== GALERIE ====== -->
-<section class="galerie" id="galerie">
-  <div class="sec__head">
-    <p class="sec__eyebrow">Galerie</p>
-    <h2 class="sec__title">Moments <em>Farmdream</em></h2>
-    <p class="sec__sub">La vie de nos Rhodesian Ridgebacks dans les Alpes-Maritimes.</p>
-  </div>
-  <div class="gal__grid">
-    <div class="gi" onclick="openLb(this)"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237579/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="The Best of Farmdream — Galerie"><div class="gi__over"><span>+</span></div></div>
-    <div class="gi" onclick="openLb(this)"><img src="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903" alt="The Best of Farmdream"><div class="gi__over"><span>+</span></div></div>
-    <div class="gi" onclick="openLb(this)"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback portrait"><div class="gi__over"><span>+</span></div></div>
-    <div class="gi" onclick="openLb(this)"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237579/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Rhodesian Ridgeback"><div class="gi__over"><span>+</span></div></div>
-    <div class="gi" onclick="openLb(this)"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback"><div class="gi__over"><span>+</span></div></div>
-    <div class="gi" onclick="openLb(this)"><img src="https://upload.chien.com/img/23-106786-the-best-of-farmdream.jpg?1754839903" alt="The Best of Farmdream"><div class="gi__over"><span>+</span></div></div>
-  </div>
-</section>
-
-<!-- Lightbox -->
-<div id="lb" role="dialog" aria-label="Photo agrandie">
-  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
-  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
-  <img id="lb-img" src="" alt="">
-  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
-</div>
-
-<!-- ====== CONTACT ====== -->
-<section class="contact" id="contact">
-  <div class="sec__head sec__head--light">
-    <p class="sec__eyebrow">Contact</p>
-    <h2 class="sec__title">Me <em>contacter</em></h2>
-    <p class="sec__sub">Pour toute question, réservation ou simplement échanger sur la race, n'hésitez pas à me joindre.</p>
-  </div>
-  <div class="contact__wrap">
-    <div class="contact__info reveal">
-      <h3>The Best of Farmdream</h3>
-      <div class="cinfo">
-        <div class="cinfo__item">
-          <div class="cinfo__ico">📍</div>
-          <div>
-            <div class="cinfo__label">Localisation</div>
-            <div class="cinfo__val">Alpes-Maritimes<br>France</div>
-          </div>
+    <!-- About Section -->
+    <section class="section about" id="histoire">
+        <div class="container">
+            <h2 class="section-title">Notre Histoire</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Derrière chaque chiot se cache une histoire... et la mienne est loin d'être ordinaire !</p>
+                    <p>Mon compagnon de vie a grandi en Rhodésie, et c'est là que notre passion pour cette race exceptionnelle a pris racine. Cette terre africaine, berceau du Rhodesian Ridgeback, nous a transmis l'amour authentique de ces chiens majestueux.</p>
+                    <p>À mes débuts, le chemin fut semé d'embûches, mais une motivation constante m'a toujours guidée : approfondir ma connaissance des Rhodesian Ridgebacks. Chaque jour passé avec nos chiens enrichit notre compréhension de cette race fascinante.</p>
+                    <p>Aujourd'hui, dans les magnifiques Alpes-Maritimes, nous perpétuons cette tradition d'excellence, en élevant des Rhodesian Ridgebacks d'exception avec tout l'amour et le respect qu'ils méritent.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback The Best of Farmdream" loading="lazy">
+                </div>
+            </div>
         </div>
-        <div class="cinfo__item">
-          <div class="cinfo__ico">📞</div>
-          <div>
-            <div class="cinfo__label">Téléphone</div>
-            <div class="cinfo__val"><a href="tel:0651195224">06.51.19.52.24</a></div>
-            <div class="cinfo__sub">Appelez-moi pour tout renseignement</div>
-          </div>
+    </section>
+
+    <!-- Race Section -->
+    <section class="section race" id="race">
+        <div class="container">
+            <h2 class="section-title">Le Rhodesian Ridgeback</h2>
+            <div class="race-grid">
+                <div class="race-card">
+                    <h3>Origines Africaines</h3>
+                    <p>Originaire d'Afrique du Sud, le Rhodesian Ridgeback était utilisé pour la chasse au lion. Cette race exceptionnelle allie courage, intelligence et loyauté indéfectible.</p>
+                </div>
+                <div class="race-card">
+                    <h3>Caractère Noble</h3>
+                    <p>Dignité naturelle, tempérament équilibré et intelligence remarquable font du Rhodesian Ridgeback un compagnon exceptionnel pour les familles actives.</p>
+                </div>
+                <div class="race-card">
+                    <h3>La Crête Distinctive</h3>
+                    <p>Sa caractéristique unique : une crête de poils qui pousse à contre-sens le long de la colonne vertébrale, signature distinctive de cette race majestueuse.</p>
+                </div>
+                <div class="race-card">
+                    <h3>Compagnon Fidèle</h3>
+                    <p>Protecteur naturel, le Rhodesian Ridgeback est un gardien vigilant et un compagnon affectueux, créant des liens profonds avec sa famille.</p>
+                </div>
+            </div>
         </div>
-        <div class="cinfo__item">
-          <div class="cinfo__ico">🐕</div>
-          <div>
-            <div class="cinfo__label">Race</div>
-            <div class="cinfo__val">Rhodesian Ridgeback</div>
-          </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="galerie">
+        <div class="container">
+            <h2 class="section-title">Nos Rhodesian Ridgebacks</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237577/photo-rhodesian_ridgeback/rhodesian_ridgeback_1.jpg" alt="Rhodesian Ridgeback 1" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Excellence & Beauté</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780237579/photo-rhodesian_ridgeback/rhodesian_ridgeback_2.jpg" alt="Rhodesian Ridgeback 2" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span>Noblesse & Grâce</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="cinfo__item">
-          <div class="cinfo__ico">🏠</div>
-          <div>
-            <div class="cinfo__label">Statut</div>
-            <div class="cinfo__val">Particulier</div>
-            <div class="cinfo__sub">Élevage familial passionné</div>
-          </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h3>Téléphone</h3>
+                            <p><a href="tel:0651195224" style="color: var(--text-dark); text-decoration: none;">06.51.19.52.24</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h3>Localisation</h3>
+                            <p>Alpes-Maritimes, France</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🐕</div>
+                        <div class="contact-text">
+                            <h3>Spécialité</h3>
+                            <p>Rhodesian Ridgeback d'exception</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Parlez-nous de votre projet..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Envoyer le message</button>
+                </form>
+            </div>
         </div>
-      </div>
-      <div class="certif-badge"><span>✦</span> Élevage familial · Alpes-Maritimes · LOF</div>
+    </section>
 
-      <div class="phone-big">📞 06.51.19.52.24</div>
-      <a href="tel:0651195224" class="btn btn--ocre" style="display:inline-block;">Appeler maintenant</a>
-    </div>
-
-    <div class="contact__form reveal" style="transition-delay:.15s">
-      <div class="form__title">Une question ?</div>
-      <div class="form__sub">Appelez-moi au <strong style="color:var(--ocre);">06.51.19.52.24</strong> ou laissez-moi un message ici.</div>
-      <form action="#" method="post">
-        <div class="form__group">
-          <label for="name">Nom *</label>
-          <input type="text" id="name" name="name" required placeholder="Votre nom">
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>The Best of Farmdream</h3>
+                    <p>Élevage passionné de Rhodesian Ridgeback dans les Alpes-Maritimes. Une histoire unique, des chiens d'exception.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📞 06.51.19.52.24</p>
+                    <p>📍 Alpes-Maritimes, France</p>
+                </div>
+                <div class="footer-section">
+                    <h3>La Race</h3>
+                    <p>Découvrez le Rhodesian Ridgeback, cette race exceptionnelle aux origines africaines, alliant noblesse et fidélité.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Best of Farmdream. Élevage de Rhodesian Ridgeback - Alpes-Maritimes. Tous droits réservés.</p>
+            </div>
         </div>
-        <div class="form__group">
-          <label for="email">E-mail *</label>
-          <input type="email" id="email" name="email" required placeholder="votre@email.fr">
-        </div>
-        <div class="form__group">
-          <label for="tel">Téléphone</label>
-          <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
-        </div>
-        <div class="form__group">
-          <label for="message">Message *</label>
-          <textarea id="message" name="message" required placeholder="Bonjour, je suis intéressé par…"></textarea>
-        </div>
-        <button type="submit" class="btn btn--ocre form__submit">Envoyer mon message</button>
-        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage commercial.</p>
-      </form>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<!-- ====== FOOTER ====== -->
-<footer>
-  <div class="footer__wrap">
-    <div>
-      <div class="footer__logo">
-        The Best of Farmdream
-        <span>Rhodesian Ridgeback · Alpes-Maritimes</span>
-      </div>
-      <div class="footer__logo-line"></div>
-      <p>Élevage familial de Rhodesian Ridgeback dans les Alpes-Maritimes. Chiots LOF, élevés en maison, accompagnement personnalisé. Une passion née en Rhodésie.</p>
-      <p style="margin-top:.9rem">
-        📞 <a href="tel:0651195224" style="transition:color .2s">06.51.19.52.24</a><br>
-        📍 Alpes-Maritimes, France
-      </p>
-    </div>
-    <div class="footer__col">
-      <h4>Navigation</h4>
-      <a href="#histoire">Histoire</a>
-      <a href="#race">La Race</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="footer__col">
-      <h4>Informations</h4>
-      <p>Élevage familial — Particulier</p>
-      <p>LOF — Livre des Origines</p>
-      <p>Identification par puce</p>
-      <p>Vaccination &amp; vermifugation</p>
-      <p>Suivi personnalisé à vie</p>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <p>© 2026 The Best of Farmdream — Rhodesian Ridgeback · Tous droits réservés · Alpes-Maritimes</p>
-    <p><a href="#">Mentions légales</a></p>
-  </div>
-</footer>
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
 
-<script>
-  /* ---- NAV scroll shadow ---- */
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-  /* ---- HAMBURGER MOBILE ---- */
-  const burger = document.getElementById('burger');
-  const mobNav = document.getElementById('mob-nav');
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    mobNav.classList.toggle('open');
-    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
-  });
-  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    burger.classList.remove('open');
-    mobNav.classList.remove('open');
-    document.body.style.overflow = '';
-  }));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-  /* ---- HERO — zoom animation ---- */
-  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
 
-  /* ---- SCROLL REVEAL ---- */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
-    });
-  }, { threshold: .1 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-  /* ---- LIGHTBOX ---- */
-  const lb    = document.getElementById('lb');
-  const lbImg = document.getElementById('lb-img');
-  let lbItems = [], lbIdx = 0;
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Merci pour votre message ! Nous vous recontacterons rapidement.');
+            this.reset();
+        });
 
-  function openLb(el) {
-    lbItems = Array.from(document.querySelectorAll('.gi img'));
-    lbIdx   = lbItems.indexOf(el.querySelector('img'));
-    lbImg.src = lbItems[lbIdx].src;
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function lbNav(d) {
-    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
-    lbImg.src = lbItems[lbIdx].src;
-  }
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape')     closeLb();
-    if (e.key === 'ArrowLeft')  lbNav(-1);
-    if (e.key === 'ArrowRight') lbNav(1);
-  });
-</script>
+        // Gallery hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-bg');
+            const speed = scrolled * 0.5;
+            parallax.style.transform = `translateY(${speed}px)`;
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+            
+            // Trigger hero animation
+            setTimeout(() => {
+                document.querySelector('.hero-content').classList.add('fade-in');
+            }, 300);
+        });
+    </script>
 </body>
 </html>
