@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Gardiens de la Cite Ardente — Élevage Cane Corso | </title>
+  <meta name="description" content="Elevage Gardiens de la Cite Ardente de Cane Corso en France - Site vitrine officiel">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <!-- MODIFIER : URL définitive -->
+  <meta property="og:url"         content="https://www.affen-schnauzer.com/">
+  <meta property="og:title"       content="Gardiens de la Cite Ardente — Cane Corso, ">
+  <meta property="og:description" content="Elevage Gardiens de la Cite Ardente de Cane Corso en France - Site vitrine officiel">
+  <!-- REMPLACER : photo hero pour partage réseaux sociaux -->
+  <meta property="og:image"       content="">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices -->
+  <link href="https://fonts.googleapis.com/css2?family=cinzel:wght@400;600;700;900&family=raleway:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Mellan Schnauzers",
+        "description": "Élevage familial de Schnauzer Nain en Saône-et-Loire (71)",
+        "telephone": "+33385854127",
+        "url": "https://www.affen-schnauzer.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bourbon-Lancy",
+          "postalCode": "71140",
+          "addressRegion": "Saône-et-Loire",
+          "addressCountry": "FR"
+        },
+        "taxID": ""
+      },
+      { "@type": "AnimalShelter", "name": "Mellan Schnauzers — Schnauzer Nain LOF" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — adapter à chaque client ici
+       ============================================== */
+    :root {
+      --ink:  #1C1C26;   /* MODIFIER : noir encre principal */
+      --wine: #7B2D42;   /* MODIFIER : bordeaux Bourgogne */
+      --slvr: #8A8FA6;   /* MODIFIER : gris argenté (poivre et sel) */
+      --bg:   #F5F0EB;   /* MODIFIER : fond blanc cassé chaud */
+      --crm:  #E0D8D0;   /* MODIFIER : fond crème */
+      --txt:  #1C1C26;   /* MODIFIER : texte */
+      --FD:   'Cinzel', serif, serif;    /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif, sans-serif; /* MODIFIER : police corps */
+      --nav:  68px;
+      --r:    8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .75rem 2rem;
+      font-family: var(--FN); font-weight: 700; font-size: .78rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      transition: background .2s, color .2s, transform .15s, box-shadow .2s;
+      border-radius: 2px;
+    }
+    .btn--primary { background: var(--ink); color: #fff; }
+    .btn--primary:hover { background: #333; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(28,28,38,.3); }
+    .btn--wine { background: var(--wine); color: #fff; }
+    .btn--wine:hover { background: #5e2232; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(123,45,66,.35); }
+    .btn--outline { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+    .btn--outline:hover { background: var(--ink); color: #fff; transform: translateY(-2px); }
+    .btn--white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.6); }
+    .btn--white:hover { background: rgba(255,255,255,.1); transform: translateY(-2px); }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(246,245,241,.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(28,28,38,.08);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,.07); }
+    .nav__logo { font-family: var(--FD); font-size: 1.25rem; font-weight: 700; color: var(--ink); line-height: 1.1; margin-right: auto; letter-spacing: .02em; }
+    .nav__logo span { display: block; font-family: var(--FN); font-size: .58rem; font-weight: 700; color: var(--slvr); letter-spacing: .25em; text-transform: uppercase; margin-top: .1rem; }
+    .nav__links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav__links > li > a { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); transition: color .2s; position: relative; }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--wine); transition: width .2s; }
+    .nav__links > li > a:hover { color: var(--wine); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.5rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .55rem; margin-left: .25rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #fff; border: 1px solid rgba(28,28,38,.08);
+      border-radius: var(--r); padding: .5rem 0;
+      box-shadow: 0 12px 40px rgba(0,0,0,.1);
+      min-width: 190px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .2s, visibility .2s, transform .2s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a { display: block; padding: .55rem 1.2rem; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--txt); transition: background .15s, color .15s; }
+    .drop__menu a:hover { background: var(--crm); color: var(--wine); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--txt); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--bg); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .85rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--txt); padding: .8rem 0; border-bottom: 1px solid var(--crm); }
+    .nav__mobile a:hover { color: var(--wine); }
+    .nav__mobile .mob-sub { padding-left: 1rem; font-size: .78rem !important; color: var(--slvr) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    .hero__left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4vw 5rem 5vw;
+      background: var(--bg); position: relative; z-index: 1;
+    }
+    .hero__left::after {
+      content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(28,28,38,.12) 30%, rgba(28,28,38,.12) 70%, transparent);
+    }
+    .hero__tag { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 2rem; }
+    .hero__tag span { font-size: .65rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slvr); }
+    .hero__tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--wine); }
+    .hero__title { font-family: var(--FD); font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 700; line-height: 1.0; margin-bottom: 1.2rem; color: var(--ink); }
+    .hero__title em { font-style: italic; color: var(--wine); display: block; }
+    .hero__sub { font-size: .95rem; font-weight: 400; color: #888; line-height: 1.8; max-width: 420px; margin-bottom: 2.5rem; }
+    .hero__btns { display: flex; gap: .8rem; flex-wrap: wrap; }
+    .hero__badge {
+      position: absolute; bottom: 2.5rem; left: 5vw;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .hero__badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)} 50%{box-shadow:0 0 0 8px rgba(34,197,94,0)} }
+    .hero__badge span { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #888; }
+    .hero__right { position: relative; overflow: hidden; }
+    .hero__right img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.06); transition: transform 9s ease;
+    }
+    .hero.loaded .hero__right img { transform: scale(1); }
+    .hero__right-over { position: absolute; inset: 0; background: linear-gradient(to right, rgba(246,245,241,.15), transparent); }
+    /* numéro décoratif */
+    .hero__num {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-family: var(--FD); font-size: 8rem; font-weight: 700;
+      color: rgba(255,255,255,.08); line-height: 1; user-select: none;
+      pointer-events: none;
+    }
+
+    /* ---- BANDE STATS ---- */
+    .stats { display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(28,28,38,.08); border-bottom: 1px solid rgba(28,28,38,.08); }
+    .stat { padding: 1.6rem 1rem; border-right: 1px solid rgba(28,28,38,.08); text-align: center; }
+    .stat:last-child { border-right: none; }
+    .stat__n { font-family: var(--FD); font-size: 2rem; font-weight: 700; color: var(--wine); line-height: 1; }
+    .stat__l { font-size: .62rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #aaa; margin-top: .4rem; }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 6rem 4vw; }
+    .sec__head { margin-bottom: 3.5rem; }
+    .sec__head.center { text-align: center; }
+    .sec__head.center .sec__sub { margin-left: auto; margin-right: auto; }
+    .sec__eyebrow { font-size: .62rem; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--wine); margin-bottom: .8rem; }
+    .sec__title { font-family: var(--FD); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--ink); line-height: 1.1; }
+    .sec__title em { font-style: italic; }
+    .sec__sub { max-width: 560px; margin-top: 1rem; font-size: .95rem; color: #888; line-height: 1.8; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 520px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 70%; height: 80%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 24px 64px rgba(28,28,38,.15);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 46%; height: 50%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 12px 36px rgba(0,0,0,.12);
+      border: 4px solid var(--bg);
+    }
+    /* ligne décorative -->  */
+    .about__line {
+      position: absolute; left: 72%; top: 0; bottom: 20%;
+      width: 1px; background: linear-gradient(to bottom, var(--wine), transparent);
+      opacity: .3;
+    }
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.2rem; }
+    .about__text h2 em { font-style: italic; color: var(--wine); }
+    .about__text p { color: #777; line-height: 1.85; margin-bottom: 1rem; font-size: .95rem; }
+    .about__list { margin: 1.6rem 0; display: flex; flex-direction: column; gap: .6rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .8rem; font-size: .9rem; color: #666; line-height: 1.6; }
+    .about__li::before { content: '—'; color: var(--wine); font-weight: 700; flex-shrink: 0; margin-top: .1rem; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--ink); color: #fff; }
+    .race__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; align-items: stretch; }
+    .race__content { padding: 4rem 3.5rem 4rem 0; display: flex; flex-direction: column; justify-content: center; }
+    .race__content .sec__eyebrow { color: var(--wine); }
+    .race__content .sec__title { color: #fff; }
+    .race__content p { font-size: .93rem; line-height: 1.85; color: rgba(255,255,255,.7); margin-bottom: 1rem; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 2rem 0; background: rgba(255,255,255,.08); border-radius: var(--r); overflow: hidden; }
+    .race__spec { background: rgba(255,255,255,.04); padding: 1rem 1.2rem; }
+    .race__spec strong { display: block; font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--wine); margin-bottom: .3rem; }
+    .race__spec span { font-size: .9rem; font-weight: 600; }
+    .race__img { position: relative; overflow: hidden; min-height: 460px; }
+    .race__img img { position: absolute; inset: 0; height: 100%; }
+    .race__img::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to left, transparent 60%, var(--ink) 100%); z-index: 1; }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--crm); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.8rem; }
+    .dog__card { background: var(--bg); border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .dog__card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(0,0,0,.12); }
+    .dog__img { height: 240px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .6s; }
+    .dog__card:hover .dog__img img { transform: scale(1.05); }
+    .dog__sex { position: absolute; top: .8rem; right: .8rem; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    .dog__sex--f { background: rgba(255,200,210,.9); color: #7B2D42; }
+    .dog__sex--m { background: rgba(200,215,240,.9); color: #1a3c8b; }
+    .dog__body { padding: 1.4rem 1.5rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.4rem; font-weight: 700; margin-bottom: .2rem; }
+    .dog__born { font-size: .76rem; color: #bbb; letter-spacing: .06em; margin-bottom: .9rem; text-transform: uppercase; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
+    .dog__tag { background: var(--crm); border-radius: 2px; padding: .22rem .7rem; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); }
+    .dog__desc { font-size: .86rem; color: #888; line-height: 1.7; }
+
+    /* ---- CHIOTS ---- */
+    .chiots { background: var(--bg); }
+    .chiots__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1.6rem; }
+    .pup { background: #fff; border-radius: var(--r); overflow: hidden; box-shadow: 0 2px 16px rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s; }
+    .pup:hover { transform: translateY(-4px); box-shadow: 0 14px 44px rgba(0,0,0,.11); }
+    .pup__img { height: 210px; overflow: hidden; position: relative; }
+    .pup__img img { transition: transform .6s; }
+    .pup:hover .pup__img img { transform: scale(1.06); }
+    .pup__badge {
+      position: absolute; top: .8rem; left: .8rem;
+      padding: .28rem .8rem; border-radius: 2px;
+      font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .badge--avail { background: #22c55e; color: #fff; }
+    .badge--resa  { background: #f59e0b; color: #fff; }
+    .badge--venir { background: var(--slvr); color: #fff; }
+    .pup__body { padding: 1.2rem 1.4rem; }
+    .pup__name { font-family: var(--FD); font-size: 1.25rem; font-weight: 700; margin-bottom: .3rem; }
+    .pup__meta { font-size: .76rem; color: #bbb; letter-spacing: .04em; margin-bottom: .7rem; }
+    .pup__price { font-size: 1.1rem; font-weight: 700; color: var(--wine); }
+    .pup__price small { font-size: .72rem; font-weight: 500; color: #bbb; display: block; margin-top: .1rem; }
+    .chiots__note { max-width: 1180px; margin: 2rem auto 0; display: flex; align-items: flex-start; gap: 1rem; padding: 1.4rem 1.8rem; background: var(--crm); border-radius: var(--r); font-size: .88rem; color: #777; line-height: 1.75; }
+    .chiots__note::before { content: '✦'; color: var(--wine); font-size: 1rem; flex-shrink: 0; margin-top: .15rem; }
+    .chiots__cta { text-align: center; margin-top: 2.2rem; }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--ink); padding-top: 5rem; padding-bottom: 5rem; }
+    .galerie .sec__head { text-align: center; }
+    .galerie .sec__title { color: #fff; }
+    .galerie .sec__sub { color: rgba(255,255,255,.5); margin-left: auto; margin-right: auto; }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      grid-template-rows: 220px 220px;
+      gap: 8px;
+    }
+    .gi { overflow: hidden; border-radius: 4px; position: relative; cursor: pointer; }
+    .gi img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .gi:hover img { transform: scale(1.07); }
+    .gi:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gi__over { position: absolute; inset: 0; background: rgba(123,45,66,.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: #fff; font-size: 1.8rem; }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.95); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 4px; }
+    #lb-close { position: absolute; top: 1.2rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; opacity: .6; }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 2rem; padding: 1rem; opacity: .5; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.6rem; }
+    .temo { background: var(--bg); border-radius: var(--r); padding: 1.8rem; box-shadow: 0 2px 16px rgba(0,0,0,.05); position: relative; }
+    .temo::before { content: '\201C'; font-family: var(--FD); font-size: 5rem; color: var(--wine); opacity: .12; position: absolute; top: .5rem; left: 1.2rem; line-height: 1; }
+    .temo__stars { color: #F59E0B; font-size: .9rem; margin-bottom: 1rem; }
+    .temo__text { font-size: .9rem; line-height: 1.82; color: #666; margin-bottom: 1.4rem; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .8rem; }
+    .temo__av { width: 36px; height: 36px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; }
+    .temo__name { font-weight: 700; font-size: .84rem; }
+    .temo__dog { font-size: .72rem; color: #bbb; }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.7rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.15; }
+    .cinfo { display: flex; flex-direction: column; gap: 1.1rem; margin-bottom: 2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .8rem; }
+    .cinfo__ico { width: 36px; height: 36px; border-radius: 6px; background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+    .cinfo__label { font-size: .6rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: #ccc; margin-bottom: .1rem; }
+    .cinfo__val { font-size: .92rem; font-weight: 600; }
+    .cinfo__val a:hover { color: var(--wine); }
+    .certifs { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: 1.2rem; }
+    .certif { display: inline-flex; align-items: center; gap: .4rem; background: var(--ink); color: #fff; border-radius: 4px; padding: .45rem .9rem; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .contact__form { background: #fff; border-radius: var(--r); padding: 2.4rem; box-shadow: 0 4px 32px rgba(0,0,0,.06); }
+    .form__title { font-family: var(--FD); font-size: 1.4rem; font-weight: 700; margin-bottom: .35rem; }
+    .form__sub { font-size: .84rem; color: #bbb; margin-bottom: 1.8rem; line-height: 1.6; }
+    .form__section { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--slvr); margin: 1.4rem 0 .8rem; padding-bottom: .4rem; border-bottom: 1px solid var(--crm); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .32rem; margin-bottom: .9rem; }
+    .form__group label { font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--txt); }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .7rem .95rem;
+      border: 1.5px solid var(--crm); border-radius: 4px;
+      font-family: var(--FN); font-size: .88rem; color: var(--txt);
+      background: var(--bg); outline: none; transition: border-color .2s, background .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--wine); background: #fff; }
+    .form__group textarea { resize: vertical; min-height: 110px; }
+    .form__hint { font-size: .7rem; color: #ccc; margin-top: .18rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .88rem; font-size: .82rem; }
+    .form__rgpd { font-size: .68rem; color: #ccc; text-align: center; margin-top: .8rem; line-height: 1.5; }
+
+    /* ---- CONDITIONS ---- */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(28,28,38,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.05rem 0; font-weight: 700; font-size: .88rem; letter-spacing: .03em; color: var(--txt); display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .acc__q .arr { font-size: .75rem; color: var(--wine); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.1rem; font-size: .88rem; color: #888; line-height: 1.82; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .5rem 0 .5rem 1.2rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .3rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--ink); color: rgba(255,255,255,.5); padding: 4rem 4vw 2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.2rem; font-weight: 700; color: #fff; letter-spacing: .03em; margin-bottom: .5rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-size: .58rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-top: .2rem; }
+    footer p { font-size: .8rem; line-height: 1.7; margin-bottom: .3rem; }
+    .footer__col h4 { font-size: .6rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.8); margin-bottom: 1rem; }
+    .footer__col a { display: block; font-size: .8rem; margin-bottom: .38rem; transition: color .2s; }
+    .footer__col a:hover { color: #fff; }
+    .footer__bottom { max-width: 1200px; margin: 2rem auto 0; padding-top: 1.4rem; border-top: 1px solid rgba(255,255,255,.07); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .74rem; margin: 0; }
+    .footer__bottom a { color: var(--wine); }
+    .footer__bottom a:hover { color: #fff; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 960px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero__left { padding: 3rem 1.5rem; }
+      .hero__right { height: 50vw; min-height: 280px; }
+      .hero__right img { position: relative; width: 100%; height: 100%; }
+      .hero__num { display: none; }
+      .about__grid, .race__grid, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 340px; }
+      .race__img { min-height: 280px; order: -1; }
+      .race__content { padding: 3rem 0; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2,1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid rgba(28,28,38,.08); }
+      .gal__grid { grid-template-columns: repeat(2,1fr); grid-template-rows: auto; }
+      .gi:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    }
+    @media (max-width: 600px) {
+      section { padding: 4rem 1.2rem; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; }
+      .race__specs { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <!-- MODIFIER : nom de l'élevage -->
+  <a href="#" class="nav__logo">
+    Mellan Schnauzers
+    <span>Schnauzer Nain · Saône-et-Loire</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Chiens <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#repro">Reproducteurs</a></li>
+      </ul>
+    </li>
+    <li><a href="#chiots">Chiots</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--wine nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Nav mobile -->
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">La Race</a>
+  <a href="#repro" class="mob-sub">— Reproducteurs</a>
+  <a href="#chiots">Chiots</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--wine" style="margin-top:1rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<!-- Layout éditorial : texte à gauche, photo à droite -->
+<section class="hero" id="hero">
+  <div class="hero__left">
+    <div class="hero__tag"><span>Bourbon-Lancy · Saône-et-Loire (71)</span></div>
+    <!-- MODIFIER : titre et accroche -->
+    <h1 class="hero__title">Mellan<br><em>Schnauzers</em></h1>
+    <p class="hero__sub">Élevage familial exclusivement dédié au Schnauzer Nain poivre et sel, en Bourgogne du Sud. Chiots LOF, pedigree certifié, santé irréprochable.</p>
+    <div class="hero__btns">
+      <a href="#chiots" class="btn btn--wine">Voir les chiots</a>
+      <a href="#about" class="btn btn--outline">L'élevage</a>
+    </div>
+    <div class="hero__badge">
+      <div class="hero__badge-dot"></div>
+      <span>Chiots disponibles</span>
+    </div>
+  </div>
+  <div class="hero__right">
+    <!-- REMPLACER : grande photo Schnauzer Nain plein format -->
+    <img src="" alt="Schnauzer Nain Mellan Schnauzers">
+    <div class="hero__right-over"></div>
+    <div class="hero__num">01</div>
+  </div>
+</section>
+
+<!-- ====== STATS ====== -->
+<div class="stats">
+  <!-- MODIFIER : chiffres clés -->
+  <div class="stat reveal">
+    <div class="stat__n">100%</div>
+    <div class="stat__l">Schnauzer Nain</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.1s">
+    <div class="stat__n">LOF</div>
+    <div class="stat__l">Chiots confirmés</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.2s">
+    <div class="stat__n">Laboklin</div>
+    <div class="stat__l">Combitest génétique</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.3s">
+    <div class="stat__n">ACACED</div>
+    <div class="stat__l">Certifié professionnel</div>
+  </div>
+</div>
+
+<!-- ====== ABOUT ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <!-- REMPLACER : photo principale (éleveur, chiens, domaine) -->
+      <div class="about__main"><img src="" alt="Mellan Schnauzers — élevage familial Bourbon-Lancy"></div>
+      <!-- REMPLACER : photo accent (Schnauzer de près, jardin) -->
+      <div class="about__accent"><img src="" alt="Schnauzer Nain poivre et sel — Mellan Schnauzers"></div>
+      <div class="about__line"></div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <!-- MODIFIER : texte de présentation -->
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un élevage <em>exclusif</em>,<br>une passion totale</h2>
+      <p>Chez Mellan Schnauzers, une seule race : le Schnauzer Nain poivre et sel. Ce choix n'est pas anodin — c'est la garantie d'une expertise pointue, d'une sélection rigoureuse et d'un suivi sans compromis pour chaque portée.</p>
+      <p>Situé à Bourbon-Lancy, au cœur de la Bourgogne du Sud, notre élevage familial accueille des chiens qui vivent dans un environnement chaleureux. Tous nos reproducteurs sont inscrits au LOF, confirmés, et soumis aux tests génétiques recommandés pour la race.</p>
+      <div class="about__list">
+        <div class="about__li">Élevage exclusivement dédié au Schnauzer Nain</div>
+        <div class="about__li">Parents LOF confirmés, pedigrees vérifiables</div>
+        <div class="about__li">Tests oculaires + Combitest Laboklin</div>
+        <div class="about__li">Certifié ACACED — SIREN </div>
+        <div class="about__li">Chiots socialisés en milieu familial</div>
+      </div>
+      <a href="#contact" class="btn btn--primary">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__grid">
+    <div class="race__content reveal">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le Schnauzer<br><em>Nain</em></h2>
+      <p>Le plus petit des trois Schnauzers, le Schnauzer Nain réunit en un seul chien toutes les qualités du compagnon idéal : vif, loyal, jovial, et doté d'un excellent instinct de gardien. Son pelage rêche et ses sourcils expressifs en font un chien reconnaissable entre tous.</p>
+      <p>Contrairement à d'autres petites races, il n'est pas fragile — c'est un terrier robuste, curieux et toujours prêt pour l'aventure. Il s'adapte aussi bien à la vie en appartement qu'à la campagne, du moment qu'il partage votre quotidien.</p>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>Allemagne 🇩🇪</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>30 à 35 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>4 à 8 kg</span></div>
+        <div class="race__spec"><strong>Espérance de vie</strong><span>12–15 ans</span></div>
+        <div class="race__spec"><strong>Robe</strong><span>Poivre et sel</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 2 — Pinschers</span></div>
+      </div>
+      <a href="#chiots" class="btn btn--white">Voir nos chiots disponibles</a>
+    </div>
+    <div class="race__img">
+      <!-- REMPLACER : portrait Schnauzer Nain (profil, pose) -->
+      <img src="" alt="Portrait Schnauzer Nain poivre et sel">
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head center">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Nos <em>reproducteurs</em></h2>
+    <p class="sec__sub">Tous sélectionnés sur la morphologie, le caractère et les résultats aux tests de santé obligatoires pour la race.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : chien 1 -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <!-- REMPLACER : photo reproductrice 1 -->
+        <img src="" alt="Schnauzer Nain femelle reproductrice — Mellan Schnauzers">
+        <span class="dog__sex dog__sex--f">♀</span>
+      </div>
+      <div class="dog__body">
+        <div class="dog__name">Stella von Mellan</div>
+        <div class="dog__born">Née le 18 février 2021</div>
+        <div class="dog__tags">
+          <span class="dog__tag">Poivre et sel</span>
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Oculaire OK</span>
+          <span class="dog__tag">Laboklin</span>
+        </div>
+        <p class="dog__desc">Stella est notre principale reproductrice — caractère exemplaire, morphologie conforme au standard. Tests génétiques et oculaires annuels à jour.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : chien 2 -->
+    <div class="dog__card reveal" style="transition-delay:.1s">
+      <div class="dog__img">
+        <!-- REMPLACER : photo reproducteur 2 -->
+        <img src="" alt="Schnauzer Nain mâle reproducteur — Mellan Schnauzers">
+        <span class="dog__sex dog__sex--m">♂</span>
+      </div>
+      <div class="dog__body">
+        <div class="dog__name">Baron von Mellan</div>
+        <div class="dog__born">Né le 5 octobre 2020</div>
+        <div class="dog__tags">
+          <span class="dog__tag">Poivre et sel</span>
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Oculaire OK</span>
+          <span class="dog__tag">Laboklin</span>
+        </div>
+        <p class="dog__desc">Baron incarne toute la noblesse et la vivacité du Schnauzer Nain. Ses lignées soigneusement sélectionnées garantissent des chiots de grande qualité.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : chien 3 -->
+    <div class="dog__card reveal" style="transition-delay:.2s">
+      <div class="dog__img">
+        <!-- REMPLACER : photo reproductrice 3 -->
+        <img src="" alt="Schnauzer Nain femelle — Mellan Schnauzers">
+        <span class="dog__sex dog__sex--f">♀</span>
+      </div>
+      <div class="dog__body">
+        <div class="dog__name">Luna von Mellan</div>
+        <div class="dog__born">Née le 22 juin 2022</div>
+        <div class="dog__tags">
+          <span class="dog__tag">Poivre et sel</span>
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Oculaire OK</span>
+          <span class="dog__tag">Laboklin</span>
+        </div>
+        <p class="dog__desc">Notre benjamine, pleine d'énergie et de caractère. Luna apporte du sang neuf à notre élevage avec des lignées internationales de premier plan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CHIOTS ====== -->
+<section class="chiots" id="chiots">
+  <div class="sec__head center">
+    <p class="sec__eyebrow">Disponibilités</p>
+    <h2 class="sec__title">Nos <em>chiots</em></h2>
+    <p class="sec__sub">Schnauzer Nain poivre et sel, LOF confirmé. Chaque chiot est suivi individuellement dès la naissance.</p>
+  </div>
+  <div class="chiots__grid">
+    <!-- MODIFIER : chiot 1 -->
+    <div class="pup reveal">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 1 -->
+        <img src="" alt="Chiot Schnauzer Nain femelle — Mellan Schnauzers">
+        <span class="pup__badge badge--avail">Disponible</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">Étoile</div>
+        <div class="pup__meta">Femelle · Poivre et sel · Née en avril</div>
+        <!-- MODIFIER : prix -->
+        <div class="pup__price">1 800 €<small>LOF · Vaccinée · Identifiée</small></div>
+      </div>
+    </div>
+    <!-- MODIFIER : chiot 2 -->
+    <div class="pup reveal" style="transition-delay:.08s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 2 -->
+        <img src="" alt="Chiot Schnauzer Nain mâle — Mellan Schnauzers">
+        <span class="pup__badge badge--resa">Réservé</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">Titan</div>
+        <div class="pup__meta">Mâle · Poivre et sel · Né en avril</div>
+        <div class="pup__price">1 800 €<small>LOF · Vacciné · Identifié</small></div>
+      </div>
+    </div>
+    <!-- MODIFIER : chiot 3 -->
+    <div class="pup reveal" style="transition-delay:.16s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo chiot 3 -->
+        <img src="photo-schnauzer/sebastian-coman-travel-JgKfmp9uq9w-unsplash.jpg" alt="Chiot Schnauzer Nain mâle — Mellan Schnauzers">
+        <span class="pup__badge badge--resa">Réservé</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">Axel</div>
+        <div class="pup__meta">Mâle · Poivre et sel · Né en avril</div>
+        <div class="pup__price">1 800 €<small>LOF · Vacciné · Identifié</small></div>
+      </div>
+    </div>
+    <!-- MODIFIER : portée à venir -->
+    <div class="pup reveal" style="transition-delay:.24s">
+      <div class="pup__img">
+        <!-- REMPLACER : photo portée à venir -->
+        <img src="photo-schnauzer/sebastian-coman-travel-K6Ms6TW6Rls-unsplash.jpg" alt="Prochaine portée Schnauzer Nain — Mellan Schnauzers">
+        <span class="pup__badge badge--venir">Prochaine portée</span>
+      </div>
+      <div class="pup__body">
+        <div class="pup__name">Portée à venir</div>
+        <div class="pup__meta">Mâles &amp; femelles · Automne 2025</div>
+        <div class="pup__price">Nous contacter<small>LOF · Vaccinés · Identifiés</small></div>
+      </div>
+    </div>
+  </div>
+  <div class="chiots__note reveal">
+    Tous nos chiots partent à partir de 10 semaines avec carnet de santé complet, identification I-CAD, primo-vaccination, vermifugation et attestation de cession. Possibilité d'inscrire votre chiot sur liste d'attente pour les prochaines portées.
+  </div>
+  <div class="chiots__cta">
+    <a href="#contact" class="btn btn--wine">Réserver un chiot</a>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head center">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>Schnauzers</em></h2>
+    <p class="sec__sub">La vie chez Mellan Schnauzers.</p>
+  </div>
+  <div class="gal__grid">
+    <!-- REMPLACER : 5 photos galerie -->
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Mellan Schnauzers"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Mellan Schnauzers"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Mellan Schnauzers"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Mellan Schnauzers"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Mellan Schnauzers"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head center">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Schnauzer</em></h2>
+    <p class="sec__sub">Des familles heureuses à travers toute la France.</p>
+  </div>
+  <div class="temo__grid">
+    <!-- MODIFIER : témoignages -->
+    <div class="temo reveal">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Notre Schnauzer Max est arrivé parfaitement socialisé, calme et curieux. L'élevage est sérieux, transparent sur les tests de santé, et le suivi après adoption est exemplaire.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=70" alt="Julie"></div>
+        <div><div class="temo__name">Julie &amp; Romain</div><div class="temo__dog">Schnauzer Nain · Dijon</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">On cherchait un éleveur sérieux depuis des mois. Mellan Schnauzers nous a convaincus dès le premier échange — rigueur, passion et honnêteté. Notre petite Étoile est magnifique.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=71" alt="Pierre"></div>
+        <div><div class="temo__name">Pierre M.</div><div class="temo__dog">Schnauzer Nain · Lyon</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Troisième Schnauzer dans notre famille et premier acheté ici. La différence est notable dès le départ — chiot équilibré, bien dans ses pattes, avec un caractère remarquable.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=72" alt="Nathalie"></div>
+        <div><div class="temo__name">Nathalie L.</div><div class="temo__dog">Schnauzer Nain · Mâcon</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Nous <em>écrire</em></h2>
+    <p class="sec__sub">Par téléphone ou via le formulaire — nous répondons rapidement à toutes vos questions.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <!-- MODIFIER : coordonnées -->
+      <h3>Mellan<br>Schnauzers</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Localisation</div>
+            <!-- MODIFIER : ville -->
+            <div class="cinfo__val">Bourbon-Lancy, 71140<br>Saône-et-Loire, Bourgogne</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone fixe</div>
+            <!-- MODIFIER : téléphone -->
+            <div class="cinfo__val"><a href="tel:0723320288">03 85 85 41 27</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📱</div>
+          <div>
+            <div class="cinfo__label">Mobile</div>
+            <!-- MODIFIER : mobile -->
+            <div class="cinfo__val"><a href="tel:+33785817237">07 85 81 72 37</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🌐</div>
+          <div>
+            <div class="cinfo__label">Site web</div>
+            <!-- MODIFIER : site web -->
+            <div class="cinfo__val"><a href="https://www.affen-schnauzer.com" target="_blank">affen-schnauzer.com</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="certifs">
+        <span class="certif">✓ ACACED</span>
+        <span class="certif">✓ LOF</span>
+        <span class="certif">✓ Laboklin</span>
+      </div>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML uniquement.
+           Activer avec Netlify Forms (ajouter netlify à <form>)
+           ou Formspree (action="https://formspree.io/f/XXXX") -->
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Remplissez ce formulaire ou appelez directement le <strong>03 85 85 41 27</strong>. Réponse sous 48h.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="delai">Délai souhaité</label>
+            <select id="delai" name="delai">
+              <option value="">— Choisir —</option>
+              <option value="maintenant">Dès maintenant</option>
+              <option value="3mois">Dans 3 mois</option>
+              <option value="6mois">Dans 6 mois</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="logement">Type de logement *</label>
+            <select id="logement" name="logement" required>
+              <option value="">— Choisir —</option>
+              <option value="maison-jardin">Maison avec jardin</option>
+              <option value="maison-sans">Maison sans jardin</option>
+              <option value="appartement">Appartement</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="experience">Expérience avec la race</label>
+            <select id="experience" name="experience">
+              <option value="">— Choisir —</option>
+              <option value="oui">J'ai déjà eu un Schnauzer</option>
+              <option value="autre">J'ai eu un autre chien</option>
+              <option value="non">Premier chien</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Présentez votre foyer et vos attentes *</label>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, autres animaux, style de vie, raisons de votre choix pour le Schnauzer Nain..."></textarea>
+          <span class="form__hint">Ces informations nous aident à vous trouver le chiot qui correspond le mieux à votre mode de vie.</span>
+        </div>
+        <button type="submit" class="btn btn--wine form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage. Conformément au RGPD.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONDITIONS DE VENTE ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head center">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <!-- MODIFIER : FAQ -->
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot Mellan Schnauzers repart avec :</p>
+        <ul>
+          <li>Carnet de santé complet (primo-vaccination, vermifugation)</li>
+          <li>Identification I-CAD (puce électronique)</li>
+          <li>Certificat vétérinaire de bonne santé</li>
+          <li>Attestation de cession obligatoire</li>
+          <li>Pedigree LOF (confirmé ou confirmable)</li>
+          <li>Résultats des tests génétiques des parents (Combitest Laboklin)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quel est le prix et comment réserver ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Les chiots Schnauzer Nain poivre et sel sont proposés à <strong>1 800 €</strong>. La réservation se fait par un acompte versé après échange téléphonique ou visite. Le solde est réglé le jour de la remise du chiot, à partir de 10 semaines. Contactez-nous au <strong>03 85 85 41 27</strong> ou <strong>07 85 81 72 37</strong>.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels tests génétiques sont réalisés ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Tous nos reproducteurs sont testés selon les recommandations du Club Français du Schnauzer :</p>
+        <ul>
+          <li><strong>Examen oculaire annuel</strong> : dépistage des affections oculaires héréditaires (cataracte, PRA…)</li>
+          <li><strong>Combitest Laboklin</strong> : panel génétique complet incluant les principales maladies héréditaires du Schnauzer Nain (MPS, CMO, etc.)</li>
+        </ul>
+        <p>Les résultats sont disponibles sur demande.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Le Schnauzer Nain est-il adapté à mon mode de vie ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Le Schnauzer Nain est un chien très polyvalent : il s'adapte aussi bien à la vie en appartement qu'à la campagne. Vif et intelligent, il a besoin de stimulation mentale et de sorties quotidiennes. C'est un excellent chien de famille — courageux, fidèle, et bon gardien malgré sa taille. Il ne perd quasiment pas ses poils, ce qui en fait un choix apprécié des personnes allergiques.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Pourquoi choisir un élevage spécialisé ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Un élevage spécialisé dans une seule race garantit une connaissance approfondie de ses spécificités morphologiques, comportementales et sanitaires. Chez Mellan Schnauzers, le Schnauzer Nain est notre unique passion — chaque portée bénéficie d'une attention totale, d'une sélection rigoureuse des reproducteurs et d'un suivi personnalisé pour chaque famille adoptante.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <!-- MODIFIER : nom et sous-titre -->
+      <div class="footer__logo">Mellan Schnauzers<span>Schnauzer Nain Poivre et Sel · Saône-et-Loire (71)</span></div>
+      <p>Élevage familial exclusivement dédié au Schnauzer Nain à Bourbon-Lancy, Bourgogne du Sud. Chiots LOF, Combitest Laboklin, tests oculaires.</p>
+      <p style="margin-top:.8rem">
+        📞 <a href="tel:0723320288">03 85 85 41 27</a> · <a href="tel:+33785817237">07 85 81 72 37</a><br>
+        🌐 <a href="https://www.affen-schnauzer.com" target="_blank">affen-schnauzer.com</a>
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">La Race</a>
+      <a href="#repro">Reproducteurs</a>
+      <a href="#chiots">Chiots disponibles</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations légales</h4>
+      <!-- MODIFIER : SIREN -->
+      <p>SIREN : </p>
+      <p>Certifié ACACED</p>
+      <p>Bourbon-Lancy, 71140</p>
+      <p>Saône-et-Loire, France</p>
+      <a href="#" style="margin-top:.8rem">Mentions légales</a>
+      <a href="#">Politique de confidentialité</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <!-- MODIFIER : année -->
+    <p>© 2025 Mellan Schnauzers · Tous droits réservés</p>
+    <p><a href="#">Mentions légales</a> · <a href="#">RGPD</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO LOAD ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  /* ---- ACCORDION ---- */
+  document.querySelectorAll('.acc__q').forEach(q => q.addEventListener('click', () => {
+    q.classList.toggle('open');
+    q.nextElementSibling.classList.toggle('open');
+  }));
+</script>
+</body>
+</html>

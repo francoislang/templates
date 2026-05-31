@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Lovely Pomsky France — Élevage Pomsky | </title>
+  <meta name="description" content="Elevage Lovely Pomsky France de Pomsky en France - Site vitrine officiel">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://joyaux-danubis.be/">
+  <meta property="og:title"       content="Lovely Pomsky France — Pomsky, ">
+  <meta property="og:description" content="Elevage Lovely Pomsky France de Pomsky en France - Site vitrine officiel">
+  <meta property="og:image"       content="">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=cinzel:wght@400;600;700;900&family=raleway:wght@300;400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Joyaux d'Anubis",
+        "description": "Élevage familial de Carlin à Bruxelles, Belgique. Chiots crème masque noir, tests génétiques, passeport européen, garantie légale 2 ans.",
+        "telephone": "+3248923319 3",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bruxelles",
+          "postalCode": "1082",
+          "addressCountry": "BE"
+        },
+        "founder": { "@type": "Person", "name": "Amit Sefoski" }
+      },
+      { "@type": "AnimalShelter", "name": "Joyaux d'Anubis — Élevage Carlin Bruxelles" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Joyaux d'Anubis
+       Design : Art déco / Joaillier / Égyptien
+       ============================================== */
+    :root {
+      --ony:  #160F08;   /* onyx profond */
+      --gld:  #C9A84C;   /* or chaud */
+      --amb:  #8B5E1A;   /* ambre / bronze */
+      --crm:  #F5EDE6;   /* parchemin */
+      --bg:   #FEFCF8;   /* ivoire chaud */
+      --stn:  #9A8272;   /* pierre */
+      --txt:  #160F08;   /* texte */
+      --FD:   'Cinzel', serif, serif;       /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif, sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #C9A84C 0%, #E8C96A 45%, #A8872F 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- ORNEMENT DÉCORATIF — utilisé dans les section headers ---- */
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 0 auto .4rem;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gld-gradient);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--gld);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .8rem 2.2rem;
+      font-family: var(--FN); font-weight: 600; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      transition: background .25s, color .25s, transform .18s, box-shadow .25s;
+      border-radius: var(--r);
+    }
+    .btn--gold {
+      background: var(--gld-gradient);
+      color: var(--ony);
+      box-shadow: 0 4px 20px rgba(201,168,76,.35);
+    }
+    .btn--gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(201,168,76,.5);
+      filter: brightness(1.08);
+    }
+    .btn--dark { background: var(--ony); color: var(--crm); border: 1px solid rgba(201,168,76,.25); }
+    .btn--dark:hover {
+      background: #2a1e0f;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(22,15,8,.4);
+      border-color: var(--gld);
+    }
+    .btn--outline {
+      background: transparent; color: var(--crm);
+      border: 1px solid rgba(201,168,76,.5);
+    }
+    .btn--outline:hover {
+      background: rgba(201,168,76,.12);
+      border-color: var(--gld);
+      transform: translateY(-2px);
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav);
+      background: rgba(22,15,8,.96);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(201,168,76,.15);
+      display: flex; align-items: center; padding: 0 4vw;
+      transition: box-shadow .3s, border-color .3s;
+    }
+    nav.scrolled {
+      box-shadow: 0 4px 32px rgba(0,0,0,.5);
+      border-bottom-color: rgba(201,168,76,.3);
+    }
+    .nav__logo {
+      font-family: var(--FD); font-size: 1.05rem; font-weight: 600;
+      color: var(--gld); line-height: 1.1; margin-right: auto;
+      letter-spacing: .06em;
+    }
+    .nav__logo span {
+      display: block; font-family: var(--FN); font-size: .55rem;
+      font-weight: 500; color: rgba(245,237,224,.45);
+      letter-spacing: .26em; text-transform: uppercase; margin-top: .15rem;
+    }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a {
+      font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+      color: rgba(245,237,224,.7); transition: color .2s; position: relative;
+    }
+    .nav__links > li > a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--gld); transition: width .25s;
+    }
+    .nav__links > li > a:hover { color: var(--gld); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.2rem; }
+
+    .nav__drop { position: relative; }
+    .nav__drop > a::after { display: none !important; }
+    .nav__drop > a .arr { font-size: .5rem; margin-left: .22rem; display: inline-block; transition: transform .2s; }
+    .nav__drop:hover > a .arr { transform: rotate(180deg); }
+    .drop__menu {
+      position: absolute; top: calc(100% + 12px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: #1e1408; border: 1px solid rgba(201,168,76,.2);
+      border-radius: var(--r); padding: .5rem 0;
+      box-shadow: 0 16px 48px rgba(0,0,0,.5);
+      min-width: 200px; opacity: 0; visibility: hidden; pointer-events: none;
+      transition: opacity .22s, visibility .22s, transform .22s;
+    }
+    .nav__drop:hover .drop__menu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .drop__menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+    .drop__menu a {
+      display: block; padding: .55rem 1.3rem;
+      font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(245,237,224,.65); transition: background .15s, color .15s;
+    }
+    .drop__menu a:hover { background: rgba(201,168,76,.08); color: var(--gld); }
+
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--gld); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; z-index: 90;
+      background: var(--ony); padding: calc(var(--nav) + 1.5rem) 2rem 2rem;
+      flex-direction: column; gap: .2rem; overflow-y: auto;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(245,237,224,.7); padding: .85rem 0;
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      transition: color .2s;
+    }
+    .nav__mobile a:hover { color: var(--gld); }
+    .nav__mobile .mob-sub { padding-left: 1.2rem; font-size: .74rem !important; color: rgba(154,130,114,.8) !important; }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100svh; min-height: 640px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: var(--nav); overflow: hidden;
+    }
+    /* MODIFIER : image hero bg */
+    .hero__bg {
+      position: absolute; inset: 0;
+      background: url('') center/cover no-repeat;
+      transform: scale(1.06); transition: transform 12s ease;
+    }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    /* Overlay sombre très prononcé — design joaillier */
+    .hero__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(22,15,8,.88) 0%,
+        rgba(22,15,8,.72) 40%,
+        rgba(22,15,8,.85) 100%
+      );
+    }
+    /* grain texture subtil */
+    .hero__grain {
+      position: absolute; inset: 0; opacity: .04; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    /* lignes décoratives dorées latérales — style art déco */
+    .hero__deco-left, .hero__deco-right {
+      position: absolute; top: 50%; width: 1px; height: 35%;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,.4), transparent);
+      transform: translateY(-50%);
+    }
+    .hero__deco-left { left: 5vw; }
+    .hero__deco-right { right: 5vw; }
+    .hero__content {
+      position: relative; z-index: 1; color: var(--crm);
+      text-align: center; padding: 0 1.5rem; max-width: 820px;
+    }
+    .hero__eyebrow {
+      font-family: var(--FN); font-size: .62rem; font-weight: 600;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: var(--gld); margin-bottom: 2rem;
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+    }
+    .hero__eyebrow::before, .hero__eyebrow::after {
+      content: ''; display: block; width: 48px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--gld));
+    }
+    .hero__eyebrow::after { background: linear-gradient(to left, transparent, var(--gld)); }
+    /* Cadre décoratif doré autour du titre */
+    .hero__title-wrap {
+      position: relative; display: inline-block;
+      padding: 1.6rem 2.8rem;
+      margin-bottom: 1.4rem;
+    }
+    .hero__title-wrap::before, .hero__title-wrap::after {
+      content: '';
+      position: absolute;
+      width: 50px; height: 50px;
+      border-color: rgba(201,168,76,.55);
+      border-style: solid;
+    }
+    .hero__title-wrap::before {
+      top: 0; left: 0;
+      border-width: 1px 0 0 1px;
+    }
+    .hero__title-wrap::after {
+      bottom: 0; right: 0;
+      border-width: 0 1px 1px 0;
+    }
+    /* coins supplémentaires via pseudo-éléments du title */
+    .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl {
+      position: absolute;
+      width: 50px; height: 50px;
+      border-color: rgba(201,168,76,.55);
+      border-style: solid;
+    }
+    .hero__title-wrap .corner-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .hero__title-wrap .corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .hero__title {
+      font-family: var(--FD); font-size: clamp(2.4rem, 6vw, 5.8rem);
+      font-weight: 600; line-height: 1.05;
+      background: var(--gld-gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: none;
+      letter-spacing: .04em;
+    }
+    .hero__subtitle {
+      font-family: var(--FN); font-size: .7rem; font-weight: 600;
+      letter-spacing: .32em; text-transform: uppercase;
+      color: rgba(245,237,224,.55); margin-bottom: 1.6rem;
+    }
+    .hero__sub {
+      font-size: clamp(.88rem, 1.5vw, 1rem); font-weight: 300;
+      color: rgba(245,237,224,.78); line-height: 1.82;
+      max-width: 540px; margin: 0 auto 2.6rem;
+    }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(245,237,224,.35); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: .5rem;
+    }
+    .hero__scroll::after {
+      content: ''; width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,.5), transparent);
+      animation: scrollLine 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100%{opacity:0;transform:scaleY(0);transform-origin:top}
+      50%{opacity:1;transform:scaleY(1)}
+    }
+
+    /* ---- BANDEAU 4 STATS ---- */
+    .bandeau {
+      background: var(--ony); color: rgba(245,237,224,.6);
+      display: grid; grid-template-columns: repeat(4,1fr);
+      border-top: 1px solid rgba(201,168,76,.2);
+      border-bottom: 1px solid rgba(201,168,76,.12);
+    }
+    .ban__item {
+      padding: 1.8rem 1rem; text-align: center;
+      border-right: 1px solid rgba(201,168,76,.08);
+      position: relative;
+    }
+    .ban__item:last-child { border-right: none; }
+    .ban__item::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 28px; height: 1px; background: var(--gld); opacity: .5;
+    }
+    .ban__n {
+      font-family: var(--FD); font-size: 1.5rem; font-weight: 600;
+      color: var(--gld); line-height: 1; margin-bottom: .4rem;
+      letter-spacing: .04em;
+    }
+    .ban__l {
+      font-family: var(--FN); font-size: .58rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; opacity: .5;
+    }
+
+    /* ---- SECTIONS GÉNÉRIQUES ---- */
+    section { padding: 7rem 4vw; }
+    .sec__head { text-align: center; margin-bottom: 4rem; }
+    /* eyebrow avec ornement décoratif art déco */
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .6rem; font-weight: 700;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--gld);
+      margin-bottom: 1rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--gld); opacity: .5;
+    }
+    /* décoration ornementale sous le titre de section */
+    .sec__head::after {
+      content: '◆';
+      display: block;
+      color: var(--gld);
+      font-size: .5rem;
+      letter-spacing: .5em;
+      margin-top: 1.2rem;
+      opacity: .45;
+    }
+    .sec__title {
+      font-family: var(--FD); font-size: clamp(1.9rem, 3.8vw, 3rem);
+      font-weight: 600; color: var(--ony); line-height: 1.1;
+      letter-spacing: .03em;
+    }
+    .sec__title em { font-style: italic; color: var(--amb); }
+    .sec__sub {
+      max-width: 560px; margin: 1rem auto 0;
+      font-family: var(--FN); font-size: .92rem; color: var(--stn);
+      line-height: 1.85; font-weight: 300;
+    }
+    /* version claire pour sections sombres */
+    .sec__head--light .sec__title { color: var(--crm); }
+    .sec__head--light .sec__sub { color: rgba(245,237,224,.55); }
+    .sec__head--light::after { opacity: .35; }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 540px; }
+    .about__main {
+      position: absolute; left: 0; top: 0; width: 70%; height: 78%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 28px 70px rgba(22,15,8,.22);
+      border: 1px solid rgba(201,168,76,.15);
+    }
+    .about__accent {
+      position: absolute; right: 0; bottom: 0; width: 46%; height: 50%;
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+      border: 3px solid var(--bg);
+      outline: 1px solid rgba(201,168,76,.2);
+    }
+    /* médaillon doré */
+    .about__medal {
+      position: absolute; right: 3%; top: 30%; z-index: 2;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--gld-gradient); color: var(--ony);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(201,168,76,.5);
+      font-family: var(--FD); font-size: .78rem; font-weight: 700; text-align: center; line-height: 1.2;
+      letter-spacing: .04em;
+    }
+    .about__medal small {
+      font-family: var(--FN); font-size: .42rem; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase; margin-top: .2rem; opacity: .75;
+    }
+    .about__text {}
+    .about__text h2 {
+      font-family: var(--FD); font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+      font-weight: 600; margin-bottom: 1.4rem; line-height: 1.15;
+      letter-spacing: .03em;
+    }
+    .about__text h2 em { font-style: italic; color: var(--amb); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #6b5a4e; line-height: 1.9; margin-bottom: 1.1rem; font-size: .95rem; }
+    .about__list { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .7rem; }
+    .about__li {
+      display: flex; align-items: flex-start; gap: .95rem;
+      font-family: var(--FN); font-size: .9rem; color: #6b5a4e;
+      line-height: 1.65; font-weight: 300;
+    }
+    .about__li-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--gld-gradient); flex-shrink: 0; margin-top: .58rem;
+      box-shadow: 0 0 6px rgba(201,168,76,.5);
+    }
+    .about__li strong { color: var(--ony); font-weight: 600; }
+
+    /* ---- LA RACE ---- */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img {
+      position: relative; height: 540px; border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 28px 65px rgba(22,15,8,.18);
+      border: 1px solid rgba(201,168,76,.18);
+    }
+    .race__img img { position: absolute; inset: 0; height: 100%; }
+    /* Overlay doré subtil en bas */
+    .race__img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(22,15,8,.35) 0%, transparent 50%);
+    }
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .94rem; line-height: 1.9; color: #6b5a4e; margin-bottom: 1rem; }
+    .race__info-box {
+      display: flex; align-items: flex-start; gap: .9rem;
+      background: var(--ony); color: rgba(245,237,224,.8);
+      border-radius: var(--r); padding: 1.3rem 1.5rem;
+      margin: 1.8rem 0; font-family: var(--FN); font-size: .86rem; line-height: 1.75; font-weight: 300;
+      border-left: 2px solid var(--gld);
+    }
+    .race__info-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+    .race__info-box strong { color: var(--gld); font-weight: 600; display: block; margin-bottom: .25rem; font-size: .88rem; letter-spacing: .04em; }
+    .race__specs { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; margin-bottom: 2.2rem; }
+    .race__spec {
+      background: #fff; border-radius: var(--r); padding: .9rem 1.1rem;
+      border-left: 2px solid var(--gld);
+      box-shadow: 0 2px 10px rgba(22,15,8,.05);
+    }
+    .race__spec strong { display: block; font-family: var(--FN); font-size: .56rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #bbb; margin-bottom: .28rem; }
+    .race__spec span { font-family: var(--FD); font-size: .9rem; font-weight: 500; color: var(--ony); }
+
+    /* ---- GARANTIES ---- */
+    .garanties { background: var(--ony); }
+    .garanties .sec__eyebrow { color: var(--gld); }
+    .garanties .sec__eyebrow::before, .garanties .sec__eyebrow::after { background: var(--gld); }
+    .garanties .sec__title { color: var(--crm); }
+    .garanties .sec__title em { color: var(--gld); }
+    .garanties .sec__sub { color: rgba(245,237,224,.5); }
+    .garanties .sec__head::after { opacity: .3; }
+    .gar__grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+    }
+    .gar__card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(201,168,76,.18);
+      border-radius: var(--r); padding: 1.8rem 1.6rem;
+      transition: background .3s, border-color .3s, transform .3s;
+      position: relative; overflow: hidden;
+    }
+    .gar__card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: var(--gld-gradient); opacity: 0; transition: opacity .3s;
+    }
+    .gar__card:hover { background: rgba(201,168,76,.07); border-color: rgba(201,168,76,.4); transform: translateY(-3px); }
+    .gar__card:hover::before { opacity: 1; }
+    .gar__ico {
+      width: 42px; height: 42px; margin-bottom: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      border: 1px solid rgba(201,168,76,.25); border-radius: var(--r);
+      background: rgba(201,168,76,.08);
+    }
+    .gar__title {
+      font-family: var(--FD); font-size: .88rem; font-weight: 600;
+      color: var(--gld); margin-bottom: .5rem; letter-spacing: .04em;
+    }
+    .gar__desc {
+      font-family: var(--FN); font-size: .84rem; font-weight: 300;
+      color: rgba(245,237,224,.6); line-height: 1.75;
+    }
+
+    /* ---- REPRODUCTEURS ---- */
+    .repro { background: var(--bg); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 2rem; }
+    .dog__card {
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 4px 24px rgba(22,15,8,.08);
+      background: #fff;
+      border: 1px solid rgba(201,168,76,.12);
+      transition: transform .35s, box-shadow .35s, border-color .35s;
+    }
+    .dog__card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 56px rgba(22,15,8,.15);
+      border-color: rgba(201,168,76,.3);
+    }
+    .dog__img { height: 320px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .7s ease; }
+    .dog__card:hover .dog__img img { transform: scale(1.07); }
+    .dog__over {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(22,15,8,.82) 0%, transparent 55%);
+    }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.6rem; }
+    .dog__name {
+      font-family: var(--FD); font-size: 1.9rem; font-weight: 600;
+      color: var(--crm); line-height: 1; letter-spacing: .04em;
+    }
+    .dog__sex-label {
+      font-family: var(--FN); font-size: .58rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--gld); margin-top: .3rem;
+    }
+    .dog__body { padding: 1.4rem 1.6rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .dog__tag {
+      background: var(--crm); border-radius: 2px; padding: .22rem .75rem;
+      font-family: var(--FN); font-size: .62rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--ony);
+      border: 1px solid rgba(201,168,76,.2);
+    }
+    .dog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #8a7060; line-height: 1.8; }
+
+    /* ---- PORTÉE (chiots disponibles) ---- */
+    .portee { background: var(--ony); color: var(--crm); }
+    .portee__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .portee__img { position: relative; height: 460px; border-radius: var(--r); overflow: hidden; border: 1px solid rgba(201,168,76,.2); }
+    .portee__img img { position: absolute; inset: 0; height: 100%; }
+    .portee__img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(22,15,8,.55), transparent 60%);
+    }
+    .portee__content .sec__eyebrow { color: var(--gld); justify-content: flex-start; }
+    .portee__content .sec__eyebrow::before, .portee__content .sec__eyebrow::after { background: var(--gld); }
+    .portee__content .sec__title { color: var(--crm); text-align: left; }
+    .portee__content .sec__title em { color: var(--gld); }
+    .portee__content p { font-family: var(--FN); font-size: .94rem; font-weight: 300; line-height: 1.88; color: rgba(245,237,224,.68); margin-bottom: 1.1rem; }
+    .portee__timeline { margin: 2rem 0; display: flex; flex-direction: column; gap: .8rem; }
+    .portee__step { display: flex; align-items: flex-start; gap: 1.1rem; }
+    .portee__step-dot {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1px solid rgba(201,168,76,.5);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--FD); font-size: .85rem; color: var(--gld);
+      flex-shrink: 0; background: rgba(201,168,76,.06);
+    }
+    .portee__step-txt strong { display: block; font-family: var(--FN); font-size: .82rem; font-weight: 700; color: var(--crm); margin-bottom: .12rem; letter-spacing: .05em; }
+    .portee__step-txt span { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: rgba(245,237,224,.5); }
+    /* Prix badge */
+    .portee__prix {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(201,168,76,.12); border: 1px solid rgba(201,168,76,.35);
+      border-radius: var(--r); padding: .6rem 1.2rem;
+      font-family: var(--FD); font-size: 1.1rem; font-weight: 600;
+      color: var(--gld); letter-spacing: .04em; margin-bottom: 1.8rem;
+    }
+    .portee__prix small { font-family: var(--FN); font-size: .6rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: rgba(201,168,76,.65); }
+
+    /* ---- GALERIE ---- */
+    .galerie { background: var(--bg); }
+    .gal__grid {
+      max-width: 1180px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
+    }
+    .gi { overflow: hidden; border-radius: var(--r); position: relative; cursor: pointer; }
+    .gi img { height: 230px; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: 100%; }
+    .gi:hover img { transform: scale(1.08); }
+    .gi__over {
+      position: absolute; inset: 0;
+      background: rgba(22,15,8,.55);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: opacity .3s;
+    }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span {
+      color: var(--gld); font-family: var(--FD); font-size: 1.6rem;
+      width: 48px; height: 48px; border: 1px solid rgba(201,168,76,.5);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ---- LIGHTBOX ---- */
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.96); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: var(--r); border: 1px solid rgba(201,168,76,.2); }
+    #lb-close { position: absolute; top: 1.4rem; right: 1.8rem; color: var(--gld); font-size: 1.6rem; cursor: pointer; opacity: .6; font-family: var(--FD); }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--gld); font-size: 2.4rem; padding: 1.2rem; opacity: .45; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ---- TEMOIGNAGES ---- */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.8rem; }
+    .temo {
+      background: var(--bg); border-radius: var(--r); padding: 2rem;
+      box-shadow: 0 2px 20px rgba(22,15,8,.06);
+      border: 1px solid rgba(201,168,76,.12);
+      position: relative; transition: border-color .3s, box-shadow .3s;
+    }
+    .temo:hover { border-color: rgba(201,168,76,.3); box-shadow: 0 12px 40px rgba(22,15,8,.1); }
+    .temo__quote {
+      font-family: var(--FD); font-size: 3.8rem;
+      color: var(--gld); opacity: .18; position: absolute; top: .5rem; left: 1.4rem; line-height: 1;
+    }
+    .temo__stars { color: var(--gld); font-size: .9rem; margin-bottom: 1.1rem; letter-spacing: .06em; }
+    .temo__text {
+      font-family: var(--FN); font-size: .9rem; font-weight: 300;
+      line-height: 1.85; color: #7a6252; margin-bottom: 1.5rem;
+      font-style: italic; position: relative; z-index: 1;
+    }
+    .temo__author { display: flex; align-items: center; gap: .85rem; }
+    .temo__av { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; border: 1px solid rgba(201,168,76,.2); }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; color: var(--ony); }
+    .temo__dog { font-size: .7rem; color: var(--stn); }
+
+    /* ---- CONTACT ---- */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    .contact__info h3 {
+      font-family: var(--FD); font-size: 1.6rem; font-weight: 600;
+      margin-bottom: 1.6rem; line-height: 1.15; letter-spacing: .04em; color: var(--ony);
+    }
+    .cinfo { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .9rem; }
+    .cinfo__ico {
+      width: 40px; height: 40px; border-radius: var(--r);
+      background: var(--crm); display: flex; align-items: center; justify-content: center;
+      font-size: .95rem; flex-shrink: 0;
+      border: 1px solid rgba(201,168,76,.2);
+    }
+    .cinfo__label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #d0c0b0; margin-bottom: .14rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 600; color: var(--ony); }
+    .cinfo__val a:hover { color: var(--amb); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: var(--stn); margin-top: .1rem; }
+    .certif-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--ony); color: rgba(245,237,224,.8); border-radius: 2px;
+      padding: .5rem 1.1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      border: 1px solid rgba(201,168,76,.25);
+    }
+    .certif-badge span { color: var(--gld); }
+    .contact__form { background: var(--crm); border-radius: var(--r); padding: 2.6rem; border: 1px solid rgba(201,168,76,.15); }
+    .form__title { font-family: var(--FD); font-size: 1.3rem; font-weight: 600; margin-bottom: .4rem; color: var(--ony); letter-spacing: .04em; }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: var(--stn); margin-bottom: 2rem; line-height: 1.65; }
+    .form__section { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--stn); margin: 1.5rem 0 .9rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(22,15,8,.07); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .34rem; margin-bottom: 1rem; }
+    .form__group label { font-family: var(--FN); font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ony); }
+    .form__group input, .form__group select, .form__group textarea {
+      width: 100%; padding: .75rem 1rem;
+      border: 1px solid rgba(22,15,8,.12); border-radius: var(--r);
+      font-family: var(--FN); font-size: .88rem; font-weight: 300; color: var(--ony);
+      background: #fff; outline: none; transition: border-color .2s, box-shadow .2s;
+    }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus {
+      border-color: var(--gld); box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+    }
+    .form__group textarea { resize: vertical; min-height: 115px; }
+    .form__hint { font-size: .7rem; color: #ccc; margin-top: .18rem; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .95rem; font-size: .78rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .7rem; font-weight: 300; color: #bbb; text-align: center; margin-top: .85rem; line-height: 1.55; }
+
+    /* ---- CONDITIONS / FAQ ---- */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(22,15,8,.07); }
+    .acc__q {
+      width: 100%; text-align: left; padding: 1.2rem 0;
+      font-family: var(--FN); font-weight: 600; font-size: .9rem;
+      letter-spacing: .02em; color: var(--ony);
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      transition: color .2s;
+    }
+    .acc__q:hover { color: var(--amb); }
+    .acc__q .arr { font-size: .75rem; color: var(--gld); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.2rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #7a6252; line-height: 1.85; }
+    .acc__a.open { display: block; }
+    .acc__a ul { margin: .6rem 0 .6rem 1.3rem; list-style: disc; }
+    .acc__a ul li { margin-bottom: .35rem; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--ony); color: rgba(245,237,224,.45); padding: 4.5rem 4vw 2.2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3.5rem; }
+    .footer__logo {
+      font-family: var(--FD); font-size: 1.2rem; font-weight: 600;
+      color: var(--gld); letter-spacing: .06em; margin-bottom: .55rem;
+    }
+    .footer__logo span {
+      display: block; font-family: var(--FN); font-size: .54rem;
+      letter-spacing: .24em; text-transform: uppercase;
+      color: rgba(245,237,224,.25); margin-top: .25rem;
+    }
+    /* ligne décorative sous le logo footer */
+    .footer__logo-line {
+      width: 48px; height: 1px;
+      background: linear-gradient(to right, var(--gld), transparent);
+      margin: .8rem 0 1.1rem;
+    }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.78; margin-bottom: .3rem; }
+    .footer__col h4 {
+      font-family: var(--FN); font-size: .58rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: rgba(245,237,224,.7); margin-bottom: 1.2rem;
+      padding-bottom: .5rem;
+      border-bottom: 1px solid rgba(201,168,76,.15);
+    }
+    .footer__col a {
+      display: block; font-family: var(--FN); font-size: .8rem;
+      font-weight: 300; margin-bottom: .42rem; transition: color .2s;
+    }
+    .footer__col a:hover { color: var(--gld); }
+    .footer__bottom {
+      max-width: 1200px; margin: 2.2rem auto 0; padding-top: 1.5rem;
+      border-top: 1px solid rgba(201,168,76,.1);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem;
+    }
+    .footer__bottom p { font-size: .72rem; margin: 0; }
+    .footer__bottom a { color: var(--gld); }
+    .footer__bottom a:hover { color: var(--crm); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1020px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .portee__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 360px; }
+      .race__img { height: 340px; }
+      .portee__img { height: 300px; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .gar__grid { grid-template-columns: repeat(2,1fr); }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(201,168,76,.08); }
+    }
+    @media (max-width: 700px) {
+      section { padding: 4.5rem 1.4rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 230px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .race__specs { grid-template-columns: 1fr; }
+      .gar__grid { grid-template-columns: 1fr; }
+      .hero__title-wrap { padding: 1.2rem 1.6rem; }
+      .hero__title-wrap::before, .hero__title-wrap::after,
+      .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { width: 30px; height: 30px; }
+      .hero__deco-left, .hero__deco-right { display: none; }
+    }
+    @media (max-width: 480px) {
+      .gar__grid { grid-template-columns: 1fr; }
+      .bandeau { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAVIGATION ====== -->
+<nav id="nav">
+  <!-- MODIFIER : nom de l'élevage et race dans le logo -->
+  <a href="#" class="nav__logo">
+    Joyaux d'Anubis
+    <span>Carlin · 1082 Bruxelles, Belgique</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li class="nav__drop">
+      <a href="#race">Nos Chiens <span class="arr">▾</span></a>
+      <ul class="drop__menu">
+        <li><a href="#race">Le Carlin</a></li>
+        <li><a href="#repro">Ramses &amp; Isis</a></li>
+      </ul>
+    </li>
+    <li><a href="#garanties">Garanties</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <!-- MODIFIER : lien CTA nav -->
+  <a href="#contact" class="btn btn--gold nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">Le Carlin</a>
+  <a href="#repro" class="mob-sub">— Ramses &amp; Isis</a>
+  <a href="#garanties">Garanties</a>
+  <a href="#portee">Chiots disponibles</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--gold" style="margin-top:1.2rem;text-align:center">Nous contacter</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section class="hero" id="hero">
+  <!-- MODIFIER : image hero — remplacer l'URL par photo-carlin/votre-photo.jpg -->
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <!-- Lignes décoratives latérales art déco -->
+  <div class="hero__deco-left"></div>
+  <div class="hero__deco-right"></div>
+  <div class="hero__content">
+    <!-- MODIFIER : localisation eyebrow -->
+    <div class="hero__eyebrow">Bruxelles · Belgique</div>
+    <!-- Cadre décoratif autour du titre -->
+    <div class="hero__title-wrap">
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <h1 class="hero__title">Joyaux d'Anubis</h1>
+    </div>
+    <p class="hero__subtitle">Élevage Familial de Carlin</p>
+    <p class="hero__sub">Un élevage bruxellois d'exception dédié au Carlin — chiens élevés avec amour, comme nos propres enfants. Tests génétiques, passeport européen, garantie légale belge.</p>
+    <div class="hero__btns">
+      <a href="#portee" class="btn btn--gold">Chiots disponibles</a>
+      <a href="#about" class="btn btn--outline">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
+</section>
+
+<!-- ====== BANDEAU 4 STATS ====== -->
+<div class="bandeau">
+  <!-- MODIFIER : stats bandeau -->
+  <div class="ban__item reveal">
+    <div class="ban__n">Carlin</div>
+    <div class="ban__l">Race élevée</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n">1 300 €</div>
+    <div class="ban__l">Prix chiot</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">Crème</div>
+    <div class="ban__l">Masque noir</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n">Bruxelles</div>
+    <div class="ban__l">1082 · Belgique</div>
+  </div>
+</div>
+
+<!-- ====== À PROPOS ====== -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <!-- MODIFIER : photos about — remplacer par photo-carlin/votre-photo.jpg -->
+      <div class="about__main">
+        <img src="" alt="Joyaux d'Anubis — Amit Sefoski, éleveur Carlin Bruxelles">
+      </div>
+      <div class="about__accent">
+        <img src="" alt="Carlin crème masque noir — Joyaux d'Anubis">
+      </div>
+      <div class="about__medal">
+        ♦<small>Familial</small>
+      </div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un élevage familial,<br><em>une passion du Carlin</em></h2>
+      <!-- MODIFIER : description élevage -->
+      <p>Notre élevage est familial et spécialisé dans le Carlin. Nous sommes très sérieux. Nous aimons et respectons nos chiens, ils sont comme nos enfants. Chaque chiot grandit dans notre foyer, au coeur de Bruxelles, entouré de toute l'affection qu'il mérite.</p>
+      <p>Chez Joyaux d'Anubis, nous accordons une importance capitale à la santé et au tempérament de nos Carlins. Nos reproducteurs sont soigneusement sélectionnés et soumis à des tests génétiques approfondis pour garantir des chiots sains et équilibrés.</p>
+      <div class="about__list">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, habitués à la vie quotidienne</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Tests génétiques</strong> — parents et chiots testés pour les maladies héréditaires</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Sevrage respectueux</strong> — chiots sevré avant leur départ, jamais trop tôt</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Suivi personnalisé</strong> — nous restons disponibles après l'adoption</div></div>
+      </div>
+      <a href="#contact" class="btn btn--dark">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== LA RACE ====== -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <!-- MODIFIER : photo race carlin -->
+    <div class="race__img reveal">
+      <img src="" alt="Carlin — portrait Joyaux d'Anubis">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le <em>Carlin</em></h2>
+      <p>Le Carlin — Pug en anglais, Mops en allemand — est l'une des plus anciennes races de chiens de compagnie. Originaire de Chine, il conquit l'Europe au XVIe siècle par les voies commerciales néerlandaises et devint rapidement le chien des rois et des cours royales. Marie-Antoinette, Guillaume III d'Angleterre… tous succombèrent à son charme.</p>
+      <p>Brachycéphale, compact et musclé, le Carlin est reconnaissable entre tous : tête ronde, museau court et aplati, grands yeux expressifs et front marqué de rides caractéristiques. Son tempérament est d'une exceptionnelle douceur — joueur, affectueux, sociable, et d'un humour toute sa vie.</p>
+      <div class="race__info-box">
+        <div class="race__info-ico">🐾</div>
+        <div>
+          <strong>Note brachycéphale</strong>
+          En tant que race brachycéphale, le Carlin requiert une attention particulière à la chaleur et à l'effort physique. Nos reproducteurs sont sélectionnés pour leurs voies respiratoires les plus ouvertes possible, et nos chiots sont testés avant leur départ.
+        </div>
+      </div>
+      <div class="race__specs">
+        <div class="race__spec"><strong>Origine</strong><span>Chine 🇨🇳</span></div>
+        <div class="race__spec"><strong>Taille</strong><span>25–30 cm</span></div>
+        <div class="race__spec"><strong>Poids</strong><span>6–8 kg</span></div>
+        <div class="race__spec"><strong>Longévité</strong><span>12–15 ans</span></div>
+        <div class="race__spec"><strong>Robe</strong><span>Crème / Fawn / Noir</span></div>
+        <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 9 — Compagnie</span></div>
+      </div>
+      <a href="#portee" class="btn btn--gold">Voir les chiots</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GARANTIES ====== -->
+<section class="garanties" id="garanties">
+  <div class="sec__head sec__head--light">
+    <p class="sec__eyebrow">Sérieux &amp; transparence</p>
+    <h2 class="sec__title">Nos <em>Garanties</em></h2>
+    <p class="sec__sub">Chaque chiot Joyaux d'Anubis part avec un accompagnement complet et des garanties conformes au droit belge.</p>
+  </div>
+  <div class="gar__grid">
+    <!-- MODIFIER : garanties — adapter selon vos pratiques -->
+    <div class="gar__card reveal">
+      <div class="gar__ico">🧬</div>
+      <div class="gar__title">Tests génétiques parents</div>
+      <p class="gar__desc">Nos reproducteurs Ramses et Isis sont soumis à des tests génétiques complets afin de dépister les maladies héréditaires propres au Carlin.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.08s">
+      <div class="gar__ico">🔬</div>
+      <div class="gar__title">Chiots testés</div>
+      <p class="gar__desc">Chaque chiot est examiné par notre vétérinaire et testé pour les principales maladies génétiques avant son départ.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.16s">
+      <div class="gar__ico">🍼</div>
+      <div class="gar__title">Sevrage complet</div>
+      <p class="gar__desc">Nos chiots ne quittent leur mère qu'après un sevrage total et respectueux, jamais avant 8 semaines révolues.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.24s">
+      <div class="gar__ico">💉</div>
+      <div class="gar__title">Primo-vaccination &amp; vermifugation</div>
+      <p class="gar__desc">Le chiot repart vacciné (primo-vaccination complète) et vermifugé selon le protocole vétérinaire belge.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.32s">
+      <div class="gar__ico">🛂</div>
+      <div class="gar__title">Passeport européen &amp; puce</div>
+      <p class="gar__desc">Chaque chiot est identifié par micropuce et accompagné de son passeport européen officiel, valable dans toute l'Union européenne.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.4s">
+      <div class="gar__ico">📜</div>
+      <div class="gar__title">Contrat &amp; garantie légale 2 ans</div>
+      <p class="gar__desc">Un contrat de vente est signé à la remise du chiot. Conformément au droit belge (service bien-être animal), une garantie légale de 2 ans est accordée.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== REPRODUCTEURS ====== -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Ramses <em>&amp;</em> Isis</h2>
+    <p class="sec__sub">Nos reproducteurs — sélectionnés pour leur caractère, leur santé, leur morphologie et leur conformité au standard du Carlin.</p>
+  </div>
+  <div class="repro__grid">
+    <!-- MODIFIER : Ramses -->
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <!-- MODIFIER : photo-carlin/ramses.jpg -->
+        <img src="" alt="Ramses — Carlin mâle reproducteur Joyaux d'Anubis">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Ramses</div>
+          <div class="dog__sex-label">Reproducteur — Mâle</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">Testé</span>
+          <span class="dog__tag">Crème</span>
+          <span class="dog__tag">Masque noir</span>
+        </div>
+        <p class="dog__desc">Ramses est notre mâle reproducteur, d'une personnalité solaire et joueuse. Son masque noir parfaitement dessiné et sa robe crème lumineuse en font un spécimen remarquable. Tests génétiques complets effectués.</p>
+      </div>
+    </div>
+    <!-- MODIFIER : Isis -->
+    <div class="dog__card reveal" style="transition-delay:.15s">
+      <div class="dog__img">
+        <!-- MODIFIER : photo-carlin/isis.jpg -->
+        <img src="" alt="Isis — Carlin femelle reproductrice Joyaux d'Anubis">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Isis</div>
+          <div class="dog__sex-label">Reproductrice — Femelle</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">Testée</span>
+          <span class="dog__tag">Crème</span>
+          <span class="dog__tag">Tempérament exceptionnel</span>
+        </div>
+        <p class="dog__desc">Isis est une mère attentionnée et douce, dont les chiots héritent d'un caractère remarquablement équilibré. Suivie rigoureusement par notre vétérinaire, ses portées sont un modèle de santé et de vitalité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CHIOTS DISPONIBLES ====== -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <!-- MODIFIER : photo chiots disponibles -->
+    <div class="portee__img reveal">
+      <img src="" alt="Chiots Carlin — Joyaux d'Anubis Bruxelles">
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Chiots<br><em>Carlins</em></h2>
+      <!-- MODIFIER : prix chiot -->
+      <div class="portee__prix">
+        1 300 € <small>par chiot</small>
+      </div>
+      <p>Ramses et Isis nous offrent régulièrement de belles portées de Carlins crème masque noir. Chaque chiot est soigné, suivi et préparé à la vie en famille avant son départ.</p>
+      <p>Pour connaître les disponibilités actuelles ou vous inscrire sur liste d'attente, contactez-nous directement. Nous prenons le temps de connaître chaque famille afin d'assurer le meilleur accueil possible pour chaque chiot.</p>
+      <div class="portee__timeline">
+        <div class="portee__step">
+          <div class="portee__step-dot">1</div>
+          <div class="portee__step-txt"><strong>Inscription</strong><span>Contactez-nous pour rejoindre la liste d'attente</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">2</div>
+          <div class="portee__step-txt"><strong>Rencontre &amp; visite</strong><span>Venez rencontrer Ramses, Isis et les chiots à Bruxelles</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">3</div>
+          <div class="portee__step-txt"><strong>Adoption</strong><span>Départ après sevrage complet — avec passeport &amp; documents</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--gold">S'inscrire sur liste d'attente</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====== GALERIE ====== -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>Carlins</em></h2>
+    <p class="sec__sub">La vie chez Joyaux d'Anubis — Bruxelles.</p>
+  </div>
+  <!-- MODIFIER : remplacer les URL picsum par photo-carlin/votre-photo.jpg -->
+  <div class="gal__grid">
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+    <div class="gi" onclick="openLb(this)"><img src="" alt="Galerie Joyaux d'Anubis"><div class="gi__over"><span>+</span></div></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- ====== TEMOIGNAGES ====== -->
+<section class="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils ont adopté un <em>Carlin</em></h2>
+    <p class="sec__sub">Des familles heureuses en Belgique et en France.</p>
+  </div>
+  <div class="temo__grid">
+    <!-- MODIFIER : témoignages -->
+    <div class="temo reveal">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Notre petit Pharaon est arrivé dans un état de santé parfait, avec tous ses documents en ordre. Amit nous a reçus chaleureusement à Bruxelles, les chiens vivent vraiment comme des membres de la famille. Un élevage exemplaire.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=70" alt="Sarah Van den Berg"></div>
+        <div><div class="temo__name">Sarah Van den Berg</div><div class="temo__dog">Carlin crème · Liège</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.15s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Nous cherchions un Carlin sérieusement élevé depuis longtemps. Joyaux d'Anubis nous a immédiatement convaincus par leur transparence sur les tests génétiques et leur suivi post-adoption irréprochable. Notre Cléo est magnifique.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=71" alt="Marc Lecomte"></div>
+        <div><div class="temo__name">Marc &amp; Julie Lecomte</div><div class="temo__dog">Carlin crème · Namur</div></div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.3s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Le passeport européen, le contrat de vente, les tests génétiques… tout était parfaitement en ordre. Notre Carlin est en excellente santé, il a presque un an maintenant. Je recommande Amit sans la moindre hésitation.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="https://picsum.photos/80/80?random=72" alt="Émilie Dubois"></div>
+        <div><div class="temo__name">Émilie Dubois</div><div class="temo__dog">Carlin crème · Bruxelles</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Nous <em>écrire</em></h2>
+    <p class="sec__sub">Pour vous inscrire sur liste d'attente ou poser vos questions, contactez Amit par téléphone ou via le formulaire ci-dessous.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <!-- MODIFIER : informations de contact -->
+      <h3>Joyaux d'Anubis</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Adresse</div>
+            <!-- MODIFIER : adresse belge — code postal avant la ville -->
+            <div class="cinfo__val">1082 Bruxelles<br>Belgique</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <!-- MODIFIER : téléphone format belge -->
+            <div class="cinfo__val"><a href="tel:06.88.10.99.04">04 89 23 31 93</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <!-- MODIFIER : lien Facebook à compléter -->
+            <div class="cinfo__val"><a href="#" target="_blank" rel="noopener">Joyaux d'Anubis</a></div>
+            <div class="cinfo__sub">Notre page Facebook officielle</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Disponibilités</div>
+            <div class="cinfo__val">Nous contacter</div>
+            <div class="cinfo__sub">Pour connaître les chiots disponibles</div>
+          </div>
+        </div>
+      </div>
+      <div class="certif-badge"><span>✦</span> Élevage familial · Bruxelles</div>
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <!-- NOTE : formulaire HTML statique.
+           Pour l'activer : ajouter l-attribut "netlify" à <form> (Netlify Forms)
+           ou action="https://formspree.io/f/XXXX" (Formspree) -->
+      <div class="form__title">Demande de renseignements</div>
+      <!-- MODIFIER : prénom et téléphone éleveur -->
+      <div class="form__sub">Appelez directement Amit au <strong>04 89 23 31 93</strong> ou laissez votre message ici.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.be">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="04XX XXX XXX">
+          </div>
+        </div>
+
+        <div class="form__section">Votre demande</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="usage">Projet</label>
+            <select id="usage" name="usage">
+              <option value="">— Choisir —</option>
+              <option value="compagnon">Chien de compagnie</option>
+              <option value="famille">Compagnon de famille</option>
+              <option value="senior">Compagnon senior</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form__section">Votre cadre de vie</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="logement">Type de logement *</label>
+            <select id="logement" name="logement" required>
+              <option value="">— Choisir —</option>
+              <option value="maison-jardin">Maison avec jardin</option>
+              <option value="maison-sans">Maison sans jardin</option>
+              <option value="appart">Appartement</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="experience">Expérience avec la race</label>
+            <select id="experience" name="experience">
+              <option value="">— Choisir —</option>
+              <option value="oui">J'ai déjà eu un Carlin</option>
+              <option value="autre">J'ai eu d'autres chiens</option>
+              <option value="non">Premier chien</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Présentez-vous et votre projet *</label>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux de compagnie actuels, style de vie, pourquoi le Carlin…"></textarea>
+          <span class="form__hint">Plus vous nous en dites, mieux nous pourrons vous accompagner.</span>
+        </div>
+        <button type="submit" class="btn btn--gold form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande. Aucun démarchage commercial.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FAQ / CONDITIONS ====== -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <!-- MODIFIER : questions/réponses FAQ -->
+    <div class="acc">
+      <button class="acc__q">Le Carlin est-il une race brachycéphale ? Quels sont les risques ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, le Carlin est une race brachycéphale, ce qui signifie qu'il a un museau court et une structure crânienne aplatie. Cela peut engendrer des difficultés respiratoires chez certains individus, en particulier par forte chaleur ou lors d'efforts intenses. Chez Joyaux d'Anubis, nous sélectionnons nos reproducteurs en tenant compte de la morphologie des voies respiratoires afin de limiter ces risques. Nos chiots sont examinés par un vétérinaire avant leur départ. Un Carlin bien choisi, vivant dans un environnement adapté (pas de grosse chaleur, exercice modéré), peut avoir une vie longue et épanouie.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Qu'est-ce que la garantie légale belge de 2 ans ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>En Belgique, la vente d'un animal de compagnie est encadrée par le Code de droit économique et par les réglementations du service bien-être animal. L'acheteur bénéficie d'une garantie légale de 2 ans couvrant les vices cachés ou maladies héréditaires non décelables à la remise du chiot. Cette garantie est mentionnée dans le contrat de vente signé lors de l'adoption. En cas de problème, nous restons disponibles et vous orientons vers les démarches appropriées.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot à son départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot Joyaux d'Anubis repart avec :</p>
+        <ul>
+          <li>Passeport européen officiel (valable dans toute l'UE)</li>
+          <li>Identification par micropuce (obligatoire en Belgique)</li>
+          <li>Primo-vaccination à jour (mention dans le passeport)</li>
+          <li>Vermifugation réalisée selon le protocole vétérinaire</li>
+          <li>Résultats des tests génétiques des parents</li>
+          <li>Contrat de vente signé</li>
+        </ul>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Puis-je venir visiter l'élevage avant d'adopter ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, les visites sont les bienvenues et nous les encourageons vivement. Rencontrer Ramses et Isis, voir l'environnement dans lequel grandissent nos chiots et échanger directement avec Amit — c'est la meilleure façon de s'assurer que notre élevage correspond à vos attentes. Les visites se font sur rendez-vous à 1082 Bruxelles. Contactez-nous au 04 89 23 31 93 pour planifier.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe l'acompte et la réservation ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Après un premier échange et une visite, une fois que le chiot vous est attribué, un acompte peut être demandé pour confirmer votre réservation. Le montant de l'acompte est déduit du prix total du chiot (1 300 €). Le solde est réglé au moment de la remise du chiot. Toutes les conditions sont clairement mentionnées dans le contrat de vente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <!-- MODIFIER : infos footer -->
+      <div class="footer__logo">
+        Joyaux d'Anubis
+        <span>Élevage Carlin · 1082 Bruxelles · Belgique</span>
+      </div>
+      <div class="footer__logo-line"></div>
+      <p>Élevage familial de Carlin (Pug / Mops) à Bruxelles. Chiots crème masque noir, tests génétiques, passeport européen, garantie légale 2 ans. Amit Sefoski.</p>
+      <p style="margin-top:.9rem">
+        📞 <a href="tel:06.88.10.99.04" style="transition:color .2s">04 89 23 31 93</a><br>
+        📍 1082 Bruxelles, Belgique
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">Le Carlin</a>
+      <a href="#repro">Ramses &amp; Isis</a>
+      <a href="#garanties">Garanties</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations</h4>
+      <p>Élevage familial — particulier</p>
+      <p>Tests génétiques certifiés</p>
+      <p>Passeport européen officiel</p>
+      <p>Garantie légale 2 ans (droit belge)</p>
+      <!-- MODIFIER : lien Facebook -->
+      <a href="#" style="margin-top:.9rem">Notre page Facebook</a>
+      <a href="#">Mentions légales</a>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <!-- MODIFIER : année et nom -->
+    <p>© 2025 Joyaux d'Anubis — Amit Sefoski · Tous droits réservés · Bruxelles, Belgique</p>
+    <p><a href="#">Mentions légales</a></p>
+  </div>
+</footer>
+
+<script>
+  /* ---- NAV scroll shadow ---- */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+  /* ---- HAMBURGER MOBILE ---- */
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  /* ---- HERO — animation de zoom au chargement ---- */
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
+
+  /* ---- SCROLL REVEAL (IntersectionObserver) ---- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+    });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---- LIGHTBOX ---- */
+  const lb    = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx   = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
+    lbImg.src = lbItems[lbIdx].src;
+  }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLb();
+    if (e.key === 'ArrowLeft')  lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  /* ---- ACCORDION FAQ ---- */
+  document.querySelectorAll('.acc__q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.classList.toggle('open');
+      q.nextElementSibling.classList.toggle('open');
+    });
+  });
+</script>
+</body>
+</html>

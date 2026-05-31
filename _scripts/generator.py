@@ -62,14 +62,15 @@ def generate_from_config(config_path: str):
 def generate_site(name: str, race: str, phone: str, city: str = "",
                   website: str = ""):
     """
-    Compatibilité avec agent.py — copie le template de la race, met à jour le titre.
+    Genere un site vitrine via YAML+Jinja2.
     Retourne (slug, github_pages_url) ou None si pas de template pour cette race.
     """
     template_folder = BREED_TEMPLATE.get(race)
     if not template_folder:
         return None
 
-    template_path = config.REPO_ROOT / template_folder / "index.html"
+    template_file = f"{template_folder}.html.j2"
+    template_path = config.REPO_ROOT / "_templates" / template_file
     if not template_path.exists():
         return None
 
@@ -78,7 +79,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
     target_dir.mkdir(exist_ok=True)
     target_file = target_dir / "index.html"
 
-    # Ne pas écraser si le site existe déjà
+    # Ne pas ecraser si le site existe deja
     if target_file.exists():
         github_url = (
             f"https://{config.GITHUB_REPO.split('/')[0]}.github.io"
@@ -86,23 +87,63 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
         )
         return slug, github_url
 
-    content = template_path.read_text(encoding="utf-8")
+    # Construire les donnees YAML minimales pour Jinja2
+    data = {
+        "template": template_folder,
+        "elevage": {
+            "nom": name,
+            "race": race,
+            "departement": city or "",
+            "region": city or "",
+            "code_postal": "",
+            "telephone": phone,
+            "siren": "",
+            "url": website or "",
+            "facebook": "",
+            "facebook_label": "",
+            "since": "",
+            "description_seo": f"Elevage {name} de {race} en France - Site vitrine officiel",
+            "description_hero": f"Elevage {name} — {race}",
+            "description_about": "",
+        },
+        "couleurs": {
+            "primaire": "#1B3A4B",
+            "accent": "#D4622A",
+            "fond": "#F7F4EF",
+        },
+        "photos": {
+            "hero": "",
+            "og": "",
+            "about_1": "",
+            "about_2": "",
+            "race": "",
+            "galerie": [],
+        },
+        "reproducteurs": [
+            {"prenom": "Reproducteur", "sexe": "femelle", "role": "Lignee", "sexe_symbole": "♀", "photo": "", "description": ""},
+            {"prenom": "Reproducteur", "sexe": "male", "role": "Lignee", "sexe_symbole": "♂", "photo": "", "description": ""},
+        ],
+        "temoignages": [
+            {"texte": "", "auteur": "", "chiot": "", "avatar": ""},
+        ],
+    }
 
-    # Mise à jour minimale : titre de la page
-    content = re.sub(
-        r"<title>[^<]+</title>",
-        f"<title>Élevage {name} — {race}</title>",
-        content,
-        count=1,
+    # Rendre le template Jinja2
+    from jinja2 import Environment, FileSystemLoader
+    env = Environment(
+        loader=FileSystemLoader(str(config.REPO_ROOT / "_templates")),
+        autoescape=False,
     )
+    tmpl = env.get_template(template_file)
+    html = tmpl.render(**data)
 
-    target_file.write_text(content, encoding="utf-8")
+    target_file.write_text(html, encoding="utf-8")
 
-    # Stage dans git (le commit/push est fait par l'agent après tous les sites)
+    # Stage dans git
+    import subprocess
     subprocess.run(
         ["git", "-C", str(config.REPO_ROOT), "add", f"{slug}/index.html"],
-        check=True,
-        capture_output=True,
+        check=True, capture_output=True,
     )
 
     github_url = (

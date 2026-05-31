@@ -14,7 +14,15 @@ BREED_TEMPLATE = {
     "Carlin": "joyaux-d-anubis",
     "Loulou de Poméranie": "des-cotons-de-soie-d-or",
     "Berger de Brie": "bois-de-chantalouette",
-    "Berger Americain Miniature": "coeur-de-clayton",  # réutilise berger australien comme fallback
+    "Berger Americain Miniature": "berger-americain-miniature",
+    "Pomsky": "pomsky",
+    "Berger Allemand": "berger-allemand",
+    "Bouledogue Francais": "bouledogue-francais",
+    "Golden Retriever": "golden-retriever",
+    "Shiba Inu": "shiba-inu",
+    "Cane Corso": "cane-corso",
+    "Berger Blanc Suisse": "berger-blanc-suisse",
+    "Rhodesian Ridgeback": "rhodesian-ridgeback",  # réutilise berger australien comme fallback
 }
 
 _CLOUDINARY_RE = re.compile(
