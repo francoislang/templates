@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Coeur de Clayton — Élevage Berger Americain Miniature | Haute-Savoie</title>
-  <meta name="description" content="Elevage Coeur de Clayton de Berger Americain Miniature en France - Site vitrine officiel">
+  <title>{{ elevage.nom }} — Élevage {{ elevage.race }} | {{ elevage.departement }}</title>
+  <meta name="description" content="{{ elevage.description_seo }}">
 
   <!-- Open Graph -->
   <meta property="og:type"        content="website">
-  <meta property="og:url"         content="">
-  <meta property="og:title"       content="Coeur de Clayton — Berger Americain Miniature, Haute-Savoie">
-  <meta property="og:description" content="Elevage Coeur de Clayton de Berger Americain Miniature en France - Site vitrine officiel">
-  <meta property="og:image"       content="">
+  <meta property="og:url"         content="{{ elevage.url }}">
+  <meta property="og:title"       content="{{ elevage.nom }} — {{ elevage.race }}, {{ elevage.region }}">
+  <meta property="og:description" content="{{ elevage.description_seo }}">
+  <meta property="og:image"       content="{{ photos.og }}">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=merriweather:wght@400;600;700;900&family=dm+sans:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
@@ -26,19 +26,19 @@
     "@graph": [
       {
         "@type": ["LocalBusiness", "AnimalShelter"],
-        "name": "Coeur de Clayton",
-        "description": "Élevage familial de Berger Americain Miniature en Haute-Savoie — chiots LOF, dysplasie dépistée, socialisation quotidienne",
+        "name": "{{ elevage.nom }}",
+        "description": "Élevage familial de {{ elevage.race }} en {{ elevage.region }} — chiots LOF, dysplasie dépistée, socialisation quotidienne",
         "address": {
           "@type": "PostalAddress",
-          "addressRegion": "Haute-Savoie",
-          "postalCode": "",
+          "addressRegion": "{{ elevage.region }}",
+          "postalCode": "{{ elevage.code_postal }}",
           "addressCountry": "FR"
         },
         "sameAs": [
-          ""
+          "{{ elevage.facebook }}"
         ],
-        "breed": "Berger Americain Miniature",
-        "url": ""
+        "breed": "{{ elevage.race }}",
+        "url": "{{ elevage.url }}"
       }
     ]
   }
@@ -49,16 +49,16 @@
        VARIABLES CSS — adapter à chaque client ici
        ============================================== */
     :root {
-      --slt:  #2D5A3D;   /* vert foret profond */
-      --sky:  #5B8FA8;   /* bleu ciel — évoque le merle */
-      --snd:  #D4B896;   /* caramel */
-      --emb:  #C8924A;   /* or cuivre */
-      --bg:   #F5F2EB;   /* fond chaud */
-      --crm:  #EDE4D3;   /* crème sable */
+      --slt:  #8B4513;   /* vert foret profond */
+      --sky:  #CD853F;   /* bleu ciel — évoque le merle */
+      --snd:  #FAEBD7;   /* caramel */
+      --emb:  #A0522D;   /* or cuivre */
+      --bg:   #FDF5E6;   /* fond chaud */
+      --crm:  #F5DEB3;   /* crème sable */
       --txt:  #1B2D38;   /* texte principal */
       --muted: #7A8E99;  /* texte secondaire */
-      --FD:   'Merriweather', serif;          /* police titres */
-      --FN:   'DM Sans', sans-serif; /* police corps */
+      --FD:   'Merriweather', serif, serif;          /* police titres */
+      --FN:   'DM Sans', sans-serif, sans-serif; /* police corps */
       --nav:  68px;
       --r:    10px;
     }
@@ -177,7 +177,7 @@
     }
     .hero__bg {
       position: absolute; inset: 0;
-      background: url('') center/cover no-repeat;
+      background: url('{{ photos.hero }}') center/cover no-repeat;
       transform: scale(1.07); transition: transform 11s ease;
     }
     .hero.loaded .hero__bg { transform: scale(1); }
@@ -736,8 +736,8 @@
 <!-- ====== NAVIGATION ====== -->
 <nav id="nav">
   <a href="#" class="nav__logo">
-    Coeur de Clayton
-    <span>Berger Americain Miniature · Haute-Savoie</span>
+    {{ elevage.nom }}
+    <span>{{ elevage.race }} · {{ elevage.departement }}</span>
   </a>
   <ul class="nav__links">
     <li><a href="#about">L'Élevage</a></li>
@@ -745,14 +745,18 @@
       <a href="#race">Nos Chiens <span class="arr">▾</span></a>
       <ul class="drop__menu">
         <li><a href="#race">La Race</a></li>
-        <li><a href="#repro">Reproducteur &amp; Reproducteur</a></li>
+        <li><a href="#repro">{{ reproducteurs[0].prenom }} &amp; {{ reproducteurs[1].prenom }}</a></li>
       </ul>
     </li>
-    
+    {% if portee %}
+    <li><a href="#portee">Portée en cours</a></li>
+    {% endif %}
     <li><a href="#galerie">Galerie</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  
+  {% if elevage.facebook %}
+  <a href="{{ elevage.facebook }}" target="_blank" rel="noopener" class="btn btn--primary nav__cta">Nous contacter</a>
+  {% endif %}
   <button class="nav__burger" id="burger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -761,11 +765,15 @@
 <div class="nav__mobile" id="mob-nav">
   <a href="#about">L'Élevage</a>
   <a href="#race">La Race</a>
-  <a href="#repro" class="mob-sub">— Reproducteur &amp; Reproducteur</a>
-  
+  <a href="#repro" class="mob-sub">— {{ reproducteurs[0].prenom }} &amp; {{ reproducteurs[1].prenom }}</a>
+  {% if portee %}
+  <a href="#portee">Portée en cours</a>
+  {% endif %}
   <a href="#galerie">Galerie</a>
   <a href="#contact">Contact</a>
-  
+  {% if elevage.facebook %}
+  <a href="{{ elevage.facebook }}" target="_blank" rel="noopener" class="btn btn--primary" style="margin-top:1rem;text-align:center">Nous contacter</a>
+  {% endif %}
 </div>
 
 <!-- ====== HERO ====== -->
@@ -775,12 +783,14 @@
   <div class="hero__grain"></div>
   <div class="hero__merle-strip"></div>
   <div class="hero__content">
-    <div class="hero__eyebrow">Haute-Savoie · France</div>
-    <h1 class="hero__title">Coeur de Clayton</h1>
-    <p class="hero__subtitle">Berger Americain Miniature · Australian Shepherd</p>
-    <p class="hero__sub">Elevage Coeur de Clayton — Berger Americain Miniature</p>
+    <div class="hero__eyebrow">{{ elevage.region }} · France</div>
+    <h1 class="hero__title">{{ elevage.nom }}</h1>
+    <p class="hero__subtitle">{{ elevage.race }} · Australian Shepherd</p>
+    <p class="hero__sub">{{ elevage.description_hero }}</p>
     <div class="hero__btns">
-      
+      {% if portee %}
+      <a href="#portee" class="btn btn--primary">Portée en cours</a>
+      {% endif %}
       <a href="#about" class="btn btn--white">Découvrir l'élevage</a>
     </div>
   </div>
@@ -793,19 +803,28 @@
     <div class="ban__n">LOF</div>
     <div class="ban__l">Chiots enregistrés</div>
   </div>
-  
+  {% if portee %}
   <div class="ban__item reveal" style="transition-delay:.08s">
-    <div class="ban__n"></div>
+    <div class="ban__n">{{ portee.nb_chiots }}</div>
+    <div class="ban__l">Chiots · portée {{ portee.date_naissance[-4:] }}</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">{{ portee.disponibilite_court }}</div>
+    <div class="ban__l">Disponibles {{ portee.date_naissance[-4:] }}</div>
+  </div>
+  {% else %}
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n">{{ elevage.since }}</div>
     <div class="ban__l">Depuis</div>
   </div>
   <div class="ban__item reveal" style="transition-delay:.16s">
     <div class="ban__n">LOF</div>
     <div class="ban__l">Chiots inscrits</div>
   </div>
-  
+  {% endif %}
   <div class="ban__item reveal" style="transition-delay:.24s">
-    <div class="ban__n"></div>
-    <div class="ban__l">Haute-Savoie · France</div>
+    <div class="ban__n">{{ elevage.code_postal }}</div>
+    <div class="ban__l">{{ elevage.region }} · France</div>
   </div>
 </div>
 
@@ -814,19 +833,21 @@
   <div class="about__grid">
     <div class="about__imgs reveal">
       <div class="about__main">
-        <img src="" alt="Élevage Coeur de Clayton — Haute-Savoie">
+        <img src="{{ photos.about_1 }}" alt="Élevage {{ elevage.nom }} — {{ elevage.departement }}">
       </div>
       <div class="about__accent">
-        <img src="" alt="Berger Americain Miniature — Coeur de Clayton">
+        <img src="{{ photos.about_2 }}" alt="{{ elevage.race }} — {{ elevage.nom }}">
       </div>
       <div class="about__medal">LOF<small>Certifié</small></div>
     </div>
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage familial,<br><em>une passion</em></h2>
-      
-      
-      
+      {% for paragraphe in elevage.description_about.split('\n\n') %}
+      {% if paragraphe.strip() %}
+      <p>{{ paragraphe.strip() }}</p>
+      {% endif %}
+      {% endfor %}
       <div class="about__list">
         <div class="about__li">
           <div class="about__li-dot"></div>
@@ -854,7 +875,7 @@
 <section class="race" id="race">
   <div class="race__wrap">
     <div class="race__img reveal">
-      <img src="" alt="Berger Americain Miniature — portrait">
+      <img src="{{ photos.race }}" alt="{{ elevage.race }} — portrait">
     </div>
     <div class="race__content reveal" style="transition-delay:.12s">
       <p class="sec__eyebrow">La race</p>
@@ -887,32 +908,87 @@
         <div class="race__spec"><strong>Groupe FCI</strong><span>Groupe 1 — Bergers</span></div>
       </div>
 
-      
+      {% if portee %}
+      <a href="#portee" class="btn btn--sky">Voir la portée en cours</a>
+      {% else %}
       <a href="#contact" class="btn btn--sky">Nous contacter</a>
-      
+      {% endif %}
     </div>
   </div>
 </section>
 
+{% if portee %}
+<!-- ====== PORTÉE EN COURS ====== -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <div class="portee__img reveal">
+      <img src="{{ portee.photo }}" alt="Chiots {{ elevage.race }} — {{ elevage.nom }}">
+      <div class="portee__badge">{{ portee.nb_chiots }} chiots · {{ portee.date_naissance }}</div>
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Portée en cours</p>
+      <h2 class="sec__title">{{ portee.mere }} <em>×</em> {{ portee.pere }}</h2>
 
+      <p>{{ portee.mere }} et {{ portee.pere }} nous ont offert une magnifique portée de {{ portee.nb_chiots }} chiots le {{ portee.date_naissance }} — {{ portee.nb_males }} mâles et {{ portee.nb_femelles }} femelles. Des coloris variés et lumineux, reflets de la richesse génétique de nos deux reproducteurs sélectionnés pour leur santé et leur tempérament exemplaires.</p>
+
+      <p>Les chiots sont élevés dans notre maison, socialisés au quotidien avec notre famille. Aucune différence de prix entre mâle et femelle, ni selon la couleur de robe.</p>
+
+      {% if portee.coloris %}
+      <!-- Tableau coloris disponibles -->
+      <div class="portee__coloris">
+        <div class="portee__coloris-head">
+          <span>Coloris disponibles</span>
+          <span>Statut</span>
+        </div>
+        {% for coloris in portee.coloris %}
+        <div class="portee__coloris-row">
+          <div class="portee__coloris-swatch swatch--{{ coloris.swatch }}"></div>
+          <div class="portee__coloris-name">{{ coloris.nom }}</div>
+          <div class="portee__coloris-dispo">{{ coloris.statut }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if portee.timeline %}
+      <div class="portee__timeline">
+        {% for etape in portee.timeline %}
+        <div class="portee__step">
+          <div class="portee__step-dot">{{ etape.numero }}</div>
+          <div class="portee__step-txt">
+            <strong>{{ etape.date }}</strong>
+            <span>{{ etape.description }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+
+      {% if elevage.facebook %}
+      <a href="{{ elevage.facebook }}" target="_blank" rel="noopener" class="btn btn--primary">Nous contacter sur Facebook</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endif %}
 
 <!-- ====== REPRODUCTEURS ====== -->
 <section class="repro" id="repro">
   <div class="sec__head">
     <p class="sec__eyebrow">Nos chiens</p>
-    <h2 class="sec__title">Reproducteur <em>&amp;</em> Reproducteur</h2>
-    <p class="sec__sub">Nos reproducteurs — sélectionnés pour leur santé, leur tempérament et leur conformité au standard du Berger Americain Miniature.</p>
+    <h2 class="sec__title">{{ reproducteurs[0].prenom }} <em>&amp;</em> {{ reproducteurs[1].prenom }}</h2>
+    <p class="sec__sub">Nos reproducteurs — sélectionnés pour leur santé, leur tempérament et leur conformité au standard du {{ elevage.race }}.</p>
   </div>
   <div class="repro__grid">
 
-    
-    <div class="dog__card reveal">
+    {% for chien in reproducteurs %}
+    <div class="dog__card reveal"{% if not loop.first %} style="transition-delay:.15s"{% endif %}>
       <div class="dog__img">
-        <img src="" alt="Reproducteur — Berger Americain Miniature femelle reproducteur Coeur de Clayton">
+        <img src="{{ chien.photo }}" alt="{{ chien.prenom }} — {{ elevage.race }} {{ chien.sexe }} reproducteur {{ elevage.nom }}">
         <div class="dog__over"></div>
         <div class="dog__name-wrap">
-          <div class="dog__name">Reproducteur</div>
-          <div class="dog__sex-label">♀ Lignee</div>
+          <div class="dog__name">{{ chien.prenom }}</div>
+          <div class="dog__sex-label">{{ chien.sexe_symbole }} {{ chien.role }}</div>
         </div>
       </div>
       <div class="dog__body">
@@ -921,29 +997,10 @@
           <span class="dog__tag">Hanches testées</span>
           <span class="dog__tag">Coudes testés</span>
         </div>
-        <p class="dog__desc"></p>
+        <p class="dog__desc">{{ chien.description }}</p>
       </div>
     </div>
-    
-    <div class="dog__card reveal" style="transition-delay:.15s">
-      <div class="dog__img">
-        <img src="" alt="Reproducteur — Berger Americain Miniature male reproducteur Coeur de Clayton">
-        <div class="dog__over"></div>
-        <div class="dog__name-wrap">
-          <div class="dog__name">Reproducteur</div>
-          <div class="dog__sex-label">♂ Lignee</div>
-        </div>
-      </div>
-      <div class="dog__body">
-        <div class="dog__tags">
-          <span class="dog__tag">LOF</span>
-          <span class="dog__tag">Hanches testées</span>
-          <span class="dog__tag">Coudes testés</span>
-        </div>
-        <p class="dog__desc"></p>
-      </div>
-    </div>
-    
+    {% endfor %}
 
   </div>
 </section>
@@ -953,10 +1010,15 @@
   <div class="sec__head">
     <p class="sec__eyebrow">Galerie</p>
     <h2 class="sec__title">Nos <em>Australiens</em></h2>
-    <p class="sec__sub">La vie au Coeur de Clayton — Haute-Savoie.</p>
+    <p class="sec__sub">La vie au {{ elevage.nom }} — {{ elevage.region }}.</p>
   </div>
   <div class="gal__grid">
-    
+    {% for url in photos.galerie %}
+    <div class="gi" onclick="openLb(this)">
+      <img src="{{ url }}" alt="Galerie {{ elevage.nom }} — {{ elevage.race }}">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    {% endfor %}
   </div>
 </section>
 
@@ -973,24 +1035,24 @@
   <div class="sec__head">
     <p class="sec__eyebrow">Témoignages</p>
     <h2 class="sec__title">Ils ont adopté un <em>Australien</em></h2>
-    <p class="sec__sub">Des familles actives et passionnées à travers Haute-Savoie et au-delà.</p>
+    <p class="sec__sub">Des familles actives et passionnées à travers {{ elevage.region }} et au-delà.</p>
   </div>
   <div class="temo__grid">
 
-    
-    <div class="temo reveal">
+    {% for temo in temoignages %}
+    <div class="temo reveal"{% if not loop.first %} style="transition-delay:{{ loop.index0 * 0.15 }}s"{% endif %}>
       <div class="temo__quote">"</div>
       <div class="temo__stars">★★★★★</div>
-      <p class="temo__text"></p>
+      <p class="temo__text">{{ temo.texte }}</p>
       <div class="temo__author">
-        <div class="temo__av"><img src="" alt=""></div>
+        <div class="temo__av"><img src="{{ temo.avatar }}" alt="{{ temo.auteur }}"></div>
         <div>
-          <div class="temo__name"></div>
-          <div class="temo__dog"></div>
+          <div class="temo__name">{{ temo.auteur }}</div>
+          <div class="temo__dog">{{ temo.chiot }}</div>
         </div>
       </div>
     </div>
-    
+    {% endfor %}
 
   </div>
 </section>
@@ -1005,31 +1067,53 @@
   <div class="contact__wrap">
 
     <div class="contact__info reveal">
-      <h3>Coeur de Clayton</h3>
+      <h3>{{ elevage.nom }}</h3>
       <div class="cinfo">
 
         <div class="cinfo__item">
           <div class="cinfo__ico">📍</div>
           <div>
             <div class="cinfo__label">Localisation</div>
-            <div class="cinfo__val">Haute-Savoie, France</div>
+            <div class="cinfo__val">{{ elevage.departement }}, France</div>
             <div class="cinfo__sub">Commune exacte communiquée sur demande</div>
           </div>
         </div>
 
-        
+        {% if elevage.telephone %}
         <div class="cinfo__item">
           <div class="cinfo__ico">📞</div>
           <div>
             <div class="cinfo__label">Téléphone</div>
-            <div class="cinfo__val"><a href="tel:09.82.60.02.67">09.82.60.02.67</a></div>
+            <div class="cinfo__val"><a href="tel:{{ elevage.telephone }}">{{ elevage.telephone }}</a></div>
           </div>
         </div>
-        
+        {% endif %}
 
-        
+        {% if elevage.facebook %}
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📘</div>
+          <div>
+            <div class="cinfo__label">Facebook</div>
+            <div class="cinfo__val">
+              <a href="{{ elevage.facebook }}" target="_blank" rel="noopener">
+                {{ elevage.facebook_label }}
+              </a>
+            </div>
+            <div class="cinfo__sub">Notre canal de contact principal</div>
+          </div>
+        </div>
+        {% endif %}
 
-        
+        {% if portee %}
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🐾</div>
+          <div>
+            <div class="cinfo__label">Portée en cours</div>
+            <div class="cinfo__val">{{ portee.mere }} × {{ portee.pere }} — {{ portee.nb_chiots }} chiots</div>
+            <div class="cinfo__sub">Disponibles {{ portee.disponibilite }}</div>
+          </div>
+        </div>
+        {% endif %}
 
         <div class="cinfo__item">
           <div class="cinfo__ico">🕐</div>
@@ -1040,12 +1124,22 @@
           </div>
         </div>
 
-        
+        {% if elevage.siren %}
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📄</div>
+          <div>
+            <div class="cinfo__label">SIREN</div>
+            <div class="cinfo__val">{{ elevage.siren }}</div>
+          </div>
+        </div>
+        {% endif %}
 
       </div>
       <div class="certif-badge">✓ Chiots enregistrés LOF</div>
       <br>
-      
+      {% if elevage.facebook %}
+      <a href="{{ elevage.facebook }}" target="_blank" rel="noopener" class="btn btn--sky" style="margin-top:1rem">Nous écrire sur Facebook</a>
+      {% endif %}
     </div>
 
     <div class="contact__form reveal" style="transition-delay:.15s">
@@ -1112,7 +1206,7 @@
             <label for="experience">Expérience avec la race</label>
             <select id="experience" name="experience">
               <option value="">— Choisir —</option>
-              <option value="oui">J'ai déjà eu un Berger Americain Miniature</option>
+              <option value="oui">J'ai déjà eu un {{ elevage.race }}</option>
               <option value="autre">J'ai eu d'autres chiens</option>
               <option value="non">Premier chien</option>
             </select>
@@ -1142,7 +1236,7 @@
         </div>
         <div class="form__group">
           <label for="message">Présentez-vous et votre projet *</label>
-          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux, style de vie, pourquoi le Berger Americain Miniature, ce que vous attendez de votre chien…"></textarea>
+          <textarea id="message" name="message" required placeholder="Famille, enfants, animaux, style de vie, pourquoi le {{ elevage.race }}, ce que vous attendez de votre chien…"></textarea>
           <span class="form__hint">Plus vous nous en dites, mieux nous pourrons vous accompagner dans votre choix.</span>
         </div>
         <button type="submit" class="btn btn--primary form__submit">Envoyer ma demande</button>
@@ -1158,35 +1252,35 @@
   <div class="sec__head">
     <p class="sec__eyebrow">Informations</p>
     <h2 class="sec__title">Questions <em>fréquentes</em></h2>
-    <p class="sec__sub">Tout ce que vous devez savoir avant d'adopter un Berger Americain Miniature au Coeur de Clayton.</p>
+    <p class="sec__sub">Tout ce que vous devez savoir avant d'adopter un {{ elevage.race }} au {{ elevage.nom }}.</p>
   </div>
   <div class="conditions__wrap">
 
     <div class="acc">
       <button class="acc__q">Les parents sont-ils testés pour la dysplasie ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Oui, absolument. La dysplasie des hanches et la dysplasie des coudes ont été dépistées sur nos deux reproducteurs, Reproducteur et Reproducteur. Nous tenons les résultats de ces examens vétérinaires à disposition de toutes les familles qui en font la demande. La santé de nos chiens et de leurs chiots est notre priorité numéro un.</p>
+        <p>Oui, absolument. La dysplasie des hanches et la dysplasie des coudes ont été dépistées sur nos deux reproducteurs, {{ reproducteurs[0].prenom }} et {{ reproducteurs[1].prenom }}. Nous tenons les résultats de ces examens vétérinaires à disposition de toutes les familles qui en font la demande. La santé de nos chiens et de leurs chiots est notre priorité numéro un.</p>
       </div>
     </div>
 
     <div class="acc">
       <button class="acc__q">Y a-t-il une différence de prix selon le sexe ou le coloris ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Non. Chez Coeur de Clayton, nous ne pratiquons aucune différence de prix en fonction du sexe (mâle ou femelle) ni de la couleur de robe. Tous les chiots sont proposés au même tarif. Notre philosophie : la valeur d'un chiot repose sur sa santé et son tempérament, pas sur son apparence.</p>
+        <p>Non. Chez {{ elevage.nom }}, nous ne pratiquons aucune différence de prix en fonction du sexe (mâle ou femelle) ni de la couleur de robe. Tous les chiots sont proposés au même tarif. Notre philosophie : la valeur d'un chiot repose sur sa santé et son tempérament, pas sur son apparence.</p>
       </div>
     </div>
 
     <div class="acc">
       <button class="acc__q">Les chiots sont-ils inscrits au LOF ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Oui. Tous les chiots de notre élevage sont enregistrés au Livre des Origines Français (LOF), la reconnaissance officielle de la SCC (Société Centrale Canine) en France. L'inscription LOF garantit la traçabilité généalogique de votre chiot et confirme que ses parents sont des Berger Americain Miniatures de race pure reconnus.</p>
+        <p>Oui. Tous les chiots de notre élevage sont enregistrés au Livre des Origines Français (LOF), la reconnaissance officielle de la SCC (Société Centrale Canine) en France. L'inscription LOF garantit la traçabilité généalogique de votre chiot et confirme que ses parents sont des {{ elevage.race }}s de race pure reconnus.</p>
       </div>
     </div>
 
     <div class="acc">
       <button class="acc__q">Quels documents accompagnent le chiot ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Chaque chiot Coeur de Clayton repart avec :</p>
+        <p>Chaque chiot {{ elevage.nom }} repart avec :</p>
         <ul>
           <li>Carnet de santé à jour (vaccinations, vermifugations)</li>
           <li>Identification par puce électronique (ICAD)</li>
@@ -1199,16 +1293,16 @@
     </div>
 
     <div class="acc">
-      <button class="acc__q">Le Berger Americain Miniature convient-il aux familles avec enfants ? <span class="arr">▾</span></button>
+      <button class="acc__q">Le {{ elevage.race }} convient-il aux familles avec enfants ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Le Berger Americain Miniature peut être un excellent chien de famille à condition que son énergie soit bien canalisée. C'est une race active qui a besoin d'exercice quotidien et de stimulation mentale. Il est naturellement protecteur et affectueux avec les enfants qu'il connaît. Nos chiots, socialisés en famille dès la naissance, sont habitués à la présence d'enfants, aux bruits et à l'agitation de la vie domestique.</p>
+        <p>Le {{ elevage.race }} peut être un excellent chien de famille à condition que son énergie soit bien canalisée. C'est une race active qui a besoin d'exercice quotidien et de stimulation mentale. Il est naturellement protecteur et affectueux avec les enfants qu'il connaît. Nos chiots, socialisés en famille dès la naissance, sont habitués à la présence d'enfants, aux bruits et à l'agitation de la vie domestique.</p>
       </div>
     </div>
 
     <div class="acc">
       <button class="acc__q">Puis-je visiter l'élevage et rencontrer les parents ? <span class="arr">▾</span></button>
       <div class="acc__a">
-        <p>Oui, les visites sont les bienvenues et même encouragées, sur rendez-vous. Nous vous invitons à venir rencontrer Reproducteur et Reproducteur, découvrir notre cadre de vie en Haute-Savoie et observer les chiots évoluer dans leur environnement familial. Contactez-nous via notre page Facebook pour planifier votre visite.</p>
+        <p>Oui, les visites sont les bienvenues et même encouragées, sur rendez-vous. Nous vous invitons à venir rencontrer {{ reproducteurs[0].prenom }} et {{ reproducteurs[1].prenom }}, découvrir notre cadre de vie en {{ elevage.region }} et observer les chiots évoluer dans leur environnement familial. Contactez-nous via notre page Facebook pour planifier votre visite.</p>
       </div>
     </div>
 
@@ -1227,21 +1321,25 @@
   <div class="footer__wrap">
     <div>
       <div class="footer__logo">
-        Coeur de Clayton
-        <span>Berger Americain Miniature · Haute-Savoie, France</span>
+        {{ elevage.nom }}
+        <span>{{ elevage.race }} · {{ elevage.departement }}, France</span>
       </div>
-      <p>Élevage familial de Berger Americain Miniature en Haute-Savoie. Chiots LOF, dysplasie dépistée sur les parents, élevés en famille avec socialisation quotidienne.</p>
+      <p>Élevage familial de {{ elevage.race }} en {{ elevage.region }}. Chiots LOF, dysplasie dépistée sur les parents, élevés en famille avec socialisation quotidienne.</p>
       <p style="margin-top:.8rem">
-        
-        📍 Haute-Savoie, France
+        {% if elevage.facebook %}
+        📘 <a href="{{ elevage.facebook }}" target="_blank" rel="noopener">{{ elevage.facebook_label }}</a><br>
+        {% endif %}
+        📍 {{ elevage.departement }}, France
       </p>
     </div>
     <div class="footer__col">
       <h4>Navigation</h4>
       <a href="#about">L'Élevage</a>
       <a href="#race">La Race</a>
-      <a href="#repro">Reproducteur &amp; Reproducteur</a>
-      
+      <a href="#repro">{{ reproducteurs[0].prenom }} &amp; {{ reproducteurs[1].prenom }}</a>
+      {% if portee %}
+      <a href="#portee">Portée en cours</a>
+      {% endif %}
       <a href="#galerie">Galerie</a>
       <a href="#contact">Contact</a>
     </div>
@@ -1250,12 +1348,14 @@
       <p>Enregistrement LOF (SCC)</p>
       <p>Dysplasie dépistée · hanches &amp; coudes</p>
       <p>Chiots socialisés en famille</p>
-      <p>Haute-Savoie, Auvergne-Rhône-Alpes</p>
-      
+      <p>{{ elevage.region }}, Auvergne-Rhône-Alpes</p>
+      {% if elevage.facebook %}
+      <a href="{{ elevage.facebook }}" target="_blank" rel="noopener" style="margin-top:.8rem">Notre page Facebook</a>
+      {% endif %}
     </div>
   </div>
   <div class="footer__bottom">
-    <p>©  Coeur de Clayton · Tous droits réservés</p>
+    <p>© {{ elevage.since }} {{ elevage.nom }} · Tous droits réservés</p>
     <p><a href="#">Mentions légales</a></p>
   </div>
 </footer>
