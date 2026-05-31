@@ -112,6 +112,31 @@ def get_existing_phones() -> set[str]:
     return phones
 
 
+def get_existing_names() -> set[str]:
+    """Recupere les noms d'elevages deja presents dans les Issues (dedup par nom)."""
+    names = set()
+    url = "https://api.github.com/repos/francoislang/templates/issues"
+    params = {"state": "all", "per_page": 100, "page": 1}
+
+    while True:
+        r = requests.get(url, headers=_headers(), params=params, timeout=15)
+        if r.status_code != 200:
+            break
+        for issue in r.json():
+            title = issue.get("title") or ""
+            # Extraire le nom depuis le format "[Race] Nom - Tel"
+            m = re.match(r'\[([^\]]+)\]\s+(.+?)\s*[-–]\s*(.+)$', title)
+            if m:
+                name = m.group(2).strip().lower()
+                names.add(name)
+
+        if len(r.json()) < 100:
+            break
+        params["page"] += 1
+
+    return names
+
+
 def add_entry(elevage: str, races: list[str], phone: str,
               demo_url: str = None, notes: str = None) -> str:
     """
