@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Domaine de Santi — Élevage Berger Blanc Suisse | France</title>
+  <meta name="description" content="Élevage familial de Berger Blanc Suisse en France. 24 ans de passion, chiots élevés avec amour, chiens de famille attentifs et proches. Téléphone : 04 76 55 17 30.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://domaine-de-santi.fr/">
+  <meta property="og:title"       content="Domaine de Santi — Berger Blanc Suisse">
+  <meta property="og:description" content="Élevage passionné de Berger Blanc Suisse depuis 24 ans. Chiens de famille élevés avec amour. Téléphone : 04 76 55 17 30.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-76096-domaine-de-santi.jpg?1676229164">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Domaine de Santi",
+        "description": "Élevage familial de Berger Blanc Suisse en France. 24 ans de passion, chiots élevés avec amour.",
+        "telephone": "+33476551730",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR"
+        }
+      },
+      { "@type": "AnimalShelter", "name": "Domaine de Santi — Élevage Berger Blanc Suisse" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Domaine de Santi
+       Design : Élégant et pur pour Berger Blanc Suisse
+       ============================================== */
+    :root {
+      --pure:  #FFFFFF;   /* blanc pur */
+      --snow:  #F8F9FA;   /* blanc neige */
+      --sage:  #6B7D6A;   /* sauge douce */
+      --pine:  #4A5C49;   /* pin profond */
+      --crm:   #FAF8F5;   /* crème ivoire */
+      --bg:    #FDFCFA;   /* fond blanc chaud */
+      --stn:   #9CA09C;   /* pierre douce */
+      --txt:   #2C3E2B;   /* texte vert profond */
+      --FD:    'Cinzel', serif;       
+      --FN:    'Raleway', sans-serif; 
+      --nav:   72px;
+      --r:     4px;
+      --sage-gradient: linear-gradient(135deg, #6B7D6A 0%, #8A9B89 45%, #5A6B59 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ==============================================
+       UTILITAIRES
+       ============================================== */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .flex { display: flex; }
+    .flex-center { display: flex; align-items: center; justify-content: center; }
+    .flex-between { display: flex; align-items: center; justify-content: space-between; }
+    .flex-col { flex-direction: column; }
+    .gap-20 { gap: 20px; }
+    .gap-40 { gap: 40px; }
+    .text-center { text-align: center; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .slide-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease; }
+    .slide-left.visible { opacity: 1; transform: translateX(0); }
+    .slide-right { opacity: 0; transform: translateX(50px); transition: all 0.8s ease; }
+    .slide-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ==============================================
+       BOUTONS ET ÉLÉMENTS INTERACTIFS
+       ============================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px;
+      font-weight: 600; letter-spacing: 0.5px; border-radius: var(--r);
+      text-transform: uppercase; font-size: 14px; cursor: pointer;
+      transition: all 0.3s ease; text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--sage-gradient);
+      color: white;
+      box-shadow: 0 4px 15px rgba(107, 125, 106, 0.3);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(107, 125, 106, 0.4);
+    }
+    .btn-outline {
+      border: 2px solid var(--sage);
+      color: var(--sage);
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background: var(--sage);
+      color: white;
+    }
+
+    /* ==============================================
+       NAVIGATION
+       ============================================== */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav); background: rgba(253, 252, 250, 0.95);
+      backdrop-filter: blur(10px); border-bottom: 1px solid rgba(107, 125, 106, 0.1);
+    }
+    .nav-content { height: 100%; }
+    .logo {
+      font-family: var(--FD); font-size: 28px; font-weight: 600;
+      color: var(--pine); letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex; gap: 40px; list-style: none;
+    }
+    .nav-links a {
+      font-weight: 500; color: var(--txt); font-size: 15px;
+      position: relative; transition: color 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--sage); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -5px; left: 0;
+      width: 0; height: 2px; background: var(--sage);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    .mobile-menu { display: none; }
+    .hamburger {
+      flex-direction: column; gap: 4px; padding: 8px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px; height: 2px; background: var(--txt);
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu { display: block; }
+    }
+
+    /* ==============================================
+       HERO SECTION
+       ============================================== */
+    .hero {
+      height: 100vh; background: linear-gradient(rgba(44, 62, 43, 0.4), rgba(44, 62, 43, 0.4)),
+              url('https://upload.chien.com/img/23-76096-domaine-de-santi.jpg?1676229164') center/cover;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; color: white; text-align: center;
+    }
+    .hero-content h1 {
+      font-family: var(--FD); font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600; margin-bottom: 20px; letter-spacing: 2px;
+    }
+    .hero-content .subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 300;
+      margin-bottom: 10px; opacity: 0.9;
+    }
+    .hero-content .tagline {
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem); font-weight: 400;
+      margin-bottom: 40px; opacity: 0.8; max-width: 600px;
+    }
+
+    /* ==============================================
+       SECTIONS PRINCIPALES
+       ============================================== */
+    section {
+      padding: 100px 0;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 80px;
+    }
+    .section-header h2 {
+      font-family: var(--FD); font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600; color: var(--pine); margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .section-header p {
+      font-size: 1.1rem; color: var(--stn); max-width: 600px;
+      margin: 0 auto; line-height: 1.6;
+    }
+
+    /* ==============================================
+       SECTION À PROPOS
+       ============================================== */
+    .about {
+      background: var(--crm);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .about-text h3 {
+      font-family: var(--FD); font-size: 1.8rem; color: var(--pine);
+      margin-bottom: 30px; font-weight: 600;
+    }
+    .about-text p {
+      font-size: 1.05rem; line-height: 1.8; margin-bottom: 25px;
+      color: var(--txt);
+    }
+    .about-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px; margin-top: 40px;
+    }
+    .highlight {
+      text-align: center; padding: 30px 20px;
+      background: white; border-radius: var(--r);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    .highlight-icon {
+      width: 60px; height: 60px; margin: 0 auto 20px;
+      background: var(--sage-gradient); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: white;
+    }
+    .highlight h4 {
+      font-family: var(--FD); font-size: 1.2rem; color: var(--pine);
+      margin-bottom: 10px; font-weight: 600;
+    }
+    .highlight p {
+      font-size: 0.95rem; color: var(--stn);
+    }
+    .about-image {
+      position: relative; border-radius: var(--r); overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    .about-image img {
+      width: 100%; height: 500px; object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr; gap: 50px;
+      }
+      .about-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==============================================
+       SECTION RACE
+       ============================================== */
+    .breed-features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px; margin-top: 60px;
+    }
+    .feature {
+      background: white; padding: 40px 30px; border-radius: var(--r);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      text-align: center; transition: transform 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      width: 80px; height: 80px; margin: 0 auto 25px;
+      background: var(--sage-gradient); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: white;
+    }
+    .feature h3 {
+      font-family: var(--FD); font-size: 1.4rem; color: var(--pine);
+      margin-bottom: 15px; font-weight: 600;
+    }
+    .feature p {
+      color: var(--stn); line-height: 1.6;
+    }
+
+    /* ==============================================
+       GALERIE
+       ============================================== */
+    .gallery {
+      background: var(--crm);
+    }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px; margin-top: 60px;
+    }
+    .gallery-item {
+      position: relative; border-radius: var(--r); overflow: hidden;
+      aspect-ratio: 1; cursor: pointer;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(45deg, rgba(107, 125, 106, 0.8), rgba(74, 92, 73, 0.8));
+      opacity: 0; transition: opacity 0.3s ease;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-weight: 600; font-size: 1.1rem;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* ==============================================
+       CONTACT
+       ============================================== */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start;
+    }
+    .contact-info {
+      background: white; padding: 50px 40px; border-radius: var(--r);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+    .contact-info h3 {
+      font-family: var(--FD); font-size: 1.8rem; color: var(--pine);
+      margin-bottom: 30px; font-weight: 600;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 25px;
+    }
+    .contact-icon {
+      width: 50px; height: 50px;
+      background: var(--sage-gradient); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 20px;
+    }
+    .contact-item div h4 {
+      font-family: var(--FD); color: var(--pine); margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .contact-item div p {
+      color: var(--stn); font-size: 0.95rem;
+    }
+    .contact-form {
+      background: white; padding: 50px 40px; border-radius: var(--r);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+    .form-group {
+      margin-bottom: 25px;
+    }
+    .form-group label {
+      display: block; margin-bottom: 8px; font-weight: 600;
+      color: var(--pine);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 15px; border: 2px solid #e5e5e5;
+      border-radius: var(--r); font-family: var(--FN);
+      font-size: 16px; transition: border-color 0.3s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none; border-color: var(--sage);
+    }
+    .form-group textarea {
+      resize: vertical; min-height: 120px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr; gap: 40px;
+      }
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    footer {
+      background: var(--pine); color: white; padding: 60px 0 30px;
+    }
+    .footer-content {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 50px; margin-bottom: 40px;
+    }
+    .footer-section h3 {
+      font-family: var(--FD); font-size: 1.4rem; margin-bottom: 20px;
+      font-weight: 600;
+    }
+    .footer-section p,
+    .footer-section a {
+      color: rgba(255,255,255,0.8); line-height: 1.6;
+      transition: color 0.3s ease;
+    }
+    .footer-section a:hover {
+      color: white;
+    }
+    .footer-links {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+    .footer-bottom {
+      text-align: center; padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+    }
+  </style>
+</head>
+<body>
+  <!-- ================================================
+       NAVIGATION
+       ================================================ -->
+  <header>
+    <div class="wrap">
+      <nav class="nav-content flex-between">
+        <div class="logo">Domaine de Santi</div>
+        
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#race">La race</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <div class="mobile-menu">
+          <button class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================================================
+       HERO
+       ================================================ -->
+  <section id="accueil" class="hero">
+    <div class="hero-content fade-in">
+      <p class="subtitle">Élevage familial depuis 24 ans</p>
+      <h1>Domaine de Santi</h1>
+      <p class="tagline">
+        Élevage passionné de Berger Blanc Suisse<br>
+        Chiens de famille élevés avec amour
+      </p>
+      <a href="#contact" class="btn btn-primary">Nous contacter</a>
+    </div>
+  </section>
+
+  <!-- ================================================
+       À PROPOS
+       ================================================ -->
+  <section id="apropos" class="about">
+    <div class="wrap">
+      <div class="section-header fade-in">
+        <h2>Notre passion depuis 1999</h2>
+        <p>
+          Découvrez l'histoire de notre élevage familial et notre amour 
+          inconditionnel pour le Berger Blanc Suisse
+        </p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text slide-left">
+          <h3>24 ans de passion et d'amour</h3>
+          <p>
+            Passionnée du Berger Canadien, Berger Américain qui deviendra 
+            Berger Blanc Suisse, je peux vous en parler des heures durant ! 
+            Il y a 24 ans, notre premier Berger Blanc Suisse, Cisca, est 
+            arrivée à la maison.
+          </p>
+          <p>
+            Nous avons eu tellement d'amour pour cette superbe boule de poils. 
+            Nous avons eu d'autres chiens (des Loups Tchèques, un Jack Russell), 
+            mais maintenant nous avons juste notre Berger Blanc Suisse.
+          </p>
+          <p>
+            Le Berger Blanc Suisse est un chien de famille attentif à ses maîtres, 
+            proche de ses humains, loyal et dévoué. C'est un compagnon exceptionnel 
+            qui saura vous combler de bonheur.
+          </p>
+        </div>
+        
+        <div class="about-image slide-right">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314461/photo-berger_blanc_suisse/berger_blanc_suisse_1.jpg" 
+               alt="Berger Blanc Suisse du Domaine de Santi">
+        </div>
+      </div>
+
+      <div class="about-highlights fade-in">
+        <div class="highlight">
+          <div class="highlight-icon">🏠</div>
+          <h4>Élevage familial</h4>
+          <p>Nos chiens vivent avec nous, dans la maison, comme membres de la famille</p>
+        </div>
+        <div class="highlight">
+          <div class="highlight-icon">❤️</div>
+          <h4>Élevés avec amour</h4>
+          <p>Chaque chiot reçoit toute notre attention et notre affection</p>
+        </div>
+        <div class="highlight">
+          <div class="highlight-icon">📞</div>
+          <h4>Suivi à vie</h4>
+          <p>Nous restons disponibles pour vous conseiller tout au long de la vie de votre chien</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       LA RACE
+       ================================================ -->
+  <section id="race">
+    <div class="wrap">
+      <div class="section-header fade-in">
+        <h2>Le Berger Blanc Suisse</h2>
+        <p>
+          Une race exceptionnelle aux qualités remarquables, 
+          parfaite pour la vie de famille
+        </p>
+      </div>
+      
+      <div class="breed-features">
+        <div class="feature fade-in">
+          <div class="feature-icon">👨‍👩‍👧‍👦</div>
+          <h3>Chien de famille</h3>
+          <p>
+            Attentif à ses maîtres, le Berger Blanc Suisse est un compagnon 
+            idéal pour toute la famille, y compris avec les enfants.
+          </p>
+        </div>
+        
+        <div class="feature fade-in">
+          <div class="feature-icon">💝</div>
+          <h3>Proche et loyal</h3>
+          <p>
+            Très proche de ses humains, il développe des liens forts avec 
+            sa famille et fait preuve d'une loyauté exemplaire.
+          </p>
+        </div>
+        
+        <div class="feature fade-in">
+          <div class="feature-icon">🎯</div>
+          <h3>Attentif et dévoué</h3>
+          <p>
+            Toujours à l'écoute, il est dévoué à sa famille et saura 
+            vous combler par son attention constante.
+          </p>
+        </div>
+        
+        <div class="feature fade-in">
+          <div class="feature-icon">⭐</div>
+          <h3>Compagnon exceptionnel</h3>
+          <p>
+            Avec son caractère équilibré et sa beauté naturelle, 
+            c'est un compagnon qui vous apportera énormément de bonheur.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       GALERIE
+       ================================================ -->
+  <section id="galerie" class="gallery">
+    <div class="wrap">
+      <div class="section-header fade-in">
+        <h2>Nos magnifiques Bergers Blancs Suisses</h2>
+        <p>
+          Découvrez nos chiens dans leur quotidien et admirez 
+          la beauté de cette race exceptionnelle
+        </p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314462/photo-berger_blanc_suisse/berger_blanc_suisse_2.jpg" 
+               alt="Berger Blanc Suisse">
+          <div class="gallery-overlay">
+            <span>Élégance naturelle</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314464/photo-berger_blanc_suisse/berger_blanc_suisse_3.jpg" 
+               alt="Berger Blanc Suisse">
+          <div class="gallery-overlay">
+            <span>Compagnon fidèle</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314466/photo-berger_blanc_suisse/berger_blanc_suisse_4.jpg" 
+               alt="Berger Blanc Suisse">
+          <div class="gallery-overlay">
+            <span>Beauté pure</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314467/photo-berger_blanc_suisse/berger_blanc_suisse_5.jpg" 
+               alt="Berger Blanc Suisse">
+          <div class="gallery-overlay">
+            <span>Grâce naturelle</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       CONTACT
+       ================================================ -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-header fade-in">
+        <h2>Contactez-nous</h2>
+        <p>
+          Vous souhaitez en savoir plus sur nos Bergers Blancs Suisses ? 
+          N'hésitez pas à nous contacter
+        </p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info slide-left">
+          <h3>Informations de contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Téléphone</h4>
+              <p>04 76 55 17 30</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🏠</div>
+            <div>
+              <h4>Élevage</h4>
+              <p>Domaine de Santi<br>France</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">⏰</div>
+            <div>
+              <h4>Horaires</h4>
+              <p>Sur rendez-vous<br>Appel téléphonique préalable</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🐕</div>
+            <div>
+              <h4>Spécialité</h4>
+              <p>Berger Blanc Suisse<br>24 ans d'expérience</p>
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form slide-right">
+          <div class="form-group">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="nom" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Parlez-nous de votre projet..." required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            Envoyer le message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Domaine de Santi</h3>
+          <p>
+            Élevage familial de Berger Blanc Suisse depuis 24 ans. 
+            Nos chiens sont élevés avec amour et passion pour vous 
+            offrir des compagnons exceptionnels.
+          </p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Téléphone : 04 76 55 17 30</p>
+          <p>France</p>
+          <p>Sur rendez-vous uniquement</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#race">La race</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Domaine de Santi. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================================================
+       JAVASCRIPT
+       ================================================ -->
+  <script>
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observer tous les éléments animés
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Menu mobile
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger?.addEventListener('click', () => {
+      navLinks?.classList.toggle('active');
+      hamburger?.classList.toggle('active');
+    });
+
+    // Scroll fluide pour les liens de navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Formulaire de contact
+    document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Simulation d'envoi
+      const button = this.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      
+      button.textContent = 'Envoi en cours...';
+      button.disabled = true;
+      
+      setTimeout(() => {
+        alert('Merci pour votre message ! Nous vous recontacterons rapidement.');
+        this.reset();
+        button.textContent = originalText;
+        button.disabled = false;
+      }, 2000);
+    });
+
+    // Effet parallaxe subtil sur le hero
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const hero = document.querySelector('.hero');
+      if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

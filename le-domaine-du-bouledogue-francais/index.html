@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Le Domaine du Bouledogue Français — Élevage Bouledogue Français | Horion-Hozémont, Liège</title>
+  <meta name="description" content="Élevage agréé de Bouledogue Français à Horion-Hozémont, Liège (Belgique). Chiots vaccinés, vermifugés, pucés et socialisés. Suivi vétérinaire permanent. Tél. 08 98 02 35 25.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://bouledogue-francais.be/">
+  <meta property="og:title"       content="Le Domaine du Bouledogue Français — Horion-Hozémont, Liège">
+  <meta property="og:description" content="Élevage agréé de Bouledogue Français en Belgique. Chiots vaccinés, vermifugés, pucés et parfaitement socialisés. Suivi vétérinaire permanent.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-59107-le-domaine-du-bouledogue-francais.jpg?1745915009">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Le Domaine du Bouledogue Français",
+        "description": "Élevage agréé de Bouledogue Français à Horion-Hozémont, dans la province de Liège (Belgique). Chiots vaccinés, vermifugés, pucés et socialisés.",
+        "telephone": "+3289802352 5",
+        "url": "https://www.bouledogue-francais.be",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Horion-Hozémont",
+          "addressRegion": "Liège",
+          "addressCountry": "BE"
+        }
+      },
+      { "@type": "AnimalShelter", "name": "Le Domaine du Bouledogue Français — Élevage Bouledogue Français Belgique" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Le Domaine du Bouledogue Français
+       Design : Français chic / Parisien / Élégant
+       ============================================== */
+    :root {
+      --navy:  #1A237E;   /* bleu marine français */
+      --gold:  #FFB300;   /* or français */
+      --wine:  #8E24AA;   /* bordeaux élégant */
+      --cream: #FFF8E1;   /* crème française */
+      --bg:    #FAFAFA;   /* blanc cassé */
+      --stone: #8D6E63;   /* pierre parisienne */
+      --txt:   #1A237E;   /* texte */
+      --FD:    'Cinzel', serif;       /* MODIFIER : police titres */
+      --FN:    'Raleway', sans-serif; /* MODIFIER : police corps */
+      --nav:   72px;
+      --r:     4px;
+      --gold-gradient: linear-gradient(135deg, #FFB300 0%, #FFC947 45%, #FF8F00 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ==============================================
+       UTILITY CLASSES
+       ============================================== */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .section-py { padding: 100px 0; }
+    .text-center { text-align: center; }
+    .mb-1 { margin-bottom: 1rem; }
+    .mb-2 { margin-bottom: 2rem; }
+    .mb-3 { margin-bottom: 3rem; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ==============================================
+       TYPOGRAPHY
+       ============================================== */
+    h1, h2, h3, h4 { font-family: var(--FD); font-weight: 600; line-height: 1.2; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.8rem; }
+    .lead { font-size: 1.25rem; font-weight: 300; }
+    .gold-text { color: var(--gold); }
+
+    /* ==============================================
+       NAVIGATION
+       ============================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: var(--nav);
+      background: rgba(26, 35, 126, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 179, 0, 0.2);
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: white;
+      transition: all 0.3s;
+    }
+
+    /* ==============================================
+       HERO SECTION
+       ============================================== */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(26, 35, 126, 0.4), rgba(142, 36, 170, 0.4)), url('https://upload.chien.com/img/23-59107-le-domaine-du-bouledogue-francais.jpg?1745915009');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .hero-content h1 {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-content .lead {
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 15px 30px;
+      background: var(--gold-gradient);
+      color: white;
+      font-weight: 600;
+      border-radius: var(--r);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 179, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 179, 0, 0.4);
+    }
+
+    /* ==============================================
+       ABOUT SECTION
+       ============================================== */
+    .about {
+      background: var(--cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content h2 {
+      color: var(--navy);
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--stone);
+    }
+
+    /* ==============================================
+       FEATURES SECTION
+       ============================================== */
+    .features {
+      background: white;
+    }
+
+    .features h2 {
+      color: var(--navy);
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: var(--r);
+      text-align: center;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gold-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .feature-card h3 {
+      color: var(--navy);
+      margin-bottom: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--stone);
+    }
+
+    /* ==============================================
+       GALLERY SECTION
+       ============================================== */
+    .gallery {
+      background: var(--cream);
+    }
+
+    .gallery h2 {
+      color: var(--navy);
+      margin-bottom: 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--r);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 35, 126, 0.8);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    /* ==============================================
+       CONTACT SECTION
+       ============================================== */
+    .contact {
+      background: white;
+    }
+
+    .contact h2 {
+      color: var(--navy);
+      margin-bottom: 3rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: var(--r);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      color: white;
+    }
+
+    .contact-form {
+      background: var(--cream);
+      padding: 2rem;
+      border-radius: var(--r);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #E0E0E0;
+      border-radius: var(--r);
+      font-family: var(--FN);
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    .footer {
+      background: var(--navy);
+      color: white;
+      padding: 3rem 0 1rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: #B0BEC5;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-section a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 179, 0, 0.2);
+      padding-top: 1rem;
+      color: #B0BEC5;
+    }
+
+    /* ==============================================
+       RESPONSIVE
+       ============================================== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .section-py {
+        padding: 60px 0;
+      }
+
+      .hero {
+        height: 80vh;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding: 0 15px;
+      }
+
+      .hero-content .lead {
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAVIGATION -->
+  <nav class="navbar">
+    <div class="wrap nav-content">
+      <div class="logo">Le Domaine du Bouledogue Français</div>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#elevage">L'Élevage</a></li>
+        <li><a href="#services">Nos Services</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section id="accueil" class="hero">
+    <div class="wrap">
+      <div class="hero-content fade-in">
+        <h1>Le Domaine du <span class="gold-text">Bouledogue Français</span></h1>
+        <p class="lead">Élevage agréé de Bouledogue Français à Horion-Hozémont, dans la province de Liège (Belgique)</p>
+        <a href="#contact" class="btn-primary">Nous Contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="elevage" class="about section-py">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg" alt="Bouledogue Français - Le Domaine">
+        </div>
+        <div class="about-content fade-in">
+          <h2>Notre <span class="gold-text">Passion</span></h2>
+          <p>Nous sommes un élevage agréé de Bouledogues Français situé à Horion-Hozémont, dans la province de Liège (Belgique). Notre passion pour cette race exceptionnelle nous guide depuis de nombreuses années.</p>
+          
+          <p>Nos chiots sont issus de notre propre élevage, et sont vendus vaccinés, vermifugés, pucés et parfaitement socialisés. Nous veillons par ailleurs à leur offrir une alimentation de qualité ainsi qu'une hygiène impeccable.</p>
+          
+          <p>De plus, tant les reproducteurs que leurs petits sont suivis en permanence par un médecin vétérinaire pour garantir leur santé et leur bien-être optimal.</p>
+          
+          <a href="#contact" class="btn-primary">En Savoir Plus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="services" class="features section-py">
+    <div class="wrap">
+      <h2 class="text-center fade-in">Nos <span class="gold-text">Engagements</span></h2>
+      <div class="features-grid">
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🏥</div>
+          <h3>Suivi Vétérinaire</h3>
+          <p>Nos reproducteurs et chiots sont suivis en permanence par un médecin vétérinaire qualifié.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-icon">💉</div>
+          <h3>Chiots Préparés</h3>
+          <p>Tous nos chiots sont vendus vaccinés, vermifugés, pucés et parfaitement socialisés.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-icon">🥘</div>
+          <h3>Alimentation Premium</h3>
+          <p>Nous offrons à nos chiens une alimentation de qualité supérieure pour leur santé optimale.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-icon">✨</div>
+          <h3>Hygiène Impeccable</h3>
+          <p>Notre élevage maintient des standards d'hygiène exceptionnels pour le bien-être de nos chiens.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-icon">👨‍⚕️</div>
+          <h3>Élevage Agréé</h3>
+          <p>Notre élevage est officiellement agréé et respecte toutes les réglementations en vigueur.</p>
+        </div>
+        
+        <div class="feature-card fade-in">
+          <div class="feature-icon">❤️</div>
+          <h3>Socialisation Précoce</h3>
+          <p>Nos chiots bénéficient d'une socialisation précoce pour un développement comportemental optimal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY SECTION -->
+  <section id="galerie" class="gallery section-py">
+    <div class="wrap">
+      <h2 class="text-center fade-in">Nos <span class="gold-text">Bouledogues Français</span></h2>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg" alt="Bouledogue Français chiot">
+          <div class="gallery-overlay">Nos Chiots</div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg" alt="Bouledogue Français reproducteur">
+          <div class="gallery-overlay">Nos Reproducteurs</div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_4.jpg" alt="Bouledogue Français famille">
+          <div class="gallery-overlay">Nos Familles</div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg" alt="Bouledogue Français élevage">
+          <div class="gallery-overlay">Notre Élevage</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="contact section-py">
+    <div class="wrap">
+      <h2 class="text-center fade-in">Contactez-<span class="gold-text">Nous</span></h2>
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h3>Informations de Contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Adresse</strong><br>
+              Horion-Hozémont<br>
+              Province de Liège, Belgique
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <strong>Téléphone</strong><br>
+              <a href="tel:+3289802352 5">08 98 02 35 25</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🌐</div>
+            <div>
+              <strong>Site Web</strong><br>
+              <a href="https://www.bouledogue-francais.be" target="_blank">www.bouledogue-francais.be</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🏆</div>
+            <div>
+              <strong>Statut</strong><br>
+              Élevage Agréé
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form fade-in">
+          <h3>Envoyez-nous un Message</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Nom *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet d'adoption..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn-primary">Envoyer le Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Le Domaine du Bouledogue Français</h3>
+          <p>Élevage agréé de Bouledogue Français</p>
+          <p>Horion-Hozémont, Liège (Belgique)</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>📞 08 98 02 35 25</p>
+          <p>🌐 <a href="https://www.bouledogue-francais.be">www.bouledogue-francais.be</a></p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Nos Engagements</h3>
+          <p>✓ Élevage agréé</p>
+          <p>✓ Suivi vétérinaire permanent</p>
+          <p>✓ Chiots socialisés</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Le Domaine du Bouledogue Français. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animations au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observer tous les éléments avec la classe fade-in
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Navigation mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle?.addEventListener('click', () => {
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    // Smooth scroll pour les liens de navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Gestion du formulaire
+    document.querySelector('form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre message ! Nous vous contacterons bientôt.');
+    });
+  </script>
+</body>
+</html>

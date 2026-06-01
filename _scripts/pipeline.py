@@ -82,11 +82,18 @@ def generate_demo_site(profile: dict) -> str | None:
     # Photos Cloudinary
     photos_race = get_photos_for_race(race, count=15) or []
 
-    # Lire le site de reference joyaux-d-anubis
-    try:
-        ref = open("/workspace/templates/joyaux-d-anubis/index.html", encoding="utf-8").read()
-    except:
-        ref = ""
+    # Lire les sites de reference (tous les contacts)
+    ref_sites = ["joyaux-d-anubis", "domaine-du-quinquis", "la-dolce-vita",
+                 "des-cotons-de-soie-d-or", "mas-andre", "de-windy-stia",
+                 "mellan-schnauzers", "la-ferme-aredienne-des-salines",
+                 "du-bois-de-chantalouette", "des-marais-de-bremes"]
+    refs = []
+    for s in ref_sites:
+        try:
+            html = open(f"/workspace/templates/{s}/index.html", encoding="utf-8").read()
+            refs.append(f"--- {s} ---\n{html[:3000]}")
+        except:
+            pass
 
     # Cle API OpenRouter
     key = ""
@@ -112,8 +119,8 @@ def generate_demo_site(profile: dict) -> str | None:
 
     prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens.
 
-INSPIRE-TOI DE CE SITE DE RÉFÉRENCE pour la structure, le style, les sections et la qualité :
-{ref[:5000]}
+INSPIRE-TOI DE CES SITES DE RÉFÉRENCE pour la structure, le style, les sections et la qualité (ce sont des sites déjà réalisés pour d'autres éleveurs) :
+{chr(10).join(refs[:6000]) if refs else "Crée un site professionnel, unique et moderne avec Hero, About, Race, Galerie, Contact."}
 
 CONTENU À ADAPTER :
 - Nom élevage : {name}
