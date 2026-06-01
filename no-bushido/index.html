@@ -1,0 +1,1423 @@
+Voici le code HTML complet d'un site vitrine pour l'élevage canin "No Bushido", spécialisé dans l'Akita Inu. Il est structuré, responsive et intègre tous les éléments SEO et visuels demandés.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>No Bushido — Élevage Akita Inu | Menetou-Salon, Cher (18)</title>
+    <meta name="description" content="Élevage familial d'Akita Inu à Menetou-Salon dans le Cher (18). Chiots élevés avec passion, tests génétiques, socialisation précoce. Éducation adaptée, joie de vivre et calme impérial. SIREN 911469963. Tél. 06 50 03 51 88.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.no-bushido.fr/">
+    <meta property="og:title" content="No Bushido — Élevage Akita Inu, Menetou-Salon">
+    <meta property="og:description" content="Élevage familial d'Akita Inu dans le Cher. Chiots socialisés, tests génétiques, éducation adaptée. Découvrez la noblesse de l'Akita Inu.">
+    <meta property="og:image" content="https://upload.chien.com/img/23-78876-no-bushido.jpg?1778399150">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "No Bushido",
+                    "description": "Élevage familial d'Akita Inu à Menetou-Salon, Cher (18). Chiots socialisés, tests génétiques, éducation adaptée.",
+                    "telephone": "+33650035188",
+                    "identifier": "911469963",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Menetou-Salon",
+                        "postalCode": "18510",
+                        "addressRegion": "Cher",
+                        "addressCountry": "FR"
+                    },
+                    "openingHoursSpecification": {
+                        "@type": "OpeningHoursSpecification",
+                        "description": "Sur rendez-vous uniquement"
+                    }
+                },
+                { "@type": "AnimalShelter", "name": "No Bushido — Élevage Akita Inu" }
+            ]
+        }
+    </script>
+
+    <style>
+        :root {
+            --aka: #8B3A2A;
+            --rxs: #C75B38;
+            --gld: #C9A45E;
+            --crm: #F6F0E8;
+            --bg: #FDF9F3;
+            --stn: #9A8E7E;
+            --txt: #1E1610;
+            --dkn: #2A1A0E;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 6px;
+            --max: 1200px;
+            --gld-gradient: linear-gradient(135deg, #C9A45E 0%, #D4B870 45%, #B8933F 100%);
+            --aka-gradient: linear-gradient(135deg, #8B3A2A 0%, #C75B38 50%, #7A2E1F 100%);
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.75;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .wrap--sm {
+            max-width: 900px;
+        }
+        .wrap--xs {
+            max-width: 700px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .serif {
+            font-family: var(--FD);
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.01em;
+        }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-weight: 700;
+        }
+        h2 {
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            margin-bottom: 0.6em;
+        }
+        h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            margin-bottom: 0.5em;
+        }
+
+        .label {
+            display: inline-block;
+            font-family: var(--FN);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--rxs);
+            margin-bottom: 0.6rem;
+        }
+        .accent {
+            color: var(--rxs);
+        }
+        .gold {
+            color: var(--gld);
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav);
+            background: rgba(253, 249, 243, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(139, 58, 42, 0.1);
+            transition: var(--transition);
+        }
+        .nav.scrolled {
+            box-shadow: var(--shadow-sm);
+            background: rgba(253, 249, 243, 0.98);
+        }
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .nav__logo {
+            font-family: var(--FD);
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--dkn);
+            white-space: nowrap;
+        }
+        .nav__logo span {
+            color: var(--rxs);
+        }
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav__links a {
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--dkn);
+            position: relative;
+            padding: 6px 0;
+            transition: color var(--transition);
+        }
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rxs);
+            transition: width var(--transition);
+        }
+        .nav__links a:hover {
+            color: var(--rxs);
+        }
+        .nav__links a:hover::after {
+            width: 100%;
+        }
+        .nav__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 22px;
+            background: var(--aka-gradient);
+            color: #fff !important;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .nav__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 58, 42, 0.35);
+            color: #fff !important;
+        }
+        .nav__cta::after {
+            display: none !important;
+        }
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .nav__burger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--dkn);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        .nav__burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav__burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav__burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: var(--nav);
+            overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(30, 22, 16, 0.55) 0%,
+                    rgba(30, 22, 16, 0.35) 40%,
+                    rgba(30, 22, 16, 0.55) 100%);
+            z-index: 1;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 60px 28px;
+            color: #fff;
+            text-align: center;
+        }
+        .hero__content .label {
+            color: var(--gld);
+            font-size: 0.82rem;
+            letter-spacing: 0.25em;
+            margin-bottom: 1rem;
+        }
+        .hero__content h1 {
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+        .hero__subtitle {
+            font-family: var(--FD);
+            font-size: clamp(1.1rem, 2vw, 1.45rem);
+            font-weight: 400;
+            font-style: italic;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .hero__location {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            letter-spacing: 0.04em;
+        }
+        .hero__buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            border-radius: 50px;
+            transition: var(--transition);
+            text-transform: uppercase;
+        }
+        .btn--primary {
+            background: var(--aka-gradient);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(139, 58, 42, 0.35);
+        }
+        .btn--primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 58, 42, 0.5);
+        }
+        .btn--outline {
+            border: 2px solid #fff;
+            color: #fff;
+            background: transparent;
+        }
+        .btn--outline:hover {
+            background: #fff;
+            color: var(--dkn);
+        }
+        .btn--gold {
+            background: var(--gld-gradient);
+            color: var(--dkn);
+            box-shadow: 0 6px 20px rgba(201, 164, 94, 0.3);
+        }
+        .btn--gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(201, 164, 94, 0.45);
+        }
+        .btn--dark {
+            background: var(--dkn);
+            color: #fff;
+            border: 2px solid var(--dkn);
+        }
+        .btn--dark:hover {
+            background: transparent;
+            color: var(--dkn);
+        }
+
+        /* ==================== SECTIONS ==================== */
+        section {
+            padding: 90px 0;
+        }
+        .section__header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section__header .label {
+            margin-bottom: 0.4rem;
+        }
+        .section__header h2 {
+            margin-bottom: 0.3rem;
+        }
+        .section__header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--stn);
+            font-size: 1.05rem;
+            line-height: 1.65;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px auto;
+        }
+        .divider span {
+            display: block;
+            width: 50px;
+            height: 1.5px;
+            background: var(--gld);
+            border-radius: 2px;
+        }
+        .divider i {
+            color: var(--gld);
+            font-size: 1.1rem;
+        }
+        .divider--left {
+            justify-content: flex-start;
+            margin-left: 0;
+        }
+
+        /* ==================== ABOUT ==================== */
+        .about {
+            background: var(--crm);
+            position: relative;
+            overflow: hidden;
+        }
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -120px;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(201, 164, 94, 0.06);
+            pointer-events: none;
+        }
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .about__img {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        .about__img img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border-radius: var(--r);
+            transition: transform 0.6s ease;
+        }
+        .about__img:hover img {
+            transform: scale(1.04);
+        }
+        .about__img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--gld);
+            border-radius: var(--r);
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .about__badge {
+            position: absolute;
+            bottom: -22px;
+            right: 28px;
+            background: var(--aka-gradient);
+            color: #fff;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+        .about__text .label {
+            margin-bottom: 0.3rem;
+        }
+        .about__text h2 {
+            margin-bottom: 0.5rem;
+        }
+        .about__text p {
+            margin-bottom: 1rem;
+            color: #3d3228;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .about__features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 1.5rem;
+        }
+        .about__feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.93rem;
+            color: #3d3228;
+        }
+        .about__feature .icon {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(201, 164, 94, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        /* ==================== RACE ==================== */
+        .race {
+            background: var(--bg);
+            position: relative;
+        }
+        .race__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .race__img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            order: 1;
+        }
+        .race__img img {
+            width: 100%;
+            height: 440px;
+            object-fit: cover;
+            border-radius: var(--r);
+            transition: transform 0.6s ease;
+        }
+        .race__img:hover img {
+            transform: scale(1.04);
+        }
+        .race__text {
+            order: 0;
+        }
+        .race__text h2 {
+            margin-bottom: 0.5rem;
+        }
+        .race__text p {
+            margin-bottom: 1rem;
+            color: #3d3228;
+            line-height: 1.8;
+        }
+        .race__stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+        .race__stat {
+            text-align: center;
+            min-width: 80px;
+        }
+        .race__stat .num {
+            font-family: var(--FD);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--rxs);
+            line-height: 1;
+        }
+        .race__stat .lbl {
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--stn);
+            margin-top: 4px;
+        }
+
+        /* ==================== GALLERY ==================== */
+        .gallery {
+            background: var(--crm);
+        }
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .gallery__item {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            transition: var(--transition);
+        }
+        .gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery__item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+        .gallery__item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery__item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(139, 58, 42, 0);
+            transition: var(--transition);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .gallery__item:hover::after {
+            background: rgba(139, 58, 42, 0.15);
+        }
+        .gallery__item--tall {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+        .gallery__item--wide {
+            grid-column: span 2;
+            aspect-ratio: 2 / 1;
+        }
+
+        /* ==================== VALUES ==================== */
+        .values {
+            background: var(--bg);
+        }
+        .values__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .values__card {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 36px 28px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+        .values__card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+        .values__card .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(201, 164, 94, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 1.6rem;
+        }
+        .values__card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        .values__card p {
+            font-size: 0.93rem;
+            color: var(--stn);
+            line-height: 1.65;
+        }
+
+        /* ==================== CTA BANNER ==================== */
+        .cta-banner {
+            background: var(--dkn);
+            color: #fff;
+            text-align: center;
+            padding: 60px 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: -100px;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            background: rgba(201, 164, 94, 0.08);
+            pointer-events: none;
+        }
+        .cta-banner h2 {
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+        .cta-banner p {
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 500px;
+            margin: 0 auto 28px;
+            font-size: 1.05rem;
+        }
+
+        /* ==================== CONTACT ==================== */
+        .contact {
+            background: var(--crm);
+        }
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .contact__info h2 {
+            margin-bottom: 0.5rem;
+        }
+        .contact__info p {
+            color: #3d3228;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .contact__detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+        .contact__detail .icon {
+            flex-shrink: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(201, 164, 94, 0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .contact__detail strong {
+            display: block;
+            font-weight: 600;
+            color: var(--dkn);
+        }
+        .contact__form {
+            background: #fff;
+            padding: 36px 30px;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-md);
+        }
+        .contact__form h3 {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .contact__form input,
+        .contact__form textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid #e8e2d8;
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            margin-bottom: 14px;
+            transition: var(--transition);
+            background: #fdfdfb;
+            color: var(--txt);
+        }
+        .contact__form input:focus,
+        .contact__form textarea:focus {
+            outline: none;
+            border-color: var(--gld);
+            box-shadow: 0 0 0 4px rgba(201, 164, 94, 0.1);
+        }
+        .contact__form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact__form button {
+            width: 100%;
+            padding: 15px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            border-radius: 50px;
+            background: var(--aka-gradient);
+            color: #fff;
+            transition: var(--transition);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        .contact__form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(139, 58, 42, 0.4);
+        }
+
+        /* ==================== FOOTER ==================== */
+        .footer {
+            background: var(--dkn);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 40px 0 24px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer__inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .footer__logo {
+            font-family: var(--FD);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+        .footer__logo span {
+            color: var(--gld);
+        }
+        .footer__links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+        .footer__links a {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.88rem;
+            transition: color var(--transition);
+        }
+        .footer__links a:hover {
+            color: var(--gld);
+        }
+        .footer__bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 16px;
+            font-size: 0.82rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* ==================== LIGHTBOX ==================== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox__close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .lightbox__close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ==================== ANIMATIONS ==================== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-in--left {
+            transform: translateX(-40px);
+        }
+        .fade-in--left.visible {
+            transform: translateX(0);
+        }
+        .fade-in--right {
+            transform: translateX(40px);
+        }
+        .fade-in--right.visible {
+            transform: translateX(0);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .gallery__item--wide {
+                grid-column: span 2;
+            }
+            .values__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav__links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg);
+                flex-direction: column;
+                padding: 100px 30px 30px;
+                gap: 1.5rem;
+                transition: right var(--transition);
+                box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+                z-index: 999;
+            }
+            .nav__links.active {
+                right: 0;
+            }
+            .nav__burger {
+                display: flex;
+            }
+            .about__grid,
+            .race__grid,
+            .contact__grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .race__img {
+                order: 0;
+            }
+            .race__text {
+                order: 1;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gallery__item--wide {
+                grid-column: span 2;
+            }
+            .gallery__item--tall {
+                grid-row: span 1;
+            }
+            .values__grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .about__img img {
+                height: 340px;
+            }
+            .race__img img {
+                height: 320px;
+            }
+            .hero__content h1 {
+                font-size: 2rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .gallery__item--wide {
+                grid-column: span 2;
+                aspect-ratio: 1.6/1;
+            }
+            .hero__buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+                max-width: 280px;
+            }
+            .about__features {
+                grid-template-columns: 1fr;
+            }
+            .race__stats {
+                justify-content: center;
+                gap: 14px;
+            }
+            .wrap {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#hero" class="nav__logo">No <span>Bushido</span></a>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#about">L'élevage</a></li>
+                <li><a href="#race">L'Akita Inu</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#values">Nos valeurs</a></li>
+                <li><a href="#contact" class="nav__cta">Nous contacter</a></li>
+            </ul>
+            <button class="nav__burger" id="navBurger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero__bg">
+            <img src="https://upload.chien.com/img/23-78876-no-bushido.jpg?1778399150"
+            alt="No Bushido — Élevage Akita Inu" loading="eager">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <p class="label">Élevage familial · Menetou-Salon · Cher</p>
+            <h1>No Bushido</h1>
+            <p class="hero__subtitle">La noblesse de l'Akita Inu</p>
+            <p class="hero__location">📍 Menetou-Salon, Cher (18) — France</p>
+            <div class="hero__buttons">
+                <a href="#about" class="btn btn--primary">Découvrir l'élevage</a>
+                <a href="#contact" class="btn btn--outline">Prendre rendez-vous</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="about" id="about">
+        <div class="wrap">
+            <div class="about__grid">
+                <div class="about__img fade-in fade-in--left">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241339/photo-akita_inu/akita_inu_1.jpg"
+                    alt="Akita Inu — No Bushido" loading="lazy">
+                    <div class="about__badge">SIREN 911469963</div>
+                </div>
+                <div class="about__text fade-in fade-in--right">
+                    <p class="label">Notre histoire</p>
+                    <h2>L'élevage <span class="accent">No Bushido</span></h2>
+                    <div class="divider divider--left">
+                        <span></span><i>◆</i><span></span>
+                    </div>
+                    <p>
+                        Spécialisé dans l'<strong>Akita Inu</strong>, l'élevage <strong>No Bushido</strong> est installé
+                        dans le <strong>Cher (18)</strong>, sur la commune de <strong>Menetou-Salon</strong>. Passionnés
+                        par cette race majestueuse, nous mettons tout en œuvre pour le bien-être de nos compagnons.
+                        Très intelligent, l'Akita Inu est un chien qui saura s'adapter à son environnement et écouter
+                        son maître, à condition de lui avoir donné une éducation adaptée.
+                    </p>
+                    <p>
+                        Nos chiens vivent en famille, au cœur d'un cadre paisible et verdoyant. Ils nous le rendent
+                        chaque jour avec leur <strong>joie de vivre</strong> et leur <strong>calme impérial</strong>.
+                        Chaque chiot bénéficie d'une socialisation précoce et d'un suivi rigoureux.
+                    </p>
+                    <div class="about__features">
+                        <div class="about__feature">
+                            <span class="icon">🏠</span>
+                            <span><strong>Élevage familial</strong><br>Menetou-Salon, Cher</span>
+                        </div>
+                        <div class="about__feature">
+                            <span class="icon">📋</span>
+                            <span><strong>SIREN 911469963</strong><br>Élevage déclaré</span>
+                        </div>
+                        <div class="about__feature">
+                            <span class="icon">🧬</span>
+                            <span><strong>Tests génétiques</strong><br>Santé garantie</span>
+                        </div>
+                        <div class="about__feature">
+                            <span class="icon">🐕</span>
+                            <span><strong>Socialisation</strong><br>Éducation précoce</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== RACE ==================== -->
+    <section class="race" id="race">
+        <div class="wrap">
+            <div class="race__grid">
+                <div class="race__img fade-in fade-in--right">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241342/photo-akita_inu/akita_inu_2.jpg"
+                    alt="Akita Inu — Race majestueuse" loading="lazy">
+                </div>
+                <div class="race__text fade-in fade-in--left">
+                    <p class="label">La race</p>
+                    <h2>L'<span class="accent">Akita Inu</span></h2>
+                    <div class="divider divider--left">
+                        <span></span><i>◆</i><span></span>
+                    </div>
+                    <p>
+                        Originaire du Japon, l'Akita Inu est un chien de type Spitz, reconnu pour sa <strong>loyauté
+                            légendaire</strong>, son <strong>intelligence remarquable</strong> et son <strong>calme
+                            impérial</strong>. Chien de grande taille, il allie puissance et élégance dans une
+                        silhouette harmonieuse.
+                    </p>
+                    <p>
+                        Son pelage dense peut arborer différentes couleurs : roux, sésame, bringé ou blanc.
+                        Fidèle et protecteur, il s'attache profondément à sa famille tout en conservant une
+                        indépendance naturelle qui fait tout son charme.
+                    </p>
+                    <div class="race__stats">
+                        <div class="race__stat">
+                            <span class="num">30-50</span>
+                            <span class="lbl">kg</span>
+                        </div>
+                        <div class="race__stat">
+                            <span class="num">58-70</span>
+                            <span class="lbl">cm</span>
+                        </div>
+                        <div class="race__stat">
+                            <span class="num">10-12</span>
+                            <span class="lbl">ans</span>
+                        </div>
+                        <div class="race__stat">
+                            <span class="num">🇯🇵</span>
+                            <span class="lbl">Japon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section class="gallery" id="gallery">
+        <div class="wrap">
+            <div class="section__header fade-in">
+                <p class="label">Portfolio</p>
+                <h2>Galerie <span class="accent">photo</span></h2>
+                <div class="divider"><span></span><i>◆</i><span></span></div>
+                <p>Découvrez nos Akita Inu dans leur quotidien, entre noblesse et tendresse.</p>
+            </div>
+            <div class="gallery__grid">
+                <div class="gallery__item gallery__item--wide fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241345/photo-akita_inu/akita_inu_3.jpg"
+                    alt="Akita Inu — Galerie 1" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241347/photo-akita_inu/akita_inu_4.jpg"
+                    alt="Akita Inu — Galerie 2" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241348/photo-akita_inu/akita_inu_5.jpg"
+                    alt="Akita Inu — Galerie 3" loading="lazy">
+                </div>
+                <div class="gallery__item gallery__item--tall fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241339/photo-akita_inu/akita_inu_1.jpg"
+                    alt="Akita Inu — Galerie 4" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241342/photo-akita_inu/akita_inu_2.jpg"
+                    alt="Akita Inu — Galerie 5" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241345/photo-akita_inu/akita_inu_3.jpg"
+                    alt="Akita Inu — Galerie 6" loading="lazy">
+                </div>
+                <div class="gallery__item gallery__item--wide fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241347/photo-akita_inu/akita_inu_4.jpg"
+                    alt="Akita Inu — Galerie 7" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241348/photo-akita_inu/akita_inu_5.jpg"
+                    alt="Akita Inu — Galerie 8" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241339/photo-akita_inu/akita_inu_1.jpg"
+                    alt="Akita Inu — Galerie 9" loading="lazy">
+                </div>
+                <div class="gallery__item gallery__item--tall fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241342/photo-akita_inu/akita_inu_2.jpg"
+                    alt="Akita Inu — Galerie 10" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241345/photo-akita_inu/akita_inu_3.jpg"
+                    alt="Akita Inu — Galerie 11" loading="lazy">
+                </div>
+                <div class="gallery__item fade-in">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241347/photo-akita_inu/akita_inu_4.jpg"
+                    alt="Akita Inu — Galerie 12" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== VALUES ==================== -->
+    <section class="values" id="values">
+        <div class="wrap">
+            <div class="section__header fade-in">
+                <p class="label">Engagement</p>
+                <h2>Nos <span class="accent">valeurs</span></h2>
+                <div class="divider"><span></span><i>◆</i><span></span></div>
+                <p>Un élevage éthique et passionné, centré sur le bien-être de nos Akita Inu.</p>
+            </div>
+            <div class="values__grid">
+                <div class="values__card fade-in">
+                    <div class="icon">❤️</div>
+                    <h3>Bien-être animal</h3>
+                    <p>Nos chiens vivent en famille, dans un environnement spacieux et aimant. Chaque jour, ils
+                        bénéficient d'exercice, de soins attentifs et d'une alimentation de qualité.</p>
+                </div>
+                <div class="values__card fade-in">
+                    <div class="icon">🧬</div>
+                    <h3>Suivi génétique</h3>
+                    <p>Nous effectuons des tests génétiques complets sur tous nos reproducteurs afin de garantir des
+                        chiots en parfaite santé, exempts de maladies héréditaires.</p>
+                </div>
+                <div class="values__card fade-in">
+                    <div class="icon">🤝</div>
+                    <h3>Accompagnement</h3>
+                    <p>Nous vous conseillons tout au long de la vie de votre chien : éducation, alimentation, santé.
+                        Un suivi personnalisé pour une relation harmonieuse avec votre Akita Inu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA BANNER ==================== -->
+    <section class="cta-banner fade-in">
+        <div class="wrap wrap--xs">
+            <h2>Prêt à accueillir un <span class="gold">Akita Inu</span> ?</h2>
+            <p>Contactez-nous dès aujourd'hui pour échanger sur nos prochaines portées et découvrir l'univers de
+                l'élevage No Bushido.</p>
+            <a href="#contact" class="btn btn--gold">Nous contacter</a>
+        </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="contact" id="contact">
+        <div class="wrap">
+            <div class="contact__grid">
+                <div class="contact__info fade-in fade-in--left">
+                    <p class="label">Contact</p>
+                    <h2>Parlons <span class="accent">ensemble</span></h2>
+                    <div class="divider divider--left">
+                        <span></span><i>◆</i><span></span>
+                    </div>
+                    <p>Vous souhaitez en savoir plus sur l'élevage No Bushido, réserver un chiot ou simplement
+                        échanger sur la race ? N'hésitez pas à nous contacter. Nous serons ravis de vous répondre.</p>
+                    <div class="contact__detail">
+                        <span class="icon">📞</span>
+                        <span><strong>Téléphone</strong>06 50 03 51 88</span>
+                    </div>
+                    <div class="contact__detail">
+                        <span class="icon">📍</span>
+                        <span><strong>Adresse</strong>Menetou-Salon, 18510 Cher, France</span>
+                    </div>
+                    <div class="contact__detail">
+                        <span class="icon">📋</span>
+                        <span><strong>SIREN</strong>911 469 963</span>
+                    </div>
+                </div>
+                <div class="contact__form fade-in fade-in--right">
+                    <h3>Envoyez-nous un message</h3>
+                    <form action="#" method="POST">
+                        <input type="text" name="nom" placeholder="Votre nom *" required>
+                        <input type="email" name="email" placeholder="Votre email *" required>
+                        <input type="tel" name="telephone" placeholder="Votre téléphone">
+                        <textarea name="message" placeholder="Votre message *" required></textarea>
+                        <button type="submit">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer__inner">
+                <a href="#hero" class="footer__logo">No <span>Bushido</span></a>
+                <ul class="footer__links">
+                    <li><a href="#about">L'élevage</a></li>
+                    <li><a href="#race">L'Akita Inu</a></li>
+                    <li><a href="#gallery">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer__bottom">
+                <p>© 2025 No Bushido — Élevage Akita Inu · Menetou-Salon, Cher (18) · SIREN 911469963</p>
+                <p style="margin-top:4px;">Tous droits réservés. Site réalisé avec passion.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox__close" id="lightboxClose">&times;</span>
+        <img src="" alt="Lightbox image" id="lightboxImg">
+    </div>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // --- NAV SCROLL ---
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // --- BURGER MENU ---
+        const burger = document.getElementById('navBurger');
+        const navLinks = document.getElementById('navLinks');
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav__links a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- SCROLL REVEAL ---
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        fadeEls.forEach(el => observer.observe(el));
+
+        // --- LIGHTBOX ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const galleryItems = document.querySelectorAll('.gallery__item img');
+
+        galleryItems.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) closeLightbox();
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => { lightboxImg.src = ''; }, 300);
+        }
+    </script>
+</body>
+</html>
+```
+### Noblesse impériale
+
+Ce design met en avant l'élégance et le caractère paisible de l'Akita Inu. La palette de couleurs chaudes évoque son pelage roux et l'or, tandis que les polices Cinzel pour les titres et Raleway pour le texte apportent une touche moderne et raffinée. Le style général est épuré, laissant la place aux images et au message de l'éleveur.
+
+- **Palette terreuse et noble** – Les tons brun-roux (`--rxs`), dorés (`--gld`) et crème (`--crm`) rappellent directement les couleurs de la race et créent une atmosphère chaleureuse et haut de gamme.
+- **Mise en page aérée et rythmée** – L'alternance de sections avec fonds clairs et plus soutenus structure la lecture. Les grilles à deux colonnes pour la présentation et la galerie offrent un équilibre visuel agréable.
+- **Galerie photo interactive** – Une grille de 12 images avec des formats variés (portrait, paysage) met en valeur les chiens. Chaque photo est cliquable et s'ouvre dans une lightbox pour une immersion totale.
+- **Navigation fixe et fluide** – Le menu reste accessible en haut de page et se transforme en menu "burger" sur mobile, garantissant une navigation intuitive sur tous les écrans.
+- **Animations subtiles au scroll** – Les éléments clés apparaissent avec un léger décalage vertical, apportant une touche de dynamisme sans surcharger la page.

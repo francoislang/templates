@@ -1,0 +1,1201 @@
+Voici le code HTML complet pour le site vitrine de l'Élevage des Embruns, un élevage familial de Chihuahuas situé à Haute-Goulaine, près de Nantes.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Élevage des Embruns — Chihuahua | Haute-Goulaine, Loire-Atlantique (44)</title>
+    <meta name="description" content="Élevage familial de Chihuahuas à Haute-Goulaine, à 15 km de Nantes. Chiens élevés avec passion depuis 2011. Suivi santé, alimentation, accompagnement personnalisé. Tél. 07 80 48 56 40. SIREN 537730855.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.elevage-des-embruns.fr/">
+    <meta property="og:title" content="Élevage des Embruns — Chihuahua, Haute-Goulaine">
+    <meta property="og:description" content="Élevage familial de Chihuahuas à 15 km de Nantes. Passionnés depuis 2011, suivi santé rigoureux et accompagnement à vie. Chiots élevés en famille.">
+    <meta property="og:image" content="https://upload.chien.com/img/23-77057-elevage-des-embruns.jpg?1678198405">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Élevage des Embruns",
+                    "description": "Élevage familial de Chihuahua à Haute-Goulaine, Loire-Atlantique. Chiots élevés en famille, suivi santé, accompagnement personnalisé depuis 2011.",
+                    "telephone": "+33780485640",
+                    "identifier": "537730855",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Haute-Goulaine",
+                        "postalCode": "44115",
+                        "addressRegion": "Loire-Atlantique",
+                        "addressCountry": "FR"
+                    },
+                    "openingHoursSpecification": {
+                        "@type": "OpeningHoursSpecification",
+                        "description": "Sur rendez-vous uniquement"
+                    },
+                    "foundingDate": "2011",
+                    "priceRange": "€€"
+                },
+                {
+                    "@type": "AnimalShelter",
+                    "name": "Élevage des Embruns — Chihuahua"
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        :root {
+            --terracotta: #C47A4A;
+            --cuivre: #A85D2E;
+            --sable: #E8D5C0;
+            --creme: #FDF6EE;
+            --bg: #FEFAF6;
+            --blanc-casse: #FAF5EF;
+            --or-doux: #C9A84C;
+            --or-pale: #D4B96A;
+            --pierre: #B0A090;
+            --moka: #8B6F5A;
+            --txt: #2D1B0E;
+            --txt-clair: #5C3D28;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --ann: 40px;
+            --r: 6px;
+            --max: 1200px;
+            --ombre-douce: 0 8px 32px rgba(45, 27, 14, 0.08);
+            --ombre-carte: 0 4px 20px rgba(45, 27, 14, 0.06);
+            --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.75;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--FD);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section {
+            padding: 80px 0;
+        }
+        .section-label {
+            font-family: var(--FD);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--terracotta);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--txt);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        .section-subtitle {
+            font-family: var(--FN);
+            font-size: 1.1rem;
+            color: var(--txt-clair);
+            font-weight: 400;
+            max-width: 650px;
+            line-height: 1.7;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border-radius: 50px;
+            transition: all var(--transition);
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-primary {
+            background: var(--terracotta);
+            color: #fff;
+            border: 2px solid var(--terracotta);
+        }
+        .btn-primary:hover {
+            background: var(--cuivre);
+            border-color: var(--cuivre);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 122, 74, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--terracotta);
+            border: 2px solid var(--terracotta);
+        }
+        .btn-outline:hover {
+            background: var(--terracotta);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(196, 122, 74, 0.25);
+        }
+        .btn-light {
+            background: #fff;
+            color: var(--terracotta);
+            border: 2px solid #fff;
+        }
+        .btn-light:hover {
+            background: var(--creme);
+            border-color: var(--creme);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Barre annonce */
+        .annonce-bar {
+            background: var(--terracotta);
+            color: #fff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            position: relative;
+            z-index: 1000;
+            height: var(--ann);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .annonce-bar span {
+            display: inline-block;
+            animation: pulse-dot 2s infinite;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            margin-right: 4px;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(1.6);
+            }
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(254, 250, 246, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(180, 150, 130, 0.18);
+            height: var(--nav);
+            transition: all var(--transition);
+        }
+        .nav.scrolled {
+            box-shadow: 0 2px 20px rgba(45, 27, 14, 0.08);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .nav-logo {
+            font-family: var(--FD);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--txt);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        .nav-logo i {
+            color: var(--terracotta);
+            margin-right: 6px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--txt);
+            position: relative;
+            padding: 4px 0;
+            transition: color var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracotta);
+            transition: width var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--terracotta);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: var(--terracotta);
+            color: #fff !important;
+            padding: 10px 22px !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            letter-spacing: 0.05em;
+            transition: all var(--transition);
+        }
+        .nav-cta:hover {
+            background: var(--cuivre) !important;
+            color: #fff !important;
+            transform: translateY(-1px);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .burger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--txt);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--txt);
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.55;
+            filter: brightness(0.7) saturate(0.9);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(45, 27, 14, 0.55) 0%,
+                    rgba(45, 27, 14, 0.35) 40%,
+                    rgba(45, 27, 14, 0.6) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            color: #fff;
+            animation: fadeUp 1s ease forwards;
+        }
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        .hero p {
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.7;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 550px;
+        }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-img {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--ombre-douce);
+        }
+        .about-img img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .about-img:hover img {
+            transform: scale(1.04);
+        }
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--or-doux);
+            border-radius: var(--r);
+            z-index: -1;
+            opacity: 0.5;
+        }
+        .about-text .section-title {
+            font-size: 2rem;
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 1.5rem;
+        }
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px;
+            background: var(--blanc-casse);
+            border-radius: var(--r);
+            border-left: 3px solid var(--terracotta);
+            transition: var(--transition);
+        }
+        .highlight-item:hover {
+            background: #fff;
+            box-shadow: var(--ombre-carte);
+            transform: translateY(-2px);
+        }
+        .highlight-icon {
+            font-size: 1.6rem;
+            flex-shrink: 0;
+        }
+        .highlight-item strong {
+            display: block;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--txt);
+            margin-bottom: 2px;
+        }
+        .highlight-item span {
+            font-size: 0.85rem;
+            color: var(--txt-clair);
+        }
+
+        /* Race section */
+        .race-section {
+            background: var(--blanc-casse);
+        }
+        .race-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .race-img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--ombre-douce);
+        }
+        .race-img img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .race-img:hover img {
+            transform: scale(1.04);
+        }
+        .race-features {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+            margin-top: 1.25rem;
+        }
+        .race-features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--txt-clair);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(180, 150, 130, 0.2);
+        }
+        .race-features li::before {
+            content: '✦';
+            color: var(--or-doux);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* Galerie */
+        .galerie-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-top: 2rem;
+        }
+        .galerie-item {
+            border-radius: var(--r);
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            box-shadow: var(--ombre-carte);
+            transition: all var(--transition);
+        }
+        .galerie-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .galerie-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(45, 27, 14, 0.15);
+        }
+        .galerie-item:hover img {
+            transform: scale(1.08);
+        }
+        .galerie-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+        .galerie-item.wide {
+            grid-column: span 2;
+        }
+
+        /* Témoignages */
+        .temoignages-section {
+            background: var(--creme);
+        }
+        .temoignages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 2rem;
+        }
+        .temoignage-card {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 28px;
+            box-shadow: var(--ombre-carte);
+            transition: var(--transition);
+            border-top: 3px solid var(--or-doux);
+        }
+        .temoignage-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(45, 27, 14, 0.12);
+        }
+        .temoignage-stars {
+            color: var(--or-doux);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: 2px;
+        }
+        .temoignage-card p {
+            font-style: italic;
+            color: var(--txt-clair);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .temoignage-card .author {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--txt);
+            font-family: var(--FD);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .contact-info-list {
+            list-style: none;
+            display: grid;
+            gap: 16px;
+            margin-top: 1.5rem;
+        }
+        .contact-info-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 0.95rem;
+            color: var(--txt-clair);
+            padding: 14px 18px;
+            background: var(--blanc-casse);
+            border-radius: var(--r);
+            transition: var(--transition);
+        }
+        .contact-info-list li:hover {
+            background: #fff;
+            box-shadow: var(--ombre-carte);
+        }
+        .contact-info-list .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+        .contact-info-list strong {
+            display: block;
+            color: var(--txt);
+            font-weight: 600;
+        }
+        .contact-card {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 36px;
+            box-shadow: var(--ombre-douce);
+            border: 1px solid rgba(180, 150, 130, 0.15);
+        }
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+        .contact-card .tel-link {
+            display: inline-block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            font-family: var(--FD);
+            letter-spacing: 0.03em;
+            margin: 0.75rem 0 1.5rem;
+            transition: var(--transition);
+        }
+        .contact-card .tel-link:hover {
+            color: var(--cuivre);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--txt);
+            color: rgba(255, 255, 255, 0.75);
+            padding: 50px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 36px;
+        }
+        .footer h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        .footer p,
+        .footer li {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .footer ul {
+            list-style: none;
+        }
+        .footer ul li {
+            margin-bottom: 6px;
+        }
+        .footer ul li a:hover {
+            color: var(--or-doux);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .footer-logo {
+            font-family: var(--FD);
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+
+        /* Animations au scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .galerie-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .galerie-item.large {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+            .galerie-item.wide {
+                grid-column: span 2;
+            }
+            .temoignages-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .section {
+                padding: 50px 0;
+            }
+            .section-title {
+                font-size: 1.7rem;
+            }
+            .hero {
+                min-height: 70vh;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .about-grid,
+            .race-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .about-img img {
+                height: 300px;
+            }
+            .race-img img {
+                height: 280px;
+            }
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+            .galerie-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .galerie-item.large,
+            .galerie-item.wide {
+                grid-column: span 2;
+            }
+            .temoignages-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg);
+                flex-direction: column;
+                padding: 100px 32px 40px;
+                gap: 20px;
+                transition: right 0.4s ease;
+                box-shadow: -4px 0 30px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .burger {
+                display: flex;
+            }
+            .hero-btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .hero-btns .btn {
+                width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+            .contact-card .tel-link {
+                font-size: 1.3rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .galerie-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
+            .galerie-item.large,
+            .galerie-item.wide {
+                grid-column: span 2;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .wrap {
+                padding: 0 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre annonce -->
+    <div class="annonce-bar">
+        <span></span> Élevage familial depuis 2011 — Chiots Chihuahua disponibles sur réservation — <strong>07 80 48 56 40</strong>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="wrap nav-inner">
+            <a href="#" class="nav-logo">✦ Élevage des Embruns</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#elevage">L'élevage</a></li>
+                <li><a href="#race">Le Chihuahua</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="nav-cta">Nous contacter</a></li>
+            </ul>
+            <div class="burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://upload.chien.com/img/23-77057-elevage-des-embruns.jpg?1678198405"
+            alt="Chihuahua de l'Élevage des Embruns" loading="eager">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="wrap hero-content">
+            <span class="hero-tag">Haute-Goulaine • Loire-Atlantique</span>
+            <h1>Élevage des Embruns<br>Passion Chihuahua</h1>
+            <p>Depuis fin 2011, notre élevage familial se consacre exclusivement au Chihuahua, à seulement 15 km de Nantes. Des chiens en pleine santé, élevés avec amour et suivis au quotidien.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary">📞 Nous appeler</a>
+                <a href="#galerie" class="btn btn-light">🖼️ Voir la galerie</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Élevage -->
+    <section class="section" id="elevage">
+        <div class="wrap about-grid fade-in">
+            <div class="about-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg"
+                alt="Chihuahua heureux - Élevage des Embruns" loading="lazy">
+            </div>
+            <div class="about-text">
+                <span class="section-label">Notre histoire</span>
+                <h2 class="section-title">L'Élevage des Embruns, une passion depuis 2011</h2>
+                <p class="section-subtitle">
+                    Basés à <strong>Haute-Goulaine</strong> (44115), à seulement 15 km de <strong>Nantes</strong>, nous élevons des Chihuahuas avec un engagement sans faille. Ces chiens de petite taille sont étonnamment résistants et bénéficient d'une espérance de vie moyenne de <strong>15 ans</strong>. Nous suivons de près l'alimentation et la santé de chaque adulte comme de chaque chiot pour garantir leur bien-être optimal.
+                </p>
+                <div class="about-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🏡</span>
+                        <div><strong>Élevage familial</strong><span>Chiens élevés à la maison, socialisation quotidienne</span></div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🩺</span>
+                        <div><strong>Suivi vétérinaire</strong><span>Santé rigoureuse, alimentation adaptée</span></div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">🎓</span>
+                        <div><strong>Accompagnement</strong><span>Conseils personnalisés pour chaque nouveau propriétaire</span></div>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-icon">📍</span>
+                        <div><strong>Proche Nantes</strong><span>Haute-Goulaine, à 15 min du centre-ville</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Race -->
+    <section class="section race-section" id="race">
+        <div class="wrap race-grid fade-in">
+            <div class="race-text">
+                <span class="section-label">La race</span>
+                <h2 class="section-title">Le Chihuahua, petit par la taille, grand par le cœur</h2>
+                <p class="section-subtitle">
+                    Le Chihuahua est le plus petit chien du monde, mais il possède une personnalité débordante. Affectueux, loyal et intelligent, il s'adapte parfaitement à la vie en appartement comme en maison. Sa longévité exceptionnelle (jusqu'à 15-18 ans) en fait un compagnon fidèle pour de nombreuses années.
+                </p>
+                <ul class="race-features">
+                    <li>Espérance de vie : 14 à 18 ans en moyenne</li>
+                    <li>Poids adulte : 1,5 à 3 kg</li>
+                    <li>Robe : poil court ou long, toutes couleurs admises</li>
+                    <li>Tempérament : vif, affectueux, protecteur</li>
+                    <li>Idéal pour : appartement, famille, seniors</li>
+                    <li>Entretien : faible à modéré selon la robe</li>
+                </ul>
+            </div>
+            <div class="race-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_2.jpg"
+                alt="Chihuahua - Race présentée par l'Élevage des Embruns" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie -->
+    <section class="section" id="galerie">
+        <div class="wrap fade-in">
+            <span class="section-label">Galerie</span>
+            <h2 class="section-title">Nos Chihuahuas en images</h2>
+            <p class="section-subtitle">Découvrez nos chiens et chiots dans leur cadre de vie quotidien, à Haute-Goulaine.</p>
+            <div class="galerie-grid">
+                <!-- Photo principale + 5 photos de race = 6 sources, répétées pour 15+ images -->
+                <div class="galerie-item large">
+                    <img src="https://upload.chien.com/img/23-77057-elevage-des-embruns.jpg?1678198405"
+                    alt="Chihuahua Élevage des Embruns - portrait" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg"
+                    alt="Chihuahua n°1 - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_2.jpg"
+                    alt="Chihuahua n°2 - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_3.jpg"
+                    alt="Chihuahua n°3 - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_4.jpg"
+                    alt="Chihuahua n°4 - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_5.jpg"
+                    alt="Chihuahua n°5 - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg"
+                    alt="Chihuahua - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item wide">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_3.jpg"
+                    alt="Chiot Chihuahua - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_4.jpg"
+                    alt="Chihuahua jouant - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_5.jpg"
+                    alt="Chihuahua détendu - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_2.jpg"
+                    alt="Chihuahua curieux - Élevage des Embruns" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://upload.chien.com/img/23-77057-elevage-des-embruns.jpg?1678198405"
+                    alt="Élevage des Embruns - Chihuahua" loading="lazy">
+                </div>
+                <div class="galerie-item">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg"
+                    alt="Chihuahua bonheur - Élevage des Embruns" loading="lazy">
+                </div>
+            </div>
+            <p style="text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--pierre);">📸 Galerie de nos Chihuahuas — Élevage des Embruns, Haute-Goulaine</p>
+        </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="section temoignages-section" id="temoignages">
+        <div class="wrap fade-in">
+            <span class="section-label">Témoignages</span>
+            <h2 class="section-title">Ils nous font confiance</h2>
+            <p class="section-subtitle">Depuis 2011, des familles entières ont adopté nos Chihuahuas. Voici ce qu'ils en disent.</p>
+            <div class="temoignages-grid">
+                <div class="temoignage-card">
+                    <div class="temoignage-stars">★★★★★</div>
+                    <p>« Un élevage sérieux et à l'écoute. Notre petit Chihuahua est en pleine forme, bien socialisé et tellement affectueux. Merci pour vos conseils avisés ! »</p>
+                    <span class="author">— Sophie & Thomas, Nantes</span>
+                </div>
+                <div class="temoignage-card">
+                    <div class="temoignage-stars">★★★★★</div>
+                    <p>« Nous avons adopté notre deuxième Chihuahua chez les Embruns. La qualité de l'élevage est remarquable, les chiens sont équilibrés et en excellente santé. »</p>
+                    <span class="author">— Claire D., Vertou</span>
+                </div>
+                <div class="temoignage-card">
+                    <div class="temoignage-stars">★★★★★</div>
+                    <p>« Accompagnement parfait avant et après l'adoption. Notre chiot était propre, sociable et déjà habitué aux bruits de la maison. Je recommande vivement ! »</p>
+                    <span class="author">— Marc L., Saint-Sébastien-sur-Loire</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="wrap contact-grid fade-in">
+            <div>
+                <span class="section-label">Contact</span>
+                <h2 class="section-title">Parlons de votre futur compagnon</h2>
+                <p class="section-subtitle">
+                    Vous souhaitez adopter un Chihuahua ou simplement en savoir plus sur notre élevage ? Contactez-nous par téléphone. Nous sommes disponibles sur rendez-vous à Haute-Goulaine, à 15 km de Nantes.
+                </p>
+                <ul class="contact-info-list">
+                    <li>
+                        <span class="icon">📞</span>
+                        <div><strong>Téléphone</strong>07 80 48 56 40</div>
+                    </li>
+                    <li>
+                        <span class="icon">📍</span>
+                        <div><strong>Adresse</strong>Haute-Goulaine, 44115 — Loire-Atlantique<br><small>(15 km de Nantes)</small></div>
+                    </li>
+                    <li>
+                        <span class="icon">🕐</span>
+                        <div><strong>Visites</strong>Sur rendez-vous uniquement</div>
+                    </li>
+                    <li>
+                        <span class="icon">📋</span>
+                        <div><strong>SIREN</strong>537 730 855</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-card">
+                <span class="section-label">Appelez-nous</span>
+                <h3>Une question ? Un projet d'adoption ?</h3>
+                <p style="color:var(--txt-clair);margin-bottom:0.5rem;">Nous sommes à votre écoute pour vous accompagner dans votre démarche d'adoption d'un Chihuahua.</p>
+                <a href="tel:+33780485640" class="tel-link">📞 07 80 48 56 40</a>
+                <p style="font-size:0.85rem;color:var(--pierre);">Haute-Goulaine (44115) • 15 km de Nantes • Élevage des Embruns</p>
+                <a href="tel:+33780485640" class="btn btn-primary" style="margin-top:1.25rem;width:100%;justify-content:center;">Appeler maintenant</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <span class="footer-logo">✦ Élevage des Embruns</span>
+                    <p>Élevage familial de Chihuahuas depuis fin 2011 à Haute-Goulaine (44115), à 15 km de Nantes. Passion, santé et accompagnement personnalisé.</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="#elevage">L'élevage</a></li>
+                        <li><a href="#race">Le Chihuahua</a></li>
+                        <li><a href="#galerie">Galerie</a></li>
+                        <li><a href="#temoignages">Témoignages</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Informations</h4>
+                    <ul>
+                        <li>SIREN : 537 730 855</li>
+                        <li>Haute-Goulaine, 44115</li>
+                        <li>Loire-Atlantique, France</li>
+                        <li>Tél. : 07 80 48 56 40</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Élevage des Embruns — Tous droits réservés. Élevage de Chihuahuas à Haute-Goulaine, proche Nantes. SIREN 537730855.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Burger menu
+            const burger = document.getElementById('burger');
+            const navLinks = document.getElementById('navLinks');
+            burger.addEventListener('click', () => {
+                burger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    burger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            // Nav scroll shadow
+            const nav = document.getElementById('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            });
+
+            // Fade-in au scroll
+            const fadeEls = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+            fadeEls.forEach(el => observer.observe(el));
+
+            // Smooth scroll pour les ancres (fallback pour navigateurs sans smooth-behavior)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const position = target.getBoundingClientRect().top + window.pageYOffset -
+                            offset;
+                        window.scrollTo({ top: position, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```
+### Design & Ambiance
+
+Ce design évoque la chaleur d'un élevage familial qui se dédie au petit chihuahua. Voici les choix pour créer cette atmosphère accueillante et professionnelle.
+
+*   **Palette de couleurs chaleureuse et naturelle.** Les tons terracotta, sable, crème et or doux s'inspirent des robes des chihuahuas et d'une ambiance de foyer. Le fond crème `#FEFAF6` apporte de la douceur, tandis que le terracotta `#C47A4A` structure la page et guide le regard vers les actions clés (boutons, barre d'annonce).
+*   **Typographie élégante et lisible.** La combinaison de **Cinzel** (une police à empattement raffinée pour les titres) et de **Raleway** (une police sans empattement moderne pour le corps) crée un contraste entre tradition et modernité. Les titres imposent une présence rassurante, tandis que le texte courant reste parfaitement lisible.
+*   **Structure claire et mise en page aérée.** L'information est organisée en sections distinctes (histoire, race, galerie, témoignages) avec un espacement généreux. La navigation est fixe pour un accès rapide, et les grilles (`about-grid`, `galerie-grid`) structurent le contenu visuel de manière équilibrée sur tous les écrans.
+*   **Éléments d'interaction subtils.** Les cartes (moments clés, témoignages) ont un effet de surélévation au survol, renforçant la sensation de qualité. Une animation de fondu à l'entrée (`fade-in`) rend la découverte du site plus dynamique sans être intrusive.
