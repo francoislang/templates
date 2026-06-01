@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Du Tisserand du Breuilh — Élevage Berger Allemand | France</title>
+  <meta name="description" content="Élevage familial de Bergers Allemands en France. Lignées allemandes, dysplasie A/B, identification ADN, SIREN 792332298. Tél. 05.55.00.82.34.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://du-tisserand-du-breuilh.fr/">
+  <meta property="og:title"       content="Du Tisserand du Breuilh — Berger Allemand, France">
+  <meta property="og:description" content="Élevage familial de Bergers Allemands. Lignées allemandes, dysplasie A/B, identification ADN. Chiens robustes, équilibrés et performants.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-98911-du-tisserand-du-breuilh.jpg?1725090336">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Du Tisserand du Breuilh",
+        "description": "Élevage familial de Berger Allemand en France. Lignées allemandes, dysplasie hanches A/B, coudes 0/SL, identification ADN, chiens robustes et équilibrés.",
+        "telephone": "+33555008234",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR"
+        },
+        "identifier": "SIREN: 792332298"
+      },
+      { "@type": "AnimalShelter", "name": "Du Tisserand du Breuilh — Élevage Berger Allemand France" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Du Tisserand du Breuilh
+       Design : Noble / Dynamique / Berger Allemand
+       ============================================== */
+    :root {
+      --deep:  #2C1810;   /* brun profond */
+      --gold:  #D4A574;   /* or chaud */
+      --rust:  #8B4513;   /* rouille */
+      --cream: #F5F0E8;   /* crème */
+      --bg:    #FAF7F2;   /* fond chaud */
+      --stone: #8A7968;   /* pierre */
+      --txt:   #2C1810;   /* texte */
+      --FD:    'Cinzel', serif;       /* police titres */
+      --FN:    'Raleway', sans-serif; /* police corps */
+      --nav:   72px;
+      --r:     4px;
+      --gold-gradient: linear-gradient(135deg, #D4A574 0%, #E8C087 45%, #B8956A 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- ORNEMENT DÉCORATIF ---- */
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 0 auto .4rem;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--gold-gradient);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .8rem 2.2rem;
+      font-family: var(--FN); font-weight: 600; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      transition: background .25s, color .25s, transform .18s, box-shadow .25s;
+      border-radius: var(--r);
+    }
+    .btn--gold {
+      background: var(--gold-gradient);
+      color: var(--deep);
+      box-shadow: 0 4px 20px rgba(212,165,116,.35);
+    }
+    .btn--gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(212,165,116,.5);
+      filter: brightness(1.08);
+    }
+    .btn--dark { background: var(--deep); color: var(--cream); border: 1px solid rgba(212,165,116,.25); }
+    .btn--dark:hover {
+      background: #3a2318;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(44,24,16,.4);
+    }
+
+    /* ---- NAVIGATION ---- */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: var(--nav); padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      background: rgba(250,247,242,.92);
+      border-bottom: 1px solid rgba(212,165,116,.15);
+      transition: background .3s, box-shadow .3s;
+    }
+    .navbar.scrolled {
+      background: rgba(250,247,242,.96);
+      box-shadow: 0 4px 32px rgba(44,24,16,.08);
+    }
+    .navbar-logo {
+      font-family: var(--FD); font-weight: 600; font-size: 1.5rem;
+      background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: var(--gold);
+    }
+    .navbar-menu {
+      display: flex; align-items: center; gap: 2.8rem;
+    }
+    .navbar-link {
+      font-weight: 500; font-size: .82rem; letter-spacing: .06em;
+      padding: .4rem .8rem; border-radius: var(--r);
+      transition: background .2s, color .2s;
+    }
+    .navbar-link:hover {
+      background: rgba(212,165,116,.12);
+      color: var(--rust);
+    }
+    .navbar-toggle { display: none; flex-direction: column; gap: 4px; }
+    .navbar-toggle span {
+      display: block; width: 24px; height: 2px;
+      background: var(--deep); transition: all .3s;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--deep) 0%, var(--rust) 100%);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(rgba(44,24,16,.4), rgba(44,24,16,.6)), 
+                  url('https://upload.chien.com/img/23-98911-du-tisserand-du-breuilh.jpg?1725090336') center/cover;
+    }
+    .hero-content {
+      position: relative; z-index: 2; text-align: center; color: var(--cream);
+      max-width: 800px; padding: 0 2rem;
+    }
+    .hero-title {
+      font-family: var(--FD); font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 600; line-height: 1.1; margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,.4);
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.4rem); font-weight: 400;
+      line-height: 1.6; margin-bottom: 2.5rem; opacity: .95;
+    }
+    .hero-cta {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.2rem; flex-wrap: wrap;
+    }
+
+    /* ---- SECTIONS ---- */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .section-title {
+      font-family: var(--FD); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600; margin-bottom: 1rem;
+      background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: var(--gold);
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--stone);
+      line-height: 1.6; max-width: 600px; margin: 0 auto;
+    }
+
+    /* ---- ABOUT ---- */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: center;
+    }
+    .about-content h3 {
+      font-family: var(--FD); font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; color: var(--rust);
+    }
+    .about-content p {
+      line-height: 1.75; margin-bottom: 1.5rem;
+      color: rgba(44,24,16,.85);
+    }
+    .about-highlights {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .highlight-item {
+      padding: 1.5rem; background: rgba(212,165,116,.06);
+      border-radius: var(--r); border: 1px solid rgba(212,165,116,.15);
+      text-align: center;
+    }
+    .highlight-item h4 {
+      font-family: var(--FD); font-size: 1.1rem; font-weight: 600;
+      margin-bottom: .5rem; color: var(--rust);
+    }
+    .highlight-item p {
+      font-size: .9rem; color: var(--stone);
+    }
+    .about-image {
+      position: relative; border-radius: var(--r); overflow: hidden;
+      aspect-ratio: 4/3; box-shadow: 0 20px 40px rgba(44,24,16,.12);
+    }
+
+    /* ---- GALERIE ---- */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      position: relative; aspect-ratio: 4/3; border-radius: var(--r);
+      overflow: hidden; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(44,24,16,.1);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(44,24,16,.2);
+    }
+    .gallery-item::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(transparent 50%, rgba(44,24,16,.3));
+      opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover::after { opacity: 1; }
+
+    /* ---- CONTACT ---- */
+    .contact {
+      background: linear-gradient(135deg, rgba(212,165,116,.08) 0%, rgba(44,24,16,.04) 100%);
+    }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+    .contact-info {
+      padding: 2rem;
+    }
+    .contact-info h3 {
+      font-family: var(--FD); font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; color: var(--rust);
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem; font-size: 1rem;
+    }
+    .contact-icon {
+      width: 20px; height: 20px; color: var(--gold);
+      flex-shrink: 0;
+    }
+    .contact-form {
+      background: white; padding: 2.5rem; border-radius: var(--r);
+      box-shadow: 0 12px 48px rgba(44,24,16,.08);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block; margin-bottom: .5rem;
+      font-weight: 600; color: var(--deep);
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: .8rem 1rem;
+      border: 1px solid rgba(212,165,116,.25);
+      border-radius: var(--r); font-family: var(--FN);
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,165,116,.1);
+    }
+    .form-group textarea {
+      min-height: 120px; resize: vertical;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--deep); color: var(--cream);
+      padding: 3rem 2rem 1.5rem; text-align: center;
+    }
+    .footer-content {
+      max-width: 1200px; margin: 0 auto;
+    }
+    .footer-logo {
+      font-family: var(--FD); font-size: 1.8rem; font-weight: 600;
+      background: var(--gold-gradient); -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-text {
+      font-size: .9rem; opacity: .8; line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .footer-bottom {
+      padding-top: 2rem; border-top: 1px solid rgba(212,165,116,.2);
+      font-size: .8rem; opacity: .7;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .navbar-menu { display: none; }
+      .navbar-toggle { display: flex; }
+      
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+      }
+      
+      .section {
+        padding: 4rem 1.5rem;
+      }
+      
+      .about-highlights {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .hero-content > * {
+      animation: fadeInUp .8s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .hero-title { animation-delay: .2s; }
+    .hero-subtitle { animation-delay: .4s; }
+    .hero-cta { animation-delay: .6s; }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-logo">Du Tisserand du Breuilh</div>
+  <ul class="navbar-menu">
+    <li><a href="#accueil" class="navbar-link">Accueil</a></li>
+    <li><a href="#elevage" class="navbar-link">Élevage</a></li>
+    <li><a href="#galerie" class="navbar-link">Galerie</a></li>
+    <li><a href="#contact" class="navbar-link">Contact</a></li>
+  </ul>
+  <button class="navbar-toggle" id="navbar-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="accueil">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Du Tisserand du Breuilh</h1>
+    <p class="hero-subtitle">
+      Élevage familial de Bergers Allemands d'exception.<br>
+      Lignées allemandes sélectionnées, chiens robustes et équilibrés.
+    </p>
+    <div class="hero-cta">
+      <a href="#elevage" class="btn btn--gold">Découvrir notre élevage</a>
+      <a href="#contact" class="btn btn--dark">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / ÉLEVAGE -->
+<section class="section" id="elevage">
+  <div class="section-header reveal">
+    <div class="ornament">
+      <div class="ornament-diamond"></div>
+    </div>
+    <h2 class="section-title">Notre Élevage</h2>
+    <p class="section-subtitle">
+      Passion, expertise et sélection rigoureuse pour des Bergers Allemands d'exception
+    </p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-content reveal">
+      <h3>Excellence et Tradition</h3>
+      <p>
+        Nous sommes un élevage familial de Berger Allemand sous l'affixe Du Tisserand du Breuilh. 
+        Nos lices et étalons proviennent des meilleures lignées allemandes, garantissant des chiens 
+        exempts de dysplasie (hanches A ou B, coudes 0 ou SL).
+      </p>
+      <p>
+        Tous nos reproducteurs sont identifiés par ADN, assurant ainsi l'authenticité des origines 
+        de nos chiots. Nos sélections rigoureuses visent à obtenir des chiens robustes, équilibrés 
+        et performants, idéals pour tous les passionnés de cette race exceptionnelle.
+      </p>
+
+      <div class="about-highlights">
+        <div class="highlight-item">
+          <h4>Lignées Allemandes</h4>
+          <p>Reproducteurs issus des meilleures souches</p>
+        </div>
+        <div class="highlight-item">
+          <h4>Tests Génétiques</h4>
+          <p>Identification ADN et dépistage dysplasie</p>
+        </div>
+        <div class="highlight-item">
+          <h4>Sélection Rigoureuse</h4>
+          <p>Chiens robustes et équilibrés</p>
+        </div>
+        <div class="highlight-item">
+          <h4>Élevage Familial</h4>
+          <p>Socialisation optimale de nos chiots</p>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn btn--gold">Réserver un chiot</a>
+    </div>
+    
+    <div class="about-image reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311511/photo-berger_allemand/berger_allemand_1.jpg" alt="Berger Allemand Du Tisserand du Breuilh">
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="section" id="galerie">
+  <div class="section-header reveal">
+    <div class="ornament">
+      <div class="ornament-diamond"></div>
+    </div>
+    <h2 class="section-title">Nos Bergers Allemands</h2>
+    <p class="section-subtitle">
+      Découvrez nos reproducteurs et chiots issus de lignées d'exception
+    </p>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311513/photo-berger_allemand/berger_allemand_2.jpg" alt="Berger Allemand - Reproducteur">
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311515/photo-berger_allemand/berger_allemand_3.jpg" alt="Berger Allemand - Lice d'élevage">
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311517/photo-berger_allemand/berger_allemand_4.jpg" alt="Berger Allemand - Chiot">
+    </div>
+    <div class="gallery-item reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311520/photo-berger_allemand/berger_allemand_5.jpg" alt="Berger Allemand - Famille">
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="section-header reveal">
+    <div class="ornament">
+      <div class="ornament-diamond"></div>
+    </div>
+    <h2 class="section-title">Contactez-nous</h2>
+    <p class="section-subtitle">
+      Réservez votre chiot ou obtenez plus d'informations sur nos Bergers Allemands
+    </p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Informations de Contact</h3>
+      
+      <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+        </svg>
+        <div>
+          <strong>Téléphone</strong><br>
+          05.55.00.82.34
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <strong>Localisation</strong><br>
+          France
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2H4zm0 2v.01L8 8l4-2 .01.01V6H4z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <strong>SIREN</strong><br>
+          792332298
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <svg class="contact-icon" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <div>
+          <strong>Garanties</strong><br>
+          Dysplasie A/B, identification ADN<br>
+          Garantie légale selon droit français
+        </div>
+      </div>
+    </div>
+
+    <form class="contact-form reveal" action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Votre message</label>
+        <textarea id="message" name="message" placeholder="Parlez-nous de votre projet, vos attentes concernant un chiot Berger Allemand..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn--gold">Envoyer le message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">Du Tisserand du Breuilh</div>
+    <p class="footer-text">
+      Élevage familial de Bergers Allemands d'exception.<br>
+      Lignées allemandes sélectionnées • Tests génétiques • Identification ADN<br>
+      SIREN: 792332298
+    </p>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Du Tisserand du Breuilh. Tous droits réservés. | Élevage déclaré sous le SIREN 792332298</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Navigation scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      const offsetTop = target.offsetTop - 72;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+// Scroll reveal animation
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('on');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
+
+// Mobile menu toggle
+const navbarToggle = document.getElementById('navbar-toggle');
+const navbarMenu = document.querySelector('.navbar-menu');
+
+navbarToggle?.addEventListener('click', () => {
+  navbarMenu.classList.toggle('active');
+});
+
+// Form submission
+document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form data
+  const formData = new FormData(this);
+  const data = Object.fromEntries(formData);
+  
+  // Here you would typically send the data to your server
+  console.log('Form submitted:', data);
+  
+  // Show success message (you can customize this)
+  alert('Merci pour votre message ! Nous vous contacterons rapidement.');
+  
+  // Reset form
+  this.reset();
+});
+
+// Gallery image click (you can add lightbox functionality here)
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', function() {
+    // Add your lightbox or modal functionality here
+    console.log('Gallery item clicked');
+  });
+});
+</script>
+
+</body>
+</html>

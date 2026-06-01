@@ -57,39 +57,101 @@ def get_repo_root() -> Path:
 
 
 def generate_demo_site(profile: dict) -> str | None:
-    """
-    Genere un site vitrine de demo pour un eleveur.
-    Retourne l'URL GitHub Pages ou None si pas de template.
-    """
+    """Genere un site vitrine via Claude Sonnet 4 (API OpenRouter)."""
+    import requests, json, os, re, time
+    from pathlib import Path
+    from generator import slugify
+    from photos import get_photos_for_race
+
     name = profile["name"]
     race = profile["races"][0]
     phone = profile.get("phone", "")
     ville = profile.get("ville", "")
     departement = profile.get("departement", "")
-    description = profile.get("description", "")
+    description = profile.get("description", "") or ""
     siren = profile.get("siren", "")
-    website = profile.get("website", "")
     photo_url = profile.get("photo_url", "")
-    photos_race = []
 
-    # Chercher des photos Cloudinary/Pexels pour cette race
+    slug = slugify(name)
+    target_dir = Path("/workspace/templates") / slug
+    target_dir.mkdir(exist_ok=True)
+    target_file = target_dir / "index.html"
+    if target_file.exists():
+        return f"https://francoislang.github.io/templates/{slug}"
+
+    # Photos Cloudinary
+    photos_race = get_photos_for_race(race, count=15) or []
+
+    # Lire le site de reference joyaux-d-anubis
     try:
-        from photos import get_photos_for_race
-        photos_race = get_photos_for_race(race, count=15)
-    except Exception:
-        pass
+        ref = open("/workspace/templates/joyaux-d-anubis/index.html", encoding="utf-8").read()
+    except:
+        ref = ""
 
-    site_result = generator.generate_site(
-        name=name, race=race, phone=phone,
-        city=ville or departement,
-        description=description, siren=siren,
-        departement=departement, website=website,
-        photo_url=photo_url, photos_race=photos_race,
-    )
+    # Cle API OpenRouter
+    key = ""
+    for f_path in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
+        try:
+            for line in open(f_path):
+                if "ANTHROPIC_API_KEY" in line and "=" in line:
+                    key = line.split("=", 1)[1].strip()
+                    if key: break
+        except:
+            pass
 
-    if site_result:
-        return site_result[1]
-    return None
+    if not key:
+        # Fallback template universel
+        from generator import generate_site
+        r = generate_site(name=name, race=race, phone=phone, city=ville or departement,
+                         description=description, siren=siren, departement=departement,
+                         photo_url=photo_url, photos_race=photos_race)
+        return r[1] if r else None
+
+    lieu = f"à {ville} ({departement})" if ville and departement else "en France"
+    photos_list = "\n".join(f"  - {p}" for p in photos_race[:5])
+
+    prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens.
+
+INSPIRE-TOI DE CE SITE DE RÉFÉRENCE pour la structure, le style, les sections et la qualité :
+{ref[:5000]}
+
+CONTENU À ADAPTER :
+- Nom élevage : {name}
+- Race : {race}
+- Téléphone : {phone}
+- Localisation : {lieu}
+- Description : {description[:500] if description else ""}
+- SIREN : {siren or "Particulier"}
+- Photo principale : {photo_url}
+- Photos de la race : 
+{photos_list}
+
+INSTRUCTIONS :
+- Garde la MÊME structure HTML, les mêmes classes CSS, les mêmes sections que le site de référence
+- Remplace TOUT le contenu par les données ci-dessus
+- Utilise les photos fournies (hero, about, galerie)
+- Adapte les couleurs à la race (tons chauds pour chiens de chasse, vifs pour races dynamiques, doux pour races calmes)
+- Garde Cinzel + Raleway comme polices
+- Schema.org JSON-LD, Open Graph, meta description SEO
+- Le site doit être RESPONSIVE, animations au scroll
+- Réponds UNIQUEMENT avec le code HTML complet"""
+
+    r = requests.post("https://openrouter.ai/api/v1/chat/completions",
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        json={"model": "anthropic/claude-sonnet-4", "messages": [{"role": "user", "content": prompt}], "max_tokens": 64000},
+        timeout=300)
+
+    html = r.json()["choices"][0]["message"]["content"]
+    html = re.sub(r'^```html?\n?', '', html)
+    html = re.sub(r'\n?```\s*$', '', html)
+
+    target_file.write_text(html, encoding="utf-8")
+
+    import subprocess
+    subprocess.run(["git", "-C", "/workspace/templates", "add", f"{slug}/index.html"],
+                   check=True, capture_output=True)
+
+    return f"https://francoislang.github.io/templates/{slug}"
 
 
 def generate_pitch(profile: dict, demo_url: str | None) -> str:
