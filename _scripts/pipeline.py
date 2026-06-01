@@ -115,7 +115,7 @@ def generate_demo_site(profile: dict) -> str | None:
         return r[1] if r else None
 
     lieu = f"à {ville} ({departement})" if ville and departement else "en France"
-    photos_list = "\n".join(f"  - {p}" for p in photos_race[:5])
+    photos_list = "\n".join(f"  - {p}" for p in photos_race)
 
     prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens.
 
@@ -140,6 +140,7 @@ INSTRUCTIONS STRICTES :
 - N'AJOUTE PAS de section "Design", "Engagements", "Philosophie" ou autre qui n'existe pas dans joyaux-d-anubis
 - Utilise les photos fournies dans hero (plein ecran), about (2 colonnes), galerie (grille de 12 minimum), race
 - Tu DOIS utiliser CHAQUE photo fournie. S'il y a 15 photos, met-les TOUTES dans la galerie. Ne les répète pas.
+- Utilise UNIQUEMENT les photos Cloudinary listées dans les URLs fournies (res.cloudinary.com). NE GENERE PAS de nouvelles URLs, n'utilise PAS pexels.com ni d'autres sources externes
 - Adapte les couleurs à la race
 - Garde Cinzel + Raleway comme polices
 - Schema.org JSON-LD, Open Graph, meta description SEO
