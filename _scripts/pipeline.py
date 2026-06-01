@@ -133,17 +133,17 @@ CONTENU À ADAPTER :
 - Photos de la race : 
 {photos_list}
 
-INSTRUCTIONS :
-- Garde la MÊME structure HTML, les mêmes classes CSS, les mêmes sections que le site de référence
-- Remplace TOUT le contenu par les données ci-dessus
-- Utilise les photos fournies (hero, about, galerie) — les sites de référence ont en moyenne 22 images chacun
-- Tu DOIS placer AU MOINS 15 photos Cloudinary dans le site : 1 hero + 1 about + 1 race + 12 galerie. C'est OBLIGATOIRE.
-- Chaque photo doit être utilisée via une balise <img> dans la galerie et les sections
-- Adapte les couleurs à la race (tons chauds pour chiens de chasse, vifs pour races dynamiques, doux pour races calmes)
+INSTRUCTIONS STRICTES :
+- COPIE EXACTEMENT la même structure HTML, les mêmes classes CSS et les mêmes sections que le site joyaux-d-anubis
+- NE CRÉE PAS de nouvelles sections ou classes - utilise exactement les mêmes (hero, hero_txt, hero_img, sec_title, about_g, repro_c, gal_g, tem_c, contact_g, btn_primary, alt_bg, footer)
+- NE METS PAS de texte explicatif, de notes de design, ou de commentaires sur le design
+- N'AJOUTE PAS de section "Design", "Engagements", "Philosophie" ou autre qui n'existe pas dans joyaux-d-anubis
+- Utilise les photos fournies dans hero (plein ecran), about (2 colonnes), galerie (grille de 12 minimum), race
+- Tu DOIS utiliser CHAQUE photo fournie. S'il y a 15 photos, met-les TOUTES dans la galerie. Ne les répète pas.
+- Adapte les couleurs à la race
 - Garde Cinzel + Raleway comme polices
 - Schema.org JSON-LD, Open Graph, meta description SEO
-- Le site doit être RESPONSIVE, animations au scroll
-- Réponds UNIQUEMENT avec le code HTML complet"""
+- Réponds UNIQUEMENT avec le code HTML complet, RIEN d'autre"""
 
     r = requests.post("https://openrouter.ai/api/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
