@@ -137,7 +137,8 @@ INSTRUCTIONS :
 - Garde la MÊME structure HTML, les mêmes classes CSS, les mêmes sections que le site de référence
 - Remplace TOUT le contenu par les données ci-dessus
 - Utilise les photos fournies (hero, about, galerie) — les sites de référence ont en moyenne 22 images chacun
-- Place AU MOINS 15 photos Cloudinary dans le site (hero + about + galerie + race) comme dans les sites de référence
+- Tu DOIS placer AU MOINS 15 photos Cloudinary dans le site : 1 hero + 1 about + 1 race + 12 galerie. C'est OBLIGATOIRE.
+- Chaque photo doit être utilisée via une balise <img> dans la galerie et les sections
 - Adapte les couleurs à la race (tons chauds pour chiens de chasse, vifs pour races dynamiques, doux pour races calmes)
 - Garde Cinzel + Raleway comme polices
 - Schema.org JSON-LD, Open Graph, meta description SEO
@@ -146,10 +147,20 @@ INSTRUCTIONS :
 
     r = requests.post("https://openrouter.ai/api/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "anthropic/claude-sonnet-4", "messages": [{"role": "user", "content": prompt}], "max_tokens": 64000},
+        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 64000},
         timeout=300)
 
-    html = r.json()["choices"][0]["message"]["content"]
+    data = r.json()
+    if "choices" not in data:
+        print(f"  ⚠️ Erreur API Claude: {data.get('error', {}).get('message', str(data)[:200])}")
+        print(f"  ⚠️ Fallback: generation via template universel")
+        from generator import generate_site
+        r2 = generate_site(name=name, race=race, phone=phone, city=ville or departement,
+                         description=description, siren=siren, departement=departement,
+                         photo_url=photo_url, photos_race=photos_race)
+        return r2[1] if r2 else None
+
+    html = data["choices"][0]["message"]["content"]
     html = re.sub(r'^```html?\n?', '', html)
     html = re.sub(r'\n?```\s*$', '', html)
 
