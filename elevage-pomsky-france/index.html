@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Elevage Pomsky France — Élevage Pomsky Professionnel | France</title>
+  <meta name="description" content="Élevage professionnel de Pomsky en France depuis 15 ans. Signataire charte EPC, tests Embark, locaux climatisés. SIREN 838888923. Tél. 06.50.63.02.71.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://elevage-pomsky-france.fr/">
+  <meta property="og:title"       content="Elevage Pomsky France — Pomsky Professionnel">
+  <meta property="og:description" content="Élevage professionnel de Pomsky depuis 15 ans. Signataire charte EPC, tests Embark, bien-être animal prioritaire.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-58064-elevage-pomsky-france.jpg?1703845932">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Elevage Pomsky France",
+        "description": "Élevage professionnel de Pomsky en France depuis 15 ans. Signataire charte de qualité EPC.",
+        "telephone": "+33650630271",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR"
+        },
+        "taxID": "838888923"
+      },
+      { "@type": "AnimalShelter", "name": "Elevage Pomsky France" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Elevage Pomsky France
+       Palette inspirée des tons nordiques et arctiques
+       ============================================== */
+    :root {
+      --arc:  #2C3E50;   /* bleu arctique profond */
+      --ice:  #5DADE2;   /* bleu glacé */
+      --sib:  #34495E;   /* sibérien */
+      --crm:  #F8F9FA;   /* blanc neige */
+      --bg:   #FDFDFE;   /* fond blanc pur */
+      --stn:  #85929E;   /* pierre froide */
+      --txt:  #2C3E50;   /* texte */
+      --FD:   'Cinzel', serif;       
+      --FN:   'Raleway', sans-serif; 
+      --nav:  72px;
+      --r:    4px;
+      --ice-gradient: linear-gradient(135deg, #5DADE2 0%, #7FB3D3 45%, #3498DB 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ============================================== UTILITY */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .flex { display: flex; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .text-center { text-align: center; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-8 { margin-bottom: 2rem; }
+    .mt-8 { margin-top: 2rem; }
+    .hidden { display: none; }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ============================================== HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav);
+      background: rgba(248, 249, 250, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(44, 62, 80, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--arc);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--txt);
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--ice);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--arc);
+      margin: 3px 0;
+      transition: 0.3s;
+    }
+
+    /* ============================================== HERO */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(44, 62, 80, 0.7) 0%, rgba(52, 73, 94, 0.5) 100%);
+      z-index: -1;
+    }
+
+    .hero-content h1 {
+      font-family: var(--FD);
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--ice-gradient);
+      color: white;
+      font-weight: 600;
+      border-radius: var(--r);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(93, 173, 226, 0.4);
+    }
+
+    /* ============================================== SECTIONS */
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-alt {
+      background: var(--crm);
+    }
+
+    .section-title {
+      font-family: var(--FD);
+      font-size: 2.5rem;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--arc);
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--stn);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============================================== ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .about-content h3 {
+      font-family: var(--FD);
+      font-size: 1.75rem;
+      margin-bottom: 1.5rem;
+      color: var(--arc);
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.8;
+    }
+
+    .about-image {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* ============================================== FEATURES */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--r);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--ice-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .feature-card h3 {
+      font-family: var(--FD);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--arc);
+    }
+
+    /* ============================================== GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    /* ============================================== CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--FD);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--arc);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: white;
+      border-radius: var(--r);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--ice-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      color: white;
+      font-size: 1.1rem;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--r);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--arc);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #E9ECEF;
+      border-radius: var(--r);
+      font-family: var(--FN);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--ice);
+    }
+
+    /* ============================================== FOOTER */
+    .footer {
+      background: var(--arc);
+      color: white;
+      padding: 3rem 0 1rem;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      font-family: var(--FD);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section li {
+      margin-bottom: 0.5rem;
+      color: #BDC3C7;
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section a {
+      color: #BDC3C7;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--ice);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #34495E;
+      color: #BDC3C7;
+    }
+
+    /* ============================================== RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--crm);
+        flex-direction: column;
+        padding: 1rem 0;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .section {
+        padding: 3rem 0;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#" class="logo">Elevage Pomsky France</a>
+        
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#elevage">L'Élevage</a></li>
+            <li><a href="#pomsky">Le Pomsky</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="accueil" class="hero">
+    <img src="https://upload.chien.com/img/23-58064-elevage-pomsky-france.jpg?1703845932" alt="Pomsky" class="hero-bg">
+    
+    <div class="hero-content fade-in">
+      <h1>Elevage Pomsky France</h1>
+      <p>Élevage professionnel de Pomsky depuis 15 ans. Signataire de la charte de qualité EPC, tests Embark, bien-être animal prioritaire.</p>
+      <a href="#contact" class="btn-primary">Nous Contacter</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="elevage" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Notre Élevage</h2>
+      <p class="section-subtitle fade-in">
+        Un élevage professionnel et expérimenté, dédié au bien-être et à la qualité de nos Pomsky
+      </p>
+
+      <div class="about-grid">
+        <div class="about-content fade-in">
+          <h3>15 Ans d'Expérience</h3>
+          <p>
+            Nous sommes un élevage de Pomsky professionnel et expérimenté, puisque nous faisons ce métier depuis une quinzaine d'années. Notre expertise nous permet d'offrir des chiots de la plus haute qualité.
+          </p>
+          <p>
+            Notre élevage est signataire de la charte de qualité de l'EPC (European Pomsky Club), garantissant le respect des standards les plus élevés en matière d'élevage éthique.
+          </p>
+        </div>
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_1.jpg" alt="Pomsky adulte">
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_2.jpg" alt="Installation élevage">
+        </div>
+        <div class="about-content fade-in">
+          <h3>Installations de Qualité</h3>
+          <p>
+            Les tests de santé Embark sont effectués sur l'ensemble de nos chiens, et nous accordons une grande importance à leur bien-être. Ils naissent et vivent dans des locaux climatisés, carrelés, faïencés et désinfectés tous les jours.
+          </p>
+          <p>
+            Nous accueillons avec plaisir les futurs propriétaires pour des visites de notre élevage, afin qu'ils puissent constater par eux-mêmes la qualité de nos installations et rencontrer nos reproducteurs.
+          </p>
+        </div>
+      </div>
+
+      <div class="features-grid fade-in">
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <h3>Charte EPC</h3>
+          <p>Signataire de la charte de qualité de l'European Pomsky Club pour garantir un élevage éthique.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧬</div>
+          <h3>Tests Embark</h3>
+          <p>Tests génétiques Embark complets effectués sur tous nos reproducteurs pour la santé des chiots.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏠</div>
+          <h3>Installations Modernes</h3>
+          <p>Locaux climatisés, carrelés et désinfectés quotidiennement pour le bien-être optimal de nos chiens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RACE -->
+  <section id="pomsky" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title fade-in">Le Pomsky</h2>
+      <p class="section-subtitle fade-in">
+        Découvrez cette race fascinante, croisement entre le Husky Sibérien et le Spitz Nain
+      </p>
+
+      <div class="about-grid">
+        <div class="about-content fade-in">
+          <h3>Caractéristiques du Pomsky</h3>
+          <p>
+            Le Pomsky est un chien de petite à moyenne taille, combinant la beauté du Husky Sibérien avec la taille compacte du Spitz Nain. Ces chiens sont connus pour leur intelligence remarquable et leur loyauté envers leur famille.
+          </p>
+          <p>
+            Avec leurs yeux souvent bleus et leur pelage dense aux couleurs variées, les Pomsky sont des compagnons exceptionnels qui s'adaptent bien à la vie en famille.
+          </p>
+        </div>
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_3.jpg" alt="Pomsky portrait">
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_4.jpg" alt="Pomsky en action">
+        </div>
+        <div class="about-content fade-in">
+          <h3>Tempérament et Éducation</h3>
+          <p>
+            Les Pomsky sont des chiens énergiques et intelligents qui nécessitent une socialisation précoce et une éducation cohérente. Ils sont généralement affectueux avec leur famille et peuvent être réservés avec les étrangers.
+          </p>
+          <p>
+            Leur héritage de Husky leur donne un besoin d'exercice régulier, tandis que leur côté Spitz les rend plus adaptés à la vie domestique que leurs ancêtres arctiques.
+          </p>
+        </div>
+      </div>
+
+      <div class="features-grid fade-in">
+        <div class="feature-card">
+          <div class="feature-icon">📏</div>
+          <h3>Taille</h3>
+          <p>Petite à moyenne (25-38 cm), poids entre 9-14 kg selon la génération.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Couleurs</h3>
+          <p>Variété de couleurs : gris et blanc, noir et blanc, rouge et blanc, sable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💙</div>
+          <h3>Yeux</h3>
+          <p>Souvent bleus comme le Husky, parfois bruns ou vairons (hétérochromie).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galerie" class="section">
+    <div class="container">
+      <h2 class="section-title fade-in">Galerie</h2>
+      <p class="section-subtitle fade-in">
+        Découvrez nos magnifiques Pomsky et l'environnement de notre élevage
+      </p>
+
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_1.jpg" alt="Pomsky 1">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_2.jpg" alt="Pomsky 2">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_3.jpg" alt="Pomsky 3">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_4.jpg" alt="Pomsky 4">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_5.jpg" alt="Pomsky 5">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://upload.chien.com/img/23-58064-elevage-pomsky-france.jpg?1703845932" alt="Élevage">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title fade-in">Contact</h2>
+      <p class="section-subtitle fade-in">
+        Contactez-nous pour plus d'informations sur nos Pomsky disponibles
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <h3>Informations de Contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <strong>Téléphone</strong><br>
+              06.50.63.02.71
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🇫🇷</div>
+            <div>
+              <strong>Localisation</strong><br>
+              France
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <strong>SIREN</strong><br>
+              838888923
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏆</div>
+            <div>
+              <strong>Certification</strong><br>
+              Membre EPC (European Pomsky Club)
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form fade-in">
+          <h3>Nous Contacter</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Nom</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary">Envoyer le Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Elevage Pomsky France</h3>
+          <p>Élevage professionnel de Pomsky depuis 15 ans. Signataire de la charte de qualité EPC pour un élevage éthique et responsable.</p>
+          <p><strong>SIREN :</strong> 838888923</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>📞 06.50.63.02.71</p>
+          <p>🇫🇷 France</p>
+          <p>🏆 Membre EPC</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Nos Services</h3>
+          <ul>
+            <li>Élevage Pomsky professionnel</li>
+            <li>Tests génétiques Embark</li>
+            <li>Suivi sanitaire complet</li>
+            <li>Conseils éducation</li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Qualité & Garanties</h3>
+          <ul>
+            <li>Charte qualité EPC</li>
+            <li>Installations climatisées</li>
+            <li>Désinfection quotidienne</li>
+            <li>Visites sur rendez-vous</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Elevage Pomsky France. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au scroll
+    const observeElements = () => {
+      const elements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(el => observer.observe(el));
+    };
+
+    // Menu mobile
+    const toggleMenu = () => {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.classList.toggle('active');
+    };
+
+    // Smooth scroll pour les liens d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(248, 249, 250, 0.98)';
+      } else {
+        header.style.background = 'rgba(248, 249, 250, 0.95)';
+      }
+    });
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      observeElements();
+    });
+  </script>
+</body>
+</html>
