@@ -95,12 +95,12 @@ def generate_demo_site(profile: dict) -> str | None:
         except:
             pass
 
-    # Cle API DeepSeek directe
+    # Cle API (OpenRouter)
     key = ""
     for f_path in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
         try:
             for line in open(f_path):
-                if "DEEPSEEK_API_KEY" in line and "=" in line:
+                if "ANTHROPIC_API_KEY" in line and "=" in line:
                     key = line.split("=", 1)[1].strip()
                     if key: break
         except:
@@ -145,9 +145,9 @@ INSTRUCTIONS STRICTES :
 - Schema.org JSON-LD, Open Graph, meta SEO.
 - Réponds UNIQUEMENT avec le code HTML complet."""
 
-    r = requests.post("https://api.deepseek.com/v1/chat/completions",
+    r = requests.post("https://openrouter.ai/api/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 32000},
+        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 24000},
         timeout=300)
 
     data = r.json()
