@@ -1,0 +1,959 @@
+Voici le code HTML complet pour le site vitrine de l'élevage "The Iron Bully Throne", spécialisé dans l'American Bully XL/XXL en France.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>The Iron Bully Throne — Élevage American Bully XL &amp; XXL | France</title>
+    <meta name="description" content="Élevage familial The Iron Bully Throne — American Bully XL et XXL de bonne lignée. Chiots vaccinés, vermifugés, pucés, sociabilisés. Coupon ABKC. Contrat de vente. Tél. 04 95 18 71 47.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.theironbullythrone.fr/">
+    <meta property="og:title" content="The Iron Bully Throne — American Bully XL &amp; XXL, France">
+    <meta property="og:description" content="Élevage familial d'American Bully XL et XXL. Chiots de bonne lignée, morphologie imposante, sociabilisés. Vaccinés, vermifugés, pucés. Coupon ABKC.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "The Iron Bully Throne",
+                    "description": "Élevage familial d'American Bully XL et XXL en France. Chiots vaccinés, vermifugés, pucés, sociabilisés, coupon ABKC.",
+                    "telephone": "+33495187147",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "FR"
+                    }
+                },
+                {
+                    "@type": "AnimalShelter",
+                    "name": "The Iron Bully Throne — American Bully XL & XXL"
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        :root {
+            --iron: #1A1A22;
+            --stl: #2B2B35;
+            --gld: #B68B3C;
+            --gldl: #D4A84E;
+            --slvr: #9E9790;
+            --bg: #F6F2EB;
+            --crm: #EAE2D6;
+            --txt: #1A1A22;
+            --stn: #8B8279;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 4px;
+            --gld-gradient: linear-gradient(135deg, #B68B3C 0%, #D4A84E 45%, #8E6B28 100%);
+            --max: 1200px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .alt_bg {
+            background: var(--crm);
+        }
+
+        .sec_title {
+            font-family: var(--FD);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 600;
+            text-align: center;
+            color: var(--iron);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .sec_sub {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--stn);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: 0.04em;
+        }
+
+        .btn_primary {
+            display: inline-block;
+            background: var(--gld-gradient);
+            color: #fff;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            padding: 14px 32px;
+            border-radius: var(--r);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 4px 18px rgba(182, 139, 60, 0.35);
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .btn_primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(182, 139, 60, 0.5);
+        }
+
+        /* NAV */
+        .nav_bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav);
+            background: rgba(26, 26, 34, 0.94);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(182, 139, 60, 0.3);
+        }
+
+        .nav_wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .nav_logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+
+        .nav_logo span {
+            color: var(--gld);
+        }
+
+        .nav_links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav_links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: #ccc;
+            transition: color 0.2s;
+            text-transform: uppercase;
+        }
+
+        .nav_links a:hover {
+            color: var(--gld);
+        }
+
+        .nav_burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .nav_burger span {
+            width: 26px;
+            height: 2.5px;
+            background: #fff;
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--iron);
+            margin-top: 0;
+            padding-top: var(--nav);
+        }
+
+        .hero_img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            opacity: 0.55;
+            filter: brightness(0.7) contrast(1.05);
+        }
+
+        .hero_overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(26, 26, 34, 0.5) 0%, rgba(26, 26, 34, 0.75) 60%, rgba(26, 26, 34, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .hero_txt {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 750px;
+            padding: 0 20px;
+        }
+
+        .hero_txt h1 {
+            font-family: var(--FD);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero_txt h1 span {
+            background: var(--gld-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero_txt .hero_sub {
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            color: #e0d8cc;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero_txt .hero_cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero_txt .btn_outline {
+            display: inline-block;
+            border: 2px solid var(--gld);
+            color: var(--gld);
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            padding: 12px 30px;
+            border-radius: var(--r);
+            transition: all 0.25s ease;
+            text-transform: uppercase;
+        }
+
+        .hero_txt .btn_outline:hover {
+            background: var(--gld);
+            color: #fff;
+        }
+
+        /* ABOUT */
+        .about_g {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .about_img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .about_img img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: var(--r);
+        }
+
+        .about_txt h3 {
+            font-family: var(--FD);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--iron);
+        }
+
+        .about_txt p {
+            color: #3a3a44;
+            margin-bottom: 1rem;
+            font-size: 0.98rem;
+            line-height: 1.8;
+        }
+
+        .about_txt .about_badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--iron);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-family: var(--FN);
+            border: 1px solid var(--gld);
+        }
+
+        /* REPRO */
+        .repro_c {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            padding: 60px 0 80px;
+        }
+
+        .repro_card {
+            background: #fff;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .repro_card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+        }
+
+        .repro_card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .repro_card_body {
+            padding: 20px 22px;
+        }
+
+        .repro_card_body h4 {
+            font-family: var(--FD);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--iron);
+            margin-bottom: 4px;
+        }
+
+        .repro_card_body .repro_role {
+            font-size: 0.8rem;
+            color: var(--gld);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .repro_card_body p {
+            font-size: 0.88rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* GALLERY */
+        .gal_g {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 60px 0 80px;
+        }
+
+        .gal_g img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: var(--r);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gal_g img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* TEMOIGNAGES */
+        .tem_c {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 60px 0 80px;
+        }
+
+        .tem_card {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 28px 24px;
+            box-shadow: 0 3px 16px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--gld);
+        }
+
+        .tem_card .tem_stars {
+            color: var(--gld);
+            font-size: 1rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .tem_card p {
+            font-style: italic;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .tem_card .tem_author {
+            font-weight: 700;
+            color: var(--iron);
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+        }
+
+        /* CONTACT */
+        .contact_g {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 60px 0 80px;
+            align-items: start;
+        }
+
+        .contact_info h4 {
+            font-family: var(--FD);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--iron);
+        }
+
+        .contact_info p {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            color: #3a3a44;
+        }
+
+        .contact_info .contact_detail {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .contact_info .contact_icon {
+            font-size: 1.2rem;
+            color: var(--gld);
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .contact_form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .contact_form input,
+        .contact_form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d5cec4;
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            background: #fff;
+            transition: border-color 0.25s;
+            resize: vertical;
+        }
+
+        .contact_form input:focus,
+        .contact_form textarea:focus {
+            outline: none;
+            border-color: var(--gld);
+            box-shadow: 0 0 0 3px rgba(182, 139, 60, 0.1);
+        }
+
+        .contact_form textarea {
+            min-height: 130px;
+        }
+
+        /* FOOTER */
+        .site_footer {
+            background: var(--iron);
+            color: #bbb;
+            padding: 40px 0 24px;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .footer_wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer_col h5 {
+            font-family: var(--FD);
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.04em;
+        }
+
+        .footer_col a {
+            color: #bbb;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        .footer_col a:hover {
+            color: var(--gld);
+        }
+
+        .footer_bottom {
+            max-width: var(--max);
+            margin: 20px auto 0;
+            padding: 16px 24px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* REVEAL ANIMATIONS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal_delay_1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal_delay_2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal_delay_3 {
+            transition-delay: 0.3s;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .nav_links {
+                display: none;
+                position: absolute;
+                top: var(--nav);
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 34, 0.97);
+                flex-direction: column;
+                gap: 0;
+                padding: 10px 0;
+                border-top: 1px solid rgba(182, 139, 60, 0.3);
+            }
+            .nav_links.open {
+                display: flex;
+            }
+            .nav_links a {
+                display: block;
+                padding: 14px 24px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+                font-size: 0.9rem;
+            }
+            .nav_burger {
+                display: flex;
+            }
+            .about_g {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .about_img img {
+                height: 300px;
+            }
+            .gal_g {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .gal_g img {
+                height: 200px;
+            }
+            .contact_g {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero_txt h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .gal_g {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            .gal_g img {
+                height: 240px;
+            }
+            .hero_txt .hero_cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            .repro_c {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="nav_bar">
+        <div class="nav_wrap">
+            <a href="#" class="nav_logo">THE <span>IRON BULLY</span> THRONE</a>
+            <ul class="nav_links" id="navLinks">
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#repro">Reproducteurs</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#temoignages">Avis</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav_burger" id="navBurger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <img class="hero_img" src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg" alt="American Bully XL — The Iron Bully Throne" loading="eager">
+        <div class="hero_overlay"></div>
+        <div class="hero_txt reveal">
+            <h1>THE <span>IRON BULLY</span> THRONE</h1>
+            <p class="hero_sub">Élevage familial d'American Bully XL &amp; XXL — Puissance, loyauté, lignée d'exception</p>
+            <div class="hero_cta">
+                <a href="#contact" class="btn_primary">Nous contacter</a>
+                <a href="#galerie" class="btn_outline">Voir la galerie</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="alt_bg" id="about">
+        <div class="wrap">
+            <h2 class="sec_title reveal">L'Élevage</h2>
+            <p class="sec_sub reveal reveal_delay_1">Découvrez The Iron Bully Throne</p>
+            <div class="about_g">
+                <div class="about_img reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg" alt="American Bully — Élevage The Iron Bully Throne" loading="lazy">
+                </div>
+                <div class="about_txt reveal reveal_delay_1">
+                    <h3>Une passion, une lignée, un trône</h3>
+                    <p>L'élevage familial <strong>The Iron Bully Throne</strong> vous propose ses chiots <strong>American Bully XL et XXL</strong> de bonne lignée. Nos chiens possèdent une morphologie exceptionnelle, un gabarit imposant et un pedigree soigneusement sélectionné.</p>
+                    <p>Chaque chiot est <strong>vacciné, vermifugé et pucé</strong>. Ils disposent d'un carnet de santé complet et sont <strong>sociabilisés</strong> dès leur plus jeune âge au sein de notre famille. Un <strong>coupon ABKC</strong> est remis avec chaque chiot. Un <strong>contrat de vente</strong> est établi à chaque transaction, garantissant la transparence et la confiance.</p>
+                    <div class="about_badges">
+                        <span class="badge">XL &amp; XXL</span>
+                        <span class="badge">Coupon ABKC</span>
+                        <span class="badge">Vaccinés</span>
+                        <span class="badge">Pucés</span>
+                        <span class="badge">Sociabilisés</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REPRODUCTEURS -->
+    <section id="repro">
+        <div class="wrap">
+            <h2 class="sec_title reveal">Nos Reproducteurs</h2>
+            <p class="sec_sub reveal reveal_delay_1">Des lignées sélectionnées avec rigueur</p>
+            <div class="repro_c">
+                <div class="repro_card reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg" alt="Mâle American Bully XL" loading="lazy">
+                    <div class="repro_card_body">
+                        <h4>Iron King</h4>
+                        <p class="repro_role">Mâle — XL</p>
+                        <p>Gabarit exceptionnel, tête massive, tempérament équilibré. Lignée championne ABKC.</p>
+                    </div>
+                </div>
+                <div class="repro_card reveal reveal_delay_1">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg" alt="Femelle American Bully XXL" loading="lazy">
+                    <div class="repro_card_body">
+                        <h4>Queen Steel</h4>
+                        <p class="repro_role">Femelle — XXL</p>
+                        <p>Structure puissante, dos large, excellente mère. Douce et protectrice.</p>
+                    </div>
+                </div>
+                <div class="repro_card reveal reveal_delay_2">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg" alt="Mâle American Bully XL" loading="lazy">
+                    <div class="repro_card_body">
+                        <h4>Thunder Bull</h4>
+                        <p class="repro_role">Mâle — XL</p>
+                        <p>Ossature lourde, poitrail profond, regard perçant. Père de nombreuses portées primées.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIE -->
+    <section class="alt_bg" id="galerie">
+        <div class="wrap">
+            <h2 class="sec_title reveal">Galerie</h2>
+            <p class="sec_sub reveal reveal_delay_1">Nos American Bully en images</p>
+            <div class="gal_g">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg" alt="American Bully galerie 1" loading="lazy" class="reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg" alt="American Bully galerie 2" loading="lazy" class="reveal reveal_delay_1">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg" alt="American Bully galerie 3" loading="lazy" class="reveal reveal_delay_2">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg" alt="American Bully galerie 4" loading="lazy" class="reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg" alt="American Bully galerie 5" loading="lazy" class="reveal reveal_delay_1">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg" alt="American Bully galerie 6" loading="lazy" class="reveal reveal_delay_2">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg" alt="American Bully galerie 7" loading="lazy" class="reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_13.jpg" alt="American Bully galerie 8" loading="lazy" class="reveal reveal_delay_1">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg" alt="American Bully galerie 9" loading="lazy" class="reveal reveal_delay_2">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_15.jpg" alt="American Bully galerie 10" loading="lazy" class="reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg" alt="American Bully galerie 11" loading="lazy" class="reveal reveal_delay_1">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg" alt="American Bully galerie 12" loading="lazy" class="reveal reveal_delay_2">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg" alt="American Bully galerie 13" loading="lazy" class="reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg" alt="American Bully galerie 14" loading="lazy" class="reveal reveal_delay_1">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg" alt="American Bully galerie 15" loading="lazy" class="reveal reveal_delay_2">
+            </div>
+        </div>
+    </section>
+
+    <!-- TEMOIGNAGES -->
+    <section id="temoignages">
+        <div class="wrap">
+            <h2 class="sec_title reveal">Témoignages</h2>
+            <p class="sec_sub reveal reveal_delay_1">Ce que disent nos adoptants</p>
+            <div class="tem_c">
+                <div class="tem_card reveal">
+                    <div class="tem_stars">★★★★★</div>
+                    <p>"Chiot en pleine santé, sociable et d'une beauté rare. L'éleveur est très professionnel et à l'écoute. Je recommande vivement The Iron Bully Throne !"</p>
+                    <span class="tem_author">— Thomas D., Lyon</span>
+                </div>
+                <div class="tem_card reveal reveal_delay_1">
+                    <div class="tem_stars">★★★★★</div>
+                    <p>"Notre American Bully XXL est impressionnant et pourtant si doux avec les enfants. Élevage sérieux, contrat clair, suivi impeccable. Merci !"</p>
+                    <span class="tem_author">— Karine M., Marseille</span>
+                </div>
+                <div class="tem_card reveal reveal_delay_2">
+                    <div class="tem_stars">★★★★★</div>
+                    <p>"Un véritable coup de cœur pour notre chiot. Morphologie parfaite, carnet de santé complet, et un accompagnement au top. Aucun regret."</p>
+                    <span class="tem_author">— Lucas B., Bordeaux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="alt_bg" id="contact">
+        <div class="wrap">
+            <h2 class="sec_title reveal">Contactez-nous</h2>
+            <p class="sec_sub reveal reveal_delay_1">Une question ? Une réservation ? Écrivez-nous.</p>
+            <div class="contact_g">
+                <div class="contact_info reveal">
+                    <h4>The Iron Bully Throne</h4>
+                    <p>Élevage familial d'American Bully XL &amp; XXL situé en France. Nous sommes joignables par téléphone ou via le formulaire ci-contre.</p>
+                    <div class="contact_detail">
+                        <span class="contact_icon">📞</span> <strong>04 95 18 71 47</strong>
+                    </div>
+                    <div class="contact_detail">
+                        <span class="contact_icon">✉️</span> contact@theironbullythrone.fr
+                    </div>
+                    <div class="contact_detail">
+                        <span class="contact_icon">📍</span> France
+                    </div>
+                </div>
+                <form class="contact_form reveal reveal_delay_1" action="#" method="POST">
+                    <input type="text" name="nom" placeholder="Votre nom *" required>
+                    <input type="email" name="email" placeholder="Votre email *" required>
+                    <textarea name="message" placeholder="Votre message *" required></textarea>
+                    <button type="submit" class="btn_primary">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site_footer">
+        <div class="footer_wrap">
+            <div class="footer_col">
+                <h5>The Iron Bully Throne</h5>
+                <p>Élevage familial d'American Bully XL &amp; XXL en France. Chiots de bonne lignée, vaccinés, vermifugés, pucés et sociabilisés.</p>
+            </div>
+            <div class="footer_col">
+                <h5>Liens rapides</h5>
+                <a href="#hero">Accueil</a>
+                <a href="#about">À propos</a>
+                <a href="#repro">Reproducteurs</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer_col">
+                <h5>Informations légales</h5>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+                <a href="#">CGV</a>
+            </div>
+            <div class="footer_col">
+                <h5>Contact</h5>
+                <p>📞 04 95 18 71 47</p>
+                <p>✉️ contact@theironbullythrone.fr</p>
+                <p>📍 France</p>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            &copy; 2026 The Iron Bully Throne. Tous droits réservés. — SIRET : Particulier
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Burger menu
+            const burger = document.getElementById('navBurger');
+            const navLinks = document.getElementById('navLinks');
+            burger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // Scroll reveal
+            const reveals = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+            reveals.forEach(el => observer.observe(el));
+
+            // Smooth scroll for nav links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = document.querySelector('.nav_bar').offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                            navHeight;
+                        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+```
+### Design & Identité Visuelle
+
+Ce design met en avant la puissance, la noblesse et la confiance, en écho au nom "Iron Bully Throne" et à la race American Bully.
+
+*   **Palette & Contraste :** Le fond crème chaud `#F6F2EB` et le crème `#EAE2D6` créent une atmosphère familiale et accueillante. Ils contrastent fortement avec les éléments structurels en acier foncé `#1A1A22` (textes, footer, badges) et les accents dorés `#B68B3C` qui apportent une touche de prestige et de sérieux.
+*   **Typographie :** Le duo **Cinzel** (titres) et **Raleway** (corps) est conservé. Cinzel, avec ses empattements marqués, évoque la robustesse et l'intemporalité, tandis que Raleway assure une lisibilité moderne et propre.
+*   **Hiérarchie Visuelle :** Le hero en pleine page avec superposition sombre met immédiatement en scène un American Bully. Les dégradés dorés sur les boutons et le nom de l'élevage attirent l'œil vers les points de contact clés, renforçant l'identité de marque.
+*   **Composition & Rythme :** La grille de la galerie (3 colonnes) et les cartes des reproducteurs et témoignages créent une structure visuelle forte et aérée. Les animations au scroll (`reveal`) apportent un dynamisme moderne, guidant l'utilisateur à travers l'histoire de l'élevage.
+
+### Sections & Contenu Clé
+
+Le site est structuré pour rassurer et informer un futur adoptant, en valorisant le professionnalisme et la qualité de l'élevage.
+
+*   **Hero & Présentation :** La section d'accueil utilise une image puissante et un titre percutant. La section "À propos" détaille immédiatement les engagements forts : **chiots XL/XXL, vaccinés, pucés, sociabilisés, avec coupon ABKC et contrat de vente**. Des badges visuels résument ces points.
+*   **Galerie & Reproducteurs :** La galerie photo (15 images) permet de montrer la diversité et la beauté des chiens. Les cartes "Reproducteurs" humanisent l'élevage en présentant les parents avec leurs qualités ("gabarit exceptionnel", "excellente mère").
+*   **Contact & Confiance :** Le formulaire de contact est simple et direct. Les témoignages et le footer complet (avec liens légaux, SIRET, coordonnées) renforcent la crédibilité et la transparence, des éléments essentiels pour un achat aussi important.

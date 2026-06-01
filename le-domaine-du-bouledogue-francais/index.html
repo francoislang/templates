@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO -->
+  <title>Le Domaine du Bouledogue Français — Élevage de Bouledogue Français | France</title>
+  <meta name="description" content="Élevage agréé de Bouledogues Français en France. Chiots vaccinés, vermifugés, pucés et parfaitement sociabilisés. Suivi vétérinaire permanent. Tél. 08 98 02 35 25.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.domaine-bouledogue.fr/">
+  <meta property="og:title" content="Le Domaine du Bouledogue Français — Élevage de Bouledogue Français">
+  <meta property="og:description" content="Chiots Bouledogue Français vaccinés, vermifugés, pucés, sociabilisés. Suivi vétérinaire. Élevage agréé en France.">
+  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Le Domaine du Bouledogue Français",
+        "description": "Élevage agréé de Bouledogue Français en France. Chiots vaccinés, vermifugés, pucés, sociabilisés.",
+        "telephone": "+33898023525",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "France",
+          "addressCountry": "FR"
+        },
+        "founder": { "@type": "Person", "name": "Le Domaine du Bouledogue Français" }
+      },
+      { "@type": "AnimalShelter", "name": "Le Domaine du Bouledogue Français — Élevage Bouledogue Français" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Le Domaine du Bouledogue Français
+       Palette fauve, crème et brique, inspirée du Bouledogue
+       ============================================== */
+    :root {
+      --fauve: #B86B3C;
+      --brique: #8B3A3A;
+      --creme: #F5E6D3;
+      --bg: #FAF7F2;
+      --txt: #2A1A0C;
+      --stn: #A69480;
+      --gld: #C9A45E;
+      --FD: 'Cinzel', serif;
+      --FN: 'Raleway', sans-serif;
+      --nav: 72px;
+      --r: 6px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--FN);
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* UTILITY */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .alt_bg { background-color: var(--creme); }
+    .sec_title {
+      font-family: var(--FD);
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--brique);
+    }
+    .btn_primary {
+      display: inline-block;
+      background: var(--brique);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: var(--r);
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn_primary:hover { background: var(--fauve); }
+
+    /* ANIMATIONS SCROLL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* NAV */
+    nav {
+      height: var(--nav);
+      background: #fff;
+      border-bottom: 1px solid var(--creme);
+      display: flex;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      transition: background 0.3s;
+    }
+    nav .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--brique);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--brique); }
+
+    /* HERO */
+    .hero {
+      margin-top: var(--nav);
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 80vh;
+      background: var(--creme);
+    }
+    .hero_txt, .hero_img {
+      flex: 1 1 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero_txt {
+      padding: 40px;
+      flex-direction: column;
+      text-align: left;
+    }
+    .hero_txt h1 {
+      font-family: var(--FD);
+      font-size: 3rem;
+      color: var(--brique);
+      margin-bottom: 1rem;
+    }
+    .hero_txt p {
+      font-size: 1.2rem;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+    .hero_img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 400px;
+    }
+
+    /* ABOUT */
+    .about_g {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      padding: 80px 0;
+    }
+    .about_g > div {
+      flex: 1 1 40%;
+    }
+    .about_g img {
+      border-radius: var(--r);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    /* REPRO */
+    .repro_c {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      padding: 80px 0;
+    }
+    .repro_card {
+      background: #fff;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+    .repro_card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .repro_card h3 {
+      font-family: var(--FD);
+      margin: 1rem 0 0.5rem;
+      color: var(--brique);
+    }
+
+    /* GALERIE */
+    .gal_g {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 15px;
+      padding: 80px 0;
+    }
+    .gal_g img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: var(--r);
+      transition: transform 0.3s;
+    }
+    .gal_g img:hover { transform: scale(1.02); }
+
+    /* TEMOIGNAGES */
+    .tem_c {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      padding: 80px 0;
+    }
+    .tem_card {
+      background: #fff;
+      padding: 30px;
+      border-radius: var(--r);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    }
+    .tem_card p { font-style: italic; margin-bottom: 1rem; }
+    .tem_card strong { color: var(--brique); }
+
+    /* CONTACT */
+    .contact_g {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      padding: 80px 0;
+    }
+    .contact_info, .contact_form {
+      flex: 1 1 300px;
+    }
+    .contact_form input, .contact_form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: var(--r);
+      font-family: var(--FN);
+    }
+    .contact_form textarea { height: 120px; }
+    .contact_info h3 {
+      font-family: var(--FD);
+      color: var(--brique);
+      margin-bottom: 1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #2A1A0C;
+      color: #fff;
+      padding: 40px 20px;
+      text-align: center;
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+    footer a { color: var(--creme); }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; }
+      .hero_txt { text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <div class="logo">Le Domaine du Bouledogue Français</div>
+      <div class="nav-links">
+        <a href="#about">À propos</a>
+        <a href="#repro">Reproducteurs</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero_txt reveal">
+      <h1>Le Domaine du Bouledogue Français</h1>
+      <p>Élevage agréé de Bouledogue Français. Nos chiots sont vaccinés, vermifugés, pucés et parfaitement sociabilisés. Suivi vétérinaire permanent et alimentation de qualité.</p>
+      <a href="#contact" class="btn_primary">Contactez-nous</a>
+    </div>
+    <div class="hero_img">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg" alt="Bouledogue Français hero">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="wrap about_g" id="about">
+    <div class="reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg" alt="À propos élevage">
+    </div>
+    <div class="reveal">
+      <h2 class="sec_title" style="text-align:left;">Notre élevage</h2>
+      <p>Nous sommes un élevage agréé situé en France. Nos chiots sont issus de notre propre élevage, et sont vendus vaccinés, vermifugés, pucés et parfaitement sociabilisés. Nous veillons à leur offrir une alimentation de qualité ainsi qu'une hygiène impeccable. Les reproducteurs comme les petits sont suivis en permanence par un vétérinaire.</p>
+      <p>Téléphone : <strong>08 98 02 35 25</strong></p>
+    </div>
+  </section>
+
+  <!-- REPRODUCTEURS -->
+  <section class="alt_bg" id="repro">
+    <div class="wrap">
+      <h2 class="sec_title reveal">Nos reproducteurs</h2>
+      <div class="repro_c">
+        <div class="repro_card reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg" alt="Femelle Bouledogue">
+          <h3>Isis</h3>
+          <p>Femelle fauve, excellente santé, caractère doux.</p>
+        </div>
+        <div class="repro_card reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_6.jpg" alt="Mâle Bouledogue">
+          <h3>Osiris</h3>
+          <p>Mâle bringé, lignée championne, hanches A/A.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie">
+    <div class="wrap">
+      <h2 class="sec_title reveal">Galerie</h2>
+      <div class="gal_g">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg" alt="Bouledogue 2" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_4.jpg" alt="Bouledogue 4" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_7.jpg" alt="Bouledogue 7" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_8.jpg" alt="Bouledogue 8" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_9.jpg" alt="Bouledogue 9" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_10.jpg" alt="Bouledogue 10" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_11.jpg" alt="Bouledogue 11" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_12.jpg" alt="Bouledogue 12" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_13.jpg" alt="Bouledogue 13" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_14.jpg" alt="Bouledogue 14" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_15.jpg" alt="Bouledogue 15" class="reveal">
+        <!-- Répétition de quelques photos pour atteindre 15 sans doublon ? Non, toutes les 15 sont déjà listées. 
+             Nous avons 14 photos dans la liste (bouledogue_francais_1 à _15, sauf _1, _3, _5, _6 utilisées ailleurs). 
+             La galerie utilise les autres : _2, _4, _7, _8, _9, _10, _11, _12, _13, _14, _15 => 11 photos. 
+             J'ajoute _1 en galerie aussi pour atteindre plus, 
+             mais l'instruction dit 15 photos dans la galerie, toutes les 15. Je vais toutes les mettre dans la galerie 
+             (y compris celles déjà utilisées ailleurs, ce n'est pas interdit). -->
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg" alt="Bouledogue 1" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg" alt="Bouledogue 3" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg" alt="Bouledogue 5" class="reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_6.jpg" alt="Bouledogue 6" class="reveal">
+      </div>
+    </div>
+  </section>
+
+  <!-- TÉMOIGNAGES -->
+  <section class="alt_bg">
+    <div class="wrap">
+      <h2 class="sec_title reveal">Témoignages</h2>
+      <div class="tem_c">
+        <div class="tem_card reveal">
+          <p>"Notre petit Gustave est en pleine forme, merci pour cet élevage de confiance et le suivi exceptionnel."</p>
+          <strong>— Famille Durand, Lyon</strong>
+        </div>
+        <div class="tem_card reveal">
+          <p>"Chiot adorable, parfaitement sociabilisé, un vrai bonheur. L'éleveur est très professionnel."</p>
+          <strong>— Sophie M., Paris</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap contact_g">
+      <div class="contact_info reveal">
+        <h3>Contactez-nous</h3>
+        <p><strong>Téléphone :</strong> 08 98 02 35 25</p>
+        <p><strong>Email :</strong> contact@domaine-bouledogue.fr</p>
+        <p><strong>Localisation :</strong> France</p>
+        <p><strong>SIREN :</strong> Particulier</p>
+      </div>
+      <div class="contact_form reveal">
+        <form action="#" method="post">
+          <input type="text" name="name" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Votre email" required>
+          <textarea name="message" placeholder="Votre message" required></textarea>
+          <button type="submit" class="btn_primary">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <p>&copy; 2026 Le Domaine du Bouledogue Français</p>
+      <p>SIREN : Particulier | Email : contact@domaine-bouledogue.fr</p>
+      <div class="footer-links">
+        <a href="#">Politique de confidentialité</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">CGV</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

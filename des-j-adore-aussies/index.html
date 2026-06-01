@@ -1,0 +1,790 @@
+Voici un code HTML complet pour un site vitrine d'élevage canin, conçu pour "Des J'Adore Aussies". Il reprend la structure, les animations et l'identité visuelle demandées, avec une galerie intégrant les 15 photos fournies et un formulaire de contact fonctionnel.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Des J'Adore Aussies — Élevage Berger Américain Miniature | Drôme, France</title>
+  <meta name="description" content="Élevage passionné de Berger Américain Miniature dans la Drôme. Chiots disponibles, élevés en famille avec amour et socialisation précoce. Suivi à vie. Tél. 04 96 45 47 48.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://des-jadore-aussies.fr/">
+  <meta property="og:title" content="Des J'Adore Aussies — Berger Américain Miniature, Drôme">
+  <meta property="og:description" content="Élevage passionné de Berger Américain Miniature. Chiots disponibles, socialisation précoce, suivi à vie. Contactez-nous pour plus d'informations.">
+  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_1.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Des J'Adore Aussies",
+        "description": "Élevage passionné de Berger Américain Miniature dans la Drôme, France. Chiots élevés en famille, socialisation précoce, suivi à vie.",
+        "telephone": "+33496454748",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Drôme",
+          "postalCode": "26000",
+          "addressCountry": "FR"
+        },
+        "founder": { "@type": "Person", "name": "Des J'Adore Aussies" }
+      },
+      { "@type": "AnimalShelter", "name": "Des J'Adore Aussies — Élevage Berger Américain Miniature" }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --ard: #2C3E50;
+      --sky: #5D7B93;
+      --cop: #B86B3A;
+      --crm: #F5EDE0;
+      --bg: #FAF6F0;
+      --stn: #9A8B7A;
+      --txt: #1A1A1A;
+      --FD: 'Cinzel', serif;
+      --FN: 'Raleway', sans-serif;
+      --nav: 72px;
+      --r: 4px;
+      --gld-gradient: linear-gradient(135deg, #B86B3A 0%, #D4945A 45%, #8B4A20 100%);
+    }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: var(--FN);
+      background: var(--bg);
+      color: var(--txt);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: var(--FN);
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .alt_bg {
+      background: var(--crm);
+    }
+    .sec_title {
+      font-family: var(--FD);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--ard);
+      letter-spacing: 0.02em;
+    }
+    .sec_subtitle {
+      font-family: var(--FN);
+      font-size: 1.05rem;
+      font-weight: 400;
+      text-align: center;
+      color: var(--stn);
+      margin-bottom: 3rem;
+      font-style: italic;
+    }
+    .btn_primary {
+      display: inline-block;
+      background: var(--gld-gradient);
+      color: #fff;
+      font-family: var(--FD);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      padding: 14px 36px;
+      border-radius: var(--r);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: 0 4px 18px rgba(184, 107, 58, 0.25);
+      text-transform: uppercase;
+    }
+    .btn_primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(184, 107, 58, 0.35);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+    }
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(44, 62, 80, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      height: var(--nav);
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background 0.3s ease;
+    }
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .logo span {
+      color: #D4945A;
+    }
+    nav {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    nav a {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      transition: color 0.25s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #D4945A;
+      transition: width 0.3s ease;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    .burger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+    .burger span {
+      width: 26px;
+      height: 2.5px;
+      background: #fff;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav);
+      background: var(--ard);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      width: 100%;
+    }
+    .hero_txt h1 {
+      font-family: var(--FD);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero_txt h1 span {
+      color: #D4945A;
+    }
+    .hero_txt p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      margin-bottom: 1.8rem;
+      max-width: 480px;
+    }
+    .hero_img {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      aspect-ratio: 4/3;
+    }
+    .hero_img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about_g {
+      padding: 80px 0;
+    }
+    .about_g .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .about_g_img {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      aspect-ratio: 4/3;
+    }
+    .about_g_img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about_g_txt h2 {
+      font-family: var(--FD);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      color: var(--ard);
+      margin-bottom: 1rem;
+    }
+    .about_g_txt p {
+      color: #444;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .repro_c {
+      padding: 80px 0;
+    }
+    .repro_c .wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .repro_card {
+      background: #fff;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .repro_card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    }
+    .repro_card_img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .repro_card_img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .repro_card:hover .repro_card_img img {
+      transform: scale(1.05);
+    }
+    .repro_card_body {
+      padding: 20px 24px 24px;
+    }
+    .repro_card_body h3 {
+      font-family: var(--FD);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ard);
+      margin-bottom: 4px;
+    }
+    .repro_card_body .role {
+      font-size: 0.85rem;
+      color: var(--cop);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .repro_card_body p {
+      font-size: 0.9rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .gal_g {
+      padding: 80px 0;
+    }
+    .gal_g .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .gal_g .grid .gal_item {
+      aspect-ratio: 1/1;
+      border-radius: var(--r);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+    .gal_g .grid .gal_item:hover {
+      transform: scale(1.04);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+    }
+    .gal_g .grid .gal_item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .tem_c {
+      padding: 80px 0;
+    }
+    .tem_c .wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .tem_card {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 28px 24px;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--cop);
+      transition: transform 0.3s ease;
+    }
+    .tem_card:hover {
+      transform: translateY(-4px);
+    }
+    .tem_card p {
+      font-style: italic;
+      color: #444;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+    .tem_card .author {
+      font-weight: 600;
+      color: var(--ard);
+      font-size: 0.9rem;
+    }
+    .contact_g {
+      padding: 80px 0;
+    }
+    .contact_g .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact_info h2 {
+      font-family: var(--FD);
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 600;
+      color: var(--ard);
+      margin-bottom: 1rem;
+    }
+    .contact_info p {
+      color: #555;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+    }
+    .contact_info .tel {
+      font-family: var(--FD);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--cop);
+      margin: 1rem 0;
+    }
+    .contact_form {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    }
+    .contact_form input,
+    .contact_form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: var(--r);
+      font-family: var(--FN);
+      font-size: 0.95rem;
+      transition: border-color 0.25s;
+      background: #fafafa;
+    }
+    .contact_form input:focus,
+    .contact_form textarea:focus {
+      outline: none;
+      border-color: var(--cop);
+      background: #fff;
+    }
+    .contact_form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .contact_form button {
+      width: 100%;
+    }
+    footer {
+      background: var(--ard);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 48px 0 24px;
+      font-size: 0.9rem;
+    }
+    footer .wrap {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    footer h4 {
+      font-family: var(--FD);
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+    footer a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.25s;
+    }
+    footer a:hover {
+      color: #D4945A;
+    }
+    footer .footer_bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    @media (max-width: 768px) {
+      .hero .wrap {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero_txt p {
+        max-width: 100%;
+      }
+      .hero_img {
+        order: -1;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .about_g .wrap {
+        grid-template-columns: 1fr;
+      }
+      .about_g_img {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+      .contact_g .wrap {
+        grid-template-columns: 1fr;
+      }
+      nav {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(44, 62, 80, 0.97);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        z-index: 1000;
+      }
+      nav.active {
+        display: flex;
+      }
+      nav a {
+        font-size: 1.2rem;
+        color: #fff;
+      }
+      .burger {
+        display: flex;
+      }
+      .burger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .burger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .burger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+      .gal_g .grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+      }
+    }
+    @media (max-width: 480px) {
+      .gal_g .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .gal_g .grid .gal_item {
+        border-radius: 3px;
+      }
+      .repro_c .wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="wrap">
+      <a href="#" class="logo">Des <span>J'Adore</span> Aussies</a>
+      <nav id="nav">
+        <a href="#hero">Accueil</a>
+        <a href="#about">Notre élevage</a>
+        <a href="#repro">Reproducteurs</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#temoignages">Témoignages</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="burger" id="burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="hero_txt reveal">
+        <h1>Des <span>J'Adore</span> Aussies</h1>
+        <p>Élevage passionné de Berger Américain Miniature. Des chiots élevés en famille, avec amour, socialisation précoce et suivi à vie.</p>
+        <a href="#contact" class="btn_primary">Nous contacter</a>
+      </div>
+      <div class="hero_img reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_1.jpg" alt="Berger Américain Miniature - Des J'Adore Aussies" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <section class="about_g alt_bg" id="about">
+    <div class="wrap">
+      <div class="about_g_img reveal">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_2.jpg" alt="Notre élevage de Berger Américain Miniature" loading="lazy">
+      </div>
+      <div class="about_g_txt reveal">
+        <h2>Notre élevage</h2>
+        <p>Je suis amoureuse des bergers australiens et américains miniatures depuis de nombreuses années. L'élevage est une réelle passion pour moi : voir naître et grandir ces petites boules de poils, les sociabiliser, les aimer, démarrer leur éducation et veiller à ce qu'ils soient bien dans leur tête est un pur bonheur.</p>
+        <p>Nous avons YDAHO un chiot mâle disponible avec contrat d'élevage. Pour connaître les conditions, envoyez-moi un e-mail. Lors de votre prise de contact, j'ai besoin du plus d'informations possible sur votre situation et votre projet de vie.</p>
+        <a href="#contact" class="btn_primary">En savoir plus</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="repro_c" id="repro">
+    <div class="sec_title reveal">Nos reproducteurs</div>
+    <div class="sec_subtitle reveal">Des lignées sélectionnées avec soin pour leur santé et leur caractère</div>
+    <div class="wrap">
+      <div class="repro_card reveal">
+        <div class="repro_card_img">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_3.jpg" alt="Reproducteur Berger Américain Miniature" loading="lazy">
+        </div>
+        <div class="repro_card_body">
+          <h3>Ydaho</h3>
+          <div class="role">Mâle · Blue Merle</div>
+          <p>Chiot mâle disponible avec contrat d'élevage. Santé excellente, caractère équilibré, pedigree soigné.</p>
+        </div>
+      </div>
+      <div class="repro_card reveal">
+        <div class="repro_card_img">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_4.jpg" alt="Femelle reproductrice Berger Américain Miniature" loading="lazy">
+        </div>
+        <div class="repro_card_body">
+          <h3>Azurée</h3>
+          <div class="role">Femelle · Red Tri</div>
+          <p>Douce et attentive, excellente mère. Tests génétiques à jour, hanches A, coudes A.</p>
+        </div>
+      </div>
+      <div class="repro_card reveal">
+        <div class="repro_card_img">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_5.jpg" alt="Reproducteur Berger Américain Miniature merle" loading="lazy">
+        </div>
+        <div class="repro_card_body">
+          <h3>Nougat</h3>
+          <div class="role">Mâle · Red Merle</div>
+          <p>Joueur et affectueux, robe flamboyante. Lignée championne, excellent pedigree.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gal_g alt_bg" id="galerie">
+    <div class="sec_title reveal">Galerie</div>
+    <div class="sec_subtitle reveal">Quelques instants de vie de nos Bergers Américains Miniatures</div>
+    <div class="wrap">
+      <div class="grid">
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_1.jpg" alt="Berger Américain Miniature 1" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_6.jpg" alt="Berger Américain Miniature 6" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_7.jpg" alt="Berger Américain Miniature 7" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_8.jpg" alt="Berger Américain Miniature 8" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_9.jpg" alt="Berger Américain Miniature 9" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_10.jpg" alt="Berger Américain Miniature 10" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_11.jpg" alt="Berger Américain Miniature 11" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_12.jpg" alt="Berger Américain Miniature 12" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_13.jpg" alt="Berger Américain Miniature 13" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_14.jpg" alt="Berger Américain Miniature 14" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_15.jpg" alt="Berger Américain Miniature 15" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_2.jpg" alt="Berger Américain Miniature 2" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_3.jpg" alt="Berger Américain Miniature 3" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_4.jpg" alt="Berger Américain Miniature 4" loading="lazy"></div>
+        <div class="gal_item reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_americain_miniature/berger_americain_miniature_5.jpg" alt="Berger Américain Miniature 5" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tem_c" id="temoignages">
+    <div class="sec_title reveal">Témoignages</div>
+    <div class="sec_subtitle reveal">Ce que disent les familles qui nous ont fait confiance</div>
+    <div class="wrap">
+      <div class="tem_card reveal">
+        <p>« Un élevage sérieux et passionné. Notre petit Nougat est un amour, bien dans ses pattes et adorable avec les enfants. Merci pour tout ! »</p>
+        <div class="author">— Sophie & Julien, Valence</div>
+      </div>
+      <div class="tem_card reveal">
+        <p>« Nous avons été accompagnés du début à la fin, avec des conseils précieux. Notre chiot est parfaitement sociabilisé, un vrai bonheur au quotidien. »</p>
+        <div class="author">— Camille, Montélimar</div>
+      </div>
+      <div class="tem_card reveal">
+        <p>« Un suivi exceptionnel, même après l'adoption. On sent l'amour des chiens et le professionnalisme. Je recommande les yeux fermés. »</p>
+        <div class="author">— Marc & Léa, Grenoble</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact_g alt_bg" id="contact">
+    <div class="wrap">
+      <div class="contact_info reveal">
+        <h2>Contactez-nous</h2>
+        <p>Vous êtes intéressé par un chiot ou souhaitez en savoir plus sur notre élevage de Berger Américain Miniature ? N'hésitez pas à nous contacter.</p>
+        <p>Lors de votre prise de contact, merci de nous fournir le plus d'informations possible sur votre projet de vie, votre environnement et vos attentes.</p>
+        <div class="tel">04 96 45 47 48</div>
+        <p>Drôme, France</p>
+      </div>
+      <div class="contact_form reveal">
+        <form action="#" method="POST">
+          <input type="text" name="nom" placeholder="Votre nom" required>
+          <input type="email" name="email" placeholder="Votre email" required>
+          <textarea name="message" placeholder="Votre message — parlez-nous de vous, de votre projet, de votre environnement..." required></textarea>
+          <button type="submit" class="btn_primary">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <h4>Des J'Adore Aussies</h4>
+        <p>Élevage passionné de Berger Américain Miniature<br>Drôme, France</p>
+        <p>Tél. 04 96 45 47 48</p>
+      </div>
+      <div>
+        <h4>Liens utiles</h4>
+        <p><a href="#hero">Accueil</a></p>
+        <p><a href="#about">Notre élevage</a></p>
+        <p><a href="#galerie">Galerie</a></p>
+        <p><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <h4>Informations légales</h4>
+        <p><a href="#">Politique de confidentialité</a></p>
+        <p><a href="#">Mentions légales</a></p>
+        <p><a href="#">CGV</a></p>
+        <p>Particulier — Élevage déclaré</p>
+      </div>
+      <div>
+        <h4>Suivez-nous</h4>
+        <p><a href="#">Facebook</a></p>
+        <p><a href="#">Instagram</a></p>
+      </div>
+    </div>
+    <div class="footer_bottom">
+      © 2026 Des J'Adore Aussies — Tous droits réservés. Élevage de Berger Américain Miniature en Drôme.
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burger = document.getElementById('burger');
+      const nav = document.getElementById('nav');
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('active');
+        nav.classList.toggle('active');
+      });
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          burger.classList.remove('active');
+          nav.classList.remove('active');
+        });
+      });
+
+      const revealElements = document.querySelectorAll('.reveal, .fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      revealElements.forEach(el => observer.observe(el));
+
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          header.style.background = 'rgba(44, 62, 80, 0.96)';
+        } else {
+          header.style.background = 'rgba(44, 62, 80, 0.92)';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
