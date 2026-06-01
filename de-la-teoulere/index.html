@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>De la Téoulère — Élevage Labrador Retriever | Hautes-Pyrénées (65), France</title>
+  <meta name="description" content="Élevage familial de Labrador Retriever chocolat dans les Hautes-Pyrénées. Chiots nés le 25 décembre 2024, parents Twix & Téquila, mâle Sancerre disponible en saillie. Chiens élevés en famille. Tél. 06.09.90.48.45.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://de-la-teoulere.fr/">
+  <meta property="og:title"       content="De la Téoulère — Labrador Retriever, Hautes-Pyrénées">
+  <meta property="og:description" content="Élevage familial de Labrador Retriever chocolat dans les Hautes-Pyrénées. Chiots nés le 25 décembre 2024. Sancerre disponible en saillie. Tél. 06.09.90.48.45.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-90829-de-la-teoulere.jpg?1716225872">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "De la Téoulère",
+        "description": "Élevage familial de Labrador Retriever chocolat dans les Hautes-Pyrénées (65). Chiots nés le 25 décembre 2024. 5 chiens chocolat, 3 reproducteurs, mâle Sancerre disponible en saillie. Tél. 06.09.90.48.45.",
+        "telephone": "+33609904845",
+        "identifier": "984213488",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Hautes-Pyrénées",
+          "postalCode": "65000",
+          "addressCountry": "FR"
+        },
+        "taxID": "984213488"
+      },
+      { "@type": "AnimalShelter", "name": "De la Téoulère — Labrador Retriever Hautes-Pyrénées" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — De la Téoulère
+       Palette inspirée du Labrador Retriever chocolat
+       et des paysages des Hautes-Pyrénées
+       ============================================== */
+    :root {
+      --ony:  #1E160E;   /* brun profond */
+      --gld:  #B8860B;   /* or chaud */
+      --amb:  #5C3A1E;   /* chocolat ambré */
+      --crm:  #F5EDE0;   /* parchemin */
+      --bg:   #FAF5EE;   /* ivoire chaud */
+      --stn:  #9A8272;   /* pierre */
+      --txt:  #1E160E;   /* texte */
+      --FD:   'Cinzel', serif;       /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #B8860B 0%, #D4A34A 45%, #8B5E14 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ================================================ UTILITY */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .sec_title { font-family: var(--FD); font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; text-align: center; margin-bottom: 0.5rem; color: var(--ony); }
+    .sec_subtitle { text-align: center; font-size: 1.1rem; color: var(--stn); margin-bottom: 3rem; font-style: italic; }
+    .alt_bg { background: var(--crm); }
+    .btn_primary { display: inline-block; background: var(--gld-gradient); color: #fff; padding: 14px 32px; border-radius: var(--r); font-weight: 600; font-family: var(--FD); letter-spacing: 0.5px; transition: transform 0.3s, box-shadow 0.3s; }
+    .btn_primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,134,11,0.3); }
+
+    /* ================================================ BARRE ANNONCE */
+    .ann_bar { background: var(--ony); color: var(--crm); text-align: center; padding: 10px 20px; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.3px; }
+    .ann_bar span { color: var(--gld); font-weight: 700; }
+
+    /* ================================================ NAVIGATION */
+    .nav_bar { position: sticky; top: 0; z-index: 1000; background: rgba(250,245,238,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(26,18,9,0.08); height: var(--nav); display: flex; align-items: center; }
+    .nav_g { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav_logo { font-family: var(--FD); font-size: 1.5rem; font-weight: 700; color: var(--ony); letter-spacing: 1px; white-space: nowrap; }
+    .nav_logo span { color: var(--gld); }
+    .nav_links { display: flex; list-style: none; gap: 28px; align-items: center; }
+    .nav_links a { font-weight: 500; font-size: 0.95rem; color: var(--txt); transition: color 0.3s; }
+    .nav_links a:hover { color: var(--gld); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2.5px; background: var(--ony); border-radius: 2px; transition: 0.3s; }
+
+    /* ================================================ HERO */
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: calc(100vh - var(--nav)); align-items: center; gap: 40px; padding: 40px 0; }
+    .hero_txt { padding-left: 24px; }
+    .hero_txt h1 { font-family: var(--FD); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; color: var(--ony); }
+    .hero_txt h1 span { color: var(--gld); }
+    .hero_txt .slogan { font-size: 1.3rem; color: var(--amb); font-style: italic; margin-bottom: 1.5rem; font-weight: 400; }
+    .hero_txt p { font-size: 1.05rem; color: var(--stn); margin-bottom: 2rem; max-width: 480px; }
+    .hero_img { padding-right: 24px; display: flex; justify-content: center; align-items: center; }
+    .hero_img img { width: 100%; height: 500px; object-fit: cover; border-radius: 12px; box-shadow: 0 20px 50px rgba(26,18,9,0.2); }
+
+    /* ================================================ ABOUT */
+    .about_g { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; padding: 80px 0; }
+    .about_txt h3 { font-family: var(--FD); font-size: 1.8rem; color: var(--ony); margin-bottom: 1rem; }
+    .about_txt p { color: var(--stn); margin-bottom: 1rem; line-height: 1.8; }
+    .about_img img { width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 16px 40px rgba(26,18,9,0.15); }
+
+    /* ================================================ REPRODUCTEURS */
+    .repro_section { padding: 80px 0; }
+    .repro_c { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+    .repro_card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(26,18,9,0.08); transition: transform 0.3s; }
+    .repro_card:hover { transform: translateY(-6px); }
+    .repro_card img { width: 100%; height: 300px; object-fit: cover; }
+    .repro_card_body { padding: 20px; }
+    .repro_card_body h4 { font-family: var(--FD); font-size: 1.4rem; color: var(--ony); margin-bottom: 0.3rem; }
+    .repro_card_body .role { color: var(--gld); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.8rem; }
+    .repro_card_body p { color: var(--stn); font-size: 0.95rem; line-height: 1.6; }
+
+    /* ================================================ GALERIE */
+    .gal_section { padding: 80px 0; }
+    .gal_g { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; }
+    .gal_g img { width: 100%; height: 280px; object-fit: cover; border-radius: 8px; transition: transform 0.3s, box-shadow 0.3s; }
+    .gal_g img:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(26,18,9,0.18); }
+
+    /* ================================================ TEMOIGNAGES */
+    .tem_section { padding: 80px 0; }
+    .tem_c { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .tem_card { background: #fff; border-radius: 12px; padding: 30px; box-shadow: 0 8px 24px rgba(26,18,9,0.06); position: relative; }
+    .tem_card::before { content: '"'; position: absolute; top: 10px; left: 20px; font-family: var(--FD); font-size: 5rem; color: var(--gld); opacity: 0.25; line-height: 1; }
+    .tem_card p { color: var(--stn); font-style: italic; line-height: 1.7; margin-bottom: 1rem; }
+    .tem_card .author { font-weight: 700; color: var(--ony); font-family: var(--FD); }
+
+    /* ================================================ CONTACT */
+    .contact_section { padding: 80px 0; }
+    .contact_g { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+    .contact_info h3 { font-family: var(--FD); font-size: 1.8rem; color: var(--ony); margin-bottom: 1.5rem; }
+    .contact_info ul { list-style: none; }
+    .contact_info ul li { margin-bottom: 0.8rem; color: var(--stn); font-size: 1rem; display: flex; align-items: center; gap: 10px; }
+    .contact_info ul li strong { color: var(--ony); }
+    .contact_info ul li a { color: var(--gld); text-decoration: underline; }
+    .contact_map { border-radius: 12px; overflow: hidden; box-shadow: 0 16px 40px rgba(26,18,9,0.12); }
+    .contact_map iframe { width: 100%; height: 350px; border: none; }
+
+    /* ================================================ FOOTER */
+    .footer { background: var(--ony); color: var(--crm); padding: 40px 0 20px; text-align: center; }
+    .footer p { margin-bottom: 0.5rem; font-size: 0.9rem; }
+    .footer a { color: var(--gld); text-decoration: underline; }
+
+    /* ================================================ RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 30px 0; }
+      .hero_txt { padding: 0 24px; order: 1; }
+      .hero_txt p { max-width: 100%; }
+      .hero_img { padding: 0 24px; order: 2; }
+      .hero_img img { height: 350px; }
+      .about_g { grid-template-columns: 1fr; text-align: center; }
+      .about_img { order: 1; }
+      .about_txt { order: 2; }
+      .contact_g { grid-template-columns: 1fr; }
+      .nav_links { display: none; }
+      .hamburger { display: flex; }
+      .repro_c { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .gal_g { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .gal_g img { height: 200px; }
+      .hero_img img { height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRE ANNONCE -->
+  <div class="ann_bar">
+    <span>&#x1F4E3;</span> Portée exceptionnelle née le <span>25 décembre 2024</span> — 7 chiots chocolat disponibles début mars 2025 &nbsp;|&nbsp; <span>Sancerre</span> disponible en saillie
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="nav_bar">
+    <div class="nav_g">
+      <a href="#" class="nav_logo">De la <span>Téoulère</span></a>
+      <ul class="nav_links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#about">L'élevage</a></li>
+        <li><a href="#reproducteurs">Nos chiens</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="hero_txt">
+      <h1>De la <span>Téoulère</span></h1>
+      <p class="slogan">Labrador Retriever • Passion Chocolat • Hautes-Pyrénées</p>
+      <p>Élevage familial spécialisé dans le Labrador Retriever chocolat, installé au cœur des Hautes-Pyrénées. Nos 5 chiens vivent en famille, entourés d'amour, de grands espaces et de chats complices. Chiots nés le 25 décembre 2024 — 7 petites merveilles chocolat à découvrir.</p>
+      <a href="#contact" class="btn_primary">Nous contacter</a>
+    </div>
+    <div class="hero_img">
+      <img src="https://upload.chien.com/img/23-90829-de-la-teoulere.jpg?1716225872" alt="De la Téoulère — Labrador Retriever chocolat, élevage Hautes-Pyrénées">
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="alt_bg" id="about">
+    <div class="wrap about_g">
+      <div class="about_img">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_1.jpg" alt="Labrador Retriever chocolat — élevage De la Téoulère">
+      </div>
+      <div class="about_txt">
+        <h3>Notre élevage familial</h3>
+        <p>De la Téoulère, c'est avant tout une histoire de passion. Installé dans les Hautes-Pyrénées (65), notre élevage est spécialisé dans le Labrador Retriever chocolat. Nous possédons 5 chiens, tous chocolat, qui vivent en famille, dans notre maison, avec nos enfants et… nos chats.</p>
+        <p>Parmi eux, 3 reproducteurs : nos deux femelles <strong>Twix</strong> et <strong>Téquila</strong>, et notre mâle <strong>Sancerre</strong>, un compagnon doux et gentil, disponible pour des saillies. Tous s'entendent parfaitement avec leurs congénères et les autres animaux de la maison.</p>
+        <p>Notre dernière portée, née le 25 décembre 2024 de <strong>Téquila</strong> et <strong>Sancerre</strong>, compte 7 magnifiques chiots chocolat, élevés avec soin et amour. Chaque chiot bénéficie d'une socialisation précoce dans un environnement familial chaleureux.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REPRODUCTEURS -->
+  <section class="repro_section wrap" id="reproducteurs">
+    <h2 class="sec_title">Nos Reproducteurs</h2>
+    <p class="sec_subtitle">Twix, Téquila & Sancerre — le cœur de notre élevage</p>
+    <div class="repro_c">
+      <div class="repro_card">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_3.jpg" alt="Téquila — femelle Labrador Retriever chocolat">
+        <div class="repro_card_body">
+          <h4>Téquila</h4>
+          <p class="role">Femelle reproductrice</p>
+          <p>Notre douce Téquila est une maman exemplaire. Elle a donné naissance à 7 chiots le 25 décembre 2024 avec Sancerre. Affectueuse et protectrice, elle élève ses petits avec une tendresse infinie.</p>
+        </div>
+      </div>
+      <div class="repro_card">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_5.jpg" alt="Twix — femelle Labrador Retriever chocolat">
+        <div class="repro_card_body">
+          <h4>Twix</h4>
+          <p class="role">Femelle reproductrice</p>
+          <p>Twix est notre seconde femelle, pleine d'énergie et de joie de vivre. Elle partage son quotidien avec les autres chiens, les chats et les enfants dans une harmonie parfaite.</p>
+        </div>
+      </div>
+      <div class="repro_card">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_7.jpg" alt="Sancerre — mâle Labrador Retriever chocolat disponible en saillie">
+        <div class="repro_card_body">
+          <h4>Sancerre</h4>
+          <p class="role">Mâle reproducteur — Disponible en saillie</p>
+          <p>Sancerre est un compagnon doux, gentil et équilibré. Disponible pour des saillies, il transmet son tempérament calme et affectueux à sa progéniture. Il s'entend à merveille avec tous les animaux de la maison.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section class="alt_bg gal_section" id="galerie">
+    <div class="wrap">
+      <h2 class="sec_title">Notre Galerie</h2>
+      <p class="sec_subtitle">Les Labradors Retriever chocolat de De la Téoulère en images</p>
+      <div class="gal_g">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_2.jpg" alt="Labrador Retriever chocolat — élevage Hautes-Pyrénées" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_4.jpg" alt="Labrador Retriever chocolat jouant dans l'herbe" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_6.jpg" alt="Chiot Labrador Retriever chocolat" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_9.jpg" alt="Labrador Retriever chocolat adulte portrait" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_10.jpg" alt="Labrador Retriever chocolat en pleine nature" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_11.jpg" alt="Labrador Retriever chocolat souriant" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_12.jpg" alt="Labrador Retriever chocolat couché" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_13.jpg" alt="Deux Labradors Retriever chocolat" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_14.jpg" alt="Chiot Labrador Retriever chocolat mignon" loading="lazy">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_15.jpg" alt="Labrador Retriever chocolat dans les Pyrénées" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- TEMOIGNAGES -->
+  <section class="tem_section wrap" id="temoignages">
+    <h2 class="sec_title">Témoignages</h2>
+    <p class="sec_subtitle">Ce que disent nos familles adoptantes</p>
+    <div class="tem_c">
+      <div class="tem_card">
+        <p>Nous avons adopté notre petit chocolat né en 2023 chez De la Téoulère. Un chien équilibré, adorable, qui s'entend parfaitement avec nos enfants et notre chat. L'élevage est sérieux et chaleureux, on sent que les chiens sont aimés. Nous recommandons les yeux fermés.</p>
+        <span class="author">— Famille Dupont, Tarbes</span>
+      </div>
+      <div class="tem_card">
+        <p>Un élevage familial comme on les aime. Sancerre est le papa de notre chiot, et on retrouve toute sa douceur chez notre petit compagnon. L'accompagnement a été parfait, du premier contact jusqu'à l'adoption. Merci pour tout.</p>
+        <span class="author">— Sophie & Laurent, Lourdes</span>
+      </div>
+      <div class="tem_card">
+        <p>Notre Labrador chocolat est une véritable boule d'amour. Élevé au sein de la famille, il était déjà parfaitement socialisé à son arrivée. Un grand merci à l'élevage De la Téoulère pour son professionnalisme et sa passion.</p>
+        <span class="author">— Marie & Jean, Pau</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="alt_bg contact_section" id="contact">
+    <div class="wrap contact_g">
+      <div class="contact_info">
+        <h3>Contactez-nous</h3>
+        <ul>
+          <li><strong>&#x1F4DE; Téléphone :</strong> <a href="tel:+33609904845">06.09.90.48.45</a></li>
+          <li><strong>&#x1F4CD; Localisation :</strong> Hautes-Pyrénées (65), France</li>
+          <li><strong>&#x1F3E0; Élevage :</strong> De la Téoulère</li>
+          <li><strong>&#x1F4CB; SIREN :</strong> 984213488</li>
+          <li><strong>&#x1F43E; Race :</strong> Labrador Retriever chocolat</li>
+          <li><strong>&#x1F476; Dernière portée :</strong> 7 chiots nés le 25 décembre 2024</li>
+          <li><strong>&#x2642;&#xFE0F; Saillie :</strong> Sancerre disponible</li>
+        </ul>
+        <br>
+        <a href="tel:+33609904845" class="btn_primary">Appeler maintenant</a>
+      </div>
+      <div class="contact_map">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.5,42.8,0.8,43.4&layer=mapnik&marker=43.1,0.15" title="Carte Hautes-Pyrénées" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <p>&copy; 2024 <strong>De la Téoulère</strong> — Élevage familial de Labrador Retriever chocolat • Hautes-Pyrénées (65), France</p>
+      <p>SIREN : 984213488 • <a href="tel:+33609904845">06.09.90.48.45</a></p>
+      <p style="margin-top:10px;font-size:0.8rem;color:var(--stn);">Site créé avec passion — Tous droits réservés</p>
+    </div>
+  </footer>
+
+</body>
+</html>
