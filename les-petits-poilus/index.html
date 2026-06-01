@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Titre SEO -->
+  <title>Les Petits Poilus — Élevage Pomsky | France</title>
+  <meta name="description" content="Élevage familial de Pomsky en France. Éleveuse passionnée avec une portée par an, privilégiant les sauvetages et le bien-être animal. Compagnons fidèles et attachants. Tél. 04 92 85 98 90.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://lespetitspoilus.fr/">
+  <meta property="og:title"       content="Les Petits Poilus — Pomsky, France">
+  <meta property="og:description" content="Élevage familial de Pomsky avec passion. Une portée par an, priorité au bien-être animal et aux sauvetages.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-99057-les-petits-poilus.jpg?1779253419">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Les Petits Poilus",
+        "description": "Élevage familial de Pomsky en France. Éleveuse passionnée privilégiant les sauvetages et le bien-être animal.",
+        "telephone": "+33492859890",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "FR"
+        },
+        "founder": { "@type": "Person", "name": "Éleveuse passionnée" }
+      },
+      { "@type": "AnimalShelter", "name": "Les Petits Poilus — Élevage Pomsky France" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Les Petits Poilus
+       Design : Arctique / Naturel / Chaleureux
+       ============================================== */
+    :root {
+      --ice:  #E8F4F8;   /* glace arctique */
+      --blu:  #4A90B8;   /* bleu husky */
+      --gry:  #6B7280;   /* gris loup */
+      --crm:  #F9F7F4;   /* crème douce */
+      --bg:   #FEFDFB;   /* blanc neige */
+      --amb:  #D4A574;   /* ambre chaud */
+      --txt:  #1F2937;   /* texte */
+      --FD:   'Cinzel', serif;       /* police titres */
+      --FN:   'Raleway', sans-serif; /* police corps */
+      --nav:  72px;
+      --r:    4px;
+      --blu-gradient: linear-gradient(135deg, #4A90B8 0%, #6BB6FF 45%, #2563EB 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: var(--FN); 
+      background: var(--bg); 
+      color: var(--txt); 
+      line-height: 1.7; 
+      overflow-x: hidden; 
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ==============================================
+       UTILITAIRES
+       ============================================== */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .hidden { display: none; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ==============================================
+       HEADER & NAVIGATION
+       ============================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav);
+      background: rgba(254, 253, 251, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(74, 144, 184, 0.1);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--blu);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      color: var(--txt);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--blu);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blu);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-cta {
+      background: var(--blu-gradient);
+      color: white;
+      padding: 12px 24px;
+      border-radius: var(--r);
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(74, 144, 184, 0.3);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--txt);
+      transition: all 0.3s ease;
+    }
+
+    /* ==============================================
+       HERO SECTION
+       ============================================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(74, 144, 184, 0.8), rgba(107, 182, 255, 0.6));
+      z-index: -1;
+    }
+
+    .hero-content {
+      text-align: center;
+      color: white;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-family: var(--FD);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: var(--r);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: white;
+      color: var(--blu);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: var(--blu);
+    }
+
+    /* ==============================================
+       SECTIONS GÉNÉRALES
+       ============================================== */
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-family: var(--FD);
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 1rem;
+      color: var(--txt);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--gry);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      line-height: 1.6;
+    }
+
+    /* ==============================================
+       À PROPOS
+       ============================================== */
+    .about {
+      background: var(--crm);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-family: var(--FD);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--blu);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      color: var(--gry);
+      line-height: 1.7;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    /* ==============================================
+       POURQUOI NOUS CHOISIR
+       ============================================== */
+    .why-us {
+      background: var(--bg);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .feature {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: var(--r);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--blu-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .feature h3 {
+      font-family: var(--FD);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--txt);
+    }
+
+    .feature p {
+      color: var(--gry);
+      line-height: 1.6;
+    }
+
+    /* ==============================================
+       GALERIE
+       ============================================== */
+    .gallery {
+      background: var(--ice);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--r);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(74, 144, 184, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-overlay span {
+      color: white;
+      font-size: 2rem;
+    }
+
+    /* ==============================================
+       CONTACT
+       ============================================== */
+    .contact {
+      background: var(--bg);
+    }
+
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h3 {
+      font-family: var(--FD);
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: var(--blu);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--blu-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 2.5rem;
+      border-radius: var(--r);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--txt);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: var(--r);
+      font-family: var(--FN);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blu);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    .footer {
+      background: var(--txt);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .footer p {
+      opacity: 0.8;
+    }
+
+    /* ==============================================
+       RESPONSIVE
+       ============================================== */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        flex-direction: column;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <nav class="nav wrap">
+      <a href="#" class="logo">Les Petits Poilus</a>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#about">À propos</a></li>
+        <li><a href="#pourquoi">Nos valeurs</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="btn-cta">Nous contacter</a>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section id="accueil" class="hero">
+    <img src="https://upload.chien.com/img/23-99057-les-petits-poilus.jpg?1779253419" alt="Pomsky Les Petits Poilus" class="hero-bg">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Les Petits Poilus</h1>
+      <p class="hero-subtitle">Élevage familial de Pomsky avec passion et dévouement</p>
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary">Découvrir notre élevage</a>
+        <a href="#contact" class="btn btn-secondary">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- À PROPOS -->
+  <section id="about" class="section about">
+    <div class="wrap">
+      <h2 class="section-title fade-in">Notre passion</h2>
+      <p class="section-subtitle fade-in">Une aventure commencée avec des accueils et des sauvetages</p>
+      
+      <div class="about-content">
+        <div class="about-text fade-in">
+          <h3>Une éleveuse passionnée</h3>
+          <p>Je suis une petite éleveuse passionnée du chien en toute race. Mon aventure a commencé avec des accueils et des sauvetages, puis j'ai rencontré mes compagnons de vie.</p>
+          <p>Mon élevage est occasionnel, avec une portée par an ou moins, car je privilégie les sauvetages et le bien-être des animaux. Contrairement aux idées reçues, mes compagnons ne fuient pas, ne détruisent pas plus que d'autres animaux et ne hurlent pas sans raison.</p>
+          <p>Husky, Pomsky et Chihuahua : ce sont des amis fidèles, un soutien précieux dans ma vie quotidienne.</p>
+        </div>
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_1.jpg" alt="Pomsky élevage Les Petits Poilus">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POURQUOI NOUS CHOISIR -->
+  <section id="pourquoi" class="section why-us">
+    <div class="wrap">
+      <h2 class="section-title fade-in">Nos valeurs</h2>
+      <p class="section-subtitle fade-in">Ce qui nous différencie dans le monde de l'élevage</p>
+      
+      <div class="features">
+        <div class="feature fade-in">
+          <div class="feature-icon">❤️</div>
+          <h3>Élevage occasionnel</h3>
+          <p>Une portée par an maximum, privilégiant toujours le bien-être animal et la qualité à la quantité.</p>
+        </div>
+        
+        <div class="feature fade-in">
+          <div class="feature-icon">🏠</div>
+          <h3>Sauvetages prioritaires</h3>
+          <p>Notre engagement premier reste le sauvetage et l'accueil de chiens en détresse.</p>
+        </div>
+        
+        <div class="feature fade-in">
+          <div class="feature-icon">🐕</div>
+          <h3>Compagnons fidèles</h3>
+          <p>Nos Pomsky sont des amis loyaux, équilibrés et parfaitement adaptés à la vie de famille.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie" class="section gallery">
+    <div class="wrap">
+      <h2 class="section-title fade-in">Nos Pomsky</h2>
+      <p class="section-subtitle fade-in">Découvrez nos merveilleux compagnons</p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_2.jpg" alt="Pomsky Les Petits Poilus">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_3.jpg" alt="Pomsky chiot">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_4.jpg" alt="Pomsky famille">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_5.jpg" alt="Pomsky adulte">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_1.jpg" alt="Pomsky portrait">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_2.jpg" alt="Pomsky jouant">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_3.jpg" alt="Pomsky repos">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_4.jpg" alt="Pomsky nature">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_5.jpg" alt="Pomsky hiver">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://upload.chien.com/img/23-99057-les-petits-poilus.jpg?1779253419" alt="Pomsky élevage">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_1.jpg" alt="Pomsky famille heureuse">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-pomsky/pomsky_2.jpg" alt="Pomsky câlin">
+          <div class="gallery-overlay">
+            <span>🔍</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="wrap">
+      <h2 class="section-title fade-in">Nous contacter</h2>
+      <p class="section-subtitle fade-in">Pour plus d'informations sur nos Pomsky</p>
+      
+      <div class="contact-content">
+        <div class="contact-info fade-in">
+          <h3>Informations de contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <strong>Téléphone</strong><br>
+              <a href="tel:+33492859890">04 92 85 98 90</a>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <strong>Localisation</strong><br>
+              France
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-item-icon">⏰</div>
+            <div>
+              <strong>Disponibilité</strong><br>
+              Sur rendez-vous uniquement
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">🐾</div>
+            <div>
+              <strong>Spécialité</strong><br>
+              Pomsky, Husky, Chihuahua
+            </div>
+          </div>
+        </div>
+        
+        <form class="contact-form fade-in">
+          <div class="form-group">
+            <label for="name">Nom complet *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet d'adoption..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap">
+      <p>&copy; 2024 Les Petits Poilus. Élevage familial de Pomsky avec passion.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Menu mobile
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Fermer le menu mobile au clic sur un lien
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Scroll smooth pour les ancres
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 80;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Header background au scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(254, 253, 251, 0.98)';
+      } else {
+        header.style.background = 'rgba(254, 253, 251, 0.95)';
+      }
+    });
+  </script>
+</body>
+</html>

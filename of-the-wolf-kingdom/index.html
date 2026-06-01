@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Of the Wolf Kingdom — Élevage Berger Blanc Suisse | Région de Liège, Belgique</title>
+  <meta name="description" content="Élevage familial de Berger Blanc Suisse en région de Liège, Belgique. Chiots sains et équilibrés, attention sur la santé physique et génétique. Famille, amour, bien-être et nature. Tél. 0495537008.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://ofthewolfkingdom.be/">
+  <meta property="og:title"       content="Of the Wolf Kingdom — Berger Blanc Suisse, Liège">
+  <meta property="og:description" content="Élevage familial de Berger Blanc Suisse en région de Liège. Chiens vivant en famille, santé et bien-être prioritaires.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-64335-of-the-wolf-kingdom.jpg?1636460824">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Of the Wolf Kingdom",
+        "description": "Élevage familial de Berger Blanc Suisse en région de Liège, Belgique. Chiots sains et équilibrés élevés en famille.",
+        "telephone": "+32495537008",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Région de Liège",
+          "addressCountry": "BE"
+        },
+        "founder": { "@type": "Person", "name": "Of the Wolf Kingdom" }
+      },
+      { "@type": "AnimalShelter", "name": "Of the Wolf Kingdom — Élevage Berger Blanc Suisse Liège" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Of the Wolf Kingdom
+       Design : Montagne / Nature / Blanc pur
+       ============================================== */
+    :root {
+      --snw:  #FFFFFF;   /* blanc neige pur */
+      --slt:  #2C3E50;   /* ardoise profond */
+      --slv:  #95A5A6;   /* argent doux */
+      --crm:  #F8F9FA;   /* crème très claire */
+      --bg:   #FDFDFD;   /* fond blanc cassé */
+      --stn:  #7F8C8D;   /* pierre */
+      --txt:  #2C3E50;   /* texte */
+      --acc:  #3498DB;   /* accent bleu montagne */
+      --FD:   'Cinzel', serif;       /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    4px;
+      --snw-gradient: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 45%, #ECF0F1 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: var(--FN); 
+      background: var(--bg); 
+      color: var(--txt); 
+      line-height: 1.7; 
+      overflow-x: hidden; 
+    }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; transition: all 0.3s ease; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ============================================== UTILITY */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .flex { display: flex; }
+    .grid { display: grid; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .text-center { text-align: center; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .hidden { display: none; }
+
+    /* ============================================== TYPOGRAPHY */
+    h1, h2, h3, h4, h5, h6 { 
+      font-family: var(--FD); 
+      line-height: 1.2; 
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 600; }
+    h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; }
+    h4 { font-size: 1.25rem; font-weight: 500; }
+    p { margin-bottom: 1rem; color: var(--stn); }
+    .lead { font-size: 1.125rem; font-weight: 300; }
+    .small { font-size: 0.875rem; }
+
+    /* ============================================== ANIMATIONS */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeInUp 0.6s ease-out; }
+    .animate-fade-in-delay { animation: fadeInUp 0.6s ease-out 0.2s both; }
+
+    /* ============================================== HEADER */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--crm);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 2px 20px rgba(44, 62, 80, 0.08);
+    }
+    .nav { 
+      height: 100%; 
+      align-items: center; 
+      justify-content: space-between; 
+    }
+    .logo { 
+      font-family: var(--FD); 
+      font-size: 1.5rem; 
+      font-weight: 600; 
+      color: var(--slt);
+    }
+    .nav-links { 
+      display: flex; 
+      gap: 2rem; 
+      list-style: none;
+    }
+    .nav-links a { 
+      font-weight: 500; 
+      color: var(--slt);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--acc);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Mobile menu */
+    .mobile-menu { display: none; }
+    .mobile-toggle { 
+      display: none; 
+      flex-direction: column; 
+      gap: 4px; 
+      cursor: pointer;
+    }
+    .mobile-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--slt);
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: flex; }
+      .mobile-menu {
+        display: block;
+        position: fixed;
+        top: var(--nav);
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 2rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .mobile-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      .mobile-menu ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .mobile-menu a {
+        font-size: 1.125rem;
+        font-weight: 500;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--crm);
+      }
+    }
+
+    /* ============================================== HERO */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(44, 62, 80, 0.3), rgba(44, 62, 80, 0.3)),
+                  url('https://upload.chien.com/img/23-64335-of-the-wolf-kingdom.jpg?1636460824') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+    .hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+    }
+    .hero h1 {
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .hero .lead {
+      margin-bottom: 2rem;
+      font-size: 1.25rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: var(--snw-gradient);
+      color: var(--slt);
+      border-radius: var(--r);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+
+    /* ============================================== SECTIONS */
+    .section {
+      padding: 5rem 0;
+    }
+    .section:nth-child(even) {
+      background: var(--crm);
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-text h2 {
+      color: var(--slt);
+      margin-bottom: 1.5rem;
+    }
+    .about-image {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Race Info */
+    .race-info {
+      background: var(--bg);
+    }
+    .race-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .race-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--r);
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--snw-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+      color: var(--slt);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--slt);
+      color: white;
+    }
+    .contact h2 {
+      color: white;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-form {
+      background: rgba(255,255,255,0.1);
+      padding: 2rem;
+      border-radius: var(--r);
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: var(--r);
+      background: rgba(255,255,255,0.9);
+      color: var(--txt);
+    }
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+    .btn-submit {
+      background: white;
+      color: var(--slt);
+      width: 100%;
+      padding: 1rem;
+      border-radius: var(--r);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-submit:hover {
+      background: var(--crm);
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--txt);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    .footer p {
+      color: rgba(255,255,255,0.7);
+      margin: 0;
+    }
+
+    /* ============================================== SCROLL ANIMATIONS */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav flex wrap">
+      <div class="logo">Of the Wolf Kingdom</div>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#elevage">L'Élevage</a></li>
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="mobile-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </nav>
+    <div class="mobile-menu">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#elevage">L'Élevage</a></li>
+        <li><a href="#race">La Race</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="accueil" class="hero">
+    <div class="hero-content animate-fade-in">
+      <h1>Of the Wolf Kingdom</h1>
+      <p class="lead">Élevage familial de Berger Blanc Suisse<br>Région de Liège, Belgique</p>
+      <a href="#elevage" class="btn">Découvrir notre élevage</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="elevage" class="section">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <h2>Notre Passion pour le Berger Blanc Suisse</h2>
+          <p>Nous avons un petit élevage familial de Bergers Blancs Suisses en Belgique, dans la région de Liège. Nous sommes de vrais passionnés de la race et respectons les critères du standard.</p>
+          <p>Nous portons notre attention sur la santé physique, psychologique et génétique de nos chiens, afin de produire des chiots sains et bien équilibrés. Nos chiens vivent dans la maison en communauté. Ils font partie des membres de la famille à part entière.</p>
+          <p><strong>Famille, amour, bien-être et nature</strong> sont les termes composant l'essence de notre élevage.</p>
+        </div>
+        <div class="about-image fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314461/photo-berger_blanc_suisse/berger_blanc_suisse_1.jpg" alt="Berger Blanc Suisse">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Race Info -->
+  <section id="race" class="section race-info">
+    <div class="wrap">
+      <div class="race-content fade-in">
+        <h2>Le Berger Blanc Suisse</h2>
+        <p class="lead">Une race magnifique, intelligente et loyale, parfaite pour la vie de famille.</p>
+        
+        <div class="race-features">
+          <div class="feature-card fade-in">
+            <div class="feature-icon">🏔️</div>
+            <h4>Origine Suisse</h4>
+            <p>Race noble originaire des Alpes suisses, reconnue pour sa beauté et son tempérament équilibré.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <div class="feature-icon">❤️</div>
+            <h4>Familial</h4>
+            <p>Chien de famille par excellence, doux avec les enfants et très attaché à ses maîtres.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <div class="feature-icon">🧠</div>
+            <h4>Intelligent</h4>
+            <p>Race très intelligente et facile à éduquer, excellente en obéissance et sports canins.</p>
+          </div>
+          <div class="feature-card fade-in">
+            <div class="feature-icon">🏃</div>
+            <h4>Actif</h4>
+            <p>Chien sportif qui apprécie les longues promenades et les activités en pleine nature.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="galerie" class="section">
+    <div class="wrap">
+      <div class="text-center fade-in">
+        <h2>Galerie Photos</h2>
+        <p class="lead">Découvrez nos magnifiques Bergers Blancs Suisses</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314461/photo-berger_blanc_suisse/berger_blanc_suisse_1.jpg" alt="Berger Blanc Suisse 1">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314462/photo-berger_blanc_suisse/berger_blanc_suisse_2.jpg" alt="Berger Blanc Suisse 2">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314464/photo-berger_blanc_suisse/berger_blanc_suisse_3.jpg" alt="Berger Blanc Suisse 3">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314466/photo-berger_blanc_suisse/berger_blanc_suisse_4.jpg" alt="Berger Blanc Suisse 4">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780314467/photo-berger_blanc_suisse/berger_blanc_suisse_5.jpg" alt="Berger Blanc Suisse 5">
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="https://upload.chien.com/img/23-64335-of-the-wolf-kingdom.jpg?1636460824" alt="Of the Wolf Kingdom">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section contact">
+    <div class="wrap">
+      <div class="text-center fade-in">
+        <h2>Nous Contacter</h2>
+        <p class="lead">N'hésitez pas à nous contacter pour plus d'informations</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info fade-in">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Localisation</h4>
+              <p>Région de Liège<br>Belgique</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Téléphone</h4>
+              <p><a href="tel:+32495537008">0495 537 008</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🐕</div>
+            <div>
+              <h4>Race</h4>
+              <p>Berger Blanc Suisse<br>Élevage familial</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">❤️</div>
+            <div>
+              <h4>Notre engagement</h4>
+              <p>Famille, amour, bien-être et nature</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form fade-in">
+          <form>
+            <div class="form-group">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone">
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet..."></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <p>&copy; 2024 Of the Wolf Kingdom — Élevage Berger Blanc Suisse, Région de Liège, Belgique</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          mobileMenu.classList.remove('active');
+        }
+      });
+    });
+
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Form submission
+    document.querySelector('form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Merci pour votre message ! Nous vous recontacterons bientôt.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
