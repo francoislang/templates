@@ -136,7 +136,8 @@ CONTENU À ADAPTER :
 INSTRUCTIONS :
 - Garde la MÊME structure HTML, les mêmes classes CSS, les mêmes sections que le site de référence
 - Remplace TOUT le contenu par les données ci-dessus
-- Utilise les photos fournies (hero, about, galerie)
+- Utilise les photos fournies (hero, about, galerie) — les sites de référence ont en moyenne 22 images chacun
+- Place AU MOINS 15 photos Cloudinary dans le site (hero + about + galerie + race) comme dans les sites de référence
 - Adapte les couleurs à la race (tons chauds pour chiens de chasse, vifs pour races dynamiques, doux pour races calmes)
 - Garde Cinzel + Raleway comme polices
 - Schema.org JSON-LD, Open Graph, meta description SEO
