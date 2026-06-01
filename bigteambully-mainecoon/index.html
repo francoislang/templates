@@ -1,0 +1,1065 @@
+Voici le code HTML d’un site vitrine complet pour un élevage d’American Bully, structuré comme les exemples de référence que vous avez partagés.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BigTeamBully&MaineCoon — Élevage American Bully | France</title>
+    <meta name="description" content="Élevage spécialisé American Bully & Maine Coon LOOF en France. Chiots et chatons en parfaite santé, pedigrees de qualité, large choix de couleurs. Sélection rigoureuse, morphologie robuste. Tél. 04 97 18 21 92.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bigteam-bully-mainecoon.fr/">
+    <meta property="og:title" content="BigTeamBully&MaineCoon — American Bully, France">
+    <meta property="og:description" content="Élevage spécialisé American Bully & Maine Coon LOOF. Chiots et chatons en parfaite santé, pedigrees de qualité. Large choix de couleurs. Tél. 04 97 18 21 92.">
+    <meta property="og:image" content="https://upload.chien.com/img/23-104393-bigteambully-mainecoon.jpg?1742900041">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "BigTeamBully&MaineCoon",
+                    "description": "Élevage spécialisé American Bully & Maine Coon LOOF en France. Chiots et chatons en parfaite santé, pedigrees de qualité, large choix de couleurs.",
+                    "telephone": "+33497182192",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "FR"
+                    },
+                    "identifier": "Particulier",
+                    "openingHoursSpecification": {
+                        "@type": "OpeningHoursSpecification",
+                        "description": "Sur rendez-vous"
+                    }
+                },
+                { "@type": "AnimalShelter", "name": "BigTeamBully&MaineCoon — American Bully & Maine Coon" }
+            ]
+        }
+    </script>
+
+    <style>
+        :root {
+            --ony: #1C1C1C;
+            --gld: #C9A84C;
+            --amb: #8B5E1A;
+            --crm: #F5EDE0;
+            --bg: #FAF5EE;
+            --stn: #9A8272;
+            --txt: #1C1C1C;
+            --accent: #D4A574;
+            --dark-accent: #5C3A1E;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 4px;
+            --gld-gradient: linear-gradient(135deg, #C9A84C 0%, #E8C96A 45%, #8B5E1A 100%);
+            --max: 1200px;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.18);
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--FD);
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            letter-spacing: 0.02em;
+        }
+        h2 {
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            letter-spacing: 0.01em;
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1.2rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--gld-gradient);
+            border-radius: 2px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            border-radius: var(--r);
+            transition: var(--transition);
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-primary {
+            background: var(--gld-gradient);
+            color: #fff;
+            box-shadow: var(--shadow-md);
+        }
+        .btn-primary:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid var(--gld);
+            color: var(--gld);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--gld);
+            color: #fff;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== TOP BAR ========== */
+        .top-bar {
+            background: var(--ony);
+            color: var(--crm);
+            padding: 8px 0;
+            font-size: 0.82rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            z-index: 1001;
+        }
+        .top-bar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .top-bar a {
+            color: var(--gld);
+            transition: color 0.2s;
+        }
+        .top-bar a:hover {
+            color: #E8C96A;
+        }
+        .top-bar .siren {
+            font-style: italic;
+            color: var(--stn);
+            font-size: 0.78rem;
+        }
+
+        /* ========== NAVIGATION ========== */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(250, 245, 238, 0.95);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+            height: var(--nav);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: var(--shadow-sm);
+            border-bottom-color: rgba(201, 168, 76, 0.4);
+        }
+        .navbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .navbar .logo {
+            font-family: var(--FD);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--ony);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar .logo span {
+            color: var(--gld);
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 6px 0;
+            transition: color 0.3s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gld);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--gld);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--ony);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg);
+                flex-direction: column;
+                padding: 100px 40px 40px;
+                gap: 1.5rem;
+                transition: right 0.4s ease;
+                box-shadow: var(--shadow-lg);
+                z-index: 999;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--ony);
+        }
+        .hero img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            animation: fadeIn 1.5s ease;
+        }
+        .hero .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(28, 28, 28, 0.55) 0%, rgba(28, 28, 28, 0.8) 100%);
+            z-index: 1;
+        }
+        .hero .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 40px 24px;
+            animation: fadeInUp 1s ease;
+        }
+        .hero .hero-content h1 {
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+        .hero .hero-content p {
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        .hero .hero-content .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .about .wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            animation: scaleIn 0.8s ease;
+        }
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+        .about-text {
+            animation: slideInRight 0.8s ease;
+        }
+        .about-text h2 {
+            margin-bottom: 1.2rem;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        .about-text .highlight {
+            color: var(--gld);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .about .wrap {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .about-img {
+                order: -1;
+            }
+        }
+
+        /* ========== RACE INFO ========== */
+        .race-info {
+            padding: 80px 0;
+            background: var(--crm);
+        }
+        .race-info .wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .race-text {
+            animation: slideInLeft 0.8s ease;
+        }
+        .race-text h2 {
+            margin-bottom: 1.2rem;
+        }
+        .race-text p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+        .race-img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            animation: scaleIn 0.8s ease;
+        }
+        .race-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+        .race-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 1.5rem;
+        }
+        .race-features li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #444;
+        }
+        .race-features li::before {
+            content: '◆';
+            color: var(--gld);
+            font-size: 0.6rem;
+        }
+
+        @media (max-width: 768px) {
+            .race-info .wrap {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .race-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== GALLERY ========== */
+        .gallery {
+            padding: 80px 0;
+            background: #fff;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: var(--r);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.04);
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+        }
+
+        @media (max-width: 992px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ========== COMMITMENTS ========== */
+        .commitments {
+            padding: 80px 0;
+            background: var(--bg);
+        }
+        .commitments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .commitment-card {
+            background: #fff;
+            padding: 36px 28px;
+            border-radius: var(--r);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border-top: 3px solid transparent;
+        }
+        .commitment-card:hover {
+            box-shadow: var(--shadow-md);
+            border-top-color: var(--gld);
+            transform: translateY(-4px);
+        }
+        .commitment-card .icon {
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
+            color: var(--gld);
+        }
+        .commitment-card h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+        .commitment-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .commitments-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .commitments-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== CTA ========== */
+        .cta-section {
+            padding: 80px 0;
+            background: var(--ony);
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        .cta-section .wrap {
+            position: relative;
+            z-index: 1;
+        }
+        .cta-section h2 {
+            color: var(--gld);
+        }
+        .cta-section p {
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: #151515;
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer h4 {
+            color: var(--gld);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        .footer a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        .footer a:hover {
+            color: var(--gld);
+        }
+        .footer .contact-info p {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 500px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== LIGHTBOX (simple) ========== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-lg);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.5);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="wrap">
+            <span>📞 <a href="tel:+33497182192">04 97 18 21 92</a> — Sur rendez-vous</span>
+            <span class="siren">SIREN : Particulier</span>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <div class="wrap">
+            <a href="#" class="logo">BigTeam<span>Bully</span>&MaineCoon</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">Accueil</a></li>
+                <li><a href="#about">Notre élevage</a></li>
+                <li><a href="#race">La race</a></li>
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#commitments">Engagements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <img src="https://upload.chien.com/img/23-104393-bigteambully-mainecoon.jpg?1742900041"
+        alt="American Bully - BigTeamBully&MaineCoon" loading="eager">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>BigTeamBully & MaineCoon</h1>
+            <p>Élevage spécialisé American Bully & Maine Coon LOOF — Chiots et chatons en parfaite santé, pedigrees de qualité, élevés avec passion en France.</p>
+            <div class="hero-btns">
+                <a href="#about" class="btn btn-primary">Découvrir l'élevage</a>
+                <a href="#contact" class="btn btn-outline">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="wrap">
+            <div class="about-img reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
+                alt="American Bully - Élevage BigTeamBully&MaineCoon" loading="lazy">
+            </div>
+            <div class="about-text reveal">
+                <h2>Notre élevage</h2>
+                <p>
+                    <span class="highlight">Big Team Bully's & Maine Coon</span> est un élevage spécialisé dans les chiens de race <strong>American Bully</strong> et les chats <strong>Maine Coon LOOF</strong>.
+                    Nous nous engageons à produire des chiots et chatons en parfaite santé, élevés avec soin et amour, avec un large choix de couleurs.
+                </p>
+                <p>
+                    Tous nos chiens et chats sont issus de <span class="highlight">lignées avec des pedigrees de qualité</span>, garantissant une excellente génétique.
+                    Nous mettons un point d'honneur à sélectionner des reproducteurs avec une morphologie robuste, une ossature forte et un caractère équilibré.
+                </p>
+                <p>
+                    Chaque animal est élevé dans un environnement familial, bénéficiant d'une socialisation précoce et d'un suivi vétérinaire rigoureux.
+                    Nous sommes situés en France et accueillons les futurs adoptants sur rendez-vous.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RACE INFO -->
+    <section class="race-info" id="race">
+        <div class="wrap">
+            <div class="race-text reveal">
+                <h2>L'American Bully</h2>
+                <p>
+                    L'<strong>American Bully</strong> est une race de chien moderne reconnue pour sa puissance, sa loyauté et son tempérament exceptionnel.
+                    Contrairement aux idées reçues, c'est un chien <span class="highlight">doux, affectueux et extrêmement sociable</span>, qui s'épanouit pleinement en famille.
+                </p>
+                <p>
+                    Sa morphologie robuste, son ossature forte et sa musculature impressionnante en font un compagnon à l'allure imposante,
+                    mais son cœur est celui d'un véritable chien de famille, patient avec les enfants et dévoué à ses maîtres.
+                </p>
+                <ul class="race-features">
+                    <li>Morphologie robuste et athlétique</li>
+                    <li>Caractère doux et loyal</li>
+                    <li>Large choix de couleurs</li>
+                    <li>Excellent chien de famille</li>
+                    <li>Pedigrees de qualité</li>
+                    <li>Socialisation précoce</li>
+                    <li>Suivi vétérinaire rigoureux</li>
+                    <li>Élevé avec passion</li>
+                </ul>
+            </div>
+            <div class="race-img reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg"
+                alt="American Bully - Race" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <h2>Galerie</h2>
+            </div>
+            <div class="gallery-grid">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
+                alt="American Bully 1" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg"
+                alt="American Bully 2" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg"
+                alt="American Bully 3" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg"
+                alt="American Bully 4" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg"
+                alt="American Bully 5" loading="lazy" class="reveal gallery-img">
+                <img src="https://upload.chien.com/img/23-104393-bigteambully-mainecoon.jpg?1742900041"
+                alt="American Bully 6" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
+                alt="American Bully 7" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg"
+                alt="American Bully 8" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg"
+                alt="American Bully 9" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg"
+                alt="American Bully 10" loading="lazy" class="reveal gallery-img">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg"
+                alt="American Bully 11" loading="lazy" class="reveal gallery-img">
+                <img src="https://upload.chien.com/img/23-104393-bigteambully-mainecoon.jpg?1742900041"
+                alt="American Bully 12" loading="lazy" class="reveal gallery-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITMENTS -->
+    <section class="commitments" id="commitments">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <h2>Nos engagements</h2>
+            </div>
+            <div class="commitments-grid">
+                <div class="commitment-card reveal">
+                    <div class="icon">🧬</div>
+                    <h3>Génétique d'exception</h3>
+                    <p>Reproducteurs sélectionnés avec pedigrees de qualité pour une morphologie robuste et une excellente santé.</p>
+                </div>
+                <div class="commitment-card reveal">
+                    <div class="icon">🏡</div>
+                    <h3>Élevage familial</h3>
+                    <p>Chiots et chatons élevés à la maison, en contact permanent avec notre famille pour une socialisation optimale.</p>
+                </div>
+                <div class="commitment-card reveal">
+                    <div class="icon">🩺</div>
+                    <h3>Suivi vétérinaire</h3>
+                    <p>Contrôles réguliers, vaccinations, vermifuges et conseils personnalisés pour chaque animal.</p>
+                </div>
+                <div class="commitment-card reveal">
+                    <div class="icon">🎨</div>
+                    <h3>Large choix de couleurs</h3>
+                    <p>Diversité de robes et de patrons pour répondre aux préférences de chaque adoptant.</p>
+                </div>
+                <div class="commitment-card reveal">
+                    <div class="icon">🤝</div>
+                    <h3>Accompagnement</h3>
+                    <p>Conseils et suivi avant, pendant et après l'adoption pour une intégration réussie.</p>
+                </div>
+                <div class="commitment-card reveal">
+                    <div class="icon">📜</div>
+                    <h3>Transparence</h3>
+                    <p>Documents, pedigrees, certificats vétérinaires : tout est fourni en toute transparence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <div class="wrap reveal">
+            <h2>Intéressé par un chiot American Bully ?</h2>
+            <p>Contactez-nous dès aujourd'hui pour en savoir plus sur nos portées disponibles ou à venir. Visites sur rendez-vous.</p>
+            <a href="tel:+33497182192" class="btn btn-primary">📞 04 97 18 21 92</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <h4>BigTeamBully&MaineCoon</h4>
+                    <p>Élevage spécialisé American Bully & Maine Coon LOOF en France. Chiots et chatons en parfaite santé, pedigrees de qualité, large choix de couleurs.</p>
+                </div>
+                <div class="contact-info">
+                    <h4>Contact</h4>
+                    <p>📞 <a href="tel:+33497182192">04 97 18 21 92</a></p>
+                    <p>📍 France</p>
+                    <p>🕐 Sur rendez-vous uniquement</p>
+                    <p>📋 SIREN : Particulier</p>
+                </div>
+                <div>
+                    <h4>Liens rapides</h4>
+                    <p><a href="#hero">Accueil</a></p>
+                    <p><a href="#about">Notre élevage</a></p>
+                    <p><a href="#race">La race</a></p>
+                    <p><a href="#gallery">Galerie</a></p>
+                    <p><a href="#commitments">Engagements</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BigTeamBully&MaineCoon. Tous droits réservés. | Élevage American Bully & Maine Coon en France</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="Lightbox" id="lightboxImg">
+    </div>
+
+    <script>
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animations on scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const galleryImgs = document.querySelectorAll('.gallery-img');
+
+        galleryImgs.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+### Élevage & Design
+
+Ce design met en valeur la puissance et l'élégance des races tout en transmettant un sentiment de confiance et de professionnalisme. Le choix de tons sombres et chauds, ainsi que les animations fluides, visent à créer une expérience utilisateur mémorable et rassurante pour les futurs adoptants.
+
+- **Palette de couleurs puissante** : L'association d'un fond ivoire (`--bg`) et de noir profond (`--ony`) crée un fort contraste. L'or (`--gld`) et l'ambre (`--amb`) servent de couleurs d'accentuation, évoquant le pedigree et la valeur des lignées, tout en réchauffant l'interface.
+- **Typographie statutaire** : La police `Cinzel` (avec empattement) pour les titres apporte une touche de prestige et d'élégance, tandis que `Raleway` (sans empattement) pour le corps du texte assure une excellente lisibilité et un rendu moderne.
+- **Structure narrative et animations** : Le site suit un parcours classique (Accueil > Élevage > Race > Galerie > Engagements > Contact). Les animations au scroll (`reveal`) révèlent le contenu progressivement, guidant l'œil de l'utilisateur. La section "Engagements" utilise un système de cartes pour organiser clairement les arguments de vente.
+- **Galerie immersive et interactive** : La grille de 12 images permet de mettre en avant la diversité des chiens. Le clic sur une photo ouvre un lightbox élégant, offrant une vue détaillée sans quitter la page, ce qui est idéal pour un contenu visuel premium.
