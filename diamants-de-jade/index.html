@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Diamants de Jade — Élevage Chihuahua LOF | Montagny</title>
+  <meta name="description" content="Élevage familial de Chihuahua LOF à Montagny. Chiots sociables élevés à la maison, tests génétiques, vermifugés, vaccinés, pucés. Tél. 06.26.57.32.39.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://diamants-de-jade.fr/">
+  <meta property="og:title"       content="Diamants de Jade — Chihuahua LOF, Montagny">
+  <meta property="og:description" content="Élevage familial de Chihuahua LOF à Montagny. Chiots sociables élevés à la maison, tests génétiques complets, tempérament équilibré.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-64064-diamants-de-jade.jpg?1694609305">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Diamants de Jade",
+        "description": "Élevage familial de Chihuahua LOF à Montagny. Chiots sociables élevés à la maison, tests génétiques, vermifugés, vaccinés, pucés.",
+        "telephone": "+33626573239",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Montagny",
+          "addressCountry": "FR"
+        },
+        "taxID": "797543543"
+      },
+      { "@type": "AnimalShelter", "name": "Diamants de Jade — Élevage Chihuahua LOF" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Diamants de Jade
+       Design : Précieux / Jade / Raffiné
+       ============================================== */
+    :root {
+      --jade:  #2D5D4A;   /* jade profond */
+      --gold:  #D4AF37;   /* or précieux */
+      --ruby:  #B91C3C;   /* rubis accent */
+      --pearl: #F8F6F2;   /* perle nacré */
+      --bg:    #FDF9F4;   /* fond ivoire précieux */
+      --stone: #8B9A7E;   /* pierre verte */
+      --txt:   #1C2D1F;   /* texte */
+      --FD:    'Cinzel', serif;
+      --FN:    'Raleway', sans-serif;
+      --nav:   72px;
+      --r:     4px;
+      --jade-gradient: linear-gradient(135deg, #2D5D4A 0%, #4A8B6B 45%, #1F4D3A 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+
+    /* ==============================================
+       UTILITY
+       ============================================== */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .text-center { text-align: center; }
+    .relative { position: relative; }
+    .absolute { position: absolute; }
+    .opacity-0 { opacity: 0; }
+    .opacity-100 { opacity: 1; }
+    .transition { transition: all 0.3s ease; }
+
+    /* ==============================================
+       TYPOGRAPHY
+       ============================================== */
+    h1, h2, h3, h4, h5, h6 { font-family: var(--FD); font-weight: 600; line-height: 1.2; margin-bottom: 1rem; }
+    h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+    h2 { font-size: clamp(2rem, 4vw, 3rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+    p { margin-bottom: 1rem; }
+
+    /* ==============================================
+       BUTTONS
+       ============================================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 16px 32px;
+      font-family: var(--FN);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: var(--r);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--jade-gradient);
+      color: white;
+      border-color: var(--jade);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(45, 93, 74, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--jade);
+      border: 2px solid var(--jade);
+    }
+
+    .btn-secondary:hover {
+      background: var(--jade);
+      color: white;
+    }
+
+    /* ==============================================
+       HEADER
+       ============================================== */
+    header {
+      background: rgba(253, 249, 244, 0.95);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav);
+      border-bottom: 1px solid rgba(45, 93, 74, 0.1);
+    }
+
+    .header-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--FD);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--jade);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      font-weight: 500;
+      color: var(--txt);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--jade);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .mobile-menu span {
+      width: 25px;
+      height: 3px;
+      background: var(--jade);
+      transition: all 0.3s ease;
+    }
+
+    /* ==============================================
+       HERO
+       ============================================== */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, rgba(45, 93, 74, 0.8), rgba(180, 28, 60, 0.6)), url('https://upload.chien.com/img/23-64064-diamants-de-jade.jpg?1694609305') center/cover;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-content {
+      color: white;
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ==============================================
+       SECTIONS
+       ============================================== */
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      color: var(--jade);
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--stone);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ==============================================
+       ABOUT
+       ============================================== */
+    .about {
+      background: var(--pearl);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(45, 93, 74, 0.2);
+    }
+
+    .about-content h3 {
+      color: var(--jade);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature {
+      background: white;
+      padding: 2rem;
+      border-radius: var(--r);
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(45, 93, 74, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--jade-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .feature h4 {
+      color: var(--jade);
+      margin-bottom: 1rem;
+    }
+
+    /* ==============================================
+       GALLERY
+       ============================================== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .gallery-item {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(45, 93, 74, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    /* ==============================================
+       SERVICES
+       ============================================== */
+    .services {
+      background: var(--pearl);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .service {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(45, 93, 74, 0.1);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service:hover {
+      transform: translateY(-10px);
+    }
+
+    .service::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--jade-gradient);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--jade-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .service h3 {
+      color: var(--jade);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ==============================================
+       CONTACT
+       ============================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info {
+      background: var(--pearl);
+      padding: 3rem;
+      border-radius: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--jade-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 10px;
+      box-shadow: 0 20px 40px rgba(45, 93, 74, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--jade);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e5e5;
+      border-radius: var(--r);
+      font-family: var(--FN);
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--jade);
+    }
+
+    .form-group textarea {
+      height: 120px;
+      resize: vertical;
+    }
+
+    /* ==============================================
+       FOOTER
+       ============================================== */
+    footer {
+      background: var(--jade);
+      color: white;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .footer-section p,
+    .footer-section a {
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .footer-section a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      padding-top: 2rem;
+      opacity: 0.8;
+    }
+
+    /* ==============================================
+       RESPONSIVE
+       ============================================== */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .mobile-menu { display: flex; }
+      
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      
+      .features,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      section {
+        padding: 3rem 0;
+      }
+    }
+
+    /* ==============================================
+       ANIMATIONS
+       ============================================== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Scroll animations */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="wrap header-content">
+      <a href="#" class="logo">Diamants de Jade</a>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#elevage">L'Élevage</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="accueil" class="hero">
+    <div class="wrap">
+      <div class="hero-content fade-in-up">
+        <h1>Diamants de Jade</h1>
+        <p>Élevage familial de Chihuahua LOF à Montagny. Nos chiots sont élevés à la maison avec amour, sociabilisés dès leur plus jeune âge pour un tempérament équilibré.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">Nous Contacter</a>
+          <a href="#elevage" class="btn btn-secondary">Découvrir l'Élevage</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="elevage" class="about">
+    <div class="wrap">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Notre Élevage Familial</h2>
+        <p class="section-subtitle">Bienvenue à l'élevage des Diamants de Jade où nous produisons uniquement des chiots Chihuahua LOF dans un environnement familial chaleureux.</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-image animate-on-scroll">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg" alt="Chihuahua de l'élevage Diamants de Jade">
+        </div>
+        
+        <div class="about-content animate-on-scroll">
+          <h3>Une Passion Familiale</h3>
+          <p>Nous sommes un élevage familial et accordons énormément d'importance à la qualité de vie de nos chiens. Ils vivent tous à la maison peu importe leur âge, ce qui permet à nos chiots d'être parfaitement socialisés et d'avoir un tempérament équilibré.</p>
+          
+          <p>Nous testons tous nos reproducteurs et nos reproductrices pour les maladies génétiques. Nos chiots partent inscrits au LOF, vermifugés, vaccinés et pucés avec tous les documents nécessaires.</p>
+          
+          <a href="#contact" class="btn btn-primary">Prendre Contact</a>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature animate-on-scroll">
+          <div class="feature-icon">🏠</div>
+          <h4>Élevage à la Maison</h4>
+          <p>Tous nos chiens vivent à la maison dans un environnement familial chaleureux</p>
+        </div>
+        
+        <div class="feature animate-on-scroll">
+          <div class="feature-icon">🧬</div>
+          <h4>Tests Génétiques</h4>
+          <p>Tous nos reproducteurs sont testés pour les maladies génétiques</p>
+        </div>
+        
+        <div class="feature animate-on-scroll">
+          <div class="feature-icon">📋</div>
+          <h4>Chiots LOF</h4>
+          <p>Tous nos chiots sont inscrits au LOF avec pedigree complet</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="galerie">
+    <div class="wrap">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Galerie Photos</h2>
+        <p class="section-subtitle">Découvrez nos magnifiques Chihuahuas et l'atmosphère chaleureuse de notre élevage familial.</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_2.jpg" alt="Chihuahua Diamants de Jade">
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_3.jpg" alt="Chihuahua Diamants de Jade">
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_4.jpg" alt="Chihuahua Diamants de Jade">
+        </div>
+        <div class="gallery-item animate-on-scroll">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_5.jpg" alt="Chihuahua Diamants de Jade">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="services">
+    <div class="wrap">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Nos Engagements</h2>
+        <p class="section-subtitle">Découvrez tout ce que nous mettons en place pour garantir la santé et le bien-être de nos chiots.</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service animate-on-scroll">
+          <div class="service-icon">💉</div>
+          <h3>Suivi Vétérinaire</h3>
+          <p>Nos chiots sont vermifugés, vaccinés et suivis régulièrement par notre vétérinaire de confiance.</p>
+        </div>
+        
+        <div class="service animate-on-scroll">
+          <div class="service-icon">🎯</div>
+          <h3>Puce d'Identification</h3>
+          <p>Tous nos chiots sont pucés et identifiés selon la réglementation en vigueur.</p>
+        </div>
+        
+        <div class="service animate-on-scroll">
+          <div class="service-icon">📜</div>
+          <h3>Documents Complets</h3>
+          <p>Inscription LOF, carnet de santé, attestation de vente et tous les documents officiels.</p>
+        </div>
+        
+        <div class="service animate-on-scroll">
+          <div class="service-icon">❤️</div>
+          <h3>Socialisation Précoce</h3>
+          <p>Nos chiots grandissent en famille et sont habitués aux enfants, bruits domestiques et autres animaux.</p>
+        </div>
+        
+        <div class="service animate-on-scroll">
+          <div class="service-icon">🔬</div>
+          <h3>Tests Génétiques</h3>
+          <p>Tous nos reproducteurs sont testés pour les maladies héréditaires du Chihuahua.</p>
+        </div>
+        
+        <div class="service animate-on-scroll">
+          <div class="service-icon">🤝</div>
+          <h3>Suivi à Vie</h3>
+          <p>Nous restons disponibles pour vous conseiller tout au long de la vie de votre compagnon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-header animate-on-scroll">
+        <h2 class="section-title">Nous Contacter</h2>
+        <p class="section-subtitle">N'hésitez pas à nous contacter pour toute question ou pour planifier une visite de notre élevage.</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info animate-on-scroll">
+          <h3>Informations de Contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <h4>Adresse</h4>
+              <p>Montagny<br>Élevage de chiens</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <h4>Téléphone</h4>
+              <p><a href="tel:+33626573239">06.26.57.32.39</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <h4>SIREN</h4>
+              <p>797543543</p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">🐕</div>
+            <div>
+              <h4>Race</h4>
+              <p>Chihuahua LOF uniquement</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form animate-on-scroll">
+          <h3>Envoyez-nous un Message</h3>
+          <form>
+            <div class="form-group">
+              <label for="nom">Nom *</label>
+              <input type="text" id="nom" name="nom" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="telephone">Téléphone</label>
+              <input type="tel" id="telephone" name="telephone">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Parlez-nous de votre projet d'adoption..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Envoyer le Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Diamants de Jade</h3>
+          <p>Élevage familial de Chihuahua LOF</p>
+          <p>Montagny</p>
+          <p>SIREN: 797543543</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>📞 06.26.57.32.39</p>
+          <p>🐕 Chihuahua LOF uniquement</p>
+          <p>🏠 Élevage familial à la maison</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Nos Engagements</h3>
+          <p>✓ Tests génétiques</p>
+          <p>✓ Chiots LOF</p>
+          <p>✓ Socialisation précoce</p>
+          <p>✓ Suivi vétérinaire</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Diamants de Jade. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animation au scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll pour les liens d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Menu mobile
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+      const nav = document.querySelector('nav ul');
+      nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    });
+  </script>
+</body>
+</html>
