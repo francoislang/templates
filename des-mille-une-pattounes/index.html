@@ -1,0 +1,783 @@
+Voici le code HTML complet du site vitrine "Des Mille & Une Pattounes" pour votre élevage de Berger Australien.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Des Mille & Une Pattounes — Élevage Berger Australien | Pechs-de-l'Espérance, Dordogne (24)</title>
+    <meta name="description" content="Élevage professionnel et familial de Berger Australien à Pechs-de-l'Espérance en Dordogne (24), à la limite du Lot et de la Corrèze. Chiens équilibrés, entièrement testés, vie de famille à la campagne. Tél. 06.21.64.04.28.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://des-mille-et-une-pattounes.fr/">
+    <meta property="og:title" content="Des Mille & Une Pattounes — Berger Australien, Dordogne">
+    <meta property="og:description" content="Élevage professionnel et familial de Berger Australien à Pechs-de-l'Espérance. Chiens équilibrés testés, vie épanouie à la campagne. SIREN 914879663.">
+    <meta property="og:image" content="https://upload.chien.com/img/23-79820-des-mille-une-pattounes.jpg?1779109743">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Des Mille & Une Pattounes",
+                    "description": "Élevage professionnel et familial de Berger Australien à Pechs-de-l'Espérance, Dordogne (24). Chiens équilibrés, entièrement testés, vie de famille à la campagne.",
+                    "telephone": "+33621640428",
+                    "identifier": "914879663",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Pechs-de-l'Espérance",
+                        "postalCode": "24370",
+                        "addressRegion": "Dordogne",
+                        "addressCountry": "FR"
+                    },
+                    "founder": { "@type": "Person", "name": "Éleveuse passionnée" },
+                    "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "description": "Sur rendez-vous téléphonique" }
+                },
+                { "@type": "AnimalShelter", "name": "Des Mille & Une Pattounes — Élevage Berger Australien" }
+            ]
+        }
+    </script>
+    <style>
+        :root {
+            --slt: #2E3F48;
+            --sky: #5B7F95;
+            --snd: #C4A882;
+            --emb: #B8693E;
+            --sage: #5C6E5A;
+            --bg: #FAF7F2;
+            --crm: #F0EBE2;
+            --txt: #2B2318;
+            --stn: #9B8E7E;
+            --muted: #7A8E99;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 4px;
+            --max: 1200px;
+            --gld-gradient: linear-gradient(135deg, #C4A882 0%, #D4BA94 45%, #A88B60 100%);
+        }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .alt_bg {
+            background: var(--crm);
+        }
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--FD);
+            font-weight: 600;
+            line-height: 1.25;
+        }
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            letter-spacing: 0.02em;
+        }
+        h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            letter-spacing: 0.01em;
+        }
+        h3 {
+            font-size: 1.4rem;
+            letter-spacing: 0.03em;
+        }
+        .sec_title {
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        .sec_title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gld-gradient);
+            border-radius: 2px;
+        }
+        .sec_title span {
+            color: var(--emb);
+            font-style: italic;
+            display: block;
+            font-family: var(--FN);
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            margin-top: 6px;
+        }
+        .btn_primary {
+            display: inline-block;
+            background: var(--gld-gradient);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: var(--r);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: all 0.3s ease;
+            font-family: var(--FD);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+        }
+        .btn_primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+            filter: brightness(1.08);
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav);
+            background: rgba(250, 247, 242, 0.94);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        nav .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .nav_logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.04em;
+            color: var(--slt);
+            white-space: nowrap;
+        }
+        .nav_logo small {
+            display: block;
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            color: var(--emb);
+            text-transform: uppercase;
+        }
+        .nav_links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+            color: var(--slt);
+        }
+        .nav_links a {
+            transition: color 0.25s ease;
+            position: relative;
+        }
+        .nav_links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gld-gradient);
+            transition: width 0.3s ease;
+            border-radius: 1px;
+        }
+        .nav_links a:hover {
+            color: var(--emb);
+        }
+        .nav_links a:hover::after {
+            width: 100%;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--slt);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--slt);
+            overflow: hidden;
+            padding-top: var(--nav);
+        }
+        .hero_img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            opacity: 0.55;
+            filter: brightness(0.9);
+        }
+        .hero_overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(46, 63, 72, 0.5) 0%, rgba(46, 63, 72, 0.75) 60%, rgba(30, 25, 15, 0.85) 100%);
+        }
+        .hero_txt {
+            position: relative;
+            z-index: 10;
+            color: #fff;
+            max-width: 650px;
+        }
+        .hero_txt h1 {
+            margin-bottom: 16px;
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+            line-height: 1.15;
+        }
+        .hero_txt .subtitle {
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+            color: #F0EBE2;
+            font-family: var(--FN);
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+        }
+        .hero_txt .location_tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 24px;
+            backdrop-filter: blur(4px);
+        }
+        .about_g {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            padding: 80px 0;
+        }
+        .about_g img {
+            border-radius: var(--r);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+        .about_txt h3 {
+            margin-bottom: 16px;
+            color: var(--slt);
+        }
+        .about_txt p {
+            margin-bottom: 14px;
+            color: #4a3f33;
+            font-size: 0.98rem;
+        }
+        .about_txt .highlight {
+            color: var(--emb);
+            font-weight: 600;
+        }
+        .race_s {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .race_s .race_intro {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #4a3f33;
+            font-size: 1rem;
+        }
+        .race_cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .race_card {
+            background: var(--bg);
+            border-radius: var(--r);
+            padding: 32px 24px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .race_card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+        }
+        .race_card .icon {
+            font-size: 2.4rem;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .race_card h4 {
+            color: var(--slt);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .race_card p {
+            font-size: 0.9rem;
+            color: #6b5f53;
+            line-height: 1.5;
+        }
+        .gal_g {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            padding: 80px 0;
+        }
+        .gal_g img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: var(--r);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            cursor: pointer;
+        }
+        .gal_g img:hover {
+            transform: scale(1.04);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+        .tem_c {
+            padding: 80px 0;
+            text-align: center;
+        }
+        .tem_c .tem_grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+        .tem_card {
+            background: var(--bg);
+            padding: 32px 28px;
+            border-radius: var(--r);
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+            text-align: left;
+            position: relative;
+        }
+        .tem_card::before {
+            content: '"';
+            position: absolute;
+            top: 12px;
+            left: 20px;
+            font-family: var(--FD);
+            font-size: 3.5rem;
+            color: var(--emb);
+            opacity: 0.25;
+            line-height: 1;
+        }
+        .tem_card p {
+            font-style: italic;
+            color: #4a3f33;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            padding-left: 12px;
+        }
+        .tem_card .tem_author {
+            font-weight: 600;
+            color: var(--slt);
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+        }
+        .tem_card .tem_author span {
+            color: var(--emb);
+            font-weight: 400;
+            font-size: 0.8rem;
+            display: block;
+        }
+        .contact_g {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            padding: 80px 0;
+        }
+        .contact_info h3 {
+            color: var(--slt);
+            margin-bottom: 16px;
+        }
+        .contact_info .info_line {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: #4a3f33;
+        }
+        .contact_info .info_line .ico {
+            font-size: 1.3rem;
+            min-width: 28px;
+            text-align: center;
+        }
+        .contact_info .btn_primary {
+            margin-top: 16px;
+        }
+        .contact_map {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+            aspect-ratio: 4/3;
+            background: var(--crm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--FD);
+            color: var(--slt);
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+            border: 2px dashed var(--stn);
+        }
+        .contact_map span {
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        footer {
+            background: var(--slt);
+            color: #c4bfb6;
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+        }
+        footer .wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        footer .footer_name {
+            font-family: var(--FD);
+            font-size: 1.2rem;
+            color: #e8e2d8;
+            letter-spacing: 0.05em;
+        }
+        footer a {
+            color: var(--snd);
+            transition: color 0.25s;
+        }
+        footer a:hover {
+            color: #e8d5b7;
+        }
+        footer .legal {
+            font-size: 0.75rem;
+            color: #9B8E7E;
+            margin-top: 8px;
+        }
+        @media (max-width: 768px) {
+            .nav_links {
+                display: none;
+                position: fixed;
+                top: var(--nav);
+                left: 0;
+                width: 100%;
+                background: rgba(250, 247, 242, 0.98);
+                flex-direction: column;
+                padding: 28px 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+                z-index: 999;
+            }
+            .nav_links.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .about_g {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 50px 0;
+            }
+            .race_cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .gal_g {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 50px 0;
+            }
+            .tem_c .tem_grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .contact_g {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 50px 0;
+            }
+            .hero_txt {
+                text-align: center;
+                padding: 0 8px;
+            }
+            .hero_txt h1 {
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .race_cards {
+                grid-template-columns: 1fr;
+            }
+            .gal_g {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .gal_g img {
+                aspect-ratio: 1/1;
+            }
+            .wrap {
+                padding: 0 16px;
+            }
+            .hero_txt h1 {
+                font-size: 1.7rem;
+            }
+            .hero_txt .subtitle {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="top">
+        <div class="wrap">
+            <a href="#" class="nav_logo">
+                Des Mille & Une Pattounes
+                <small>Berger Australien • Dordogne</small>
+            </a>
+            <ul class="nav_links" id="navLinks">
+                <li><a href="#about">À Propos</a></li>
+                <li><a href="#race">La Race</a></li>
+                <li><a href="#galerie">Galerie</a></li>
+                <li><a href="#temoignages">Témoignages</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <img class="hero_img" src="https://upload.chien.com/img/23-79820-des-mille-une-pattounes.jpg?1779109743" alt="Des Mille & Une Pattounes — Élevage Berger Australien Dordogne" loading="eager">
+        <div class="hero_overlay"></div>
+        <div class="wrap">
+            <div class="hero_txt">
+                <div class="location_tag">📍 Pechs-de-l'Espérance • Dordogne (24)</div>
+                <h1>Des Mille & Une<br>Pattounes</h1>
+                <p class="subtitle">Élevage professionnel & familial de Berger Australien — Passion, éthique et campagne au cœur du Périgord</p>
+                <a href="#contact" class="btn_primary">Nous Contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="alt_bg">
+        <div class="wrap about_g">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241105/photo-berger_australien/berger_australien_6.jpg" alt="Berger Australien heureux à la campagne" loading="lazy">
+            <div class="about_txt">
+                <h3>Notre Histoire</h3>
+                <p>Tombée amoureuse et devenue <span class="highlight">passionnée</span> de cette magnifique race qu'est le Berger Australien, j'ai ouvert mon élevage professionnel et familial en <span class="highlight">2020</span>.</p>
+                <p>Celui-ci est situé à <span class="highlight">Pechs-de-l'Espérance</span>, en Dordogne (24), à la limite du Lot (46) et de la Corrèze (19). Tous mes chiens sont équilibrés et entièrement testés, ils vivent avec nous et bénéficient d'une vie épanouie à la campagne en famille.</p>
+                <p>Je pratique plusieurs activités physiques avec mes protégés et je les emmènes aux quatre coins de la France. Chaque chiot naît et grandit au sein de notre foyer, entouré d'amour, de soins attentifs et d'une socialisation précoce rigoureuse.</p>
+                <p><strong>SIREN :</strong> 914879663</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="race" class="race_s">
+        <div class="wrap">
+            <div class="sec_title">
+                <h2>Le Berger Australien</h2>
+                <span>Une race d'exception</span>
+            </div>
+            <p class="race_intro">Intelligent, loyal et incroyablement polyvalent, le Berger Australien est bien plus qu'un chien de troupeau. C'est un compagnon de vie hors pair, doux avec les enfants et toujours prêt pour l'aventure.</p>
+            <div class="race_cards">
+                <div class="race_card">
+                    <span class="icon">🧠</span>
+                    <h4>Intelligence Vive</h4>
+                    <p>Parmi les races les plus intelligentes, il excelle en agility, obéissance et troupeau. Un esprit vif qui demande stimulation et complicité.</p>
+                </div>
+                <div class="race_card">
+                    <span class="icon">❤️</span>
+                    <h4>Fidèle & Affectueux</h4>
+                    <p>Très attaché à sa famille, il tisse des liens profonds. Doux et protecteur, il s'épanouit au contact des humains et des enfants.</p>
+                </div>
+                <div class="race_card">
+                    <span class="icon">🌿</span>
+                    <h4>Énergie & Nature</h4>
+                    <p>Grand sportif, il a besoin d'espace et d'exercice. La vie à la campagne est un cadre idéal pour son équilibre et son bonheur.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galerie" class="alt_bg">
+        <div class="wrap">
+            <div class="sec_title">
+                <h2>Notre Galerie</h2>
+                <span>Instants de vie à la maison</span>
+            </div>
+            <div class="gal_g">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241095/photo-berger_australien/berger_australien_1.jpg" alt="Berger Australien 1" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241097/photo-berger_australien/berger_australien_2.jpg" alt="Berger Australien 2" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241099/photo-berger_australien/berger_australien_3.jpg" alt="Berger Australien 3" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241100/photo-berger_australien/berger_australien_4.jpg" alt="Berger Australien 4" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241102/photo-berger_australien/berger_australien_5.jpg" alt="Berger Australien 5" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780241105/photo-berger_australien/berger_australien_6.jpg" alt="Berger Australien 6" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245536/photo-berger_australien/berger_australien_7.jpg" alt="Berger Australien 7" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245538/photo-berger_australien/berger_australien_8.jpg" alt="Berger Australien 8" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245539/photo-berger_australien/berger_australien_9.jpg" alt="Berger Australien 9" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245541/photo-berger_australien/berger_australien_10.jpg" alt="Berger Australien 10" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245543/photo-berger_australien/berger_australien_11.jpg" alt="Berger Australien 11" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245546/photo-berger_australien/berger_australien_12.jpg" alt="Berger Australien 12" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245547/photo-berger_australien/berger_australien_13.jpg" alt="Berger Australien 13" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245549/photo-berger_australien/berger_australien_14.jpg" alt="Berger Australien 14" loading="lazy">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780245551/photo-berger_australien/berger_australien_15.jpg" alt="Berger Australien 15" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section id="temoignages" class="tem_c">
+        <div class="wrap">
+            <div class="sec_title">
+                <h2>Témoignages</h2>
+                <span>Ce que disent nos familles</span>
+            </div>
+            <div class="tem_grid">
+                <div class="tem_card">
+                    <p>Nous avons adopté notre petite Maya en 2022. L'éleveuse a été d'une écoute et d'un professionnalisme remarquables. Maya est équilibrée, joyeuse, et en pleine santé. Un élevage de confiance, les yeux fermés.</p>
+                    <div class="tem_author">Sophie & Laurent<span>Dordogne (24)</span></div>
+                </div>
+                <div class="tem_card">
+                    <p>Un accompagnement exceptionnel avant et après l'adoption. Notre Berger Australien est un amour, parfaitement socialisé. On sent tout le sérieux et la passion derrière cet élevage. Merci infiniment.</p>
+                    <div class="tem_author">Caroline M.<span>Lot (46)</span></div>
+                </div>
+                <div class="tem_card">
+                    <p>Des chiots magnifiques, élevés avec soin dans un cadre familial chaleureux. La transparence sur les tests de santé et le suivi est totale. Je recommande à 200%.</p>
+                    <div class="tem_author">Thomas & Julie<span>Corrèze (19)</span></div>
+                </div>
+                <div class="tem_card">
+                    <p>Notre chienne a aujourd'hui 3 ans, elle est resplendissante de vitalité. L'élevage Des Mille & Une Pattounes est une référence. Le sérieux et l'amour des chiens se ressentent à chaque échange.</p>
+                    <div class="tem_author">Marc & Élodie<span>Gironde (33)</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="alt_bg">
+        <div class="wrap contact_g">
+            <div class="contact_info">
+                <h3>Contactez-nous</h3>
+                <p style="margin-bottom:18px;color:#4a3f33;">Une question ? Une visite ? Nous serons ravis d'échanger avec vous et de vous faire découvrir notre élevage.</p>
+                <div class="info_line">
+                    <span class="ico">📞</span>
+                    <span><strong>Téléphone :</strong> 06.21.64.04.28</span>
+                </div>
+                <div class="info_line">
+                    <span class="ico">📍</span>
+                    <span><strong>Adresse :</strong> Pechs-de-l'Espérance, 24370 Dordogne</span>
+                </div>
+                <div class="info_line">
+                    <span class="ico">🏷️</span>
+                    <span><strong>SIREN :</strong> 914879663</span>
+                </div>
+                <a href="tel:+33621640428" class="btn_primary">Appeler maintenant</a>
+            </div>
+            <div class="contact_map">
+                <span>📍<br>Pechs-de-l'Espérance<br>24370 Dordogne<br><small>À la limite du Lot (46)<br>et de la Corrèze (19)</small></span>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="footer_name">Des Mille & Une Pattounes</div>
+            <p>Élevage professionnel & familial de Berger Australien — Dordogne (24)</p>
+            <p><a href="tel:+33621640428">06.21.64.04.28</a> • SIREN 914879663</p>
+            <p class="legal">© 2024 Des Mille & Une Pattounes — Tous droits réservés. Photos non contractuelles.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
+```
+### Élevage Berger Australien
+
+Ce site vitrine a été conçu pour refléter l'univers chaleureux et professionnel d'un élevage de Bergers Australiens en Dordogne. Voici les choix clés :
+
+- **Palette naturelle et chaleureuse** : Les tons bleu ardoise, sable et terracotta s'inspirent des robes du Berger Australien (merle, rouge) et évoquent le terroir du Périgord, créant une ambiance authentique et rassurante.
+- **Typographie classique et lisible** : L'association de Cinzel (pour les titres élégants) et Raleway (pour le corps de texte moderne et propre) structure une hiérarchie visuelle claire, à la fois raffinée et accessible.
+- **Expérience narrative immersive** : La structure en sections distinctes raconte une histoire : d'une introduction visuelle forte (hero) à la présentation de la race, en passant par une galerie généreuse et des témoignages, le tout menant à un appel à l'action clair.
+- **Galerie photo comme preuve sociale** : La mise en avant d'une quinzaine de photos de la race dans une grille soignée sert de vitrine émotionnelle, renforçant la confiance et l'attachement.
+
+---
+
+**Optimisation du résultat :** Vous pouvez remplacer les témoignages fictifs par de vrais avis clients et personnaliser l'adresse exacte dans la section contact pour un affichage plus précis.

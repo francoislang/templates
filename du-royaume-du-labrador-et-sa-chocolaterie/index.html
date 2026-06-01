@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>Du Royaume du Labrador et sa Chocolaterie — Élevage Labrador Retriever | Normandie, France</title>
+  <meta name="description" content="Élevage familial de Labrador Retriever chocolat et silver en Normandie, proche Paris et Rouen. Chiots élevés en famille avec enfants, chats et autres chiens. Tests génétiques, pedigree, garantie légale. Tél. 07 63 76 83 32.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://du-royaume-du-labrador.fr/">
+  <meta property="og:title"       content="Du Royaume du Labrador et sa Chocolaterie — Labrador Retriever, Normandie">
+  <meta property="og:description" content="Élevage familial de Labrador Retriever chocolat et silver en Normandie. Chiots élevés en famille, tests génétiques, pedigree. SIREN 920462348.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-106225-du-royaume-du-labrador-et-sa-chocolaterie.jpg?1752406561">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Du Royaume du Labrador et sa Chocolaterie",
+        "description": "Élevage familial de Labrador Retriever chocolat et silver en Normandie, France. Chiots élevés en famille, tests génétiques, pedigree, garantie légale.",
+        "telephone": "+33763768332",
+        "identifier": "920462348",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Normandie",
+          "addressCountry": "FR"
+        },
+        "founder": { "@type": "Person", "name": "Du Royaume du Labrador et sa Chocolaterie" }
+      },
+      { "@type": "AnimalShelter", "name": "Du Royaume du Labrador et sa Chocolaterie — Élevage Labrador Retriever" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Du Royaume du Labrador et sa Chocolaterie
+       Design : Chocolat / Doré / Élégance canine
+       ============================================== */
+    :root {
+      --ony:  #2C1A0E;   /* chocolat noir profond */
+      --gld:  #C4973A;   /* or caramel chaud */
+      --amb:  #6B3A2A;   /* chocolat ambre */
+      --crm:  #F5EDE0;   /* parchemin crème */
+      --bg:   #FAF5EE;   /* ivoire chaud */
+      --stn:  #9A8272;   /* pierre chaude */
+      --txt:  #2C1A0E;   /* texte chocolat */
+      --FD:   'Cinzel', serif;       /* MODIFIER : police titres */
+      --FN:   'Raleway', sans-serif; /* MODIFIER : police corps */
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #C4973A 0%, #D4A84B 45%, #A87B2F 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); line-height: 1.7; overflow-x: hidden; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font-family: var(--FN); }
+    h1, h2, h3, h4 { font-family: var(--FD); font-weight: 600; line-height: 1.3; }
+
+    /* Utility */
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .sec_title { font-size: clamp(1.8rem, 4vw, 2.8rem); text-align: center; margin-bottom: 48px; color: var(--ony); position: relative; }
+    .sec_title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gld-gradient); margin: 16px auto 0; border-radius: 2px; }
+    .alt_bg { background: var(--crm); }
+    .btn_primary { display: inline-block; background: var(--gld-gradient); color: var(--ony); font-family: var(--FD); font-weight: 600; font-size: 0.95rem; padding: 14px 36px; border-radius: var(--r); letter-spacing: 0.5px; transition: all 0.3s ease; text-transform: uppercase; box-shadow: 0 4px 15px rgba(196, 151, 58, 0.3); }
+    .btn_primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(196, 151, 58, 0.45); }
+
+    /* Announcement Bar */
+    .ann_bar { background: var(--ony); color: var(--crm); text-align: center; padding: 8px 16px; font-size: 0.85rem; letter-spacing: 1px; font-weight: 500; position: relative; z-index: 1001; }
+    .ann_bar span { color: var(--gld); font-weight: 600; }
+
+    /* Navigation */
+    .nav_bar { position: sticky; top: 0; z-index: 1000; background: rgba(250, 245, 238, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(154, 130, 114, 0.2); height: var(--nav); display: flex; align-items: center; transition: all 0.3s ease; }
+    .nav_bar .wrap { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+    .nav_logo { font-family: var(--FD); font-size: 1.2rem; font-weight: 700; color: var(--ony); line-height: 1.2; }
+    .nav_logo span { display: block; font-size: 0.7rem; font-weight: 400; color: var(--gld); letter-spacing: 2px; text-transform: uppercase; }
+    .nav_links { display: flex; gap: 32px; list-style: none; align-items: center; }
+    .nav_links a { font-size: 0.9rem; font-weight: 500; color: var(--txt); transition: color 0.3s; letter-spacing: 0.5px; }
+    .nav_links a:hover { color: var(--gld); }
+    .nav_links .btn_primary { font-size: 0.8rem; padding: 10px 22px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
+    .hamburger span { width: 28px; height: 2px; background: var(--ony); transition: all 0.3s; }
+    @media (max-width: 768px) {
+      .nav_links { position: fixed; top: var(--nav); left: 0; right: 0; background: var(--bg); flex-direction: column; padding: 32px; gap: 20px; transform: translateY(-120%); transition: transform 0.4s ease; border-bottom: 2px solid var(--gld); z-index: 999; }
+      .nav_links.active { transform: translateY(0); }
+      .hamburger { display: flex; }
+    }
+
+    /* Hero */
+    .hero { position: relative; min-height: 85vh; display: flex; align-items: center; overflow: hidden; background: var(--ony); }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(44, 26, 14, 0.7) 0%, rgba(44, 26, 14, 0.3) 100%); z-index: 1; }
+    .hero_img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .hero_txt { position: relative; z-index: 2; max-width: 600px; color: var(--crm); padding: 40px 24px; }
+    .hero_txt h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); margin-bottom: 16px; line-height: 1.2; }
+    .hero_txt h1 span { color: var(--gld); }
+    .hero_txt .subtitle { font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; color: var(--crm); opacity: 0.9; letter-spacing: 1px; }
+    .hero_txt p { font-size: 1rem; margin-bottom: 28px; opacity: 0.85; max-width: 480px; }
+    @media (max-width: 768px) {
+      .hero { min-height: 70vh; align-items: flex-end; padding-bottom: 60px; }
+      .hero_txt { text-align: center; margin: 0 auto; }
+      .hero_txt p { margin: 0 auto 28px; }
+    }
+
+    /* About */
+    .about_g { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; padding: 80px 0; }
+    .about_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 20px 40px rgba(44, 26, 14, 0.15); }
+    .about_img img { width: 100%; height: 450px; object-fit: cover; }
+    .about_txt h2 { font-size: 2rem; margin-bottom: 20px; color: var(--ony); }
+    .about_txt h2 span { color: var(--gld); }
+    .about_txt p { margin-bottom: 16px; color: var(--txt); }
+    .about_txt .highlights { display: flex; gap: 24px; margin-top: 24px; flex-wrap: wrap; }
+    .about_txt .highlight { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--amb); }
+    .about_txt .highlight::before { content: '◆'; color: var(--gld); font-size: 0.7rem; }
+    @media (max-width: 768px) {
+      .about_g { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .about_txt .highlights { justify-content: center; }
+    }
+
+    /* Race Section */
+    .race_section { padding: 80px 0; background: var(--ony); color: var(--crm); text-align: center; }
+    .race_section .sec_title { color: var(--crm); }
+    .race_section .sec_title::after { background: var(--gld-gradient); }
+    .race_g { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 32px; margin-top: 40px; }
+    .race_card { background: rgba(245, 237, 224, 0.05); border: 1px solid rgba(196, 151, 58, 0.2); border-radius: var(--r); padding: 28px 20px; transition: all 0.3s; }
+    .race_card:hover { transform: translateY(-4px); border-color: var(--gld); }
+    .race_card h4 { font-size: 1.2rem; color: var(--gld); margin-bottom: 12px; }
+    .race_card p { font-size: 0.9rem; opacity: 0.8; }
+
+    /* Repro Section */
+    .repro_section { padding: 80px 0; }
+    .repro_c { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .repro_img { border-radius: var(--r); overflow: hidden; box-shadow: 0 20px 40px rgba(44, 26, 14, 0.15); }
+    .repro_img img { width: 100%; height: 400px; object-fit: cover; }
+    .repro_txt h3 { font-size: 1.8rem; margin-bottom: 16px; }
+    .repro_txt p { margin-bottom: 32px; }
+    .repro_txt .btn_primary { margin-top: 8px; }
+    @media (max-width: 768px) {
+      .repro_c { grid-template-columns: 1fr; text-align: center; }
+    }
+
+    /* Gallery */
+    .gal_section { padding: 80px 0; background: var(--crm); }
+    .gal_g { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+    .gal_g a { display: block; border-radius: var(--r); overflow: hidden; aspect-ratio: 1; transition: all 0.3s; box-shadow: 0 4px 12px rgba(44, 26, 14, 0.1); }
+    .gal_g a:hover { transform: scale(1.03); box-shadow: 0 8px 24px rgba(44, 26, 14, 0.2); }
+    .gal_g img { width: 100%; height: 100%; object-fit: cover; }
+    @media (max-width: 480px) {
+      .gal_g { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Testimonials */
+    .tem_section { padding: 80px 0; }
+    .tem_c { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-top: 40px; }
+    .tem_card { background: var(--bg); border: 1px solid rgba(154, 130, 114, 0.2); border-radius: var(--r); padding: 28px; text-align: center; transition: all 0.3s; }
+    .tem_card:hover { box-shadow: 0 8px 30px rgba(44, 26, 14, 0.1); }
+    .tem_card .stars { color: var(--gld); font-size: 1.2rem; margin-bottom: 12px; letter-spacing: 2px; }
+    .tem_card p { font-style: italic; margin-bottom: 16px; color: var(--txt); }
+    .tem_card .name { font-weight: 700; color: var(--amb); font-family: var(--FD); }
+
+    /* Contact */
+    .contact_g { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; padding: 80px 0; }
+    .contact_info h3 { font-size: 1.8rem; margin-bottom: 20px; }
+    .contact_info p { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .contact_info p::before { content: ''; display: inline-block; width: 8px; height: 8px; background: var(--gld); border-radius: 50%; flex-shrink: 0; }
+    .contact_form { background: var(--crm); padding: 32px; border-radius: var(--r); }
+    .contact_form h4 { font-size: 1.3rem; margin-bottom: 20px; }
+    .contact_form input, .contact_form textarea { width: 100%; padding: 12px 16px; margin-bottom: 16px; border: 1px solid rgba(154, 130, 114, 0.3); border-radius: var(--r); font-family: var(--FN); font-size: 0.95rem; background: var(--bg); transition: border-color 0.3s; }
+    .contact_form input:focus, .contact_form textarea:focus { outline: none; border-color: var(--gld); }
+    .contact_form textarea { min-height: 120px; resize: vertical; }
+    @media (max-width: 768px) {
+      .contact_g { grid-template-columns: 1fr; }
+    }
+
+    /* Footer */
+    .footer { background: var(--ony); color: var(--crm); padding: 48px 0 24px; text-align: center; }
+    .footer_grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 32px; text-align: left; }
+    .footer_col h4 { color: var(--gld); margin-bottom: 16px; font-size: 1.1rem; }
+    .footer_col p, .footer_col a { font-size: 0.9rem; opacity: 0.8; display: block; margin-bottom: 8px; }
+    .footer_col a:hover { opacity: 1; color: var(--gld); }
+    .footer_bottom { border-top: 1px solid rgba(245, 237, 224, 0.15); padding-top: 20px; font-size: 0.8rem; opacity: 0.6; }
+
+    /* Mobile nav active */
+    @media (max-width: 768px) {
+      .nav_links.active { display: flex; }
+    }
+
+    /* Scroll reveal simple */
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="ann_bar">
+    <span>✦</span> Chiots disponibles — Prochaine portée prévue • <span>Normandie</span> • <span>07 63 76 83 32</span> <span>✦</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav_bar" id="navbar">
+    <div class="wrap">
+      <a href="#" class="nav_logo">
+        Du Royaume du Labrador
+        <span>& sa Chocolaterie</span>
+      </a>
+      <ul class="nav_links" id="navLinks">
+        <li><a href="#hero">Accueil</a></li>
+        <li><a href="#about">Notre élevage</a></li>
+        <li><a href="#race">La race</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact" class="btn_primary">Nous contacter</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <img
+      src="https://upload.chien.com/img/23-106225-du-royaume-du-labrador-et-sa-chocolaterie.jpg?1752406561"
+      alt="Labrador Retriever chocolat — Du Royaume du Labrador et sa Chocolaterie"
+      class="hero_img"
+      loading="eager"
+    >
+    <div class="wrap">
+      <div class="hero_txt">
+        <p class="subtitle">Élevage familial en Normandie</p>
+        <h1>Du Royaume du Labrador <span>& sa Chocolaterie</span></h1>
+        <p>Passionnés par le Labrador Retriever chocolat et silver, nous élevons nos chiots avec amour dans un cadre familial, entourés d'enfants, de chats et d'autres chiens.</p>
+        <a href="#contact" class="btn_primary">Découvrir nos chiots</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about_section alt_bg" id="about">
+    <div class="wrap">
+      <div class="about_g fade-in">
+        <div class="about_img">
+          <img
+            src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_1.jpg"
+            alt="Labrador Retriever chocolat dans l'herbe"
+            loading="lazy"
+          >
+        </div>
+        <div class="about_txt">
+          <h2>Un élevage <span>passionné</span> en Normandie</h2>
+          <p>Situé en Normandie, à proximité de Paris et de Rouen, notre élevage familial se consacre exclusivement au Labrador Retriever chocolat et silver. Nos compagnons y grandissent dans un cadre chaleureux, entourés d'attention, de jeux et d'affection.</p>
+          <p>L'environnement quotidien est partagé avec les enfants, les chats et d'autres chiens. Chaque naissance est le fruit d'un choix réfléchi. Les femelles ne donnent naissance qu'une fois par an et vivent au sein du foyer. Les petits grandissent dans un univers stimulant, bercés par les bruits de la maison et les câlins de toute la famille.</p>
+          <div class="highlights">
+            <span class="highlight">Élevage familial</span>
+            <span class="highlight">Tests génétiques</span>
+            <span class="highlight">Pedigree</span>
+            <span class="highlight">Socialisation précoce</span>
+            <span class="highlight">Suivi à vie</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Race Section -->
+  <section class="race_section" id="race">
+    <div class="wrap">
+      <h2 class="sec_title">Le Labrador Retriever</h2>
+      <div class="race_g fade-in">
+        <div class="race_card">
+          <h4>Origines</h4>
+          <p>Originaire de Terre-Neuve, le Labrador Retriever était le compagnon des pêcheurs. Reconnu pour son intelligence et sa loyauté, il est aujourd'hui l'une des races les plus appréciées au monde.</p>
+        </div>
+        <div class="race_card">
+          <h4>Tempérament</h4>
+          <p>Doux, affectueux et joueur, le Labrador est un chien de famille par excellence. Il s'entend merveilleusement bien avec les enfants et les autres animaux.</p>
+        </div>
+        <div class="race_card">
+          <h4>Couleurs</h4>
+          <p>Notre élevage se consacre aux robes chocolat et silver. Ces teintes rares et élégantes font la fierté de notre chocolaterie canine.</p>
+        </div>
+        <div class="race_card">
+          <h4>Santé</h4>
+          <p>Tous nos reproducteurs sont testés génétiquement. Nous veillons à produire des chiots en pleine santé, conformes au standard de la race.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repro Section -->
+  <section class="repro_section">
+    <div class="wrap">
+      <div class="repro_c fade-in">
+        <div class="repro_img">
+          <img
+            src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_2.jpg"
+            alt="Labrador Retriever silver"
+            loading="lazy"
+          >
+        </div>
+        <div class="repro_txt">
+          <h3>Notre philosophie d'élevage</h3>
+          <p>Nous croyons en un élevage raisonné et respectueux du bien-être animal. Nos femelles ne portent qu'une fois par an maximum. Les chiots naissent et grandissent dans notre maison, au contact permanent de notre famille. Ils sont manipulés dès la naissance, stimulés et socialisés avant de rejoindre leur nouvelle famille avec un dossier complet.</p>
+          <p>Chaque chiot part avec son carnet de santé, son pedigree, les résultats des tests génétiques de ses parents et notre engagement de suivi à vie.</p>
+          <a href="#contact" class="btn_primary">Nous écrire</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gal_section" id="galerie">
+    <div class="wrap">
+      <h2 class="sec_title">Galerie — Nos Labradors</h2>
+      <div class="gal_g fade-in">
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_3.jpg" alt="Labrador chocolat" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_4.jpg" alt="Labrador silver" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_5.jpg" alt="Chiot Labrador" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_6.jpg" alt="Labrador dans la nature" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_7.jpg" alt="Labrador chocolat debout" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_9.jpg" alt="Chiot Labrador chocolat" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_10.jpg" alt="Labrador silver couché" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_11.jpg" alt="Labrador chocolat portrait" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_12.jpg" alt="Labrador en jeu" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_13.jpg" alt="Labrador silver adulte" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_14.jpg" alt="Chiot Labrador câlin" loading="lazy">
+        </a>
+        <a href="#" target="_blank" rel="noopener">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-labrador_retriever/labrador_retriever_15.jpg" alt="Labrador chocolat regard" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="tem_section alt_bg">
+    <div class="wrap">
+      <h2 class="sec_title">Témoignages de familles</h2>
+      <div class="tem_c fade-in">
+        <div class="tem_card">
+          <div class="stars">★★★★★</div>
+          <p>"Notre petit chocolat est arrivé dans notre famille il y a six mois. Un chiot équilibré, propre très vite, et tellement affectueux. L'élevage est sérieux et les conseils précieux."</p>
+          <span class="name">— Famille Dupont, Paris</span>
+        </div>
+        <div class="tem_card">
+          <div class="stars">★★★★★</div>
+          <p>"Un accompagnement exceptionnel avant et après l'adoption. Notre silver est en pleine santé, sociable et adore les enfants. Nous recommandons les yeux fermés."</p>
+          <span class="name">— Sophie & Thomas, Rouen</span>
+        </div>
+        <div class="tem_card">
+          <div class="stars">★★★★★</div>
+          <p>"Deuxième adoption chez cet élevage et toujours la même satisfaction. Les chiots sont magnifiques, bien dans leurs pattes et tellement attachants."</p>
+          <span class="name">— Famille Morel, Caen</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact_section" id="contact">
+    <div class="wrap">
+      <h2 class="sec_title">Nous contacter</h2>
+      <div class="contact_g fade-in">
+        <div class="contact_info">
+          <h3>Du Royaume du Labrador <span style="color:var(--gld);">& sa Chocolaterie</span></h3>
+          <p>Normandie, France</p>
+          <p>Proche Paris et Rouen</p>
+          <p>Tél. 07 63 76 83 32</p>
+          <p>SIREN 920462348</p>
+          <p style="margin-top:20px;">Visites sur rendez-vous uniquement. N'hésitez pas à nous appeler ou à remplir le formulaire pour toute demande d'information.</p>
+          <a href="tel:+33763768332" class="btn_primary" style="margin-top:16px;">📞 07 63 76 83 32</a>
+        </div>
+        <div class="contact_form">
+          <h4>Envoyez-nous un message</h4>
+          <form action="#" method="POST">
+            <input type="text" name="nom" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <input type="tel" name="telephone" placeholder="Votre téléphone">
+            <textarea name="message" placeholder="Votre message..." required></textarea>
+            <button type="submit" class="btn_primary">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer_grid">
+        <div class="footer_col">
+          <h4>Du Royaume du Labrador</h4>
+          <p>Élevage familial de Labrador Retriever chocolat et silver en Normandie.</p>
+          <p>SIREN 920462348</p>
+        </div>
+        <div class="footer_col">
+          <h4>Contact</h4>
+          <p>Tél. 07 63 76 83 32</p>
+          <p>Normandie, France</p>
+        </div>
+        <div class="footer_col">
+          <h4>Liens</h4>
+          <a href="#hero">Accueil</a>
+          <a href="#about">Notre élevage</a>
+          <a href="#race">La race</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer_bottom">
+        <p>&copy; 2025 Du Royaume du Labrador et sa Chocolaterie. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Simple scroll fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
