@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- MODIFIER : titre SEO -->
+  <title>L'Escale Pomsky — Élevage Pomsky | Nantes, France</title>
+  <meta name="description" content="Élevage familial de Pomsky à Nantes. Chiots F2 avec double pedigree, taille 9-12kg. Bien-être animal privilégié. SIREN 103689956. Tél. 06.17.55.54.57.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://lescale-pomsky.fr/">
+  <meta property="og:title"       content="L'Escale Pomsky — Élevage Pomsky, Nantes">
+  <meta property="og:description" content="Élevage familial de Pomsky à Nantes. Chiots F2 avec double pedigree, bien-être animal privilégié, élevage non intensif.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-113333-l-escale-pomsky.jpg?1778747427">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "L'Escale Pomsky",
+        "description": "Élevage familial de Pomsky à Nantes, France. Chiots F2 avec double pedigree, taille 9-12kg, bien-être animal privilégié.",
+        "telephone": "+33617555457",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Nantes",
+          "postalCode": "44000",
+          "addressCountry": "FR"
+        },
+        "identifier": "103689956"
+      },
+      { "@type": "AnimalShelter", "name": "L'Escale Pomsky — Élevage Pomsky Nantes" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — L'Escale Pomsky
+       Design : Arctique / Aventure / Husky
+       ============================================== */
+    :root {
+      --navy: #1A2332;   /* bleu arctique profond */
+      --ice:  #4A9EDF;   /* bleu glacier */
+      --snow: #E8F4FD;   /* blanc neige */
+      --crm:  #F9FAFB;   /* blanc crème */
+      --bg:   #FDFDFE;   /* blanc pur */
+      --stn:  #6B7888;   /* gris pierre */
+      --txt:  #1A2332;   /* texte */
+      --accent: #FF6B35; /* orange chaleureux */
+      --FD:   'Cinzel', serif;       /* police titres */
+      --FN:   'Raleway', sans-serif; /* police corps */
+      --nav:  72px;
+      --r:    6px;
+      --ice-gradient: linear-gradient(135deg, #4A9EDF 0%, #6BB6FF 45%, #2B7BC7 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- ORNEMENT DÉCORATIF — utilisé dans les section headers ---- */
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 0 auto .4rem;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--ice-gradient);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--ice);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .8rem 2.2rem;
+      font-family: var(--FN); font-weight: 600; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      transition: background .25s, color .25s, transform .18s, box-shadow .25s;
+      border-radius: var(--r);
+    }
+    .btn--ice {
+      background: var(--ice-gradient);
+      color: white;
+      box-shadow: 0 4px 20px rgba(74,158,223,.35);
+    }
+    .btn--ice:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(74,158,223,.5);
+      filter: brightness(1.08);
+    }
+    .btn--dark { background: var(--navy); color: var(--crm); border: 1px solid rgba(74,158,223,.25); }
+    .btn--dark:hover {
+      background: #243042;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(26,35,50,.4);
+    }
+
+    /* ============================================== 
+       HEADER + NAVIGATION
+       ============================================== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(253,253,254,.95); backdrop-filter: blur(16px);
+      z-index: 100; height: var(--nav);
+      border-bottom: 1px solid rgba(107,120,136,.08);
+      transition: background .2s;
+    }
+    .header.scrolled { background: rgba(253,253,254,.98); box-shadow: 0 2px 24px rgba(26,35,50,.08); }
+
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1400px; margin: 0 auto; padding: 0 2rem; height: 100%;
+    }
+    .logo {
+      font-family: var(--FD); font-size: 1.4rem; font-weight: 600;
+      color: var(--navy); letter-spacing: .04em;
+    }
+    .nav-links {
+      display: flex; gap: 2.2rem;
+    }
+    .nav-links a {
+      font-weight: 500; font-size: .82rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--txt);
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -6px; left: 0;
+      width: 0; height: 2px; background: var(--ice-gradient);
+      transition: width .25s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--ice); }
+
+    .menu-toggle {
+      display: none; flex-direction: column; gap: 4px;
+      width: 24px; height: 18px; cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block; height: 2px; width: 100%;
+      background: var(--txt); border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+
+    /* Navigation mobile */
+    .nav-mobile {
+      position: fixed; top: var(--nav); left: 0; right: 0; bottom: 0;
+      background: rgba(253,253,254,.98); backdrop-filter: blur(20px);
+      transform: translateX(100%); transition: transform .3s ease;
+      z-index: 90;
+    }
+    .nav-mobile.open { transform: translateX(0); }
+    .nav-mobile ul {
+      padding: 2rem; display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .nav-mobile a {
+      font-size: 1.1rem; font-weight: 500; padding: .8rem 0;
+      border-bottom: 1px solid rgba(107,120,136,.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-toggle { display: flex; }
+    }
+
+    /* ============================================== 
+       HERO SECTION
+       ============================================== */
+    .hero {
+      height: 100vh; min-height: 600px;
+      background: linear-gradient(rgba(26,35,50,.3), rgba(74,158,223,.2)),
+                  url('https://upload.chien.com/img/23-113333-l-escale-pomsky.jpg?1778747427') center/cover;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; color: white;
+      position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 60%, rgba(74,158,223,.15) 0%, rgba(26,35,50,.4) 70%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 720px; padding: 0 2rem;
+    }
+    .hero h1 {
+      font-family: var(--FD); font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 600; margin-bottom: 1.2rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,.25);
+      letter-spacing: .02em;
+    }
+    .hero-subtitle {
+      font-size: 1.3rem; font-weight: 400; margin-bottom: .8rem;
+      opacity: .95; letter-spacing: .03em;
+    }
+    .hero-description {
+      font-size: 1.05rem; line-height: 1.6; margin-bottom: 2.5rem;
+      opacity: .88; max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+    .hero-cta {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .hero-cta { flex-direction: column; align-items: center; }
+      .btn { width: 220px; text-align: center; }
+    }
+
+    /* ============================================== 
+       SECTIONS GÉNÉRIQUES
+       ============================================== */
+    .section {
+      padding: 5rem 0;
+    }
+    .section--dark {
+      background: linear-gradient(135deg, #1A2332 0%, #243042 100%);
+      color: var(--crm);
+    }
+    .section--light {
+      background: var(--snow);
+    }
+
+    .container {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 4rem;
+    }
+    .section-title {
+      font-family: var(--FD); font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600; margin-bottom: .8rem;
+      letter-spacing: .02em;
+    }
+    .section-subtitle {
+      font-size: 1.1rem; line-height: 1.6; color: var(--stn);
+      max-width: 600px; margin: 0 auto;
+    }
+    .section--dark .section-subtitle { color: rgba(249,250,251,.7); }
+
+    /* ============================================== 
+       ABOUT SECTION
+       ============================================== */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .about-image {
+      border-radius: var(--r);
+      overflow: hidden; height: 480px;
+      box-shadow: 0 12px 48px rgba(26,35,50,.15);
+    }
+    .about-content h3 {
+      font-family: var(--FD); font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 1.5rem; color: var(--navy);
+    }
+    .about-content p {
+      font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;
+      color: var(--stn);
+    }
+    .about-highlights {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .highlight-item {
+      padding: 1.2rem; background: white;
+      border-radius: var(--r); border-left: 4px solid var(--ice);
+      box-shadow: 0 4px 16px rgba(74,158,223,.08);
+    }
+    .highlight-item h4 {
+      font-weight: 600; font-size: .9rem;
+      color: var(--navy); margin-bottom: .4rem;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .highlight-item p {
+      font-size: .85rem; margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-image { height: 320px; }
+      .about-highlights { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================== 
+       BREEDING SECTION
+       ============================================== */
+    .breeding-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .breeding-card {
+      background: white; border-radius: var(--r);
+      overflow: hidden; box-shadow: 0 8px 32px rgba(26,35,50,.08);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .breeding-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(26,35,50,.15);
+    }
+    .breeding-card-image {
+      height: 240px; overflow: hidden;
+    }
+    .breeding-card-content {
+      padding: 1.8rem;
+    }
+    .breeding-card h3 {
+      font-family: var(--FD); font-size: 1.3rem; font-weight: 600;
+      margin-bottom: .8rem; color: var(--navy);
+    }
+    .breeding-card p {
+      font-size: .9rem; line-height: 1.6; color: var(--stn);
+      margin-bottom: 1rem;
+    }
+    .breeding-stats {
+      display: flex; justify-content: space-between;
+      padding-top: 1rem; border-top: 1px solid rgba(107,120,136,.1);
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-value {
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--ice); display: block;
+    }
+    .stat-label {
+      font-size: .7rem; text-transform: uppercase;
+      letter-spacing: .05em; color: var(--stn);
+    }
+
+    /* ============================================== 
+       GALLERY SECTION
+       ============================================== */
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      height: 280px; border-radius: var(--r);
+      overflow: hidden; cursor: pointer;
+      transition: transform .3s;
+      box-shadow: 0 8px 24px rgba(26,35,50,.12);
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    
+    @media (max-width: 768px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item { height: 240px; }
+    }
+
+    /* ============================================== 
+       CONTACT SECTION
+       ============================================== */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .contact-info h3 {
+      font-family: var(--FD); font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      width: 48px; height: 48px;
+      background: var(--ice-gradient);
+      border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      color: white; font-size: 1.1rem;
+    }
+    .contact-form {
+      background: rgba(232,244,253,.3);
+      padding: 2.5rem; border-radius: var(--r);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block; margin-bottom: .5rem;
+      font-weight: 500; font-size: .9rem;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: .8rem 1rem;
+      border: 1px solid rgba(107,120,136,.2);
+      border-radius: var(--r); font-family: inherit;
+      font-size: .9rem; transition: border-color .2s;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      outline: none; border-color: var(--ice);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    /* ============================================== 
+       FOOTER
+       ============================================== */
+    .footer {
+      background: var(--navy); color: var(--crm);
+      padding: 3rem 0 1.5rem;
+    }
+    .footer-content {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 2rem;
+    }
+    .footer-about h3 {
+      font-family: var(--FD); font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+    .footer-about p {
+      line-height: 1.6; color: rgba(249,250,251,.8);
+      margin-bottom: 1rem;
+    }
+    .footer-links h4 {
+      font-weight: 600; margin-bottom: 1rem;
+      font-size: .9rem; text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .footer-links ul li {
+      margin-bottom: .6rem;
+    }
+    .footer-links a {
+      color: rgba(249,250,251,.7);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--ice); }
+    .footer-bottom {
+      padding-top: 2rem; border-top: 1px solid rgba(249,250,251,.1);
+      text-align: center; font-size: .85rem;
+      color: rgba(249,250,251,.6);
+    }
+
+    @media (max-width: 768px) {
+      .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ============================================== 
+       HEADER + NAVIGATION
+       ============================================== -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#" class="logo">L'Escale Pomsky</a>
+      
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#elevage">Élevage</a></li>
+        <li><a href="#nos-chiens">Nos Chiens</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <button class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <nav class="nav-mobile" id="navMobile">
+      <ul>
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#elevage">Élevage</a></li>
+        <li><a href="#nos-chiens">Nos Chiens</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ============================================== 
+       HERO SECTION
+       ============================================== -->
+  <section class="hero" id="accueil">
+    <div class="hero-content">
+      <h1 class="reveal">L'Escale Pomsky</h1>
+      <p class="hero-subtitle reveal">Élevage Familial de Pomsky</p>
+      <p class="hero-description reveal">
+        Élevage non intensif à Nantes, privilégiant la proximité et le respect du bien-être animal. 
+        Nos chiots F2 avec double pedigree vous offrent un compagnon exceptionnel de 9 à 12 kg.
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#contact" class="btn btn--ice">Nous Contacter</a>
+        <a href="#nos-chiens" class="btn btn--dark">Découvrir nos Chiens</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== 
+       ABOUT / ÉLEVAGE SECTION
+       ============================================== -->
+  <section class="section" id="elevage">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Notre Philosophie</h2>
+        <p class="section-subtitle">
+          Un élevage familial où chaque chiot grandit dans l'amour et le respect, 
+          pour vous offrir le meilleur compagnon de vie.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311270/photo-pomsky/pomsky_1.jpg" alt="Pomsky de l'Escale">
+        </div>
+        
+        <div class="about-content reveal">
+          <h3>L'Escale Pomsky, votre refuge de confiance</h3>
+          <p>
+            L'Escale Pomsky est un élevage familial, non intensif, privilégiant la proximité et le respect du bien-être animal. 
+            Nous mettons tout notre cœur à élever des Pomsky exceptionnels dans un environnement sain et aimant.
+          </p>
+          <p>
+            Tokyo, notre femelle F2, et Vaudou, notre mâle F2, sont tous deux issus de lignées avec double pedigree. 
+            Leurs chiots présentent une morphologie parfaite et un tempérament équilibré, idéal pour la vie de famille.
+          </p>
+
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <h4>Taille Standard</h4>
+              <p>9 à 12 kilos, parfait pour appartement ou maison</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Double Pedigree</h4>
+              <p>Lignées certifiées et traçables</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Bien-être Animal</h4>
+              <p>Élevage non intensif, respect du rythme naturel</p>
+            </div>
+            <div class="highlight-item">
+              <h4>Suivi Personnalisé</h4>
+              <p>Accompagnement avant et après l'adoption</p>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn--ice">Réserver votre Chiot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== 
+       NOS CHIENS SECTION
+       ============================================== -->
+  <section class="section section--light" id="nos-chiens">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Nos Reproducteurs</h2>
+        <p class="section-subtitle">
+          Découvrez Tokyo et Vaudou, nos reproducteurs F2 exceptionnels 
+          aux lignées prestigieuses et au tempérament remarquable.
+        </p>
+      </div>
+
+      <div class="breeding-grid">
+        <div class="breeding-card reveal">
+          <div class="breeding-card-image">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311273/photo-pomsky/pomsky_2.jpg" alt="Tokyo - Femelle Pomsky F2">
+          </div>
+          <div class="breeding-card-content">
+            <h3>Tokyo</h3>
+            <p>
+              Femelle F2 au caractère doux et affectueux. Tokyo présente une morphologie 
+              parfaite et transmet ses qualités exceptionnelles à sa descendance. 
+              Son tempérament équilibré fait d'elle une mère exemplaire.
+            </p>
+            <div class="breeding-stats">
+              <div class="stat">
+                <span class="stat-value">F2</span>
+                <span class="stat-label">Génération</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">10kg</span>
+                <span class="stat-label">Poids</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Femelle</span>
+                <span class="stat-label">Sexe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="breeding-card reveal">
+          <div class="breeding-card-image">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311275/photo-pomsky/pomsky_3.jpg" alt="Vaudou - Mâle Pomsky F2">
+          </div>
+          <div class="breeding-card-content">
+            <h3>Vaudou</h3>
+            <p>
+              Mâle F2 au caractère noble et protecteur. Vaudou possède toutes les qualités 
+              du Pomsky idéal : intelligent, loyal et d'une beauté saisissante. 
+              Il transmet sa prestance naturelle à ses descendants.
+            </p>
+            <div class="breeding-stats">
+              <div class="stat">
+                <span class="stat-value">F2</span>
+                <span class="stat-label">Génération</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">12kg</span>
+                <span class="stat-label">Poids</span>
+              </div>
+              <div class="stat">
+                <span class="stat-value">Mâle</span>
+                <span class="stat-label">Sexe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== 
+       GALERIE SECTION
+       ============================================== -->
+  <section class="section section--dark" id="galerie">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Galerie Photos</h2>
+        <p class="section-subtitle">
+          Découvrez la beauté et l'élégance de nos Pomsky à travers 
+          cette sélection de photos de nos reproducteurs et chiots.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311270/photo-pomsky/pomsky_1.jpg" alt="Pomsky L'Escale - Photo 1">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311273/photo-pomsky/pomsky_2.jpg" alt="Pomsky L'Escale - Photo 2">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311275/photo-pomsky/pomsky_3.jpg" alt="Pomsky L'Escale - Photo 3">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311277/photo-pomsky/pomsky_4.jpg" alt="Pomsky L'Escale - Photo 4">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311279/photo-pomsky/pomsky_5.jpg" alt="Pomsky L'Escale - Photo 5">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://upload.chien.com/img/23-113333-l-escale-pomsky.jpg?1778747427" alt="Pomsky L'Escale - Photo 6">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== 
+       CONTACT SECTION
+       ============================================== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Nous Contacter</h2>
+        <p class="section-subtitle">
+          Une question sur nos Pomsky ? Envie de réserver un chiot ? 
+          N'hésitez pas à nous contacter, nous vous répondrons rapidement.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Informations de Contact</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <strong>Téléphone</strong><br>
+              <a href="tel:+33617555457">06.17.55.54.57</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Localisation</strong><br>
+              Nantes, France<br>
+              <small>Visites sur rendez-vous uniquement</small>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <strong>SIREN</strong><br>
+              103689956<br>
+              <small>Élevage déclaré et certifié</small>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">⏰</div>
+            <div>
+              <strong>Disponibilités</strong><br>
+              Lundi - Samedi : 9h - 18h<br>
+              <small>Dimanche sur rendez-vous</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <form>
+            <div class="form-group">
+              <label for="name">Nom complet *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Téléphone</label>
+              <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" placeholder="Réservation chiot, question...">
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet d'adoption..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn--ice">Envoyer le Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================== 
+       FOOTER
+       ============================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-about">
+          <h3>L'Escale Pomsky</h3>
+          <p>
+            Élevage familial de Pomsky à Nantes, spécialisé dans l'élevage non intensif 
+            de chiens F2 avec double pedigree. Nous privilégions le bien-être animal 
+            et l'accompagnement personnalisé de chaque famille adoptante.
+          </p>
+          <p><strong>SIREN :</strong> 103689956</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#elevage">Notre Élevage</a></li>
+            <li><a href="#nos-chiens">Nos Reproducteurs</a></li>
+            <li><a href="#galerie">Galerie Photos</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Informations</h4>
+          <ul>
+            <li><a href="tel:+33617555457">06.17.55.54.57</a></li>
+            <li>Nantes, France</li>
+            <li>Visites sur RDV</li>
+            <li>Lun-Sam : 9h-18h</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 L'Escale Pomsky. Tous droits réservés. | Élevage familial de Pomsky à Nantes</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================== 
+       JAVASCRIPT
+       ============================================== -->
+  <script>
+    // ---- Navigation scroll effect ----
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // ---- Mobile menu toggle ----
+    const menuToggle = document.getElementById('menuToggle');
+    const navMobile = document.getElementById('navMobile');
+    
+    menuToggle.addEventListener('click', () => {
+      navMobile.classList.toggle('open');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-mobile a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMobile.classList.remove('open');
+      });
+    });
+
+    // ---- Scroll reveal animation ----
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all elements with reveal class
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // ---- Smooth scroll for anchor links ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const headerHeight = document.querySelector('.header').offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // ---- Contact form handling ----
+    document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const phone = formData.get('phone');
+      const subject = formData.get('subject');
+      const message = formData.get('message');
+      
+      // Simple validation
+      if (!name || !email || !message) {
+        alert('Veuillez remplir tous les champs obligatoires.');
+        return;
+      }
+      
+      // Create mailto link
+      const mailtoLink = `mailto:contact@lescale-pomsky.fr?subject=${encodeURIComponent(subject || 'Contact depuis le site web')}&body=${encodeURIComponent(`
+Nom: ${name}
+Email: ${email}
+Téléphone: ${phone || 'Non renseigné'}
+
+Message:
+${message}
+      `)}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Reset form
+      this.reset();
+      
+      // Show confirmation
+      alert('Votre message a été préparé dans votre client email. Merci de l\'envoyer pour finaliser votre demande.');
+    });
+  </script>
+</body>
+</html>

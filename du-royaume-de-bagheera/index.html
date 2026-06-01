@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Du Royaume de Bagheera — Élevage Bichon Frisé | France</title>
+  <meta name="description" content="Élevage familial de Bichons Frisés dans les Alpes françaises. Lignées d'exposition, chiens de compagnie, chiots disponibles. SIREN : 478917859. Tél. 06.87.79.02.15.">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://du-royaume-de-bagheera.fr/">
+  <meta property="og:title"       content="Du Royaume de Bagheera — Bichon Frisé, France">
+  <meta property="og:description" content="Élevage familial de Bichons Frisés dans les Alpes françaises. Lignées d'exposition, chiens de compagnie, 20 ans d'expérience.">
+  <meta property="og:image"       content="https://upload.chien.com/img/23-70414-du-royaume-de-bagheera.jpg?1720422344">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "name": "Du Royaume de Bagheera",
+        "description": "Élevage familial de Bichon Frisé dans les Alpes françaises. Chiots issus de lignées d'exposition, élevage avec 20 ans d'expérience.",
+        "telephone": "+33687790215",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Alpes",
+          "addressCountry": "FR"
+        },
+        "founder": { "@type": "Person", "name": "Éleveur Du Royaume de Bagheera" },
+        "identifier": "478917859"
+      },
+      { "@type": "AnimalShelter", "name": "Du Royaume de Bagheera — Élevage Bichon Frisé France" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ==============================================
+       VARIABLES CSS — Du Royaume de Bagheera
+       Design : Montagne / Neige / Douceur
+       ============================================== */
+    :root {
+      --snow:  #FFFFFF;   /* blanc neige */
+      --cloud: #F8F6F3;   /* nuage crème */
+      --cream: #FBF9F6;   /* crème douce */
+      --sage:  #A8B5A0;   /* sauge des Alpes */
+      --pine:  #4A5D4A;   /* pin des montagnes */
+      --stone: #8B9B8B;   /* pierre alpine */
+      --warm:  #E8DDD4;   /* beige chaleureux */
+      --txt:   #2D3D2D;   /* texte nature */
+      --FD:   'Cinzel', serif;       
+      --FN:   'Raleway', sans-serif; 
+      --nav:  72px;
+      --r:    6px;
+      --sage-gradient: linear-gradient(135deg, #A8B5A0 0%, #C2CDB9 45%, #91A089 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--cream); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ---- SCROLL REVEAL ---- */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    /* ---- ORNEMENT DÉCORATIF ---- */
+    .ornament {
+      display: flex; align-items: center; justify-content: center;
+      gap: .8rem; margin: 0 auto .4rem;
+    }
+    .ornament::before, .ornament::after {
+      content: '';
+      display: block;
+      height: 1px;
+      width: 48px;
+      background: var(--sage-gradient);
+    }
+    .ornament-diamond {
+      width: 6px; height: 6px;
+      background: var(--sage);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    /* ---- BOUTONS ---- */
+    .btn {
+      display: inline-block; padding: .8rem 2.2rem;
+      font-family: var(--FN); font-weight: 600; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      transition: background .25s, color .25s, transform .18s, box-shadow .25s;
+      border-radius: var(--r);
+    }
+    .btn--sage {
+      background: var(--sage-gradient);
+      color: var(--snow);
+      box-shadow: 0 4px 20px rgba(168,181,160,.35);
+    }
+    .btn--sage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(168,181,160,.5);
+      filter: brightness(1.08);
+    }
+    .btn--dark { background: var(--pine); color: var(--cream); border: 1px solid rgba(168,181,160,.25); }
+    .btn--dark:hover {
+      background: #3a4d3a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(45,61,45,.4);
+    }
+
+    /* ---- HEADER / NAVIGATION ---- */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(251,249,246,.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(168,181,160,.15);
+      transition: background .3s;
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: var(--nav);
+    }
+    .logo { font-family: var(--FD); font-weight: 600; font-size: 1.5rem; color: var(--pine); }
+    .nav-menu {
+      display: flex; gap: 2.5rem;
+    }
+    .nav-link {
+      font-weight: 500; font-size: .85rem; letter-spacing: .05em;
+      transition: color .25s;
+    }
+    .nav-link:hover { color: var(--sage); }
+    .nav-toggle { display: none; flex-direction: column; gap: 4px; }
+    .nav-toggle span { width: 24px; height: 2px; background: var(--pine); transition: .3s; }
+
+    /* ---- HERO ---- */
+    .hero {
+      height: 100vh; min-height: 600px;
+      background: linear-gradient(rgba(251,249,246,.1), rgba(168,181,160,.2)),
+                  url('https://upload.chien.com/img/23-70414-du-royaume-de-bagheera.jpg?1720422344') center/cover;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; color: var(--txt);
+      position: relative;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(251,249,246,.3), rgba(248,246,243,.6));
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 2rem; }
+    .hero-title {
+      font-family: var(--FD); font-weight: 700; font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 1rem; line-height: 1.1;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.3rem); font-weight: 400;
+      margin-bottom: 2.5rem; opacity: .9; line-height: 1.5;
+    }
+    .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ---- SECTIONS GÉNÉRALES ---- */
+    .section { padding: 5rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-title {
+      font-family: var(--FD); font-weight: 600; font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: .5rem; color: var(--pine);
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--stone); line-height: 1.6; max-width: 600px; margin: 0 auto;
+    }
+
+    /* ---- ABOUT ---- */
+    .about { background: var(--cloud); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .about-text h3 {
+      font-family: var(--FD); font-size: 1.8rem; color: var(--pine);
+      margin-bottom: 1.5rem;
+    }
+    .about-text p {
+      font-size: 1rem; line-height: 1.7; color: var(--txt); margin-bottom: 1.5rem;
+    }
+    .about-image {
+      border-radius: var(--r); overflow: hidden; aspect-ratio: 4/3;
+      box-shadow: 0 20px 60px rgba(168,181,160,.2);
+    }
+
+    /* ---- SERVICES ---- */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .service-card {
+      background: var(--snow); padding: 2.5rem 2rem; border-radius: var(--r);
+      text-align: center; transition: transform .3s, box-shadow .3s;
+      box-shadow: 0 8px 32px rgba(168,181,160,.1);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(168,181,160,.2);
+    }
+    .service-icon {
+      width: 60px; height: 60px; margin: 0 auto 1.5rem;
+      background: var(--sage-gradient); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; color: var(--snow);
+    }
+    .service-card h3 {
+      font-family: var(--FD); font-size: 1.4rem; color: var(--pine);
+      margin-bottom: 1rem;
+    }
+    .service-card p { color: var(--stone); line-height: 1.6; }
+
+    /* ---- GALERIE ---- */
+    .gallery { background: var(--cloud); }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .gallery-item {
+      aspect-ratio: 4/3; border-radius: var(--r); overflow: hidden;
+      transition: transform .3s, box-shadow .3s; cursor: pointer;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 60px rgba(168,181,160,.3);
+    }
+
+    /* ---- CONTACT ---- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .contact-info h3 {
+      font-family: var(--FD); font-size: 1.8rem; color: var(--pine);
+      margin-bottom: 1.5rem;
+    }
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+    }
+    .contact-icon {
+      width: 40px; height: 40px; background: var(--sage-gradient);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--snow); font-size: .9rem; flex-shrink: 0;
+    }
+    .contact-form {
+      background: var(--snow); padding: 2.5rem; border-radius: var(--r);
+      box-shadow: 0 20px 60px rgba(168,181,160,.1);
+    }
+    .form-group { margin-bottom: 1.5rem; }
+    .form-label {
+      display: block; margin-bottom: .5rem; font-weight: 600;
+      color: var(--pine); font-size: .9rem;
+    }
+    .form-input, .form-textarea {
+      width: 100%; padding: .8rem 1rem; border: 1px solid rgba(168,181,160,.3);
+      border-radius: var(--r); font-family: var(--FN); font-size: .9rem;
+      background: var(--cream); transition: border-color .25s;
+    }
+    .form-input:focus, .form-textarea:focus {
+      outline: none; border-color: var(--sage);
+    }
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--pine); color: var(--cream); padding: 3rem 0 2rem;
+      text-align: center;
+    }
+    .footer-content { margin-bottom: 2rem; }
+    .footer-logo {
+      font-family: var(--FD); font-size: 1.8rem; font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .footer-text { opacity: .8; line-height: 1.6; }
+    .footer-bottom {
+      border-top: 1px solid rgba(168,181,160,.2); padding-top: 2rem;
+      font-size: .85rem; opacity: .7;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 768px) {
+      .nav-menu { 
+        position: fixed; top: var(--nav); left: 0; right: 0;
+        background: var(--cream); flex-direction: column; padding: 2rem;
+        transform: translateY(-100%); opacity: 0; visibility: hidden;
+        transition: transform .3s, opacity .3s, visibility .3s;
+      }
+      .nav-menu.active {
+        transform: translateY(0); opacity: 1; visibility: visible;
+      }
+      .nav-toggle { display: flex; }
+      
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      
+      .section { padding: 3rem 0; }
+      .container { padding: 0 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">Du Royaume de Bagheera</div>
+      <nav class="nav">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#accueil" class="nav-link">Accueil</a></li>
+          <li><a href="#elevage" class="nav-link">L'Élevage</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#galerie" class="nav-link">Galerie</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="accueil" class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Du Royaume de Bagheera</h1>
+      <p class="hero-subtitle">
+        Élevage familial de Bichons Frisés dans les Alpes françaises.<br>
+        20 ans de passion, lignées d'exposition, vie de famille au cœur des montagnes.
+      </p>
+      <div class="hero-buttons">
+        <a href="#elevage" class="btn btn--sage">Découvrir l'élevage</a>
+        <a href="#contact" class="btn btn--dark">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="elevage" class="section about">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Notre Histoire</h2>
+        <p class="section-subtitle">
+          Une passion née il y a 20 ans, dans le cœur des Alpes françaises
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h3>Une Vie Partagée avec nos Bichons</h3>
+          <p>
+            Il y a 20 ans, mon premier Bichon Frisé est arrivé dans mon cœur… Aujourd'hui, mes petits Bichons et mes retraités partagent ma douce vie à la montagne, dans les Alpes.
+          </p>
+          <p>
+            J'ai un petit élevage familial. Mes chiens sont issus d'une très belle lignée et ont d'excellents résultats en expositions canines. Mes Bichons vivent et partagent ma vie au quotidien, ils me suivent partout en balade, en vacances et adorent passer des heures à se faire câliner dans mes bras.
+          </p>
+          <p>
+            Il y a une naissance environ tous les ans, permettant à chaque chiot de recevoir toute l'attention et l'amour nécessaires pour devenir un compagnon exceptionnel.
+          </p>
+          <a href="#contact" class="btn btn--sage">Rencontrer nos Bichons</a>
+        </div>
+        <div class="about-image reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311401/photo-bichon_frise/bichon_frise_1.jpg" alt="Bichon Frisé Du Royaume de Bagheera">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section services">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Nos Engagements</h2>
+        <p class="section-subtitle">
+          Un élevage responsable pour des compagnons d'exception
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🏔️</div>
+          <h3>Vie Alpine</h3>
+          <p>Nos Bichons grandissent dans l'environnement pur des Alpes, avec de grands espaces pour s'épanouir et des balades quotidiennes en montagne.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🏆</div>
+          <h3>Lignées d'Excellence</h3>
+          <p>Nos reproducteurs sont issus de très belles lignées avec d'excellents résultats en expositions canines, garantissant des chiots de qualité.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">❤️</div>
+          <h3>Élevage Familial</h3>
+          <p>Chaque Bichon vit avec nous au quotidien, partage nos vacances et reçoit tout l'amour nécessaire pour son épanouissement.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🎯</div>
+          <h3>Naissances Limitées</h3>
+          <p>Une portée par an maximum, permettant un suivi personnalisé de chaque chiot et une socialisation optimale.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">📋</div>
+          <h3>Suivi Complet</h3>
+          <p>Tests de santé, vaccinations, identification, et accompagnement personnalisé pour l'arrivée dans votre famille.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <div class="service-icon">🤝</div>
+          <h3>Accompagnement</h3>
+          <p>Conseil et suivi après l'adoption, nous restons disponibles pour vous accompagner dans l'éducation de votre Bichon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERIE -->
+  <section id="galerie" class="section gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Nos Bichons Frisés</h2>
+        <p class="section-subtitle">
+          Découvrez la beauté et la douceur de nos compagnons alpins
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311403/photo-bichon_frise/bichon_frise_2.jpg" alt="Bichon Frisé adulte">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311406/photo-bichon_frise/bichon_frise_3.jpg" alt="Chiots Bichon Frisé">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311407/photo-bichon_frise/bichon_frise_4.jpg" alt="Bichon Frisé en exposition">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780311409/photo-bichon_frise/bichon_frise_5.jpg" alt="Bichon Frisé en montagne">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="ornament">
+          <div class="ornament-diamond"></div>
+        </div>
+        <h2 class="section-title">Nous Contacter</h2>
+        <p class="section-subtitle">
+          Prêt à accueillir un Bichon Frisé dans votre famille ?
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Élevage Du Royaume de Bagheera</h3>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📱</div>
+            <div>
+              <strong>Téléphone</strong><br>
+              <a href="tel:+33687790215">06.87.79.02.15</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <strong>Localisation</strong><br>
+              Alpes françaises<br>
+              France
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div>
+              <strong>SIREN</strong><br>
+              478917859
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🐕</div>
+            <div>
+              <strong>Spécialité</strong><br>
+              Bichon Frisé<br>
+              Lignées d'exposition
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form reveal">
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="name" class="form-label">Nom complet</label>
+              <input type="text" id="name" name="name" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Téléphone</label>
+              <input type="tel" id="phone" name="phone" class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Votre message</label>
+              <textarea id="message" name="message" class="form-textarea" 
+                        placeholder="Parlez-nous de votre projet d'adoption, votre expérience avec les chiens..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--sage" style="width: 100%;">
+              Envoyer le message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">Du Royaume de Bagheera</div>
+        <p class="footer-text">
+          Élevage familial de Bichons Frisés dans les Alpes françaises<br>
+          20 ans de passion • Lignées d'exposition • SIREN : 478917859
+        </p>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Du Royaume de Bagheera. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation mobile
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Fermer le menu mobile lors du clic sur un lien
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('.header');
+      if (window.scrollY > 100) {
+        header.style.background = 'rgba(251,249,246,.98)';
+      } else {
+        header.style.background = 'rgba(251,249,246,.95)';
+      }
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offsetTop = target.offsetTop - 72;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
