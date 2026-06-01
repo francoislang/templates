@@ -134,17 +134,16 @@ CONTENU À ADAPTER :
 {photos_list}
 
 INSTRUCTIONS STRICTES :
-- COPIE EXACTEMENT la même structure HTML, les mêmes classes CSS et les mêmes sections que le site joyaux-d-anubis
-- NE CRÉE PAS de nouvelles sections ou classes - utilise exactement les mêmes (hero, hero_txt, hero_img, sec_title, about_g, repro_c, gal_g, tem_c, contact_g, btn_primary, alt_bg, footer)
-- NE METS PAS de texte explicatif, de notes de design, ou de commentaires sur le design
-- N'AJOUTE PAS de section "Design", "Engagements", "Philosophie" ou autre qui n'existe pas dans joyaux-d-anubis
-- Utilise les photos fournies dans hero (plein ecran), about (2 colonnes), galerie (grille de 12 minimum), race
-- Tu DOIS utiliser CHAQUE photo fournie. S'il y a 15 photos, met-les TOUTES dans la galerie. Ne les répète pas.
-- Utilise UNIQUEMENT les photos Cloudinary listées dans les URLs fournies (res.cloudinary.com). NE GENERE PAS de nouvelles URLs, n'utilise PAS pexels.com ni d'autres sources externes
-- Adapte les couleurs à la race
-- Garde Cinzel + Raleway comme polices
-- Schema.org JSON-LD, Open Graph, meta description SEO
-- Réponds UNIQUEMENT avec le code HTML complet, RIEN d'autre"""
+- COPIE EXACTEMENT la structure HTML, les classes CSS et les sections de joyaux-d-anubis (hero, hero_txt, hero_img, sec_title, about_g, repro_c, gal_g, tem_c, contact_g, btn_primary, alt_bg)
+- NE CRÉE PAS de nouvelles sections. N'AJOUTE PAS de texte explicatif ou notes de design.
+- PREMIÈRE PHOTO (hero) : utilise TOUJOURS une photo Cloudinary (res.cloudinary.com), JAMAIS la photo chien.com qui est pixelisée
+- FORMULAIRE DE CONTACT : ajoute un formulaire simple (nom, email, message) dans la section contact
+- FOOTER : ajoute un footer complet avec : © 2026 NomElevage, SIRET si fourni, email de contact, "Politique de confidentialité", "Mentions légales", "CGV" (liens #)
+- ANIMATIONS SCROLL : ajoute des animations au scroll (reveal, fade-in) sur toutes les sections
+- Utilise les photos Cloudinary fournies. Toutes les 15 photos dans la galerie (grille). Ne les répète pas. Pas de photos externes.
+- Adapte les couleurs à la race. Garde Cinzel + Raleway.
+- Schema.org JSON-LD, Open Graph, meta SEO.
+- Réponds UNIQUEMENT avec le code HTML complet."""
 
     r = requests.post("https://openrouter.ai/api/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
