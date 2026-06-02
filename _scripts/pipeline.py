@@ -21,9 +21,12 @@ def slugify(text: str) -> str:
     return text.lower().replace("'", "").replace(" ", "-").strip("-")
 
 def generate_demo_site(profile: dict) -> str | None:
-    """Genere un site vitrine via le template Python."""
-    from generator import generate_site
+    """Genere un site vitrine via DeepSeek V4 Pro (OpenRouter)."""
+    import requests, json, os, re
+    from pathlib import Path
+    from generator import slugify
     from photos import get_photos_for_race
+
     name = profile["name"]
     race = profile["races"][0]
     phone = profile.get("phone", "")
@@ -32,13 +35,83 @@ def generate_demo_site(profile: dict) -> str | None:
     description = profile.get("description", "") or ""
     siren = profile.get("siren", "")
     photo_url = profile.get("photo_url", "")
+
+    slug = slugify(name)
+    target_file = Path(f"/workspace/templates/{slug}/index.html")
+    if target_file.exists():
+        return f"https://francoislang.github.io/templates/{slug}"
+
     photos_race = get_photos_for_race(race, count=15) or []
-    r = generate_site(name=name, race=race, phone=phone,
-                     city=ville or departement,
-                     description=description, siren=siren,
-                     departement=departement,
-                     photo_url=photo_url, photos_race=photos_race)
-    return r[1] if r else None
+
+    # Cle OpenRouter
+    key = ""
+    for f_path in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
+        try:
+            for line in open(f_path):
+                if "ANTHROPIC_API_KEY" in line and "=" in line:
+                    key = line.split("=", 1)[1].strip()
+                    if key: break
+        except:
+            pass
+
+    if not key:
+        from generator import generate_site
+        r = generate_site(name=name, race=race, phone=phone, city=ville or departement,
+                         description=description, siren=siren, departement=departement,
+                         photo_url=photo_url, photos_race=photos_race)
+        return r[1] if r else None
+
+    lieu = f"à {ville} ({departement})" if ville and departement else "en France"
+    photos_list = "\n".join(f"  - {p}" for p in photos_race)
+
+    prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens. Un seul index.html complet (CSS/JS inline).
+
+INSPIRE-TOI DU SITE /workspace/templates/joyaux-d-anubis/index.html pour la structure, les sections, les classes CSS.
+
+CONTENU :
+- Nom élevage : {name}
+- Race : {race}
+- Téléphone : {phone}
+- Localisation : {lieu}
+- Description : {description[:500] if description else ""}
+- SIREN : {siren or ""}
+- Photos Cloudinary ({len(photos_race)} dispo) :
+{photos_list}
+
+RÈGLES :
+- Structure identique à joyaux-d-anubis (hero, about, race, galerie, contact, footer)
+- Hero = 1ère photo Cloudinary. Galerie = toutes les photos. Ne boucle pas, ne répète pas.
+- Formulaire contact + Footer mentions légales
+- Animations scroll IntersectionObserver
+- Couleurs: primaire #1B3A4B, accent #D4622A, fond #F7F4EF
+- Cinzel titres + Raleway corps
+- Schema.org JSON-LD, Open Graph
+- JAMAIS de photos externes (uniquement les URLs Cloudinary fournies)
+- Réponds UNIQUEMENT avec le code HTML"""
+
+    r = requests.post("https://openrouter.ai/api/v1/chat/completions",
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 32000},
+        timeout=300)
+
+    data = r.json()
+    if "choices" not in data:
+        print(f"  ⚠️ Erreur: {data.get('error',{}).get('message','?')}")
+        from generator import generate_site
+        r2 = generate_site(name=name, race=race, phone=phone, city=ville or departement,
+                         description=description, siren=siren, departement=departement,
+                         photo_url=photo_url, photos_race=photos_race)
+        return r2[1] if r2 else None
+
+    html = data["choices"][0]["message"]["content"]
+    html = re.sub(r'^```html?\n?', '', html)
+    html = re.sub(r'\n?```\s*$', '', html)
+    Path(f"/workspace/templates/{slug}").mkdir(exist_ok=True)
+    target_file.write_text(html, encoding="utf-8")
+    import subprocess
+    subprocess.run(["git", "-C", "/workspace/templates", "add", f"{slug}/index.html"],
+                   check=True, capture_output=True)
+    return f"https://francoislang.github.io/templates/{slug}"
 
 def generate_pitch(profile: dict, demo_url: str | None) -> str:
     """
