@@ -133,7 +133,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
             "description_hero": (description[:200] if description else f"Elevage {name} — {race}"),
             "description_about": description or "",
         },
-        "couleurs": _breed_colors(race),
+        "couleurs": {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"},
         "photos": {
             "hero": photo_url or (ph[0] if ph else ""),
             "og": photo_url or (ph[0] if ph else ""),
