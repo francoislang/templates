@@ -102,7 +102,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
                   photo_url: str = "",
                   photos_race: list[str] = None) -> tuple | None:
     """Genere un site vitrine via Jinja2 avec les donnees du scraper."""
-    template_folder = BREED_TEMPLATE.get(race)
+    template_folder = BREED_TEMPLATE.get(race) or "universal"
     if not template_folder:
         return None
 
