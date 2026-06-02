@@ -21,12 +21,9 @@ def slugify(text: str) -> str:
     return text.lower().replace("'", "").replace(" ", "-").strip("-")
 
 def generate_demo_site(profile: dict) -> str | None:
-    """Genere un site vitrine via DeepSeek V4 Pro (API OpenRouter)."""
-    import requests, json, os, re
-    from pathlib import Path
-    from generator import slugify
+    """Genere un site vitrine via le template Python."""
+    from generator import generate_site
     from photos import get_photos_for_race
-
     name = profile["name"]
     race = profile["races"][0]
     phone = profile.get("phone", "")
@@ -35,109 +32,13 @@ def generate_demo_site(profile: dict) -> str | None:
     description = profile.get("description", "") or ""
     siren = profile.get("siren", "")
     photo_url = profile.get("photo_url", "")
-
-    slug = slugify(name)
-    target_dir = Path("/workspace/templates") / slug
-    target_dir.mkdir(exist_ok=True)
-    target_file = target_dir / "index.html"
-    if target_file.exists():
-        return f"https://francoislang.github.io/templates/{slug}"
-
-    # Photos Cloudinary
     photos_race = get_photos_for_race(race, count=15) or []
-
-    # Lire tous les sites contactes comme reference
-    ref_sites = ["joyaux-d-anubis", "domaine-du-quinquis", "la-dolce-vita",
-                 "des-cotons-de-soie-d-or", "mas-andre", "de-windy-stia",
-                 "mellan-schnauzers", "la-ferme-aredienne-des-salines",
-                 "du-bois-de-chantalouette", "des-marais-de-bremes"]
-    refs = []
-    for s in ref_sites:
-        try:
-            html = open(f"/workspace/templates/{s}/index.html", encoding="utf-8").read()
-            refs.append(f"--- {s} ---\n{html[:3000]}")
-        except:
-            pass
-
-    # Cle API OpenRouter
-    key = ""
-    for f_path in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
-        try:
-            for line in open(f_path):
-                if "ANTHROPIC_API_KEY" in line and "=" in line:
-                    key = line.split("=", 1)[1].strip()
-                    if key: break
-        except:
-            pass
-
-    if not key:
-        from generator import generate_site
-        r = generate_site(name=name, race=race, phone=phone, city=ville or departement,
-                         description=description, siren=siren, departement=departement,
-                         photo_url=photo_url, photos_race=photos_race)
-        return r[1] if r else None
-
-    lieu = f"à {ville} ({departement})" if ville and departement else "en France"
-
-    # Construire la liste des photos
-    photos_list = "\n".join(f"  - {p}" for p in photos_race)
-    nb_photos = len(photos_race)
-    slots = 22
-    bouclage = f"" if nb_photos >= slots else f"\n- Boucle les {nb_photos} photos pour atteindre {slots} slots (slot {nb_photos+1} = photo 1, etc.)"
-
-    prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens.
-
-RÉFÉRENCES (sites déjà réalisés pour d'autres éleveurs - copie exactement leur structure) :
-{chr(10).join(refs[:8000]) if refs else "Site professionnel avec Hero, About, Race, Galerie, Contact"}
-
-CONTENU À ADAPTER :
-- Nom élevage : {name}
-- Race : {race}
-- Téléphone : {phone}
-- Localisation : {lieu}
-- Description : {description[:600] if description else ""}
-- SIREN : {siren or "Particulier"}
-- Photos Cloudinary disponibles ({nb_photos} photos) :
-{photos_list}
-
-RÈGLES STRICTES :
-- COPIE EXACTEMENT la structure HTML, les classes CSS et les sections des sites de référence
-- NE CRÉE PAS de nouvelles sections. N'AJOUTE PAS de texte explicatif ou notes de design.
-- PREMIÈRE PHOTO (hero) : utilise TOUJOURS une photo Cloudinary, JAMAIS la photo chien.com
-- FORMULAIRE DE CONTACT : nom, email, message
-- FOOTER : © 2026 {name}, {f"SIRET {siren}" if siren else ""}, {ville or departement or "France"}, email de contact, "Politique de confidentialité", "Mentions légales", "CGV"
-- ANIMATIONS SCROLL : IntersectionObserver sur chaque section
-- PHOTOS : utilise TOUTES les {nb_photos} photos Cloudinary. Place-les dans hero (1), about (1), race (1), galerie (reste).{bouclage}
-- Ne JAMAIS utiliser de photos externes (ni pexels, ni unsplash, ni chien.com)
-- Adapte les couleurs à la race. Cinzel + Raleway. Schema.org JSON-LD, Open Graph, meta SEO.
-- Réponds UNIQUEMENT avec le code HTML complet."""
-
-    r = requests.post("https://openrouter.ai/api/v1/chat/completions",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 64000},
-        timeout=300)
-
-    data = r.json()
-    if "choices" not in data:
-        print(f"  ⚠️ Erreur API: {data.get('error', {}).get('message', str(data)[:200])}")
-        print(f"  ⚠️ Fallback template universel")
-        from generator import generate_site
-        r2 = generate_site(name=name, race=race, phone=phone, city=ville or departement,
-                         description=description, siren=siren, departement=departement,
-                         photo_url=photo_url, photos_race=photos_race)
-        return r2[1] if r2 else None
-
-    html = data["choices"][0]["message"]["content"]
-    html = re.sub(r'^```html?\n?', '', html)
-    html = re.sub(r'\n?```\s*$', '', html)
-
-    target_file.write_text(html, encoding="utf-8")
-
-    import subprocess
-    subprocess.run(["git", "-C", "/workspace/templates", "add", f"{slug}/index.html"],
-                   check=True, capture_output=True)
-
-    return f"https://francoislang.github.io/templates/{slug}"
+    r = generate_site(name=name, race=race, phone=phone,
+                     city=ville or departement,
+                     description=description, siren=siren,
+                     departement=departement,
+                     photo_url=photo_url, photos_race=photos_race)
+    return r[1] if r else None
 
 def generate_pitch(profile: dict, demo_url: str | None) -> str:
     """
