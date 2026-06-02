@@ -3,6 +3,8 @@
 import sys, os, re, time, json, subprocess
 sys.path.insert(0, os.path.dirname(__file__))
 import config, scraper, telegram, crm
+from generator import generate_site
+from photos import get_photos_for_race
 from photos import get_photos_for_race
 
 def slugify(text):

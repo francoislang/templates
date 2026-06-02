@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MODIFIER : titre SEO -->
+    <title>Viervoethoeve — Élevage Berger Australien | Belgique</title>
+    <meta name="description" content="Élevage familial de Bergers Australiens en Belgique. Chiots équilibrés issus de lignées sélectionnées. Parents visibles, tests génétiques, passeport européen. Tél. 04 71 68 81 32.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viervoethoeve.be/">
+    <meta property="og:title" content="Viervoethoeve — Berger Australien, Belgique">
+    <meta property="og:description" content="Élevage familial de Bergers Australiens en Belgique. Chiots vifs et intelligents, lignées sélectionnées, parents visibles sur place.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Viervoethoeve",
+                    "description": "Élevage familial de Berger Australien en Belgique. Chiots équilibrés issus de lignées sélectionnées avec soin, tests génétiques, passeport européen.",
+                    "telephone": "+32471688132",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Belgique",
+                        "addressCountry": "BE"
+                    },
+                    "founder": { "@type": "Person", "name": "Viervoethoeve" }
+                },
+                { "@type": "AnimalShelter", "name": "Viervoethoeve — Élevage Berger Australien Belgique" }
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Viervoethoeve
+           Design : Terre & Cuivre / Berger Australien
+           Couleurs inspirées du pelage : bleu merle, cuivre, crème
+           ============================================== */
+        :root {
+            --dpb: #1a3140;
+            /* bleu profond — rappel du merle bleu */
+            --cpr: #C4864B;
+            /* cuivre chaud — rappel des marques fauves */
+            --trc: #8B5A3C;
+            /* terre cuite — rappel du rouge merle */
+            --crm: #F5EDE0;
+            /* parchemin */
+            --bg: #FAF6F0;
+            /* ivoire chaud */
+            --stn: #9B8579;
+            /* pierre / grège */
+            --txt: #1a1a1a;
+            /* texte */
+            --wht: #ffffff;
+            /* blanc */
+            --FD: 'Cinzel', serif;
+            /* MODIFIER : police titres */
+            --FN: 'Raleway', sans-serif;
+            /* MODIFIER : police corps */
+            --nav: 72px;
+            --r: 4px;
+            --cpr-gradient: linear-gradient(135deg, #C4864B 0%, #D9A56A 45%, #A06935 100%);
+            --dpb-gradient: linear-gradient(135deg, #1a3140 0%, #2a4a5e 50%, #142530 100%);
+            --shadow-sm: 0 2px 8px rgba(26, 49, 64, 0.06);
+            --shadow-md: 0 8px 32px rgba(26, 49, 64, 0.10);
+            --shadow-lg: 0 16px 48px rgba(26, 49, 64, 0.14);
+            --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.7;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-smooth);
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ---- ORNEMENT DÉCORATIF — utilisé dans les section headers ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 0 auto 0.4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 52px;
+            background: var(--cpr-gradient);
+            border-radius: 1px;
+        }
+        .ornament .ornament-dot {
+            width: 7px;
+            height: 7px;
+            background: var(--cpr);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 8px rgba(196, 134, 75, 0.5);
+        }
+
+        /* ---- BOUTON PRINCIPAL ---- */
+        .btn-primary {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--wht);
+            background: var(--cpr-gradient);
+            border-radius: var(--r);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        .btn-primary:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--dpb);
+            background: transparent;
+            border: 2px solid var(--dpb);
+            border-radius: var(--r);
+            transition: all var(--transition-smooth);
+        }
+        .btn-outline:hover {
+            background: var(--dpb);
+            color: var(--wht);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* ---- NAVIGATION ---- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav);
+            background: rgba(250, 246, 240, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(26, 49, 64, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem;
+            transition: background 0.4s ease, box-shadow 0.4s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(250, 246, 240, 0.97);
+            box-shadow: var(--shadow-sm);
+        }
+        .navbar .logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.05em;
+            color: var(--dpb);
+            white-space: nowrap;
+        }
+        .navbar .logo span {
+            color: var(--cpr);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--dpb);
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--cpr-gradient);
+            transition: width var(--transition-smooth);
+            border-radius: 1px;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: var(--cpr-gradient);
+            color: var(--wht) !important;
+            padding: 0.5rem 1.3rem !important;
+            border-radius: var(--r);
+            font-weight: 600 !important;
+            transition: all var(--transition-smooth) !important;
+        }
+        .nav-cta:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--dpb);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg);
+                flex-direction: column;
+                justify-content: center;
+                gap: 1.8rem;
+                padding: 2rem;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .navbar {
+                padding: 0 1.5rem;
+            }
+            .navbar .logo {
+                font-size: 1.1rem;
+            }
+            .nav-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.4s ease;
+            }
+            .nav-overlay.active {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        /* ---- HERO SECTION ---- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55) saturate(0.85);
+            transform: scale(1.05);
+            animation: hero-zoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes hero-zoom {
+            from {
+                transform: scale(1.05);
+            }
+            to {
+                transform: scale(1.12);
+            }
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(26, 49, 64, 0.55) 0%,
+                    rgba(26, 49, 64, 0.35) 40%,
+                    rgba(26, 49, 64, 0.55) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--wht);
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero-content .hero-tag {
+            display: inline-block;
+            font-family: var(--FD);
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--cpr);
+            border: 1px solid rgba(196, 134, 75, 0.6);
+            padding: 0.4rem 1.4rem;
+            border-radius: 2px;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(4px);
+            background: rgba(26, 49, 64, 0.3);
+        }
+        .hero-content h1 {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+        .hero-content h1 span {
+            color: var(--cpr);
+        }
+        .hero-content .hero-subtitle {
+            font-family: var(--FN);
+            font-weight: 300;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            letter-spacing: 0.04em;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+            line-height: 1.5;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-buttons .btn-outline {
+            color: var(--wht);
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        .hero-buttons .btn-outline:hover {
+            background: var(--wht);
+            color: var(--dpb);
+            border-color: var(--wht);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce-down 2s ease-in-out infinite;
+        }
+        .hero-scroll span {
+            display: block;
+            width: 30px;
+            height: 48px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 20px;
+            position: relative;
+        }
+        .hero-scroll span::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 10px;
+            background: var(--wht);
+            border-radius: 3px;
+            animation: scroll-dot 2s ease-in-out infinite;
+        }
+        @keyframes bounce-down {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+        @keyframes scroll-dot {
+            0%,
+            100% {
+                top: 8px;
+                opacity: 1;
+            }
+            50% {
+                top: 24px;
+                opacity: 0.3;
+            }
+        }
+
+        /* ---- SECTION GÉNÉRIQUE ---- */
+        .section {
+            padding: 6rem 2.5rem;
+            position: relative;
+        }
+        @media (max-width: 768px) {
+            .section {
+                padding: 4rem 1.5rem;
+            }
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            color: var(--dpb);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.04em;
+        }
+        .section-header .section-subtitle {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 1rem;
+            color: var(--stn);
+            letter-spacing: 0.03em;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---- SECTION À PROPOS ---- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        @media (max-width: 900px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+        }
+        .about-image {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 4 / 3;
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.04);
+        }
+        .about-image .about-badge {
+            position: absolute;
+            bottom: -18px;
+            right: -18px;
+            background: var(--cpr-gradient);
+            color: var(--wht);
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            padding: 1rem 1.6rem;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-md);
+            text-transform: uppercase;
+        }
+        .about-text h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.6rem;
+            color: var(--dpb);
+            margin-bottom: 1rem;
+            letter-spacing: 0.03em;
+        }
+        .about-text p {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--txt);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--dpb);
+            background: rgba(196, 134, 75, 0.08);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid rgba(196, 134, 75, 0.2);
+        }
+        .highlight-item .hl-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--cpr-gradient);
+            flex-shrink: 0;
+        }
+
+        /* ---- SECTION CARACTÉRISTIQUES ---- */
+        .features-section {
+            background: var(--dpb);
+            color: var(--wht);
+        }
+        .features-section .section-header h2 {
+            color: var(--wht);
+        }
+        .features-section .section-header .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .features-section .ornament::before,
+        .features-section .ornament::after {
+            background: var(--cpr-gradient);
+        }
+        .features-section .ornament .ornament-dot {
+            background: var(--cpr);
+            box-shadow: 0 0 10px rgba(196, 134, 75, 0.6);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 900px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        @media (max-width: 600px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .feature-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 2rem 1.8rem;
+            text-align: center;
+            transition: all var(--transition-smooth);
+        }
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(196, 134, 75, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        }
+        .feature-card .fc-icon {
+            font-size: 2.4rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .feature-card h4 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.6rem;
+            color: var(--cpr);
+        }
+        .feature-card p {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        /* ---- SECTION GALERIE ---- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+        }
+        @media (max-width: 1100px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 700px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
+            }
+        }
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            position: relative;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+        }
+        .gallery-item:hover {
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.03);
+            z-index: 2;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item::after {
+            content: '🔍';
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background: rgba(26, 49, 64, 0.5);
+            color: white;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+        }
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 2001;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .lightbox-prev {
+            left: 1.5rem;
+        }
+        .lightbox-next {
+            right: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .lightbox-nav {
+                width: 38px;
+                height: 38px;
+                font-size: 1.8rem;
+            }
+            .lightbox-prev {
+                left: 0.6rem;
+            }
+            .lightbox-next {
+                right: 0.6rem;
+            }
+            .lightbox-close {
+                top: 1rem;
+                right: 1rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ---- SECTION CONTACT ---- */
+        .contact-section {
+            background: var(--wht);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        .contact-info h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: var(--dpb);
+            margin-bottom: 1rem;
+            letter-spacing: 0.03em;
+        }
+        .contact-info p {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--stn);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--dpb);
+        }
+        .contact-detail .cd-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(196, 134, 75, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        .contact-form {
+            background: var(--bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(26, 49, 64, 0.06);
+        }
+        .contact-form .form-group {
+            margin-bottom: 1.3rem;
+        }
+        .contact-form label {
+            display: block;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--dpb);
+            margin-bottom: 0.4rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            color: var(--txt);
+            background: var(--wht);
+            border: 1.5px solid rgba(26, 49, 64, 0.15);
+            border-radius: var(--r);
+            transition: all var(--transition-smooth);
+            outline: none;
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--cpr);
+            box-shadow: 0 0 0 4px rgba(196, 134, 75, 0.08);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+        }
+        .contact-form .btn-primary {
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            padding: 0.9rem;
+        }
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #2d6a4f;
+            font-family: var(--FN);
+            font-weight: 500;
+            background: #d8f3dc;
+            border-radius: 6px;
+            border: 1px solid #95d5b2;
+        }
+        .form-success.visible {
+            display: block;
+        }
+
+        /* ---- SECTION CITATION / TÉMOIGNAGE ---- */
+        .quote-section {
+            background: var(--dpb-gradient);
+            color: var(--wht);
+            text-align: center;
+        }
+        .quote-section .quote-text {
+            font-family: var(--FD);
+            font-weight: 500;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            letter-spacing: 0.03em;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-style: italic;
+        }
+        .quote-section .quote-author {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--cpr);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: #141c22;
+            color: rgba(255, 255, 255, 0.75);
+            padding: 4rem 2.5rem 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+        @media (max-width: 800px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+        @media (max-width: 500px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+        }
+        .footer-col h4 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            color: var(--wht);
+            margin-bottom: 1rem;
+        }
+        .footer-col p,
+        .footer-col a {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.6);
+            display: block;
+            transition: color 0.3s ease;
+        }
+        .footer-col a:hover {
+            color: var(--cpr);
+        }
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--FN);
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.45);
+        }
+        .footer-bottom a {
+            color: rgba(255, 255, 255, 0.45);
+            transition: color 0.3s ease;
+            margin-left: 1.5rem;
+        }
+        .footer-bottom a:hover {
+            color: var(--cpr);
+        }
+
+        /* ---- TOAST NOTIFICATION ---- */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #2d6a4f;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 6px;
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-lg);
+            z-index: 3000;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ---- SELECTION STYLE ---- */
+        ::selection {
+            background: rgba(196, 134, 75, 0.3);
+            color: var(--dpb);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==============================================
+    NAVIGATION
+    ============================================== -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="logo">VIERVOET<span>HOEVE</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" onclick="closeMenu()">Accueil</a></li>
+            <li><a href="#about" onclick="closeMenu()">À propos</a></li>
+            <li><a href="#galerie" onclick="closeMenu()">Galerie</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+            <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Nous écrire</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+    <!-- ==============================================
+    HERO SECTION
+    ============================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img
+            src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_5.jpg"
+            alt="Berger Australien — Viervoethoeve"
+            loading="eager"
+            >
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <span class="hero-tag">Élevage familial en Belgique</span>
+            <h1>Viervoet<span>hoeve</span></h1>
+            <p class="hero-subtitle">
+                Bergers Australiens équilibrés, vifs et intelligents<br>
+                issus de lignées sélectionnées avec soin.
+            </p>
+            <div class="hero-buttons">
+                <a href="#galerie" class="btn-primary">Découvrir nos chiots</a>
+                <a href="#contact" class="btn-outline">Nous contacter</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ==============================================
+    SECTION À PROPOS
+    ============================================== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span class="ornament-dot"></span></div>
+                <h2>Notre élevage</h2>
+                <p class="section-subtitle">Passion, respect et amour du Berger Australien</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal reveal-delay-1">
+                    <img
+                    src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_3.jpg"
+                    alt="Chiots Berger Australien Viervoethoeve"
+                    loading="lazy"
+                    >
+                    <div class="about-badge">Certifié</div>
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <h3>Un élevage à taille humaine</h3>
+                    <p>
+                        Vous êtes à la recherche d'un Berger Australien équilibré, vif et intelligent ?
+                        Chez <strong>Viervoethoeve</strong>, élevage certifié en Belgique, nous mettons à votre
+                        disposition de superbes chiots issus de lignées sélectionnées avec soin.
+                    </p>
+                    <p>
+                        Les deux parents peuvent être rencontrés lors de votre visite, afin que vous puissiez
+                        découvrir leur caractère et leur tempérament. Le Berger Australien est un chien dynamique,
+                        très réceptif et particulièrement attachant. Toujours prêt à partager des activités,
+                        il convient aux familles actives comme aux passionnés de sports canins.
+                    </p>
+                    <div class="about-highlights">
+                        <span class="highlight-item"><span class="hl-icon"></span> Tests génétiques</span>
+                        <span class="highlight-item"><span class="hl-icon"></span> Passeport européen</span>
+                        <span class="highlight-item"><span class="hl-icon"></span> Parents visibles</span>
+                        <span class="highlight-item"><span class="hl-icon"></span> Suivi personnalisé</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================
+    SECTION CARACTÉRISTIQUES
+    ============================================== -->
+    <section class="section features-section" id="caracteristiques">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span class="ornament-dot"></span></div>
+                <h2>Pourquoi choisir Viervoethoeve ?</h2>
+                <p class="section-subtitle">Un engagement de qualité pour votre futur compagnon</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card reveal reveal-delay-1">
+                    <span class="fc-icon">🧬</span>
+                    <h4>Tests génétiques</h4>
+                    <p>Chaque reproducteur est testé pour les maladies héréditaires propres au Berger Australien (MDR1, HSF4, CEA).</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-2">
+                    <span class="fc-icon">🏡</span>
+                    <h4>Élevage familial</h4>
+                    <p>Nos chiots grandissent dans notre foyer, entourés d'amour et de stimulations quotidiennes.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-3">
+                    <span class="fc-icon">📋</span>
+                    <h4>Suivi complet</h4>
+                    <p>Passeport européen, carnet de santé, conseils d'éducation et suivi post-adoption.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-4">
+                    <span class="fc-icon">👨‍👩‍👧‍👦</span>
+                    <h4>Parents visibles</h4>
+                    <p>Rencontrez les deux parents lors de votre visite pour découvrir leur tempérament.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-5">
+                    <span class="fc-icon">🐾</span>
+                    <h4>Socialisation précoce</h4>
+                    <p>Nos chiots sont habitués aux bruits du quotidien, aux enfants et aux autres animaux.</p>
+                </div>
+                <div class="feature-card reveal reveal-delay-5">
+                    <span class="fc-icon">⚖️</span>
+                    <h4>Garantie légale</h4>
+                    <p>Garantie légale de 2 ans conformément au droit belge. Engagement et transparence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================
+    SECTION CITATION
+    ============================================== -->
+    <section class="section quote-section">
+        <div class="container">
+            <p class="quote-text reveal">
+                « Le Berger Australien n'est pas qu'un chien, c'est un partenaire de vie.
+                Vif, loyal et profondément attachant, il illumine chaque instant. »
+            </p>
+            <p class="quote-author reveal reveal-delay-2">— Viervoethoeve, élevage passion</p>
+        </div>
+    </section>
+
+    <!-- ==============================================
+    SECTION GALERIE
+    ============================================== -->
+    <section class="section" id="galerie">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span class="ornament-dot"></span></div>
+                <h2>Galerie photos</h2>
+                <p class="section-subtitle">Quelques instants de vie à la Viervoethoeve</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Les 15 photos seront injectées en JS pour boucle -->
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-nav lightbox-prev" id="lightboxPrev">&#10094;</span>
+        <span class="lightbox-nav lightbox-next" id="lightboxNext">&#10095;</span>
+        <img src="" alt="Lightbox" id="lightboxImg">
+    </div>
+
+    <!-- ==============================================
+    SECTION CONTACT
+    ============================================== -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span class="ornament-dot"></span></div>
+                <h2>Contactez-nous</h2>
+                <p class="section-subtitle">Une question ? Envie de rencontrer nos chiots ?</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal reveal-delay-1">
+                    <h3>Parlons de votre projet</h3>
+                    <p>
+                        Que vous souhaitiez adopter un chiot ou simplement en savoir plus sur notre élevage,
+                        nous sommes à votre écoute. N'hésitez pas à nous contacter ou à prendre rendez-vous
+                        pour une visite.
+                    </p>
+                    <div class="contact-detail">
+                        <span class="cd-icon">📞</span>
+                        <span><strong>Téléphone :</strong> 04 71 68 81 32</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="cd-icon">📍</span>
+                        <span><strong>Localisation :</strong> Belgique</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="cd-icon">🐕</span>
+                        <span><strong>Race :</strong> Berger Australien</span>
+                    </div>
+                </div>
+                <div class="contact-form reveal reveal-delay-2" id="contactFormContainer">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Votre nom</label>
+                            <input type="text" id="name" name="name" placeholder="Jean Dupont" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Votre email</label>
+                            <input type="email" id="email" name="email" placeholder="jean@exemple.be" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" placeholder="Bonjour, je souhaiterais..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Envoyer le message</button>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        ✅ <strong>Message envoyé avec succès !</strong><br>
+                        Nous vous répondrons dans les plus brefs délais. Merci de votre confiance.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==============================================
+    FOOTER
+    ============================================== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Viervoethoeve</h4>
+                <p>Élevage familial de Bergers Australiens en Belgique. Chiots équilibrés, vifs et intelligents issus de lignées sélectionnées.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <ul>
+                    <li><a href="#hero">Accueil</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <p>📞 04 71 68 81 32</p>
+                <p>📍 Belgique</p>
+                <p>🐕 Berger Australien</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Viervoethoeve — Élevage de chiens</span>
+            <span>
+                <a href="#mentions">Mentions légales</a>
+                <a href="#cgv">CGV</a>
+                <a href="#confidentialite">Politique confidentialité</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">Message envoyé avec succès !</div>
+
+    <!-- ==============================================
+    SCRIPTS
+    ============================================== -->
+    <script>
+        // ---- PHOTOS GALERIE (15 photos) ----
+        const galleryPhotos = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_11.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-berger_australien/berger_australien_15.jpg'
+        ];
+
+        const galleryGrid = document.getElementById('galleryGrid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentLightboxIndex = 0;
+
+        // ---- CONSTRUIRE LA GALERIE ----
+        function buildGallery() {
+            galleryPhotos.forEach((src, index) => {
+                const item = document.createElement('div');
+                item.className = 'gallery-item reveal';
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Berger Australien — Viervoethoeve — Photo ${index + 1}`;
+                img.loading = 'lazy';
+                item.appendChild(img);
+                item.addEventListener('click', () => openLightbox(index));
+                galleryGrid.appendChild(item);
+            });
+        }
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = galleryPhotos[currentLightboxIndex];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function prevLightbox() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+            lightboxImg.src = galleryPhotos[currentLightboxIndex];
+        }
+
+        function nextLightbox() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryPhotos.length;
+            lightboxImg.src = galleryPhotos[currentLightboxIndex];
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevLightbox);
+        lightboxNext.addEventListener('click', nextLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+        });
+
+        buildGallery();
+
+        // ---- SCROLL REVEAL (IntersectionObserver) ----
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        revealElements.forEach(el => observer.observe(el));
+
+        // ---- NAVBAR SCROLL ----
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ---- MENU MOBILE ----
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', closeMenu);
+
+        // ---- FORMULAIRE CONTACT ----
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const success = document.getElementById('formSuccess');
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                showToast('Veuillez remplir tous les champs.', '#c0392b');
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showToast('Veuillez entrer un email valide.', '#c0392b');
+                return;
+            }
+
+            // Simulation d'envoi
+            form.style.display = 'none';
+            success.classList.add('visible');
+            showToast('Message envoyé avec succès !', '#2d6a4f');
+        }
+
+        function showToast(msg, bgColor) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.style.background = bgColor || '#2d6a4f';
+            toast.classList.add('show');
+            clearTimeout(toast._timeout);
+            toast._timeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3500);
+        }
+    </script>
+</body>
+</html>

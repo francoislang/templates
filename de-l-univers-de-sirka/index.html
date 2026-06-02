@@ -1,0 +1,1283 @@
+Voici le code HTML complet pour le site vitrine de l'élevage "De l'Univers de Sirka" (Cavalier King Charles), qui reproduit exactement la structure de la référence.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MODIFIER : titre SEO -->
+    <title>De l'Univers de Sirka — Élevage Cavalier King Charles | L'Hommaizé, près de Poitiers</title>
+    <meta name="description" content="Élevage familial de Cavaliers King Charles Spaniels à L'Hommaizé, à 20 min de Poitiers. Tests cardiaques et génétiques, chiots élevés en famille. SIRET 383727385. Tél. 06 59 43 78 01.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://univers-de-sirka.fr/">
+    <meta property="og:title" content="De l'Univers de Sirka — Cavalier King Charles, L'Hommaizé">
+    <meta property="og:description" content="Élevage familial de Cavaliers King Charles Spaniels à L'Hommaizé, à 20 min de Poitiers. Tests cardiaques, génétiques, chiots élevés en famille. SIRET 383727385.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- MODIFIER : polices — Cinzel (titres) + Raleway (corps) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "De l'Univers de Sirka",
+                    "description": "Élevage familial de Cavalier King Charles Spaniel à L'Hommaizé, près de Poitiers, France. Chiots élevés en famille, tests cardiaques et génétiques, garantie légale.",
+                    "telephone": "+33659437801",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "L'Hommaizé",
+                        "postalCode": "86580",
+                        "addressCountry": "FR"
+                    },
+                    "founder": { "@type": "Person", "name": "De l'Univers de Sirka" }
+                },
+                { "@type": "AnimalShelter", "name": "De l'Univers de Sirka — Élevage Cavalier King Charles L'Hommaizé" }
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==============================================
+           VARIABLES CSS — De l'Univers de Sirka
+           Design : Blenheim / Rubis / Élégance canine
+           Palette inspirée du Cavalier King Charles :
+           - Blenheim (marron chaud sur fond blanc)
+           - Rubis (rouge profond)
+           - Noir et feu
+           - Tricolore
+           ============================================== */
+        :root {
+            --ony: #1A0F0A;
+            /* brun profond - robe noir & feu */
+            --gld: #B87C4B;
+            /* doré chaud Blenheim */
+            --amb: #8B3A3A;
+            /* rubis profond */
+            --crm: #FBF6F0;
+            /* blanc cassé / ivoire */
+            --bg: #FDF9F4;
+            /* fond ivoire chaud */
+            --stn: #A0896E;
+            /* pierre / taupe doux */
+            --txt: #1A0F0A;
+            /* texte */
+            --FD: 'Cinzel', serif;
+            /* MODIFIER : police titres */
+            --FN: 'Raleway', sans-serif;
+            /* MODIFIER : police corps */
+            --nav: 72px;
+            --r: 4px;
+            --gld-gradient: linear-gradient(135deg, #B87C4B 0%, #D4A574 45%, #8B5A3C 100%);
+            --ruby-gradient: linear-gradient(135deg, #8B3A3A 0%, #B54B4B 45%, #6B2020 100%);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---- ORNEMENT DÉCORATIF — utilisé dans les section headers ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .8rem;
+            margin: 0 auto .4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 48px;
+            background: var(--gld-gradient);
+        }
+        .ornament__gem {
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--ruby-gradient);
+            box-shadow: 0 0 8px rgba(139, 58, 58, 0.5);
+            flex-shrink: 0;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav);
+            background: rgba(253, 249, 244, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(184, 124, 75, 0.2);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            transition: all .3s ease;
+        }
+        .nav.scrolled {
+            box-shadow: 0 2px 20px rgba(26, 15, 10, 0.1);
+            height: 60px;
+        }
+        .nav__logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: .05em;
+            background: var(--gld-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            margin-left: auto;
+            align-items: center;
+        }
+        .nav__links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: .9rem;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            color: var(--txt);
+            position: relative;
+            padding: .3rem 0;
+            transition: color .3s;
+        }
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gld-gradient);
+            transition: width .35s cubic-bezier(.16, 1, .3, 1);
+            border-radius: 1px;
+        }
+        .nav__links a:hover {
+            color: var(--amb);
+        }
+        .nav__links a:hover::after {
+            width: 100%;
+        }
+        .nav__cta {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .8rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .6rem 1.3rem;
+            border-radius: 50px;
+            background: var(--ruby-gradient);
+            color: #FBF6F0 !important;
+            transition: all .35s cubic-bezier(.16, 1, .3, 1);
+            box-shadow: 0 4px 14px rgba(139, 58, 58, 0.3);
+            white-space: nowrap;
+        }
+        .nav__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(139, 58, 58, 0.45);
+            color: #FBF6F0 !important;
+        }
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            margin-left: auto;
+            z-index: 1100;
+        }
+        .nav__burger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--txt);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+        .nav__burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav__burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav__burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ---- MOBILE MENU ---- */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: var(--bg);
+            z-index: 1050;
+            padding: 6rem 2rem 3rem;
+            transition: right .45s cubic-bezier(.16, 1, .3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            border-left: 1px solid rgba(184, 124, 75, 0.15);
+        }
+        .mobile-menu.open {
+            right: 0;
+        }
+        .mobile-menu a {
+            font-family: var(--FD);
+            font-size: 1.15rem;
+            letter-spacing: .05em;
+            color: var(--txt);
+            padding: .8rem 1rem;
+            border-bottom: 1px solid rgba(184, 124, 75, 0.2);
+            transition: color .3s;
+        }
+        .mobile-menu a:hover {
+            color: var(--amb);
+        }
+        .mobile-menu__cta {
+            display: inline-block;
+            text-align: center;
+            margin-top: 1rem;
+            padding: .9rem 2rem;
+            border-radius: 50px;
+            background: var(--ruby-gradient);
+            color: #FBF6F0 !important;
+            font-weight: 600;
+            border-bottom: none !important;
+        }
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 15, 10, 0.5);
+            z-index: 1040;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+        .overlay.on {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+            padding-top: var(--nav);
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero__bg img {
+            object-position: center 35%;
+            filter: brightness(0.55) saturate(1.15);
+        }
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(26, 15, 10, 0.55) 0%,
+                    rgba(26, 15, 10, 0.35) 40%,
+                    rgba(26, 15, 10, 0.7) 100%);
+            z-index: 1;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 780px;
+        }
+        .hero__subtitle {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 1rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--crm);
+            margin-bottom: 1rem;
+            opacity: .85;
+        }
+        .hero__title {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            letter-spacing: .03em;
+            line-height: 1.15;
+            color: #fff;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+        .hero__title span {
+            background: var(--gld-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero__desc {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--crm);
+            max-width: 550px;
+            margin: 0 auto 2rem;
+            opacity: .9;
+        }
+        .hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .95rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            background: var(--ruby-gradient);
+            color: #FBF6F0;
+            transition: all .4s cubic-bezier(.16, 1, .3, 1);
+            box-shadow: 0 6px 22px rgba(139, 58, 58, 0.4);
+        }
+        .hero__cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(139, 58, 58, 0.55);
+        }
+        .hero__scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .4rem;
+            color: var(--crm);
+            font-size: .75rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            opacity: .7;
+            animation: floatDown 2.5s ease-in-out infinite;
+        }
+        .hero__scroll span {
+            display: block;
+            width: 1px;
+            height: 30px;
+            background: var(--crm);
+            border-radius: 1px;
+        }
+        @keyframes floatDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ---- SECTIONS ---- */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section--alt {
+            background: var(--crm);
+        }
+        .section__header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section__label {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: .85rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--amb);
+            margin-bottom: .5rem;
+        }
+        .section__title {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            letter-spacing: .03em;
+            color: var(--txt);
+            margin-bottom: 1rem;
+        }
+        .section__divider {
+            width: 60px;
+            height: 3px;
+            border-radius: 2px;
+            background: var(--gld-gradient);
+            margin: 0 auto;
+        }
+
+        /* ---- ABOUT ---- */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about__image {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 20px 50px rgba(26, 15, 10, 0.15);
+        }
+        .about__image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--gld);
+            border-radius: 12px;
+            opacity: .25;
+            pointer-events: none;
+            transform: translate(12px, 12px);
+            z-index: -1;
+        }
+        .about__content h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--txt);
+        }
+        .about__content p {
+            font-family: var(--FN);
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--txt);
+            margin-bottom: 1.2rem;
+            opacity: .85;
+        }
+        .about__badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+            margin-top: 1.5rem;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            padding: .5rem 1rem;
+            border-radius: 50px;
+            background: rgba(184, 124, 75, 0.12);
+            color: var(--amb);
+            border: 1px solid rgba(184, 124, 75, 0.25);
+        }
+        .badge::before {
+            content: '◆';
+            font-size: .5rem;
+            color: var(--gld);
+        }
+
+        /* ---- GALERIE ---- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+        .gallery__item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(26, 15, 10, 0.08);
+            transition: all .4s cubic-bezier(.16, 1, .3, 1);
+        }
+        .gallery__item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(26, 15, 10, 0.2);
+        }
+        .gallery__item img {
+            transition: transform .6s cubic-bezier(.16, 1, .3, 1);
+        }
+        .gallery__item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery__item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(26, 15, 10, 0.55) 100%);
+            opacity: 0;
+            transition: opacity .4s ease;
+            pointer-events: none;
+        }
+        .gallery__item:hover::after {
+            opacity: 1;
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(26, 15, 10, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox__img {
+            max-width: 85vw;
+            max-height: 80vh;
+            border-radius: 8px;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox__close {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+            font-size: 2.5rem;
+            color: #fff;
+            z-index: 10;
+            cursor: pointer;
+            transition: transform .3s;
+            line-height: 1;
+        }
+        .lightbox__close:hover {
+            transform: scale(1.2);
+        }
+        .lightbox__prev,
+        .lightbox__next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            z-index: 10;
+            cursor: pointer;
+            padding: 1rem;
+            transition: all .3s;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .lightbox__prev:hover,
+        .lightbox__next:hover {
+            background: rgba(0, 0, 0, 0.55);
+        }
+        .lightbox__prev {
+            left: 2rem;
+        }
+        .lightbox__next {
+            right: 2rem;
+        }
+
+        /* ---- CONTACT ---- */
+        .contact {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact__info h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+        .contact__info p {
+            font-family: var(--FN);
+            line-height: 1.7;
+            opacity: .85;
+            margin-bottom: 1.5rem;
+        }
+        .contact__details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .contact__detail {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: .95rem;
+        }
+        .contact__detail .icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(184, 124, 75, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            color: var(--amb);
+        }
+        .contact__form {
+            background: #fff;
+            border-radius: 14px;
+            padding: 2.5rem;
+            box-shadow: 0 12px 40px rgba(26, 15, 10, 0.08);
+            border: 1px solid rgba(184, 124, 75, 0.12);
+        }
+        .form__group {
+            margin-bottom: 1.3rem;
+        }
+        .form__label {
+            display: block;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: .85rem;
+            letter-spacing: .03em;
+            margin-bottom: .4rem;
+            color: var(--txt);
+        }
+        .form__input,
+        .form__textarea {
+            width: 100%;
+            padding: .85rem 1rem;
+            border: 1px solid rgba(160, 137, 110, 0.35);
+            border-radius: 8px;
+            font-family: var(--FN);
+            font-size: .95rem;
+            background: #FDF9F4;
+            transition: all .3s;
+            color: var(--txt);
+            resize: vertical;
+        }
+        .form__input:focus,
+        .form__textarea:focus {
+            outline: none;
+            border-color: var(--gld);
+            box-shadow: 0 0 0 3px rgba(184, 124, 75, 0.1);
+            background: #fff;
+        }
+        .form__textarea {
+            min-height: 120px;
+        }
+        .form__submit {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            padding: .9rem 2.4rem;
+            border-radius: 50px;
+            background: var(--ruby-gradient);
+            color: #FBF6F0;
+            cursor: pointer;
+            border: none;
+            transition: all .4s cubic-bezier(.16, 1, .3, 1);
+            box-shadow: 0 6px 20px rgba(139, 58, 58, 0.35);
+            width: 100%;
+        }
+        .form__submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 58, 58, 0.5);
+        }
+        .form__success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #3a7d3a;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: var(--ony);
+            color: var(--crm);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+        .footer__content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        .footer__logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: .05em;
+            background: var(--gld-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .footer__info {
+            font-size: .85rem;
+            opacity: .7;
+            line-height: 1.7;
+        }
+        .footer__links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            font-size: .8rem;
+            letter-spacing: .03em;
+            opacity: .6;
+        }
+        .footer__links a {
+            transition: color .3s;
+        }
+        .footer__links a:hover {
+            color: var(--gld);
+        }
+        .footer__copy {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: .5rem;
+            font-size: .75rem;
+            opacity: .5;
+            letter-spacing: .03em;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .nav__links {
+                display: none;
+            }
+            .nav__burger {
+                display: flex;
+            }
+            .about {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .contact {
+                grid-template-columns: 1fr;
+            }
+            .hero__title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 3rem 1.2rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: .7rem;
+            }
+            .lightbox__prev {
+                left: .5rem;
+            }
+            .lightbox__next {
+                right: .5rem;
+            }
+            .lightbox__prev,
+            .lightbox__next {
+                width: 38px;
+                height: 38px;
+                font-size: 1.8rem;
+            }
+            .lightbox__close {
+                top: 1rem;
+                right: 1.2rem;
+                font-size: 2rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero__subtitle {
+                font-size: .75rem;
+                letter-spacing: .15em;
+            }
+            .hero__title {
+                font-size: 1.6rem;
+            }
+            .hero__desc {
+                font-size: .95rem;
+            }
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: .5rem;
+            }
+            .contact__form {
+                padding: 1.5rem;
+            }
+            .badge {
+                font-size: .7rem;
+                padding: .4rem .7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="navbar">
+        <a href="#" class="nav__logo">De l'Univers de Sirka</a>
+        <ul class="nav__links">
+            <li><a href="#elevage">L'Élevage</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="nav__cta">Nous écrire</a></li>
+        </ul>
+        <div class="nav__burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ========== MOBILE MENU ========== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#elevage">L'Élevage</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact" class="mobile-menu__cta">Nous écrire</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="accueil">
+        <div class="hero__bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_5.jpg"
+            alt="Cavalier King Charles Spaniel — De l'Univers de Sirka"
+            loading="eager">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content reveal">
+            <p class="hero__subtitle">Élevage familial · L'Hommaizé</p>
+            <h1 class="hero__title">De l'Univers<br><span>de Sirka</span></h1>
+            <p class="hero__desc">
+                Cavaliers King Charles Spaniels élevés avec passion à seulement 20 minutes de Poitiers.
+                Tests cardiaques, génétiques, chiots habitués aux bruits du quotidien.
+            </p>
+            <a href="#galerie" class="hero__cta">Découvrir nos chiots</a>
+        </div>
+        <div class="hero__scroll">
+            Défiler<span></span>
+        </div>
+    </section>
+
+    <!-- ========== SECTION ÉLEVAGE ========== -->
+    <section class="section" id="elevage">
+        <div class="section__header reveal">
+            <div class="ornament"><span class="ornament__gem"></span></div>
+            <p class="section__label">Notre passion</p>
+            <h2 class="section__title">L'Élevage De l'Univers de Sirka</h2>
+            <div class="section__divider"></div>
+        </div>
+        <div class="about">
+            <div class="about__image reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_2.jpg"
+                alt="Cavalier King Charles — Élevage De l'Univers de Sirka"
+                loading="lazy">
+            </div>
+            <div class="about__content reveal">
+                <h3>Un élevage à taille humaine</h3>
+                <p>
+                    Bienvenue sur la page consacrée aux Cavaliers King Charles Spaniels <strong>De l'Univers de Sirka</strong>,
+                    un élevage situé à <strong>L'Hommaizé</strong>, à seulement <strong>20 minutes de route de Poitiers</strong>.
+                    Tous nos chiots sont élevés chez nous et sont habitués aux bruits du quotidien.
+                </p>
+                <p>
+                    De plus, ils sont <strong>testés pour la santé du cœur</strong> et pour les <strong>maladies génétiques</strong>.
+                    Nous élevons également d'autres races, comprenant le <strong>Saint-Bernard</strong> et le <strong>Berger Belge Malinois</strong>.
+                </p>
+                <div class="about__badges">
+                    <span class="badge">Tests cardiaques</span>
+                    <span class="badge">Tests génétiques</span>
+                    <span class="badge">Élevage familial</span>
+                    <span class="badge">Passeport européen</span>
+                    <span class="badge">Garantie légale</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION GALERIE ========== -->
+    <section class="section section--alt" id="galerie">
+        <div class="section__header reveal">
+            <div class="ornament"><span class="ornament__gem"></span></div>
+            <p class="section__label">Nos cavaliers</p>
+            <h2 class="section__title">Galerie photo</h2>
+            <div class="section__divider"></div>
+        </div>
+        <div class="gallery reveal" id="galleryContainer">
+            <!-- Rempli dynamiquement via JS -->
+        </div>
+    </section>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox__close" id="lightboxClose">&times;</span>
+        <span class="lightbox__prev" id="lightboxPrev">&#8249;</span>
+        <span class="lightbox__next" id="lightboxNext">&#8250;</span>
+        <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- ========== SECTION CONTACT ========== -->
+    <section class="section" id="contact">
+        <div class="section__header reveal">
+            <div class="ornament"><span class="ornament__gem"></span></div>
+            <p class="section__label">Nous contacter</p>
+            <h2 class="section__title">Une question ? Un projet d'adoption ?</h2>
+            <div class="section__divider"></div>
+        </div>
+        <div class="contact">
+            <div class="contact__info reveal">
+                <h3>De l'Univers de Sirka</h3>
+                <p>
+                    N'hésitez pas à nous joindre pour toute information sur nos portées à venir,
+                    nos conditions d'adoption ou pour organiser une visite de l'élevage.
+                </p>
+                <div class="contact__details">
+                    <div class="contact__detail">
+                        <span class="icon">&#9742;</span>
+                        <span><strong>Téléphone :</strong> 06 59 43 78 01</span>
+                    </div>
+                    <div class="contact__detail">
+                        <span class="icon">&#9993;</span>
+                        <span><strong>Email :</strong> contact@univers-de-sirka.fr</span>
+                    </div>
+                    <div class="contact__detail">
+                        <span class="icon">&#9906;</span>
+                        <span><strong>Adresse :</strong> L'Hommaizé, 86580 — à 20 min de Poitiers</span>
+                    </div>
+                    <div class="contact__detail">
+                        <span class="icon">&#9733;</span>
+                        <span><strong>SIRET :</strong> 383727385</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__form reveal" id="contactFormWrapper">
+                <form id="contactForm" novalidate>
+                    <div class="form__group">
+                        <label class="form__label" for="name">Nom complet</label>
+                        <input class="form__input" type="text" id="name" name="name" required placeholder="Votre nom et prénom">
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="email">Adresse email</label>
+                        <input class="form__input" type="email" id="email" name="email" required placeholder="votre@email.fr">
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="message">Votre message</label>
+                        <textarea class="form__textarea" id="message" name="message" required placeholder="Présentez-vous et expliquez votre projet d'adoption..."></textarea>
+                    </div>
+                    <button type="submit" class="form__submit">Envoyer le message</button>
+                </form>
+                <div class="form__success" id="formSuccess">
+                    &#10003; Merci ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer__content">
+            <div class="footer__logo">De l'Univers de Sirka</div>
+            <p class="footer__info">
+                Élevage de chiens — Cavalier King Charles Spaniel, Saint-Bernard, Berger Belge Malinois<br>
+                L'Hommaizé, 86580 · À 20 minutes de Poitiers
+            </p>
+            <div class="footer__links">
+                <a href="#">Mentions légales</a>
+                <a href="#">CGV</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+        <p class="footer__copy">
+            &copy; 2026 De l'Univers de Sirka — SIRET 383727385 — Élevage de chiens. Tous droits réservés.
+        </p>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ---------- PHOTOS ----------
+        const photos = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_11.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cavalier_king_charles/cavalier_king_charles_15.jpg'
+        ];
+
+        // ---------- GÉNÉRER LA GALERIE ----------
+        const galleryContainer = document.getElementById('galleryContainer');
+        photos.forEach((src, i) => {
+            const item = document.createElement('div');
+            item.className = 'gallery__item';
+            item.setAttribute('data-index', i);
+            item.innerHTML =
+                `<img src="${src}" alt="Cavalier King Charles — De l'Univers de Sirka — Photo ${i + 1}" loading="lazy">`;
+            item.addEventListener('click', () => openLightbox(i));
+            galleryContainer.appendChild(item);
+        });
+
+        // ---------- LIGHTBOX ----------
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            lightboxImg.src = photos[currentIndex];
+            lightboxImg.alt = `Cavalier King Charles — Photo ${currentIndex + 1}`;
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+            lightboxImg.src = photos[currentIndex];
+            lightboxImg.alt = `Cavalier King Charles — Photo ${currentIndex + 1}`;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % photos.length;
+            lightboxImg.src = photos[currentIndex];
+            lightboxImg.alt = `Cavalier King Charles — Photo ${currentIndex + 1}`;
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // ---------- MOBILE MENU ----------
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.getElementById('overlay');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            overlay.classList.add('on');
+            burger.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            overlay.classList.remove('on');
+            burger.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        burger.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) closeMenu();
+            else openMenu();
+        });
+        overlay.addEventListener('click', closeMenu);
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // ---------- NAV SCROLL EFFECT ----------
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ---------- SCROLL REVEAL (IntersectionObserver) ----------
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -40px 0px'
+        };
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ---------- FORMULAIRE CONTACT ----------
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Veuillez remplir tous les champs du formulaire.');
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert('Veuillez entrer une adresse email valide.');
+                return;
+            }
+
+            // Simulation d'envoi réussi
+            contactForm.style.display = 'none';
+            formSuccess.style.display = 'block';
+
+            // Reset après quelques secondes (optionnel)
+            setTimeout(() => {
+                contactForm.style.display = 'block';
+                formSuccess.style.display = 'none';
+                contactForm.reset();
+            }, 5000);
+        });
+
+        // ---------- SMOOTH SCROLL POUR LIENS ANCRES ----------
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const navHeight = navbar.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                        navHeight - 20;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
+### Design & Expérience Visuelle
+
+Ce design s'inspire de l'élégance naturelle du Cavalier King Charles pour créer une atmosphère chaleureuse et rassurante, comme une maison de famille.
+
+-   **Palette « Blenheim & Rubis » :** Les tons dominants (**doré chaud** `#B87C4B` et **rouge rubis profond** `#8B3A3A`) évoquent directement les robes caractéristiques de la race (Blenheim, Rubis). Le fond **ivoire** (`#FDF9F4`) et les dégradés subtils renforcent l'aspect premium et artisanal de l'élevage.
+-   **Typographie Cinzel & Raleway :** La combinaison d'une police à empattement classique pour les titres (Cinzel) et d'une police linéale moderne pour le corps du texte (Raleway) crée un équilibre entre héritage et clarté contemporaine.
+-   **Navigation & Interactions :** La barre de navigation fixe avec effet de flou (glassmorphism) et le bouton d'appel à l'action au dégradé rubis offrent un repère visuel constant. Les animations au scroll (`IntersectionObserver`) et les micro-interactions sur les cartes de la galerie rendent la navigation vivante et engageante.
+-   **Structure Ornementale :** De petits éléments géométriques dorés (le point « gemme » et les lignes) structurent les titres de section, une signature visuelle subtile rappelant le soin apporté à chaque détail.
+
+### Fonctionnalités Clés Intégrées
+
+Le site est pensé comme un outil de présentation et de contact complet pour l'éleveur.
+
+-   **Galerie avec Lightbox :** La section galerie affiche les **15 photos** fournies dans une grille responsive. Cliquer sur une image ouvre une lightbox élégante avec navigation (flèches, clavier) pour zoomer sur chaque chiot.
+-   **Formulaire de Contact Simulé :** Un formulaire complet (nom, email, message) avec validation côté client. À la soumission, il affiche un message de succès temporaire pour confirmer la prise en compte, simulant l'envoi sans backend complexe.
+-   **Référencement Local (SEO & Schema.org) :** Les balises `<title>`, `<meta description>` et les données structurées `JSON-LD` (LocalBusiness, adresse, téléphone) sont optimisées pour le référencement local et l'affichage riche dans les résultats de recherche.
+-   **Design 100% Responsive :** Un menu « burger » adapté aux mobiles, une grille de galerie flexible et des dispositions en colonnes qui s'empilent intelligemment garantissent une expérience parfaite sur smartphone, tablette et ordinateur.

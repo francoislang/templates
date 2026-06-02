@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Le Domaine du Bouledogue Français — Élevage de Bouledogues Français | Horion-Hozémont, Liège, Belgique</title>
+    <meta name="description" content="Élevage agréé de Bouledogues Français à Horion-Hozémont (Liège). Chiots vaccinés, vermifugés, pucés et sociabilisés. Suivi vétérinaire permanent. Tél. 089 80 23 52.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bouledogue-francais.be/">
+    <meta property="og:title" content="Le Domaine du Bouledogue Français — Élevage de Bouledogues Français, Liège">
+    <meta property="og:description" content="Élevage agréé de Bouledogues Français à Horion-Hozémont (Liège). Chiots vaccinés, vermifugés, pucés, parfaitement sociabilisés. Suivi vétérinaire permanent.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Le Domaine du Bouledogue Français",
+                    "description": "Élevage agréé de Bouledogues Français à Horion-Hozémont, province de Liège, Belgique. Chiots vaccinés, vermifugés, pucés et parfaitement sociabilisés.",
+                    "telephone": "+32898023525",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Horion-Hozémont",
+                        "addressRegion": "Liège",
+                        "postalCode": "4460",
+                        "addressCountry": "BE"
+                    },
+                    "url": "https://www.bouledogue-francais.be/"
+                },
+                { "@type": "AnimalShelter", "name": "Le Domaine du Bouledogue Français — Élevage Bouledogue Français Liège" }
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Le Domaine du Bouledogue Français
+           Design : Élégance française / Campagne chic
+           Palette : Chocolat chaud, Caramel, Crème, Bleu français discret
+           ============================================== */
+        :root {
+            --choco: #3C2112;
+            /* chocolat profond */
+            --caramel: #C67B4B;
+            /* caramel chaud */
+            --dore: #B8963E;
+            /* doré discret */
+            --creme: #FDF6ED;
+            /* crème clair */
+            --bg: #FEF9F3;
+            /* fond ivoire */
+            --pierre: #B8A89A;
+            /* pierre calcaire */
+            --bleu: #2C3E6B;
+            /* bleu français subtil */
+            --txt: #2B1A0E;
+            /* texte brun foncé */
+            --FD: 'Cinzel', serif;
+            /* police titres */
+            --FN: 'Raleway', sans-serif;
+            /* police corps */
+            --nav: 72px;
+            --r: 6px;
+            --caramel-gradient: linear-gradient(135deg, #C67B4B 0%, #E09E6C 45%, #A06132 100%);
+            --bleu-gradient: linear-gradient(135deg, #2C3E6B 0%, #4A6FA5 45%, #1C2D50 100%);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---- ORNEMENT DÉCORATIF ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 0 auto 0.4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 48px;
+            background: var(--caramel-gradient);
+            border-radius: 2px;
+        }
+        .ornament i {
+            font-size: 0.6rem;
+            color: var(--caramel);
+            letter-spacing: 6px;
+            font-style: normal;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav);
+            background: rgba(254, 249, 243, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(198, 123, 75, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transition: background .3s ease, box-shadow .3s ease;
+        }
+        .nav.scrolled {
+            background: rgba(254, 249, 243, 0.98);
+            box-shadow: 0 2px 24px rgba(60, 33, 18, 0.08);
+        }
+        .nav__logo {
+            font-family: var(--FD);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--choco);
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            text-align: center;
+        }
+        .nav__logo small {
+            display: block;
+            font-family: var(--FN);
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            color: var(--caramel);
+            text-transform: uppercase;
+        }
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav__links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--choco);
+            position: relative;
+            padding: 0.3rem 0;
+            transition: color .3s;
+        }
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--caramel-gradient);
+            transition: width .35s cubic-bezier(.16, 1, .3, 1);
+            border-radius: 2px;
+        }
+        .nav__links a:hover {
+            color: var(--caramel);
+        }
+        .nav__links a:hover::after {
+            width: 100%;
+        }
+        .nav__cta {
+            background: var(--caramel-gradient);
+            color: #fff !important;
+            padding: 0.5rem 1.3rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            font-size: 0.75rem !important;
+            letter-spacing: 0.06em !important;
+            transition: transform .25s ease, box-shadow .25s ease !important;
+            white-space: nowrap;
+        }
+        .nav__cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(198, 123, 75, 0.3);
+        }
+        .nav__cta::after {
+            display: none !important;
+        }
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .nav__burger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--choco);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(60, 33, 18, 0.55) 0%,
+                    rgba(60, 33, 18, 0.3) 40%,
+                    rgba(60, 33, 18, 0.55) 100%);
+            z-index: 1;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 800px;
+            padding: 2rem;
+        }
+        .hero__content .ornament::before,
+        .hero__content .ornament::after {
+            background: rgba(255, 255, 255, 0.7);
+        }
+        .hero__content .ornament i {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .hero__tag {
+            font-family: var(--FN);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .hero__title {
+            font-family: var(--FD);
+            font-size: clamp(2.4rem, 6vw, 4.2rem);
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+        }
+        .hero__subtitle {
+            font-family: var(--FN);
+            font-size: clamp(1rem, 2.2vw, 1.35rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+        .hero__cta {
+            display: inline-block;
+            background: var(--caramel-gradient);
+            color: #fff;
+            padding: 0.9rem 2.4rem;
+            border-radius: 50px;
+            font-family: var(--FD);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: transform .3s ease, box-shadow .3s ease;
+            box-shadow: 0 8px 28px rgba(198, 123, 75, 0.35);
+        }
+        .hero__cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(198, 123, 75, 0.45);
+        }
+        .hero__scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.4rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        .hero__scroll span {
+            display: block;
+            width: 1px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 1px;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ---- SECTION GENERIQUE ---- */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section__header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .section__header .ornament {
+            margin-bottom: 0.6rem;
+        }
+        .section__tag {
+            font-family: var(--FN);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--caramel);
+            margin-bottom: 0.5rem;
+        }
+        .section__title {
+            font-family: var(--FD);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 600;
+            color: var(--choco);
+            letter-spacing: 0.02em;
+            line-height: 1.2;
+        }
+        .section__subtitle {
+            font-family: var(--FN);
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--pierre);
+            margin-top: 0.6rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        /* ---- À PROPOS ---- */
+        .about {
+            background: #fff;
+        }
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about__image {
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 8px 40px rgba(60, 33, 18, 0.1);
+            position: relative;
+        }
+        .about__image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--caramel);
+            border-radius: var(--r);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .about__text h3 {
+            font-family: var(--FD);
+            font-size: 1.6rem;
+            color: var(--choco);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+        .about__text p {
+            font-size: 0.95rem;
+            color: #4A3728;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+        .about__badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
+        }
+        .about__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--creme);
+            color: var(--choco);
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            border: 1px solid rgba(198, 123, 75, 0.2);
+        }
+        .about__badge::before {
+            content: '◆';
+            font-size: 0.45rem;
+            color: var(--caramel);
+        }
+
+        /* ---- GALERIE ---- */
+        .gallery {
+            background: var(--bg);
+        }
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+        .gallery__item {
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            position: relative;
+            transition: transform .35s cubic-bezier(.16, 1, .3, 1), box-shadow .35s ease;
+            box-shadow: 0 4px 16px rgba(60, 33, 18, 0.07);
+        }
+        .gallery__item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 36px rgba(60, 33, 18, 0.14);
+        }
+        .gallery__item img {
+            transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+        }
+        .gallery__item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery__item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(60, 33, 18, 0.4) 100%);
+            opacity: 0;
+            transition: opacity .3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .gallery__item:hover::after {
+            opacity: 1;
+        }
+
+        /* ---- CONTACT ---- */
+        .contact {
+            background: #fff;
+        }
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact__info h3 {
+            font-family: var(--FD);
+            font-size: 1.5rem;
+            color: var(--choco);
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.02em;
+        }
+        .contact__info p {
+            font-size: 0.9rem;
+            color: #4A3728;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .contact__detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: var(--choco);
+        }
+        .contact__detail .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--creme);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+            color: var(--caramel);
+            border: 1px solid rgba(198, 123, 75, 0.2);
+        }
+        .contact__form {
+            background: var(--creme);
+            padding: 2.5rem;
+            border-radius: var(--r);
+            border: 1px solid rgba(198, 123, 75, 0.15);
+        }
+        .contact__form h3 {
+            font-family: var(--FD);
+            font-size: 1.3rem;
+            color: var(--choco);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.02em;
+            text-align: center;
+        }
+        .form__group {
+            margin-bottom: 1.2rem;
+        }
+        .form__group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--choco);
+            margin-bottom: 0.4rem;
+        }
+        .form__group input,
+        .form__group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1.5px solid rgba(184, 168, 154, 0.4);
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.9rem;
+            background: #fff;
+            color: var(--txt);
+            transition: border-color .3s ease, box-shadow .3s ease;
+            resize: vertical;
+        }
+        .form__group input:focus,
+        .form__group textarea:focus {
+            outline: none;
+            border-color: var(--caramel);
+            box-shadow: 0 0 0 4px rgba(198, 123, 75, 0.08);
+        }
+        .form__group textarea {
+            min-height: 120px;
+        }
+        .form__submit {
+            display: block;
+            width: 100%;
+            background: var(--caramel-gradient);
+            color: #fff;
+            padding: 0.85rem;
+            border-radius: 50px;
+            font-family: var(--FD);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease;
+            border: none;
+        }
+        .form__submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(198, 123, 75, 0.35);
+        }
+
+        /* ---- CARTE / LOCALISATION ---- */
+        .location {
+            background: var(--bg);
+        }
+        .location__map {
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 16/7;
+            box-shadow: 0 8px 40px rgba(60, 33, 18, 0.08);
+            border: 1px solid rgba(198, 123, 75, 0.12);
+        }
+        .location__map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: var(--choco);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+        .footer__brand {
+            font-family: var(--FD);
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.5rem;
+        }
+        .footer__sub {
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--caramel);
+            margin-bottom: 1.5rem;
+        }
+        .footer__links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+        }
+        .footer__links a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: color .3s ease;
+        }
+        .footer__links a:hover {
+            color: var(--caramel);
+        }
+        .footer__copy {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 0.03em;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(30, 10, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .35s ease;
+        }
+        .lightbox.on {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox__img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--r);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        .lightbox__close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 2001;
+            transition: color .3s;
+            line-height: 1;
+        }
+        .lightbox__close:hover {
+            color: var(--caramel);
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            .nav__links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(254, 249, 243, 0.98);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: right .4s cubic-bezier(.16, 1, .3, 1);
+                box-shadow: -4px 0 30px rgba(0, 0, 0, 0.08);
+                z-index: 1000;
+            }
+            .nav__links.on {
+                right: 0;
+            }
+            .nav__burger {
+                display: flex;
+            }
+            .about__grid,
+            .contact__grid {
+                grid-template-columns: 1fr;
+            }
+            .about__image {
+                order: -1;
+            }
+            .hero__title {
+                font-size: 2rem;
+            }
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 0.6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .nav {
+                padding: 0 1rem;
+            }
+            .nav__logo {
+                font-size: 0.9rem;
+            }
+            .hero__title {
+                font-size: 1.6rem;
+            }
+            .hero__subtitle {
+                font-size: 0.85rem;
+            }
+            .hero__cta {
+                padding: 0.7rem 1.6rem;
+                font-size: 0.7rem;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+            .contact__form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav__logo">
+            Le Domaine<br><small>du Bouledogue Français</small>
+        </a>
+        <ul class="nav__links" id="navLinks">
+            <li><a href="#accueil" data-nav-close>Accueil</a></li>
+            <li><a href="#a-propos" data-nav-close>À propos</a></li>
+            <li><a href="#galerie" data-nav-close>Galerie</a></li>
+            <li><a href="#contact" data-nav-close>Contact</a></li>
+            <li><a href="#contact" class="nav__cta" data-nav-close>Nous écrire</a></li>
+        </ul>
+        <div class="nav__burger" id="navBurger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="accueil">
+        <div class="hero__bg">
+            <img
+            src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg"
+            alt="Bouledogue Français — Le Domaine du Bouledogue Français"
+            loading="eager"
+            >
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content reveal">
+            <div class="ornament">
+                <i>◆</i>
+            </div>
+            <p class="hero__tag">Élevage agréé — Horion-Hozémont, Liège</p>
+            <h1 class="hero__title">Le Domaine du Bouledogue Français</h1>
+            <p class="hero__subtitle">
+                Chiots vaccinés, vermifugés, pucés et parfaitement sociabilisés.<br>
+                Un élevage familial au cœur de la province de Liège.
+            </p>
+            <a href="#contact" class="hero__cta">Découvrir nos chiots</a>
+        </div>
+        <div class="hero__scroll">
+            Défiler <span></span>
+        </div>
+    </section>
+
+    <!-- ========== À PROPOS ========== -->
+    <section class="section about" id="a-propos">
+        <div class="section__header reveal">
+            <p class="section__tag">Notre histoire</p>
+            <div class="ornament"><i>◆</i></div>
+            <h2 class="section__title">Un élevage passionné</h2>
+            <p class="section__subtitle">
+                Situé à Horion-Hozémont, dans la province de Liège, notre élevage est entièrement dédié au Bouledogue Français.
+            </p>
+        </div>
+        <div class="about__grid">
+            <div class="about__image reveal">
+                <img
+                src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg"
+                alt="Bouledogue Français dans son environnement familial"
+                loading="lazy"
+                >
+            </div>
+            <div class="about__text reveal">
+                <h3>Le Domaine du Bouledogue Français</h3>
+                <p>
+                    Nous sommes un élevage agréé de Bouledogues Français situé à Horion-Hozémont, dans la province de Liège (Belgique). Nos chiots sont issus de notre propre élevage, et sont vendus vaccinés, vermifugés, pucés et parfaitement sociabilisés.
+                </p>
+                <p>
+                    Nous veillons par ailleurs à leur offrir une alimentation de qualité ainsi qu'une hygiène impeccable. De plus, tant les reproducteurs que leurs petits sont suivis en permanence par un médecin vétérinaire.
+                </p>
+                <div class="about__badges">
+                    <span class="about__badge">Élevage agréé</span>
+                    <span class="about__badge">Vaccinés</span>
+                    <span class="about__badge">Vermifugés</span>
+                    <span class="about__badge">Pucés</span>
+                    <span class="about__badge">Sociabilisés</span>
+                    <span class="about__badge">Suivi vétérinaire</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALERIE ========== -->
+    <section class="section gallery" id="galerie">
+        <div class="section__header reveal">
+            <p class="section__tag">Galerie</p>
+            <div class="ornament"><i>◆</i></div>
+            <h2 class="section__title">Nos Bouledogues Français</h2>
+            <p class="section__subtitle">
+                Découvrez en images nos adorables compagnons, élevés avec soin et amour.
+            </p>
+        </div>
+        <div class="gallery__grid" id="galleryGrid">
+            <!-- Les 15 photos seront injectées par JavaScript -->
+        </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section contact" id="contact">
+        <div class="section__header reveal">
+            <p class="section__tag">Contact</p>
+            <div class="ornament"><i>◆</i></div>
+            <h2 class="section__title">Prenez contact avec nous</h2>
+            <p class="section__subtitle">
+                N'hésitez pas à nous contacter pour toute information sur nos chiots disponibles.
+            </p>
+        </div>
+        <div class="contact__grid">
+            <div class="contact__info reveal">
+                <h3>Nos coordonnées</h3>
+                <p>
+                    Élevage agréé de Bouledogues Français à Horion-Hozémont, province de Liège (Belgique). Nous sommes à votre disposition pour répondre à toutes vos questions.
+                </p>
+                <div class="contact__detail">
+                    <span class="icon">📞</span>
+                    <span><strong>Téléphone :</strong><br><a href="tel:+32898023525">089 80 23 52</a></span>
+                </div>
+                <div class="contact__detail">
+                    <span class="icon">📍</span>
+                    <span><strong>Adresse :</strong><br>Horion-Hozémont, 4460 Liège, Belgique</span>
+                </div>
+                <div class="contact__detail">
+                    <span class="icon">🌐</span>
+                    <span><strong>Site web :</strong><br><a href="https://www.bouledogue-francais.be" target="_blank" rel="noopener">www.bouledogue-francais.be</a></span>
+                </div>
+            </div>
+            <div class="contact__form reveal" id="contactForm">
+                <h3>Envoyez-nous un message</h3>
+                <form action="#" method="POST" novalidate>
+                    <div class="form__group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="form__submit">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LOCALISATION ========== -->
+    <section class="section location" id="localisation">
+        <div class="section__header reveal">
+            <p class="section__tag">Localisation</p>
+            <div class="ornament"><i>◆</i></div>
+            <h2 class="section__title">Où nous trouver</h2>
+            <p class="section__subtitle">
+                Horion-Hozémont, province de Liège, Belgique.
+            </p>
+        </div>
+        <div class="location__map reveal">
+            <iframe
+            src="https://www.openstreetmap.org/export/embed.html?bbox=5.36%2C50.61%2C5.42%2C50.64&layer=mapnik&marker=50.625%2C5.39"
+            title="Carte de localisation — Horion-Hozémont, Liège"
+            loading="lazy"
+            allowfullscreen
+            >
+        </iframe>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div class="footer__brand">Le Domaine du Bouledogue Français</div>
+    <p class="footer__sub">Élevage de Bouledogue Français</p>
+    <div class="footer__links">
+        <a href="#accueil">Accueil</a>
+        <a href="#a-propos">À propos</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#contact">Contact</a>
+        <a href="#">Mentions légales</a>
+        <a href="#">CGV</a>
+        <a href="#">Politique de confidentialité</a>
+    </div>
+    <p class="footer__copy">
+        © 2026 Le Domaine du Bouledogue Français — Élevage de Bouledogue Français — Horion-Hozémont, Liège, Belgique. Tous droits réservés.
+    </p>
+</footer>
+
+<!-- ========== LIGHTBOX ========== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox__close" id="lightboxClose">&times;</span>
+    <img src="" alt="" class="lightbox__img" id="lightboxImg">
+</div>
+
+<!-- ========== SCRIPTS ========== -->
+<script>
+    (function() {
+        // ---- Liste des 15 photos Cloudinary ----
+        const photos = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_11.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_15.jpg'
+        ];
+
+        // ---- Injection galerie ----
+        const galleryGrid = document.getElementById('galleryGrid');
+        photos.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery__item reveal';
+            item.innerHTML =
+                `<img src="${src}" alt="Bouledogue Français — Photo ${index + 1}" loading="lazy">`;
+            item.addEventListener('click', () => openLightbox(src));
+            galleryGrid.appendChild(item);
+        });
+
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightboxImg.alt = 'Bouledogue Français — Agrandissement';
+            lightbox.classList.add('on');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('on');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ---- Scroll Reveal (IntersectionObserver) ----
+        const revealEls = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observer les éléments existants + le MutationObserver pour la galerie
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        // Observer les nouveaux éléments de la galerie
+        const galleryObserver = new MutationObserver(() => {
+            const newReveals = galleryGrid.querySelectorAll('.reveal:not(.observed)');
+            newReveals.forEach(el => {
+                el.classList.add('observed');
+                revealObserver.observe(el);
+            });
+        });
+        galleryObserver.observe(galleryGrid, { childList: true, subtree: true });
+        // Marquer les éléments déjà injectés
+        galleryGrid.querySelectorAll('.reveal').forEach(el => el.classList.add('observed'));
+
+        // ---- Navigation ----
+        const nav = document.getElementById('nav');
+        const navBurger = document.getElementById('navBurger');
+        const navLinks = document.getElementById('navLinks');
+        const navCloseTriggers = document.querySelectorAll('[data-nav-close]');
+
+        // Scroll : ombre sur la nav
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Burger menu
+        navBurger.addEventListener('click', () => {
+            navLinks.classList.toggle('on');
+            if (navLinks.classList.contains('on')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+
+        // Fermer le menu au clic sur un lien
+        navCloseTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                navLinks.classList.remove('on');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Fermer le menu si on clique en dehors
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('on') &&
+                !navLinks.contains(e.target) &&
+                !navBurger.contains(e.target)) {
+                navLinks.classList.remove('on');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ---- Formulaire : soumission simple ----
+        const form = document.querySelector('.contact__form form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = form.querySelector('.form__submit');
+            const originalText = btn.textContent;
+            btn.textContent = 'Message envoyé ✓';
+            btn.style.background = 'var(--bleu-gradient)';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.disabled = false;
+                form.reset();
+            }, 3000);
+        });
+
+        // ---- Liens footer : empêcher les liens vides ----
+        document.querySelectorAll('.footer__links a[href="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        });
+
+    })();
+</script>
+</body>
+</html>
