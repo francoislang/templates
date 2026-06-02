@@ -1,0 +1,801 @@
+Voici le code HTML complet du site vitrine pour "Au Pays des Merveilles", l'élevage de Loulou de Poméranie. Il reprend exactement la structure des sites de référence, avec vos 15 photos Cloudinary, la palette chaude adaptée à la race, et toutes les balises SEO (Open Graph, Schema.org JSON-LD).
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Au Pays des Merveilles — Élevage Loulou de Poméranie | France</title>
+    <meta name="description" content="Élevage familial de Loulou de Poméranie (Spitz nain) en France. Chiots orange, sable et crème, testés ADN, pedigree, socialisation familiale. Tél. 06.46.73.93.29.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.aupaysdesmerveilles.fr/">
+    <meta property="og:title" content="Au Pays des Merveilles — Loulou de Poméranie, France">
+    <meta property="og:description" content="Élevage familial de Loulou de Poméranie. Chiots orange, sable et crème, testés ADN, pedigree, accompagnement à vie.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "LocalBusiness",
+                "name": "Au Pays des Merveilles",
+                "description": "Élevage familial de Loulou de Poméranie (Spitz nain) en France. Teckel nain poil long et Chihuahua poil long.",
+                "telephone": "+33646739329",
+                "identifier": "823490065",
+                "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "FR"
+                },
+                "hasCredential": "Certificat de capacité",
+                "taxID": "823490065"
+            },
+            { "@type": "AnimalShelter", "name": "Au Pays des Merveilles — Loulou de Poméranie" }
+        ]
+    }
+    </script>
+
+    <style>
+        :root {
+            --amb: #B86820;
+            --gld: #D4962A;
+            --sbl: #7A5814;
+            --crm: #FDF2E3;
+            --bg: #FEF8F0;
+            --stn: #9A8060;
+            --txt: #2A1A0A;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 6px;
+            --max: 1200px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-weight: 400;
+        }
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: var(--FN);
+        }
+        .wrap {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .announce {
+            background: var(--amb);
+            color: #fff;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: 500;
+            font-family: var(--FN);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(254, 248, 240, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(154, 128, 96, 0.2);
+            height: var(--nav);
+            display: flex;
+            align-items: center;
+        }
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .logo {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--amb);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        .logo span {
+            display: block;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            font-weight: 400;
+            color: var(--stn);
+            text-transform: uppercase;
+        }
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        nav a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--txt);
+            transition: color 0.3s;
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gld);
+            transition: width 0.3s;
+        }
+        nav a:hover::after,
+        nav a:focus-visible::after {
+            width: 100%;
+        }
+        nav a:hover {
+            color: var(--amb);
+        }
+        .btn-nav {
+            background: var(--amb);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-nav:hover {
+            background: var(--sbl);
+            transform: translateY(-1px);
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 8px;
+            z-index: 101;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--txt);
+            transition: 0.3s;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(42, 26, 10, 0.55) 0%, rgba(42, 26, 10, 0.3) 50%, rgba(42, 26, 10, 0.55) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: #fff;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+        .hero-content .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .hero-content h1 {
+            font-family: var(--FD);
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+        .hero-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 28px;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        }
+        .btn-hero {
+            display: inline-block;
+            background: var(--gld);
+            color: var(--txt);
+            padding: 14px 36px;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn-hero:hover {
+            background: #e0a835;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--amb);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .section-title h2 {
+            font-family: var(--FD);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            color: var(--txt);
+            line-height: 1.3;
+        }
+        .section-title .line {
+            width: 50px;
+            height: 3px;
+            background: var(--gld);
+            margin: 14px auto 0;
+            border-radius: 3px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(42, 26, 10, 0.12);
+        }
+        .about-img img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            border-radius: var(--r);
+        }
+        .about-text h3 {
+            font-family: var(--FD);
+            font-size: 1.8rem;
+            margin-bottom: 18px;
+            color: var(--amb);
+        }
+        .about-text p {
+            margin-bottom: 16px;
+            color: var(--txt);
+        }
+        .about-text .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 22px;
+        }
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .feature .icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--crm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: var(--amb);
+            flex-shrink: 0;
+        }
+
+        .race-section {
+            background: var(--crm);
+        }
+        .race-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .race-img {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(42, 26, 10, 0.12);
+        }
+        .race-img img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--r);
+        }
+        .race-text h3 {
+            font-family: var(--FD);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: var(--amb);
+        }
+        .race-text p {
+            margin-bottom: 14px;
+        }
+        .race-text ul {
+            list-style: none;
+            padding: 0;
+        }
+        .race-text ul li {
+            padding: 6px 0 6px 24px;
+            position: relative;
+            font-weight: 500;
+        }
+        .race-text ul li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gld);
+            font-size: 0.7rem;
+            top: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .gallery-item {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(42, 26, 10, 0.08);
+            aspect-ratio: 1 / 1;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(42, 26, 10, 0.16);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-section {
+            background: var(--crm);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-info h3 {
+            font-family: var(--FD);
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+            color: var(--amb);
+        }
+        .contact-info p {
+            margin-bottom: 12px;
+        }
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .contact-info .info-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-form {
+            background: #fff;
+            padding: 36px;
+            border-radius: var(--r);
+            box-shadow: 0 10px 30px rgba(42, 26, 10, 0.08);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(154, 128, 96, 0.3);
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            background: var(--bg);
+            transition: border-color 0.3s;
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--amb);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+        }
+        .btn-submit {
+            background: var(--amb);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            transition: background 0.3s, transform 0.2s;
+            width: 100%;
+            font-family: var(--FN);
+        }
+        .btn-submit:hover {
+            background: var(--sbl);
+            transform: translateY(-1px);
+        }
+
+        footer {
+            background: var(--txt);
+            color: var(--crm);
+            padding: 40px 0 20px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        footer .wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        footer .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+        footer .footer-links a {
+            color: var(--stn);
+            transition: color 0.3s;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        footer .footer-links a:hover {
+            color: var(--gld);
+        }
+        footer .footer-brand {
+            font-family: var(--FD);
+            font-size: 1.2rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        footer p {
+            color: var(--stn);
+            margin: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .about-grid,
+            .race-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .about-img img,
+            .race-img img {
+                height: 300px;
+            }
+            nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .mobile-nav {
+                position: fixed;
+                inset: 0;
+                background: rgba(254, 248, 240, 0.98);
+                z-index: 99;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 28px;
+                transform: translateX(100%);
+                transition: transform 0.4s ease;
+            }
+            .mobile-nav.open {
+                transform: translateX(0);
+            }
+            .mobile-nav a {
+                font-size: 1.2rem;
+                font-weight: 600;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-family: var(--FD);
+            }
+            .hero {
+                min-height: 70vh;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="announce">🐾 Prochaine portée prévue — Réservations ouvertes • 06.46.73.93.29</div>
+
+    <header>
+        <div class="wrap">
+            <a href="#" class="logo">Au Pays des Merveilles<span>Élevage familial</span></a>
+            <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </button>
+            <nav>
+                <a href="#accueil">Accueil</a>
+                <a href="#elevage">L'élevage</a>
+                <a href="#race">La race</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#contact" class="btn-nav">Contact</a>
+            </nav>
+        </div>
+        <div class="mobile-nav">
+            <a href="#accueil" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Accueil</a>
+            <a href="#elevage" onclick="document.querySelector('.mobile-nav').classList.remove('open')">L'élevage</a>
+            <a href="#race" onclick="document.querySelector('.mobile-nav').classList.remove('open')">La race</a>
+            <a href="#galerie" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Galerie</a>
+            <a href="#contact" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Contact</a>
+        </div>
+    </header>
+
+    <section class="hero" id="accueil">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg" alt="Loulou de Poméranie — Au Pays des Merveilles" class="hero-img" loading="eager">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <span class="tag">Élevage familial</span>
+            <h1>Au Pays des Merveilles</h1>
+            <p>Élevage passionné de Loulou de Poméranie, Teckel nain poil long & Chihuahua poil long. Chiots nés et élevés avec amour au sein de notre foyer.</p>
+            <a href="#contact" class="btn-hero">Nous contacter</a>
+        </div>
+    </section>
+
+    <section id="elevage">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <span class="tag">Notre histoire</span>
+                <h2>Un élevage passionné</h2>
+                <div class="line"></div>
+            </div>
+            <div class="about-grid reveal">
+                <div class="about-img">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_2.jpg" alt="Notre élevage familial" loading="lazy">
+                </div>
+                <div class="about-text">
+                    <h3>Une histoire de passion et d'amour</h3>
+                    <p>Mon élevage est avant tout une histoire de passion, de respect et d'amour pour mes chiens. Je me consacre avec cœur à l'élevage du Teckel nain à poil long et du Chihuahua à poil long, deux races exceptionnelles par leur beauté et leur attachement à l'humain.</p>
+                    <p>Tous mes chiots naissent et grandissent au sein de mon foyer, dans un environnement familial chaleureux, calme et sécurisant. Ils sont manipulés et choyés chaque jour, ce qui leur permet de développer un caractère sociable, affectueux et équilibré.</p>
+                    <p>Une grande importance est accordée à la sélection de mes reproducteurs, afin de préserver le standard de chaque race. Tests génétiques, pedigree, socialisation précoce : chaque chiot bénéficie du meilleur départ possible dans la vie.</p>
+                    <div class="features">
+                        <div class="feature"><span class="icon">🏠</span> Élevage familial</div>
+                        <div class="feature"><span class="icon">🧬</span> Tests ADN</div>
+                        <div class="feature"><span class="icon">📋</span> Pedigree</div>
+                        <div class="feature"><span class="icon">💛</span> Suivi à vie</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="race-section" id="race">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <span class="tag">La race</span>
+                <h2>Le Loulou de Poméranie</h2>
+                <div class="line"></div>
+            </div>
+            <div class="race-grid reveal">
+                <div class="race-text">
+                    <h3>Un petit chien au grand cœur</h3>
+                    <p>Le Loulou de Poméranie, aussi appelé Spitz nain, est un petit chien vif, intelligent et extrêmement attachant. Avec son pelage somptueux et sa frimousse de peluche, il fait craquer tous les cœurs.</p>
+                    <p>Nos chiots arborent des coloris magnifiques allant de l'orange au sable, en passant par le crème. Chaque chiot est unique et porte en lui tout le charme de cette race exceptionnelle.</p>
+                    <ul>
+                        <li>Poids adulte : 1,5 à 3 kg</li>
+                        <li>Espérance de vie : 12 à 16 ans</li>
+                        <li>Caractère : vif, affectueux, intelligent</li>
+                        <li>Pelage : double couche, dense et soyeux</li>
+                        <li>Idéal en appartement comme en maison</li>
+                    </ul>
+                </div>
+                <div class="race-img">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_3.jpg" alt="Loulou de Poméranie — caractéristiques" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galerie">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <span class="tag">Galerie</span>
+                <h2>Nos merveilles en images</h2>
+                <div class="line"></div>
+            </div>
+            <div class="gallery-grid reveal">
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg" alt="Loulou de Poméranie 1" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_2.jpg" alt="Loulou de Poméranie 2" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_3.jpg" alt="Loulou de Poméranie 3" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_4.jpg" alt="Loulou de Poméranie 4" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_5.jpg" alt="Loulou de Poméranie 5" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_6.jpg" alt="Loulou de Poméranie 6" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_7.jpg" alt="Loulou de Poméranie 7" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_8.jpg" alt="Loulou de Poméranie 8" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_9.jpg" alt="Loulou de Poméranie 9" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_10.jpg" alt="Loulou de Poméranie 10" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_11.jpg" alt="Loulou de Poméranie 11" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_12.jpg" alt="Loulou de Poméranie 12" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_13.jpg" alt="Loulou de Poméranie 13" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_14.jpg" alt="Loulou de Poméranie 14" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_15.jpg" alt="Loulou de Poméranie 15" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg" alt="Loulou de Poméranie 16" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_2.jpg" alt="Loulou de Poméranie 17" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_3.jpg" alt="Loulou de Poméranie 18" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_4.jpg" alt="Loulou de Poméranie 19" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_5.jpg" alt="Loulou de Poméranie 20" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_6.jpg" alt="Loulou de Poméranie 21" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_7.jpg" alt="Loulou de Poméranie 22" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="wrap">
+            <div class="section-title reveal">
+                <span class="tag">Contact</span>
+                <h2>Parlons de votre futur compagnon</h2>
+                <div class="line"></div>
+            </div>
+            <div class="contact-grid reveal">
+                <div class="contact-info">
+                    <h3>Prenez contact</h3>
+                    <p>Vous souhaitez en savoir plus sur nos chiots Loulou de Poméranie, Teckel nain poil long ou Chihuahua poil long ? N'hésitez pas à nous écrire ou à nous appeler. Nous serons ravis d'échanger avec vous.</p>
+                    <div class="info-item"><span class="icon">📞</span> 06.46.73.93.29</div>
+                    <div class="info-item"><span class="icon">📍</span> France</div>
+                    <div class="info-item"><span class="icon">📋</span> SIRET : 823490065</div>
+                </div>
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p style="display:none;"><label>Ne pas remplir : <input name="bot-field"></label></p>
+                    <input type="text" name="nom" placeholder="Votre nom *" required>
+                    <input type="email" name="email" placeholder="Votre email *" required>
+                    <textarea name="message" placeholder="Votre message *" required></textarea>
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap">
+            <div class="footer-brand">Au Pays des Merveilles</div>
+            <p>© 2026 Au Pays des Merveilles — SIRET 823490065 — Élevage de chiens</p>
+            <p>contact@aupaysdesmerveilles.fr</p>
+            <div class="footer-links">
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+                <a href="#">CGV</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                document.querySelector('.mobile-nav').classList.remove('open');
+            });
+        });
+    </script>
+</body>
+</html>
