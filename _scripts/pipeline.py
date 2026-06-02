@@ -1,68 +1,27 @@
+#!/usr/bin/env python3
 """
 Pipeline principal unifie :
 1. Scrape chien.com
-2. Filtre les doublons (Notion)
-3. Genere un site vitrine personnalise
-4. Prepare le pitch
-5. Ajoute dans Notion
-6. Commit + push sur GitHub
-7. Notifie Telegram
-
-Usage:
-    python _scripts/pipeline.py
-    python _scripts/pipeline.py --dry-run  # sans ecrire ni push
+2. Filtre les doublons (telephone + nom)
+3. Photos Cloudinary 15/race
+4. Genere un site vitrine via template universel
+5. Prepare le pitch + signature
+6. Cree Issue GitHub board
+7. Commit + push sur GitHub Pages
+8. Notifie Telegram
+9. Relances automatiques des prospects stagnants
 """
-import os
-import sys
-import subprocess
-import json
-import re
-import unicodedata
-from datetime import datetime
-from pathlib import Path
-
+import sys, os, re, time, json, subprocess
 sys.path.insert(0, os.path.dirname(__file__))
-
-import config
-import scraper
-import crm       # GitHub Projects (remplace notion)
-import telegram
-import generator
-
-# Mapping des races -> template existant ou fallback
-BREED_TEMPLATE = {
-    "Border Collie": "elevage-border-collie-mas-andre",
-    "Berger Australien": "bois-de-chantalouette",
-    "Cavalier King Charles": "domaine-du-quinquis",
-    "Schnauzer": "mellan-schnauzers",
-    "West Highland White Terrier": "ferme-aredienne-des-salines",
-    "Lagotto Romagnolo": "la-dolce-vita",
-    "Berger Polonais de Podhale": "gaec-du-chateau-d-alboy",
-    "Carlin": "joyaux-d-anubis",
-    "Loulou de Pomeranie": "des-cotons-de-soie-d-or",
-    "Berger de Brie": "bois-de-chantalouette",
-}
-
+import config, scraper, generator, telegram, crm
+from photos import get_photos_for_race
 
 def slugify(text: str) -> str:
-    text = unicodedata.normalize("NFD", text)
-    text = "".join(c for c in text if unicodedata.category(c) != "Mn")
-    text = text.lower()
-    text = re.sub(r"[^a-z0-9]+", "-", text)
-    return text.strip("-")
-
-
-def get_repo_root() -> Path:
-    return config.REPO_ROOT
-
+    text = "".join(c for c in text if c.isalnum() or c in " -'")
+    return text.lower().replace("'", "").replace(" ", "-").strip("-")
 
 def generate_demo_site(profile: dict) -> str | None:
-    """Genere un site vitrine via Claude Sonnet 4 (API OpenRouter)."""
-    import requests, json, os, re, time
-    from pathlib import Path
-    from generator import slugify
-    from photos import get_photos_for_race
-
+    """Genere un site vitrine via le template universel (fiable, pas d API externe)."""
     name = profile["name"]
     race = profile["races"][0]
     phone = profile.get("phone", "")
@@ -72,106 +31,14 @@ def generate_demo_site(profile: dict) -> str | None:
     siren = profile.get("siren", "")
     photo_url = profile.get("photo_url", "")
 
-    slug = slugify(name)
-    target_dir = Path("/workspace/templates") / slug
-    target_dir.mkdir(exist_ok=True)
-    target_file = target_dir / "index.html"
-    if target_file.exists():
-        return f"https://francoislang.github.io/templates/{slug}"
-
-    # Photos Cloudinary
     photos_race = get_photos_for_race(race, count=15) or []
-
-    # Lire les sites de reference (tous les contacts)
-    ref_sites = ["joyaux-d-anubis", "domaine-du-quinquis", "la-dolce-vita",
-                 "des-cotons-de-soie-d-or", "mas-andre", "de-windy-stia",
-                 "mellan-schnauzers", "la-ferme-aredienne-des-salines",
-                 "du-bois-de-chantalouette", "des-marais-de-bremes"]
-    refs = []
-    for s in ref_sites:
-        try:
-            html = open(f"/workspace/templates/{s}/index.html", encoding="utf-8").read()
-            refs.append(f"--- {s} ---\n{html[:3000]}")
-        except:
-            pass
-
-    # Cle API DeepSeek directe
-    key = ""
-    for f_path in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
-        try:
-            for line in open(f_path):
-                if "DEEPSEEK_API_KEY" in line and "=" in line:
-                    key = line.split("=", 1)[1].strip()
-                    if key: break
-        except:
-            pass
-
-    if not key:
-        # Fallback template universel
-        from generator import generate_site
-        r = generate_site(name=name, race=race, phone=phone, city=ville or departement,
-                         description=description, siren=siren, departement=departement,
-                         photo_url=photo_url, photos_race=photos_race)
-        return r[1] if r else None
-
-    lieu = f"à {ville} ({departement})" if ville and departement else "en France"
-    photos_list = "\n".join(f"  - {p}" for p in photos_race)
-
-    prompt = f"""Crée un site vitrine HTML complet pour un éleveur de chiens.
-
-INSPIRE-TOI DE CES SITES DE RÉFÉRENCE pour la structure, le style, les sections et la qualité (ce sont des sites déjà réalisés pour d'autres éleveurs) :
-{chr(10).join(refs[:6000]) if refs else "Crée un site professionnel, unique et moderne avec Hero, About, Race, Galerie, Contact."}
-
-CONTENU À ADAPTER :
-- Nom élevage : {name}
-- Race : {race}
-- Téléphone : {phone}
-- Localisation : {lieu}
-- Description : {description[:500] if description else ""}
-- SIREN : {siren or "Particulier"}
-- Photo principale : {photo_url}
-- Photos de la race : 
-{photos_list}
-
-INSTRUCTIONS STRICTES :
-- COPIE EXACTEMENT la structure HTML, les classes CSS et les sections de joyaux-d-anubis (hero, hero_txt, hero_img, sec_title, about_g, repro_c, gal_g, tem_c, contact_g, btn_primary, alt_bg)
-- NE CRÉE PAS de nouvelles sections. N'AJOUTE PAS de texte explicatif ou notes de design.
-- PREMIÈRE PHOTO (hero) : utilise TOUJOURS une photo Cloudinary (res.cloudinary.com), JAMAIS la photo chien.com qui est pixelisée
-- FORMULAIRE DE CONTACT : ajoute un formulaire simple (nom, email, message) dans la section contact
-- FOOTER : ajoute un footer complet avec : © 2026 NomElevage, SIRET si fourni, email de contact, "Politique de confidentialité", "Mentions légales", "CGV" (liens #)
-- ANIMATIONS SCROLL : ajoute des animations au scroll (reveal, fade-in) sur toutes les sections
-- Utilise les photos Cloudinary fournies. Toutes les 15 photos dans la galerie (grille). Ne les répète pas. Pas de photos externes.
-- Adapte les couleurs à la race. Garde Cinzel + Raleway.
-- Schema.org JSON-LD, Open Graph, meta SEO.
-- Réponds UNIQUEMENT avec le code HTML complet."""
-
-    r = requests.post("https://api.deepseek.com/v1/chat/completions",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 32000},
-        timeout=600)
-
-    data = r.json()
-    if "choices" not in data:
-        print(f"  ⚠️ Erreur API Claude: {data.get('error', {}).get('message', str(data)[:200])}")
-        print(f"  ⚠️ Fallback: generation via template universel")
-        from generator import generate_site
-        r2 = generate_site(name=name, race=race, phone=phone, city=ville or departement,
-                         description=description, siren=siren, departement=departement,
-                         photo_url=photo_url, photos_race=photos_race)
-        return r2[1] if r2 else None
-
-    html = data["choices"][0]["message"]["content"]
-    html = re.sub(r'^```html?\n?', '', html)
-    html = re.sub(r'\n?```\s*$', '', html)
-
-    target_file.write_text(html, encoding="utf-8")
-
-    import subprocess
-    subprocess.run(["git", "-C", "/workspace/templates", "add", f"{slug}/index.html"],
-                   check=True, capture_output=True)
-
-    return f"https://francoislang.github.io/templates/{slug}"
-
+    r = generator.generate_site(
+        name=name, race=race, phone=phone,
+        city=ville or departement,
+        description=description, siren=siren,
+        departement=departement,
+        photo_url=photo_url, photos_race=photos_race)
+    return r[1] if r else None
 
 def generate_pitch(profile: dict, demo_url: str | None) -> str:
     """
@@ -220,6 +87,9 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
 
     return pitch
 
+
+def get_repo_root() -> str:
+    return str(config.REPO_ROOT)
 
 def commit_and_push(sites_count: int) -> bool:
     """Commit et push les nouveaux sites sur GitHub."""
