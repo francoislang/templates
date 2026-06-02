@@ -14,6 +14,7 @@ import sys
 import time
 import json
 import re
+import unicodedata
 import urllib.parse
 import requests
 
@@ -23,6 +24,55 @@ import config
 CLOUDINARY_UPLOAD_URL = (
     f"https://api.cloudinary.com/v1_1/{config.CLOUDINARY_CLOUD_NAME}/image/upload"
 )
+
+
+def _safe_race(race: str) -> str:
+    """Slugifie un nom de race en supprimant les accents, ex: 'Samoyède' → 'samoyede'."""
+    normalized = unicodedata.normalize("NFD", race)
+    normalized = "".join(c for c in normalized if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9]+", "_", normalized.lower()).strip("_")
+
+
+# Termes de recherche Pexels pour les races dont le nom français est ambigu
+_BREED_SEARCH = {
+    "Berger Allemand":               "German Shepherd dog",
+    "Berger Australien":             "Australian Shepherd dog",
+    "Berger Américain Miniature":    "Miniature American Shepherd dog",
+    "Berger Blanc Suisse":           "White Swiss Shepherd dog",
+    "Berger de Brie":                "Briard dog",
+    "Berger Polonais de Podhale":    "Polish Tatra Sheepdog",
+    "Bouledogue Français":           "French Bulldog",
+    "Cavalier King Charles":         "Cavalier King Charles Spaniel dog",
+    "Chien Loup Tchécoslovaque":     "Czechoslovakian Wolfdog",
+    "Dalmatien":                     "Dalmatian dog",
+    "Épagneul Breton":               "Brittany Spaniel dog",
+    "Golden Retriever":              "Golden Retriever dog",
+    "Labrador Retriever":            "Labrador Retriever dog",
+    "Loulou de Poméranie":           "Pomeranian dog",
+    "Malinois":                      "Belgian Malinois dog",
+    "Rhodesian Ridgeback":           "Rhodesian Ridgeback dog",
+    "Rottweiler":                    "Rottweiler dog",
+    "Saint Bernard":                 "Saint Bernard dog breed",
+    "Samoyède":                      "Samoyed dog",
+    "Schnauzer":                     "Schnauzer dog",
+    "Tervueren":                     "Belgian Tervuren dog",
+    "Welsh Corgi Cardigan":          "Cardigan Welsh Corgi dog",
+    "Welsh Corgi Pembroke":          "Pembroke Welsh Corgi dog",
+    "West Highland White Terrier":   "West Highland White Terrier dog",
+    "Yorkshire Terrier":             "Yorkshire Terrier dog",
+}
+
+
+def _search_query(race: str) -> str:
+    """Retourne le terme de recherche Pexels optimal pour une race.
+    Tolère les variantes accentuées (ex: 'Epagneul Breton' == 'Épagneul Breton')."""
+    if race in _BREED_SEARCH:
+        return _BREED_SEARCH[race]
+    safe = _safe_race(race)
+    for key, val in _BREED_SEARCH.items():
+        if _safe_race(key) == safe:
+            return val
+    return f"{race} dog breed"
 
 # Pexels API (gratuite, 200 req/h sans compte, beaucoup plus avec une cle)
 PEXELS_API_KEY = config.PEXELS_API_KEY or ""
@@ -264,8 +314,7 @@ def upload_to_cloudinary(image_url: str, public_id: str, race: str = "") -> str 
     import hashlib
     timestamp = int(time.time())
     
-    # Dossier: photo-{race} par ex photo-carlin
-    safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_") if race else ""
+    safe_race = _safe_race(race) if race else ""
     folder = f"photo-{safe_race}" if safe_race else ""
     
     # Signature de l'upload
@@ -325,8 +374,9 @@ def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False)
             return existing[:count]
 
     # 2. Scraper depuis Pexels
-    print(f"  📸 Aucune photo Cloudinary trouvee, scraping Pexels pour '{race}'...")
-    images = search_images(race, count=count)
+    query = _search_query(race)
+    print(f"  📸 Aucune photo Cloudinary trouvee, scraping Pexels pour '{race}' (query: '{query}')...")
+    images = search_images(query, count=count)
 
     if not images:
         print(f"  ❌ Aucune photo trouvee pour '{race}'")
@@ -335,8 +385,7 @@ def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False)
     # 3. Uploader sur Cloudinary
     urls = []
     for i, img in enumerate(images[:count]):
-        safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_")
-        public_id = f"{safe_race}_{i+1}"
+        public_id = f"{_safe_race(race)}_{i+1}"
         cloud_url = upload_to_cloudinary(img["url"], public_id, race=race)
         if cloud_url:
             urls.append(cloud_url)
@@ -353,10 +402,9 @@ def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False)
 def get_cloudinary_photos_for_race(race: str) -> list[str]:
     """
     Recupere les URLs Cloudinary d'une race deja uploadee.
-    Verifie via l'API Cloudinary si des photos existent dans le dossier breeds/.
+    Verifie via l'API Cloudinary si des photos existent dans le dossier photo-{race}/.
     """
-    import hashlib
-    safe_race = re.sub(r"[^a-z0-9]+", "_", race.lower()).strip("_")
+    safe_race = _safe_race(race)
 
     # Methode: chercher les photos via Cloudinary Admin API
     # Si CLOUDINARY_API_SECRET est defini, on peut chercher
@@ -370,7 +418,7 @@ def get_cloudinary_photos_for_race(race: str) -> list[str]:
             f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
             f"image/upload/q_auto/f_auto/{folder_name}/{safe_race}_1.jpg"
         )
-        r = requests.head(test_url, timeout=5)
+        r = requests.head(test_url, timeout=10)
         if r.status_code == 200:
             # La race existe, construire les URLs
             urls = []
@@ -383,7 +431,7 @@ def get_cloudinary_photos_for_race(race: str) -> list[str]:
             # Verifier combien existent reellement
             existing_urls = []
             for url in urls:
-                r2 = requests.head(url, timeout=3)
+                r2 = requests.head(url, timeout=8)
                 if r2.status_code == 200:
                     existing_urls.append(url)
             return existing_urls

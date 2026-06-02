@@ -101,6 +101,8 @@ SLUG_TO_RACE = {
     "elevage-chien-loup-tchecoslovaque": "Chien Loup Tchecoslovaque",
     "elevage-berger-croate": "Berger Croate",
     "elevage-beauceron": "Beauceron",
+    "elevage-vallhund-suedois-spitz-des-wisigoths": "Vallhund Suédois",
+    "elevage-spitz-des-wisigoths": "Vallhund Suédois",
 }
 
 

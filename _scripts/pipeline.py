@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import config, scraper, telegram, crm
 from generator import generate_site
 from photos import get_photos_for_race
-from photos import get_photos_for_race
+from cloudinary_check import get_photos_for_breed
 
 def slugify(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -25,7 +25,7 @@ def generate_demo_site(profile):
     if target.exists():
         return f"https://francoislang.github.io/templates/{slug}"
 
-    photos = get_photos_for_race(race, count=15) or []
+    photos = get_photos_for_breed(race) or get_photos_for_race(race, count=15) or []
 
     # Cle OpenRouter
     key = ""
