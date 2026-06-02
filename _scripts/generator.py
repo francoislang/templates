@@ -59,6 +59,43 @@ def generate_from_config(config_path: str):
     return slug, github_url
 
 
+_BREED_COLORS = {
+    "Carlin": {"primaire": "#8B5A3A", "accent": "#D4A76A", "fond": "#FAF3E8"},
+    "Berger Australien": {"primaire": "#2D5A3D", "accent": "#C4A35A", "fond": "#F5F0E8"},
+    "Shiba Inu": {"primaire": "#C0392B", "accent": "#F0C040", "fond": "#FDF8F0"},
+    "Golden Retriever": {"primaire": "#B8860B", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "Bouledogue Francais": {"primaire": "#4A3728", "accent": "#C4956A", "fond": "#F7F0E8"},
+    "Border Collie": {"primaire": "#1A5276", "accent": "#85C1E9", "fond": "#F0F4F8"},
+    "Cavalier King Charles": {"primaire": "#6B3A5A", "accent": "#E8B4C8", "fond": "#FDF5F8"},
+    "Pomsky": {"primaire": "#5D4037", "accent": "#A1887F", "fond": "#F5F0EB"},
+    "Berger Allemand": {"primaire": "#4E342E", "accent": "#BF8F6B", "fond": "#F5F0E8"},
+    "Labrador Retriever": {"primaire": "#2E4053", "accent": "#5DADE2", "fond": "#F0F5FA"},
+    "Husky": {"primaire": "#2C3E50", "accent": "#85C1E9", "fond": "#F0F5FA"},
+    "Cane Corso": {"primaire": "#1B1B1B", "accent": "#8B4513", "fond": "#F0ECE6"},
+    "Chihuahua": {"primaire": "#8B4513", "accent": "#DEB887", "fond": "#FFF8F0"},
+    "Rhodesian Ridgeback": {"primaire": "#8B2500", "accent": "#D2691E", "fond": "#FDF5E6"},
+    "Yorkshire Terrier": {"primaire": "#4A6741", "accent": "#8FBC8F", "fond": "#F5FAF0"},
+    "Bichon Frise": {"primaire": "#FFB6C1", "accent": "#FF69B4", "fond": "#FFF5F8"},
+    "Rottweiler": {"primaire": "#1A1A2E", "accent": "#B8860B", "fond": "#F0ECE6"},
+    "Beagle": {"primaire": "#D4A76A", "accent": "#8B4513", "fond": "#FFF8E7"},
+    "Loulou de Pomeranie": {"primaire": "#FF8C00", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "Schnauzer": {"primaire": "#36454F", "accent": "#C0C0C0", "fond": "#F0F0F0"},
+    "West Highland White Terrier": {"primaire": "#F5F5DC", "accent": "#DCDCDC", "fond": "#FFFFFF"},
+    "Berger Blanc Suisse": {"primaire": "#E8E8E8", "accent": "#C0C0C0", "fond": "#FAFAFA"},
+    "Akita Inu": {"primaire": "#CC5500", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "American Bully": {"primaire": "#2F1B0E", "accent": "#8B4513", "fond": "#F5ECE6"},
+    "Malinois": {"primaire": "#8B7355", "accent": "#556B2F", "fond": "#F5F0E8"},
+}
+
+
+def _breed_colors(race: str) -> dict:
+    default = {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"}
+    for key in _BREED_COLORS:
+        if key.lower() in race.lower():
+            return _BREED_COLORS[key]
+    return default
+
+
 def generate_site(name: str, race: str, phone: str, city: str = "",
                   website: str = "", description: str = "",
                   siren: str = "", departement: str = "",
@@ -96,7 +133,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
             "description_hero": (description[:200] if description else f"Elevage {name} — {race}"),
             "description_about": description or "",
         },
-        "couleurs": {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"},
+        "couleurs": _breed_colors(race),
         "photos": {
             "hero": photo_url or (ph[0] if ph else ""),
             "og": photo_url or (ph[0] if ph else ""),
