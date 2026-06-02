@@ -1,93 +1,104 @@
-def generate_demo_site(profile: dict) -> str | None:
-    """Genere un site via DeepSeek V4 Pro (OpenRouter), 3/jour."""
-    import requests, json, os, re, subprocess
+#!/usr/bin/env python3
+"""Pipeline prospection: scrape, photos, DeepSeek V4 Pro, CRM, Telegram."""
+import sys, os, re, time, json, subprocess
+sys.path.insert(0, os.path.dirname(__file__))
+import config, scraper, telegram, crm
+from photos import get_photos_for_race
+
+def slugify(text):
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+def generate_demo_site(profile):
+    """Genere un site via DeepSeek V4 Pro (OpenRouter)."""
+    import requests
     from pathlib import Path
-    from generator import slugify
-    from photos import get_photos_for_race
 
     name = profile["name"]; race = profile["races"][0]
-    phone = profile.get("phone", ""); ville = profile.get("ville", "")
-    dept = profile.get("departement", ""); desc = profile.get("description","") or ""
-    siren = profile.get("siren", ""); photo_url = profile.get("photo_url","")
+    phone = profile.get("phone",""); ville = profile.get("ville","")
+    dept = profile.get("departement",""); desc = profile.get("description","") or ""
+    siren = profile.get("siren",""); p_url = profile.get("photo_url","")
 
     slug = slugify(name)
     target = Path("/workspace/templates") / slug / "index.html"
-    if target.exists(): return f"https://francoislang.github.io/templates/{slug}"
+    if target.exists():
+        return f"https://francoislang.github.io/templates/{slug}"
 
-    photos_race = get_photos_for_race(race, count=15) or []
+    photos = get_photos_for_race(race, count=15) or []
 
     # Cle OpenRouter
     key = ""
-    for fp in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
-        try:
-            for l in open(fp):
-                if "ANTHROPIC_API_KEY" in l and "=" in l:
-                    key = l.split("=",1)[1].strip(); break
-        except: pass
+    for fp in (os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"):
+        for line in open(fp):
+            if "ANTHROPIC_API_KEY" in line and "=" in line:
+                key = line.split("=",1)[1].strip(); break
+        if key: break
+
     if not key:
         from generator import generate_site
         r = generate_site(name=name, race=race, phone=phone, city=ville or dept,
                          description=desc, siren=siren, departement=dept,
-                         photo_url=photo_url, photos_race=photos_race)
+                         photo_url=p_url, photos_race=photos)
         return r[1] if r else None
 
-    # References
-    refs = "joyaux-d-anubis domaine-du-quinquis la-dolce-vita des-cotons-de-soie-d-or mas-andre".split()
-    ref_html = ""
-    for s in refs:
-        try: ref_html += open(f"/workspace/templates/{s}/index.html").read()[:2000] + "\n"
-        except: pass
+    # Reference joyaux-d-anubis
+    ref = ""
+    try: ref = open("/workspace/templates/joyaux-d-anubis/index.html").read()[:4000]
+    except: pass
 
-    lieu = f"a {ville} ({dept})" if ville and dept else ("dans le " + dept if dept else "en France")
-    pl = "\n".join(f"  - {p}" for p in photos_race)
+    lieu = f"a {ville} ({dept})" if ville and dept else (dept or "France")
+    pl = "\n".join(f"  {p}" for p in photos)
 
     prompt = f"""Crée un site vitrine HTML complet pour un eleveur de chiens.
 
-REFERENCE (structure a reproduire) :
-{ref_html}
+REFERENCE (structure a reproduire exactement) :
+{ref}
 
-CONTENU A ADAPTER :
-- Nom elevage: {name}
+CONTENU :
+- Nom: {name}
 - Race: {race}
-- Telephone: {phone}
-- Localisation: {lieu}
-- Description: {desc[:500] if desc else ""}
+- Tel: {phone}
+- Lieu: {lieu}
+- Desc: {desc[:500] if desc else ""}
 - SIREN: {siren or ""}
-- Photos ({len(photos_race)} dispo):
+- Photos ({len(photos)} dispo):
 {pl}
 
 REGLES:
-- Reproduis EXACTEMENT la structure HTML, les sections et les classes CSS du site de reference
-- PREMIERE PHOTO (hero) = TOUJOURS une photo Cloudinary, JAMAIS chien.com ni externe
-- Galerie: utilise TOUTES les photos Cloudinary fournies
+- Reproduis EXACTEMENT la structure HTML, sections et classes du site de reference
+- Hero: utilise une photo Cloudinary (JAMAIS chien.com)
+- Galerie: utilise TOUTES les {len(photos)} photos fournies. Boucle si besoin.
 - Formulaire contact (nom, email, message)
-- Footer: © 2026 {name}, Politique de confidentialite, Mentions legales, CGV
-- Animations IntersectionObserver au scroll
+- Footer: © 2026 {name}, {f"SIRET {siren}" if siren else ""}, {ville or dept or "France"}, Mentions legales, CGV, Politique confidentialite
+- Animations scroll (IntersectionObserver)
 - Schema.org JSON-LD, Open Graph, meta SEO
-- CHOISIS TOI-MEME les couleurs adaptees a la race (pas les memes que la reference)
+- CHOISIS des couleurs QUI CORRESPONDENT A LA RACE (pas les memes que la reference)
 - Police Cinzel + Raleway
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
     r = requests.post("https://openrouter.ai/api/v1/chat/completions",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role": "user", "content": prompt}], "max_tokens": 24000},
+        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role":"user","content":prompt}], "max_tokens": 24000},
         timeout=300)
 
     data = r.json()
     if "choices" not in data:
-        print(f"  WARNING Erreur API: {data.get('error',{}).get('message','?')[:100]}")
+        print(f"  WARNING: {data.get('error',{}).get('message','?')[:100]}")
         from generator import generate_site
         r2 = generate_site(name=name, race=race, phone=phone, city=ville or dept,
                           description=desc, siren=siren, departement=dept,
-                          photo_url=photo_url, photos_race=photos_race)
+                          photo_url=p_url, photos_race=photos)
         return r2[1] if r2 else None
 
     html = data["choices"][0]["message"]["content"]
     html = re.sub(r"^```html?\n?", "", html); html = re.sub(r"\n?```\s*$", "", html)
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
-    subprocess.run(["git","-C","/workspace/templates","add",f"{slug}/index.html"],
-                   capture_output=True)
+    subprocess.run(["git","-C","/workspace/templates","add",f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"
+
+def generate_pitch(profile: dict, demo_url: str | None) -> str:
+    """
+    Genere un pitch personnalise pour l'appel commercial.
+    """
     name = profile["name"]
     race = profile["races"][0]
     phone = profile.get("phone", "")
@@ -130,6 +141,8 @@ REGLES:
     )
 
     return pitch
+
+
 
 
 def get_repo_root() -> str:
