@@ -35,6 +35,9 @@ out/
 *.swo
 *~
 *.orig
+__pycache__/
+*.pyc
+*.pyo
 
 # ─── Windows (par précaution) ─────────────────────────────────────────────────
 Thumbs.db

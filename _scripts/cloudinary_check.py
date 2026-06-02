@@ -2,27 +2,31 @@ import re
 from pathlib import Path
 import config
 
-# Mapping race → dossier template existant
+# Mapping race → dossier du site de référence (contient les photos Cloudinary pour la race)
+# Ajouter une entrée dès qu'un nouveau site de référence est généré pour une race.
 BREED_TEMPLATE = {
-    "Border Collie": "universal",
-    "Berger Australien": "universal",
-    "Cavalier King Charles": "universal",
-    "Schnauzer": "universal",
-    "West Highland White Terrier": "universal",
-    "Lagotto Romagnolo": "universal",
-    "Berger Polonais de Podhale": "universal",
-    "Carlin": "universal",
-    "Loulou de Poméranie": "universal",
-    "Berger de Brie": "universal",
-    "Berger Americain Miniature": "universal",
-    "Pomsky": "universal",
-    "Berger Allemand": "universal",
-    "Bouledogue Francais": "universal",
-    "Golden Retriever": "universal",
-    "Shiba Inu": "universal",
-    "Cane Corso": "universal",
-    "Berger Blanc Suisse": "universal",
-    "Rhodesian Ridgeback": "universal",
+    # Races avec banque photos Cloudinary — pointe vers le site de référence
+    "Border Collie":              "mas-andre",
+    "Berger Australien":          "du-bois-de-chantalouette",
+    "Cavalier King Charles":      "du-domaine-du-quinquis",
+    "Schnauzer":                  "mellan-schnauzers",
+    "West Highland White Terrier":"la-ferme-aredienne-des-salines",
+    "Lagotto Romagnolo":          "la-dolce-vita",
+    "Carlin":                     "joyaux-d-anubis",
+    "Loulou de Poméranie":        "des-cotons-de-soie-d-or",
+    # Races sans banque photos pour l'instant — pas de photos Cloudinary injectées
+    "Berger Polonais de Podhale": None,
+    "Berger de Brie":             None,
+    "Berger Americain Miniature": None,
+    "Pomsky":                     None,
+    "Berger Allemand":            None,
+    "Bouledogue Francais":        None,
+    "Golden Retriever":           None,
+    "Shiba Inu":                  None,
+    "Cane Corso":                 None,
+    "Berger Blanc Suisse":        None,
+    "Rhodesian Ridgeback":        None,
+    "Vallhund Suédois":           None,
 }
 
 _CLOUDINARY_RE = re.compile(

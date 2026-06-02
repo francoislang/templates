@@ -7,7 +7,7 @@ import yaml
 from jinja2 import Environment, FileSystemLoader
 
 import config
-from cloudinary_check import BREED_TEMPLATE
+from cloudinary_check import BREED_TEMPLATE, get_photos_for_breed
 
 
 def slugify(text: str) -> str:
@@ -102,11 +102,8 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
                   photo_url: str = "",
                   photos_race: list[str] = None) -> tuple | None:
     """Genere un site vitrine via Jinja2 avec les donnees du scraper."""
-    template_folder = BREED_TEMPLATE.get(race) or "universal"
-    if not template_folder:
-        return None
-
-    template_file = f"{template_folder}.html.j2"
+    # Le template est toujours universal.html.j2
+    template_file = "universal.html.j2"
     if not (config.REPO_ROOT / "_templates" / template_file).exists():
         return None
 
@@ -119,9 +116,10 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
         github_url = f"https://{config.GITHUB_REPO.split('/')[0]}.github.io/{config.GITHUB_REPO.split('/')[1]}/{slug}"
         return slug, github_url
 
-    ph = photos_race or []
+    ph = photos_race if photos_race is not None else get_photos_for_breed(race)
+    couleurs = _breed_colors(race)
     data = {
-        "template": template_folder,
+        "template": "universal",
         "elevage": {
             "nom": name, "race": race,
             "departement": departement or city or "",
@@ -133,13 +131,13 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
             "description_hero": (description[:200] if description else f"Elevage {name} — {race}"),
             "description_about": description or "",
         },
-        "couleurs": {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"},
+        "couleurs": couleurs,
         "photos": {
-            "hero": photo_url or (ph[0] if ph else ""),
-            "og": photo_url or (ph[0] if ph else ""),
+            "hero":    ph[0] if ph else "",
+            "og":      ph[0] if ph else "",
             "about_1": ph[1] if len(ph) > 1 else (ph[0] if ph else ""),
             "about_2": ph[2] if len(ph) > 2 else "",
-            "race": ph[3] if len(ph) > 3 else (ph[0] if ph else ""),
+            "race":    ph[3] if len(ph) > 3 else (ph[0] if ph else ""),
             "galerie": ph[4:] if len(ph) > 4 else [],
         },
         "reproducteurs": [], "temoignages": [],

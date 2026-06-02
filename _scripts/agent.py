@@ -15,6 +15,7 @@ import crm  # GitHub CRM (remplace notion)
 import scraper
 import cloudinary_check
 import generator
+from photos import get_photos_for_race
 
 
 def _normalize(phone: str) -> str:
@@ -92,10 +93,12 @@ def run() -> None:
         email = breeder.get("email", "")
         siren = breeder.get("siren", "")
 
-        has_photos = cloudinary_check.has_photos_for_breed(race)
+        photos = cloudinary_check.get_photos_for_breed(race) or get_photos_for_race(race, count=15)
+        has_photos = bool(photos)
         site_result = generator.generate_site(
             name=name, race=race, phone=phone,
-            city=ville or departement
+            city=ville or departement,
+            photos_race=photos,
         )
 
         warnings = []
