@@ -1,0 +1,1091 @@
+Voici un site vitrine HTML complet pour votre élevage canin : un code structuré, prêt à publier, qui reproduit fidèlement l’architecture de la référence tout en l’adaptant à l’identité de “Of the White Waow Breeding” (Schnauzer nain blanc).
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Of the White Waow Breeding — Élevage Schnauzer Nain Blanc | Albi, France</title>
+    <meta name="description" content="Élevage familial de Schnauzers nains blancs LOF près d'Albi. Chiots blancs, tests génétiques, suivi santé. Tél. 03 14 60 00 30. SIRET 850003146.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whitewaow-breeding.fr/">
+    <meta property="og:title" content="Of the White Waow Breeding — Schnauzer Nain Blanc, Albi">
+    <meta property="og:description" content="Élevage familial de Schnauzers nains blancs LOF près d'Albi. Chiots blancs, tests génétiques, suivi santé. Prochaine portée hiver 2027.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/flouffy-qEO5MpLyOks-unsplash_jhnv5w.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Of the White Waow Breeding",
+                    "description": "Élevage familial de Schnauzer Nain Blanc près d'Albi, France. Chiots blancs LOF, tests génétiques, suivi santé.",
+                    "telephone": "+33314600030",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Albi",
+                        "postalCode": "81000",
+                        "addressCountry": "FR"
+                    },
+                    "founder": { "@type": "Person", "name": "Of the White Waow Breeding" },
+                    "identifier": { "@type": "PropertyValue", "propertyID": "SIRET", "value": "850003146" }
+                },
+                { "@type": "AnimalShelter", "name": "Of the White Waow Breeding — Élevage Schnauzer Nain Blanc Albi" }
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Of the White Waow Breeding
+           Design : Épuré / Argenté / Blanc perle
+           Palette inspirée du Schnauzer nain blanc
+           ============================================== */
+        :root {
+            --ony: #1A1A1D;
+            --gld: #B0B8C1;
+            --amb: #8B9298;
+            --crm: #F4F2EF;
+            --bg: #FBFAF8;
+            --stn: #A0A5AB;
+            --txt: #1A1A1D;
+            --accent: #6B7B8D;
+            --accent-light: #C8D0D8;
+            --white-soft: #FEFEFD;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 4px;
+            --gld-gradient: linear-gradient(135deg, #D5DCE3 0%, #B0B8C1 45%, #8B9298 100%);
+            --accent-gradient: linear-gradient(135deg, #7B8FA1 0%, #6B7B8D 50%, #4A5A6A 100%);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---- ORNEMENT DÉCORATIF ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .8rem;
+            margin: 0 auto .4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1.5px;
+            width: 48px;
+            background: var(--gld-gradient);
+            border-radius: 1px;
+        }
+        .ornament span {
+            font-family: var(--FD);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav);
+            background: rgba(251, 250, 248, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(160, 165, 171, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            transition: all .3s ease;
+        }
+        .nav-bar.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+        }
+        .nav-logo {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            color: var(--txt);
+            line-height: 1.2;
+        }
+        .nav-logo small {
+            display: block;
+            font-family: var(--FN);
+            font-weight: 300;
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--txt);
+            transition: color .3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gradient);
+            transition: width .3s ease;
+            border-radius: 1px;
+        }
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        .btn-nav {
+            display: inline-block;
+            padding: 0.55rem 1.4rem;
+            border-radius: 3px;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            background: var(--accent-gradient);
+            color: #fff;
+            transition: all .35s ease;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-nav:hover {
+            box-shadow: 0 6px 20px rgba(107, 123, 141, 0.35);
+            transform: translateY(-1px);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--txt);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.75) saturate(0.9);
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(26, 26, 29, 0.2) 0%, rgba(26, 26, 29, 0.45) 60%, rgba(26, 26, 29, 0.7) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        .hero-content .ornament::before,
+        .hero-content .ornament::after {
+            background: rgba(255, 255, 255, 0.7);
+            height: 1px;
+            width: 40px;
+        }
+        .hero-content .ornament span {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+        }
+        .hero-content h1 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            letter-spacing: 0.04em;
+            line-height: 1.2;
+            margin: 0.6rem 0;
+        }
+        .hero-content h1 span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.55em;
+            letter-spacing: 0.12em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .hero-content p {
+            font-family: var(--FN);
+            font-weight: 300;
+            font-size: 1.05rem;
+            max-width: 550px;
+            margin: 1rem auto 2rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .btn-hero {
+            display: inline-block;
+            padding: 0.85rem 2.2rem;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            background: var(--white-soft);
+            color: var(--ony);
+            transition: all .35s ease;
+            cursor: pointer;
+        }
+        .btn-hero:hover {
+            background: #fff;
+            box-shadow: 0 8px 28px rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-family: var(--FN);
+            animation: floatDown 2s ease-in-out infinite;
+        }
+        .scroll-indicator span {
+            display: block;
+            width: 1px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        @keyframes floatDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ---- SECTION GENERIC ---- */
+        section {
+            padding: 5rem 2rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 2.2rem;
+            letter-spacing: 0.05em;
+            color: var(--ony);
+            margin-top: 0.3rem;
+        }
+        .section-header p.subtitle {
+            font-family: var(--FN);
+            font-weight: 300;
+            font-size: 0.95rem;
+            color: var(--accent);
+            max-width: 500px;
+            margin: 0.6rem auto 0;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---- ABOUT ---- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .about-img {
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+        .about-text h3 {
+            font-family: var(--FD);
+            font-weight: 500;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: var(--ony);
+            letter-spacing: 0.03em;
+        }
+        .about-text p {
+            font-weight: 400;
+            color: #3a3a3d;
+            margin-bottom: 1rem;
+            line-height: 1.75;
+        }
+        .about-text .highlight-box {
+            background: var(--white-soft);
+            border-left: 3px solid var(--accent);
+            padding: 1.2rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+            font-weight: 500;
+            color: var(--accent);
+            letter-spacing: 0.03em;
+        }
+        .about-text strong {
+            font-weight: 700;
+            color: var(--ony);
+        }
+
+        /* ---- STATS / INFO BAR ---- */
+        .info-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        .info-card {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--white-soft);
+            border-radius: 6px;
+            border: 1px solid rgba(160, 165, 171, 0.2);
+            transition: all .35s ease;
+        }
+        .info-card:hover {
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+            transform: translateY(-3px);
+            border-color: var(--accent-light);
+        }
+        .info-card .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .info-card h4 {
+            font-family: var(--FD);
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.3rem;
+        }
+        .info-card p {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 400;
+        }
+
+        /* ---- GALERIE ---- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+        }
+        .gallery-grid .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all .4s ease;
+            position: relative;
+        }
+        .gallery-grid .gallery-item:hover {
+            transform: scale(1.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+        .gallery-grid .gallery-item img {
+            transition: transform .5s ease;
+        }
+        .gallery-grid .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(26, 26, 29, 0.92);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 2001;
+            font-family: var(--FN);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background .3s;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ---- CONTACT ---- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact-form {
+            background: var(--white-soft);
+            padding: 2.5rem 2rem;
+            border-radius: 6px;
+            border: 1px solid rgba(160, 165, 171, 0.2);
+        }
+        .contact-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.35rem;
+            color: var(--ony);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(160, 165, 171, 0.35);
+            border-radius: 4px;
+            font-family: var(--FN);
+            font-size: 0.9rem;
+            background: #fff;
+            transition: border-color .3s, box-shadow .3s;
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(107, 123, 141, 0.1);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+        }
+        .btn-submit {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            border-radius: 3px;
+            background: var(--accent-gradient);
+            color: #fff;
+            cursor: pointer;
+            border: none;
+            transition: all .35s ease;
+            width: 100%;
+        }
+        .btn-submit:hover {
+            box-shadow: 0 8px 24px rgba(107, 123, 141, 0.35);
+            transform: translateY(-1px);
+        }
+        .contact-info {
+            padding: 1rem 0;
+        }
+        .contact-info h3 {
+            font-family: var(--FD);
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+        }
+        .contact-info .info-line {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .contact-info .info-line .icn {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--accent-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.75rem;
+        }
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* ---- FOOTER ---- */
+        footer {
+            background: var(--ony);
+            color: #ccc;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        footer .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+        footer .footer-links a {
+            color: #ccc;
+            transition: color .3s;
+        }
+        footer .footer-links a:hover {
+            color: #fff;
+        }
+        footer .footer-info {
+            font-size: 0.75rem;
+            color: #888;
+            line-height: 1.8;
+        }
+        footer .footer-info strong {
+            color: #ddd;
+            font-weight: 600;
+        }
+        footer .ornament-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        footer .ornament-footer::before,
+        footer .ornament-footer::after {
+            content: '';
+            height: 1px;
+            width: 32px;
+            background: rgba(255, 255, 255, 0.25);
+        }
+        footer .ornament-footer span {
+            font-family: var(--FD);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 968px) {
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .info-bar {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(251, 250, 248, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: right .4s ease;
+                z-index: 999;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1rem;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+            section {
+                padding: 3.5rem 1.2rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .info-bar {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 0.9rem;
+            }
+            .nav-bar {
+                padding: 0 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="nav-bar" id="navbar">
+        <a href="#hero" class="nav-logo">
+            Of the White Waow
+            <small>Élevage Schnauzer Nain Blanc</small>
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#hero">Accueil</a>
+            <a href="#about">Notre élevage</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn-nav">Nous écrire</a>
+        </div>
+        <div class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/flouffy-qEO5MpLyOks-unsplash_jhnv5w.jpg"
+            alt="Schnauzer nain blanc — Of the White Waow Breeding"
+            loading="eager"
+            fetchpriority="high">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <div class="ornament"><span>✦ Albi, France ✦</span></div>
+            <h1>Of the White Waow<span>Breeding</span></h1>
+            <p>Élevage familial de Schnauzers Nains Blancs LOF, au cœur d'un écrin de nature près d'Albi. Chiots élevés avec passion et respect.</p>
+            <a href="#about" class="btn-hero">Découvrir l'élevage</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            Défiler
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>Notre histoire</span></div>
+                <h2>L'élevage</h2>
+                <p class="subtitle">Une passion née en Australie, épanouie dans le Tarn</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-img reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-curry-c7JBpJfG52A-unsplash_ny9il7.jpg"
+                    alt="Schnauzer nain blanc dans la nature"
+                    loading="lazy">
+                </div>
+                <div class="about-text reveal">
+                    <h3>Bienvenue chez Of the White Waow Breeding</h3>
+                    <p>
+                        Bienvenue à l'élevage de <strong>Schnauzers Nains blancs</strong> Of the White Waow Breeding.
+                        Exclusivement dans le <strong>Schnauzer Nain blanc</strong> et inscrit au <strong>LOF</strong>,
+                        notre élevage, simple et familial, est situé près d'<strong>Albi</strong>, dans un petit coin de
+                        paradis, au calme, dans un environnement naturel avec plus de <strong>3000 m²</strong> pour vivre
+                        heureux et en bonne santé.
+                    </p>
+                    <p>
+                        Ma passion pour le Schnauzer Nain blanc a commencé lorsque je vivais en <strong>Australie</strong>.
+                        J'ai découvert un adorable Schnauzer Nain blanc et depuis, cette race élégante, vive et
+                        affectueuse ne m'a plus jamais quittée. Chaque chiot est élevé avec soin, socialisé en famille,
+                        et bénéficie d'un suivi vétérinaire rigoureux.
+                    </p>
+                    <div class="highlight-box">
+                        🐾 <strong>Prochaine portée prévue : Hiver 2027</strong> — Réservations ouvertes.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info cards -->
+            <div class="info-bar reveal">
+                <div class="info-card">
+                    <div class="icon-circle">🏠</div>
+                    <h4>Élevage familial</h4>
+                    <p>3000 m² d'espace naturel près d'Albi, vie de famille, socialisation optimale.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-circle">📋</div>
+                    <h4>Inscrit au LOF</h4>
+                    <p>Chiots inscrits au Livre des Origines Français, pedigrees certifiés.</p>
+                </div>
+                <div class="info-card">
+                    <div class="icon-circle">❤️</div>
+                    <h4>Suivi santé</h4>
+                    <p>Tests génétiques, carnet de santé, protocole vaccinal complet, suivi post-adoption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GALERIE ========== -->
+    <section id="galerie" style="background:#fff;">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>Nos Schnauzers</span></div>
+                <h2>Galerie</h2>
+                <p class="subtitle">Cliquez sur une image pour l'agrandir</p>
+            </div>
+            <div class="gallery-grid reveal" id="galleryGrid">
+                <!-- 10 photos fournies (boucle si nécessaire pour remplir) -->
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/flouffy-qEO5MpLyOks-unsplash_jhnv5w.jpg" alt="Schnauzer nain blanc 1" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-curry-c7JBpJfG52A-unsplash_ny9il7.jpg" alt="Schnauzer nain blanc 2" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/mariola-grobelska-DdM_n_yR6Bc-unsplash_jurmuc.jpg" alt="Schnauzer nain blanc 3" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/alejandro-morelos-Jm3U2aR1ekM-unsplash_mvmpmu.jpg" alt="Schnauzer nain blanc 4" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/irene-BmisHZUE750-unsplash_caniui.jpg" alt="Schnauzer nain blanc 5" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-arthur-collins-T-51lB9tz2k-unsplash_qaeutf.jpg" alt="Schnauzer nain blanc 6" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/alda-gonzalez-cuevas-B89WRI24mNU-unsplash_zncdae.jpg" alt="Schnauzer nain blanc 7" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/shayna-douglas-Dbgk8MatsqI-unsplash_j33mdm.jpg" alt="Schnauzer nain blanc 8" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/melanie-giordano-h6i5rC2IVSY-unsplash_gqkstw.jpg" alt="Schnauzer nain blanc 9" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/chris-arthur-collins-dalum0O0AzU-unsplash_axbbf6.jpg" alt="Schnauzer nain blanc 10" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LIGHTBOX ========== -->
+    <div class="lightbox" id="lightbox" aria-label="Visionneuse">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img src="" alt="Agrandissement" id="lightboxImg">
+    </div>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>Nous contacter</span></div>
+                <h2>Contactez-nous</h2>
+                <p class="subtitle">Une question ? Envie de réserver ? Écrivez-nous.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-form reveal">
+                    <form id="contactForm" action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse email</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Envoyer le message</button>
+                    </form>
+                </div>
+                <div class="contact-info reveal">
+                    <h3>Coordonnées</h3>
+                    <div class="info-line">
+                        <div class="icn">📞</div>
+                        <div>
+                            <strong>Téléphone</strong><br>
+                            <a href="tel:+33314600030">03 14 60 00 30</a>
+                        </div>
+                    </div>
+                    <div class="info-line">
+                        <div class="icn">📍</div>
+                        <div>
+                            <strong>Localisation</strong><br>
+                            Élevage de chiens — Près d'Albi, Tarn (81), France
+                        </div>
+                    </div>
+                    <div class="info-line">
+                        <div class="icn">📝</div>
+                        <div>
+                            <strong>SIRET</strong><br>
+                            850003146
+                        </div>
+                    </div>
+                    <div class="info-line">
+                        <div class="icn">🐾</div>
+                        <div>
+                            <strong>Race</strong><br>
+                            Schnauzer Nain Blanc — LOF
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="ornament-footer"><span>Of the White Waow</span></div>
+        <div class="footer-links">
+            <a href="#hero">Accueil</a>
+            <a href="#about">Élevage</a>
+            <a href="#galerie">Galerie</a>
+            <a href="#contact">Contact</a>
+            <a href="#">Mentions légales</a>
+            <a href="#">CGV</a>
+            <a href="#">Politique de confidentialité</a>
+        </div>
+        <div class="footer-info">
+            © 2026 <strong>Of the White Waow Breeding</strong> — SIRET <strong>850003146</strong> — <strong>Élevage de chiens</strong> Schnauzer Nain Blanc LOF<br>
+            Près d'Albi, Tarn, France &nbsp;|&nbsp; Tél. 03 14 60 00 30
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ---- IntersectionObserver pour animations scroll ----
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(el => observer.observe(el));
+
+        // ---- Navbar scroll effect ----
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ---- Menu hamburger mobile ----
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        // Fermer le menu au clic sur un lien
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ---- Lightbox galerie ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+
+        galleryItems.forEach(img => {
+            img.addEventListener('click', (e) => {
+                lightboxImg.src = e.target.src;
+                lightboxImg.alt = e.target.alt;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        }
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ---- Gestion formulaire (simulation) ----
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (name && email && message) {
+                alert('Merci ' + name + ' ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.');
+                contactForm.reset();
+            } else {
+                alert('Veuillez remplir tous les champs du formulaire.');
+            }
+        });
+    </script>
+</body>
+</html>
+```
+### Identité et navigation
+
+Ce code crée un site vitrine clair et structuré pour l'élevage "Of the White Waow Breeding". Il s'inspire fidèlement de la structure demandée (rubriques, classes, animations) tout en l'adaptant à l'univers du Schnauzer nain blanc.
+
+- **Palette épurée et lumineuse** : Les tons blanc cassé, gris perle et ardoise doux évoquent la robe du chien et apportent une ambiance apaisante en phase avec l'élevage familial décrit.
+- **Hiérarchie typographique** : La police **Cinzel** pour les titres donne un caractère élégant et sérieux, tandis que **Raleway** pour le corps du texte assure une lecture fluide sur une longueur confortable.
+- **Navigation fixe et réactive** : Le menu reste visible en haut de page et se transforme en "hamburger" sur mobile, garantissant un accès rapide aux sections clés (histoire, galerie, contact).
+- **Galerie immersive** : Les 10 photos s'affichent en grille avec un zoom au survol. Un clic ouvre une **lightbox** en plein écran pour admirer chaque image sans quitter le site.
+- **Animations discrètes** : Les blocs apparaissent en fondu lors du défilement (script IntersectionObserver) pour dynamiser la découverte sans agresser le visiteur.
+- **Formulaire de contact fonctionnel** : Un script simule l'envoi avec un message de confirmation, idéal pour un premier contact avant réservation de portée.
+
+---
+
+**Optimisation SEO & partage :** Des balises `title`, `meta` (description) et Open Graph sont pré-remplies, ainsi qu'un script JSON-LD structuré pour les moteurs de recherche.
