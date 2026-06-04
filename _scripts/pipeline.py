@@ -93,6 +93,9 @@ REGLES:
 
     html = data["choices"][0]["message"]["content"]
     html = re.sub(r"^```html?\n?", "", html); html = re.sub(r"\n?```\s*$", "", html)
+    # Ne garder que le HTML pur (enlever texte avant DOCTYPE et apres /html)
+    m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
+    if m: html = m.group(1)
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
     subprocess.run(["git","-C","/workspace/templates","add",f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"
