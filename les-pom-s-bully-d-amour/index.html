@@ -1,189 +1,1261 @@
+Voici le code HTML complet pour le site vitrine de l'élevage "Les Pom's Bully d'Amour", spécialisé dans les Loulous de Poméranie. Il reprend la structure de référence avec une palette chaleureuse adaptée à la race, une galerie de 15 photos, un formulaire de contact et les animations au scroll.
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Les Pom's Bully d'Amour — Loulou de Pomeranie | Élevage de chiens</title>
-  <meta name="description" content="Élevage Loulou de Pomeranie — Les Pom's Bully d'Amour — Élevage de chiens">
-  <meta property="og:title" content="Les Pom's Bully d'Amour — Loulou de Pomeranie">
-  <meta property="og:description" content="Élevage Loulou de Pomeranie">
-  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329056/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1B3A4B; --accent: #D4622A; --bg: #F7F4EF; --cream: #EDE4D3;
-      --text: #1B2D38; --muted: #7A8E99;
-      --serif: 'Playfair Display', serif; --sans: 'Inter', sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--text); }
-    img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1200px; margin: auto; padding: 0 24px; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all .8s ease; }
-    .reveal.on { opacity: 1; transform: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(247,244,239,.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(27,45,56,.08); }
-    nav .container { display: flex; justify-content: space-between; align-items: center; height: 68px; }
-    .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--primary); }
-    .nav-links a { font-size: .85rem; font-weight: 500; color: var(--muted); margin-left: 2rem; }
-    .nav-links a:hover { color: var(--primary); }
+    <!-- SEO -->
+    <title>Les Pom's Bully d'Amour — Élevage Loulou de Poméranie | Belgique</title>
+    <meta name="description" content="Élevage familial de Loulous de Poméranie en Belgique. Chiots bien socialisés, tests vétérinaires, garantie légale. Tél. 04 93 50 48 98.">
 
-    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 68px; background: linear-gradient(135deg, var(--cream), var(--bg), var(--cream)); }
-    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .hero-text h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.1; color: var(--primary); margin-bottom: 8px; }
-    .race-tag { display: inline-block; background: var(--primary); color: white; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; margin-bottom: 20px; }
-    .hero-text p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-    .hero-img { border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(27,58,75,.15); }
-    .hero-img img { height: 500px; }
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lespomsbullydamour.be/">
+    <meta property="og:title" content="Les Pom's Bully d'Amour — Loulou de Poméranie, Belgique">
+    <meta property="og:description" content="Élevage familial de Loulous de Poméranie en Belgique. Chiots bien socialisés, tests vétérinaires, garantie légale.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg">
 
-    section { padding: 80px 0; }
-    .section-title { font-family: var(--serif); font-size: 2.2rem; color: var(--primary); margin-bottom: 32px; }
-    .alt-bg { background: var(--cream); }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 12px; }
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Les Pom's Bully d'Amour",
+                    "description": "Élevage familial de Loulou de Poméranie en Belgique. Chiots bien socialisés, tests vétérinaires, garantie légale.",
+                    "telephone": "+32493504898",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Belgique",
+                        "addressCountry": "BE"
+                    },
+                    "founder": { "@type": "Person", "name": "Les Pom's Bully d'Amour" }
+                },
+                { "@type": "AnimalShelter", "name": "Les Pom's Bully d'Amour — Élevage Loulou de Poméranie Belgique" }
+            ]
+        }
+    </script>
 
-    .race-content { max-width: 700px; margin: auto; text-align: center; }
-    .race-content p { color: var(--muted); line-height: 1.8; }
-    .quote { font-family: var(--serif); font-size: 1.3rem; font-style: italic; color: var(--primary); padding: 24px 0; }
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Les Pom's Bully d'Amour
+           Design : Chaleureux / Pêche / Caramel
+           Palette inspirée du Loulou de Poméranie
+           ============================================== */
+        :root {
+            --pom-cream: #FEF9F3;
+            --pom-peach: #E8A87C;
+            --pom-caramel: #C4825A;
+            --pom-gold: #D4A855;
+            --pom-amber: #B8703F;
+            --pom-brown: #2C1810;
+            --pom-rose: #F2D4C0;
+            --pom-stone: #C4A992;
+            --pom-warm: #FDF5EC;
+            --bg: #FEF9F3;
+            --txt: #2C1810;
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 6px;
+            --gold-gradient: linear-gradient(135deg, #D4A855 0%, #E8C97A 45%, #B8703F 100%);
+            --peach-gradient: linear-gradient(135deg, #E8A87C 0%, #F2C4A0 50%, #C4825A 100%);
+        }
 
-    .gal-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-    .gal-grid img { height: 250px; border-radius: 8px; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .contact-phone { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 16px 0; }
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
 
-    footer { background: var(--primary); color: rgba(255,255,255,.6); padding: 32px 0; text-align: center; }
-    footer p { font-size: .85rem; }
-    footer a { color: var(--cream); text-decoration: underline; }
+        /* ---- ORNEMENT DÉCORATIF ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .8rem;
+            margin: 0 auto .4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 48px;
+            background: var(--gold-gradient);
+        }
+        .ornament span {
+            font-size: 1.1rem;
+            color: var(--pom-gold);
+        }
 
-    @media(max-width:768px){
-      .hero .container, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .hero-text h1 { font-size: 2rem; }
-      .gal-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-    }
-  </style>
+        /* ---- BOUTON PRINCIPAL ---- */
+        .btn-primary {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--peach-gradient);
+            color: #fff;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all .35s ease;
+            box-shadow: 0 4px 20px rgba(180, 100, 50, 0.25);
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(180, 100, 50, 0.4);
+            background: var(--gold-gradient);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 32px;
+            background: transparent;
+            color: var(--pom-caramel);
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            border-radius: 50px;
+            text-transform: uppercase;
+            border: 2px solid var(--pom-caramel);
+            transition: all .35s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--pom-caramel);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* ========== NAVIGATION ========== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav);
+            background: rgba(254, 249, 243, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            border-bottom: 1px solid rgba(180, 110, 60, 0.12);
+            transition: all .35s ease;
+        }
+        .nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+            background: rgba(254, 249, 243, 0.98);
+        }
+        .nav-logo {
+            font-family: var(--FD);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--pom-brown);
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+        }
+        .nav-logo span {
+            color: var(--pom-caramel);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--pom-brown);
+            letter-spacing: 0.03em;
+            transition: color .3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--pom-peach);
+            transition: width .3s ease;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--pom-caramel);
+        }
+        .nav-cta {
+            padding: 10px 24px;
+            background: var(--peach-gradient);
+            color: #fff !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            font-size: 0.85rem !important;
+            letter-spacing: 0.05em;
+            transition: all .35s ease !important;
+            box-shadow: 0 3px 14px rgba(180, 100, 50, 0.2);
+        }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(180, 100, 50, 0.35);
+            background: var(--gold-gradient) !important;
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        /* Burger */
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .burger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--pom-brown);
+            border-radius: 2px;
+            transition: all .3s ease;
+        }
+        .burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin-top: 0;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(44, 24, 16, 0.55) 0%,
+                    rgba(44, 24, 16, 0.35) 40%,
+                    rgba(44, 24, 16, 0.55) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            max-width: 750px;
+            padding: 2rem;
+        }
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 22px;
+            background: rgba(254, 249, 243, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50px;
+            font-family: var(--FD);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(6px);
+        }
+        .hero-content h1 {
+            font-family: var(--FD);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        }
+        .hero-content h1 span {
+            display: block;
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            color: var(--pom-rose);
+            margin-top: .3rem;
+        }
+        .hero-content p {
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: #f5ede0;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero-cta-group .btn-outline {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.6);
+        }
+        .hero-cta-group .btn-outline:hover {
+            background: #fff;
+            color: var(--pom-brown);
+            border-color: #fff;
+        }
+
+        /* ========== SECTIONS GÉNÉRALES ========== */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--FD);
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            font-weight: 700;
+            color: var(--pom-brown);
+            margin-bottom: .6rem;
+            letter-spacing: 0.03em;
+        }
+        .section-header .subtitle {
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            color: var(--pom-caramel);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ========== À PROPOS ========== */
+        .about-section {
+            background: #fff;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .about-image {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 12px 40px rgba(44, 24, 16, 0.1);
+        }
+        .about-image img {
+            transition: transform .6s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.04);
+        }
+        .about-text h3 {
+            font-family: var(--FD);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--pom-brown);
+            margin-bottom: 1.2rem;
+        }
+        .about-text p {
+            font-size: 0.98rem;
+            color: #5a3e30;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .about-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .highlight-tag {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: 8px 18px;
+            background: var(--pom-warm);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--pom-caramel);
+            border: 1px solid rgba(180, 110, 60, 0.15);
+        }
+        .highlight-tag .icon {
+            font-size: 1.1rem;
+        }
+
+        /* ========== GALERIE ========== */
+        .gallery-section {
+            background: var(--bg);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: 220px;
+            gap: .8rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(44, 24, 16, 0.06);
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(44, 24, 16, 0.15);
+            z-index: 2;
+        }
+        .gallery-item img {
+            transition: transform .5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+        .gallery-item.tall {
+            grid-row: span 2;
+        }
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+        .gallery-more {
+            text-align: center;
+            margin-top: 2.5rem;
+        }
+
+        /* ========== ENGAGEMENTS ========== */
+        .engagements-section {
+            background: #fff;
+        }
+        .engagements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+        .engagement-card {
+            text-align: center;
+            padding: 2.5rem 1.8rem;
+            background: var(--pom-warm);
+            border-radius: var(--r);
+            border: 1px solid rgba(180, 110, 60, 0.08);
+            transition: transform .4s ease, box-shadow .4s ease;
+        }
+        .engagement-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(44, 24, 16, 0.1);
+        }
+        .engagement-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .engagement-card h4 {
+            font-family: var(--FD);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--pom-brown);
+            margin-bottom: .6rem;
+        }
+        .engagement-card p {
+            font-size: 0.9rem;
+            color: #5a3e30;
+            line-height: 1.6;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-section {
+            background: var(--bg);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: var(--FD);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--pom-brown);
+            margin-bottom: 1rem;
+        }
+        .contact-info p {
+            font-size: 0.95rem;
+            color: #5a3e30;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--pom-brown);
+        }
+        .contact-detail .icon {
+            font-size: 1.3rem;
+            color: var(--pom-caramel);
+        }
+        .contact-form {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: var(--r);
+            box-shadow: 0 8px 30px rgba(44, 24, 16, 0.06);
+            border: 1px solid rgba(180, 110, 60, 0.08);
+        }
+        .contact-form .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .contact-form label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--pom-brown);
+            margin-bottom: .4rem;
+            font-family: var(--FN);
+            letter-spacing: 0.03em;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8d5c8;
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            color: var(--pom-brown);
+            background: #fefaf6;
+            transition: border-color .3s ease, box-shadow .3s ease;
+            resize: vertical;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--pom-peach);
+            box-shadow: 0 0 0 4px rgba(232, 168, 124, 0.12);
+            background: #fff;
+        }
+        .contact-form textarea {
+            min-height: 130px;
+        }
+        .contact-form .btn-primary {
+            width: 100%;
+            text-align: center;
+            margin-top: .5rem;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--pom-brown);
+            color: #f5ede0;
+            padding: 3rem 2rem 1.5rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+        .footer-col h4 {
+            font-family: var(--FD);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--pom-gold);
+            margin-bottom: 1rem;
+            letter-spacing: 0.04em;
+        }
+        .footer-col p,
+        .footer-col a {
+            font-size: 0.88rem;
+            color: #d5c4b4;
+            line-height: 1.7;
+            display: block;
+            margin-bottom: .3rem;
+            transition: color .3s;
+        }
+        .footer-col a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 1.5rem;
+            font-size: 0.8rem;
+            color: #b0a090;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-bottom a {
+            color: #d5c4b4;
+            margin: 0 .5rem;
+            transition: color .3s;
+        }
+        .footer-bottom a:hover {
+            color: #fff;
+        }
+
+        /* ========== MODALE GALERIE ========== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(44, 24, 16, 0.92);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--r);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            font-size: 2.4rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+            transition: color .3s;
+        }
+        .lightbox-close:hover {
+            color: var(--pom-peach);
+        }
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            padding: 1rem;
+            z-index: 10;
+            transition: color .3s;
+            user-select: none;
+        }
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            color: var(--pom-peach);
+        }
+        .lightbox-prev {
+            left: 16px;
+        }
+        .lightbox-next {
+            right: 16px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .engagements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 320px;
+                height: 100vh;
+                background: #fff;
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1.8rem;
+                transition: right .4s ease;
+                box-shadow: -4px 0 30px rgba(0, 0, 0, 0.1);
+                z-index: 999;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .burger {
+                display: flex;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 160px;
+            }
+            .gallery-item.tall {
+                grid-row: span 2;
+            }
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+            .engagements-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            section {
+                padding: 3rem 1.2rem;
+            }
+            .contact-form {
+                padding: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 130px;
+                gap: .5rem;
+            }
+            .gallery-item.tall {
+                grid-row: span 1;
+            }
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-logo {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="container">
-    <span class="nav-logo">Les Pom's Bully d'Amour</span>
-    <div class="nav-links">
-      <a href="#about">À propos</a>
-      <a href="#race">La race</a>
-      <a href="#galery">Galerie</a>
-      <a href="#contact">Contact</a>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo">Les Pom's <span>Bully d'Amour</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about" class="active">À propos</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#engagements">Engagements</a></li>
+            <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+        <div class="burger" id="burger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg"
+            alt="Loulou de Poméranie — Les Pom's Bully d'Amour"
+            loading="eager">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <div class="hero-badge">Élevage familial • Belgique</div>
+            <h1>Les Pom's Bully d'Amour<span>Loulou de Poméranie</span></h1>
+            <p>Des compagnons miniatures au tempérament joyeux et affectueux, élevés avec passion dans un cadre familial chaleureux.</p>
+            <div class="hero-cta-group">
+                <a href="#galerie" class="btn-primary">Découvrir nos chiots</a>
+                <a href="#contact" class="btn-outline">Nous contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== À PROPOS ==================== -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>✦</span></div>
+                <h2>Notre élevage</h2>
+                <p class="subtitle">Une passion pour les Loulous de Poméranie depuis plus d'une décennie</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_5.jpg"
+                    alt="Loulou de Poméranie dans son environnement"
+                    loading="lazy">
+                </div>
+                <div class="about-text reveal">
+                    <h3>Des compagnons d'exception</h3>
+                    <p>
+                        J'élève des Loulous de Poméranie, une race qui m'accompagne depuis une décennie.
+                        Ces compagnons miniatures remplissent mon quotidien de douceur. Chaque chien arbore un pelage unique,
+                        offrant une palette infinie de couleurs.
+                    </p>
+                    <p>
+                        Leur tempérament affectueux et leur énergie débordante en font des partenaires parfaits.
+                        Toujours en quête d'attention, ils aiment être au centre de la famille. Éveillés et joyeux,
+                        ils s'adaptent facilement à leur environnement. Je mets tout en œuvre pour proposer des chiots
+                        en pleine santé, bien socialisés et prêts à rejoindre leur famille pour la vie.
+                    </p>
+                    <div class="about-highlights">
+                        <span class="highlight-tag"><span class="icon">🐾</span> Chiots socialisés</span>
+                        <span class="highlight-tag"><span class="icon">💛</span> Suivi vétérinaire</span>
+                        <span class="highlight-tag"><span class="icon">🏡</span> Élevage familial</span>
+                        <span class="highlight-tag"><span class="icon">📋</span> Garantie légale</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALERIE ==================== -->
+    <section class="gallery-section" id="galerie">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>✦</span></div>
+                <h2>Galerie photo</h2>
+                <p class="subtitle">Nos adorables Loulous de Poméranie en images</p>
+            </div>
+            <div class="gallery-grid reveal" id="galleryGrid">
+                <!-- 15 photos générées dynamiquement -->
+            </div>
+            <div class="gallery-more reveal">
+                <button class="btn-outline" id="loadMoreGallery" style="display:none;">Voir plus de photos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <span class="lightbox-prev" id="lightboxPrev">&#8249;</span>
+        <span class="lightbox-next" id="lightboxNext">&#8250;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Agrandissement photo">
     </div>
-  </div>
-</nav>
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-text">
-      <span class="race-tag">Loulou de Pomeranie</span>
-      <h1>Les Pom's Bully d'Amour</h1>
-      <p>Élevage de chiens</p>
-      <p>Élevage Loulou de Pomeranie — Les Pom's Bully d'Amour</p>
-      <a href="#contact" class="btn" style="display:inline-block;padding:12px 28px;background:var(--primary);color:white;border-radius:6px;font-weight:600;">Me contacter</a>
-    </div>
-    <div class="hero-img reveal">
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329056/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg" alt="Les Pom's Bully d'Amour">
-    </div>
-  </div>
-</section>
+    <!-- ==================== ENGAGEMENTS ==================== -->
+    <section class="engagements-section" id="engagements">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>✦</span></div>
+                <h2>Nos engagements</h2>
+                <p class="subtitle">Des standards élevés pour des chiots en pleine santé</p>
+            </div>
+            <div class="engagements-grid">
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">🩺</span>
+                    <h4>Suivi vétérinaire complet</h4>
+                    <p>Chaque chiot bénéficie d'un suivi vétérinaire rigoureux : vaccins, vermifuges et bilan de santé avant le départ.</p>
+                </div>
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">🏠</span>
+                    <h4>Élevage familial</h4>
+                    <p>Nos chiens vivent au sein de notre foyer, entourés d'affection et parfaitement socialisés dès leur plus jeune âge.</p>
+                </div>
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">📜</span>
+                    <h4>Garantie légale</h4>
+                    <p>Chaque adoption est encadrée par un contrat conforme à la législation belge, avec garantie légale de 2 ans.</p>
+                </div>
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">🧬</span>
+                    <h4>Tests génétiques</h4>
+                    <p>Nous effectuons des tests génétiques pour prévenir les maladies héréditaires et garantir la santé de nos lignées.</p>
+                </div>
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">🇪🇺</span>
+                    <h4>Passeport européen</h4>
+                    <p>Tous nos chiots sont identifiés par puce électronique et disposent d'un passeport européen officiel.</p>
+                </div>
+                <div class="engagement-card reveal">
+                    <span class="engagement-icon">💬</span>
+                    <h4>Suivi personnalisé</h4>
+                    <p>Nous restons disponibles après l'adoption pour vous accompagner et répondre à toutes vos questions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ==================== CONTACT ==================== -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="ornament"><span>✦</span></div>
+                <h2>Nous contacter</h2>
+                <p class="subtitle">Vous souhaitez adopter un chiot ou en savoir plus ?</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Parlons-nous</h3>
+                    <p>
+                        Chaque adoption est une rencontre unique. Contactez-nous pour discuter de votre projet,
+                        connaître les disponibilités ou simplement échanger sur la race.
+                    </p>
+                    <div class="contact-detail">
+                        <span class="icon">📞</span>
+                        <span><strong>Téléphone :</strong> <a href="tel:+32493504898">04 93 50 48 98</a></span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="icon">📍</span>
+                        <span><strong>Localisation :</strong> Belgique</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="icon">🐾</span>
+                        <span><strong>Race :</strong> Loulou de Poméranie</span>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contactForm" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse email *</label>
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre message *</label>
+                        <textarea id="message" name="message" placeholder="Parlez-nous de votre projet d'adoption..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Envoyer le message</button>
+                    <p style="font-size:0.8rem;color:#9a8a7a;margin-top:.8rem;text-align:center;">
+                        * Tous les champs sont obligatoires
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
 
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <h2 class="section-title">À propos</h2>
-        
-          <p>J'élève des Loulous de Poméranie, une race qui m’accompagne depuis une décennie. Ces compagnons miniatures remplissent mon quotidien de douceur. Chaque chien arbore un pelage unique, offrant une palette infinie de couleurs. Leur tempérament affectueux et leur énergie débordante en font des partenaires parfaits. Toujours en quête d’attention, ils aiment être au centre de la famille. Éveillés et joyeux, ils s’adaptent facilement à leur environnement. Je mets tout en œuvre pour proposer des chiots équilibrés, bien sociabilisés et en bonne santé. Des portées d'American Bully sont aussi produites.</p>
-        
-      </div>
-      
-      <div class="reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329059/photo-loulou_de_pomeranie/loulou_de_pomeranie_2.jpg" alt="Les Pom's Bully d'Amour" style="height:450px;border-radius:12px;"></div>
-      
-    </div>
-  </div>
-</section>
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Les Pom's Bully d'Amour</h4>
+                <p>Élevage familial de Loulou de Poméranie en Belgique. Des chiots élevés avec amour et passion.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Liens rapides</h4>
+                <a href="#about">À propos</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#engagements">Engagements</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-col">
+                <h4>Informations</h4>
+                <p>Race : Loulou de Poméranie</p>
+                <p>Tél. : 04 93 50 48 98</p>
+                <p>Localisation : Belgique</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Les Pom's Bully d'Amour — Élevage de chiens &nbsp;|&nbsp;
+                <a href="#">Mentions légales</a> &nbsp;|&nbsp;
+                <a href="#">CGV</a> &nbsp;|&nbsp;
+                <a href="#">Politique de confidentialité</a>
+            </p>
+        </div>
+    </footer>
 
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // ---- Liste des 15 photos Cloudinary ----
+        const photos = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_11.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-loulou_de_pomeranie/loulou_de_pomeranie_15.jpg'
+        ];
 
-<section id="race" class="alt-bg">
-  <div class="container">
-    <div class="race-content reveal">
-      <h2 class="section-title">Le Loulou de Pomeranie</h2>
-      <p>Le Loulou de Pomeranie est une race de chien reconnue pour ses qualités exceptionnelles. Chaque chien est le fruit d'une sélection rigoureuse pour préserver les meilleures caractéristiques de la race.</p>
-      <p style="margin-top:16px;">Pour en savoir plus sur cette magnifique race et découvrir ses particularités, n'hésitez pas à nous contacter.</p>
-    </div>
-  </div>
-</section>
+        // ---- Construction galerie (15 photos + boucle si besoin pour remplir) ----
+        const galleryGrid = document.getElementById('galleryGrid');
+        const totalDisplay = 15; // Afficher les 15 photos
+        const displayPhotos = [];
+        // Boucler sur les 15 photos (si on voulait plus, on bouclerait)
+        for (let i = 0; i < totalDisplay; i++) {
+            displayPhotos.push(photos[i % photos.length]);
+        }
 
+        // Classes variées pour masonry
+        const variantClasses = ['', 'tall', 'wide', '', 'tall', '', '', 'wide', '', 'tall', '', '', 'tall', '', ''];
+        // On veut 15 items, donc on prend les 15 premières classes ou on boucle
+        const classesFor15 = [];
+        for (let i = 0; i < 15; i++) {
+            classesFor15.push(variantClasses[i % variantClasses.length]);
+        }
 
-<section id="galery">
-  <div class="container">
-    <div style="text-align:center;"><h2 class="section-title">Galerie</h2></div>
-    <div class="gal-grid">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329065/photo-loulou_de_pomeranie/loulou_de_pomeranie_5.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329067/photo-loulou_de_pomeranie/loulou_de_pomeranie_6.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780434922/photo-loulou_de_pomeranie/loulou_de_pomeranie_7.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780434924/photo-loulou_de_pomeranie/loulou_de_pomeranie_8.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329073/photo-loulou_de_pomeranie/loulou_de_pomeranie_9.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329076/photo-loulou_de_pomeranie/loulou_de_pomeranie_10.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329078/photo-loulou_de_pomeranie/loulou_de_pomeranie_11.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780434931/photo-loulou_de_pomeranie/loulou_de_pomeranie_12.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780329082/photo-loulou_de_pomeranie/loulou_de_pomeranie_13.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780418385/photo-loulou_de_pomeranie/loulou_de_pomeranie_14.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1780434937/photo-loulou_de_pomeranie/loulou_de_pomeranie_15.jpg" alt="Loulou de Pomeranie" class="reveal" loading="lazy">
-      
-    </div>
-  </div>
-</section>
+        displayPhotos.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item ' + (classesFor15[index] || '');
+            item.setAttribute('data-index', index);
+            item.setAttribute('data-src', src);
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = 'Loulou de Poméranie — Les Pom\'s Bully d\'Amour — Photo ' + (index + 1);
+            img.loading = 'lazy';
+            item.appendChild(img);
+            galleryGrid.appendChild(item);
+        });
 
+        // ---- Lightbox ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentLightboxIndex = 0;
+        const allGalleryItems = [];
 
-<section id="contact" class="alt-bg">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="reveal">
-        <h2 class="section-title">Contact</h2>
-        <p>N'hésitez pas à nous contacter pour toute information.</p>
-        <div class="contact-phone">📞 0493504898</div>
-        <p style="margin-top:12px;">Élevage de chiens</p>
-        
-      </div>
-      <div class="reveal" style="background:white;padding:32px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.04);">
-        <h3 style="font-family:var(--serif);font-size:1.3rem;margin-bottom:16px;">Les Pom's Bully d'Amour</h3>
-        <p style="color:var(--muted);margin-bottom:20px;">Élevage Loulou de Pomeranie.</p>
-        <a href="tel:0493504898" style="display:block;text-align:center;padding:12px;background:var(--primary);color:white;border-radius:6px;font-weight:600;">📞 0493504898</a>
-      </div>
-    </div>
-  </div>
-</section>
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = displayPhotos[index];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-<footer>
-  <p>© 2026 — Les Pom's Bully d'Amour — Loulou de Pomeranie</p>
-  <p style="margin-top:4px;">Élevage de chiens</p>
-</footer>
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
-<script>
-  const observer = new IntersectionObserver(e => { e.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }); }, { threshold: .15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+        function prevLightbox() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + displayPhotos.length) % displayPhotos.length;
+            lightboxImg.src = displayPhotos[currentLightboxIndex];
+        }
+
+        function nextLightbox() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % displayPhotos.length;
+            lightboxImg.src = displayPhotos[currentLightboxIndex];
+        }
+
+        // Délégation d'événements sur la galerie
+        galleryGrid.addEventListener('click', function(e) {
+            const item = e.target.closest('.gallery-item');
+            if (!item) return;
+            const index = parseInt(item.getAttribute('data-index'));
+            if (!isNaN(index)) {
+                openLightbox(index);
+            }
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevLightbox);
+        lightboxNext.addEventListener('click', nextLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Navigation clavier lightbox
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+        });
+
+        // ---- Scroll Reveal (IntersectionObserver) ----
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ---- Nav scroll effect ----
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ---- Burger menu ----
+        const burger = document.getElementById('burger');
+        const navLinks = document.getElementById('navLinks');
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+        });
+        // Fermer le menu au clic sur un lien
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // ---- Contact form ----
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (name && email && message) {
+                alert('Merci ' + name +
+                    ' ! Votre message a bien été envoyé.\nNous vous répondrons dans les plus brefs délais.');
+                contactForm.reset();
+            } else {
+                alert('Veuillez remplir tous les champs obligatoires.');
+            }
+        });
+
+        // ---- Smooth scroll pour les ancres ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue(
+                        '--nav'));
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        console.log('🐾 Les Pom\'s Bully d\'Amour — Site prêt !');
+    </script>
 </body>
 </html>
+```
+### Présentation du site
+
+Ce site met en avant la personnalité attachante de l'élevage à travers une ambiance chaleureuse et une navigation intuitive. La page joue sur la douceur et la proximité pour valoriser les chiots et l'expérience de l'éleveur.
+
+- **Ambiance & identité visuelle :**  
+  La palette de couleurs (crème, pêche, caramel) évoque immédiatement la chaleur du pelage du Loulou de Poméranie. Les dégradés dorés et la typographie élégante (Cinzel pour les titres) créent un équilibre entre prestige artisanal et accessibilité familiale.
+
+- **Mise en scène du contenu :**  
+  Le **bandeau d'accueil** (hero) affiche une photo pleine largeur avec un message clair. La **section "À propos"** alterne texte et image pour raconter l'histoire de l'éleveur. La **galerie** utilise une grille variée (images hautes/larges) pour rendre la consultation des 15 photos dynamique et moins monotone.
+
+- **Fonctionnalités interactives :**  
+  La **lightbox** permet d'agrandir chaque photo de la galerie. Le **formulaire de contact** est épuré et enregistre les demandes (une alerte de confirmation simule l'envoi). Les **animations au défilement** (scroll reveal) donnent un rythme agréable à la lecture, sans être intrusives.
+
+- **Navigation & crédibilité :**  
+  La barre de navigation fixe inclut un bouton d'appel à l'action ("Contact"). Le **pied de page** complet (copyright 2026, liens légaux) et la **section "Engagements"** (tests génétiques, suivi vétérinaire, passeport européen) renforcent le sérieux et la transparence de l'élevage.

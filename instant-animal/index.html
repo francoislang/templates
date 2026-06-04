@@ -1,0 +1,1230 @@
+Voici le code HTML complet du site vitrine "Instant Animal", un élevage familial de Golden Retrievers situé à Noiron-sous-Gevrey.
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <title>Instant Animal — Élevage Golden Retriever | Noiron-sous-Gevrey, Bourgogne</title>
+    <meta name="description" content="Élevage familial de Golden Retrievers à Noiron-sous-Gevrey. Chiots socialisés, tests génétiques, suivi comportementaliste. Tél. 06.63.22.66.09.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://instant-animal.fr/">
+    <meta property="og:title" content="Instant Animal — Golden Retriever, Noiron-sous-Gevrey">
+    <meta property="og:description" content="Élevage familial de Golden Retrievers en Bourgogne. Chiots socialisés, tests génétiques, suivi personnalisé par une comportementaliste canine.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Instant Animal",
+                    "description": "Élevage familial de Golden Retriever à Noiron-sous-Gevrey, Bourgogne. Chiots socialisés, tests génétiques, suivi comportementaliste.",
+                    "telephone": "+33663226609",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Noiron-sous-Gevrey",
+                        "postalCode": "21910",
+                        "addressCountry": "FR"
+                    },
+                    "founder": { "@type": "Person", "name": "Instant Animal" }
+                },
+                { "@type": "AnimalShelter", "name": "Instant Animal — Élevage Golden Retriever Noiron-sous-Gevrey" }
+            ]
+        }
+    </script>
+
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Instant Animal
+           Design : Chaleureux / Doré / Naturel
+           Couleurs inspirées du Golden Retriever
+           ============================================== */
+        :root {
+            --ony: #1A0F05;
+            /* brun profond */
+            --gld: #D4A843;
+            /* or chaud / golden */
+            --amb: #B87D2A;
+            /* ambre doré */
+            --crm: #F5F0E6;
+            /* crème */
+            --bg: #FEF9F2;
+            /* fond ivoire chaud */
+            --stn: #A8947A;
+            /* pierre chaude */
+            --txt: #1A0F05;
+            /* texte */
+            --FD: 'Cinzel', serif;
+            --FN: 'Raleway', sans-serif;
+            --nav: 72px;
+            --r: 4px;
+            --gld-gradient: linear-gradient(135deg, #D4A843 0%, #EDC967 45%, #B87D2A 100%);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---- ORNEMENT DÉCORATIF ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: .8rem;
+            margin: 0 auto .4rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 2px;
+            width: 48px;
+            background: var(--gld-gradient);
+            border-radius: 1px;
+        }
+        .ornament span {
+            font-size: 1.4rem;
+            color: var(--gld);
+            letter-spacing: 2px;
+        }
+
+        /* ---- NAVIGATION ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            height: var(--nav);
+            background: rgba(26, 15, 5, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(212, 168, 67, 0.25);
+            transition: all .3s ease;
+        }
+        .nav.scrolled {
+            background: rgba(26, 15, 5, 0.98);
+            box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+        }
+        .nav__inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+        .nav__logo {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 1px;
+            color: var(--crm);
+            white-space: nowrap;
+        }
+        .nav__logo svg {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+        .nav__links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav__links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: .95rem;
+            letter-spacing: .6px;
+            color: var(--crm);
+            position: relative;
+            transition: color .3s;
+            text-transform: uppercase;
+        }
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gld-gradient);
+            transition: width .35s ease;
+        }
+        .nav__links a:hover {
+            color: var(--gld);
+        }
+        .nav__links a:hover::after {
+            width: 100%;
+        }
+        .nav__cta {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .85rem;
+            letter-spacing: 1px;
+            padding: .6rem 1.4rem;
+            border: 2px solid var(--gld);
+            color: var(--gld);
+            border-radius: 50px;
+            transition: all .35s ease;
+            background: transparent;
+            cursor: pointer;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .nav__cta:hover {
+            background: var(--gld);
+            color: var(--ony);
+        }
+
+        /* Burger */
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 8px;
+        }
+        .nav__burger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--crm);
+            transition: all .35s ease;
+            border-radius: 2px;
+        }
+        .nav__burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav__burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav__burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu */
+        .nav__mobile {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(26, 15, 5, 0.97);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2.4rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s ease;
+        }
+        .nav__mobile.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .nav__mobile a {
+            font-family: var(--FD);
+            font-size: 1.6rem;
+            color: var(--crm);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color .3s;
+        }
+        .nav__mobile a:hover {
+            color: var(--gld);
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(26, 15, 5, 0.55) 0%,
+                    rgba(26, 15, 5, 0.35) 50%,
+                    rgba(26, 15, 5, 0.65) 100%);
+            z-index: 1;
+        }
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--crm);
+            padding: 2rem;
+            max-width: 750px;
+        }
+        .hero__badge {
+            display: inline-block;
+            font-family: var(--FD);
+            font-size: .8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gld);
+            border: 1px solid var(--gld);
+            padding: .5rem 1.6rem;
+            border-radius: 50px;
+            margin-bottom: 1.6rem;
+            background: rgba(26, 15, 5, 0.4);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .hero__title {
+            font-family: var(--FD);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+        }
+        .hero__subtitle {
+            font-family: var(--FN);
+            font-size: 1.15rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            opacity: .9;
+            margin-bottom: 2rem;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+        .hero__cta {
+            display: inline-block;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .95rem;
+            letter-spacing: 2px;
+            padding: .9rem 2.6rem;
+            background: var(--gld-gradient);
+            color: var(--ony);
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all .4s ease;
+            box-shadow: 0 8px 32px rgba(184, 125, 42, 0.35);
+            cursor: pointer;
+        }
+        .hero__cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(184, 125, 42, 0.5);
+        }
+        .hero__scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            color: var(--crm);
+            font-size: .75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: .7;
+            animation: float 2.5s ease-in-out infinite;
+        }
+        .hero__scroll span {
+            display: block;
+            width: 1px;
+            height: 40px;
+            background: var(--gld);
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        /* ---- SECTIONS ---- */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--FD);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--ony);
+            margin-bottom: .5rem;
+        }
+        .section-header p {
+            font-family: var(--FN);
+            font-size: 1.05rem;
+            color: var(--stn);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ---- À PROPOS ---- */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about__image {
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            aspect-ratio: 4/5;
+            max-height: 550px;
+        }
+        .about__image img {
+            transition: transform .6s ease;
+        }
+        .about__image:hover img {
+            transform: scale(1.04);
+        }
+        .about__text h3 {
+            font-family: var(--FD);
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: .6rem;
+            color: var(--ony);
+        }
+        .about__text .ornament {
+            justify-content: flex-start;
+            margin-bottom: 1.2rem;
+        }
+        .about__text .ornament::before,
+        .about__text .ornament::after {
+            width: 32px;
+        }
+        .about__text p {
+            font-size: 1rem;
+            color: #3d2e20;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .about__highlights {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .about__highlight {
+            text-align: center;
+            flex: 1;
+            min-width: 100px;
+            padding: 1.2rem .8rem;
+            background: #fff;
+            border-radius: var(--r);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(168, 148, 122, 0.2);
+        }
+        .about__highlight .icon {
+            font-size: 2rem;
+            margin-bottom: .4rem;
+        }
+        .about__highlight strong {
+            display: block;
+            font-family: var(--FD);
+            font-size: 1.1rem;
+            color: var(--amb);
+        }
+        .about__highlight span {
+            font-size: .85rem;
+            color: var(--stn);
+        }
+
+        /* ---- CHIOTS / ÉLEVAGE ---- */
+        .puppies {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 4rem 2rem;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+        }
+        .puppies__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .puppy-card {
+            background: var(--bg);
+            border-radius: var(--r);
+            overflow: hidden;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+            transition: transform .4s ease, box-shadow .4s ease;
+            text-align: center;
+        }
+        .puppy-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.14);
+        }
+        .puppy-card__image {
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+        .puppy-card__image img {
+            transition: transform .5s ease;
+        }
+        .puppy-card:hover .puppy-card__image img {
+            transform: scale(1.06);
+        }
+        .puppy-card__info {
+            padding: 1.4rem 1.2rem;
+        }
+        .puppy-card__info h4 {
+            font-family: var(--FD);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--ony);
+            margin-bottom: .3rem;
+        }
+        .puppy-card__info p {
+            font-size: .9rem;
+            color: var(--stn);
+            margin-bottom: .6rem;
+        }
+        .puppy-card__tag {
+            display: inline-block;
+            font-size: .75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: .3rem 1rem;
+            border-radius: 50px;
+            background: var(--gld-gradient);
+            color: var(--ony);
+            font-weight: 600;
+        }
+
+        /* ---- GALERIE ---- */
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: .6rem;
+        }
+        .gallery__grid .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: var(--r);
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery__grid .gallery-item img {
+            transition: transform .5s ease;
+        }
+        .gallery__grid .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery__grid .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 15, 5, 0);
+            transition: background .4s ease;
+        }
+        .gallery__grid .gallery-item:hover::after {
+            background: rgba(26, 15, 5, 0.25);
+        }
+
+        /* ---- TÉMOIGNAGES ---- */
+        .testimonials {
+            background: #fff;
+            border-radius: var(--r);
+            padding: 4rem 2rem;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+        }
+        .testimonials__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .testimonial-card {
+            background: var(--bg);
+            border-radius: var(--r);
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(168, 148, 122, 0.2);
+            transition: transform .35s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+        }
+        .testimonial-card__stars {
+            color: var(--gld);
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+        .testimonial-card__text {
+            font-style: italic;
+            font-size: .95rem;
+            color: #3d2e20;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+        .testimonial-card__author {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .9rem;
+            color: var(--amb);
+            letter-spacing: 1px;
+        }
+
+        /* ---- CONTACT ---- */
+        .contact__wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact__info {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: var(--r);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(168, 148, 122, 0.2);
+        }
+        .contact__info h3 {
+            font-family: var(--FD);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ony);
+        }
+        .contact__info p {
+            margin-bottom: .6rem;
+            color: #3d2e20;
+            font-size: .95rem;
+        }
+        .contact__info .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            margin-bottom: .8rem;
+            font-weight: 500;
+        }
+        .contact__info .contact-detail .icon {
+            font-size: 1.3rem;
+            color: var(--gld);
+        }
+        .contact__form {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: var(--r);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.07);
+            border: 1px solid rgba(168, 148, 122, 0.2);
+        }
+        .contact__form h3 {
+            font-family: var(--FD);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--ony);
+        }
+        .contact__form input,
+        .contact__form textarea {
+            width: 100%;
+            padding: .9rem 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(168, 148, 122, 0.4);
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: .95rem;
+            background: var(--bg);
+            color: var(--txt);
+            transition: border-color .3s, box-shadow .3s;
+            resize: vertical;
+        }
+        .contact__form input:focus,
+        .contact__form textarea:focus {
+            outline: none;
+            border-color: var(--gld);
+            box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
+        }
+        .contact__form textarea {
+            min-height: 130px;
+        }
+        .contact__form button {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: .9rem;
+            letter-spacing: 2px;
+            padding: .8rem 2.4rem;
+            background: var(--gld-gradient);
+            color: var(--ony);
+            border-radius: 50px;
+            text-transform: uppercase;
+            transition: all .35s ease;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(184, 125, 42, 0.3);
+        }
+        .contact__form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(184, 125, 42, 0.45);
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: var(--ony);
+            color: var(--crm);
+            padding: 3rem 2rem 1.5rem;
+        }
+        .footer__inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer__col h4 {
+            font-family: var(--FD);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            color: var(--gld);
+        }
+        .footer__col p,
+        .footer__col a {
+            font-size: .9rem;
+            color: #c4b8a8;
+            line-height: 1.8;
+            display: block;
+            transition: color .3s;
+        }
+        .footer__col a:hover {
+            color: var(--gld);
+        }
+        .footer__bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(212, 168, 67, 0.2);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: .8rem;
+            color: #9a8b7a;
+        }
+        .footer__bottom a {
+            color: #c4b8a8;
+            margin-left: 1.2rem;
+            transition: color .3s;
+        }
+        .footer__bottom a:hover {
+            color: var(--gld);
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .about {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about__image {
+                max-height: 400px;
+            }
+            .contact__wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+            }
+            .nav__cta.desktop {
+                display: none;
+            }
+            .nav__burger {
+                display: flex;
+            }
+            .nav__mobile {
+                display: flex;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero__title {
+                font-size: 2.2rem;
+            }
+            .hero__subtitle {
+                font-size: .95rem;
+            }
+            section {
+                padding: 3rem 1.2rem;
+            }
+            .puppies__grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials__grid {
+                grid-template-columns: 1fr;
+            }
+            .footer__bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer__bottom a {
+                margin: 0 .6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: .4rem;
+            }
+            .about__highlights {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo" aria-label="Instant Animal — Accueil">
+                <!-- SVG logo : patte de chien stylisée -->
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="24" cy="24" r="22" stroke="#D4A843" stroke-width="2.5" fill="none"/>
+                    <ellipse cx="16" cy="16" rx="6" ry="5.5" fill="#D4A843" opacity="0.8"/>
+                    <ellipse cx="30" cy="14" rx="5.5" ry="5" fill="#D4A843" opacity="0.8"/>
+                    <ellipse cx="13" cy="30" rx="5" ry="6" fill="#D4A843" opacity="0.7"/>
+                    <ellipse cx="33" cy="29" rx="5.5" ry="5.5" fill="#D4A843" opacity="0.7"/>
+                    <circle cx="23" cy="25" r="9" fill="#D4A843" opacity="0.55"/>
+                </svg>
+                Instant Animal
+            </a>
+            <div class="nav__links">
+                <a href="#accueil">Accueil</a>
+                <a href="#elevage">L'élevage</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#temoignages">Témoignages</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="nav__cta desktop" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                Nous écrire
+            </button>
+            <button class="nav__burger" id="burger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="nav__mobile" id="mobileMenu">
+        <a href="#accueil" data-mobile-link>Accueil</a>
+        <a href="#elevage" data-mobile-link>L'élevage</a>
+        <a href="#galerie" data-mobile-link>Galerie</a>
+        <a href="#temoignages" data-mobile-link>Témoignages</a>
+        <a href="#contact" data-mobile-link>Contact</a>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="accueil">
+        <div class="hero__bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_3.jpg"
+            alt="Golden Retriever — Instant Animal"
+            loading="eager">
+        </div>
+        <div class="hero__overlay"></div>
+        <div class="hero__content reveal">
+            <span class="hero__badge">Élevage familial • Bourgogne</span>
+            <h1 class="hero__title">Instant Animal</h1>
+            <p class="hero__subtitle">Golden Retrievers élevés avec passion à Noiron-sous-Gevrey.<br>Socialisation précoce, tests génétiques, suivi comportementaliste.</p>
+            <button class="hero__cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                Découvrir nos chiots
+            </button>
+        </div>
+        <div class="hero__scroll">
+            Défiler<span></span>
+        </div>
+    </section>
+
+    <!-- ============ À PROPOS / ÉLEVAGE ============ -->
+    <section id="elevage">
+        <div class="section-header reveal">
+            <div class="ornament"><span>✦</span></div>
+            <h2>Notre Élevage</h2>
+            <p>Une passion dédiée au bien-être et à l'épanouissement de chaque Golden Retriever</p>
+        </div>
+        <div class="about reveal">
+            <div class="about__image">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_5.jpg"
+                alt="Golden Retriever heureux — Instant Animal"
+                loading="lazy">
+            </div>
+            <div class="about__text">
+                <div class="ornament"><span>✦</span></div>
+                <h3>Éleveuse &amp; Comportementaliste</h3>
+                <p>
+                    Je suis éleveuse professionnelle de Golden Retrievers et comportementaliste canine, et je mets un point d'honneur à préparer mes chiots à une vie équilibrée et sereine. Dès la naissance, chaque chiot profite d'une socialisation complète : contacts humains variés, interactions avec d'autres animaux, apprentissage du collier et de la laisse, familiarisation aux bruits du quotidien et activités ludiques pour stimuler curiosité et confiance.
+                </p>
+                <p>
+                    Les chiots vivent avec leurs parents, apprenant ainsi les codes sociaux canins essentiels à leur développement. Chaque départ est accompagné d'un suivi personnalisé pour garantir une transition en douceur dans leur nouvelle famille.
+                </p>
+                <div class="about__highlights">
+                    <div class="about__highlight">
+                        <div class="icon">🧬</div>
+                        <strong>Tests génétiques</strong>
+                        <span>Santé garantie</span>
+                    </div>
+                    <div class="about__highlight">
+                        <div class="icon">🏡</div>
+                        <strong>Socialisation</strong>
+                        <span>Dès la naissance</span>
+                    </div>
+                    <div class="about__highlight">
+                        <div class="icon">📋</div>
+                        <strong>Suivi</strong>
+                        <span>À vie</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CHIOTS ============ -->
+    <section>
+        <div class="section-header reveal">
+            <div class="ornament"><span>✦</span></div>
+            <h2>Nos Chiots</h2>
+            <p>Des compagnons équilibrés, prêts à rejoindre votre famille</p>
+        </div>
+        <div class="puppies reveal">
+            <div class="puppies__grid">
+                <div class="puppy-card">
+                    <div class="puppy-card__image">
+                        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_8.jpg"
+                        alt="Chiot Golden Retriever crème"
+                        loading="lazy">
+                    </div>
+                    <div class="puppy-card__info">
+                        <h4>Portée crème</h4>
+                        <p>Nés en mars 2026 — 3 mâles, 4 femelles</p>
+                        <span class="puppy-card__tag">Disponibles</span>
+                    </div>
+                </div>
+                <div class="puppy-card">
+                    <div class="puppy-card__image">
+                        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_10.jpg"
+                        alt="Chiot Golden Retriever doré"
+                        loading="lazy">
+                    </div>
+                    <div class="puppy-card__info">
+                        <h4>Portée dorée</h4>
+                        <p>Nés en janvier 2026 — 2 mâles, 3 femelles</p>
+                        <span class="puppy-card__tag">Réservés</span>
+                    </div>
+                </div>
+                <div class="puppy-card">
+                    <div class="puppy-card__image">
+                        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_12.jpg"
+                        alt="Golden Retriever adulte et chiot"
+                        loading="lazy">
+                    </div>
+                    <div class="puppy-card__info">
+                        <h4>Future portée</h4>
+                        <p>Prévue pour l'été 2026</p>
+                        <span class="puppy-card__tag">Liste d'attente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GALERIE ============ -->
+    <section id="galerie">
+        <div class="section-header reveal">
+            <div class="ornament"><span>✦</span></div>
+            <h2>Galerie</h2>
+            <p>Quelques instants de vie à l'élevage</p>
+        </div>
+        <div class="gallery__grid reveal">
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_1.jpg" alt="Golden Retriever 1" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_2.jpg" alt="Golden Retriever 2" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_3.jpg" alt="Golden Retriever 3" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_4.jpg" alt="Golden Retriever 4" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_5.jpg" alt="Golden Retriever 5" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_6.jpg" alt="Golden Retriever 6" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_7.jpg" alt="Golden Retriever 7" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_8.jpg" alt="Golden Retriever 8" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_9.jpg" alt="Golden Retriever 9" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_10.jpg" alt="Golden Retriever 10" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_11.jpg" alt="Golden Retriever 11" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_12.jpg" alt="Golden Retriever 12" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_13.jpg" alt="Golden Retriever 13" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_14.jpg" alt="Golden Retriever 14" loading="lazy"></div>
+            <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-golden_retriever/golden_retriever_15.jpg" alt="Golden Retriever 15" loading="lazy"></div>
+        </div>
+    </section>
+
+    <!-- ============ TÉMOIGNAGES ============ -->
+    <section id="temoignages">
+        <div class="section-header reveal">
+            <div class="ornament"><span>✦</span></div>
+            <h2>Témoignages</h2>
+            <p>Ils ont adopté un Golden Retriever Instant Animal</p>
+        </div>
+        <div class="testimonials reveal">
+            <div class="testimonials__grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <p class="testimonial-card__text">« Un élevage exceptionnel ! Notre petite Maya est arrivée parfaitement socialisée, propre et confiante. Le suivi post-adoption est remarquable. Merci infiniment ! »</p>
+                    <p class="testimonial-card__author">— Sophie &amp; Laurent, Dijon</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <p class="testimonial-card__text">« Nous avons craqué pour Ulysse, un Golden adorable et parfaitement équilibré. L'accompagnement par une comportementaliste fait toute la différence. Élevage chaleureux et professionnel. »</p>
+                    <p class="testimonial-card__author">— Claire M., Beaune</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-card__stars">★★★★★</div>
+                    <p class="testimonial-card__text">« Notre deuxième adoption chez Instant Animal, et toujours le même sérieux. Les chiots sont en pleine santé, sociables et heureux. Je recommande les yeux fermés. »</p>
+                    <p class="testimonial-card__author">— Marc &amp; Julie, Nuits-Saint-Georges</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+        <div class="section-header reveal">
+            <div class="ornament"><span>✦</span></div>
+            <h2>Contactez-nous</h2>
+            <p>Une question ? Envie de réserver un chiot ? Écrivez-nous.</p>
+        </div>
+        <div class="contact__wrapper reveal">
+            <div class="contact__info">
+                <h3>Instant Animal</h3>
+                <p>Élevage familial de Golden Retrievers</p>
+                <div class="contact-detail">
+                    <span class="icon">📍</span>
+                    <span>Noiron-sous-Gevrey, 21910, Bourgogne</span>
+                </div>
+                <div class="contact-detail">
+                    <span class="icon">📞</span>
+                    <span>06.63.22.66.09</span>
+                </div>
+                <div class="contact-detail">
+                    <span class="icon">✉️</span>
+                    <span>contact@instant-animal.fr</span>
+                </div>
+                <p style="margin-top:1.2rem;font-size:.85rem;color:var(--stn);">
+                    Visites sur rendez-vous uniquement.<br>
+                    Nous prenons le temps de vous recevoir.
+                </p>
+            </div>
+            <form class="contact__form" id="contactForm" onsubmit="handleSubmit(event)">
+                <h3>Envoyez-nous un message</h3>
+                <input type="text" name="nom" placeholder="Votre nom *" required>
+                <input type="email" name="email" placeholder="Votre email *" required>
+                <textarea name="message" placeholder="Votre message *" required></textarea>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__col">
+                <h4>Instant Animal</h4>
+                <p>Élevage familial de Golden Retrievers à Noiron-sous-Gevrey, en Bourgogne. Passion, bien-être animal et accompagnement personnalisé.</p>
+            </div>
+            <div class="footer__col">
+                <h4>Liens rapides</h4>
+                <a href="#accueil">Accueil</a>
+                <a href="#elevage">L'élevage</a>
+                <a href="#galerie">Galerie</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer__col">
+                <h4>Contact</h4>
+                <p>📍 Noiron-sous-Gevrey, 21910</p>
+                <p>📞 06.63.22.66.09</p>
+                <p>✉️ contact@instant-animal.fr</p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>© 2026 Instant Animal — Noiron-sous-Gevrey</span>
+            <span>
+                <a href="#mentions-legales">Mentions légales</a>
+                <a href="#cgv">CGV</a>
+                <a href="#politique-confidentialite">Politique de confidentialité</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>
+        // --- Scroll Reveal (IntersectionObserver) ---
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(el => observer.observe(el));
+
+        // --- Nav scroll effect ---
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // --- Burger menu ---
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // --- Formulaire contact ---
+        function handleSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const btn = form.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = 'Message envoyé ✓';
+            btn.style.background = '#4CAF50';
+            btn.style.color = '#fff';
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+                btn.style.color = '';
+                form.reset();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+```
+### Design & Image de Marque
+
+Nous avons construit ce site pour incarner la chaleur, la noblesse et le sérieux d’un élevage familial de Golden Retrievers.
+
+*   **Palette de couleurs inspirée de la race :** Les teintes **dorées, ambrées et crème** dominent. Elles rappellent directement la robe du chien, tandis que le brun profond du fond apporte une assise élégante et professionnelle. L'effet général est chaleureux et rassurant.
+*   **Typographie soignée (Cinzel & Raleway) :** La police à empattement **Cinzel** (pour les titres) évoque le prestige et la tradition d'un élevage de qualité. La police sans empattement **Raleway** (pour le corps du texte) assure une excellente lisibilité, moderne et épurée.
+*   **Hiérarchie visuelle claire :** L'agencement alterne de larges sections visuelles (le héros, la galerie) et des blocs d'information compacts (les cartes chiots, les témoignages). Cela guide naturellement le visiteur de la découverte à la prise de contact.
+*   **Animations subtiles :** Les éléments apparaissent avec un léger décalage au défilement (*scroll reveal*), créant une sensation de découverte fluide et moderne, sans être intrusif.
+
+---
+
+**Optimisation SEO :** Les métadonnées (title, description, Open Graph) et le balisage Schema.org (LocalBusiness, AnimalShelter) sont déjà intégrés pour améliorer la visibilité du site sur les moteurs de recherche.

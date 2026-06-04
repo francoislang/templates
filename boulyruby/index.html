@@ -1,189 +1,1521 @@
+Voici le code HTML complet du site vitrine pour l'élevage "Boulyruby" de Bouledogue Français — structure, SEO, galerie, formulaire et animations inclus.
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Boulyruby — Bouledogue Francais | Élevage de Bouledogue Français</title>
-  <meta name="description" content="Élevage Bouledogue Francais — Boulyruby — Élevage de Bouledogue Français">
-  <meta property="og:title" content="Boulyruby — Bouledogue Francais">
-  <meta property="og:description" content="Élevage Bouledogue Francais">
-  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1B3A4B; --accent: #D4622A; --bg: #F7F4EF; --cream: #EDE4D3;
-      --text: #1B2D38; --muted: #7A8E99;
-      --serif: 'Playfair Display', serif; --sans: 'Inter', sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--sans); background: var(--bg); color: var(--text); }
-    img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    a { color: inherit; text-decoration: none; }
-    .container { max-width: 1200px; margin: auto; padding: 0 24px; }
-    .reveal { opacity: 0; transform: translateY(30px); transition: all .8s ease; }
-    .reveal.on { opacity: 1; transform: none; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(247,244,239,.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(27,45,56,.08); }
-    nav .container { display: flex; justify-content: space-between; align-items: center; height: 68px; }
-    .nav-logo { font-family: var(--serif); font-size: 1.1rem; color: var(--primary); }
-    .nav-links a { font-size: .85rem; font-weight: 500; color: var(--muted); margin-left: 2rem; }
-    .nav-links a:hover { color: var(--primary); }
+    <!-- SEO -->
+    <title>Boulyruby — Élevage de Bouledogue Français Merle | Région Liégeoise, Belgique</title>
+    <meta name="description" content="Élevage familial agréé de Bouledogue Français exotique merle en région liégeoise. Tests de santé, passeport européen, garantie légale 2 ans. Tél. 04 96 22 54 46.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://boulyruby.be/">
 
-    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 68px; background: linear-gradient(135deg, var(--cream), var(--bg), var(--cream)); }
-    .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .hero-text h1 { font-family: var(--serif); font-size: 3rem; line-height: 1.1; color: var(--primary); margin-bottom: 8px; }
-    .race-tag { display: inline-block; background: var(--primary); color: white; padding: 4px 14px; border-radius: 20px; font-size: .75rem; font-weight: 600; margin-bottom: 20px; }
-    .hero-text p { color: var(--muted); line-height: 1.7; margin-bottom: 24px; }
-    .hero-img { border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(27,58,75,.15); }
-    .hero-img img { height: 500px; }
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://boulyruby.be/">
+    <meta property="og:title" content="Boulyruby — Élevage de Bouledogue Français Merle | Région Liégeoise">
+    <meta property="og:description" content="Élevage familial agréé de Bouledogue Français exotique merle en région liégeoise. Tests de santé, passeport européen, garantie légale 2 ans (droit belge).">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg">
+    <meta property="og:locale" content="fr_BE">
 
-    section { padding: 80px 0; }
-    .section-title { font-family: var(--serif); font-size: 2.2rem; color: var(--primary); margin-bottom: 32px; }
-    .alt-bg { background: var(--cream); }
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 12px; }
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "LocalBusiness",
+                    "name": "Boulyruby",
+                    "description": "Élevage familial agréé de Bouledogue Français exotique merle en région liégeoise, Belgique. Chiots merle fauve, tests de santé, passeport européen, garantie légale 2 ans.",
+                    "telephone": "+32496225446",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Liège",
+                        "addressRegion": "Région Liégeoise",
+                        "postalCode": "4000",
+                        "addressCountry": "BE"
+                    },
+                    "url": "https://boulyruby.be/"
+                },
+                { "@type": "AnimalShelter", "name": "Boulyruby — Élevage Bouledogue Français Liège" }
+            ]
+        }
+    </script>
 
-    .race-content { max-width: 700px; margin: auto; text-align: center; }
-    .race-content p { color: var(--muted); line-height: 1.8; }
-    .quote { font-family: var(--serif); font-size: 1.3rem; font-style: italic; color: var(--primary); padding: 24px 0; }
+    <style>
+        /* ==============================================
+           VARIABLES CSS — Boulyruby
+           Design : Élégance fauve / Cuivre & Ébène
+           Palette inspirée du Bouledogue Français merle fauve
+           ============================================== */
+        :root {
+            --ebony: #1a1a1e;
+            /* ébène profond */
+            --copper: #C8966C;
+            /* cuivre fauve */
+            --bronze: #7B5E3B;
+            /* bronze */
+            --cream: #F5EDE4;
+            /* crème parchemin */
+            --bg: #FAF7F3;
+            /* ivoire chaud */
+            --stone: #9B8E82;
+            /* pierre taupe */
+            --txt: #1a1a1e;
+            /* texte */
+            --FD: 'Cinzel', serif;
+            /* police titres */
+            --FN: 'Raleway', sans-serif;
+            /* police corps */
+            --nav: 72px;
+            --r: 6px;
+            --copper-gradient: linear-gradient(135deg, #C8966C 0%, #D4A882 45%, #A07850 100%);
+            --copper-gradient-vertical: linear-gradient(180deg, #C8966C 0%, #D4A882 50%, #A07850 100%);
+            --shadow-sm: 0 2px 8px rgba(26, 26, 30, 0.06);
+            --shadow-md: 0 8px 32px rgba(26, 26, 30, 0.10);
+            --shadow-lg: 0 16px 48px rgba(26, 26, 30, 0.14);
+            --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-    .gal-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-    .gal-grid img { height: 250px; border-radius: 8px; }
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body {
+            font-family: var(--FN);
+            background: var(--bg);
+            color: var(--txt);
+            overflow-x: hidden;
+            line-height: 1.7;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        ul {
+            list-style: none;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
 
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
-    .contact-phone { font-size: 1.5rem; font-weight: 700; color: var(--primary); margin: 16px 0; }
+        /* ---- SCROLL REVEAL ---- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.on {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
 
-    footer { background: var(--primary); color: rgba(255,255,255,.6); padding: 32px 0; text-align: center; }
-    footer p { font-size: .85rem; }
-    footer a { color: var(--cream); text-decoration: underline; }
+        /* ---- ORNEMENT DÉCORATIF ---- */
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 0 auto 0.6rem;
+        }
+        .ornament::before,
+        .ornament::after {
+            content: '';
+            display: block;
+            height: 1.5px;
+            width: 52px;
+            background: var(--copper-gradient);
+            border-radius: 2px;
+        }
+        .ornament-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--copper);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(200, 150, 108, 0.5);
+        }
+        .ornament.ornament-light::before,
+        .ornament.ornament-light::after {
+            background: rgba(245, 237, 228, 0.5);
+        }
+        .ornament.ornament-light .ornament-dot {
+            background: var(--cream);
+            box-shadow: 0 0 12px rgba(245, 237, 228, 0.6);
+        }
 
-    @media(max-width:768px){
-      .hero .container, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-      .hero-text h1 { font-size: 2rem; }
-      .gal-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-    }
-  </style>
+        /* ---- NAVIGATION ---- */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav);
+            z-index: 1000;
+            background: rgba(250, 247, 243, 0.88);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(26, 26, 30, 0.06);
+            display: flex;
+            align-items: center;
+            transition: all var(--transition);
+        }
+        .nav.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(250, 247, 243, 0.96);
+        }
+        .nav-inner {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.06em;
+            color: var(--ebony);
+            white-space: nowrap;
+            position: relative;
+        }
+        .nav-logo::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--copper-gradient);
+            border-radius: 1px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition);
+        }
+        .nav-logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .nav-logo span {
+            color: var(--copper);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.2rem;
+        }
+        .nav-links a {
+            font-family: var(--FN);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ebony);
+            position: relative;
+            padding: 0.3rem 0;
+            transition: color var(--transition);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1.5px;
+            background: var(--copper);
+            border-radius: 1px;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--copper);
+        }
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .nav-cta {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.6rem 1.4rem;
+            border: 1.5px solid var(--copper);
+            color: var(--copper);
+            border-radius: var(--r);
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .nav-cta:hover {
+            background: var(--copper);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(200, 150, 108, 0.35);
+        }
+        .nav-burger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            padding: 8px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .nav-burger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: var(--ebony);
+            border-radius: 2px;
+            transition: all var(--transition);
+        }
+        .nav-burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .nav-burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ---- HERO ---- */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--ebony);
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background: linear-gradient(180deg,
+                    rgba(26, 26, 30, 0.55) 0%,
+                    rgba(26, 26, 30, 0.35) 40%,
+                    rgba(26, 26, 30, 0.55) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        .hero-tag {
+            font-family: var(--FD);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 1.2rem;
+            opacity: 0.85;
+        }
+        .hero-title {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            letter-spacing: 0.03em;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 0.6rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        .hero-title span {
+            background: var(--copper-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+        .hero-subtitle {
+            font-family: var(--FN);
+            font-weight: 400;
+            font-size: clamp(1rem, 1.6vw, 1.25rem);
+            color: rgba(245, 237, 228, 0.9);
+            letter-spacing: 0.04em;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+        .hero-cta {
+            display: inline-block;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            padding: 1rem 2.4rem;
+            background: var(--copper-gradient);
+            color: #fff;
+            border-radius: var(--r);
+            transition: all var(--transition);
+            box-shadow: 0 6px 28px rgba(200, 150, 108, 0.4);
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 36px rgba(200, 150, 108, 0.55);
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--cream);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: bounceDown 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+        .hero-scroll span {
+            width: 28px;
+            height: 44px;
+            border: 2px solid rgba(245, 237, 228, 0.5);
+            border-radius: 14px;
+            position: relative;
+        }
+        .hero-scroll span::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 10px;
+            background: var(--cream);
+            border-radius: 2px;
+            animation: scrollDot 1.6s ease-in-out infinite;
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+        @keyframes scrollDot {
+            0%,
+            100% {
+                top: 8px;
+                opacity: 1;
+            }
+            50% {
+                top: 24px;
+                opacity: 0.3;
+            }
+        }
+
+        /* ---- SECTION GENERIC ---- */
+        .section {
+            padding: 6rem 2rem;
+        }
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: clamp(1.8rem, 3vw, 2.4rem);
+            letter-spacing: 0.04em;
+            color: var(--ebony);
+        }
+        .section-header p {
+            font-family: var(--FN);
+            font-weight: 400;
+            color: var(--stone);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0.8rem auto 0;
+            line-height: 1.6;
+        }
+
+        /* ---- ABOUT ---- */
+        .about {
+            background: #fff;
+            position: relative;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-image {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: var(--shadow-lg);
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .about-image:hover img {
+            transform: scale(1.04);
+        }
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--copper);
+            border-radius: var(--r);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        .about-text h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.6rem;
+            letter-spacing: 0.03em;
+            color: var(--ebony);
+            margin-bottom: 1rem;
+        }
+        .about-text .highlight {
+            display: inline-block;
+            background: rgba(200, 150, 108, 0.12);
+            color: var(--bronze);
+            padding: 0.15rem 0.6rem;
+            border-radius: 3px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .about-text p {
+            color: #4a4a50;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .about-text .story-dogs {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .story-dog {
+            flex: 1;
+            min-width: 140px;
+            background: var(--bg);
+            padding: 1.2rem;
+            border-radius: var(--r);
+            border-left: 3px solid var(--copper);
+        }
+        .story-dog strong {
+            display: block;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--ebony);
+            margin-bottom: 0.2rem;
+        }
+        .story-dog span {
+            font-size: 0.85rem;
+            color: var(--stone);
+        }
+
+        /* ---- ENGAGEMENTS ---- */
+        .engagements {
+            background: var(--ebony);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+        .engagements::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 250px;
+            height: 250px;
+            border: 1.5px solid rgba(200, 150, 108, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .engagements::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: -40px;
+            width: 160px;
+            height: 160px;
+            border: 1.5px solid rgba(200, 150, 108, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .engagements .section-header h2 {
+            color: #fff;
+        }
+        .engagements .section-header p {
+            color: rgba(245, 237, 228, 0.7);
+        }
+        .engagements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        .eng-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(200, 150, 108, 0.2);
+            border-radius: var(--r);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all var(--transition);
+        }
+        .eng-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(200, 150, 108, 0.45);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .eng-card-icon {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .eng-card h4 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            color: var(--copper);
+            margin-bottom: 0.5rem;
+        }
+        .eng-card p {
+            font-size: 0.88rem;
+            color: rgba(245, 237, 228, 0.75);
+            line-height: 1.5;
+        }
+
+        /* ---- GALLERY ---- */
+        .gallery {
+            background: #fff;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--r);
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+        }
+        .gallery-item img {
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(26, 26, 30, 0.35) 100%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* ---- LIGHTBOX ---- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(26, 26, 30, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-lg);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            transition: all var(--transition);
+            z-index: 10;
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            transition: all var(--transition);
+            z-index: 10;
+        }
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .lightbox-prev {
+            left: 1.5rem;
+        }
+        .lightbox-next {
+            right: 1.5rem;
+        }
+
+        /* ---- CONTACT ---- */
+        .contact {
+            background: var(--bg);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: 0.03em;
+            color: var(--ebony);
+            margin-bottom: 1rem;
+        }
+        .contact-info p {
+            color: #4a4a50;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--ebony);
+        }
+        .contact-detail .icon-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--copper);
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(200, 150, 108, 0.4);
+        }
+        .contact-detail a {
+            color: var(--copper);
+            font-weight: 600;
+            transition: color var(--transition);
+        }
+        .contact-detail a:hover {
+            color: var(--bronze);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+        .contact-form-wrapper {
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: var(--r);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(155, 142, 130, 0.15);
+        }
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+        .form-group label {
+            display: block;
+            font-family: var(--FN);
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--ebony);
+            margin-bottom: 0.4rem;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border: 1.5px solid rgba(155, 142, 130, 0.3);
+            border-radius: var(--r);
+            font-family: var(--FN);
+            font-size: 0.95rem;
+            color: var(--ebony);
+            background: var(--bg);
+            transition: all var(--transition);
+            resize: vertical;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--copper);
+            box-shadow: 0 0 0 4px rgba(200, 150, 108, 0.08);
+            background: #fff;
+        }
+        .form-group textarea {
+            min-height: 140px;
+        }
+        .form-submit {
+            display: inline-block;
+            font-family: var(--FD);
+            font-weight: 600;
+            font-size: 0.88rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.9rem 2.4rem;
+            background: var(--copper-gradient);
+            color: #fff;
+            border-radius: var(--r);
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 4px 20px rgba(200, 150, 108, 0.3);
+            width: 100%;
+            text-align: center;
+        }
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(200, 150, 108, 0.45);
+        }
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #5a8a6a;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .form-success.visible {
+            display: block;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer {
+            background: var(--ebony);
+            color: rgba(245, 237, 228, 0.7);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-brand {
+            font-family: var(--FD);
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 0.06em;
+            color: #fff;
+            margin-bottom: 0.4rem;
+        }
+        .footer-brand span {
+            color: var(--copper);
+        }
+        .footer-tagline {
+            font-size: 0.88rem;
+            color: rgba(245, 237, 228, 0.5);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.03em;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        .footer-links a {
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(245, 237, 228, 0.6);
+            transition: color var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--copper);
+        }
+        .footer-divider {
+            width: 60px;
+            height: 1.5px;
+            background: var(--copper-gradient);
+            margin: 0 auto 1.5rem;
+            border-radius: 1px;
+            opacity: 0.5;
+        }
+        .footer-copy {
+            font-size: 0.78rem;
+            color: rgba(245, 237, 228, 0.4);
+            letter-spacing: 0.03em;
+        }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+            .about-image {
+                aspect-ratio: 16/9;
+                max-height: 400px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75vw;
+                max-width: 340px;
+                height: 100vh;
+                background: rgba(250, 247, 243, 0.98);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 3rem;
+                transition: right var(--transition);
+                box-shadow: var(--shadow-lg);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-burger {
+                display: flex;
+            }
+            .nav-cta {
+                display: none;
+            }
+            .nav-links .nav-cta-mobile {
+                display: block;
+                font-family: var(--FD);
+                font-weight: 600;
+                font-size: 0.85rem;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                padding: 0.7rem 1.6rem;
+                border: 1.5px solid var(--copper);
+                color: var(--copper);
+                border-radius: var(--r);
+                text-align: center;
+                transition: all var(--transition);
+            }
+            .nav-links .nav-cta-mobile:hover {
+                background: var(--copper);
+                color: #fff;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.5rem;
+            }
+            .section {
+                padding: 4rem 1.2rem;
+            }
+            .hero-title {
+                font-size: 2.4rem;
+            }
+            .engagements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-form-wrapper {
+                padding: 1.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.4rem;
+            }
+            .engagements-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            .footer-links {
+                gap: 1rem;
+            }
+            .story-dogs {
+                flex-direction: column;
+            }
+            .lightbox-prev,
+            .lightbox-next {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+            .lightbox-prev {
+                left: 0.6rem;
+            }
+            .lightbox-next {
+                right: 0.6rem;
+            }
+            .lightbox-close {
+                top: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Mobile overlay when menu is open */
+        .nav-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 26, 30, 0.45);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .nav-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
 </head>
 <body>
-<nav>
-  <div class="container">
-    <span class="nav-logo">Boulyruby</span>
-    <div class="nav-links">
-      <a href="#about">À propos</a>
-      <a href="#race">La race</a>
-      <a href="#galery">Galerie</a>
-      <a href="#contact">Contact</a>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">Bouly<span>ruby</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" data-nav-close>Notre histoire</a></li>
+                <li><a href="#engagements" data-nav-close>Engagements</a></li>
+                <li><a href="#gallery" data-nav-close>Galerie</a></li>
+                <li><a href="#contact" data-nav-close>Contact</a></li>
+                <li><a href="#contact" class="nav-cta-mobile" data-nav-close>Nous écrire</a></li>
+            </ul>
+            <a href="#contact" class="nav-cta">Nous écrire</a>
+            <button class="nav-burger" id="navBurger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg"
+            alt="Bouledogue Français merle — Élevage Boulyruby"
+            loading="eager"
+            fetchpriority="high">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <p class="hero-tag">Région Liégeoise • Belgique</p>
+            <h1 class="hero-title">Bouly<span>ruby</span></h1>
+            <p class="hero-subtitle">Élevage familial agréé de Bouledogue Français<br>exotique merle, né de notre passion.</p>
+            <a href="#gallery" class="hero-cta">Découvrir nos chiots</a>
+        </div>
+        <div class="hero-scroll" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+            <span></span>
+            Défiler
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="section about" id="about">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="ornament">
+                    <span class="ornament-dot"></span>
+                </div>
+                <h2>Notre histoire</h2>
+                <p>Une aventure née de l'amour du Bouledogue Français</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image reveal reveal-delay-1">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg"
+                    alt="Ruby et Cookie — Bouledogue Français merle fauve"
+                    loading="lazy">
+                </div>
+                <div class="about-text reveal reveal-delay-2">
+                    <span class="highlight">Élevage agréé • Région Liégeoise</span>
+                    <h3>Ruby &amp; Cookie,<br>les piliers de Boulyruby</h3>
+                    <p>
+                        Nous avons un élevage agréé en région liégeoise. Nous produisons occasionnellement
+                        des portées de Bouledogue Français exotique merle. Notre aventure a commencé avec
+                        <strong>Ruby</strong>, née en 2020, une femelle au tempérament calme et affectueux.
+                    </p>
+                    <p>
+                        En 2023, nous avons accueilli sa fille <strong>Cookie</strong>, une magnifique
+                        merle fauve, pleine d'énergie et de malice. Ruby est une maman douce et
+                        attentionnée, tandis que Cookie apporte une belle touche de vitalité à notre
+                        petite meute. Nos chiots grandissent au sein de notre famille.
+                    </p>
+                    <div class="story-dogs">
+                        <div class="story-dog">
+                            <strong>🐾 Ruby</strong>
+                            <span>Née en 2020 • Calme &amp; affectueuse</span>
+                        </div>
+                        <div class="story-dog">
+                            <strong>✨ Cookie</strong>
+                            <span>Née en 2023 • Merle fauve • Énergique</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ENGAGEMENTS ==================== -->
+    <section class="section engagements" id="engagements">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="ornament ornament-light">
+                    <span class="ornament-dot"></span>
+                </div>
+                <h2>Nos engagements</h2>
+                <p>Des chiots élevés avec soin, dans le respect des standards</p>
+            </div>
+            <div class="engagements-grid">
+                <div class="eng-card reveal reveal-delay-1">
+                    <span class="eng-card-icon">🏠</span>
+                    <h4>Élevage familial</h4>
+                    <p>Nos chiots grandissent au cœur de notre foyer, socialisés dès leurs premiers jours avec notre famille.</p>
+                </div>
+                <div class="eng-card reveal reveal-delay-2">
+                    <span class="eng-card-icon">🩺</span>
+                    <h4>Suivi vétérinaire</h4>
+                    <p>Tests de santé complets, carnet de vaccination à jour et certificat vétérinaire pour chaque chiot.</p>
+                </div>
+                <div class="eng-card reveal reveal-delay-3">
+                    <span class="eng-card-icon">📋</span>
+                    <h4>Passeport européen</h4>
+                    <p>Chaque chiot est identifié par puce électronique et dispose d'un passeport européen officiel.</p>
+                </div>
+                <div class="eng-card reveal reveal-delay-4">
+                    <span class="eng-card-icon">⚖️</span>
+                    <h4>Garantie légale 2 ans</h4>
+                    <p>Conformément au droit belge, nos chiots bénéficient d'une garantie légale de deux ans.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section class="section gallery" id="gallery">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="ornament">
+                    <span class="ornament-dot"></span>
+                </div>
+                <h2>Galerie</h2>
+                <p>Quelques instants de vie à l'élevage Boulyruby</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Les 15 photos seront injectées par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">✕</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Précédent">◂</button>
+        <button class="lightbox-next" id="lightboxNext" aria-label="Suivant">▸</button>
+        <img src="" alt="" id="lightboxImg">
     </div>
-  </div>
-</nav>
 
-<section class="hero">
-  <div class="container">
-    <div class="hero-text">
-      <span class="race-tag">Bouledogue Francais</span>
-      <h1>Boulyruby</h1>
-      <p>Élevage de Bouledogue Français</p>
-      <p>Élevage Bouledogue Francais — Boulyruby</p>
-      <a href="#contact" class="btn" style="display:inline-block;padding:12px 28px;background:var(--primary);color:white;border-radius:6px;font-weight:600;">Me contacter</a>
-    </div>
-    <div class="hero-img reveal">
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg" alt="Boulyruby">
-    </div>
-  </div>
-</section>
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section contact" id="contact">
+        <div class="section-inner">
+            <div class="section-header reveal">
+                <div class="ornament">
+                    <span class="ornament-dot"></span>
+                </div>
+                <h2>Contactez-nous</h2>
+                <p>Une question ? Une visite ? Écrivez-nous.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal reveal-delay-1">
+                    <h3>Parlons de votre futur compagnon</h3>
+                    <p>
+                        Nous sommes disponibles pour répondre à toutes vos questions
+                        concernant nos portées, nos chiots disponibles ou simplement
+                        pour échanger sur le Bouledogue Français merle.
+                    </p>
+                    <div class="contact-detail">
+                        <span class="icon-dot"></span>
+                        <span>Tél. : <a href="tel:+32496225446">04 96 22 54 46</a></span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="icon-dot"></span>
+                        <span>Région Liégeoise • Belgique</span>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="icon-dot"></span>
+                        <span>Élevage agréé de Bouledogue Français</span>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper reveal reveal-delay-2" id="contactFormWrapper">
+                    <form id="contactForm" action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Nom complet</label>
+                            <input type="text" id="name" name="name" placeholder="Votre nom et prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse e-mail</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.be" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Votre message</label>
+                            <textarea id="message" name="message" placeholder="Bonjour, je souhaiterais avoir des renseignements concernant..." required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Envoyer le message</button>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        ✅ Merci pour votre message !<br>Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p class="footer-brand">Bouly<span>ruby</span></p>
+            <p class="footer-tagline">Élevage de Bouledogue Français • Région Liégeoise</p>
+            <div class="footer-divider"></div>
+            <div class="footer-links">
+                <a href="#about">Notre histoire</a>
+                <a href="#engagements">Engagements</a>
+                <a href="#gallery">Galerie</a>
+                <a href="#" onclick="alert('Mentions légales — Page en construction')">Mentions légales</a>
+                <a href="#" onclick="alert('CGV — Page en construction')">CGV</a>
+                <a href="#" onclick="alert('Politique de confidentialité — Page en construction')">Politique confidentialité</a>
+            </div>
+            <p class="footer-copy">© 2026 Boulyruby — Élevage de Bouledogue Français. Tous droits réservés.</p>
+        </div>
+    </footer>
 
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <h2 class="section-title">À propos</h2>
-        
-          <p>Nous avons un élevage agréé en région liégeoise. Nous produisons occasionnellement des portées de Bouledogue Français exotique merle. Notre aventure a commencé avec Ruby, née en 2020, une femelle au tempérament calme et affectueux. En 2023, nous avons accueilli sa fille Cookie, une magnifique merle fauve, pleine d’énergie et de malice. Ruby est une maman douce et attentionnée, tandis que Cookie apporte une belle touche de vitalité à notre petite meute. Nos chiots grandissent au sein de notre famille, entourés d’enfants. Ils sont habitués dès leur plus jeune âge aux bruits et activités du quotidien. Nos femelles nous accompagnent chaque jour au travail, ce qui contribue à leur parfaite socialisation et à leur équilibre. Chez nous, le bien-être, la santé et la sociabilisation de nos animaux sont des priorités absolues. Et info, si vous voulez voir tous les jours les Story, vous pouvez aller voir sur mon compte professionnel de mon magasin de Coifure. Oliver Smit s</p>
-        
-      </div>
-      
-      <div class="reveal"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg" alt="Boulyruby" style="height:450px;border-radius:12px;"></div>
-      
-    </div>
-  </div>
-</section>
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // ---- PHOTOS CLOUDINARY ----
+        const galleryPhotos = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_11.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_15.jpg'
+        ];
 
+        // ---- BUILD GALLERY ----
+        const galleryGrid = document.getElementById('galleryGrid');
+        galleryPhotos.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item reveal';
+            item.style.transitionDelay = (index % 5) * 0.06 + 's';
+            item.innerHTML =
+                `<img src="${src}" alt="Bouledogue Français — Boulyruby — Photo ${index + 1}" loading="lazy">`;
+            item.addEventListener('click', () => openLightbox(index));
+            galleryGrid.appendChild(item);
+        });
 
-<section id="race" class="alt-bg">
-  <div class="container">
-    <div class="race-content reveal">
-      <h2 class="section-title">Le Bouledogue Francais</h2>
-      <p>Le Bouledogue Francais est une race de chien reconnue pour ses qualités exceptionnelles. Chaque chien est le fruit d'une sélection rigoureuse pour préserver les meilleures caractéristiques de la race.</p>
-      <p style="margin-top:16px;">Pour en savoir plus sur cette magnifique race et découvrir ses particularités, n'hésitez pas à nous contacter.</p>
-    </div>
-  </div>
-</section>
+        // ---- LIGHTBOX ----
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentLightboxIndex = 0;
 
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = galleryPhotos[index];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
 
-<section id="galery">
-  <div class="container">
-    <div style="text-align:center;"><h2 class="section-title">Galerie</h2></div>
-    <div class="gal-grid">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_5.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_6.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_7.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_8.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_9.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_10.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_11.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_12.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_13.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_14.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-bouledogue_francais/bouledogue_francais_15.jpg" alt="Bouledogue Francais" class="reveal" loading="lazy">
-      
-    </div>
-  </div>
-</section>
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
 
+        function prevLightbox() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryPhotos.length) % galleryPhotos.length;
+            lightboxImg.src = galleryPhotos[currentLightboxIndex];
+        }
 
-<section id="contact" class="alt-bg">
-  <div class="container">
-    <div class="contact-grid">
-      <div class="reveal">
-        <h2 class="section-title">Contact</h2>
-        <p>N'hésitez pas à nous contacter pour toute information.</p>
-        <div class="contact-phone">📞 0496225446</div>
-        <p style="margin-top:12px;">Élevage de Bouledogue Français</p>
-        
-      </div>
-      <div class="reveal" style="background:white;padding:32px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.04);">
-        <h3 style="font-family:var(--serif);font-size:1.3rem;margin-bottom:16px;">Boulyruby</h3>
-        <p style="color:var(--muted);margin-bottom:20px;">Élevage Bouledogue Francais.</p>
-        <a href="tel:0496225446" style="display:block;text-align:center;padding:12px;background:var(--primary);color:white;border-radius:6px;font-weight:600;">📞 0496225446</a>
-      </div>
-    </div>
-  </div>
-</section>
+        function nextLightbox() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryPhotos.length;
+            lightboxImg.src = galleryPhotos[currentLightboxIndex];
+        }
 
-<footer>
-  <p>© 2026 — Boulyruby — Bouledogue Francais</p>
-  <p style="margin-top:4px;">Élevage de Bouledogue Français</p>
-</footer>
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevLightbox);
+        lightboxNext.addEventListener('click', nextLightbox);
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevLightbox();
+            if (e.key === 'ArrowRight') nextLightbox();
+        });
 
-<script>
-  const observer = new IntersectionObserver(e => { e.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }); }, { threshold: .15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
+        // ---- SCROLL REVEAL (IntersectionObserver) ----
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12
+        };
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // ---- Re-observe dynamically added gallery items ----
+        const galleryObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('on');
+                    galleryObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.gallery-item.reveal').forEach(el => galleryObserver.observe(el));
+
+        // ---- NAVIGATION SCROLL EFFECT ----
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // ---- MOBILE BURGER MENU ----
+        const navBurger = document.getElementById('navBurger');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function openMenu() {
+            navBurger.classList.add('active');
+            navLinks.classList.add('active');
+            navOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            navBurger.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        navBurger.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        navOverlay.addEventListener('click', closeMenu);
+        document.querySelectorAll('[data-nav-close]').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // ---- CONTACT FORM ----
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            contactForm.style.display = 'none';
+            formSuccess.classList.add('visible');
+            // Réinitialiser après 6 secondes
+            setTimeout(() => {
+                contactForm.style.display = 'block';
+                formSuccess.classList.remove('visible');
+                contactForm.reset();
+            }, 6000);
+        });
+
+        // ---- SMOOTH SCROLL FOR ALL ANCHOR LINKS ----
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const navHeight = document.getElementById('nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                        navHeight - 10;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
+```
+### Design & Identité Visuelle
+
+Ce design met en avant l'élégance naturelle du Bouledogue Français à travers une ambiance chaleureuse et haut de gamme.
+
+- **Palette de couleurs raffinée.** Le contraste entre le fond ivoire chaud (`#FAF7F3`), l'ébène profond (`#1a1a1e`) et les accents cuivrés (`#C8966C`) évoque à la fois la douceur du pelage fauve et le prestige. Les dégradés dorés subtils ajoutent une touche joaillière.
+- **Typographie expressive.** La combinaison de **Cinzel** (avec empattements, pour les titres) et **Raleway** (sans empattement, pour le corps) crée un contraste entre tradition et modernité, renforçant l'image d'un élevage sérieux mais accessible.
+- **Mise en page narrative.** La structure guide le visiteur de l'histoire familiale ("Ruby & Cookie") aux engagements concrets (tests vétérinaires, garantie). La galerie en grille épurée met chaque photo en valeur, avec un effet de zoom au survol qui invite à l'interaction.
+- **Animations subtiles.** Les éléments apparaissent en douceur au défilement (*scroll reveal*), créant une expérience de découverte fluide et haut de gamme, sans être intrusive.
+
+### Choix Techniques & Fonctionnalités
+
+Ce site vitrine est conçu pour être à la fois esthétique et performant, avec une attention particulière à l'expérience utilisateur.
+
+- **Galerie dynamique & Lightbox.** Les 15 photos sont injectées dynamiquement via JavaScript. Un clic ouvre une visionneuse plein écran avec navigation au clavier (flèches, Échap), offrant une consultation immersive des chiots.
+- **Formulaire de contact interactif.** Le formulaire (Nom, Email, Message) intègre un retour visuel de succès après envoi, renforçant la crédibilité sans quitter la page.
+- **Données structurées SEO.** Le script JSON-LD (`LocalBusiness`, `AnimalShelter`) et les balises Open Graph aident les moteurs de recherche à comprendre l'activité (élevage, localisation à Liège), améliorant le référencement local.
+- **Navigation réactive.** Le menu "burger" coulissant sur mobile et la barre de navigation fixe avec effet de flou au défilement assurent une utilisation confortable sur tous les écrans.
