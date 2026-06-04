@@ -151,6 +151,10 @@ def get_repo_root() -> str:
     return str(config.REPO_ROOT)
 
 def commit_and_push(sites_count: int) -> bool:
+    subprocess.run(
+        ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
+        capture_output=True, timeout=30
+    )
     """Commit et push les nouveaux sites sur GitHub."""
     repo_root = get_repo_root()
     try:
