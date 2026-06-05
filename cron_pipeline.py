@@ -66,7 +66,7 @@ for p in results:
     msg += "Je suis developpeur web et je creer des sites internet pour les eleveurs canins.\n\n"
     msg += f"J'ai prepare une demo gratuite pour votre elevage de {race}{lieu} :\nhttps://francoislang.github.io/templates/{slug}\n\n"
     msg += "C'est un site vitrine cle en main, heberge, avec vos photos, reference sur Google.\n\n"
-    msg += "Je vous laisse regarder la demo et si le rendu vous plait, on en parle par telephone.\n\n"
+    msg += "Je vous laisse regarder la demo et si le rendu vous plait, on peut en discuter.\n\n"
     msg += "Bonne journee,\n\n"
     msg += "Francois-Frederic Lang\nlangfrancoisfrederic@gmail.com\n"
     msg += "--- FIN DU PITCH ---"
