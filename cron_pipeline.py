@@ -63,10 +63,11 @@ for p in results:
     msg += "\n" + "─" * 30
     msg += "\n\n--- PITCH A ENVOYER ---\n"
     msg += "Bonjour,\n\n"
-    msg += "Je suis developpeur web specialise dans la creation de sites pour les eleveurs canins.\n\n"
-    msg += f"J'ai une offre speciale : un site vitrine cle en main pour votre elevage de {race}{lieu}, heberge, personnalise avec vos photos, visible sur Google.\n\n"
-    msg += f"J'ai prepare une demo gratuite pour vous montrer le rendu possible pour votre elevage : https://francoislang.github.io/templates/{slug}\n\n"
-    msg += "Est-ce que vous avez 2 minutes pour qu'on en parle ?\n\n"
+    msg += "Je suis developpeur web et je creer des sites internet pour les eleveurs canins.\n\n"
+    msg += f"J'ai prepare une demo gratuite pour votre elevage de {race}{lieu} :\nhttps://francoislang.github.io/templates/{slug}\n\n"
+    msg += "C'est un site vitrine cle en main, heberge, avec vos photos, reference sur Google.\n\n"
+    msg += "Je vous laisse regarder la demo et si le rendu vous plait, on en parle par telephone.\n\n"
+    msg += "Bonne journee,\n\n"
     msg += "Francois-Frederic Lang\nlangfrancoisfrederic@gmail.com\n"
     msg += "--- FIN DU PITCH ---"
 

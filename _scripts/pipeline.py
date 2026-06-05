@@ -120,27 +120,19 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
         lieu = f"dans le {departement}"
 
     # Construction de la demo
-    demo_phrase = ""
+    demo_link = ""
     if demo_url:
-        demo_phrase = (
-            f"\n\nJ'ai préparé une démo gratuite pour vous montrer le rendu "
-            f"possible pour votre élevage : {demo_url}"
-        )
-    else:
-        demo_phrase = (
-            f"\n\nJe peux vous préparer une démo gratuite de site internet "
-            f"pour votre élevage si vous êtes intéressé."
-        )
+        demo_link = f"\n{demo_url}"
+
 
     pitch = (
         f"Bonjour,"
-        f"\n\nJe suis développeur web spécialisé dans la création de sites "
-        f"pour les éleveurs canins."
-        f"\n\nJ'ai une offre spéciale : un site vitrine clé en main pour votre "
-        f"élevage de {race} {lieu}, hébergé, personnalisé avec vos photos, "
-        f"visible sur Google."
-        f"{demo_phrase}"
-        f"\n\nEst-ce que vous avez 2 minutes pour qu'on en parle ?"
+        f"\n\nJe suis développeur web et je crée des sites internet pour les éleveurs canins."
+        f"\n\nJ'ai préparé une démo gratuite pour votre élevage de {race} {lieu} :"
+        f"{demo_link}"
+        f"\n\nC'est un site vitrine clé en main, hébergé, avec vos photos, référencé sur Google."
+        f"\n\nJe vous laisse regarder la démo et si le rendu vous plaît, on en parle par téléphone."
+        f"\n\nBonne journée,"
         f"\n\nFrançois-Frédéric Lang"
         f"\nlangfrancoisfrederic@gmail.com"
     )
