@@ -63,12 +63,16 @@ for p in results:
     msg += "\n" + "─" * 30
     msg += "\n\n--- PITCH A ENVOYER ---\n"
     msg += "Bonjour,\n\n"
-    msg += "Je suis developpeur web et je creer des sites internet pour les eleveurs canins.\n\n"
-    msg += f"J'ai prepare une demo gratuite pour votre elevage de {race}{lieu} :\nhttps://francoislang.github.io/templates/{slug}\n\n"
-    msg += "C'est un site vitrine cle en main, heberge, avec vos photos, reference sur Google.\n\n"
-    msg += "Je vous laisse regarder la demo et si le rendu vous plait, on peut en discuter.\n\n"
-    msg += "Bonne journee,\n\n"
-    msg += "Francois-Frederic Lang\nlangfrancoisfrederic@gmail.com\n"
+    msg += f"Je me permets de vous contacter car j'ai decouvert votre elevage de {race} sur chien.com.\n\n"
+    msg += "Je suis Francois-Frederic, developpeur web base a Nancy. J'ai eu envie de vous proposer quelque chose : un site vitrine moderne qui reflete vraiment la qualite de votre elevage.\n\n"
+    msg += "Un beau site, c'est concretement :\n"
+    msg += "  Une premiere impression qui rassure les familles avant meme qu'elles vous appellent\n"
+    msg += "  Moins de questions repetitives — les infos sur vos chiens, vos conditions et vos disponibilites sont accessibles a toute heure\n"
+    msg += "  Un endroit ou centraliser vos photos, vos temoignages et l'histoire de votre elevage\n\n"
+    msg += f"J'ai prepare une demo gratuite, sans engagement :\nhttps://francoislang.github.io/templates/{slug}\n\n"
+    msg += "Si elle vous plait et que vous souhaitez en discuter, n'hesitez pas a me repondre.\n\n"
+    msg += "Bonne continuation a vous et a vos loulous,\n\n"
+    msg += "Francois-Frederic Lang\nlangfrancoisfrederic@gmail.com\n06 32 81 42 00\n"
     msg += "--- FIN DU PITCH ---"
 
 telegram.send(msg)

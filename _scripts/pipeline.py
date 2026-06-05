@@ -127,14 +127,19 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
 
     pitch = (
         f"Bonjour,"
-        f"\n\nJe suis développeur web et je crée des sites internet pour les éleveurs canins."
-        f"\n\nJ'ai préparé une démo gratuite pour votre élevage de {race} {lieu} :"
+        f"\n\nJe me permets de vous contacter car j'ai découvert votre élevage de {race} sur chien.com."
+        f"\n\nJe suis François-Frédéric, développeur web basé à Nancy. J'ai eu envie de vous proposer quelque chose : un site vitrine moderne qui reflète vraiment la qualité de votre élevage."
+        f"\n\nUn beau site, c'est concrètement :"
+        f"\n•  Une première impression qui rassure les familles avant même qu'elles vous appellent"
+        f"\n•  Moins de questions répétitives — les infos sur vos chiens, vos conditions et vos disponibilités sont accessibles à toute heure"
+        f"\n•  Un endroit où centraliser vos photos, vos témoignages et l'histoire de votre élevage"
+        f"\n\nJ'ai préparé une démo gratuite, sans engagement :"
         f"{demo_link}"
-        f"\n\nC'est un site vitrine clé en main, hébergé, avec vos photos, référencé sur Google."
-                f"\n\nJe vous laisse regarder la démo et si le rendu vous plaît, on peut en discuter."
-        f"\n\nBonne journée,"
+        f"\n\nSi elle vous plaît et que vous souhaitez en discuter, n'hésitez pas à me répondre."
+        f"\n\nBonne continuation à vous et à vos loulous,"
         f"\n\nFrançois-Frédéric Lang"
         f"\nlangfrancoisfrederic@gmail.com"
+        f"\n06 32 81 42 00"
     )
 
     return pitch
