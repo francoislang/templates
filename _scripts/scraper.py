@@ -290,6 +290,95 @@ def fetch_profile(url: str):
     }
 
 
+def fetch_profile_ai(url: str) -> dict | None:
+    """
+    Extrait les infos d'un profil via DeepSeek V4 Flash (OpenRouter).
+    Plus robuste que les regex, detecte tous les formats de telephone.
+    Fallback vers fetch_profile() si l'appel API echoue.
+    """
+    import os, json
+
+    # Cle API OpenRouter
+    key = ""
+    for fp in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
+        for line in open(fp):
+            if "ANTHROPIC_API_KEY" in line and "=" in line:
+                key = line.split("=", 1)[1].strip()
+                if key: break
+        if key: break
+
+    if not key:
+        return fetch_profile(url)
+
+    r = _get(url)
+    if not r:
+        return None
+
+    soup = BeautifulSoup(r.text, "html.parser")
+    text = soup.get_text(" ", strip=True)[:4000]  # 4000 chars suffisent
+
+    prompt = f"""Extrais les informations de cet élevage canin au format JSON.
+
+Page HTML :
+{text}
+
+Réponds UNIQUEMENT avec un JSON valide (pas de texte autour) :
+{{
+  "name": "nom élevage",
+  "races": ["race principale"],
+  "phone": "téléphone",
+  "email": "email",
+  "website": "site web",
+  "siren": "SIREN ou numéro entreprise",
+  "acaced": "numéro ACACED ou CCC",
+  "statut": "Pro ou Particulier",
+  "ville": "ville",
+  "code_postal": "code postal",
+  "departement": "département ou région",
+  "description": "description complète"
+}}"""
+
+    try:
+        resp = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+            json={
+                "model": "deepseek/deepseek-v4-flash",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 2000,
+            },
+            timeout=30,
+        )
+        data = resp.json()
+        if "choices" not in data:
+            return fetch_profile(url)
+
+        content = data["choices"][0]["message"]["content"]
+        # Extraire le JSON
+        import re
+        m = re.search(r"\{.*\}", content, re.DOTALL)
+        if not m:
+            return fetch_profile(url)
+
+        parsed = json.loads(m.group(0))
+
+        # Ajouter photo et source
+        main_img = soup.select_one("img[src*='upload.chien.com'], img[src*='chien.com/img']")
+        parsed["photo_url"] = main_img["src"] if main_img else ""
+
+        # Nettoyer le telephone
+        phone = parsed.get("phone", "") or ""
+        phone = re.sub(r"[^\d+\-\s\.]", "", phone).strip()
+        parsed["phone"] = phone
+
+        parsed["source_url"] = url
+        return parsed
+
+    except Exception as e:
+        print(f"  ⚠️ AI scraper error: {e}, fallback regex")
+        return fetch_profile(url)
+
+
 def scrape(
     pages: int = 5, max_results: int = 10, start_page: int = 1
 ) -> list[dict]:
