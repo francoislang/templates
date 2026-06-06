@@ -60,6 +60,20 @@ def generate_from_config(config_path: str):
     return slug, github_url
 
 
+def _truncate_sentences(text: str, max_chars: int) -> str:
+    """Coupe au max_chars en respectant les fins de phrases."""
+    if not text or len(text) <= max_chars:
+        return text
+    chunk = text[:max_chars]
+    last_dot = max(chunk.rfind(". "), chunk.rfind(".\n"))
+    if last_dot > max_chars // 2:
+        return chunk[:last_dot + 1].strip()
+    last_space = chunk.rfind(" ")
+    if last_space > 0:
+        return chunk[:last_space].strip() + "…"
+    return chunk.strip()
+
+
 def clean_description(desc: str) -> str:
     """Nettoie une description : enleve les troncatures visibles."""
     if not desc:
@@ -142,8 +156,8 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
             "code_postal": "", "telephone": phone,
             "siren": siren or "", "url": website or "",
             "facebook": "", "facebook_label": "", "since": "",
-            "description_seo": (description[:150] if description else f"Elevage {name} de {race}"),
-            "description_hero": (description[:200] if description else f"Elevage {name} — {race}"),
+            "description_seo": (_truncate_sentences(description, 150) if description else f"Elevage {name} de {race}"),
+            "description_hero": (_truncate_sentences(description, 300) if description else f"Elevage {name} — {race}"),
             "description_about": description or "",
         },
         "couleurs": couleurs,

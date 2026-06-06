@@ -272,8 +272,7 @@ def run(dry_run: bool = False):
 
             notes_parts = warnings[:]
             if breeder.get("description"):
-                desc = breeder["description"][:200]
-                notes_parts.append(f"Description: {desc}...")
+                notes_parts.append(f"Description: {breeder['description']}")
             if breeder.get("website"):
                 notes_parts.append(f"Site actuel: {breeder['website']}")
             if breeder.get("email"):
