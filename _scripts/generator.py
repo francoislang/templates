@@ -8,6 +8,7 @@ from jinja2 import Environment, FileSystemLoader
 
 import config
 from cloudinary_check import BREED_TEMPLATE, get_photos_for_breed
+from photos import get_photos_for_race
 
 
 def slugify(text: str) -> str:
@@ -130,7 +131,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
         # Forcer la regeneration pour mettre a jour la description
         pass
 
-    ph = photos_race if photos_race is not None else get_photos_for_breed(race)
+    ph = photos_race if photos_race is not None else (get_photos_for_breed(race) or get_photos_for_race(race, count=15))
     couleurs = _breed_colors(race)
     data = {
         "template": "universal",
