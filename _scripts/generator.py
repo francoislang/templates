@@ -59,6 +59,20 @@ def generate_from_config(config_path: str):
     return slug, github_url
 
 
+def clean_description(desc: str) -> str:
+    """Nettoie une description : enleve les troncatures visibles."""
+    if not desc:
+        return ""
+    desc = desc.strip()
+    desc = re.sub(r"\bc\.\s*$", "", desc)      # finit par "c."
+    desc = re.sub(r"\.{3,}$", "", desc)          # finit par "..."
+    desc = re.sub(r"\betc\.?\s*$", "", desc)     # finit par "etc."
+    desc = re.sub(r"\s{2,}", " ", desc).strip(" .,")
+    if len(desc) < 30:
+        return ""
+    return desc
+
+
 _BREED_COLORS = {
     "Carlin": {"primaire": "#8B5A3A", "accent": "#D4A76A", "fond": "#FAF3E8"},
     "Berger Australien": {"primaire": "#2D5A3D", "accent": "#C4A35A", "fond": "#F5F0E8"},
