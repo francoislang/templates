@@ -158,17 +158,24 @@ def fetch_profile(url: str):
 
     # --- Telephone (France, Canada, Belgique, Suisse, DOM-TOM...) ---
     phone = ""
+    # Nettoyer le texte : enlever les espaces inutiles
+    text_clean = text.replace("\xa0", " ")
+
     # Pattern 1: Français (0x xx xx xx xx ou +33 x xx xx xx xx)
-    m1 = re.search(r"(?:0|\+33[\s.\-]?)[1-9](?:[\s.\-]?\d{2}){4}", text)
+    m1 = re.search(r"(?:0|\+33[\s.\-]?)[1-9](?:[\s.\-]?\d{2}){4}", text_clean)
     # Pattern 2: Canadien/Américain (xxx-xxx-xxxx ou (xxx) xxx-xxxx)
-    m2 = re.search(r"\d{3}[\s.\-]\d{3}[\s.\-]\d{4}", text)
+    m2 = re.search(r"\d{3}[\s.\-]\d{3}[\s.\-]\d{4}", text_clean)
+    # Pattern 3: Belge/Suisse (04xx xx xx xx, +32, +41)
+    m3 = re.search(r"(?:\+32|\+41|04|07)[\s.\-]?\d{1,2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}", text_clean)
 
     if m1:
         phone = m1.group(0).strip()
+    elif m3:
+        phone = m3.group(0).strip()
     elif m2:
         phone = m2.group(0).strip()
 
-    phone = phone.strip("-\s.")
+    phone = phone.strip("- .")
 
     # --- Email ---
     email = ""
