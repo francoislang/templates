@@ -7,7 +7,7 @@ os.chdir("/workspace/templates")
 import scraper, crm, time
 from cloudinary_check import get_photos_for_breed
 from photos import get_photos_for_race
-from generator import generate_site, slugify
+from generator import generate_site, slugify, clean_description
 import telegram
 
 # 1. Scraper
@@ -34,7 +34,7 @@ for p in new:
     photos = get_photos_for_breed(race) or get_photos_for_race(race, count=15)
     r = generate_site(name=p["name"], race=race, phone=p["phone"],
         city=p.get("ville",""), departement=p.get("departement",""),
-        description=p.get("description",""), siren=p.get("siren",""),
+        description=clean_description(p.get("description","")), siren=p.get("siren",""),
         photos_race=photos)
     url = r[1] if r else None
     crm.add_entry(elevage=p["name"], races=p["races"], phone=p["phone"], demo_url=url)
