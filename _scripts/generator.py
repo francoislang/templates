@@ -127,8 +127,8 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
     target_file = target_dir / "index.html"
 
     if target_file.exists():
-        github_url = f"https://{config.GITHUB_REPO.split('/')[0]}.github.io/{config.GITHUB_REPO.split('/')[1]}/{slug}"
-        return slug, github_url
+        # Forcer la regeneration pour mettre a jour la description
+        pass
 
     ph = photos_race if photos_race is not None else get_photos_for_breed(race)
     couleurs = _breed_colors(race)
