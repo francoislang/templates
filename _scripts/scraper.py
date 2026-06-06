@@ -62,6 +62,8 @@ SLUG_TO_RACE = {
     "elevage-pomsky": "Pomsky",
     "elevage-rhodesian-ridgeback": "Rhodesian Ridgeback",
     "elevage-alaskan-malamute": "Alaskan Malamute",
+    "elevage-alaskan-malamute-alaska": "Alaskan Malamute",
+    "elevage-levrier-afghan-hound": "Levrier Afghan",
     "elevage-berger-blanc-suisse": "Berger Blanc Suisse",
     "elevage-berger-belge-malinois": "Malinois",
     "elevage-berger-belge-tervueren": "Tervueren",
