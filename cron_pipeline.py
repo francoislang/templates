@@ -20,6 +20,8 @@ while len(new) < 3 and page <= 20:
     for url in scraper.fetch_listing_page(page):
         if len(new) >= 3: break
         p = scraper.fetch_profile_ai(url)
+        if not p or not p.get("phone"):
+            p = scraper.fetch_profile(url)  # fallback regex
         if not p or not p.get("phone"): continue
         if norm(p["phone"]) in existing: continue
         if p["name"].strip().lower() in existing_n: continue
