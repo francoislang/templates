@@ -7,7 +7,7 @@ os.chdir("/workspace/templates")
 import scraper, crm, time
 from cloudinary_check import get_photos_for_breed
 from photos import get_photos_for_race
-from generator import generate_site
+from generator import generate_site, slugify
 import telegram
 
 # 1. Scraper
@@ -53,7 +53,7 @@ msg = f"🐾 PROSPECTION DU JOUR - {total} nouveau(x) eleveur(s)\n"
 msg += "━" * 30 + "\n"
 for p in results:
     race = p["races"][0]
-    slug = p["name"].lower().replace("'","").replace(" ","-").strip("-")
+    slug = slugify(p["name"])
     ville = p.get("ville","") or ""
     dept = p.get("departement","") or ""
     msg += f"\n🐕 {p['name']}\n📌 {race}\n📞 {p['phone']}"
