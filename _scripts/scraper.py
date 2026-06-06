@@ -156,9 +156,19 @@ def fetch_profile(url: str):
     if not name:
         return None
 
-    # --- Telephone ---
-    phone_m = re.search(r"(?:0|\+33\s?)[1-9](?:[\s.\-]?\d{2}){4}", text)
-    phone = phone_m.group(0).strip() if phone_m else ""
+    # --- Telephone (France, Canada, Belgique, Suisse, DOM-TOM...) ---
+    phone = ""
+    # Pattern 1: Français (0x xx xx xx xx ou +33 x xx xx xx xx)
+    m1 = re.search(r"(?:0|\+33[\s.\-]?)[1-9](?:[\s.\-]?\d{2}){4}", text)
+    # Pattern 2: Canadien/Américain (xxx-xxx-xxxx ou (xxx) xxx-xxxx)
+    m2 = re.search(r"\d{3}[\s.\-]\d{3}[\s.\-]\d{4}", text)
+
+    if m1:
+        phone = m1.group(0).strip()
+    elif m2:
+        phone = m2.group(0).strip()
+
+    phone = phone.strip("-\s.")
 
     # --- Email ---
     email = ""
