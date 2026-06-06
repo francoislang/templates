@@ -156,26 +156,39 @@ def fetch_profile(url: str):
     if not name:
         return None
 
-    # --- Telephone (France, Canada, Belgique, Suisse, DOM-TOM...) ---
+    # --- Telephone (monde francophone: FR, BE, CH, CA, LU, MC, DOM-TOM...) ---
     phone = ""
-    # Nettoyer le texte : enlever les espaces inutiles
     text_clean = text.replace("\xa0", " ")
 
-    # Pattern 1: Français (0x xx xx xx xx ou +33 x xx xx xx xx)
-    m1 = re.search(r"(?:0|\+33[\s.\-]?)[1-9](?:[\s.\-]?\d{2}){4}", text_clean)
-    # Pattern 2: Canadien/Américain (xxx-xxx-xxxx ou (xxx) xxx-xxxx)
-    m2 = re.search(r"\d{3}[\s.\-]\d{3}[\s.\-]\d{4}", text_clean)
-    # Pattern 3: Belge/Suisse (04xx xx xx xx, +32, +41)
-    m3 = re.search(r"(?:\+32|\+41|04|07)[\s.\-]?\d{1,2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}", text_clean)
+    # Pattern unique : tous les formats de numéros internationaux
+    # +XX, 00XX, ou numéro local
+    m = re.search(r"""
+        (?:
+            \+33[\s.\-]?\d[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # France +33
+            \+590[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Guadeloupe
+            \+596[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Martinique
+            \+594[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Guyane
+            \+262[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Réunion
+            \+687[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Nouvelle-Calédonie
+            \+689[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Polynésie
+            \+32[\s.\-]?\d{1,3}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Belgique
+            \+41[\s.\-]?\d{2}[\s.\-]?\d{3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Suisse
+            \+352[\s.\-]?\d{2,3}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Luxembourg
+            \+377[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Monaco
+            \+376[\s.\-]?\d{2,3}[\s.\-]?\d{2}[\s.\-]?\d{2} |  # Andorre
+            \+1[\s.\-]?\d{3}[\s.\-]?\d{3}[\s.\-]?\d{4} |  # Canada/US
+            \b0[1-9](?:[\s.\-]?\d{2}){4}\b |  # France local
+            \b04(?:[\s.\-]?\d{2}){4}\b  # Belgique local
+        )
+    """, text_clean, re.VERBOSE)
 
-    if m1:
-        phone = m1.group(0).strip()
-    elif m3:
-        phone = m3.group(0).strip()
-    elif m2:
-        phone = m2.group(0).strip()
-
-    phone = phone.strip("- .")
+    if m:
+        phone = m.group(0).strip(" -.")
+    else:
+        # Fallback: tout pattern qui ressemble a un telephone (7+ chiffres)
+        m2 = re.search(r"\d{3}[\s.\-]\d{3}[\s.\-]\d{4}", text_clean)
+        if m2:
+            phone = m2.group(0).strip(" -.")
 
     # --- Email ---
     email = ""
