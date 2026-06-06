@@ -84,55 +84,117 @@ def _load_status_options():
                 STATUS_OPTIONS[opt['name']] = opt['id']
 
 
-def get_existing_phones() -> set[str]:
-    """Recupere les telephones des Issues deja existantes (evite les doublons)."""
-    phones = set()
-    url = "https://api.github.com/repos/francoislang/templates/issues"
-    params = {"state": "all", "per_page": 100, "page": 1}
+def _get_project_items() -> list[dict]:
+    """
+    Recupere tous les items du projet GitHub avec leur statut.
+    Pagine jusqu'a avoir tout le projet.
+    """
+    items = []
+    cursor = None
 
     while True:
-        r = requests.get(url, headers=_headers(), params=params, timeout=15)
-        if r.status_code != 200:
+        after = f', after: "{cursor}"' if cursor else ""
+        q = {"query": f"""
+        {{
+          node(id: "{PROJECT_ID}") {{
+            ... on ProjectV2 {{
+              items(first: 100{after}) {{
+                pageInfo {{ hasNextPage endCursor }}
+                nodes {{
+                  fieldValues(first: 10) {{
+                    nodes {{
+                      ... on ProjectV2ItemFieldSingleSelectValue {{
+                        name
+                        field {{ ... on ProjectV2SingleSelectField {{ name }} }}
+                      }}
+                    }}
+                  }}
+                  content {{
+                    ... on Issue {{
+                      title
+                      labels(first: 10) {{
+                        nodes {{ name }}
+                      }}
+                    }}
+                  }}
+                }}
+              }}
+            }}
+          }}
+        }}
+        """}
+        data = _graphql(q)
+        items_data = (
+            data.get("data", {})
+                .get("node", {})
+                .get("items", {})
+        )
+        items.extend(items_data.get("nodes", []))
+        page_info = items_data.get("pageInfo", {})
+        if not page_info.get("hasNextPage"):
             break
-        for issue in r.json():
-            # Chercher le telephone dans le corps de l issue
-            body = (issue.get("body") or "") + (issue.get("title") or "")
-            phones_found = re.findall(r'0[1-9](?:[\s.\-]?\d{2}){4}', body)
-            for p in phones_found:
-                phones.add(_extract_number(p))
-            # Chercher aussi dans les labels
-            for label in issue.get("labels", []):
-                if label.get("name", "").startswith("tel-"):
-                    phones.add(label["name"].replace("tel-", ""))
+        cursor = page_info.get("endCursor")
 
-        if len(r.json()) < 100:
-            break
-        params["page"] += 1
+    return items
+
+
+def get_existing_phones() -> set[str]:
+    """
+    Recupere les telephones des prospects deja traites (statut != Nouveau).
+    Les prospects 'Nouveau' sont exclus pour permettre leur re-decouverte
+    si jamais ils ont ete ajoutes par erreur ou nettoyes.
+    """
+    phones = set()
+
+    for item in _get_project_items():
+        # Lire le statut du prospect
+        status = None
+        for fv in item.get("fieldValues", {}).get("nodes", []):
+            if fv and fv.get("field", {}).get("name") == "Status":
+                status = fv.get("name")
+
+        # Ignorer les Nouveau : ils peuvent etre re-decouverts par le cron
+        if not status or status == "Nouveau":
+            continue
+
+        content = item.get("content") or {}
+        # Telephone depuis le label tel-{digits}
+        for label in content.get("labels", {}).get("nodes", []):
+            name = label.get("name", "")
+            if name.startswith("tel-"):
+                phones.add(name.replace("tel-", ""))
+
+        # Telephone depuis le titre "[Race] Nom — tel"
+        title = content.get("title", "")
+        m = re.search(r"[—\-]\s*(.+)$", title)
+        if m:
+            tel = re.sub(r"[^0-9]", "", m.group(1))
+            if len(tel) >= 7:
+                phones.add(tel)
 
     return phones
 
 
 def get_existing_names() -> set[str]:
-    """Recupere les noms d'elevages deja presents dans les Issues (dedup par nom)."""
+    """
+    Recupere les noms d'elevages deja traites (statut != Nouveau).
+    Meme logique que get_existing_phones : les Nouveau sont exclus.
+    """
     names = set()
-    url = "https://api.github.com/repos/francoislang/templates/issues"
-    params = {"state": "all", "per_page": 100, "page": 1}
 
-    while True:
-        r = requests.get(url, headers=_headers(), params=params, timeout=15)
-        if r.status_code != 200:
-            break
-        for issue in r.json():
-            title = issue.get("title") or ""
-            # Extraire le nom depuis le format "[Race] Nom - Tel"
-            m = re.match(r'\[([^\]]+)\]\s+(.+?)\s*[-–]\s*(.+)$', title)
-            if m:
-                name = m.group(2).strip().lower()
-                names.add(name)
+    for item in _get_project_items():
+        status = None
+        for fv in item.get("fieldValues", {}).get("nodes", []):
+            if fv and fv.get("field", {}).get("name") == "Status":
+                status = fv.get("name")
 
-        if len(r.json()) < 100:
-            break
-        params["page"] += 1
+        if not status or status == "Nouveau":
+            continue
+
+        title = (item.get("content") or {}).get("title", "")
+        m = re.match(r"\[([^\]]+)\]\s+(.+?)\s*[—\-]\s*(.+)$", title)
+        if m:
+            names.add(m.group(2).strip().lower())
 
     return names
 
