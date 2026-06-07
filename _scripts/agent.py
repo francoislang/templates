@@ -25,39 +25,44 @@ def _normalize(phone: str) -> str:
 def _build_pitch(name: str, race: str, ville: str, departement: str,
                  description: str, demo_url: str, email: str = "",
                  website: str = "", siren: str = "") -> str:
-    """Genere un pitch personnalise avec les infos extraites."""
-    lieu = ""
-    if ville:
-        lieu = f"a {ville}"
-        if departement:
-            lieu += f" ({departement})"
-    elif departement:
-        lieu = f"dans le {departement}"
-    else:
-        lieu = "en France"
+    """Génère un pitch personnalisé pour l'appel commercial."""
+    pitch_parts = [
+        "Bonjour,",
+        "",
+        f"Je me permets de vous contacter car j'ai découvert votre élevage de {race} sur chien.com.",
+        "",
+        "Je suis François-Frédéric, développeur web basé à Nancy. J'ai eu envie de vous proposer quelque chose : un site vitrine moderne qui reflète vraiment la qualité de votre élevage.",
+        "",
+        "Un beau site, c'est concrètement :",
+        "•  Une première impression qui rassure les familles avant même qu'elles vous appellent",
+        "•  Moins de questions répétitives — les infos sur vos chiens, vos conditions et vos disponibilités sont accessibles à toute heure",
+        "•  Un endroit où centraliser vos photos, vos témoignages et l'histoire de votre élevage",
+    ]
 
-    demo = ""
     if demo_url:
-        demo = f"J'ai d'ailleurs prepare une demo pour vous : {demo_url}"
+        pitch_parts += [
+            "",
+            "J'ai préparé une démo gratuite, sans engagement :",
+            demo_url,
+            "",
+            "Si elle vous plaît et que vous souhaitez en discuter, n'hésitez pas à me répondre.",
+        ]
     else:
-        demo = "Je peux vous preparer une demo gratuite."
+        pitch_parts += [
+            "",
+            "Si vous souhaitez en discuter, n'hésitez pas à me répondre.",
+        ]
 
-    pitch = (
-        f"Bonjour, je suis developpeur web specialise pour les eleveurs. "
-        f"J'ai vu votre annonce sur chien.com pour votre elevage {name} "
-        f"de {race} {lieu}. "
-        f"{demo} "
-        f"Est-ce que vous avez 2 minutes pour en parler ?"
-    )
+    pitch_parts += [
+        "",
+        "Bonne continuation à vous et à vos loulous,",
+        "",
+        "François-Frédéric Lang",
+        "langfrancoisfrederic@gmail.com",
+        "06 32 81 42 00",
+    ]
 
-    if not demo_url and description:
-        pitch += (
-            f"\n\nJ'ai lu votre presentation : "
-            f"\"{description[:200]}...\" "
-            f"Je pense pouvoir creer un site qui reflete vraiment votre travail."
-        )
-
-    return pitch
+    return "\n".join(pitch_parts)
 
 
 def run() -> None:
@@ -124,7 +129,7 @@ def run() -> None:
         if siren:
             notes_parts.append(f"SIREN: {siren}")
         if description:
-            notes_parts.append(f"Description: {description[:200]}...")
+            notes_parts.append(f"Description: {description}")
         notes_parts.append(f"Pitch: {pitch}")
         notes = " | ".join(notes_parts) if notes_parts else None
 
@@ -157,40 +162,35 @@ def run() -> None:
             check=True, capture_output=True
         )
 
-    # 5. Notification Telegram enrichie
-    avec_site = [r for r in results if r["demo_url"]]
+    # 5. Notification Telegram — un message par éleveur
     sans_template = [r for r in results if not r["has_template"]]
 
-    lines = [f"🐕 *{len(results)} eleveurs trouves* — {sites_created} sites generes\n"]
-
-    for r in avec_site:
-        icon = "✅" if r["has_photos"] else "⚠️"
-        lines.append(f"{icon} *{r['name']}* — {r['race']}")
-        lines.append(f"   📞 {r['phone']}")
+    for r in results:
+        msg_parts = [f"🐕 {r['name']} — {r['race']}"]
+        msg_parts.append(f"📞 {r['phone']}")
         if r.get("email"):
-            lines.append(f"   📧 {r['email']}")
+            msg_parts.append(f"📧 {r['email']}")
         if r.get("ville"):
-            loc = r['ville']
-            if r.get('departement'):
+            loc = r["ville"]
+            if r.get("departement"):
                 loc += f" ({r['departement']})"
-            lines.append(f"   📍 {loc}")
-        lines.append(f"   🌐 {r['demo_url']}")
-        if r.get("pitch"):
-            lines.append(f"   💬 _{r['pitch']}_")
+            msg_parts.append(f"📍 {loc}")
+        if r["demo_url"]:
+            msg_parts.append(f"🌐 {r['demo_url']}")
+        else:
+            msg_parts.append(f"⚠️ Pas de template pour {r['race']}")
         for w in r["warnings"]:
-            lines.append(f"   ⚠️ {w}")
-        lines.append("")
+            msg_parts.append(f"⚠️ {w}")
+        msg_parts.append("")
+        msg_parts.append("--- PITCH À ENVOYER ---")
+        msg_parts.append(r["pitch"])
+        msg_parts.append("--- FIN DU PITCH ---")
+        telegram.send("\n".join(msg_parts))
 
+    resume = f"🐕 {len(results)} éleveurs trouvés — {sites_created} sites générés"
     if sans_template:
-        lines.append("📋 *Sans template — a creer si interessant :*")
-        for r in sans_template:
-            extra = ""
-            if r.get("ville"):
-                extra = f" — {r['ville']}"
-            lines.append(f"   • {r['name']} ({r['race']}){extra} — {r['phone']}")
-        lines.append("")
-
-    telegram.send("\n".join(lines))
+        resume += f"\n📋 Sans template : {', '.join(r['name'] + ' (' + r['race'] + ')' for r in sans_template)}"
+    telegram.send(resume)
 
 
 if __name__ == "__main__":
