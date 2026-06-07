@@ -119,28 +119,43 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
     elif departement:
         lieu = f"dans le {departement}"
 
-    # Construction de la demo
-    demo_link = ""
+    pitch_parts = [
+        "Bonjour,",
+        "",
+        f"Je me permets de vous contacter car j'ai découvert votre élevage de {race} sur chien.com.",
+        "",
+        "Je suis François-Frédéric, développeur web basé à Nancy. J'ai eu envie de vous proposer quelque chose : un site vitrine moderne qui reflète vraiment la qualité de votre élevage.",
+        "",
+        "Un beau site, c'est concrètement :",
+        "•  Une première impression qui rassure les familles avant même qu'elles vous appellent",
+        "•  Moins de questions répétitives — les infos sur vos chiens, vos conditions et vos disponibilités sont accessibles à toute heure",
+        "•  Un endroit où centraliser vos photos, vos témoignages et l'histoire de votre élevage",
+    ]
+
     if demo_url:
-        demo_link = f"\n{demo_url}"
+        pitch_parts += [
+            "",
+            "J'ai préparé une démo gratuite, sans engagement :",
+            demo_url,
+            "",
+            "Si elle vous plaît et que vous souhaitez en discuter, n'hésitez pas à me répondre.",
+        ]
+    else:
+        pitch_parts += [
+            "",
+            "Si vous souhaitez en discuter, n'hésitez pas à me répondre.",
+        ]
 
+    pitch_parts += [
+        "",
+        "Bonne continuation à vous et à vos loulous,",
+        "",
+        "François-Frédéric Lang",
+        "langfrancoisfrederic@gmail.com",
+        "06 32 81 42 00",
+    ]
 
-    pitch = (
-        f"Bonjour,"
-        f"\n\nJe me permets de vous contacter car j'ai découvert votre élevage de {race} sur chien.com."
-        f"\n\nJe suis François-Frédéric, développeur web basé à Nancy. J'ai eu envie de vous proposer quelque chose : un site vitrine moderne qui reflète vraiment la qualité de votre élevage."
-        f"\n\nUn beau site, c'est concrètement :"
-        f"\n•  Une première impression qui rassure les familles avant même qu'elles vous appellent"
-        f"\n•  Moins de questions répétitives — les infos sur vos chiens, vos conditions et vos disponibilités sont accessibles à toute heure"
-        f"\n•  Un endroit où centraliser vos photos, vos témoignages et l'histoire de votre élevage"
-        f"\n\nJ'ai préparé une démo gratuite, sans engagement :"
-        f"{demo_link}"
-        f"\n\nSi elle vous plaît et que vous souhaitez en discuter, n'hésitez pas à me répondre."
-        f"\n\nBonne continuation à vous et à vos loulous,"
-        f"\n\nFrançois-Frédéric Lang"
-        f"\nlangfrancoisfrederic@gmail.com"
-        f"\n06 32 81 42 00"
-    )
+    pitch = "\n".join(pitch_parts)
 
     return pitch
 
@@ -184,7 +199,7 @@ def commit_and_push(sites_count: int) -> bool:
 
 def run(dry_run: bool = False):
     """Execute le pipeline complet."""
-    telegram.send("🔍 Pipeline demarre — recherche d'eleveurs...")
+    telegram.send("🔍 Pipeline démarré — recherche d'éleveurs...")
 
     # 1. Recuperer les telephones et noms existants (pour dedup)
     print("📋 Recuperation des existants pour dedup...")
@@ -235,7 +250,7 @@ def run(dry_run: bool = False):
     print(f"   -> {len(new_breeders)} nouveaux eleveurs trouves sur {page-1} page(s)")
     
     if not new_breeders:
-        telegram.send("ℹ️ Aucun nouvel eleveur (deja tous dans Notion).")
+        telegram.send("ℹ️ Aucun nouvel éleveur (déjà tous dans le CRM).")
         return
 
     # 3. Traiter chaque eleveur
@@ -328,7 +343,7 @@ def run(dry_run: bool = False):
 
         # Pitch complet, sans italique, sans troncature
         msg_parts.append("")
-        msg_parts.append("--- PITCH A ENVOYER ---")
+        msg_parts.append("--- PITCH À ENVOYER ---")
         msg_parts.append(r['pitch'])
         msg_parts.append("--- FIN DU PITCH ---")
 
@@ -338,9 +353,9 @@ def run(dry_run: bool = False):
             telegram.send("\n".join(msg_parts))
 
     # Resumer les resultats en un seul message
-    resume = f"🐕 {len(results)} eleveurs trouves — {sites_created} sites generes"
+    resume = f"🐕 {len(results)} éleveurs trouvés — {sites_created} sites générés"
     if sans_template:
-        resume += f"\n📋 Sans template: {', '.join(r['name'] + ' (' + r['race'] + ')' for r in sans_template)}"
+        resume += f"\n📋 Sans template : {', '.join(r['name'] + ' (' + r['race'] + ')' for r in sans_template)}"
 
     if not dry_run:
         telegram.send(resume)
