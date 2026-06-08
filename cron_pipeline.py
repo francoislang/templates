@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Pipeline auto-contenue pour le cron (no_agent mode)."""
-import sys, json, subprocess, os
+import sys, json, subprocess, os, re
 sys.path.insert(0, "/workspace/templates/_scripts")
 os.chdir("/workspace/templates")
 
@@ -47,19 +47,19 @@ subprocess.run(["git","commit","-m",f"Sites du {__import__('datetime').datetime.
 subprocess.run(["git","pull","--rebase","origin","main"], cwd="/workspace/templates", capture_output=True, timeout=30)
 subprocess.run(["git","push","origin","main"], cwd="/workspace/templates", capture_output=True, timeout=60)
 
-# 4. Telegram
+# 4. Telegram - un message par prospect (evite limite 4096 chars)
 total = len(results)
-msg = f"🐾 PROSPECTION DU JOUR - {total} nouveau(x) eleveur(s)\n"
-msg += "━" * 30 + "\n"
+telegram.send(f"🐾 PROSPECTION DU JOUR - {total} nouveau(x) eleveur(s)")
 for p in results:
     race = p["races"][0]
     slug = slugify(p["name"])
     ville = p.get("ville","") or ""
     dept = p.get("departement","") or ""
+    lieu = f" a {ville} ({dept})" if ville and dept else (f" a {ville}" if ville else (f" dans le {dept}" if dept else ""))
+    msg = ""
     msg += f"\n🐕 {p['name']}\n📌 {race}\n📞 {p['phone']}"
     if ville or dept: msg += f"\n📍 {ville} {dept}"
     msg += f"\n🌐 https://francoislang.github.io/templates/{slug}\n"
-    lieu = f" a {ville} ({dept})" if ville and dept else (f" a {ville}" if ville else (f" dans le {dept}" if dept else ""))
     msg += "\n" + "─" * 30
     msg += "\n\n--- PITCH A ENVOYER ---\n"
     msg += "Bonjour,\n\n"
@@ -74,6 +74,7 @@ for p in results:
     msg += "Bonne continuation a vous et a vos loulous,\n\n"
     msg += "Francois-Frederic Lang\nlangfrancoisfrederic@gmail.com\n06 32 81 42 00\n"
     msg += "--- FIN DU PITCH ---"
+    telegram.send(msg)
+    time.sleep(1)  # eviter rate limit Telegram
 
-telegram.send(msg)
 print("✅ Fini")
