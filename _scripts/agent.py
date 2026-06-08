@@ -65,23 +65,29 @@ def _build_pitch(name: str, race: str, ville: str, departement: str,
     return "\n".join(pitch_parts)
 
 
-def run() -> None:
-    telegram.send("🔍 Agent démarré — recherche d'eleveurs sur chien.com…")
+def run(dry_run: bool = False) -> None:
+    def tg(msg):
+        if dry_run:
+            print(f"\n[TELEGRAM]\n{msg}\n")
+        else:
+            telegram.send(msg)
 
-    # 1. Recuperer les telephones deja dans Notion
-    existing = crm.get_existing_phones()
+    tg("🔍 Agent démarré — recherche d'éleveurs sur chien.com…")
 
-    # 2. Scraper chien.com (PAGES_TO_SCRAPE pages, max SITES_PER_DAY eleveurs)
+    # 1. Récupérer les téléphones déjà dans le CRM
+    existing = crm.get_existing_phones() if not dry_run else set()
+
+    # 2. Scraper chien.com
     candidates = scraper.scrape(pages=config.PAGES_TO_SCRAPE, max_results=config.SITES_PER_DAY)
 
-    # 3. Filtrer les nouveaux (pas dans Notion, telephone present)
+    # 3. Filtrer les nouveaux
     new_breeders = [
         b for b in candidates
         if b.get("phone") and _normalize(b["phone"]) not in existing
     ][:config.SITES_PER_DAY]
 
     if not new_breeders:
-        telegram.send("ℹ️ Aucun nouvel eleveur trouve aujourd'hui.")
+        tg("ℹ️ Aucun nouvel éleveur trouvé aujourd'hui.")
         return
 
     results = []
@@ -100,19 +106,24 @@ def run() -> None:
 
         photos = cloudinary_check.get_photos_for_breed(race) or get_photos_for_race(race, count=15)
         has_photos = bool(photos)
-        site_result = generator.generate_site(
-            name=name, race=race, phone=phone,
-            city=ville or departement,
-            photos_race=photos,
-        )
+
+        if dry_run:
+            site_result = None
+            demo_url = f"https://francoislang.github.io/templates/dry-run-{race.lower().replace(' ', '-')}"
+            print(f"  [DRY-RUN] Site non généré pour {name} ({race})")
+        else:
+            site_result = generator.generate_site(
+                name=name, race=race, phone=phone,
+                city=ville or departement,
+                photos_race=photos,
+            )
+            demo_url = site_result[1] if site_result else None
 
         warnings = []
         if not has_photos:
             warnings.append(f"photos {race} manquantes sur Cloudinary")
-        if not site_result:
+        if not dry_run and not site_result:
             warnings.append(f"pas de template pour {race}")
-
-        demo_url = site_result[1] if site_result else None
 
         pitch = _build_pitch(
             name=name, race=race, ville=ville, departement=departement,
@@ -120,38 +131,37 @@ def run() -> None:
             website=breeder.get("website", ""), siren=siren,
         )
 
-        # Notes enrichies
-        notes_parts = warnings[:]
-        if email:
-            notes_parts.append(f"Email: {email}")
-        if breeder.get("website"):
-            notes_parts.append(f"Site actuel: {breeder['website']}")
-        if siren:
-            notes_parts.append(f"SIREN: {siren}")
-        if description:
-            notes_parts.append(f"Description: {description}")
-        notes_parts.append(f"Pitch: {pitch}")
-        notes = " | ".join(notes_parts) if notes_parts else None
+        if not dry_run:
+            notes_parts = warnings[:]
+            if email:
+                notes_parts.append(f"Email: {email}")
+            if breeder.get("website"):
+                notes_parts.append(f"Site actuel: {breeder['website']}")
+            if siren:
+                notes_parts.append(f"SIREN: {siren}")
+            if description:
+                notes_parts.append(f"Description: {description}")
+            notes_parts.append(f"Pitch: {pitch}")
+            notes = " | ".join(notes_parts) if notes_parts else None
+            crm.add_entry(elevage=name, races=races, phone=phone, demo_url=demo_url, notes=notes)
 
-        crm.add_entry(
-            elevage=name, races=races, phone=phone,
-            demo_url=demo_url, notes=notes
-        )
-
-        if site_result:
+        if not dry_run and site_result:
             sites_created += 1
 
         results.append({
             "name": name, "race": race, "phone": phone, "ville": ville,
             "departement": departement, "email": email,
             "demo_url": demo_url, "has_photos": has_photos,
-            "has_template": site_result is not None, "warnings": warnings,
+            "has_template": dry_run or site_result is not None, "warnings": warnings,
             "pitch": pitch,
-            "description": description,
         })
 
-    # 4. Commit + push si des sites ont ete generes
-    if sites_created > 0:
+    # 4. Commit + push
+    if not dry_run and sites_created > 0:
+        subprocess.run(
+            ["git", "-C", str(config.REPO_ROOT), "add", "-A"],
+            capture_output=True
+        )
         subprocess.run(
             ["git", "-C", str(config.REPO_ROOT), "commit",
              "-m", f"Ajout de {sites_created} site(s) de demo via agent"],
@@ -185,13 +195,17 @@ def run() -> None:
         msg_parts.append("--- PITCH À ENVOYER ---")
         msg_parts.append(r["pitch"])
         msg_parts.append("--- FIN DU PITCH ---")
-        telegram.send("\n".join(msg_parts))
+        tg("\n".join(msg_parts))
 
     resume = f"🐕 {len(results)} éleveurs trouvés — {sites_created} sites générés"
     if sans_template:
         resume += f"\n📋 Sans template : {', '.join(r['name'] + ' (' + r['race'] + ')' for r in sans_template)}"
-    telegram.send(resume)
+    tg(resume)
 
 
 if __name__ == "__main__":
-    run()
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dry-run", action="store_true", help="Simulation sans écrire ni notifier")
+    args = parser.parse_args()
+    run(dry_run=args.dry_run)
