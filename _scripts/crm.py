@@ -258,7 +258,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
     if tel_clean:
         labels.append(f"tel-{tel_clean}")
 
-    # Creer l Issue
+    # Creer l Issue — tentative avec labels
     issue_data = {
         "title": f"[{race}] {elevage} — {phone}",
         "body": body,
@@ -270,8 +270,27 @@ def add_entry(elevage: str, races: list[str], phone: str,
         headers=_headers(), json=issue_data, timeout=15
     )
 
+    # Si erreur 422 sur les labels, retenter sans labels
+    if r.status_code == 422:
+        issue_data_no_labels = dict(issue_data)
+        issue_data_no_labels.pop("labels", None)
+        r = requests.post(
+            "https://api.github.com/repos/francoislang/templates/issues",
+            headers=_headers(), json=issue_data_no_labels, timeout=15
+        )
+        if r.status_code in (201, 200):
+            # Reussi sans labels — ajouter les labels ensuite
+            issue_number = r.json().get("number", "")
+            if issue_number:
+                for label in labels:
+                    requests.post(
+                        f"https://api.github.com/repos/francoislang/templates/issues/{issue_number}/labels",
+                        headers=_headers(), json={"labels": [label]}, timeout=15
+                    )
+
     if r.status_code not in (201, 200):
-        print(f"  ⚠️ GitHub Issues: {r.status_code} {r.text[:200]}")
+        print(f"  ⚠️ GitHub Issues: {r.status_code} — {elevage} non ajouté")
+        return ""
 
     issue = r.json()
     issue_node_id = issue.get("node_id", "")
