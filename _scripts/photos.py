@@ -48,6 +48,8 @@ _BREED_SEARCH = {
     "Épagneul Breton":               "Brittany Spaniel dog",
     "Golden Retriever":              "Golden Retriever dog",
     "Labrador Retriever":            "Labrador Retriever dog",
+    "Levrier Afghan":                "Afghan Hound dog",
+    "Lévrier Afghan":                "Afghan Hound dog",
     "Loulou de Poméranie":           "Pomeranian dog",
     "Malinois":                      "Belgian Malinois dog",
     "Rhodesian Ridgeback":           "Rhodesian Ridgeback dog",
