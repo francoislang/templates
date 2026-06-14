@@ -154,7 +154,7 @@ def get_existing_phones() -> set[str]:
                 status = fv.get("name")
 
         # Ignorer les Nouveau : ils peuvent etre re-decouverts par le cron
-        if not status or status == "Nouveau":
+        if not status:
             continue
 
         content = item.get("content") or {}
@@ -188,7 +188,7 @@ def get_existing_names() -> set[str]:
             if fv and fv.get("field", {}).get("name") == "Status":
                 status = fv.get("name")
 
-        if not status or status == "Nouveau":
+        if not status:
             continue
 
         title = (item.get("content") or {}).get("title", "")
