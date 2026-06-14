@@ -404,40 +404,28 @@ def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False)
 def get_cloudinary_photos_for_race(race: str) -> list[str]:
     """
     Recupere les URLs Cloudinary d'une race deja uploadee.
-    Verifie via l'API Cloudinary si des photos existent dans le dossier photo-{race}/.
+    Verifie via des HEAD requests.
     """
     safe_race = _safe_race(race)
-
-    # Methode: chercher les photos via Cloudinary Admin API
-    # Si CLOUDINARY_API_SECRET est defini, on peut chercher
     if not config.CLOUDINARY_API_SECRET:
         return []
 
     try:
-        # Dans le dossier photo-{race}
         folder_name = f"photo-{safe_race}"
-        test_url = (
-            f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
-            f"image/upload/q_auto/f_auto/{folder_name}/{safe_race}_1.jpg"
-        )
-        r = requests.head(test_url, timeout=10)
-        if r.status_code == 200:
-            # La race existe, construire les URLs
-            urls = []
-            for i in range(1, 16):
-                url = (
-                    f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/"
-                    f"image/upload/q_auto/f_auto/{folder_name}/{safe_race}_{i}.jpg"
-                )
-                urls.append(url)
-            # Verifier combien existent reellement
-            existing_urls = []
-            for url in urls:
-                r2 = requests.head(url, timeout=8)
-                if r2.status_code == 200:
+        base = f"https://res.cloudinary.com/{config.CLOUDINARY_CLOUD_NAME}/image/upload/q_auto/f_auto/{folder_name}/"
+
+        # Verifier les 15 photos avec GET (HEAD parfois 404 sur Cloudinary)
+        existing_urls = []
+        for i in range(1, 16):
+            url = f"{base}{safe_race}_{i}.jpg"
+            try:
+                r = requests.get(url, timeout=8)
+                if r.status_code == 200:
                     existing_urls.append(url)
-            return existing_urls
-        return []
+            except Exception:
+                pass
+
+        return existing_urls
     except Exception as e:
         print(f"  ⚠️ Cloudinary check: {e}")
         return []
