@@ -4,7 +4,7 @@ import sys, json, subprocess, os, re
 sys.path.insert(0, "/workspace/templates/_scripts")
 os.chdir("/workspace/templates")
 
-import scraper, crm, time
+import scraper, crm, config, time
 from cloudinary_check import get_photos_for_breed
 from photos import get_photos_for_race
 from generator import generate_site, slugify, clean_description
