@@ -16,9 +16,9 @@ existing_n = {n.strip().lower() for n in crm.get_existing_names()}
 def norm(p): return p.replace(" ","").replace("-","").replace(".","")
 
 new = []; page = 1
-while len(new) < 5 and page <= 20:
+while len(new) < config.SITES_PER_DAY and page <= 20:
     for url in scraper.fetch_listing_page(page):
-        if len(new) >= 5: break
+        if len(new) >= config.SITES_PER_DAY: break
         p = scraper.fetch_profile(url)
         if not p or not p.get("phone"): continue
         if norm(p["phone"]) in existing: continue
