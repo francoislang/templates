@@ -88,6 +88,7 @@ def _get_project_items() -> list[dict]:
     """
     Recupere tous les items du projet GitHub avec leur statut.
     Pagine jusqu'a avoir tout le projet.
+    Si GraphQL echoue (token sans acces Projects V2), retourne liste vide.
     """
     items = []
     cursor = None
@@ -124,6 +125,10 @@ def _get_project_items() -> list[dict]:
         }}
         """}
         data = _graphql(q)
+        # Graceful fallback: if project not accessible (null), return empty
+        node_data = data.get("data", {}).get("node")
+        if node_data is None:
+            return []
         items_data = (
             data.get("data", {})
                 .get("node", {})
@@ -143,6 +148,7 @@ def get_existing_phones() -> set[str]:
     Recupere les telephones des prospects deja traites (statut != Nouveau).
     Les prospects 'Nouveau' sont exclus pour permettre leur re-decouverte
     si jamais ils ont ete ajoutes par erreur ou nettoyes.
+    Fallback REST API si le token n a pas acces au Projects V2.
     """
     phones = set()
 
@@ -172,6 +178,48 @@ def get_existing_phones() -> set[str]:
             if len(tel) >= 7:
                 phones.add(tel)
 
+    # Fallback REST API: scan all issues if Project V2 inaccessible
+    if not phones:
+        phones = _phones_from_rest_issues()
+
+    return phones
+
+
+def _phones_from_rest_issues() -> set[str]:
+    """Fallback: extrait les telephones depuis les Issues via REST API."""
+    phones = set()
+    page = 1
+    while True:
+        r = requests.get(
+            "https://api.github.com/repos/francoislang/templates/issues",
+            headers=_headers(),
+            params={"state": "all", "per_page": 100, "page": page},
+            timeout=15,
+        )
+        if r.status_code != 200:
+            break
+        issues = r.json()
+        if not issues:
+            break
+        for issue in issues:
+            # Skip PRs
+            if "pull_request" in issue:
+                continue
+            # Extract phone from labels
+            for label in issue.get("labels", []):
+                name = label.get("name", "")
+                if name.startswith("tel-"):
+                    phones.add(name.replace("tel-", ""))
+            # Extract phone from title
+            title = issue.get("title", "")
+            m = re.search(r"[—\-]\s*(.+)$", title)
+            if m:
+                tel = re.sub(r"[^0-9]", "", m.group(1))
+                if len(tel) >= 7:
+                    phones.add(tel)
+        page += 1
+        if page > 10:  # safety limit
+            break
     return phones
 
 
@@ -179,6 +227,7 @@ def get_existing_names() -> set[str]:
     """
     Recupere les noms d'elevages deja traites (statut != Nouveau).
     Meme logique que get_existing_phones : les Nouveau sont exclus.
+    Fallback REST API si le token n a pas acces au Projects V2.
     """
     names = set()
 
@@ -196,6 +245,39 @@ def get_existing_names() -> set[str]:
         if m:
             names.add(m.group(2).strip().lower())
 
+    # Fallback REST API
+    if not names:
+        names = _names_from_rest_issues()
+
+    return names
+
+
+def _names_from_rest_issues() -> set[str]:
+    """Fallback: extrait les noms d'elevage depuis les Issues via REST API."""
+    names = set()
+    page = 1
+    while True:
+        r = requests.get(
+            "https://api.github.com/repos/francoislang/templates/issues",
+            headers=_headers(),
+            params={"state": "all", "per_page": 100, "page": page},
+            timeout=15,
+        )
+        if r.status_code != 200:
+            break
+        issues = r.json()
+        if not issues:
+            break
+        for issue in issues:
+            if "pull_request" in issue:
+                continue
+            title = issue.get("title", "")
+            m = re.match(r"\[([^\]]+)\]\s+(.+?)\s*[—\-]\s*(.+)$", title)
+            if m:
+                names.add(m.group(2).strip().lower())
+        page += 1
+        if page > 10:
+            break
     return names
 
 
@@ -296,61 +378,67 @@ def add_entry(elevage: str, races: list[str], phone: str,
     issue_node_id = issue.get("node_id", "")
     issue_number = issue.get("number", "")
 
-    # Ajouter l Issue au project board
+    # Ajouter l Issue au project board (peut echouer avec token fine-grained)
     if issue_node_id:
-        q = {'query': f'''
-        mutation {{
-          addProjectV2ItemById(input: {{
-            projectId: "{PROJECT_ID}",
-            contentId: "{issue_node_id}"
-          }}) {{
-            item {{
-              id
-            }}
-          }}
-        }}
-        '''}
-        _graphql(q)
-
-    # Mettre a jour le statut si on a les options
-    _load_status_options()
-    new_option_id = STATUS_OPTIONS.get("Nouveau")
-    if issue_node_id and new_option_id:
-        # Recuperer l item ID dans le projet
-        q2 = {'query': f'''
-        {{
-          node(id: "{issue_node_id}") {{
-            ... on Issue {{
-              projectItems(first: 1) {{
-                nodes {{
-                  id
-                }}
-              }}
-            }}
-          }}
-        }}
-        '''}
-        d2 = _graphql(q2)
-        items = d2.get('data', {}).get('node', {}).get('projectItems', {}).get('nodes', [])
-        if items:
-            item_id = items[0]['id']
-            q3 = {'query': f'''
+        try:
+            q = {'query': f'''
             mutation {{
-              updateProjectV2ItemFieldValue(input: {{
+              addProjectV2ItemById(input: {{
                 projectId: "{PROJECT_ID}",
-                itemId: "{item_id}",
-                fieldId: "PVTSSF_lAHOBcibjc4BZSavzhUSIRo",
-                value: {{
-                  singleSelectOptionId: "{new_option_id}"
-                }}
+                contentId: "{issue_node_id}"
               }}) {{
-                projectV2Item {{
+                item {{
                   id
                 }}
               }}
             }}
             '''}
-            _graphql(q3)
+            _graphql(q)
+        except Exception as e:
+            print(f"  ⚠️ Board: ajout au projet echoue ({e})")
+
+    # Mettre a jour le statut si on a les options
+    _load_status_options()
+    new_option_id = STATUS_OPTIONS.get("Nouveau")
+    if issue_node_id and new_option_id:
+        try:
+            # Recuperer l item ID dans le projet
+            q2 = {'query': f'''
+            {{
+              node(id: "{issue_node_id}") {{
+                ... on Issue {{
+                  projectItems(first: 1) {{
+                    nodes {{
+                      id
+                    }}
+                  }}
+                }}
+              }}
+            }}
+            '''}
+            d2 = _graphql(q2)
+            items = d2.get('data', {}).get('node', {}).get('projectItems', {}).get('nodes', [])
+            if items:
+                item_id = items[0]['id']
+                q3 = {'query': f'''
+                mutation {{
+                  updateProjectV2ItemFieldValue(input: {{
+                    projectId: "{PROJECT_ID}",
+                    itemId: "{item_id}",
+                    fieldId: "PVTSSF_lAHOBcibjc4BZSavzhUSIRo",
+                    value: {{
+                      singleSelectOptionId: "{new_option_id}"
+                    }}
+                  }}) {{
+                    projectV2Item {{
+                      id
+                    }}
+                  }}
+                }}
+                '''}
+                _graphql(q3)
+        except Exception as e:
+            print(f"  ⚠️ Board: mise a jour statut echouee ({e})")
 
     return str(issue_number)
 
