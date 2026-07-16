@@ -8,13 +8,31 @@ from bs4 import BeautifulSoup
 
 HEADERS = {
     "User-Agent": (
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
-        "Chrome/124.0.0.0 Safari/537.36"
-    )
+        "Chrome/131.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
 }
 BASE = "https://www.chien.com"
 DELAY = 1.5  # secondes entre requetes
+
+# Session persistante pour bypasser Bunny Shield
+_SESSION = None
+
+def _get_session():
+    """Retourne une session HTTP avec cookies (bypass Bunny Shield)."""
+    global _SESSION
+    if _SESSION is None:
+        _SESSION = requests.Session()
+        _SESSION.headers.update(HEADERS)
+        # Premiere visite pour obtenir les cookies anti-bot
+        try:
+            _SESSION.get(BASE + "/", timeout=15)
+        except Exception:
+            pass
+    return _SESSION
 
 # Mapping slug URL chien.com -> nom de race
 SLUG_TO_RACE = {
@@ -110,7 +128,7 @@ SLUG_TO_RACE = {
 
 def _get(url: str):
     try:
-        r = requests.get(url, headers=HEADERS, timeout=15)
+        r = _get_session().get(url, timeout=15)
         return r if r.status_code == 200 else None
     except Exception:
         return None
