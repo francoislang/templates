@@ -5,51 +5,54 @@
 Activité freelance de François (francois.lang54@gmail.com) : créer des **sites vitrines pour éleveurs canins** et les vendre comme démos personnalisées (~€2000/mois objectif).
 
 Pipeline automatisé :
-1. Un cron scrape chien.com tous les jours à 8h
-2. Il filtre les éleveurs déjà dans Notion (évite les doublons)
-3. Génère un site HTML de démo personnalisé par race
-4. Ajoute le prospect dans Notion avec un pitch d'appel
+1. Un pipeline scrape chien.com quotidiennement (déclenché via Hermes Kanban, plus par crontab direct)
+2. Il filtre les éleveurs déjà présents dans le CRM GitHub (Issues + Projects V2)
+3. Génère un site HTML de démo (via IA — DeepSeek V4 Pro sur OpenRouter — ou template `universal.html.j2`)
+4. Crée une Issue GitHub avec un pitch d'appel personnalisé et l'ajoute au board Projects
 5. Notifie François via Telegram
 
 ## Répertoires clés
 
 ```
-templates/               ← RACINE DU REPO (pas template-elevage/)
-├── CLAUDE.md            ← ce fichier
+templates/                    ← RACINE DU REPO
+├── CLAUDE.md                 ← ce fichier
 ├── README.md
-├── .env                 ← secrets locaux (ne pas commiter)
-├── .env.example         ← modèle sans valeurs
-├── requirements.txt
-├── _scripts/            ← pipeline Python
-│   ├── agent.py         ← point d'entrée principal
-│   ├── scraper.py       ← scraping chien.com
-│   ├── generator.py     ← génération HTML depuis template
-│   ← notion.py         ← lecture/écriture base Notion
-│   ├── telegram.py      ← notifications
-│   ├── cloudinary_check.py ← mapping race → photos Cloudinary
-│   └── config.py        ← chargement .env
-├── _templates/          ← templates Jinja2 (*.html.j2)
-├── _data/               ← configs YAML par élevage (un fichier = un client)
-├── {slug}/index.html    ← sites générés (un dossier par élevage)
+├── SPEC_SITE_ELEVAGE.md
+├── .env                      ← secrets locaux (ne pas commiter)
+├── .env.example              ← modèle sans valeurs
+├── cron_pipeline.py          ← pipeline auto-contenue lancée par le cron Hermes (no_agent)
+├── kanban_cron_trigger.py    ← crée la tâche Kanban Hermes quotidienne
+├── _close_crm.py             ← utilitaire ponctuel (nettoyage board CRM)
+├── _scripts/                 ← pipeline Python
+│   ├── pipeline.py           ← pipeline principal (scraper + IA + CRM GitHub + Telegram)
+│   ├── agent.py              ← ancien point d'entrée manuel (encore fonctionnel)
+│   ├── scraper.py            ← scraping chien.com
+│   ├── crm.py                ← CRM GitHub Issues + Projects V2 (remplace Notion)
+│   ├── generator.py          ← génération HTML depuis YAML + template Jinja2
+│   ├── photos.py             ← recherche photos (Pexels / Unsplash / DuckDuckGo)
+│   ├── cloudinary_check.py   ← mapping race → dossier de référence pour photos Cloudinary
+│   ├── telegram.py           ← notifications
+│   ├── notion.py             ← lecture Notion (legacy)
+│   ├── relance_check.py      ← cron de relance J+7 sur le board CRM
+│   ├── extract.py            ← extraire un YAML depuis une URL chien.com
+│   ├── export_csv.py         ← export CSV des prospects scrapés
+│   ├── migrate_to_github.py  ← one-shot Notion → GitHub (déjà exécuté)
+│   └── config.py             ← chargement .env
+├── _templates/               ← templates Jinja2 (aujourd'hui : `universal.html.j2` uniquement)
+├── _data/                    ← configs YAML des anciens sites de référence
+├── {slug}/index.html         ← sites générés (un dossier par élevage)
 ```
 
-**Important** : il existe deux dossiers similaires sur la machine :
-- `/Users/francoislang/Local/Perso/templates/` → **repo actif**, tout le code est ici
-- `/Users/francoislang/Local/Perso/template-elevage/` → dossier vide lié au remote GitHub Pages
+## Lancer le pipeline
 
-## Lancer l'agent
-
+Manuellement :
 ```bash
 cd /Users/francoislang/Local/Perso/templates
-python3 _scripts/agent.py
+python3 _scripts/pipeline.py       # pipeline actuel (IA + CRM GitHub)
+python3 _scripts/agent.py          # ancien pipeline (fonctionne encore)
 ```
 
-Cron configuré (tourne automatiquement à 8h chaque jour) :
-```
-0 8 * * * cd /Users/francoislang/Local/Perso/templates && python3 _scripts/agent.py >> /tmp/agent-elevage.log 2>&1
-```
-
-Logs : `tail -f /tmp/agent-elevage.log`
+Automatique : le cron est **piloté par Hermes**, pas par crontab. `kanban_cron_trigger.py` insère une tâche dans la base Kanban Hermes (`~/.hermes/hermes-agent`) ; un dispatcher exécute ensuite `cron_pipeline.py` en mode `no_agent`. Rien à maintenir dans `crontab -l` local.
 
 ## Variables d'environnement (.env)
 
@@ -57,51 +60,51 @@ Logs : `tail -f /tmp/agent-elevage.log`
 |---|---|
 | `TELEGRAM_BOT_TOKEN` | Bot `templateAnimalerieBot` |
 | `TELEGRAM_CHAT_ID` | `5587588831` (François) |
-| `NOTION_SECRET` | Token d'intégration Notion |
-| `NOTION_DATABASE_ID` | `3690be11a07480b9bb50c4d1ceaace89` (base Prospection) |
-| `CLOUDINARY_CLOUD_NAME` | `dhwukxhgc` |
+| `GITHUB_TOKEN_PUSH_HERMES` | Token pour le CRM GitHub Issues + Projects |
 | `GITHUB_REPO` | `francoislang/templates` |
-| `SITES_PER_DAY` | Nombre max de demos/jour (defaut : 10) |
-| `PAGES_TO_SCRAPE` | Pages de listing a parcourir (defaut : 5) |
+| `ANTHROPIC_API_KEY` | Claude API |
+| `CLOUDINARY_CLOUD_NAME` | `dhwukxhgc` |
+| `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Upload d'images |
+| `PEXELS_API_KEY`, `PIXABAY_API_KEY`, `UNSPLASH_ACCESS_KEY` | Sources photos |
+| `SITES_PER_DAY` | Nombre max de démos/jour (défaut : 3) |
+| `PAGES_TO_SCRAPE` | Pages de listing à parcourir (défaut : 5) |
+| `NOTION_SECRET`, `NOTION_DATABASE_ID` | **Legacy** — plus le CRM actif, gardé pour `migrate_to_github.py` |
 
 ## Stack technique
 
-- **Python 3.9** (important : pas de `list[str]` en annotation, pas de `X | Y` union types)
-- **Jinja2** : templates HTML paramétrés (`_templates/*.html.j2`)
-- **YAML** : configs par client (`_data/*.yaml`)
+- **Python 3.9+** (le code a des annotations `list[str]` — vérifier la version d'exécution si erreurs)
+- **Jinja2** : template unique `_templates/universal.html.j2`
+- **YAML** : configs par client (`_data/*.yaml`) — flux legacy, encore utilisé par `generator.py`
 - **GitHub Pages** : hébergement statique des démos (`francoislang/templates`)
+- **GitHub Issues + Projects V2** : CRM (GraphQL API)
 - **Cloudinary** : CDN photos (`res.cloudinary.com/dhwukxhgc`)
-- **Notion API** : base de prospection
 - **BeautifulSoup + requests** : scraping chien.com
+- **DeepSeek V4 Pro via OpenRouter** : génération de sites dans `pipeline.py`
+- **Hermes Kanban** : orchestration du cron (`~/.hermes/hermes-agent`)
 
-## Races supportées (templates existants)
+## Templates et races
 
-| Race | Template / Dossier |
-|---|---|
-| Border Collie | `elevage-border-collie-mas-andre` |
-| Berger Australien | `bois-de-chantalouette` |
-| Cavalier King Charles | `domaine-du-quinquis` |
-| Schnauzer | `mellan-schnauzers` |
-| West Highland White Terrier | `ferme-aredienne-des-salines` |
-| Lagotto Romagnolo | `la-dolce-vita` |
-| Berger Polonais de Podhale | `gaec-du-chateau-d-alboy` |
-| Carlin | `joyaux-d-anubis` |
-| Loulou de Poméranie | `des-cotons-de-soie-d-or` |
+Il n'y a plus qu'un template Jinja2 : `_templates/universal.html.j2`. Le nouveau pipeline (`pipeline.py`) génère les sites via IA. L'ancien flow YAML → Jinja est encore là mais tous les templates spécifiques par race ont été retirés.
 
-Pour ajouter une race : créer `_templates/{race}.html.j2` + l'entrée dans `BREED_TEMPLATE` dans `cloudinary_check.py`.
+`BREED_TEMPLATE` dans `_scripts/cloudinary_check.py` mappe une race → **dossier d'un site de référence** (source des URLs Cloudinary déjà utilisées pour cette race). Ce n'est pas un mapping vers un fichier `.html.j2`.
 
-## Ajouter un nouveau client (workflow manuel)
+⚠️ Plusieurs dossiers référencés dans `BREED_TEMPLATE` ont été supprimés du repo (`mas-andre`, `du-bois-de-chantalouette`, `du-domaine-du-quinquis`, `la-ferme-aredienne-des-salines`, `la-dolce-vita`, `joyaux-d-anubis`, `des-cotons-de-soie-d-or`, `mellan-schnauzers`). `get_photos_for_breed()` retourne `[]` pour ces races → à nettoyer ou à re-générer les sites de référence.
 
-1. Créer `_data/{slug}.yaml` (voir `_data/README.md` pour le format)
-2. Vérifier que `template:` pointe vers un fichier `.html.j2` existant dans `_templates/`
-3. Lancer : `python3 _scripts/generator.py` (ou via `generate_from_config`)
-4. Le dossier `{slug}/index.html` est créé et stagé dans git
-5. Commit + push → disponible sur GitHub Pages
+## Ajouter un client (flow legacy YAML)
+
+1. Créer `_data/{slug}.yaml` (voir `_data/README.md`)
+2. `template:` doit pointer vers un fichier `.html.j2` existant (aujourd'hui : `universal`)
+3. Appeler `generator.generate_from_config()` — crée `{slug}/index.html` et stage dans git
+4. Commit + push → disponible sur GitHub Pages
+
+Pour un flow automatisé complet depuis une URL chien.com, utiliser `pipeline.py`.
 
 ## Pièges connus
 
 - Le scraper extrait la race depuis le **slug d'URL** (pas le HTML) — plus fiable
 - `fetch_listing_page` utilise le regex `adresse/elevage-[^/]+/[^/]+-\d+\.php$` pour éviter de matcher les liens de pagination
-- Python 3.9 : ne pas utiliser les type hints génériques (`list[str]`, `tuple[x,y] | None`)
-- Le Notion database ID réel est `3690be11a07480b9bb50c4d1ceaace89` (pas celui dans l'URL de la page)
-- Les dossiers `du-bois-de-chantalouette/`, `from-love-of-fairypoms/`, `des-marais-de-bremes/`, `mellan-schnauzers/` dans la racine sont des **tests non commités** — à nettoyer si nécessaire
+- `BREED_TEMPLATE` pointe vers plusieurs dossiers de référence supprimés (voir section templates)
+- `cron_pipeline.py` a des chemins hardcodés `/workspace/templates/…` → conçu pour tourner dans le container Hermes, pas en local
+- `_scripts/crm.py` lit le token en re-parsant `.env` manuellement — pas via `config.py`
+- Le CRM est un GitHub Project V2 (`PVT_kwHOBcibjc4BZSav`) — accès via GraphQL, pas REST
+- `requirements.txt` n'existe plus dans le repo — les dépendances doivent être installées à la main ou via un `requirements.txt` externe

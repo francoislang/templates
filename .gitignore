@@ -50,6 +50,12 @@ $RECYCLE.BIN/
 # ─── Secrets ──────────────────────────────────────────────────────────────────
 .env
 
+# ─── Bases de données locales ─────────────────────────────────────────────────
+_data/*.db
+_data/*.db-journal
+_data/*.db-wal
+_data/*.db-shm
+
 # ─── Photos ───────────────────────────────────────────────────────────────────
 # Trop lourdes pour Git — livrer en zip ou via Netlify Drop
 elevage-border-collie-mas-andre/photo-border-collies/
