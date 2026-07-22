@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import re
 import time
 import requests
@@ -151,17 +153,21 @@ def fetch_listing_page(page: int) -> list[str]:
     return list(dict.fromkeys(urls))
 
 
-def fetch_profile(url: str):
+def fetch_profile(url: str, strict_race: bool = True):
     """Extrait les infos d'un eleveur depuis sa page profil.
 
-    Retourne un dict avec toutes les infos disponibles, ou None si la race
-    n'est pas dans SLUG_TO_RACE ou si la page est invalide.
+    Retourne un dict avec toutes les infos disponibles, ou None si la page
+    est invalide. Si strict_race=True (defaut), retourne aussi None quand la
+    race n'est pas dans SLUG_TO_RACE (comportement historique). Avec
+    strict_race=False, le profil est renvoye avec race=None et le slug brut
+    dans race_slug.
     """
     slug_match = re.search(r"/adresse/(elevage-[^/]+)/", url)
     if not slug_match:
         return None
-    race = SLUG_TO_RACE.get(slug_match.group(1))
-    if not race:
+    race_slug = slug_match.group(1)
+    race = SLUG_TO_RACE.get(race_slug)
+    if not race and strict_race:
         return None
 
     r = _get(url)
@@ -294,7 +300,9 @@ def fetch_profile(url: str):
 
     return {
         "name": name,
-        "races": [race],
+        "races": [race] if race else [],
+        "race": race,
+        "race_slug": race_slug,
         "phone": phone,
         "email": email,
         "website": website,
