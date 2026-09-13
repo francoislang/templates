@@ -21,11 +21,28 @@ def slugify(text):
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
 
+def _key_phone(phone):
+    """Cle de regroupement par telephone (chiffres uniquement, indicatif 33 ramene a 0)."""
+    d = re.sub(r"\D", "", phone or "")
+    if d.startswith("33") and len(d) == 11:
+        d = "0" + d[2:]
+    return d
+
+
+def _key_name(name):
+    """Cle de regroupement par nom, insensible aux accents, a la casse et a la ponctuation."""
+    t = unicodedata.normalize("NFD", name or "")
+    t = "".join(c for c in t if unicodedata.category(c) != "Mn")
+    return re.sub(r"[^a-z0-9]+", "", t.lower())
+
+
 def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize):
     """Retourne jusqu'a `limit` profils non traites depuis _data/annonces.db.
 
-    Applique la meme dedup que l'ancien scraper (par telephone normalise + nom d'elevage)
-    pour rester safe si processed_at n'a pas encore ete backfille.
+    Un meme eleveur apparait plusieurs fois dans chien.com — une ligne par race.
+    On regroupe donc par telephone (a defaut par nom) pour ne le contacter qu'une
+    fois, en fusionnant ses races. Toutes les lignes du groupe sont renvoyees dans
+    `source_urls` afin d'etre marquees ensemble.
     """
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
@@ -39,47 +56,101 @@ def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize
           AND race IS NOT NULL AND race != ''
         ORDER BY scraped_at DESC
     """)
-    profiles = []
+
+    groupes = {}
+    ordre = []
     for row in cur:
-        if len(profiles) >= limit:
-            break
         if normalize(row["phone"] or "") in existing_phones:
             continue
         if (row["name"] or "").strip().lower() in existing_names:
             continue
-        profiles.append({
-            "source_url": row["source_url"],
-            "name": row["name"],
-            "races": [row["race"]] if row["race"] else ["Inconnue"],
-            "phone": row["phone"] or "",
-            "email": row["email"] or "",
-            "website": row["website"] or "",
-            "siren": row["siren"] or "",
-            "ville": row["ville"] or "",
-            "code_postal": row["code_postal"] or "",
-            "departement": row["departement"] or "",
-            "description": row["description"] or "",
-            "photo_url": row["photo_url"] or "",
-        })
+        cle = _key_phone(row["phone"]) or _key_name(row["name"])
+        if not cle:
+            continue
+        if cle not in groupes:
+            if len(ordre) >= limit:
+                continue          # quota atteint : on ignore les nouveaux eleveurs
+            groupes[cle] = {
+                "source_url": row["source_url"],
+                "source_urls": [row["source_url"]],
+                "name": row["name"],
+                "races": [],
+                "phone": row["phone"] or "",
+                "email": row["email"] or "",
+                "website": row["website"] or "",
+                "siren": row["siren"] or "",
+                "ville": row["ville"] or "",
+                "code_postal": row["code_postal"] or "",
+                "departement": row["departement"] or "",
+                "description": row["description"] or "",
+                "photo_url": row["photo_url"] or "",
+            }
+            ordre.append(cle)
+        else:
+            # ligne supplementaire du meme eleveur : on complete au lieu de dupliquer
+            g = groupes[cle]
+            g["source_urls"].append(row["source_url"])
+            for champ in ("email", "siren", "ville", "code_postal", "description", "photo_url"):
+                if not g[champ] and row[champ]:
+                    g[champ] = row[champ]
+        if row["race"] and row["race"] not in groupes[cle]["races"]:
+            groupes[cle]["races"].append(row["race"])
+
     conn.close()
-    return profiles
+    profils = [groupes[c] for c in ordre]
+    for pr in profils:
+        if not pr["races"]:
+            pr["races"] = ["Inconnue"]
+        if len(pr["source_urls"]) > 1:
+            print(f"      (regroupe {len(pr['source_urls'])} fiches pour {pr['name']} "
+                  f"— races: {', '.join(pr['races'])})")
+    return profils
 
 
 def mark_processed(source_url, *, site_slug=None, site_url=None,
-                   crm_issue_url=None, error=None):
-    """UPDATE la row annonces: processed_at + site_slug + site_url + crm_issue_url + processing_error."""
+                   crm_issue_url=None, error=None, source_urls=None):
+    """Marque la (les) ligne(s) du prospect comme traitees.
+
+    `source_urls` permet de marquer d'un coup toutes les lignes d'un meme
+    eleveur (une par race). On bloque aussi, par securite, toute autre ligne
+    portant le meme telephone normalise : sinon l'eleveur ressort demain.
+    """
+    urls = list(source_urls or [])
+    if source_url and source_url not in urls:
+        urls.insert(0, source_url)
+    if not urls:
+        return
+    now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     conn = sqlite3.connect(str(DB_PATH))
     conn.execute("""
         UPDATE annonces
         SET processed_at = ?, site_slug = ?, site_url = ?,
             crm_issue_url = ?, processing_error = ?
         WHERE source_url = ?
-    """, (
-        datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        site_slug, site_url, crm_issue_url, error, source_url,
-    ))
+    """, (now, site_slug, site_url, crm_issue_url, error, urls[0]))
+    for u in urls[1:]:
+        conn.execute("""
+            UPDATE annonces
+            SET processed_at = ?, site_slug = ?, site_url = ?,
+                crm_issue_url = ?, processing_error = ?
+            WHERE source_url = ?
+        """, (now, site_slug, site_url, crm_issue_url,
+              "meme eleveur, autre race", u))
+
+    # filet de securite : meme telephone, ligne encore libre
+    row = conn.execute("SELECT phone FROM annonces WHERE source_url = ?", (urls[0],)).fetchone()
+    if row and row[0]:
+        cle = _key_phone(row[0])
+        if cle:
+            conn.execute("""
+                UPDATE annonces
+                SET processed_at = ?, processing_error = 'doublon (meme telephone)'
+                WHERE processed_at IS NULL
+                  AND replace(replace(replace(phone,' ',''),'.',''),'-','') = ?
+            """, (now, cle))
     conn.commit()
     conn.close()
+
 
 def _sanitize(path, slug):
     """Reecrit les URLs inventees par l'IA (canonical, og:url, liens sortants)."""
@@ -177,21 +248,65 @@ REGLES:
 - Police Cinzel + Raleway
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
-    r = requests.post("https://openrouter.ai/api/v1/chat/completions",
-        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        json={"model": "deepseek/deepseek-v4-pro", "messages": [{"role":"user","content":prompt}], "max_tokens": 24000},
-        timeout=300)
-
-    data = r.json()
-    if "choices" not in data:
-        print(f"  WARNING: {data.get('error',{}).get('message','?')[:100]}")
+    def _fallback(raison):
+        """Repli sur le template Jinja : mieux vaut un site correct qu'aucun site."""
+        print(f"   ⚠️  IA indisponible ({raison}) — repli sur le template universel")
         from generator import generate_site
         r2 = generate_site(name=name, race=race, phone=phone, city=ville or dept,
-                          description=desc, siren=siren, departement=dept,
-                          photo_url=p_url, photos_race=photos)
+                           description=desc, siren=siren, departement=dept,
+                           photo_url=p_url, photos_race=photos)
         return r2[1] if r2 else None
 
-    html = data["choices"][0]["message"]["content"]
+    payload = {
+        "model": "deepseek/deepseek-v4-pro",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 24000,
+        "stream": True,
+    }
+
+    html = None
+    last_error = ""
+    for tentative in (1, 2):
+        try:
+            r = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+                json=payload,
+                timeout=(30, 900),   # 30 s pour se connecter, 15 min entre deux morceaux
+                stream=True,
+            )
+            if r.status_code != 200:
+                last_error = f"HTTP {r.status_code}"
+                print(f"   ⚠️  OpenRouter {last_error} (tentative {tentative}/2)")
+                continue
+            # Lecture en flux : chaque morceau relance le compteur d'inactivite,
+            # donc une generation longue ne declenche plus de timeout.
+            morceaux = []
+            for ligne in r.iter_lines(decode_unicode=True):
+                if not ligne or not ligne.startswith("data: "):
+                    continue
+                brut = ligne[6:]
+                if brut.strip() == "[DONE]":
+                    break
+                try:
+                    delta = json.loads(brut)["choices"][0].get("delta", {})
+                except (ValueError, KeyError, IndexError):
+                    continue
+                if delta.get("content"):
+                    morceaux.append(delta["content"])
+            html = "".join(morceaux)
+            if html.strip():
+                break
+            last_error = "reponse vide"
+            print(f"   ⚠️  OpenRouter: reponse vide (tentative {tentative}/2)")
+        except requests.exceptions.RequestException as e:
+            last_error = type(e).__name__
+            print(f"   ⚠️  OpenRouter injoignable: {last_error} (tentative {tentative}/2)")
+            time.sleep(5)
+
+    if not html or not html.strip():
+        return _fallback(last_error or "echec inconnu")
+
     html = re.sub(r"^```html?\n?", "", html); html = re.sub(r"\n?```\s*$", "", html)
     # Ne garder que le HTML pur (enlever texte avant DOCTYPE et apres /html)
     m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
@@ -345,7 +460,13 @@ def run(dry_run: bool = False):
             demo_url = f"https://francoislang.github.io/templates/{slugify(name)}"
         else:
             print("   🏗️ Generation du site...")
-            demo_url = generate_demo_site(breeder)
+            try:
+                demo_url = generate_demo_site(breeder)
+            except Exception as e:
+                # Un prospect qui echoue ne doit pas interrompre le lot entier.
+                print(f"   ❌ Generation impossible pour {name}: {type(e).__name__}: {e}")
+                mark_processed(breeder.get("source_url"), error=f"generation: {type(e).__name__}: {e}"[:300])
+                continue
         has_template = demo_url is not None
         if demo_url:
             sites_created += 1
@@ -395,6 +516,7 @@ def run(dry_run: bool = False):
             if source_url:
                 mark_processed(
                     source_url,
+                    source_urls=breeder.get("source_urls"),
                     site_slug=(slugify(name) if has_template else None),
                     site_url=demo_url,
                     crm_issue_url=issue_url,
