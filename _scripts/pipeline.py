@@ -1,14 +1,97 @@
 #!/usr/bin/env python3
-"""Pipeline prospection: scrape, photos, DeepSeek V4 Pro, CRM, Telegram."""
-import sys, os, re, time, json, subprocess
+"""Pipeline prospection: lit la DB `annonces`, genere sites + CRM + Telegram."""
+import sys, os, re, time, json, subprocess, sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
 import config, scraper, telegram, crm
 from generator import generate_site
 from photos import get_photos_for_race
 from cloudinary_check import get_photos_for_breed
 
+REPO_ROOT = Path(__file__).parent.parent
+DB_PATH = REPO_ROOT / "_data" / "annonces.db"
+GITHUB_REPO_SLUG = "francoislang/templates"
+
 def slugify(text):
+    """Slug sans accent — identique a generator.slugify (sinon 'Vallee Caid' -> 'vall-e-ca-d')."""
+    import unicodedata
+    text = unicodedata.normalize("NFD", text)
+    text = "".join(c for c in text if unicodedata.category(c) != "Mn")
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
+
+
+def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize):
+    """Retourne jusqu'a `limit` profils non traites depuis _data/annonces.db.
+
+    Applique la meme dedup que l'ancien scraper (par telephone normalise + nom d'elevage)
+    pour rester safe si processed_at n'a pas encore ete backfille.
+    """
+    conn = sqlite3.connect(str(DB_PATH))
+    conn.row_factory = sqlite3.Row
+    cur = conn.execute("""
+        SELECT source_url, name, race, phone, email, website, siren,
+               ville, code_postal, departement, description, photo_url
+        FROM annonces
+        WHERE processed_at IS NULL
+          AND phone IS NOT NULL AND phone != ''
+          AND name IS NOT NULL AND name != ''
+          AND race IS NOT NULL AND race != ''
+        ORDER BY scraped_at DESC
+    """)
+    profiles = []
+    for row in cur:
+        if len(profiles) >= limit:
+            break
+        if normalize(row["phone"] or "") in existing_phones:
+            continue
+        if (row["name"] or "").strip().lower() in existing_names:
+            continue
+        profiles.append({
+            "source_url": row["source_url"],
+            "name": row["name"],
+            "races": [row["race"]] if row["race"] else ["Inconnue"],
+            "phone": row["phone"] or "",
+            "email": row["email"] or "",
+            "website": row["website"] or "",
+            "siren": row["siren"] or "",
+            "ville": row["ville"] or "",
+            "code_postal": row["code_postal"] or "",
+            "departement": row["departement"] or "",
+            "description": row["description"] or "",
+            "photo_url": row["photo_url"] or "",
+        })
+    conn.close()
+    return profiles
+
+
+def mark_processed(source_url, *, site_slug=None, site_url=None,
+                   crm_issue_url=None, error=None):
+    """UPDATE la row annonces: processed_at + site_slug + site_url + crm_issue_url + processing_error."""
+    conn = sqlite3.connect(str(DB_PATH))
+    conn.execute("""
+        UPDATE annonces
+        SET processed_at = ?, site_slug = ?, site_url = ?,
+            crm_issue_url = ?, processing_error = ?
+        WHERE source_url = ?
+    """, (
+        datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        site_slug, site_url, crm_issue_url, error, source_url,
+    ))
+    conn.commit()
+    conn.close()
+
+def _inject_tracking(path):
+    """Ajoute le snippet de tracking dans un site fraichement genere par l'IA."""
+    website_id = (config.UMAMI_WEBSITE_ID or os.environ.get("UMAMI_WEBSITE_ID", "")).strip()
+    if not website_id:
+        return
+    try:
+        import set_tracking
+        set_tracking.apply(path, website_id)
+    except Exception as e:
+        print(f"  WARNING tracking non injecte: {e}")
+
 
 def generate_demo_site(profile):
     """Genere un site via DeepSeek V4 Pro (OpenRouter)."""
@@ -21,7 +104,7 @@ def generate_demo_site(profile):
     siren = profile.get("siren",""); p_url = profile.get("photo_url","")
 
     slug = slugify(name)
-    target = Path("/workspace/templates") / slug / "index.html"
+    target = REPO_ROOT / slug / "index.html"
     if target.exists():
         return f"https://francoislang.github.io/templates/{slug}"
 
@@ -29,11 +112,15 @@ def generate_demo_site(profile):
 
     # Cle OpenRouter
     key = ""
-    for fp in (os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"):
-        for line in open(fp):
-            if "ANTHROPIC_API_KEY" in line and "=" in line:
-                key = line.split("=",1)[1].strip(); break
-        if key: break
+    for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
+        if not fp.exists():
+            continue
+        for line in fp.read_text(encoding="utf-8").splitlines():
+            if line.startswith(("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY")) and "=" in line:
+                key = line.split("=", 1)[1].strip().strip('"').strip("'")
+                break
+        if key:
+            break
 
     if not key:
         from generator import generate_site
@@ -44,8 +131,10 @@ def generate_demo_site(profile):
 
     # Reference joyaux-d-anubis
     ref = ""
-    try: ref = open("/workspace/templates/joyaux-d-anubis/index.html").read()[:4000]
-    except: pass
+    try:
+        ref = (REPO_ROOT / "joyaux-d-anubis" / "index.html").read_text(encoding="utf-8")[:4000]
+    except Exception:
+        pass
 
     lieu = f"a {ville} ({dept})" if ville and dept else (dept or "France")
     pl = "\n".join(f"  {p}" for p in photos)
@@ -97,7 +186,8 @@ REGLES:
     m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
     if m: html = m.group(1)
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
-    subprocess.run(["git","-C","/workspace/templates","add",f"{slug}/index.html"], capture_output=True)
+    _inject_tracking(target)
+    subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"
 
 def generate_pitch(profile: dict, demo_url: str | None) -> str:
@@ -166,12 +256,12 @@ def get_repo_root() -> str:
     return str(config.REPO_ROOT)
 
 def commit_and_push(sites_count: int) -> bool:
+    """Commit et push les nouveaux sites sur GitHub."""
+    repo_root = get_repo_root()
     subprocess.run(
         ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
         capture_output=True, timeout=30
     )
-    """Commit et push les nouveaux sites sur GitHub."""
-    repo_root = get_repo_root()
     try:
         subprocess.run(
             ["git", "-C", str(repo_root), "add", "-A"],
@@ -199,7 +289,8 @@ def commit_and_push(sites_count: int) -> bool:
 
 def run(dry_run: bool = False):
     """Execute le pipeline complet."""
-    telegram.send("🔍 Pipeline démarré — recherche d'éleveurs...")
+    if not dry_run:
+        telegram.send("🔍 Pipeline démarré — recherche d'éleveurs...")
 
     # 1. Recuperer les telephones et noms existants (pour dedup)
     print("📋 Recuperation des existants pour dedup...")
@@ -209,48 +300,19 @@ def run(dry_run: bool = False):
     def normalize(p):
         return p.replace(" ", "").replace("-", "").replace(".", "")
 
-    # 2. Scraper profil par profil jusqu'a trouver 10 nouveaux
-    print("📡 Scraping chien.com profil par profil...")
-    new_breeders = []
-    page = 1
-    max_pages = 20  # securite: ne pas scraper plus de 20 pages
+    # 2. Lire les prochains prospects non traites depuis la DB
     SITES_PER_DAY = config.SITES_PER_DAY
-    
-    while len(new_breeders) < SITES_PER_DAY and page <= max_pages:
-        profile_urls = scraper.fetch_listing_page(page)
-        if not profile_urls:
-            print(f"   Page {page} vide, arret du scraping")
-            break
-        
-        print(f"   Page {page}: {len(profile_urls)} profils trouves")
-        
-        for url in profile_urls:
-            if len(new_breeders) >= SITES_PER_DAY:
-                break
-            
-            profile = scraper.fetch_profile(url)
-            if not profile or not profile.get("phone"):
-                continue
-            
-            if normalize(profile["phone"]) in existing_phones:
-                continue  # deja connu par telephone
-            if profile["name"].strip().lower() in existing_names:
-                continue  # deja connu par nom d'elevage
-            
-            new_breeders.append(profile)
-            print(f"      #{len(new_breeders)}: {profile['name']} ({profile['races'][0]}) — {profile['phone']}")
-            import time
-            time.sleep(scraper.DELAY)
-        
-        page += 1
-        if len(new_breeders) < SITES_PER_DAY:
-            import time
-            time.sleep(2)
-    
-    print(f"   -> {len(new_breeders)} nouveaux eleveurs trouves sur {page-1} page(s)")
+    print(f"🗄️  Lecture de {DB_PATH} (WHERE processed_at IS NULL)...")
+    new_breeders = fetch_unprocessed_profiles(
+        SITES_PER_DAY, existing_phones, existing_names, normalize
+    )
+    for i, b in enumerate(new_breeders, 1):
+        print(f"      #{i}: {b['name']} ({b['races'][0]}) — {b['phone']}")
+    print(f"   -> {len(new_breeders)} prospect(s) selectionne(s) depuis la DB")
     
     if not new_breeders:
-        telegram.send("ℹ️ Aucun nouvel éleveur (déjà tous dans le CRM).")
+        if not dry_run:
+            telegram.send("ℹ️ Aucun nouvel éleveur (déjà tous dans le CRM).")
         return
 
     # 3. Traiter chaque eleveur
@@ -266,8 +328,12 @@ def run(dry_run: bool = False):
         print(f"📞 {phone}")
 
         # 3a. Generer le site demo
-        print("   🏗️ Generation du site...")
-        demo_url = generate_demo_site(breeder)
+        if dry_run:
+            print("   🏗️ [dry-run] generation du site ignoree")
+            demo_url = f"https://francoislang.github.io/templates/{slugify(name)}"
+        else:
+            print("   🏗️ Generation du site...")
+            demo_url = generate_demo_site(breeder)
         has_template = demo_url is not None
         if demo_url:
             sites_created += 1
@@ -279,7 +345,9 @@ def run(dry_run: bool = False):
         print("   💬 Generation du pitch...")
         pitch = generate_pitch(breeder, demo_url)
 
-        # 3c. Ajouter dans Notion
+        # 3c. Ajouter dans le CRM GitHub Issues
+        issue_url = None
+        crm_error = None
         if not dry_run:
             warnings = []
             if not has_template:
@@ -295,11 +363,31 @@ def run(dry_run: bool = False):
             notes_parts.append(f"Pitch: {pitch}")
             notes = " | ".join(notes_parts)
 
-            crm.add_entry(
-                elevage=name, races=breeder["races"], phone=phone,
-                demo_url=demo_url, notes=notes
-            )
-            print("   ✅ Ajoute dans Notion")
+            try:
+                issue_number = crm.add_entry(
+                    elevage=name, races=breeder["races"], phone=phone,
+                    demo_url=demo_url, notes=notes
+                )
+                if issue_number:
+                    issue_url = f"https://github.com/{GITHUB_REPO_SLUG}/issues/{issue_number}"
+                    print(f"   ✅ Issue CRM: {issue_url}")
+                else:
+                    crm_error = "crm.add_entry returned empty issue number"
+                    print(f"   ⚠️ CRM: creation d'issue echouee")
+            except Exception as e:
+                crm_error = f"crm.add_entry raised: {e}"
+                print(f"   ⚠️ CRM: {e}")
+
+            # 3d. Marquer le prospect comme traite dans la DB
+            source_url = breeder.get("source_url")
+            if source_url:
+                mark_processed(
+                    source_url,
+                    site_slug=(slugify(name) if has_template else None),
+                    site_url=demo_url,
+                    crm_issue_url=issue_url,
+                    error=crm_error,
+                )
 
         results.append({
             "name": name, "race": race, "phone": phone,
