@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Pipeline prospection: lit la DB `annonces`, genere sites + CRM + Telegram."""
 import sys, os, re, time, json, subprocess, sqlite3
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
@@ -15,7 +16,6 @@ GITHUB_REPO_SLUG = "francoislang/templates"
 
 def slugify(text):
     """Slug sans accent — identique a generator.slugify (sinon 'Vallee Caid' -> 'vall-e-ca-d')."""
-    import unicodedata
     text = unicodedata.normalize("NFD", text)
     text = "".join(c for c in text if unicodedata.category(c) != "Mn")
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
@@ -175,8 +175,11 @@ def _inject_tracking(path):
         print(f"  WARNING tracking non injecte: {e}")
 
 
-def generate_demo_site(profile):
-    """Genere un site via DeepSeek V4 Pro (OpenRouter)."""
+def generate_demo_site(profile, force=False):
+    """Genere un site via DeepSeek V4 Pro (OpenRouter).
+
+    force=True regenere meme si le fichier existe deja (utilise par regenerate.py).
+    """
     import requests
     from pathlib import Path
 
@@ -187,7 +190,7 @@ def generate_demo_site(profile):
 
     slug = slugify(name)
     target = REPO_ROOT / slug / "index.html"
-    if target.exists():
+    if target.exists() and not force:
         return f"https://francoislang.github.io/templates/{slug}"
 
     photos = get_photos_for_breed(race) or get_photos_for_race(race, count=15) or []
