@@ -75,3 +75,10 @@ _data/archive/
 
 # environnement virtuel Python local
 .venv/
+
+# sauvegardes et journaux locaux — jamais dans un depot public
+_data/*.bak*
+_data/*.db.bak*
+_data/logs/
+*.bak2
+_scripts/*.bak*
