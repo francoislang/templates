@@ -81,6 +81,17 @@ def mark_processed(source_url, *, site_slug=None, site_url=None,
     conn.commit()
     conn.close()
 
+def _sanitize(path, slug):
+    """Reecrit les URLs inventees par l'IA (canonical, og:url, liens sortants)."""
+    try:
+        import sanitize_site
+        changes = sanitize_site.process(path, apply=True)
+        for ch in changes:
+            print(f"   nettoyage: {ch}")
+    except Exception as e:
+        print(f"  WARNING nettoyage non applique: {e}")
+
+
 def _inject_tracking(path):
     """Ajoute le snippet de tracking dans un site fraichement genere par l'IA."""
     website_id = (config.UMAMI_WEBSITE_ID or os.environ.get("UMAMI_WEBSITE_ID", "")).strip()
@@ -186,6 +197,7 @@ REGLES:
     m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
     if m: html = m.group(1)
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
+    _sanitize(target, slug)
     _inject_tracking(target)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"
