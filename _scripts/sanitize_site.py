@@ -55,9 +55,32 @@ def foreign_hosts(html: str) -> set[str]:
             and h.lower() not in ALLOWED_HOSTS}
 
 
+# Marqueurs de double encodage UTF-8 (texte UTF-8 relu en latin-1).
+_MOJIBAKE = ("Ã©", "Ã¨", "Ã ", "Ã§", "Ã´", "Ãª", "â€™", "â€œ", "Ã‰", "Ã€")
+
+
+def fix_double_encoding(html: str) -> tuple[str, bool]:
+    """Repare un texte UTF-8 qui a ete decode en latin-1 puis re-encode.
+
+    Ne touche a rien si le round-trip n'est pas exactement reversible : mieux
+    vaut laisser le texte tel quel que le degrader davantage.
+    """
+    if not any(m in html for m in _MOJIBAKE):
+        return html, False
+    try:
+        repare = html.encode("latin-1").decode("utf-8")
+    except (UnicodeEncodeError, UnicodeDecodeError):
+        return html, False
+    return repare, True
+
+
 def sanitize(html: str, slug: str) -> tuple[str, list[str]]:
     url = real_url(slug)
     changes: list[str] = []
+
+    html, repare = fix_double_encoding(html)
+    if repare:
+        changes.append("double encodage des accents repare")
 
     new, n = _CANONICAL_RE.subn(lambda m: m.group(1) + url + m.group(3), html)
     if n and new != html:

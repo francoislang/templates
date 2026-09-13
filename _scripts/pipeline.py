@@ -281,9 +281,15 @@ REGLES:
                 continue
             # Lecture en flux : chaque morceau relance le compteur d'inactivite,
             # donc une generation longue ne declenche plus de timeout.
+            # decode_unicode=True ferait confiance a l'en-tete HTTP : sans charset
+            # explicite, requests retombe sur ISO-8859-1 et tous les accents
+            # ressortent en double encodage. On decode nous-memes en UTF-8.
             morceaux = []
-            for ligne in r.iter_lines(decode_unicode=True):
-                if not ligne or not ligne.startswith("data: "):
+            for ligne_brute in r.iter_lines(decode_unicode=False):
+                if not ligne_brute:
+                    continue
+                ligne = ligne_brute.decode("utf-8", "replace")
+                if not ligne.startswith("data: "):
                     continue
                 brut = ligne[6:]
                 if brut.strip() == "[DONE]":
@@ -390,8 +396,11 @@ def commit_and_push(sites_count: int) -> bool:
         capture_output=True, timeout=30
     )
     try:
+        # JAMAIS `git add -A` : le depot est public et le dossier de travail
+        # contient des sauvegardes de la base prospects, des journaux et des
+        # fichiers .bak. On ne stage que les sites generes.
         subprocess.run(
-            ["git", "-C", str(repo_root), "add", "-A"],
+            ["git", "-C", str(repo_root), "add", "--", ":(glob)*/index.html"],
             check=True, capture_output=True
         )
         subprocess.run(
