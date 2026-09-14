@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Petits Bouts du Bonheur – Élevage de Shiba Inu à Salindres (30)</title>
+  <meta name="description" content="Petits Bouts du Bonheur, élevage de Shiba Inu à Salindres (30). Éducation précoce, suivi vétérinaire constant et conditions optimales pour nos chiots Shiba Inu." />
+  <meta name="keywords" content="élevage Shiba Inu, chien Shiba Inu, élevage chiens, Salindres, Gard, Chihuahua, Berger Australien" />
+  <meta name="author" content="Petits Bouts du Bonheur" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#C84A2C" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Petits Bouts du Bonheur – Élevage de Shiba Inu" />
+  <meta property="og:description" content="Élevage de Shiba Inu à Salindres (30). Indépendant et raffiné, le Shiba Inu séduit par son allure élégante et son tempérament loyal." />
+  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_1.jpg" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Petits Bouts du Bonheur" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Petits Bouts du Bonheur – Élevage de Shiba Inu" />
+  <meta name="twitter:description" content="Élevage de Shiba Inu à Salindres (30). Suivi vétérinaire constant et éducation précoce." />
+  <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_1.jpg" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --shiba-red: #C84A2C;
+      --shiba-red-dark: #A63A20;
+      --shiba-sesame: #E1A56B;
+      --shiba-cream: #F8E8D6;
+      --shiba-charcoal: #2F2622;
+      --shiba-white: #FFF9F5;
+      --shiba-border: rgba(200, 74, 44, 0.22);
+      --shiba-shadow: 0 20px 45px rgba(47, 38, 34, 0.12);
+      --shiba-radius: 18px;
+      --font-display: 'Cinzel', serif;
+      --font-body: 'Raleway', sans-serif;
+      --transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--shiba-charcoal);
+      background-color: var(--shiba-white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    /* ---------- Boutons ---------- */
+    .btn {
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background-color: var(--shiba-red);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(200, 74, 44, 0.25);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--shiba-red-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(166, 58, 32, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border-color: rgba(255, 255, 255, 0.7);
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background-color: #fff;
+      color: var(--shiba-charcoal);
+      transform: translateY(-3px);
+    }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      padding: 20px 0;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+
+    .logo-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      background-color: var(--shiba-red);
+      border-radius: 50%;
+      font-size: 1.4rem;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .main-nav ul {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .main-nav a {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .main-nav a:hover {
+      color: var(--shiba-sesame);
+    }
+
+    .header-phone {
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      padding: 10px 18px;
+      border-radius: 50px;
+      transition: var(--transition);
+    }
+
+    .header-phone:hover {
+      background-color: #fff;
+      color: var(--shiba-charcoal);
+      border-color: #fff;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(44, 27, 22, 0.82) 0%, rgba(200, 74, 44, 0.35) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 140px 20px 80px;
+      color: var(--shiba-white);
+      max-width: 800px;
+    }
+
+    .hero-subtitle {
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--shiba-cream);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: clamp(3.2rem, 8vw, 6.2rem);
+      margin-bottom: 0.2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-breed {
+      font-size: 1.9rem;
+      font-weight: 300;
+      color: var(--shiba-sesame);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 1.4rem 0 2.4rem;
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: rgba(255, 249, 245, 0.92);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* ---------- About ---------- */
+    .about {
+      background-color: var(--shiba-cream);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--shiba-radius);
+      box-shadow: var(--shiba-shadow);
+    }
+
+    .about-content h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      margin-bottom: 1rem;
+      color: var(--shiba-charcoal);
+    }
+
+    .about-content .lead {
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--shiba-red);
+      margin-bottom: 1rem;
+    }
+
+    .about-content p {
+      margin-bottom: 1rem;
+      color: #4A342D;
+    }
+
+    .about-list {
+      margin: 1.8rem 0 2rem;
+      display: grid;
+      gap: 12px;
+    }
+
+    .about-list li {
+      background-color: rgba(255, 249, 245, 0.7);
+      border-left: 4px solid var(--shiba-red);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-weight: 500;
+      color: var(--shiba-charcoal);
+    }
+
+    /* ---------- Gallery ---------- */
+    .gallery {
+      background-color: var(--shiba-white);
+    }
+
+    .gallery h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      color: var(--shiba-charcoal);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--shiba-red);
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 3rem;
+      font-size: 0.9rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: var(--shiba-radius);
+      box-shadow: var(--shiba-shadow);
+      background-color: var(--shiba-cream);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      background: linear-gradient(135deg, var(--shiba-charcoal) 0%, #4A342D 100%);
+      color: var(--shiba-white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      margin-bottom: 2rem;
+      color: rgba(255, 249, 245, 0.85);
+      font-size: 1.1rem;
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 20px;
+    }
+
+    .contact-details li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: rgba(255, 249, 245, 0.07);
+      border: 1px solid rgba(255, 249, 245, 0.15);
+      padding: 16px 20px;
+      border-radius: 14px;
+    }
+
+    .contact-details .label {
+      font-weight: 600;
+      color: var(--shiba-sesame);
+      min-width: 70px;
+    }
+
+    .contact-details a {
+      color: #fff;
+      transition: var(--transition);
+    }
+
+    .contact-details a:hover {
+      color: var(--shiba-sesame);
+    }
+
+    .contact-form {
+      background-color: var(--shiba-white);
+      color: var(--shiba-charcoal);
+      padding: 2.5rem;
+      border-radius: var(--shiba-radius);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--shiba-charcoal);
+      letter-spacing: 0.03em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.95rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background-color: #FDF6F2;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--shiba-red);
+      box-shadow: 0 0 0 3px rgba(200, 74, 44, 0.15);
+    }
+
+    .contact-form .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      background-color: #231B18;
+      color: #CBAAA3;
+      padding: 45px 0;
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .footer-brand h2 {
+      font-size: 1.8rem;
+      color: var(--shiba-cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .footer-links a {
+      color: #CBAAA3;
+      font-weight: 500;
+      transition: var(--transition);
+      letter-spacing: 0.03em;
+    }
+
+    .footer-links a:hover {
+      color: var(--shiba-sesame);
+    }
+
+    .footer-siret,
+    .footer-copy {
+      font-size: 0.95rem;
+      color: #A58A81;
+    }
+
+    /* ---------- Animations scroll ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+                  transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .header-inner {
+        flex-direction: column;
+      }
+
+      .main-nav ul {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-form {
+        padding: 1.8rem;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .hero-content {
+        padding-top: 180px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        text-align: center;
+        width: 100%;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+      }
+
+      .footer-links {
+        gap: 16px;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "additionalType": "AnimalShelter",
+    "name": "Petits Bouts du Bonheur",
+    "description": "Élevage de Shiba Inu à Salindres (30). Nous élevons le Shiba Inu avec passion, mettons l'accent sur une éducation précoce et assurons un suivi vétérinaire constant.",
+    "telephone": "+33760251401",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Salindres",
+      "postalCode": "30340",
+      "addressRegion": "Occitanie",
+      "addressCountry": "FR"
+    },
+    "identifier": "SIRET 803285303",
+    "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_1.jpg",
+    "employee": "Élevage de chiens",
+    "makesOffer": ["Shiba Inu", "Chihuahua", "Berger Australien"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header" id="accueil">
+    <div class="container header-inner">
+      <a href="#accueil" class="logo" aria-label="Petits Bouts du Bonheur">
+        <span class="logo-icon">🐕</span>
+        <span class="logo-text">Petits Bouts du Bonheur</span>
+      </a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#elevage">Élevage</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+33760251401" class="header-phone">07.60.25.14.01</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-media">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_1.jpg" alt="Shiba Inu de l'élevage Petits Bouts du Bonheur" />
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="hero-subtitle">Élevage familial dans le Gard</p>
+        <h1 class="hero-title">Petits Bouts du Bonheur</h1>
+        <p class="hero-breed">Shiba Inu</p>
+        <p class="hero-text">
+          Indépendant et raffiné, le Shiba Inu séduit par son allure élégante et son tempérament loyal. 
+          Nous l'élevons avec passion à Salindres (30).
+        </p>
+        <div class="hero-actions">
+          <a href="#galerie" class="btn btn-primary">Découvrir la galerie</a>
+          <a href="#contact" class="btn btn-secondary">Prendre contact</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about section" id="elevage">
+      <div class="container about-grid">
+        <div class="about-image reveal">
+          <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_2.jpg" alt="Chiot Shiba Inu de l'élevage Petits Bouts du Bonheur" />
+        </div>
+        <div class="about-content reveal">
+          <h2>Notre élevage</h2>
+          <p class="lead">Nous élevons le Shiba Inu avec passion à Salindres (30).</p>
+          <p>
+            Indépendant et raffiné, il séduit par son allure élégante et son tempérament loyal. 
+            Nous mettons l’accent sur une éducation précoce favorisant respect et complicité avec l’humain. 
+            Les jeunes grandissent dans des conditions optimales, entourés d’attention et d’interactions régulières. 
+            Grâce à un suivi vétérinaire constant, nous assurons un développement harmonieux avant l’adoption. 
+            Notre élevage comprend également le Chihuahua, le Berger Au.
+          </p>
+          <ul class="about-list">
+            <li>Éducation précoce favorisant respect et complicité</li>
+            <li>Suivi vétérinaire constant</li>
+            <li>Conditions d'élevage optimales</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Nous contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery section" id="galerie">
+      <div class="container">
+        <h2>Galerie</h2>
+        <p class="section-subtitle">Quelques instants de vie à l'élevage</p>
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_1.jpg" alt="Shiba Inu 1" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_2.jpg" alt="Shiba Inu 2" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_3.jpg" alt="Shiba Inu 3" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_5.jpg" alt="Shiba Inu 5" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_6.jpg" alt="Shiba Inu 6" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_7.jpg" alt="Shiba Inu 7" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_8.jpg" alt="Shiba Inu 8" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_9.jpg" alt="Shiba Inu 9" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_10.jpg" alt="Shiba Inu 10" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_11.jpg" alt="Shiba Inu 11" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_12.jpg" alt="Shiba Inu 12" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_13.jpg" alt="Shiba Inu 13" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_14.jpg" alt="Shiba Inu 14" loading="lazy" />
+          </figure>
+          <figure class="gallery-item reveal">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-shiba_inu/shiba_inu_15.jpg" alt="Shiba Inu 15" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info reveal">
+          <h2>Contact</h2>
+          <p>Une question sur nos Shiba Inu ou une future adoption ? Écrivez-nous.</p>
+          <ul class="contact-details">
+            <li>
+              <span class="label">Tél :</span>
+              <a href="tel:+33760251401">07.60.25.14.01</a>
+            </li>
+            <li>
+              <span class="label">Lieu :</span>
+              <span>Élevage de chiens – Salindres (30)</span>
+            </li>
+            <li>
+              <span class="label">Race :</span>
+              <span>Shiba Inu</span>
+            </li>
+          </ul>
+        </div>
+        <form class="contact-form reveal" action="#" method="post">
+          <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <h2>Petits Bouts du Bonheur</h2>
+        <p>Élevage de chiens</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">CGV</a></li>
+        <li><a href="#">Politique confidentialité</a></li>
+      </ul>
+      <p class="footer-siret">SIRET 803285303</p>
+      <p class="footer-copy">© 2026 Petits Bouts du Bonheur</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const revealElements = document.querySelectorAll('.reveal');
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(function (element) {
+        observer.observe(element);
+      });
+    });
+  </script>
+</body>
+</html>

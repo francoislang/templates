@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Of Corazon Warriors - Élevage de Rottweiler à Lusignan</title>
+    <meta name="description" content="Élevage familial de Rottweiler à Lusignan. Passionnée depuis plus de 20 ans, je produis des chiens en bonne santé, équilibrés et conformes au standard. Reproducteurs radiographiés et testés ADN.">
+    <meta name="keywords" content="élevage Rottweiler, chien Rottweiler, Lusignan, Of Corazon Warriors, chiot Rottweiler, élevage canin, chiens de race">
+    <meta name="author" content="Of Corazon Warriors">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://francoislang.github.io/templates/of-corazon-warriors/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Of Corazon Warriors - Élevage de Rottweiler à Lusignan">
+    <meta property="og:description" content="Élevage familial de Rottweiler. Chiens en bonne santé, équilibrés, radiographiés et testés ADN. Passion depuis plus de 20 ans.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_1.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://francoislang.github.io/templates/of-corazon-warriors/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Of Corazon Warriors">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Of Corazon Warriors - Élevage de Rottweiler">
+    <meta name="twitter:description" content="Élevage familial de Rottweiler à Lusignan. Passion, santé et standard.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_1.jpg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Of Corazon Warriors",
+            "description": "Élevage de Rottweiler à Lusignan. Passionnée depuis plus de 20 ans, je produis des chiens en bonne santé, équilibrés et correspondant le plus fidèlement possible au standard. Reproducteurs radiographiés (hanches et coudes), testés et identifiés par ADN.",
+            "telephone": "+33777519064",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Lusignan",
+                "addressCountry": "FR"
+            },
+            "identifier": {
+                "@type": "PropertyValue",
+                "name": "SIREN",
+                "value": "883496044"
+            },
+            "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_1.jpg",
+            "url": "https://ofcorazonwarriors.fr/",
+            "sameAs": [],
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "description": "Sur rendez-vous"
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --color-black: #0D0A07;
+            --color-dark-brown: #1E1410;
+            --color-deep-brown: #3E2213;
+            --color-mahogany: #5C3018;
+            --color-tan: #BE8C4A;
+            --color-tan-light: #D4B07A;
+            --color-cream: #F5EDE3;
+            --color-off-white: #FBF8F4;
+            --color-white: #FFFFFF;
+            --color-gold: #C8963E;
+            --color-rust: #8B4A2B;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Raleway', sans-serif;
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow-elegant: 0 4px 30px rgba(0, 0, 0, 0.18);
+            --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.12);
+            --radius: 8px;
+            --radius-lg: 16px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-off-white);
+            color: var(--color-dark-brown);
+            line-height: 1.75;
+            overflow-x: hidden;
+        }
+
+        /* ---------- ANIMATIONS SCROLL ---------- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-left.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-right.revealed {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ---------- NAVIGATION ---------- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(13, 10, 7, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(190, 140, 74, 0.25);
+            transition: all var(--transition-smooth);
+            padding: 0 1.5rem;
+        }
+        .navbar.scrolled {
+            background: rgba(13, 10, 7, 0.97);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+        }
+        .navbar-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-tan);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            transition: color var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .nav-logo:hover {
+            color: var(--color-gold);
+        }
+        .nav-logo-icon {
+            font-size: 1.6rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--color-cream);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color var(--transition-smooth);
+            padding: 0.35rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-tan);
+            transition: width var(--transition-smooth);
+        }
+        .nav-links a:hover {
+            color: var(--color-tan);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: var(--color-tan);
+            color: var(--color-black) !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: 50px;
+            font-weight: 600 !important;
+            letter-spacing: 0.05em;
+            transition: all var(--transition-smooth) !important;
+            white-space: nowrap;
+        }
+        .nav-cta:hover {
+            background: var(--color-gold) !important;
+            color: var(--color-black) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(190, 140, 74, 0.4);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 2.5px;
+            background: var(--color-tan);
+            border-radius: 3px;
+            transition: all var(--transition-smooth);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_1.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            overflow: hidden;
+        }
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(13, 10, 7, 0.55) 0%,
+                    rgba(30, 20, 16, 0.65) 40%,
+                    rgba(13, 10, 7, 0.8) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            max-width: 850px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(190, 140, 74, 0.2);
+            border: 1px solid var(--color-tan);
+            color: var(--color-tan-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-body);
+        }
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--color-white);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
+        }
+        .hero h1 span {
+            color: var(--color-tan);
+            display: block;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            margin-top: 0.3rem;
+        }
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            color: var(--color-cream);
+            font-weight: 400;
+            letter-spacing: 0.04em;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--color-tan);
+            color: var(--color-black);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: var(--color-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(190, 140, 74, 0.45);
+        }
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: var(--color-tan);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            border: 2px solid var(--color-tan);
+            transition: all var(--transition-smooth);
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-tan);
+            color: var(--color-black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(190, 140, 74, 0.35);
+        }
+        .hero-scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounceDown 2s ease-in-out infinite;
+        }
+        .hero-scroll-indicator svg {
+            width: 36px;
+            height: 36px;
+            fill: none;
+            stroke: var(--color-tan);
+            stroke-width: 2;
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ---------- SECTIONS ---------- */
+        section {
+            padding: 5rem 1.5rem;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.7rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--color-dark-brown);
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+        }
+        .section-header .accent-line {
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--color-tan);
+            margin: 0.8rem auto 1rem;
+            border-radius: 2px;
+        }
+        .section-header p {
+            color: var(--color-mahogany);
+            font-weight: 400;
+            font-size: 1.05rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ---------- ABOUT ---------- */
+        #elevage {
+            background: var(--color-white);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+        .about-image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+        .about-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius-lg);
+            transition: transform 0.6s ease;
+        }
+        .about-image-wrapper:hover img {
+            transform: scale(1.03);
+        }
+        .about-image-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 3px solid var(--color-tan);
+            border-radius: var(--radius-lg);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-dark-brown);
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.03em;
+        }
+        .about-text p {
+            color: var(--color-deep-brown);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .about-highlights {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.8rem;
+        }
+        .highlight-card {
+            background: var(--color-off-white);
+            padding: 1.2rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--color-tan);
+            transition: all var(--transition-smooth);
+        }
+        .highlight-card:hover {
+            background: var(--color-cream);
+            transform: translateX(4px);
+            box-shadow: var(--shadow-elegant);
+        }
+        .highlight-card .highlight-icon {
+            font-size: 1.6rem;
+            margin-bottom: 0.4rem;
+        }
+        .highlight-card strong {
+            display: block;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            color: var(--color-mahogany);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+        .highlight-card span {
+            font-size: 0.9rem;
+            color: var(--color-deep-brown);
+        }
+
+        /* ---------- GALLERY ---------- */
+        #galerie {
+            background: var(--color-off-white);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4 / 3;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            transition: all var(--transition-smooth);
+        }
+        .gallery-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 10, 7, 0.5) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            z-index: 1;
+            pointer-events: none;
+            border-radius: var(--radius);
+        }
+        .gallery-item:hover::before {
+            opacity: 1;
+        }
+        .gallery-item .gallery-zoom {
+            position: absolute;
+            bottom: 10px;
+            right: 12px;
+            z-index: 2;
+            color: white;
+            font-size: 1.3rem;
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+        }
+        .gallery-item:hover .gallery-zoom {
+            opacity: 1;
+        }
+
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(13, 10, 7, 0.94);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .lightbox-content img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            display: block;
+            border-radius: var(--radius-lg);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all var(--transition-smooth);
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2001;
+            transition: all var(--transition-smooth);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .lightbox-prev {
+            left: 1.5rem;
+        }
+        .lightbox-next {
+            right: 1.5rem;
+        }
+
+        /* ---------- CONTACT ---------- */
+        #contact {
+            background: var(--color-white);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+        .contact-info {
+            background: var(--color-dark-brown);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            color: var(--color-cream);
+            box-shadow: var(--shadow-card);
+        }
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-tan);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.04em;
+        }
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.3rem;
+            font-size: 0.95rem;
+        }
+        .contact-info-item .ci-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .contact-info-item a {
+            color: var(--color-tan-light);
+            text-decoration: none;
+            transition: color var(--transition-smooth);
+        }
+        .contact-info-item a:hover {
+            color: var(--color-gold);
+        }
+        .contact-form {
+            background: var(--color-off-white);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(190, 140, 74, 0.2);
+        }
+        .contact-form h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark-brown);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.04em;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-mahogany);
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 2px solid #e0d5c8;
+            border-radius: var(--radius);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            background: var(--color-white);
+            color: var(--color-dark-brown);
+            transition: all var(--transition-smooth);
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-tan);
+            box-shadow: 0 0 0 4px rgba(190, 140, 74, 0.1);
+        }
+        .form-group textarea {
+            min-height: 130px;
+        }
+        .btn-submit {
+            display: inline-block;
+            background: var(--color-tan);
+            color: var(--color-black);
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: all var(--transition-smooth);
+            width: 100%;
+        }
+        .btn-submit:hover {
+            background: var(--color-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(190, 140, 74, 0.4);
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: var(--color-black);
+            color: var(--color-cream);
+            padding: 3rem 1.5rem 1.5rem;
+            border-top: 4px solid var(--color-tan);
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-brand h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-tan);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        .footer-brand p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+        .footer-links h5 {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-tan-light);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .footer-links ul {
+            list-style: none;
+        }
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links ul li a {
+            color: var(--color-cream);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.75;
+            transition: all var(--transition-smooth);
+        }
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--color-tan);
+            padding-left: 4px;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .footer-bottom a {
+            color: var(--color-tan-light);
+            text-decoration: none;
+            transition: color var(--transition-smooth);
+        }
+        .footer-bottom a:hover {
+            color: var(--color-gold);
+        }
+        .footer-bottom .separator {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 0.5rem;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .about-image-wrapper {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(13, 10, 7, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                transition: right var(--transition-smooth);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                z-index: 999;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .hero {
+                background-attachment: scroll;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.6rem;
+            }
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+            .footer-inner {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+            .hero h1 {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .lightbox-nav {
+                width: 38px;
+                height: 38px;
+                font-size: 1.5rem;
+            }
+            .lightbox-prev {
+                left: 0.5rem;
+            }
+            .lightbox-next {
+                right: 0.5rem;
+            }
+            .lightbox-close {
+                top: 0.5rem;
+                right: 0.75rem;
+                width: 38px;
+                height: 38px;
+                font-size: 1.5rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.4rem;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
+            }
+            .navbar-inner {
+                height: 60px;
+            }
+            .nav-logo {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ NAVIGATION ============ -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-inner">
+            <a href="#accueil" class="nav-logo">
+                <span class="nav-logo-icon">🐾</span> Of Corazon Warriors
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
+                <li><a href="#elevage" onclick="closeMenu()">L'Élevage</a></li>
+                <li><a href="#galerie" onclick="closeMenu()">Galerie</a></li>
+                <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Contact</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="accueil">
+        <div class="hero-overlay"></div>
+        <div class="hero-content reveal">
+            <span class="hero-badge">Élevage Familial • Lusignan</span>
+            <h1>Of Corazon Warriors<span>Élevage de Rottweiler</span></h1>
+            <p class="hero-subtitle">Passion, santé et respect du standard depuis plus de 20 ans.<br>Des chiens équilibrés, radiographiés et testés ADN.</p>
+            <div class="hero-buttons">
+                <a href="#galerie" class="btn-primary">Découvrir nos chiens</a>
+                <a href="#contact" class="btn-outline">Nous contacter</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <polyline points="4 8 12 16 20 8" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT / L'ÉLEVAGE ============ -->
+    <section id="elevage">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Notre Élevage</h2>
+                <span class="accent-line"></span>
+                <p>Un engagement profond pour la préservation et le bien-être du Rottweiler</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-image-wrapper reveal-left">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_2.jpg" alt="Rottweiler Of Corazon Warriors" loading="lazy">
+                </div>
+                <div class="about-text reveal-right">
+                    <h3>La passion du Rottweiler depuis plus de 20 ans</h3>
+                    <p>
+                        Je suis passionnée par le Rottweiler depuis plus de 20 ans et j'ai décidé de franchir le cap de l'élevage afin de participer à la préservation de cette race.
+                        Mon but est de produire des chiens en bonne santé, équilibrés et correspondant le plus fidèlement possible au standard.
+                    </p>
+                    <p>
+                        Tous mes reproducteurs sont radiographiés (hanches et coudes), testés et identifiés par ADN.
+                        Mes femelles ne reproduisent qu'une fois par an, voire tous les 18 mois, et sont systématiquement mises à la retraite vers l'âge de 6 à 7 ans.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-card reveal reveal-delay-1">
+                            <span class="highlight-icon">🩻</span>
+                            <strong>Radiographies</strong>
+                            <span>Hanches & coudes systématiques</span>
+                        </div>
+                        <div class="highlight-card reveal reveal-delay-2">
+                            <span class="highlight-icon">🧬</span>
+                            <strong>Tests ADN</strong>
+                            <span>Identification génétique complète</span>
+                        </div>
+                        <div class="highlight-card reveal reveal-delay-3">
+                            <span class="highlight-icon">❤️</span>
+                            <strong>Reproduction raisonnée</strong>
+                            <span>1 portée par an maximum</span>
+                        </div>
+                        <div class="highlight-card reveal reveal-delay-4">
+                            <span class="highlight-icon">🏅</span>
+                            <strong>Standard</strong>
+                            <span>Conformité et équilibre</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section id="galerie">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Galerie Photos</h2>
+                <span class="accent-line"></span>
+                <p>Nos magnifiques Rottweilers en images</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Rempli dynamiquement ou statiquement -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ LIGHTBOX ============ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Précédent">&#10094;</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Suivant">&#10095;</button>
+        <div class="lightbox-content" id="lightboxContent">
+            <img src="" alt="" id="lightboxImg">
+        </div>
+    </div>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Contactez-nous</h2>
+                <span class="accent-line"></span>
+                <p>Une question ? Un projet d'adoption ? N'hésitez pas à nous écrire.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <h3>Nos Coordonnées</h3>
+                    <div class="contact-info-item">
+                        <span class="ci-icon">📍</span>
+                        <span>Élevage situé à <strong>Lusignan</strong><br>Vienne (86), Nouvelle-Aquitaine</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="ci-icon">📞</span>
+                        <a href="tel:+33777519064">07.77.51.90.64</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="ci-icon">📧</span>
+                        <a href="mailto:contact@ofcorazonwarriors.fr">contact@ofcorazonwarriors.fr</a>
+                    </div>
+                    <div class="contact-info-item">
+                        <span class="ci-icon">🔢</span>
+                        <span>SIREN : <strong>883496044</strong></span>
+                    </div>
+                    <p style="margin-top:1.5rem;font-size:0.85rem;opacity:0.8;">Les visites se font uniquement sur rendez-vous. Merci de nous contacter au préalable.</p>
+                </div>
+                <div class="contact-form reveal-right">
+                    <h3>Envoyez-nous un message</h3>
+                    <form id="contactForm" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="nom">Nom complet *</label>
+                            <input type="text" id="nom" name="nom" placeholder="Votre nom et prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse email *</label>
+                            <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Votre message *</label>
+                            <textarea id="message" name="message" placeholder="Présentez-vous et expliquez-nous votre projet..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Envoyer le message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h4>🐾 Of Corazon Warriors</h4>
+                <p>Élevage familial de Rottweiler à Lusignan. Passion, rigueur et amour de la race depuis plus de 20 ans. Chiens en bonne santé, équilibrés et conformes au standard.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Navigation</h5>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#elevage">L'Élevage</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Informations</h5>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">CGV</a></li>
+                    <li><a href="#">Politique de confidentialité</a></li>
+                    <li><a href="#">Plan du site</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 Of Corazon Warriors</span>
+            <span class="separator">|</span>
+            <span>SIRET 883496044</span>
+            <span class="separator">|</span>
+            <span>Lusignan, France</span>
+            <span class="separator">|</span>
+            <span>
+                <a href="#">Mentions légales</a>
+                <span class="separator">·</span>
+                <a href="#">CGV</a>
+                <span class="separator">·</span>
+                <a href="#">Politique confidentialité</a>
+            </span>
+        </div>
+    </footer>
+
+    <script>
+        // ---------- IMAGES LIST ----------
+        const galleryImages = [
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_1.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_2.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_3.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_4.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_5.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_6.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_7.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_8.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_9.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_10.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_12.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_13.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_14.jpg',
+            'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-rottweiler/rottweiler_15.jpg',
+        ];
+
+        // ---------- POPULATE GALLERY ----------
+        const galleryGrid = document.getElementById('galleryGrid');
+        galleryImages.forEach((src, index) => {
+            const item = document.createElement('div');
+            item.className = 'gallery-item reveal';
+            item.setAttribute('data-index', index);
+            item.innerHTML = `
+                        <img src="${src}" alt="Rottweiler Of Corazon Warriors - Photo ${index + 1}" loading="lazy">
+                        <span class="gallery-zoom">🔍</span>
+                    `;
+            item.addEventListener('click', () => openLightbox(index));
+            galleryGrid.appendChild(item);
+        });
+
+        // ---------- LIGHTBOX ----------
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            currentLightboxIndex = index;
+            lightboxImg.src = galleryImages[index];
+            lightboxImg.alt = `Rottweiler Of Corazon Warriors - Photo ${index + 1}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function prevImage() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentLightboxIndex];
+            lightboxImg.alt = `Rottweiler Of Corazon Warriors - Photo ${currentLightboxIndex + 1}`;
+        }
+
+        function nextImage() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+            lightboxImg.src = galleryImages[currentLightboxIndex];
+            lightboxImg.alt = `Rottweiler Of Corazon Warriors - Photo ${currentLightboxIndex + 1}`;
+        }
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', prevImage);
+        lightboxNext.addEventListener('click', nextImage);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        });
+
+        // ---------- MOBILE MENU ----------
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        hamburger.addEventListener('click', toggleMenu);
+
+        // ---------- NAVBAR SCROLL EFFECT ----------
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ---------- INTERSECTION OBSERVER ----------
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach((el) => observer.observe(el));
+
+        // ---------- CONTACT FORM ----------
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nom = document.getElementById('nom').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (nom && email && message) {
+                alert(
+                    'Merci ' + nom +
+                    ' ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.');
+                contactForm.reset();
+            } else {
+                alert('Veuillez remplir tous les champs obligatoires.');
+            }
+        });
+
+        // ---------- SMOOTH SCROLL FOR SAFARI ----------
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                const target = document.querySelector(href);
+                if (target) {
+                    e.preventDefault();
+                    const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
