@@ -152,11 +152,11 @@ def mark_processed(source_url, *, site_slug=None, site_url=None,
     conn.close()
 
 
-def _sanitize(path, slug):
-    """Reecrit les URLs inventees par l'IA (canonical, og:url, liens sortants)."""
+def _sanitize(path, slug, contact=None):
+    """Reecrit les URLs et emails inventes par l'IA."""
     try:
         import sanitize_site
-        changes = sanitize_site.process(path, apply=True)
+        changes = sanitize_site.process(path, apply=True, contact=contact)
         for ch in changes:
             print(f"   nettoyage: {ch}")
     except Exception as e:
@@ -321,7 +321,7 @@ REGLES:
     m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
     if m: html = m.group(1)
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
-    _sanitize(target, slug)
+    _sanitize(target, slug, {"email": profile.get("email", ""), "phone": phone})
     _inject_tracking(target)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"
