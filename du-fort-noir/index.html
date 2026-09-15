@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Élevage Du Fort Noir - Saint-Bernard &amp; Mastiffs - Pas-de-Calais</title>
+    <meta name="description" content="Élevage canin Du Fort Noir, spécialisé en Saint-Bernard et Mastiff dans le Pas-de-Calais. Chiots LOF, pedigree excellent. Contactez-nous au 06.46.17.40.01.">
+    <meta name="keywords" content="Saint-Bernard, Mastiff, élevage, chien, Du Fort Noir, Pas-de-Calais, Saint-Rémy-au-Bois, LOF, pedigree">
+    <meta property="og:title" content="Élevage Du Fort Noir - Saint-Bernard &amp; Mastiffs">
+    <meta property="og:description" content="Installé à Saint-Rémy-au-Bois, l'élevage du Fort Noir sélectionne ses chiens pour leur beauté, caractère et lignée. Chiots LOF disponibles.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467443/photo-saint_bernard/saint_bernard_1.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <link rel="canonical" href="https://francoislang.github.io/templates/du-fort-noir/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-brown: #3E2723;
+            --medium-brown: #5C3A21;
+            --tan: #C8963E;
+            --cream: #FDFBF7;
+            --white: #FFFFFF;
+            --text: #333333;
+            --rust: #8B4513;
+            --overlay: rgba(0,0,0,0.55);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        section {
+            padding: 80px 0;
+        }
+        section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--deep-brown);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--tan);
+            margin: 15px auto 0;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--tan);
+            color: var(--white);
+            padding: 12px 32px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: var(--medium-brown);
+        }
+
+        /* Header */
+        .header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .header.header-scrolled {
+            position: fixed;
+            background: var(--deep-brown);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            padding: 15px 0;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: font-size 0.3s;
+        }
+        .header-scrolled .logo {
+            font-size: 1.5rem;
+        }
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: var(--tan);
+        }
+        .header-phone {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            background: var(--medium-brown);
+            padding: 8px 18px;
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        .header-phone:hover {
+            background: var(--rust);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            background: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467443/photo-saint_bernard/saint_bernard_1.jpg') no-repeat center center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--overlay);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        }
+        .hero p {
+            font-size: 1.6rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
+
+        /* About */
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 1 1 400px;
+        }
+        .about-text p {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+        .about-image {
+            flex: 1 1 300px;
+        }
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Gallery */
+        .gallery {
+            background: var(--white);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background: #eee;
+        }
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1 1 300px;
+            background: var(--white);
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--deep-brown);
+        }
+        .contact-info p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        .contact-info strong {
+            color: var(--deep-brown);
+        }
+        .contact-form {
+            flex: 1 1 300px;
+            background: var(--white);
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .contact-form h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: var(--deep-brown);
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--tan);
+            outline: none;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .contact-form .btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-brown);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: var(--tan);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer-links {
+            margin-bottom: 15px;
+        }
+        .footer p {
+            margin-bottom: 5px;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            section {
+                padding: 60px 0;
+            }
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav a {
+                margin: 0 10px;
+                font-size: 0.85rem;
+            }
+            .about-grid, .contact-grid {
+                flex-direction: column;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">Du Fort Noir</a>
+            <nav class="nav">
+                <a href="#about">À propos</a>
+                <a href="#gallery">Galerie</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="tel:+33646174001" class="header-phone">06.46.17.40.01</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Du Fort Noir</h1>
+            <p>Élevage de Saint-Bernard &amp; Mastiffs<br>dans le Pas-de-Calais</p>
+            <a href="#contact" class="btn">Contactez-nous</a>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about reveal" id="about">
+        <div class="container">
+            <h2>À propos de l'élevage</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Installé à seulement 1h15 de Lille, sur la commune de Saint-Rémy-au-Bois, l'élevage du Fort Noir se spécialise dans deux races, dont le Saint-Bernard.</p>
+                    <p>Nous sélectionnons nos chiens en fonction de leur beauté, de leur caractère, mais aussi de leur lignée (avec un excellent pedigree). Tous vivent dans les meilleures conditions possibles et les chiots qui voient le jour chez nous sont tous inscrits au LOF avant de partir dans leurs nouvelles familles.</p>
+                    <p>Nous avons aussi des portées de Mastiffs.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467445/photo-saint_bernard/saint_bernard_2.jpg" alt="Saint-Bernard de l'élevage Du Fort Noir" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery reveal" id="gallery">
+        <div class="container">
+            <h2>Galerie</h2>
+            <div class="gallery-grid">
+                <!-- 15 photos du Cloudinary et Pexels -->
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467443/photo-saint_bernard/saint_bernard_1.jpg" alt="Saint-Bernard 1" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467445/photo-saint_bernard/saint_bernard_2.jpg" alt="Saint-Bernard 2" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467447/photo-saint_bernard/saint_bernard_3.jpg" alt="Saint-Bernard 3" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467449/photo-saint_bernard/saint_bernard_4.jpg" alt="Saint-Bernard 4" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467451/photo-saint_bernard/saint_bernard_5.jpg" alt="Saint-Bernard 5" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467453/photo-saint_bernard/saint_bernard_6.jpg" alt="Saint-Bernard 6" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467455/photo-saint_bernard/saint_bernard_7.jpg" alt="Saint-Bernard 7" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467458/photo-saint_bernard/saint_bernard_8.jpg" alt="Saint-Bernard 8" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467460/photo-saint_bernard/saint_bernard_9.jpg" alt="Saint-Bernard 9" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467462/photo-saint_bernard/saint_bernard_10.jpg" alt="Saint-Bernard 10" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467464/photo-saint_bernard/saint_bernard_11.jpg" alt="Saint-Bernard 11" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467466/photo-saint_bernard/saint_bernard_12.jpg" alt="Saint-Bernard 12" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467467/photo-saint_bernard/saint_bernard_13.jpg" alt="Saint-Bernard 13" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467469/photo-saint_bernard/saint_bernard_14.jpg" alt="Saint-Bernard 14" loading="lazy"></div>
+                <div class="gallery-item"><img src="https://francoislang.github.io/templates/du-fort-noir/" alt="Mastiff" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact reveal" id="contact">
+        <div class="container">
+            <h2>Contactez-nous</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Nos coordonnées</h3>
+                    <p><strong>Téléphone :</strong> <a href="tel:+33646174001">06.46.17.40.01</a></p>
+                    <p><strong>Lieu :</strong> Pas-de-Calais, Saint-Rémy-au-Bois</p>
+                    <p>À seulement 1h15 de Lille.</p>
+                    <p><strong>SIRET :</strong> 521493718</p>
+                </div>
+                <form class="contact-form" action="#" method="POST">
+                    <h3>Envoyez-nous un message</h3>
+                    <div class="form-group">
+                        <input type="text" name="nom" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Mentions légales</a>
+                <a href="#">CGV</a>
+                <a href="#">Politique de confidentialité</a>
+            </div>
+            <p>© 2026 Du Fort Noir, SIRET 521493718, Pas-de-Calais</p>
+        </div>
+    </footer>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Du Fort Noir",
+      "description": "Élevage de Saint-Bernard et Mastiffs situé à Saint-Rémy-au-Bois, Pas-de-Calais. Chiots LOF avec pedigree.",
+      "telephone": "+33646174001",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Saint-Rémy-au-Bois",
+        "addressRegion": "Pas-de-Calais",
+        "addressCountry": "FR"
+      },
+      "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/v1789467443/photo-saint_bernard/saint_bernard_1.jpg",
+      "url": "https://francoislang.github.io/templates/du-fort-noir/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "SIREN",
+        "value": "521493718"
+      }
+    }
+    </script>
+
+    <script>
+        // Header scroll behavior using IntersectionObserver
+        const heroSection = document.querySelector('.hero');
+        const header = document.querySelector('.header');
+        const headerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    header.classList.remove('header-scrolled');
+                } else {
+                    header.classList.add('header-scrolled');
+                }
+            });
+        }, { threshold: 0 });
+        if (heroSection && header) {
+            headerObserver.observe(heroSection);
+        }
+
+        // Reveal animations on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Contact form submission
+        const contactForm = document.querySelector('.contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Merci pour votre message ! Nous vous contacterons bientôt.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>

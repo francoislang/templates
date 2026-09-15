@@ -1,0 +1,1836 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Des Petits Anges - Élevage Familial de Chihuahuas à Cuges-les-Pins</title>
+    <meta name="description" content="Élevage familial de Chihuahuas merle à Cuges-les-Pins. Chiots sociables, robes magnifiques. Découvrez notre élevage Des Petits Anges et contactez-nous pour les disponibilités.">
+    <meta name="keywords" content="élevage chihuahua, chihuahua merle, Cuges-les-Pins, chiots chihuahua, élevage familial, Des Petits Anges, chien miniature, adoption chihuahua">
+    <meta name="author" content="Des Petits Anges">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="FR-13">
+    <meta name="geo.placename" content="Cuges-les-Pins">
+    <link rel="canonical" href="https://francoislang.github.io/templates/des-petits-anges/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Des Petits Anges - Élevage Familial de Chihuahuas">
+    <meta property="og:description" content="Élevage familial de Chihuahuas merle à Cuges-les-Pins. 4 femelles et 2 mâles. Chiots sociables aux robes magnifiques.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg">
+    <meta property="og:url" content="https://francoislang.github.io/templates/des-petits-anges/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Des Petits Anges">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Des Petits Anges - Élevage de Chihuahuas">
+    <meta name="twitter:description" content="Élevage familial de Chihuahuas merle à Cuges-les-Pins. Chiots sociables aux robes magnifiques.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Des Petits Anges",
+            "description": "Élevage familial de Chihuahuas merle à Cuges-les-Pins. 4 femelles et 2 mâles. Chiots sociables aux robes magnifiques.",
+            "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg",
+            "telephone": "+33661081179",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Cuges-les-Pins",
+                "addressRegion": "Bouches-du-Rhône",
+                "addressCountry": "FR"
+            },
+            "identifier": {
+                "@type": "PropertyValue",
+                "propertyID": "SIREN",
+                "value": "894565043"
+            },
+            "url": "https://francoislang.github.io/templates/des-petits-anges/",
+            "currenciesAccepted": "EUR",
+            "priceRange": "€€"
+        }
+    </script>
+
+    <style>
+        :root {
+            --color-fawn: #C48750;
+            --color-fawn-light: #D9A87C;
+            --color-fawn-pale: #EED5C0;
+            --color-chocolate: #4A2C17;
+            --color-chocolate-light: #6B3F24;
+            --color-cream: #FDF6EF;
+            --color-cream-alt: #F9EDE1;
+            --color-white: #FFFFFF;
+            --color-text: #3D2314;
+            --color-text-light: #7A5F4D;
+            --color-text-muted: #9B8272;
+            --color-border: #E5D3C0;
+            --color-accent-gold: #D4A060;
+            --color-overlay: rgba(42, 20, 8, 0.55);
+            --color-overlay-light: rgba(42, 20, 8, 0.35);
+            --shadow-sm: 0 2px 8px rgba(74, 44, 23, 0.08);
+            --shadow-md: 0 4px 20px rgba(74, 44, 23, 0.12);
+            --shadow-lg: 0 8px 40px rgba(74, 44, 23, 0.16);
+            --shadow-xl: 0 16px 60px rgba(74, 44, 23, 0.20);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-fast: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--color-cream);
+            color: var(--color-text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ========== HEADER / NAVIGATION ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(253, 246, 239, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--color-border);
+            transition: all var(--transition);
+            padding: 0;
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-md);
+            background: rgba(253, 246, 239, 0.97);
+        }
+
+        .header__inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 28px;
+            gap: 20px;
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--color-chocolate);
+            flex-shrink: 0;
+        }
+
+        .header__logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, var(--color-fawn), var(--color-fawn-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--color-white);
+            flex-shrink: 0;
+            box-shadow: 0 3px 10px rgba(196, 135, 80, 0.3);
+        }
+
+        .header__logo-text {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+        }
+        .header__logo-text small {
+            display: block;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 0.65rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-light);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav__list {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .nav__link {
+            display: inline-block;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            border-radius: 25px;
+            transition: all var(--transition-fast);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav__link:hover,
+        .nav__link:focus-visible {
+            color: var(--color-fawn);
+            background: var(--color-fawn-pale);
+            outline: none;
+        }
+
+        .nav__link--cta {
+            background: var(--color-fawn);
+            color: var(--color-white) !important;
+            font-weight: 600;
+            padding: 10px 22px;
+            box-shadow: 0 3px 12px rgba(196, 135, 80, 0.3);
+            margin-left: 8px;
+        }
+        .nav__link--cta:hover {
+            background: var(--color-chocolate-light) !important;
+            color: var(--color-white) !important;
+            box-shadow: 0 6px 20px rgba(74, 44, 23, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            transition: background var(--transition-fast);
+        }
+        .hamburger:hover {
+            background: var(--color-fawn-pale);
+        }
+        .hamburger__line {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--color-chocolate);
+            border-radius: 3px;
+            transition: all var(--transition);
+        }
+        .hamburger.active .hamburger__line:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .hamburger.active .hamburger__line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active .hamburger__line:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--color-chocolate);
+            margin-top: 0;
+        }
+
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background-image: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg');
+            background-size: cover;
+            background-position: center 35%;
+            background-repeat: no-repeat;
+            transform: scale(1.05);
+            animation: heroZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes heroZoom {
+            0% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1.15);
+            }
+        }
+
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(180deg,
+                    var(--color-overlay) 0%,
+                    rgba(42, 20, 8, 0.45) 40%,
+                    var(--color-overlay) 100%);
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            color: var(--color-white);
+            max-width: 800px;
+            padding: 40px 28px;
+        }
+
+        .hero__badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero__title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+            animation: fadeInUp 0.8s ease-out 0.15s both;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.35);
+        }
+        .hero__title span {
+            color: var(--color-fawn-light);
+            display: inline-block;
+        }
+
+        .hero__subtitle {
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: 32px;
+            letter-spacing: 0.03em;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.45s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            cursor: pointer;
+            border: none;
+            transition: all var(--transition);
+            font-family: 'Raleway', sans-serif;
+            white-space: nowrap;
+        }
+        .btn--primary {
+            background: var(--color-fawn);
+            color: var(--color-white);
+            box-shadow: 0 6px 25px rgba(196, 135, 80, 0.4);
+        }
+        .btn--primary:hover {
+            background: var(--color-accent-gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(196, 135, 80, 0.5);
+        }
+        .btn--outline {
+            background: transparent;
+            color: var(--color-white);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+        }
+        .btn--outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--color-white);
+            transform: translateY(-3px);
+        }
+        .btn--dark {
+            background: var(--color-chocolate);
+            color: var(--color-white);
+            box-shadow: 0 6px 25px rgba(74, 44, 23, 0.35);
+        }
+        .btn--dark:hover {
+            background: var(--color-chocolate-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(74, 44, 23, 0.45);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: bounceDown 2s ease-in-out infinite;
+            cursor: pointer;
+        }
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .scroll-indicator__arrow {
+            width: 28px;
+            height: 28px;
+            border-right: 2px solid rgba(255, 255, 255, 0.8);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.8);
+            transform: rotate(45deg);
+        }
+        @keyframes bounceDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ========== SECTIONS ========== */
+        .section {
+            padding: 90px 28px;
+        }
+        .section--cream {
+            background: var(--color-cream);
+        }
+        .section--alt {
+            background: var(--color-cream-alt);
+        }
+        .section--white {
+            background: var(--color-white);
+        }
+
+        .section__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        .section__tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-fawn);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .section__title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            color: var(--color-chocolate);
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+        .section__subtitle {
+            font-size: 1.05rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .section__divider {
+            width: 60px;
+            height: 3px;
+            background: var(--color-fawn);
+            margin: 16px auto 0;
+            border-radius: 3px;
+            opacity: 0.7;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            padding: 90px 28px;
+            background: var(--color-white);
+        }
+        .about__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+        .about__image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            aspect-ratio: 4/3;
+        }
+        .about__image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition);
+        }
+        .about__image-wrapper:hover img {
+            transform: scale(1.04);
+        }
+        .about__image-badge {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--color-white);
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--color-chocolate);
+            box-shadow: var(--shadow-md);
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .about__content h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-chocolate);
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+        .about__content p {
+            color: var(--color-text-light);
+            margin-bottom: 14px;
+            line-height: 1.75;
+            font-size: 0.98rem;
+        }
+        .about__info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 24px;
+        }
+        .about__info-card {
+            background: var(--color-cream-alt);
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all var(--transition-fast);
+            border: 1px solid transparent;
+        }
+        .about__info-card:hover {
+            border-color: var(--color-fawn-pale);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+        .about__info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-fawn-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .about__info-card strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-chocolate);
+            margin-bottom: 2px;
+            letter-spacing: 0.02em;
+        }
+        .about__info-card span {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+        }
+
+        /* ========== GALLERY ========== */
+        .gallery {
+            padding: 90px 28px;
+            background: var(--color-cream-alt);
+        }
+        .gallery__inner {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+        .gallery__item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            background: var(--color-white);
+            group: true;
+        }
+        .gallery__item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+        }
+        .gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery__item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery__item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(42, 20, 8, 0.45) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .gallery__item:hover::after {
+            opacity: 1;
+        }
+        .gallery__zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.6);
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--color-chocolate);
+            opacity: 0;
+            transition: all var(--transition);
+            pointer-events: none;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+        .gallery__item:hover .gallery__zoom-icon {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* ========== LIGHTBOX ========== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(20, 10, 4, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            padding: 40px;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lightbox__close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+        .lightbox__close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+        .lightbox__img {
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--radius-md);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform var(--transition);
+        }
+        .lightbox.active .lightbox__img {
+            transform: scale(1);
+        }
+        .lightbox__nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+            z-index: 10;
+        }
+        .lightbox__nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .lightbox__nav--prev {
+            left: 20px;
+        }
+        .lightbox__nav--next {
+            right: 20px;
+        }
+
+        /* ========== CONTACT ========== */
+        .contact {
+            padding: 90px 28px;
+            background: var(--color-white);
+        }
+        .contact__inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .contact__info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-chocolate);
+            margin-bottom: 14px;
+            letter-spacing: 0.02em;
+        }
+        .contact__info p {
+            color: var(--color-text-light);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .contact__detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 14px 18px;
+            background: var(--color-cream-alt);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        .contact__detail:hover {
+            box-shadow: var(--shadow-sm);
+            transform: translateX(4px);
+        }
+        .contact__detail-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--color-fawn-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .contact__detail strong {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--color-chocolate);
+            letter-spacing: 0.02em;
+            margin-bottom: 2px;
+        }
+        .contact__detail span {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+        .contact__detail a {
+            color: var(--color-fawn);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-fast);
+        }
+        .contact__detail a:hover {
+            color: var(--color-chocolate-light);
+        }
+
+        .contact__form-wrapper {
+            background: var(--color-cream-alt);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-border);
+        }
+        .contact__form-wrapper h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-chocolate);
+            margin-bottom: 20px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+        .form__group {
+            margin-bottom: 18px;
+        }
+        .form__label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-chocolate);
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+        .form__input,
+        .form__textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            background: var(--color-white);
+            color: var(--color-text);
+            transition: all var(--transition-fast);
+            resize: vertical;
+        }
+        .form__input:focus,
+        .form__textarea:focus {
+            outline: none;
+            border-color: var(--color-fawn);
+            box-shadow: 0 0 0 4px rgba(196, 135, 80, 0.1);
+            background: #fffdfa;
+        }
+        .form__textarea {
+            min-height: 130px;
+        }
+        .form__submit {
+            width: 100%;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            background: var(--color-fawn);
+            color: var(--color-white);
+            font-family: 'Raleway', sans-serif;
+            transition: all var(--transition);
+            box-shadow: 0 6px 25px rgba(196, 135, 80, 0.3);
+        }
+        .form__submit:hover {
+            background: var(--color-chocolate-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(74, 44, 23, 0.4);
+        }
+        .form__success {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: var(--radius-md);
+            color: #2e7d32;
+            font-weight: 600;
+            margin-top: 16px;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .form__success.visible {
+            display: block;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: var(--color-chocolate);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 50px 28px 28px;
+        }
+        .footer__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer__brand {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 0.03em;
+        }
+        .footer__desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.75;
+            margin-bottom: 8px;
+        }
+        .footer__siret {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            letter-spacing: 0.04em;
+        }
+        .footer__heading {
+            font-weight: 700;
+            color: #fff;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .footer__links {
+            list-style: none;
+        }
+        .footer__links li {
+            margin-bottom: 8px;
+        }
+        .footer__links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+        .footer__links a:hover {
+            color: var(--color-fawn-light);
+        }
+        .footer__bottom {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+        .footer__bottom-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .footer__bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        .footer__bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* ========== SCROLL REVEAL ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ========== MOBILE NAV OVERLAY ========== */
+        .mobile-nav {
+            position: fixed;
+            inset: 0;
+            background: rgba(253, 246, 239, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .mobile-nav.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .mobile-nav__link {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-chocolate);
+            text-decoration: none;
+            padding: 12px 24px;
+            transition: all var(--transition-fast);
+            letter-spacing: 0.03em;
+        }
+        .mobile-nav__link:hover {
+            color: var(--color-fawn);
+        }
+        .mobile-nav__link--cta {
+            background: var(--color-fawn);
+            color: #fff !important;
+            border-radius: 30px;
+            padding: 14px 32px;
+            margin-top: 10px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .about__inner {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .about__image-wrapper {
+                max-width: 550px;
+                margin: 0 auto;
+                aspect-ratio: 16/10;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            .contact__inner {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .footer__inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .header__inner {
+                padding: 10px 18px;
+            }
+            .hero__content {
+                padding: 30px 18px;
+            }
+            .section {
+                padding: 60px 18px;
+            }
+            .about {
+                padding: 60px 18px;
+            }
+            .gallery {
+                padding: 60px 18px;
+            }
+            .contact {
+                padding: 60px 18px;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+            .about__info-cards {
+                grid-template-columns: 1fr;
+            }
+            .footer__inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .about__image-wrapper {
+                aspect-ratio: 4/3;
+            }
+            .lightbox__nav {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
+            }
+            .lightbox__nav--prev {
+                left: 8px;
+            }
+            .lightbox__nav--next {
+                right: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            .hero__title {
+                font-size: 1.8rem;
+            }
+            .hero__subtitle {
+                font-size: 0.95rem;
+            }
+            .btn {
+                padding: 12px 22px;
+                font-size: 0.9rem;
+            }
+            .section__title {
+                font-size: 1.5rem;
+            }
+            .contact__form-wrapper {
+                padding: 24px 18px;
+            }
+            .footer {
+                padding: 36px 18px 20px;
+            }
+            .footer__bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            .footer__bottom-links {
+                justify-content: center;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="header__inner">
+            <a href="#" class="header__logo" aria-label="Des Petits Anges - Accueil">
+                <div class="header__logo-icon">🐾</div>
+                <span class="header__logo-text">
+                    Des Petits Anges
+                    <small>Élevage de Chihuahuas</small>
+                </span>
+            </a>
+            <nav class="nav" aria-label="Navigation principale">
+                <ul class="nav__list">
+                    <li><a href="#accueil" class="nav__link">Accueil</a></li>
+                    <li><a href="#elevage" class="nav__link">L'Élevage</a></li>
+                    <li><a href="#galerie" class="nav__link">Galerie</a></li>
+                    <li><a href="#contact" class="nav__link nav__link--cta">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Menu mobile" aria-expanded="false">
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+                <span class="hamburger__line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== MOBILE NAV ==================== -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#accueil" class="mobile-nav__link" data-mobile-link>Accueil</a>
+        <a href="#elevage" class="mobile-nav__link" data-mobile-link>L'Élevage</a>
+        <a href="#galerie" class="mobile-nav__link" data-mobile-link>Galerie</a>
+        <a href="#contact" class="mobile-nav__link mobile-nav__link--cta" data-mobile-link>Contact</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="accueil">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__overlay" aria-hidden="true"></div>
+        <div class="hero__content">
+            <p class="hero__badge">🐕 Élevage Familial • Cuges-les-Pins</p>
+            <h1 class="hero__title">Des Petits <span>Anges</span></h1>
+            <p class="hero__subtitle">Élevage passionné de Chihuahuas merle — Des robes d'exception,<br>des tempéraments en or, pour des familles qui cherchent un compagnon unique.</p>
+            <div class="hero__actions">
+                <a href="#galerie" class="btn btn--primary">🌟 Voir nos Chihuahuas</a>
+                <a href="#contact" class="btn btn--outline">📞 Nous Contacter</a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true" onclick="document.getElementById('elevage').scrollIntoView({behavior:'smooth'})">
+            <span>Découvrir</span>
+            <div class="scroll-indicator__arrow"></div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT / L'ÉLEVAGE ==================== -->
+    <section class="about" id="elevage">
+        <div class="about__inner">
+            <div class="about__image-wrapper reveal">
+                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_8.jpg" alt="Chihuahua merle de l'élevage Des Petits Anges" loading="lazy">
+                <div class="about__image-badge">🐾 Élevage Familial</div>
+            </div>
+            <div class="about__content reveal reveal-delay-2">
+                <p class="section__tag">Notre Histoire</p>
+                <h3>Un élevage familial<br>passionné par le Chihuahua</h3>
+                <p>
+                    L'élevage <strong>Des Petits Anges</strong> est un élevage familial de Chihuahuas composé de <strong>4 femelles et 2 mâles</strong>. J'ai choisi d'élever du merle, car je désire privilégier les robes plutôt qu'une inscription au Livre des Origines Français (LOF).
+                </p>
+                <p>
+                    Je pense en effet que les adoptants préféreront un <strong>joli chien très sociable</strong> plutôt qu'un chien de concours (c'est bien aussi, mais ce n'est pas mon but). Chaque chiot est élevé avec amour, dans un environnement familial chaleureux.
+                </p>
+                <p>
+                    N'hésitez pas à me contacter pour en savoir plus sur mon élevage et pour connaître les disponibilités.
+                </p>
+                <div class="about__info-cards">
+                    <div class="about__info-card">
+                        <div class="about__info-icon">📍</div>
+                        <div>
+                            <strong>Localisation</strong>
+                            <span>Cuges-les-Pins, Bouches-du-Rhône</span>
+                        </div>
+                    </div>
+                    <div class="about__info-card">
+                        <div class="about__info-icon">🐕</div>
+                        <div>
+                            <strong>Composition</strong>
+                            <span>4 femelles &bull; 2 mâles</span>
+                        </div>
+                    </div>
+                    <div class="about__info-card">
+                        <div class="about__info-icon">🎨</div>
+                        <div>
+                            <strong>Robe</strong>
+                            <span>Merle — des couleurs uniques</span>
+                        </div>
+                    </div>
+                    <div class="about__info-card">
+                        <div class="about__info-icon">💛</div>
+                        <div>
+                            <strong>Philosophie</strong>
+                            <span>Sociabilité & beauté avant tout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section class="gallery" id="galerie">
+        <div class="gallery__inner">
+            <div class="section__header reveal">
+                <p class="section__tag">Notre Tribu</p>
+                <h2 class="section__title">Galerie de Nos Chihuahuas</h2>
+                <p class="section__subtitle">Découvrez en images nos adorables compagnons aux robes merle uniques. Cliquez sur une photo pour l'agrandir.</p>
+                <div class="section__divider"></div>
+            </div>
+            <div class="gallery__grid" id="galleryGrid">
+                <!-- 15 photos - generated via JS for cleanliness, but hardcoded for reliability -->
+                <div class="gallery__item reveal reveal-delay-1" data-index="0">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_1.jpg" alt="Chihuahua merle - Des Petits Anges 1" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-1" data-index="1">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_2.jpg" alt="Chihuahua merle - Des Petits Anges 2" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-index="2">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_3.jpg" alt="Chihuahua merle - Des Petits Anges 3" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-index="3">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_4.jpg" alt="Chihuahua merle - Des Petits Anges 4" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-index="4">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_5.jpg" alt="Chihuahua merle - Des Petits Anges 5" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-3" data-index="5">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_6.jpg" alt="Chihuahua merle - Des Petits Anges 6" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-3" data-index="6">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_7.jpg" alt="Chihuahua merle - Des Petits Anges 7" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-3" data-index="7">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_8.jpg" alt="Chihuahua merle - Des Petits Anges 8" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-4" data-index="8">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_9.jpg" alt="Chihuahua merle - Des Petits Anges 9" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-4" data-index="9">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_10.jpg" alt="Chihuahua merle - Des Petits Anges 10" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-4" data-index="10">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_11.jpg" alt="Chihuahua merle - Des Petits Anges 11" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-5" data-index="11">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_12.jpg" alt="Chihuahua merle - Des Petits Anges 12" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-5" data-index="12">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_13.jpg" alt="Chihuahua merle - Des Petits Anges 13" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-5" data-index="13">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_14.jpg" alt="Chihuahua merle - Des Petits Anges 14" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+                <div class="gallery__item reveal" data-index="14">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-chihuahua/chihuahua_15.jpg" alt="Chihuahua merle - Des Petits Anges 15" loading="lazy">
+                    <div class="gallery__zoom-icon">🔍</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Fermer">✕</button>
+        <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" aria-label="Image précédente">◀</button>
+        <img class="lightbox__img" id="lightboxImg" src="" alt="Agrandissement photo Chihuahua">
+        <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" aria-label="Image suivante">▶</button>
+    </div>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="contact" id="contact">
+        <div class="section__header reveal">
+            <p class="section__tag">Parlons-nous</p>
+            <h2 class="section__title">Contactez Notre Élevage</h2>
+            <p class="section__subtitle">Une question sur nos chiots, les disponibilités ou l'élevage ? Écrivez-nous, nous vous répondrons avec plaisir.</p>
+            <div class="section__divider"></div>
+        </div>
+        <div class="contact__inner">
+            <div class="contact__info reveal reveal-delay-1">
+                <h3>Nos Coordonnées</h3>
+                <p>N'hésitez pas à nous joindre directement par téléphone ou via le formulaire de contact. Nous sommes situés à Cuges-les-Pins, dans les Bouches-du-Rhône.</p>
+                <div class="contact__detail">
+                    <div class="contact__detail-icon">📞</div>
+                    <div>
+                        <strong>Téléphone</strong>
+                        <span><a href="tel:+33661081179">06.61.08.11.79</a></span>
+                    </div>
+                </div>
+                <div class="contact__detail">
+                    <div class="contact__detail-icon">📍</div>
+                    <div>
+                        <strong>Adresse</strong>
+                        <span>Cuges-les-Pins, Bouches-du-Rhône (13)</span>
+                    </div>
+                </div>
+                <div class="contact__detail">
+                    <div class="contact__detail-icon">🏷️</div>
+                    <div>
+                        <strong>SIREN</strong>
+                        <span>894565043</span>
+                    </div>
+                </div>
+                <div class="contact__detail">
+                    <div class="contact__detail-icon">🐕</div>
+                    <div>
+                        <strong>Race</strong>
+                        <span>Chihuahua — Robe Merle</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact__form-wrapper reveal reveal-delay-2" id="contactFormWrapper">
+                <h3>Envoyez-nous un message</h3>
+                <form id="contactForm" novalidate>
+                    <div class="form__group">
+                        <label class="form__label" for="name">Votre nom *</label>
+                        <input type="text" class="form__input" id="name" name="name" placeholder="Ex: Marie Dupont" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="email">Votre email *</label>
+                        <input type="email" class="form__input" id="email" name="email" placeholder="Ex: marie@email.fr" required>
+                    </div>
+                    <div class="form__group">
+                        <label class="form__label" for="message">Votre message *</label>
+                        <textarea class="form__textarea" id="message" name="message" placeholder="Parlez-nous de votre projet d'adoption, vos questions..." required></textarea>
+                    </div>
+                    <button type="submit" class="form__submit">✉️ Envoyer le message</button>
+                </form>
+                <div class="form__success" id="formSuccess">
+                    ✅ Merci ! Votre message a bien été envoyé. Nous vous répondrons dans les plus brefs délais.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div>
+                <div class="footer__brand">Des Petits Anges</div>
+                <p class="footer__desc">Élevage familial de Chihuahuas merle à Cuges-les-Pins. Passion, amour et respect de la race.</p>
+                <p class="footer__siret">SIRET : 894565043</p>
+            </div>
+            <div>
+                <h4 class="footer__heading">Navigation</h4>
+                <ul class="footer__links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#elevage">L'Élevage</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer__heading">Informations</h4>
+                <ul class="footer__links">
+                    <li><a href="#mentions-legales" class="legal-link" data-legal="mentions">Mentions Légales</a></li>
+                    <li><a href="#cgv" class="legal-link" data-legal="cgv">CGV</a></li>
+                    <li><a href="#confidentialite" class="legal-link" data-legal="confidentialite">Politique de Confidentialité</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <span>© 2026 Des Petits Anges — Tous droits réservés</span>
+            <div class="footer__bottom-links">
+                <span>📍 Cuges-les-Pins</span>
+                <span>📞 06.61.08.11.79</span>
+                <a href="#mentions-legales" class="legal-link" data-legal="mentions">Mentions légales</a>
+                <a href="#cgv" class="legal-link" data-legal="cgv">CGV</a>
+                <a href="#confidentialite" class="legal-link" data-legal="confidentialite">Politique confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== LEGAL MODAL ==================== -->
+    <div class="lightbox" id="legalModal" style="z-index: 10000;">
+        <button class="lightbox__close" id="legalModalClose" aria-label="Fermer">✕</button>
+        <div style="background:#fff;max-width:700px;width:90%;max-height:80vh;overflow-y:auto;padding:36px 28px;border-radius:16px;color:#3D2314;font-family:'Raleway',sans-serif;line-height:1.7;font-size:0.9rem;" id="legalModalContent"></div>
+    </div>
+
+    <script>
+        (function() {
+            // ============ HEADER SCROLL ============
+            const header = document.getElementById('header');
+            const scrollThreshold = 60;
+
+            function updateHeader() {
+                if (window.scrollY > scrollThreshold) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', updateHeader, { passive: true });
+            updateHeader();
+
+            // ============ MOBILE MENU ============
+            const hamburger = document.getElementById('hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+            let menuOpen = false;
+
+            function openMenu() {
+                menuOpen = true;
+                hamburger.classList.add('active');
+                mobileNav.classList.add('active');
+                hamburger.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                menuOpen = false;
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            function toggleMenu() {
+                if (menuOpen) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            }
+
+            hamburger.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    closeMenu();
+                });
+            });
+            mobileNav.addEventListener('click', function(e) {
+                if (e.target === mobileNav) closeMenu();
+            });
+
+            // ============ LIGHTBOX GALLERY ============
+            const galleryItems = document.querySelectorAll('.gallery__item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            let currentIndex = 0;
+            const galleryImages = Array.from(galleryItems).map(item => item.querySelector('img').src);
+
+            function openLightbox(index) {
+                currentIndex = index;
+                lightboxImg.src = galleryImages[currentIndex];
+                lightboxImg.alt = `Chihuahua merle - Des Petits Anges - Photo ${currentIndex + 1}`;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                lightboxImg.style.transform = 'scale(0.9)';
+                requestAnimationFrame(() => {
+                    lightboxImg.style.transform = 'scale(1)';
+                });
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                lightboxImg.style.transform = 'scale(0.9)';
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentIndex];
+                lightboxImg.alt = `Chihuahua merle - Des Petits Anges - Photo ${currentIndex + 1}`;
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                lightboxImg.src = galleryImages[currentIndex];
+                lightboxImg.alt = `Chihuahua merle - Des Petits Anges - Photo ${currentIndex + 1}`;
+            }
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => openLightbox(index));
+                // Keyboard accessibility
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('role', 'button');
+                item.setAttribute('aria-label', `Agrandir la photo ${index + 1}`);
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+            });
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPrev);
+            lightboxNext.addEventListener('click', showNext);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (!lightbox.classList.contains('active')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+
+            // ============ LEGAL MODAL ============
+            const legalModal = document.getElementById('legalModal');
+            const legalModalClose = document.getElementById('legalModalClose');
+            const legalModalContent = document.getElementById('legalModalContent');
+            const legalLinks = document.querySelectorAll('.legal-link');
+
+            const legalTexts = {
+                mentions: `
+                    <h2 style="font-family:'Cinzel',serif;color:#4A2C17;margin-bottom:16px;">Mentions Légales</h2>
+                    <p><strong>Éditeur du site :</strong> Des Petits Anges</p>
+                    <p><strong>Forme juridique :</strong> Élevage familial</p>
+                    <p><strong>SIREN :</strong> 894565043</p>
+                    <p><strong>Adresse :</strong> Cuges-les-Pins, Bouches-du-Rhône (13), France</p>
+                    <p><strong>Téléphone :</strong> 06.61.08.11.79</p>
+                    <p><strong>Email :</strong> 06.61.08.11.79</p>
+                    <hr style="margin:16px 0;border-color:#E5D3C0;">
+                    <p><strong>Hébergement :</strong> Cloudinary (images) — Site statique</p>
+                    <p><strong>Directeur de publication :</strong> Le responsable de l'élevage Des Petits Anges</p>
+                    <p>Conformément à la loi, les informations présentées sur ce site sont données à titre indicatif. Pour toute question, veuillez nous contacter directement.</p>
+                `,
+                cgv: `
+                    <h2 style="font-family:'Cinzel',serif;color:#4A2C17;margin-bottom:16px;">Conditions Générales de Vente (CGV)</h2>
+                    <p><strong>1. Objet :</strong> Les présentes CGV régissent les relations entre l'élevage Des Petits Anges et les adoptants de chiots Chihuahua.</p>
+                    <p><strong>2. Réservation :</strong> Toute réservation fait l'objet d'un contrat écrit et d'un acompte. Les chiots sont cédés identifiés, vaccinés et socialisés.</p>
+                    <p><strong>3. Prix :</strong> Les prix sont communiqués sur demande. Ils incluent l'identification, le carnet de santé et les premiers vaccins.</p>
+                    <p><strong>4. Engagement :</strong> L'adoptant s'engage à offrir des conditions de vie adaptées au chiot. L'élevage reste disponible pour tout conseil après l'adoption.</p>
+                    <p><strong>5. Droit de rétractation :</strong> Conformément à la législation en vigueur. Pour plus de détails, contactez-nous.</p>
+                    <p style="margin-top:12px;"><em>Pour obtenir la version complète des CGV, merci de nous contacter directement.</em></p>
+                `,
+                confidentialite: `
+                    <h2 style="font-family:'Cinzel',serif;color:#4A2C17;margin-bottom:16px;">Politique de Confidentialité</h2>
+                    <p><strong>1. Collecte des données :</strong> Les données personnelles (nom, email, message) collectées via le formulaire de contact sont utilisées exclusivement pour répondre aux demandes.</p>
+                    <p><strong>2. Utilisation :</strong> Aucune donnée n'est vendue, échangée ou transmise à des tiers sans consentement explicite.</p>
+                    <p><strong>3. Cookies :</strong> Ce site n'utilise pas de cookies de tracking. Seuls des cookies techniques essentiels peuvent être utilisés.</p>
+                    <p><strong>4. Droits :</strong> Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Contactez-nous pour exercer ces droits.</p>
+                    <p><strong>5. Contact :</strong> Pour toute question relative à la confidentialité : 06.61.08.11.79</p>
+                `
+            };
+
+            function openLegalModal(type) {
+                legalModalContent.innerHTML = legalTexts[type] || '';
+                legalModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLegalModal() {
+                legalModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            legalLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const type = this.getAttribute('data-legal');
+                    if (type && legalTexts[type]) {
+                        openLegalModal(type);
+                    }
+                });
+            });
+
+            legalModalClose.addEventListener('click', closeLegalModal);
+            legalModal.addEventListener('click', function(e) {
+                if (e.target === legalModal) closeLegalModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && legalModal.classList.contains('active')) {
+                    closeLegalModal();
+                }
+            });
+
+            // ============ CONTACT FORM ============
+            const contactForm = document.getElementById('contactForm');
+            const formSuccess = document.getElementById('formSuccess');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (!name || !email || !message) {
+                    // Simple validation - highlight empty fields
+                    ['name', 'email', 'message'].forEach(fieldId => {
+                        const field = document.getElementById(fieldId);
+                        if (!field.value.trim()) {
+                            field.style.borderColor = '#e57373';
+                            field.style.boxShadow = '0 0 0 4px rgba(229,115,115,0.1)';
+                            setTimeout(() => {
+                                field.style.borderColor = '';
+                                field.style.boxShadow = '';
+                            }, 2000);
+                        }
+                    });
+                    return;
+                }
+
+                // Email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    const emailField = document.getElementById('email');
+                    emailField.style.borderColor = '#e57373';
+                    emailField.style.boxShadow = '0 0 0 4px rgba(229,115,115,0.1)';
+                    setTimeout(() => {
+                        emailField.style.borderColor = '';
+                        emailField.style.boxShadow = '';
+                    }, 2000);
+                    return;
+                }
+
+                // Simulate submission
+                const submitBtn = contactForm.querySelector('.form__submit');
+                submitBtn.textContent = '⏳ Envoi en cours...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.pointerEvents = 'none';
+
+                setTimeout(() => {
+                    formSuccess.classList.add('visible');
+                    contactForm.reset();
+                    submitBtn.textContent = '✉️ Envoyer le message';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.pointerEvents = '';
+
+                    // Scroll to success message
+                    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                    // Hide success after 6 seconds
+                    setTimeout(() => {
+                        formSuccess.classList.remove('visible');
+                    }, 6000);
+                }, 1200);
+            });
+
+            // ============ INTERSECTION OBSERVER (Scroll Reveal) ============
+            const revealElements = document.querySelectorAll('.reveal');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -60px 0px',
+                threshold: 0.12
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // ============ SMOOTH SCROLL FOR ALL ANCHOR LINKS ============
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#mentions-legales' || href === '#cgv' || href ===
+                        '#confidentialite') {
+                        return; // handled by legal modal
+                    }
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const headerHeight = header.offsetHeight + 10;
+                        const targetPosition = target.getBoundingClientRect().top + window
+                            .pageYOffset - headerHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ============ ACTIVE NAV LINK ON SCROLL ============
+            const sections = document.querySelectorAll('section[id]');
+            const navLinksAll = document.querySelectorAll('.nav__link:not(.nav__link--cta)');
+
+            function updateActiveNavLink() {
+                let currentSectionId = '';
+                const scrollPos = window.scrollY + 150;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        currentSectionId = '#' + section.id;
+                    }
+                });
+
+                navLinksAll.forEach(link => {
+                    link.style.color = '';
+                    link.style.background = '';
+                    if (link.getAttribute('href') === currentSectionId) {
+                        link.style.color = 'var(--color-fawn)';
+                        link.style.fontWeight = '600';
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+            updateActiveNavLink();
+
+            console.log('🐾 Des Petits Anges — Site prêt ! Élevage familial de Chihuahuas à Cuges-les-Pins.');
+            console.log('📸 15 photos dans la galerie | 📞 06.61.08.11.79 | 🏷️ SIREN 894565043');
+        })();
+    </script>
+</body>
+</html>
