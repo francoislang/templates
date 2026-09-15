@@ -1,1602 +1,860 @@
 <!DOCTYPE html>
-<html lang="fr-CA">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>North Star Bully's | Élevage d'American Bully</title>
-    <meta name="description" content="North Star Bully's - Élevage passionné d'American Bully de haute qualité. Chiens sains, équilibrés et au tempérament exceptionnel. Découvrez nos chiots disponibles.">
-    <meta name="keywords" content="American Bully, élevage, chiens, North Star Bully's, chiots, American Bully Québec, élevage canin">
-    <meta name="author" content="North Star Bully's">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://francoislang.github.io/templates/north-star-bully-s/">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="fr_CA">
-    <meta property="og:title" content="North Star Bully's | Élevage d'American Bully">
-    <meta property="og:description" content="North Star Bully's - Élevage passionné dédié à l'American Bully de haute qualité. Découvrez nos chiots disponibles.">
-    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://francoislang.github.io/templates/north-star-bully-s/">
-    <meta property="og:site_name" content="North Star Bully's">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="North Star Bully's | Élevage d'American Bully">
-    <meta name="twitter:description" content="Élevage passionné d'American Bully de haute qualité. Chiens sains, équilibrés et au tempérament exceptionnel.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='48'>🐾</text></svg>">
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --color-dark: #1a1a1a;
-            --color-dark-secondary: #252525;
-            --color-gold: #b8944b;
-            --color-gold-light: #d4b870;
-            --color-gold-pale: #e8d9b8;
-            --color-cream: #faf7f1;
-            --color-cream-dark: #f0ece3;
-            --color-white: #ffffff;
-            --color-gray: #5c5c5c;
-            --color-gray-light: #8a8a8a;
-            --color-border: #e0d9cc;
-            --color-overlay: rgba(10, 10, 10, 0.55);
-            --color-overlay-light: rgba(20, 20, 20, 0.35);
-            --transition-smooth: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 6px 28px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.14);
-            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.18);
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 16px;
-            --max-width: 1280px;
-            --header-height: 80px;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--color-cream);
-            color: var(--color-dark);
-            line-height: 1.7;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
-
-        /* ============ HEADER / NAV ============ */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(26, 26, 26, 0.92);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all var(--transition-smooth);
-            height: var(--header-height);
-        }
-
-        .header.scrolled {
-            background: rgba(20, 20, 20, 0.97);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .header__inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .header__logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--color-white);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.35rem;
-            letter-spacing: 0.06em;
-            transition: color var(--transition-smooth);
-            white-space: nowrap;
-        }
-
-        .header__logo:hover {
-            color: var(--color-gold-light);
-        }
-
-        .header__logo-icon {
-            font-size: 1.6rem;
-            color: var(--color-gold);
-            transition: transform var(--transition-bounce);
-        }
-
-        .header__logo:hover .header__logo-icon {
-            transform: rotate(-15deg) scale(1.15);
-        }
-
-        .header__nav {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .header__nav-link {
-            text-decoration: none;
-            color: var(--color-white);
-            font-family: 'Raleway', sans-serif;
-            font-weight: 500;
-            font-size: 0.95rem;
-            letter-spacing: 0.03em;
-            position: relative;
-            padding: 6px 0;
-            transition: color var(--transition-smooth);
-        }
-
-        .header__nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--color-gold);
-            border-radius: 2px;
-            transition: width var(--transition-smooth);
-        }
-
-        .header__nav-link:hover,
-        .header__nav-link:focus-visible {
-            color: var(--color-gold-light);
-        }
-
-        .header__nav-link:hover::after,
-        .header__nav-link:focus-visible::after {
-            width: 100%;
-        }
-
-        .header__phone {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--color-gold-light);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: color var(--transition-smooth);
-            white-space: nowrap;
-        }
-
-        .header__phone:hover {
-            color: var(--color-white);
-        }
-
-        .header__phone-icon {
-            font-size: 1.1rem;
-        }
-
-        /* Mobile menu */
-        .header__burger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 8px;
-            z-index: 1001;
-        }
-
-        .header__burger span {
-            display: block;
-            width: 26px;
-            height: 2.5px;
-            background: var(--color-white);
-            border-radius: 3px;
-            transition: all var(--transition-smooth);
-        }
-
-        .header__burger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .header__burger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .header__burger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
-
-        /* ============ HERO ============ */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background-color: var(--color-dark);
-            padding-top: var(--header-height);
-        }
-
-        .hero__bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .hero__bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 30%;
-        }
-
-        .hero__overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(10, 10, 10, 0.65) 0%,
-                    rgba(15, 15, 15, 0.5) 40%,
-                    rgba(10, 10, 10, 0.7) 100%);
-            z-index: 1;
-        }
-
-        .hero__content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 40px 24px;
-        }
-
-        .hero__badge {
-            display: inline-block;
-            background: var(--color-gold);
-            color: var(--color-dark);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 0.12em;
-            padding: 10px 22px;
-            border-radius: 50px;
-            margin-bottom: 28px;
-            text-transform: uppercase;
-        }
-
-        .hero__title {
-            font-family: 'Cinzel', serif;
-            font-weight: 800;
-            font-size: clamp(2.6rem, 6vw, 4.8rem);
-            color: var(--color-white);
-            letter-spacing: 0.04em;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero__title span {
-            color: var(--color-gold-light);
-            display: block;
-            font-size: 0.45em;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            margin-top: 4px;
-        }
-
-        .hero__subtitle {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 400;
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 36px;
-            line-height: 1.6;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero__cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--color-gold);
-            color: var(--color-dark);
-            font-family: 'Raleway', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.04em;
-            padding: 16px 36px;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all var(--transition-smooth);
-            border: 2px solid var(--color-gold);
-            cursor: pointer;
-        }
-
-        .hero__cta:hover {
-            background: transparent;
-            color: var(--color-gold-light);
-            border-color: var(--color-gold-light);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .hero__scroll-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.75rem;
-            letter-spacing: 0.06em;
-            animation: floatDown 2.2s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        .hero__scroll-indicator span {
-            font-size: 1.4rem;
-        }
-
-        @keyframes floatDown {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(12px);
-            }
-        }
-
-        /* ============ SECTIONS ============ */
-        .section {
-            padding: 90px 24px;
-            position: relative;
-        }
-
-        .section__inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-        }
-
-        .section__header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section__tag {
-            display: inline-block;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 0.1em;
-            color: var(--color-gold);
-            text-transform: uppercase;
-            margin-bottom: 12px;
-        }
-
-        .section__title {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: clamp(2rem, 4vw, 3rem);
-            color: var(--color-dark);
-            letter-spacing: 0.03em;
-            line-height: 1.2;
-        }
-
-        .section__title--light {
-            color: var(--color-white);
-        }
-
-        .section__divider {
-            width: 60px;
-            height: 3px;
-            background: var(--color-gold);
-            margin: 16px auto 0;
-            border-radius: 3px;
-        }
-
-        /* ============ ABOUT ============ */
-        .about {
-            background-color: var(--color-white);
-        }
-
-        .about__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about__image-wrapper {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            aspect-ratio: 4/3;
-        }
-
-        .about__image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-        }
-
-        .about__image-wrapper:hover img {
-            transform: scale(1.04);
-        }
-
-        .about__image-badge {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: var(--color-gold);
-            color: var(--color-dark);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            padding: 8px 18px;
-            border-radius: 50px;
-        }
-
-        .about__content {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .about__heading {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 2rem;
-            color: var(--color-dark);
-            letter-spacing: 0.03em;
-        }
-
-        .about__text {
-            font-size: 1.05rem;
-            color: var(--color-gray);
-            line-height: 1.8;
-        }
-
-        .about__features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin-top: 10px;
-        }
-
-        .about__feature {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 14px 16px;
-            background: var(--color-cream);
-            border-radius: var(--radius-md);
-            border-left: 3px solid var(--color-gold);
-        }
-
-        .about__feature-icon {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-            color: var(--color-gold);
-        }
-
-        .about__feature-text {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--color-dark);
-            line-height: 1.4;
-        }
-
-        /* ============ GALLERY ============ */
-        .gallery {
-            background-color: var(--color-dark-secondary);
-        }
-
-        .gallery__grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .gallery__item {
-            position: relative;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 4/3;
-            background: #1a1a1a;
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-smooth);
-        }
-
-        .gallery__item:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .gallery__item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .gallery__item:hover img {
-            transform: scale(1.08);
-        }
-
-        .gallery__item-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background var(--transition-smooth);
-            pointer-events: none;
-        }
-
-        .gallery__item:hover .gallery__item-overlay {
-            background: rgba(0, 0, 0, 0.35);
-        }
-
-        .gallery__item-icon {
-            color: white;
-            font-size: 2.5rem;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all var(--transition-bounce);
-        }
-
-        .gallery__item:hover .gallery__item-icon {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* ============ LIGHTBOX ============ */
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.92);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox__img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-xl);
-            object-fit: contain;
-            cursor: default;
-            animation: zoomIn 0.35s ease;
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.85);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .lightbox__close {
-            position: absolute;
-            top: 20px;
-            right: 28px;
-            font-size: 2.5rem;
-            color: white;
-            cursor: pointer;
-            z-index: 10000;
-            background: none;
-            border: none;
-            transition: color var(--transition-smooth);
-            line-height: 1;
-            padding: 10px;
-        }
-
-        .lightbox__close:hover {
-            color: var(--color-gold-light);
-        }
-
-        .lightbox__prev,
-        .lightbox__next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 2.2rem;
-            color: white;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-smooth);
-            z-index: 10000;
-        }
-
-        .lightbox__prev:hover,
-        .lightbox__next:hover {
-            background: var(--color-gold);
-            color: var(--color-dark);
-        }
-        .lightbox__prev {
-            left: 20px;
-        }
-        .lightbox__next {
-            right: 20px;
-        }
-
-        /* ============ CONTACT ============ */
-        .contact {
-            background-color: var(--color-white);
-        }
-
-        .contact__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: start;
-        }
-
-        .contact__info {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .contact__info-heading {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--color-dark);
-            letter-spacing: 0.03em;
-        }
-
-        .contact__info-item {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-size: 1rem;
-            color: var(--color-gray);
-        }
-
-        .contact__info-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--color-cream);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            color: var(--color-gold);
-        }
-
-        .contact__info-link {
-            color: var(--color-dark);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color var(--transition-smooth);
-        }
-
-        .contact__info-link:hover {
-            color: var(--color-gold);
-        }
-
-        .contact__form-wrapper {
-            background: var(--color-cream);
-            border-radius: var(--radius-lg);
-            padding: 36px 32px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .contact__form-title {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin-bottom: 24px;
-            color: var(--color-dark);
-        }
-
-        .contact__form {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .contact__field {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .contact__label {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--color-dark);
-            letter-spacing: 0.02em;
-        }
-
-        .contact__input,
-        .contact__textarea {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.95rem;
-            padding: 13px 16px;
-            border: 2px solid var(--color-border);
-            border-radius: var(--radius-sm);
-            background: var(--color-white);
-            color: var(--color-dark);
-            transition: all var(--transition-smooth);
-            outline: none;
-            resize: vertical;
-            width: 100%;
-        }
-
-        .contact__input:focus,
-        .contact__textarea:focus {
-            border-color: var(--color-gold);
-            box-shadow: 0 0 0 4px rgba(184, 148, 75, 0.1);
-        }
-
-        .contact__textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
-
-        .contact__submit {
-            font-family: 'Raleway', sans-serif;
-            font-weight: 700;
-            font-size: 1rem;
-            letter-spacing: 0.04em;
-            padding: 15px 32px;
-            background: var(--color-gold);
-            color: var(--color-dark);
-            border: 2px solid var(--color-gold);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all var(--transition-smooth);
-            align-self: flex-start;
-            text-transform: uppercase;
-        }
-
-        .contact__submit:hover {
-            background: var(--color-dark);
-            color: var(--color-gold-light);
-            border-color: var(--color-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .contact__success {
-            display: none;
-            padding: 16px 20px;
-            background: #e8f5e9;
-            color: #2e7d32;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            text-align: center;
-            margin-top: 12px;
-        }
-
-        .contact__success.visible {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        /* ============ FOOTER ============ */
-        .footer {
-            background: var(--color-dark);
-            color: rgba(255, 255, 255, 0.8);
-            padding: 48px 24px 28px;
-        }
-
-        .footer__inner {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-        }
-
-        .footer__top {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-        }
-
-        .footer__brand {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--color-white);
-            letter-spacing: 0.05em;
-        }
-
-        .footer__brand span {
-            color: var(--color-gold-light);
-            font-size: 0.5em;
-            display: block;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            margin-top: 2px;
-        }
-
-        .footer__social {
-            display: flex;
-            gap: 14px;
-        }
-
-        .footer__social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-white);
-            text-decoration: none;
-            transition: all var(--transition-smooth);
-            font-size: 1.1rem;
-        }
-
-        .footer__social-link:hover {
-            background: var(--color-gold);
-            color: var(--color-dark);
-            transform: translateY(-3px);
-        }
-
-        .footer__bottom {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            font-size: 0.85rem;
-        }
-
-        .footer__copyright {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer__links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .footer__links a {
-            color: rgba(255, 255, 255, 0.65);
-            text-decoration: none;
-            transition: color var(--transition-smooth);
-            font-size: 0.85rem;
-        }
-
-        .footer__links a:hover {
-            color: var(--color-gold-light);
-        }
-
-        .footer__separator {
-            color: rgba(255, 255, 255, 0.25);
-            user-select: none;
-        }
-
-        /* ============ SCROLL ANIMATIONS (IntersectionObserver) ============ */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 {
-            transition-delay: 0.1s;
-        }
-        .reveal-delay-2 {
-            transition-delay: 0.2s;
-        }
-        .reveal-delay-3 {
-            transition-delay: 0.3s;
-        }
-        .reveal-delay-4 {
-            transition-delay: 0.4s;
-        }
-        .reveal-delay-5 {
-            transition-delay: 0.5s;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 1024px) {
-            .about__grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
-            .about__image-wrapper {
-                max-width: 550px;
-                margin: 0 auto;
-            }
-            .contact__grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
-            }
-            .gallery__grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header__nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: rgba(20, 20, 20, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                gap: 28px;
-                padding: 40px;
-                transition: right 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-                backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
-                z-index: 1000;
-            }
-            .header__nav.active {
-                right: 0;
-            }
-            .header__burger {
-                display: flex;
-            }
-            .header__phone {
-                display: none;
-            }
-            .header__phone-mobile {
-                display: flex;
-                margin-top: 8px;
-            }
-            .hero__title {
-                font-size: 2.2rem;
-            }
-            .gallery__grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .about__features {
-                grid-template-columns: 1fr;
-            }
-            .footer__bottom {
-                flex-direction: column;
-                text-align: center;
-                gap: 12px;
-            }
-            .footer__top {
-                flex-direction: column;
-                text-align: center;
-            }
-            .section {
-                padding: 60px 16px;
-            }
-            .lightbox__prev {
-                left: 8px;
-            }
-            .lightbox__next {
-                right: 8px;
-            }
-            .lightbox__prev,
-            .lightbox__next {
-                width: 38px;
-                height: 38px;
-                font-size: 1.6rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery__grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .hero__cta {
-                padding: 14px 28px;
-                font-size: 0.9rem;
-            }
-            .contact__form-wrapper {
-                padding: 24px 18px;
-            }
-            .header__logo {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": "North Star Bully's",
-            "description": "North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament exceptionnel.",
-            "telephone": "+1-514-562-7133",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Québec",
-                "addressRegion": "QC",
-                "addressCountry": "CA"
-            },
-            "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg",
-            "url": "https://francoislang.github.io/templates/north-star-bully-s/",
-            "openingHours": "Mo-Su 09:00-18:00",
-            "priceRange": "$$",
-            "sameAs": [
-                "https://francoislang.github.io/templates/north-star-bully-s/",
-                "https://francoislang.github.io/templates/north-star-bully-s/"
-            ]
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>North Star Bully's — Élevage American Bully | Élevage de chiens</title>
+  <meta name="description" content="North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Chiots sains, équilibrés et au tempérament exceptionnel.">
+  <meta property="og:type"        content="website">
+  
+  <meta property="og:title"       content="North Star Bully's — American Bully">
+  <meta property="og:description" content="North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Chiots sains, équilibrés et au tempérament exceptionnel.">
+  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
+
+  <script type="application/ld+json"
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness","AnimalShelter"],
+    "name": "North Star Bully's",
+    "description": "North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament exceptionnel.",
+    
+    "telephone": "514-562-7133",
+    "address": {
+      "@type": "PostalAddress",
+      
+      "addressLocality": "Élevage de chiens",
+      "addressRegion": "Élevage de chiens",
+      "addressCountry": "FR"
+    }
+    
+    
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ony:  #1e1e2a;
+      --gld:  #b8a99a;
+      --amb:  #8b7d6b;
+      --crm:  #f4f2ed;
+      --bg:   #f4f2ed;
+      --stn:  #9a9690;
+      --txt:  #1a1816;
+      --FD:   'Cinzel', serif;
+      --FN:   'Raleway', sans-serif;
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #b8a99a 0%, #d4cbc0 45%, #9a8d7e 100%);
+    }
+
+    *, **::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .6rem; font-weight: 700;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--gld);
+      margin-bottom: 1rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--gld); opacity: .5;
+    }
+    .sec__head { text-align: center; margin-bottom: 4rem; }
+    .sec__head::after { content: '◆'; display: block; color: var(--gld); font-size: .5rem; letter-spacing: .5em; margin-top: 1.2rem; opacity: .45; }
+    .sec__title { font-family: var(--FD); font-size: clamp(1.9rem, 3.8vw, 3rem); font-weight: 600; color: var(--ony); line-height: 1.1; letter-spacing: .03em; }
+    .sec__title em { font-style: italic; color: var(--amb); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-family: var(--FN); font-size: .92rem; color: var(--stn); line-height: 1.85; font-weight: 300; }
+    .sec__head--light .sec__title { color: var(--crm); }
+    .sec__head--light .sec__sub { color: rgba(244,242,237,.55); }
+    .sec__head--light::after { opacity: .3; }
+
+    .btn { display: inline-block; padding: .8rem 2.2rem; font-family: var(--FN); font-weight: 600; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; transition: background .25s, color .25s, transform .18s, box-shadow .25s; border-radius: var(--r); }
+    .btn--gold { background: var(--gld-gradient); color: var(--ony); box-shadow: 0 4px 20px rgba(168,158,138,.35); }
+    .btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(168,158,138,.5); filter: brightness(1.08); }
+    .btn--dark { background: var(--ony); color: var(--crm); border: 1px solid rgba(168,158,138,.25); }
+    .btn--dark:hover { background: #2a2824; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,24,22,.4); border-color: var(--gld); }
+    .btn--outline { background: transparent; color: var(--crm); border: 1px solid rgba(168,158,138,.5); }
+    .btn--outline:hover { background: rgba(168,158,138,.12); border-color: var(--gld); transform: translateY(-2px); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav); background: rgba(26,24,22,.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(168,158,138,.15); display: flex; align-items: center; padding: 0 4vw; transition: box-shadow .3s, border-color .3s; }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); border-bottom-color: rgba(168,158,138,.3); }
+    .nav__logo { font-family: var(--FD); font-size: 1.05rem; font-weight: 600; color: var(--gld); line-height: 1.1; margin-right: auto; letter-spacing: .06em; }
+    .nav__logo span { display: block; font-family: var(--FN); font-size: .55rem; font-weight: 500; color: rgba(244,242,237,.45); letter-spacing: .26em; text-transform: uppercase; margin-top: .15rem; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a { font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(244,242,237,.7); transition: color .2s; position: relative; }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gld); transition: width .25s; }
+    .nav__links > li > a:hover { color: var(--gld); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.2rem; }
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--gld); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile { display: none; position: fixed; inset: 0; z-index: 90; background: var(--ony); padding: calc(var(--nav) + 1.5rem) 2rem 2rem; flex-direction: column; gap: .2rem; overflow-y: auto; }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(244,242,237,.7); padding: .85rem 0; border-bottom: 1px solid rgba(168,158,138,.1); transition: color .2s; }
+    .nav__mobile a:hover { color: var(--gld); }
+
+    /* ── HERO ── */
+    .hero { position: relative; height: 100svh; min-height: 640px; display: flex; align-items: center; justify-content: center; margin-top: var(--nav); overflow: hidden; }
+    .hero__bg { position: absolute; inset: 0; background: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg') center/cover no-repeat; transform: scale(1.06); transition: transform 12s ease; }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    .hero__over { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(26,24,22,.9) 0%, rgba(26,24,22,.74) 40%, rgba(26,24,22,.87) 100%); }
+    .hero__grain { position: absolute; inset: 0; opacity: .04; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .hero__deco-left, .hero__deco-right { position: absolute; top: 50%; width: 1px; height: 35%; background: linear-gradient(to bottom, transparent, rgba(168,158,138,.4), transparent); transform: translateY(-50%); }
+    .hero__deco-left { left: 5vw; } .hero__deco-right { right: 5vw; }
+    .hero__content { position: relative; z-index: 1; color: var(--crm); text-align: center; padding: 0 1.5rem; max-width: 820px; }
+    .hero__eyebrow { font-family: var(--FN); font-size: .62rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--gld); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .hero__eyebrow::before, .hero__eyebrow::after { content: ''; display: block; width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--gld)); }
+    .hero__eyebrow::after { background: linear-gradient(to left, transparent, var(--gld)); }
+    .hero__title-wrap { position: relative; display: inline-block; padding: 1.6rem 2.8rem; margin-bottom: 1.4rem; }
+    .hero__title-wrap::before, .hero__title-wrap::after { content: ''; position: absolute; width: 50px; height: 50px; border-color: rgba(168,158,138,.55); border-style: solid; }
+    .hero__title-wrap::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+    .hero__title-wrap::after { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+    .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { position: absolute; width: 50px; height: 50px; border-color: rgba(168,158,138,.55); border-style: solid; }
+    .hero__title-wrap .corner-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .hero__title-wrap .corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .hero__title { font-family: var(--FD); font-size: clamp(2rem, 5.5vw, 5rem); font-weight: 600; line-height: 1.05; background: var(--gld-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: .04em; }
+    .hero__subtitle { font-family: var(--FN); font-size: .7rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: rgba(244,242,237,.55); margin-bottom: 1.6rem; }
+    .hero__sub { font-size: clamp(.88rem, 1.5vw, 1rem); font-weight: 300; color: rgba(244,242,237,.78); line-height: 1.82; max-width: 540px; margin: 0 auto 2.6rem; }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(244,242,237,.35); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+    .hero__scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(168,158,138,.5), transparent); animation: scrollLine 2.2s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ── BANDEAU STATS ── */
+    .bandeau { background: var(--ony); color: rgba(244,242,237,.6); display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(168,158,138,.2); border-bottom: 1px solid rgba(168,158,138,.12); }
+    .ban__item { padding: 1.8rem 1rem; text-align: center; border-right: 1px solid rgba(168,158,138,.08); position: relative; }
+    .ban__item:last-child { border-right: none; }
+    .ban__item::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 28px; height: 1px; background: var(--gld); opacity: .5; }
+    .ban__n { font-family: var(--FD); font-size: 1.5rem; font-weight: 600; color: var(--gld); line-height: 1; margin-bottom: .4rem; letter-spacing: .04em; }
+    .ban__l { font-family: var(--FN); font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .5; }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 4vw; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 540px; }
+    .about__main { position: absolute; left: 0; top: 0; width: 70%; height: 78%; border-radius: var(--r); overflow: hidden; box-shadow: 0 28px 70px rgba(26,24,22,.22); border: 1px solid rgba(168,158,138,.15); }
+    .about__accent { position: absolute; right: 0; bottom: 0; width: 46%; height: 50%; border-radius: var(--r); overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,.18); border: 3px solid var(--bg); outline: 1px solid rgba(168,158,138,.2); }
+    .about__medal { position: absolute; right: 3%; top: 30%; z-index: 2; width: 80px; height: 80px; border-radius: 50%; background: var(--gld-gradient); color: var(--ony); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(168,158,138,.5); font-family: var(--FD); font-size: .78rem; font-weight: ﻿700; text-align: center; line-height: 1.2; letter-spacing: .04em; }
+    .about__medal small { font-family: var(--FN); font-size: .42rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: .2rem; opacity: .75; }
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 600; margin-bottom: 1.4rem; line-height: 1.15; letter-spacing: .03em; }
+    .about__text h2 em { font-style: italic; color: var(--amb); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #6b5f55; line-height: 1.9; margin-bottom: 1.1rem; font-size: .95rem; }
+    .about__list { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .7rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .95rem; font-family: var(--FN); font-size: .9rem; color: #6b5f55; line-height: 1.65; font-weight: 300; }
+    .about__li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gld-gradient); flex-shrink: 0; margin-top: .58rem; box-shadow: 0 0 6px rgba(168,158,138,.5); }
+    .about__li strong { color: var(--ony); font-weight: 600; }
+
+    /* ── RACE ── */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img { position: relative; height: 540px; border-radius: var(--r); overflow: hidden; box-shadow: 0 28px 65px rgba(26,24,22,.18); border: 1px solid rgba(168,158,138,.18); }
+    .race__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,24,22,.35) 0%, transparent 50%); }
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .94rem; line-height: 1.9; color: #6b5f55; margin-bottom: 1rem; }
+    .race__info-box { display: flex; align-items: flex-start; gap: .9rem; background: var(--ony); color: rgba(244,242,237,.8); border-radius: var(--r); padding: 1.3rem 1.5rem; margin: 1.8rem 0; font-family: var(--FN); font-size: .86rem; line-height: 1.75; font-weight: 300; border-left: 2px solid var(--gld); }
+    .race__info-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+    .race__info-box strong { color: var(--gld); font-weight: 600; display: block; margin-bottom: .25rem; font-size: .88rem; letter-spacing: .04em; }
+
+    /* ── GARANTIES ── */
+    .garanties { background: var(--ony); }
+    .garanties .sec__eyebrow { color: var(--gld); }
+    .garanties .sec__eyebrow::before, .garanties .sec__eyebrow::after { background: var(--gld); }
+    .garanties .sec__title { color: var(--crm); }
+    .garanties .sec__title em { color: var(--gld); }
+    .garanties .sec__sub { color: rgba(244,242,237,.5); }
+    .garanties .sec__head::after { opacity: .3; }
+    .gar__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .gar__card { background: rgba(255,255,255,.04); border: 1px solid rgba(168,158,138,.18); border-radius: var(--r); padding: 1.8rem 1.6rem; transition: background .3s, border-color .3s, transform .3s; position: relative; overflow: hidden; }
+    .gar__card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gld-gradient); opacity: 0; transition: opacity .3s; }
+    .gar__card:hover { background: rgba(168,158,138,.07); border-color: rgba(168,158,138,.4); transform: translateY(-3px); }
+    .gar__card:hover::before { opacity: 1; }
+    .gar__ico { width: 42px; height: 42px; margin-bottom: 1.1rem; display: flex; align-items: center; justify-content: center; font-size: ﻿1.3rem; border: 1px solid rgba(168,158,138,.25); border-radius: var(--r); background: rgba(168,158,138,.08); }
+    .gar__title { font-family: var(--FD); font-size: .88rem; font-weight: ﻿600; color: var(--gld); margin-bottom: .5rem; letter-spacing: .04em; }
+    .gar__desc { font-family: var(--FN); font-size: .84rem; font-weight: ﻿300; color: rgba(244,242,237,.6); line-height: ﻿1.75; }
+
+    /* ── REPRODUCTEURS ── */
+    .repro { background: var(--bg); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 2rem; }
+    .dog__card { border-radius: var(--r); overflow: hidden; box-shadow: 0 4px 24px rgba(26,24,22,.08); background: #fff; border: 1px solid rgba(168,158,138,.12); transition: transform .35s, box-shadow .35s, border-color .35s; }
+    .dog__card:hover { transform: translateY(-6px); box-shadow: 0 22px 56px rgba(26,24,22,.15); border-color: rgba(168,158,138,.3); }
+    .dog__img { height: 320px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .7s ease; }
+    .dog__card:hover .dog__img img { transform: scale(1.07); }
+    .dog__over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,24,22,.82) 0%, transparent 55%); }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: ﻿0; padding: 1.5rem 1.6rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.9rem; font-weight: 600; color: var(--crm); line-height: ﻿1; letter-spacing: .04em; }
+    .dog__sex-label { font-family: var(--FN); font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gld); margin-top: .3rem; }
+    .dog__body { padding: 1.4rem ﻿1.6rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: ﻿1rem; }
+    .dog__tag { background: var(--crm); border-radius: 2px; padding: .22rem .75rem; font-family: var(--FN); font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ony); border: 1px solid rgba(168,158,138,.2); }
+    .dog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #8a7a6e; line-height: 1.8; }
+
+    /* ── PORTÉE ── */
+    .portee { background: var(--ony); color: var(--crm); }
+    .portee__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr ﻿1fr; gap: 5rem; align-items: center; }
+    .portee__img { position: relative; height: 460px; border-radius: var(--r); overflow: hidden; border: 1px solid rgba(168,158,138,.2); }
+    .portee__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,24,22,.55), transparent 60%); }
+    .portee__content .sec__eyebrow { justify-content: flex-start; }
+    .portee__content .sec__title { color: var(--crm); text-align: left; }
+    .portee__content .sec__title em { color: var(--gld); }
+    .portee__content p { font-family: var(--FN); font-size: .94rem; font-weight: 300; line-height: 1.88; color: rgba(244,242,237,.68); margin-bottom: 1.1rem; }
+    .portee__timeline { margin: 2rem 0; display: flex; flex-direction: column; gap: .8rem; }
+    .portee__step { display: flex; align-items: flex-start; gap: 1.1rem; }
+    .portee__step-dot { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(168,158,138,.5); display: flex; align-items: center; justify-content: center; font-family: var(--FD); font-size: .85rem; color: var(--gld); flex-shrink: 0; background: rgba(168,158,138,.06); }
+    .portee__step-txt strong { display: block; font-family: var(--FN); font-size: .82rem; font-weight: 700; color: var(--crm); margin-bottom: .12rem; letter-spacing: .05em; }
+    .portee__step-txt span { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: rgba(244,242,237,.5); }
+
+    /* ── GALERIE ── */
+    .galerie { background: var(--bg); }
+    .gal__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .gi { overflow: hidden; border-radius: var(--r); position: relative; cursor: pointer; }
+    .gi img { height: ﻿230px; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: ﻿100%; }
+    .gi:hover img { transform: scale(1.08); }
+    .gi__over { position: absolute; inset: ﻿0; background: rgba(26,24,22,.55); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: ﻿1; }
+    .gi__over span { color: var(--gld); font-family: var(--FD); font-size: 1.6rem; width: 48px; height: 48px; border: 1px solid rgba(168,158,138,.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.96); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: var(--r); border: 1px solid rgba(168,158,138,.2); }
+    #lb-close { position: absolute; top: ﻿1.4rem; right: ﻿1.8rem; color: var(--gld); font-size: ﻿1.6rem; cursor: pointer; opacity: .6; font-family: var(--FD); }
+    #lb-close:hover { opacity: ﻿1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--gld); font-size: 2.4rem; padding: 1.2rem; opacity: .45; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: ﻿1rem; } #lb-next { right: ﻿1rem; }
+
+    /* ── TÉMOIGNAGES ── */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: ﻿1100px; margin: ﻿0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.8rem; }
+    .temo { background: var(--bg); border-radius: var(--r); padding: 2rem; box-shadow: 0 2px 20px rgba(26,24,22,.06); border: 1px solid rgba(168,158,138,.12); position: relative; transition: border-color .3s, box-shadow .3s; }
+    .temo:hover { border-color: rgba(168,158,138,.3); box-shadow: 0 12px 40px rgba(26,24,22,.1); }
+    .temo__quote { font-family: var(--FD); font-size: 3.8rem; color: var(--gld); opacity: .18; position: absolute; top: .5rem; left: 1.4rem; line-height: ﻿1; }
+    .temo__stars { color: var(--gld); font-size: .9rem; margin-bottom: 1.1rem; letter-spacing: .06em; }
+    .temo__text { font-family: var(--FN); font-size: .9rem; font-weight: 300; line-height: 1.85; color: #7a6b5e; margin-bottom: 1.5rem; font-style: italic; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .85rem; }
+    .temo__av { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; border: 1px solid rgba(168,158,138,.2); }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; color: var(--ony); }
+    .temo__dog { font-size: .7rem; color: var(--stn); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.6rem; font-weight: 600; margin-bottom: 1.6rem; line-height: ﻿1.15; letter-spacing: .04em; color: var(--ony); }
+    .cinfo { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .9rem; }
+    .cinfo__ico { width: ﻿40px; height: 40px; border-radius: var(--r); background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; border: 1px solid rgba(168,158,138,.2); }
+    .cinfo__label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #c5bdb3; margin-bottom: .14rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 600; color: var(--ony); }
+    .cinfo__val a:hover { color: var(--amb); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: var(--stn); margin-top: .1rem; }
+    .certif-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--ony); color: rgba(244,242,237,.8); border-radius: 2px; padding: .5rem 1.1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(168,158,138,.25); }
+    .certif-badge span { color: var(--gld); }
+    .contact__form { background: var(--crm); border-radius: var(--r); padding: 2.6rem; border: 1px solid rgba(168,158,138,.15); }
+    .form__title { font-family: var(--FD); font-size: 1.3rem; font-weight: 600; margin-bottom: .4rem; color: var(--ony); letter-spacing: .04em; }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: var(--stn); margin-bottom: 2rem; line-height: ﻿1.65; }
+    .form__section { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--stn); margin: 1.5rem 0 .9rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(26,24,22,.07); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .34rem; margin-bottom: 1rem; }
+    .form__group label { font-family: var(--FN); font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ony); }
+    .form__group input, .form__group select, .form__group textarea { width: 100%; padding: .75rem 1rem; border: 1px solid rgba(26,24,22,.12); border-radius: var(--r); font-family: var(--FN); font-size: .88rem; font-weight: 300; color: var(--ony); background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--gld); box-shadow: 0 0 0 3px rgba(168,158,138,.12); }
+    .form__group textarea { resize: vertical; min-height: 115px; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .95rem; font-size: .78rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .7rem; font-weight: 300; color: #bbb; text-align: center; margin-top: .85rem; line-height: 1.55; }
+
+    /* ── FAQ ── */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(26,24,22,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.2rem 0; font-family: var(--FN); font-weight: 600; font-size: .9rem; letter-spacing: .02em; color: var(--ony); display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color .2s; }
+    .acc__q:hover { color: var(--amb); }
+    .acc__q .arr { font-size: .75rem; color: var(--gld); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.2rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #7a6b5e; line-height: 1.85; }
+    .acc__a.open { display: block; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ony); color: rgba(244,242,237,.45); padding: 4.5rem ﻿4vw 2.2rem; }
+    .footer__wrap { max-width: 1200px; margin: ﻿0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: ﻿3.5rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.2rem; font-weight: 600; color: var(--gld); letter-spacing: .06em; margin-bottom: .55rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-size: .54rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(244,242,237,.25); margin-top: .25rem; }
+    .footer__logo-line { width: 48px; height: 1px; background: linear-gradient(to right, var(--gld), transparent); margin: .8rem 0 1.1rem; }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: ﻿1.78; margin-bottom: .3rem; }
+    .footer__col h4 { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(244,242,237,.7); margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 1px solid rgba(168,158,138,.15); }
+    .footer__col a { display: block; font-family: var(--FN); font-size: .8rem; font-weight: 300; margin-bottom: .42rem; transition: color .2s; }
+    .footer__col a:hover { color: var(--gld); }
+    .footer__bottom { max-width: 1200px; margin: 2.2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(168,158,138,.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .72rem; margin: 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1020px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .portee__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 360px; }
+      .race__img { height: 340px; }
+      .portee__img { height: 300px; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .gar__grid { grid-template-columns: repeat(2,1fr); }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(168,158,138,.08); }
+    }
+    @media (max-width: 700px) {
+      section { padding: 4.5rem 1.4rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 230px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .hero__title-wrap { padding: 1.2rem 1.6rem; }
+      .hero__title-wrap::before, .hero__title-wrap::after, .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { width: 30px; height: 30px; }
+      .hero__deco-left, .hero__deco-right { display: none; }
+    }
+    @media (max-width: 480px) {
+      .gar__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- tracking -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
+  <!-- /tracking -->
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
-    <header class="header" id="header" role="banner">
-        <div class="header__inner">
-            <a href="#hero" class="header__logo" aria-label="North Star Bully's - Accueil">
-                <span class="header__logo-icon">🐾</span>
-                North Star Bully's
-            </a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav__logo">
+    North Star Bully's
+    <span>American Bully · Élevage de chiens</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li><a href="#race">American Bully</a></li>
+    
+    <li><a href="#garanties">Garanties</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--gold nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-            <nav role="navigation" aria-label="Navigation principale">
-                <ul class="header__nav" id="headerNav">
-                    <li><a href="#hero" class="header__nav-link">Accueil</a></li>
-                    <li><a href="#about" class="header__nav-link">À propos</a></li>
-                    <li><a href="#gallery" class="header__nav-link">Galerie</a></li>
-                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
-                </ul>
-            </nav>
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">American Bully</a>
+  
+  <a href="#garanties">Garanties</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--gold" style="margin-top:1.2rem;text-align:center">Nous contacter</a>
+</div>
 
-            <a href="tel:+15145627133" class="header__phone" aria-label="Téléphoner au 514-562-7133">
-                <span class="header__phone-icon">📞</span> 514-562-7133
-            </a>
-
-            <button class="header__burger" id="headerBurger" aria-label="Menu mobile" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </header>
-
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="hero" aria-labelledby="heroTitle">
-        <div class="hero__bg">
-            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
-            alt="American Bully - North Star Bully's"
-            loading="eager"
-            fetchpriority="high">
-        </div>
-        <div class="hero__overlay"></div>
-
-        <div class="hero__content reveal">
-            <span class="hero__badge">Élevage de chiens</span>
-            <h1 class="hero__title" id="heroTitle">
-                North Star Bully's
-                <span>American Bully</span>
-            </h1>
-            <p class="hero__subtitle">
-                Des chiens sains, équilibrés et au tempérament exceptionnel, issus d'un élevage passionné
-                dédié à la race American Bully.
-            </p>
-            <a href="#gallery" class="hero__cta">Découvrir nos chiens</a>
-        </div>
-
-        <div class="hero__scroll-indicator" aria-hidden="true" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
-            <span>↓</span> Défiler
-        </div>
-    </section>
-
-    <!-- ==================== ABOUT ==================== -->
-    <section class="section about" id="about" aria-labelledby="aboutTitle">
-        <div class="section__inner">
-            <div class="about__grid">
-                <div class="about__image-wrapper reveal">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg"
-                    alt="American Bully - Élevage North Star Bully's"
-                    loading="lazy">
-                    <span class="about__image-badge">American Bully</span>
-                </div>
-                <div class="about__content reveal reveal-delay-2">
-                    <h2 class="about__heading" id="aboutTitle">Notre élevage</h2>
-                    <p class="about__text">
-                        North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité.
-                        Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament
-                        exceptionnel, en mettant l'accent sur la qualité de la lignée et le bien-être de nos animaux.
-                    </p>
-                    <p class="about__text">
-                        Chaque portée est soigneusement planifiée pour offrir des petits robustes et bien
-                        socialisés, prêts à rejoindre leur nouvelle famille. Pour plus d'informations ou pour
-                        découvrir nos chiots disponibles, n'hésitez pas à nous contacter.
-                    </p>
-                    <div class="about__features">
-                        <div class="about__feature reveal reveal-delay-3">
-                            <span class="about__feature-icon">🏆</span>
-                            <span class="about__feature-text">Lignée de haute qualité</span>
-                        </div>
-                        <div class="about__feature reveal reveal-delay-3">
-                            <span class="about__feature-icon">❤️</span>
-                            <span class="about__feature-text">Bien-être animal prioritaire</span>
-                        </div>
-                        <div class="about__feature reveal reveal-delay-4">
-                            <span class="about__feature-icon">🐶</span>
-                            <span class="about__feature-text">Chiots bien socialisés</span>
-                        </div>
-                        <div class="about__feature reveal reveal-delay-4">
-                            <span class="about__feature-icon">🩺</span>
-                            <span class="about__feature-text">Suivi vétérinaire rigoureux</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== GALLERY ==================== -->
-    <section class="section gallery" id="gallery" aria-labelledby="galleryTitle">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__tag">Galerie photo</span>
-                <h2 class="section__title section__title--light" id="galleryTitle">Nos American Bully</h2>
-                <div class="section__divider"></div>
-            </div>
-
-            <div class="gallery__grid" id="galleryGrid">
-                <!-- 13 photos -->
-                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
-                    alt="American Bully 1 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg"
-                    alt="American Bully 2 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg"
-                    alt="American Bully 3 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg"
-                    alt="American Bully 4 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg"
-                    alt="American Bully 5 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg"
-                    alt="American Bully 6 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg"
-                    alt="American Bully 7 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg"
-                    alt="American Bully 8 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg"
-                    alt="American Bully 9 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg"
-                    alt="American Bully 10 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg"
-                    alt="American Bully 11 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg"
-                    alt="American Bully 12 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg">
-                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg"
-                    alt="American Bully 14 - North Star Bully's" loading="lazy">
-                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== LIGHTBOX ==================== -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button class="lightbox__close" id="lightboxClose" aria-label="Fermer la lightbox">&times;</button>
-        <button class="lightbox__prev" id="lightboxPrev" aria-label="Image précédente">❮</button>
-        <button class="lightbox__next" id="lightboxNext" aria-label="Image suivante">❯</button>
-        <img class="lightbox__img" id="lightboxImg" src="" alt="">
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <div class="hero__deco-left"></div>
+  <div class="hero__deco-right"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">Élevage de chiens</div>
+    <div class="hero__title-wrap">
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <h1 class="hero__title">North Star Bully's</h1>
     </div>
-
-    <!-- ==================== CONTACT ==================== -->
-    <section class="section contact" id="contact" aria-labelledby="contactTitle">
-        <div class="section__inner">
-            <div class="section__header reveal">
-                <span class="section__tag">Nous joindre</span>
-                <h2 class="section__title" id="contactTitle">Contactez-nous</h2>
-                <div class="section__divider"></div>
-            </div>
-
-            <div class="contact__grid">
-                <div class="contact__info reveal">
-                    <h3 class="contact__info-heading">North Star Bully's</h3>
-                    <p style="color:var(--color-gray);line-height:1.7;">
-                        Élevage de chiens spécialisé dans l'American Bully. Situé au Québec,
-                        nous sommes disponibles pour répondre à toutes vos questions.
-                    </p>
-                    <div class="contact__info-item">
-                        <span class="contact__info-icon">📞</span>
-                        <div>
-                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Téléphone</span>
-                            <a href="tel:+15145627133" class="contact__info-link">514-562-7133</a>
-                        </div>
-                    </div>
-                    <div class="contact__info-item">
-                        <span class="contact__info-icon">📍</span>
-                        <div>
-                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Lieu</span>
-                            <span class="contact__info-link">Élevage de chiens – Québec, Canada</span>
-                        </div>
-                    </div>
-                    <div class="contact__info-item">
-                        <span class="contact__info-icon">🐾</span>
-                        <div>
-                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Race</span>
-                            <span class="contact__info-link">American Bully</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact__form-wrapper reveal reveal-delay-2">
-                    <h3 class="contact__form-title">Envoyez-nous un message</h3>
-                    <form class="contact__form" id="contactForm" novalidate>
-                        <div class="contact__field">
-                            <label class="contact__label" for="contactName">Nom complet *</label>
-                            <input class="contact__input" type="text" id="contactName" name="name"
-                            placeholder="Votre nom" required autocomplete="name">
-                        </div>
-                        <div class="contact__field">
-                            <label class="contact__label" for="contactEmail">Adresse courriel *</label>
-                            <input class="contact__input" type="email" id="contactEmail" name="email"
-                            placeholder="votre@courriel.com" required autocomplete="email">
-                        </div>
-                        <div class="contact__field">
-                            <label class="contact__label" for="contactMessage">Message *</label>
-                            <textarea class="contact__textarea" id="contactMessage" name="message"
-                            placeholder="Écrivez votre message ici..."
-                        required></textarea>
-                    </div>
-                    <button type="submit" class="contact__submit">Envoyer le message</button>
-                    <div class="contact__success" id="contactSuccess">
-                        ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
-                    </div>
-                </form>
-            </div>
-        </div>
+    <p class="hero__subtitle">Élevage Passionné d'American Bully</p>
+    <p class="hero__sub">North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament exceptionnel, en mettant l'accent sur la qualité de la lignée et le bien-être de nos animaux.</p>
+    <div class="hero__btns">
+      <a href="#contact" class="btn btn--gold">Chiots disponibles</a>
+      <a href="#about" class="btn btn--outline">Découvrir l'élevage</a>
     </div>
+  </div>
+  <div class="hero__scroll">Découvrir</div>
 </section>
 
-<!-- ==================== FOOTER ==================== -->
-<footer class="footer" role="contentinfo">
-    <div class="footer__inner">
-        <div class="footer__top">
-            <div class="footer__brand">
-                North Star Bully's
-                <span>Élevage de chiens</span>
-            </div>
-            <div class="footer__social">
-                <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
-                <a href="#" class="footer__social-link" aria-label="Instagram">📷</a>
-                <a href="tel:5145627133">514-562-7133</a>
-            </div>
-        </div>
-        <div class="footer__bottom">
-            <p class="footer__copyright">
-                &copy; 2026 North Star Bully's — Élevage de chiens
-            </p>
-            <ul class="footer__links">
-                <li><a href="#">Mentions légales</a></li>
-                <li><span class="footer__separator">|</span></li>
-                <li><a href="#">CGV</a></li>
-                <li><span class="footer__separator">|</span></li>
-                <li><a href="#">Politique de confidentialité</a></li>
-            </ul>
-        </div>
+<!-- BANDEAU STATS -->
+<div class="bandeau">
+  <div class="ban__item reveal">
+    <div class="ban__n">American Bully</div>
+    <div class="ban__l">Race élevée</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n">Certifié</div>
+    <div class="ban__l">Éleveur pro</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">LOF</div>
+    <div class="ban__l">Chiots garantis</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n">Élevage de chiens</div>
+    <div class="ban__l">Localisation</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <div class="about__main"">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg" alt="North Star Bully's">
+      </div>
+      
+      <div class="about__accent"">
+        <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg" alt="American Bully">
+      </div>
+      
+      <div class="about__medal">
+        ♦<small>Familial</small>
+      </div>
     </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un élevage passionné,<br><em>dédié à l'American Bully</em></h2>
+      
+        
+          <p>North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Nous nous spécialisons dan la production de chiens sains, équilibrés et au tempérament exceptionnel, en mettant l'accent sur la qualité de la lignée et le bien-être de nos animau. Chaque portée est soigneusement planifiée pour offrir des petits robustes et bien socialisés, prêts à rejoindre leur nouvelle famille.</p>
+        
+      
+      <div class="about__list"">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, socialisés dès la naissance</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé effectués</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Sevrage respectueux</strong> — chiots prêts à partir, jamais trop tôt</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Suivi après adoption</strong> — nous restons disponibles pour vous accompagner</div></div>
+      </div>
+      <a href="#contact" class="btn btn--dark">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- LA RACE -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__img reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg" alt="American Bully">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">L'<em>American Bully</em></h2>
+      <p>L'American Bully est une race reconnue pour son tempérament exceptionnel, sa loyauté et son fort attachement à sa famille. Chaque chien est le fruit d'une sélection rigoureuse pour préserver les meilleures caractéristiques de la race : puissance, équilibre et douceur.</p>
+      <p>Nos reproducteurs sont soigneusement sélectionnés et contrôlés pour vous garantir des chiots sains, équilibrés et conformes au standard de la race.</p>
+      <div class="race__info-box">
+        <div class="race__info-ico">🐾</div>
+        <div>
+          <strong>Élevage responsable</strong>
+          Chez North Star Bully's, nous mettons un point d'honneur à élever nos chiens dans les meilleures conditions, en respectant leur nature et leurs besoins. Chaque chiot quitte notre élevage en pleine santé et prêt à intégrer sa nouvelle famille.
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--gold">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIES -->
+<section class="garanties" id="garanties">
+  <div class="sec__head sec__head--light">
+    <p class="sec__eyebrow">Sérieux &amp; transparence</p>
+    <h2 class="sec__title">Nos <em>Garanties</em></h2>
+    <p class="sec__sub">Chaque chiot North Star Bully's repart avec un accompagnement complet et toutes les garanties d'un élevage sérieux.</p>
+  </div>
+  <div class="gar__grid">
+    <div class="gar__card reveal">
+      <div class="gar__ico">🧬</div>
+      <div class="gar__title">Reproducteurs contrôlés</div>
+      <p class="gar__desc">Nos reproducteurs sont soumis aux tests de santé appropriés à la race afin de dépister les maladies héréditaires et garantir des chiots sains.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.08s">
+      <div class="gar__ico">💉</div>
+      <div class="gar__title">Vaccination &amp; vermifugation</div>
+      <p class="gar__desc">Chaque chiot repart vacciné (primo-vaccination complète) et vermifugé selon le protocole vétérinaire, avec son carnet de santé à jour.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.16s">
+      <div class="gar__ico">🍼</div>
+      <div class="gar__title">Sevrage complet</div>
+      <p class="gar__desc">Nos chiots ne quittent leur mère qu'après un sevrage total et respectueux, avec la socialisation nécessaire pour s'adapter à leur nouvelle famille.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.24s">
+      <div class="gar__ico"></div>
+      <div class="gar__title">Identifiction &amp; documents</div>
+      <p class="gar__desc">Chaque chiot est identifié par micropuce et accompagné de son livret de santé officiel, ainsi que des documents de cession requis par la loi françase.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.32s">
+      <div class="gar__ico">🏡</div>
+      <div class="gar__title">Élevé en famille</div>
+      <p class="gar__desc">Nos chiots grandissent au cœur de la vie familiale, socialisés avec les enfants, d'autres animaux et habitués aux sons et situations du quotidien.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.4s">
+      <div class="gar__ico">📞</div>
+      <div class="gar__title">Suivi après adoption</div>
+      <p class="gar__desc">Nous restons disponibles après la remise du chiot pour vous conseiller et vous accompagner tout au long de la vie de votre compagnon.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- PORTÉE / CHIOTS -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <div class="portee__img reveal">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg" alt="Chiots American Bully — North Star Bully's">
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Chiots<br><em>American Bully</em></h2>
+      <p>Pour connaître nos disponibilités actuelles ou vous inscrire sur liste d'attente, contactez-nous directement. Nous prenons le temps de connaître chaque famille afin d'assurer le meilleur accueil pour chaque chiot.</p>
+      <p>Tous nos chiots partent avec leur suivi vétérinaire complet, vaccinés, vermifugés et identifiés.</p>
+      <div class="portee__timeline">
+        <div class="portee__step">
+          <div class="portee__step-dot">1</div>
+          <div class="portee__step-txt"><strong>Premier contact</strong><span>Contactez-nous pour échanger sur vos attentes</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">2</div>
+          <div class="portee__step-txt"><strong>Visite &amp; rencontre</strong><span>Venez rencontrer nos chiens à Élevage de chiens</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">3</div>
+          <div class="portee__step-txt"><strong>Adoption</strong><span>Départ après sevrage complet — avec tous les documents</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--gold">S'inscrire sur liste d'attente</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>American Bullys</em></h2>
+    <p class="sec__sub">La vie chez North Star Bully's — Élevage de chiens.</p>
+  </div>
+  <div class="gal__grid">
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg" alt="American Bully — North Star Bully's" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    
+  </div>
+</section>
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Nous <em>contacter</em></h2>
+    <p class="sec__sub">Pour vous inscrire sur liste d'attente ou poser vos questions, contactez-nous par téléphone ou via le formulaire ci-dessous.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <h3>North Star Bully's</h3>
+      <div class="cinfo">
+        
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Localisation</div>
+            <div class="cinfo__val">Élevage de chiens<br>France</div>
+          </div>
+        </div>
+        
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <div class="cinfo__val"><a href="tel:514-562-7133">514-562-7133</a></div>
+          </div>
+        </div>
+        
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Disponibilités</div>
+            <div class="cinfo__val">Nous contacter</div>
+            <div class="cinfo__sub">Pour connaître les chiots disponibles</div>
+          </div>
+        </div>
+      </div>
+      <div class="certif-badge">
+        <span>✦</span> Élevage familial
+      </div>
+      
+    </div>
+
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Appelez directement au <strong>514-562-7133</strong> ou laissez votre message ici.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
+          </div>
+        </div>
+        <div class="form__section">Votre projet</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="usage">Projet</label>
+            <select id="usage" name="usage">
+              <option value="">— Choisir —</option>
+              <option value="compagnon">Chien de compagnie</option>
+              <option value="famille">Compagnon de famille</option>
+              <option value="sport">Sport canin</option>
+            </select>
+          </div>
+        </div>
+        <div class="form__group">
+          <label for="message">Votre message *</label>
+          <textarea id="message" name="message" required placeholder="Parlez-nous de vous, votre logement, votre expérience avec les chiens…"></textarea>
+        </div>
+        <button type="submit" class="btn btn--gold form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <div class="acc">
+      <button class="acc__q">Puis-je venir visiter l'élevage avant d'adopter ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, les visites sont les bienvenues et nous les encourageons vivement. Rencontrer nos chiens, voir l'environnement dans lequel grandissent nos chiots et échanger avec nous — c'est la meilleure façon de s'assurer que notre élevage correspond à vos attentes. Les visites se font sur rendez-vous à Élevage de chiens. Contactez-nous au 514-562-7133 pour planifier.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot à son départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot repart avec son carnet de santé à jour (vaccins, vermifugations), son certificat d'identification (micropuce), le certificat de cession, ainsi que les résultats des contrôles vétérinaires. Un contrat de vente est signé lors de la remise du chiot.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quel âge a le chiot au moment du départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Nos chiots quittent l'élevage au minimum à 8 semaines révolues, après un sevrage complet et respectueux. Ils sont socialisés, habitués à la vie en famille et prêts à intégrer leur nouveau foyer.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe la réservation ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Après un premier échange et une visite, une fois le chiot attribué, une réservation peut être confirmée. Contactez-nous directement au 514-562-7133 pour connaître les disponibilités et les modalités de réservation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <div class="footer__logo">
+        North Star Bully's
+        <span>Élevage American Bully · Élevage de chiens</span>
+      </div>
+      <div class="footer__logo-line"></div>
+      <p>North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité.</p>
+      <p style="margin-top:.9rem">
+        📞 <a href="tel:514-562-7133" style="transition:color .2s">514-562-7133</a>
+        <br>📍 Élevage de chiens, France
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">American Bully</a>
+      <a href="#garanties">Garanties</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations</h4>
+      
+      <p>Chiots élevés en famille</p>
+      <p>Primo-vaccination incluse</p>
+      <p>Identifiction micropuce</p>
+      
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 North Star Bully's — Élevage American Bully</p>
+    <p>Élevage de chiens · <a href="#" style="color:inherit;text-decoration:underline">Mentions légales</a> · <a href="#" style="color:inherit;text-decoration:underline">CGV</a> · <a href="#" style="color:inherit;text-decoration:underline">Politique confidentialité</a></p>
+ ﻿</div>
 </footer>
 
-<!-- ==================== SCRIPTS ==================== -->
 <script>
-    (function() {
-        // === HEADER SCROLL EFFECT ===
-        const header = document.getElementById('header');
-        let lastScrollY = 0;
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 
-        function handleScroll() {
-            const scrollY = window.scrollY;
-            if (scrollY > 60) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-            lastScrollY = scrollY;
-        }
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
 
-        // === MOBILE BURGER MENU ===
-        const burger = document.getElementById('headerBurger');
-        const nav = document.getElementById('headerNav');
-        const navLinks = nav.querySelectorAll('.header__nav-link');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        burger.addEventListener('click', function() {
-            const isActive = nav.classList.contains('active');
-            burger.classList.toggle('active');
-            nav.classList.toggle('active');
-            burger.setAttribute('aria-expanded', !isActive);
-            document.body.style.overflow = isActive ? '' : 'hidden';
-        });
+  
+  const lb    = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx   = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+  
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                burger.classList.remove('active');
-                nav.classList.remove('active');
-                burger.setAttribute('aria-expanded', 'false');
-                document.body.style.overflow = '';
-            });
-        });
-
-        // === INTERSECTION OBSERVER (Scroll Animations) ===
-        const revealElements = document.querySelectorAll('.reveal');
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px 0px -60px 0px',
-            threshold: 0.12
-        };
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // === LIGHTBOX ===
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxClose = document.getElementById('lightboxClose');
-        const lightboxPrev = document.getElementById('lightboxPrev');
-        const lightboxNext = document.getElementById('lightboxNext');
-        const galleryItems = document.querySelectorAll('.gallery__item');
-        let currentImageIndex = 0;
-        const galleryImages = Array.from(galleryItems).map(item => item.getAttribute('data-src'));
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            lightboxImg.src = galleryImages[currentImageIndex];
-            lightbox.classList.add('active');
-            lightbox.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            updateLightboxButtons();
-        }
-
-        function closeLightbox() {
-            lightbox.classList.remove('active');
-            lightbox.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-            lightboxImg.src = '';
-        }
-
-        function showPrev() {
-            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                lightboxImg.src = galleryImages[currentImageIndex];
-                lightboxImg.style.opacity = '1';
-            }, 150);
-            updateLightboxButtons();
-        }
-
-        function showNext() {
-            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            lightboxImg.style.opacity = '0';
-            setTimeout(() => {
-                lightboxImg.src = galleryImages[currentImageIndex];
-                lightboxImg.style.opacity = '1';
-            }, 150);
-            updateLightboxButtons();
-        }
-
-        function updateLightboxButtons() {
-            lightboxPrev.style.display = galleryImages.length > 1 ? 'flex' : 'none';
-            lightboxNext.style.display = galleryImages.length > 1 ? 'flex' : 'none';
-        }
-
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', () => openLightbox(index));
-        });
-
-        lightboxClose.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeLightbox();
-        });
-
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        lightboxPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showPrev();
-        });
-
-        lightboxNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showNext();
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (!lightbox.classList.contains('active')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
-        });
-
-        // === CONTACT FORM ===
-        const contactForm = document.getElementById('contactForm');
-        const contactSuccess = document.getElementById('contactSuccess');
-
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('contactName').value.trim();
-            const email = document.getElementById('contactEmail').value.trim();
-            const message = document.getElementById('contactMessage').value.trim();
-
-            if (!name || !email || !message) {
-                alert('Veuillez remplir tous les champs obligatoires.');
-                return;
-            }
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Veuillez entrer une adresse courriel valide.');
-                return;
-            }
-
-            // Simulation d'envoi
-            contactSuccess.classList.add('visible');
-            contactForm.reset();
-
-            setTimeout(() => {
-                contactSuccess.classList.remove('visible');
-            }, 5000);
-
-            console.log('Formulaire soumis:', { name, email, message });
-        });
-
-        // === SMOOTH SCROLL POUR LIENS ANCRE (fallback pour anciens navigateurs) ===
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                const target = document.querySelector(targetId);
-                if (target) {
-                    e.preventDefault();
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
-                        headerHeight;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        console.log('🐾 North Star Bully\'s — Site prêt. Élevage d\'American Bully de haute qualité.');
-    })();
+  document.querySelectorAll('.acc__q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.classList.toggle('open');
+      q.nextElementSibling.classList.toggle('open');
+    });
+  });
 </script>
 </body>
 </html>

@@ -1,1741 +1,932 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>De la Basse Terre - Élevage de Cane Corso dans la Sarthe</title>
-    <meta name="description" content="Élevage de la Basse Terre - Élevage familial de Cane Corso basé à Gréez-sur-Roc dans la Sarthe. Chiens élevés à la maison, dans un cadre familial. Découvrez notre passion pour cette race majestueuse.">
-    <meta name="keywords" content="élevage, Cane Corso, chiens, Sarthe, Gréez-sur-Roc, Basse Terre, chiots, Fox Terrier, Poil Lisse, élevage familial">
-    <meta name="author" content="De la Basse Terre">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://francoislang.github.io/templates/de-la-basse-terre/">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="De la Basse Terre - Élevage de Cane Corso">
-    <meta property="og:description" content="Petit élevage familial de Cane Corso basé à Gréez-sur-Roc, dans la Sarthe. Chiens élevés à la maison avec nos enfants.">
-    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg">
-    <meta property="og:url" content="https://francoislang.github.io/templates/de-la-basse-terre/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="De la Basse Terre">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="De la Basse Terre - Élevage de Cane Corso">
-    <meta name="twitter:description" content="Petit élevage familial de Cane Corso basé à Gréez-sur-Roc, dans la Sarthe. Chiens élevés à la maison.">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg">
-
-    <!-- Polices Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "AnimalShelter",
-            "name": "De la Basse Terre",
-            "description": "L'élevage de la Basse Terre est un petit élevage de Cane Corso basé dans la Sarthe, à Gréez-sur-Roc. Nos chiens sont élevés à la maison, avec nos enfants. Nous avons également d'autres animaux.",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Gréez-sur-Roc",
-                "addressRegion": "Sarthe",
-                "addressCountry": "FR"
-            },
-            "telephone": "07.86.90.94.59",
-            "identifier": {
-                "@type": "PropertyValue",
-                "propertyID": "SIREN",
-                "value": "928223577"
-            },
-            "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg",
-            "url": "https://francoislang.github.io/templates/de-la-basse-terre/",
-            "sameAs": [],
-            "knowsAbout": ["Cane Corso", "Fox Terrier à Poil Lisse"],
-            "foundingLocation": "Sarthe, France"
-        }
-    </script>
-
-    <style>
-        :root {
-            --noir-charbon: #1a1510;
-            --marron-profond: #3b2518;
-            --marron-moyen: #5c3a24;
-            --terre-cuite: #8b5e3c;
-            --bronze-dore: #b8894f;
-            --or-pale: #d4a962;
-            --beige-pierre: #e8dcc8;
-            --creme-clair: #f9f5ec;
-            --blanc-casse: #fdfaf6;
-            --gris-ardoise: #4a4a4a;
-            --text-clair: #e0d9ce;
-            --text-fonce: #2c2416;
-            --overlay-noir: rgba(10, 8, 5, 0.7);
-            --overlay-dore: rgba(184, 137, 79, 0.12);
-            --ombre-douce: 0 8px 40px rgba(0, 0, 0, 0.25);
-            --ombre-carte: 0 4px 24px rgba(0, 0, 0, 0.18);
-            --bordure-doree: 1px solid rgba(212, 169, 98, 0.35);
-            --transition-lente: 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
-            --transition-medium: 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Raleway', sans-serif;
-            background-color: var(--creme-clair);
-            color: var(--text-fonce);
-            line-height: 1.7;
-            overflow-x: hidden;
-            letter-spacing: 0.01em;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        .section-titre,
-        .logo-texte,
-        .nav-lien,
-        .hero-titre,
-        .hero-sous-titre,
-        .btn-primaire,
-        .btn-secondaire,
-        .galerie-titre,
-        .contact-titre,
-        .footer-nom {
-            font-family: 'Cinzel', 'Georgia', 'Times New Roman', serif;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-        }
-
-        /* ============ HEADER / NAVIGATION ============ */
-        .site-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(26, 21, 16, 0.88);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(212, 169, 98, 0.2);
-            transition: var(--transition-lente);
-            padding: 0.6rem 0;
-        }
-
-        .site-header.reduit {
-            padding: 0.3rem 0;
-            background: rgba(26, 21, 16, 0.95);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .header-conteneur {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            text-decoration: none;
-            color: var(--or-pale);
-            transition: var(--transition-medium);
-        }
-
-        .logo:hover {
-            color: #e8c97a;
-        }
-
-        .logo-icone {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--bronze-dore);
-            flex-shrink: 0;
-        }
-
-        .logo-texte {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--or-pale);
-            line-height: 1.2;
-            letter-spacing: 0.06em;
-        }
-
-        .logo-texte small {
-            display: block;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 400;
-            letter-spacing: 0.08em;
-            color: var(--beige-pierre);
-            text-transform: uppercase;
-        }
-
-        .nav-liste {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-lien {
-            text-decoration: none;
-            color: var(--beige-pierre);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            transition: var(--transition-medium);
-            position: relative;
-            padding: 0.3rem 0;
-            white-space: nowrap;
-        }
-
-        .nav-lien::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--or-pale);
-            transition: var(--transition-medium);
-            border-radius: 2px;
-        }
-
-        .nav-lien:hover,
-        .nav-lien.actif {
-            color: var(--or-pale);
-        }
-
-        .nav-lien:hover::after,
-        .nav-lien.actif::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            background: var(--bronze-dore);
-            color: #fff !important;
-            padding: 0.55rem 1.3rem !important;
-            border-radius: 50px;
-            font-weight: 600 !important;
-            font-size: 0.8rem !important;
-            letter-spacing: 0.07em !important;
-            transition: var(--transition-medium);
-            box-shadow: 0 4px 16px rgba(184, 137, 79, 0.3);
-        }
-
-        .nav-cta:hover {
-            background: #c9974e;
-            box-shadow: 0 6px 22px rgba(184, 137, 79, 0.45);
-            transform: translateY(-2px);
-            color: #fff !important;
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        /* Menu hamburger mobile */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 1001;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 28px;
-            height: 2.5px;
-            background: var(--or-pale);
-            border-radius: 3px;
-            transition: var(--transition-medium);
-        }
-
-        .menu-toggle.actif span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        .menu-toggle.actif span:nth-child(2) {
-            opacity: 0;
-        }
-        .menu-toggle.actif span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        /* ============ HERO ============ */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            background: var(--noir-charbon);
-        }
-
-        .hero-fond {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .hero-fond img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center 25%;
-            filter: brightness(0.5) saturate(0.85);
-            transform: scale(1.05);
-            transition: transform 8s ease-out;
-        }
-
-        .hero.survol .hero-fond img {
-            transform: scale(1.12);
-        }
-
-        .hero-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg,
-                    rgba(26, 21, 16, 0.55) 0%,
-                    rgba(26, 21, 16, 0.35) 40%,
-                    rgba(26, 21, 16, 0.7) 80%,
-                    rgba(26, 21, 16, 0.9) 100%);
-            z-index: 1;
-        }
-
-        .hero-contenu {
-            position: relative;
-            z-index: 2;
-            max-width: 850px;
-            padding: 2rem;
-            animation: fadeInUp 1.2s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(184, 137, 79, 0.2);
-            border: 1px solid rgba(212, 169, 98, 0.45);
-            color: var(--or-pale);
-            padding: 0.5rem 1.4rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1.8rem;
-            font-family: 'Raleway', sans-serif;
-            backdrop-filter: blur(4px);
-        }
-
-        .hero-titre {
-            font-size: clamp(2.6rem, 6vw, 4.2rem);
-            color: #ffffff;
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.05em;
-        }
-
-        .hero-titre span {
-            color: var(--or-pale);
-            position: relative;
-        }
-
-        .hero-sous-titre {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--beige-pierre);
-            font-weight: 400;
-            margin-bottom: 1rem;
-            letter-spacing: 0.06em;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .hero-localisation {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1rem;
-            color: var(--creme-clair);
-            opacity: 0.85;
-            margin-bottom: 2.5rem;
-            letter-spacing: 0.03em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-localisation .separateur {
-            width: 6px;
-            height: 6px;
-            background: var(--bronze-dore);
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        .hero-boutons {
-            display: flex;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-primaire,
-        .btn-secondaire {
-            display: inline-block;
-            padding: 0.9rem 2.2rem;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            letter-spacing: 0.06em;
-            text-decoration: none;
-            cursor: pointer;
-            transition: var(--transition-medium);
-            text-transform: uppercase;
-            border: none;
-        }
-
-        .btn-primaire {
-            background: var(--bronze-dore);
-            color: #ffffff;
-            box-shadow: 0 6px 24px rgba(184, 137, 79, 0.4);
-            border: 2px solid var(--bronze-dore);
-        }
-
-        .btn-primaire:hover {
-            background: #c9974e;
-            border-color: #c9974e;
-            box-shadow: 0 10px 30px rgba(184, 137, 79, 0.55);
-            transform: translateY(-3px);
-        }
-
-        .btn-secondaire {
-            background: transparent;
-            color: #ffffff;
-            border: 2px solid rgba(255, 255, 255, 0.55);
-            backdrop-filter: blur(4px);
-        }
-
-        .btn-secondaire:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: #ffffff;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-scroll {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--beige-pierre);
-            font-size: 0.7rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            animation: bounceDown 2s ease-in-out infinite;
-            cursor: pointer;
-            font-family: 'Raleway', sans-serif;
-        }
-
-        .hero-scroll span {
-            font-size: 1.4rem;
-        }
-
-        @keyframes bounceDown {
-            0%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            50% {
-                transform: translateX(-50%) translateY(12px);
-            }
-        }
-
-        /* ============ SECTION PRESENTATION ============ */
-        .presentation {
-            padding: 6rem 2rem;
-            background: var(--blanc-casse);
-            position: relative;
-        }
-
-        .presentation-conteneur {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .presentation-image {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: var(--ombre-douce);
-            aspect-ratio: 4/3;
-        }
-
-        .presentation-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .presentation-image:hover img {
-            transform: scale(1.04);
-        }
-
-        .presentation-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 3px solid var(--bronze-dore);
-            border-radius: 16px;
-            opacity: 0.25;
-            pointer-events: none;
-        }
-
-        .presentation-texte .section-etiquette {
-            display: inline-block;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--bronze-dore);
-            margin-bottom: 1rem;
-            position: relative;
-            padding-left: 2.5rem;
-        }
-
-        .presentation-texte .section-etiquette::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 28px;
-            height: 2px;
-            background: var(--bronze-dore);
-            border-radius: 1px;
-        }
-
-        .presentation-texte h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            color: var(--noir-charbon);
-            margin-bottom: 1.5rem;
-            line-height: 1.25;
-            letter-spacing: 0.04em;
-        }
-
-        .presentation-texte h2 span {
-            color: var(--bronze-dore);
-        }
-
-        .presentation-texte p {
-            font-size: 1.05rem;
-            color: var(--gris-ardoise);
-            margin-bottom: 1.2rem;
-            line-height: 1.8;
-        }
-
-        .presentation-infos {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-        }
-
-        .info-bloc {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem;
-        }
-
-        .info-icone {
-            font-size: 1.8rem;
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        .info-bloc strong {
-            display: block;
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            color: var(--marron-profond);
-            letter-spacing: 0.04em;
-            margin-bottom: 0.2rem;
-        }
-
-        .info-bloc span {
-            font-size: 0.9rem;
-            color: var(--gris-ardoise);
-        }
-
-        /* ============ SECTION GALERIE ============ */
-        .galerie {
-            padding: 6rem 2rem;
-            background: var(--creme-clair);
-            position: relative;
-        }
-
-        .galerie::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(184, 137, 79, 0.3), transparent);
-        }
-
-        .galerie-entete {
-            text-align: center;
-            max-width: 650px;
-            margin: 0 auto 3.5rem;
-        }
-
-        .galerie-entete .section-etiquette {
-            display: inline-block;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--bronze-dore);
-            margin-bottom: 1rem;
-        }
-
-        .galerie-entete h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            color: var(--noir-charbon);
-            margin-bottom: 1rem;
-            letter-spacing: 0.04em;
-        }
-
-        .galerie-entete p {
-            color: var(--gris-ardoise);
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        .galerie-grille {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
-
-        .galerie-item {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            cursor: pointer;
-            aspect-ratio: 4/3;
-            box-shadow: var(--ombre-carte);
-            transition: var(--transition-medium);
-            background: #e0d8cb;
-        }
-
-        .galerie-item:hover {
-            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .galerie-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .galerie-item:hover img {
-            transform: scale(1.08);
-        }
-
-        .galerie-item::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 60%, rgba(26, 21, 16, 0.5) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            pointer-events: none;
-        }
-
-        .galerie-item:hover::after {
-            opacity: 1;
-        }
-
-        /* ============ SECTION CONTACT ============ */
-        .contact {
-            padding: 6rem 2rem;
-            background: var(--noir-charbon);
-            position: relative;
-            color: var(--text-clair);
-        }
-
-        .contact-conteneur {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .contact-infos .section-etiquette {
-            display: inline-block;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--or-pale);
-            margin-bottom: 1rem;
-            padding-left: 2.5rem;
-            position: relative;
-        }
-
-        .contact-infos .section-etiquette::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            width: 28px;
-            height: 2px;
-            background: var(--or-pale);
-            border-radius: 1px;
-        }
-
-        .contact-infos h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 3vw, 2.4rem);
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.04em;
-            line-height: 1.25;
-        }
-
-        .contact-infos h2 span {
-            color: var(--or-pale);
-        }
-
-        .contact-infos p {
-            font-size: 1rem;
-            color: var(--beige-pierre);
-            margin-bottom: 2rem;
-            line-height: 1.7;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.95rem;
-            color: var(--creme-clair);
-        }
-
-        .contact-detail .icone {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .contact-detail a {
-            color: var(--or-pale);
-            text-decoration: none;
-            transition: var(--transition-medium);
-            font-weight: 500;
-        }
-
-        .contact-detail a:hover {
-            color: #e8c97a;
-            text-decoration: underline;
-        }
-
-        .contact-formulaire {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(212, 169, 98, 0.2);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(4px);
-        }
-
-        .contact-formulaire h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-bottom: 1.8rem;
-            letter-spacing: 0.05em;
-        }
-
-        .form-groupe {
-            margin-bottom: 1.3rem;
-        }
-
-        .form-groupe label {
-            display: block;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: var(--beige-pierre);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-groupe input,
-        .form-groupe textarea {
-            width: 100%;
-            padding: 0.85rem 1.2rem;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 10px;
-            color: #ffffff;
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.95rem;
-            transition: var(--transition-medium);
-            resize: vertical;
-            outline: none;
-        }
-
-        .form-groupe input:focus,
-        .form-groupe textarea:focus {
-            border-color: var(--bronze-dore);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 4px rgba(184, 137, 79, 0.1);
-        }
-
-        .form-groupe input::placeholder,
-        .form-groupe textarea::placeholder {
-            color: rgba(255, 255, 255, 0.35);
-        }
-
-        .form-groupe textarea {
-            min-height: 130px;
-        }
-
-        .btn-soumettre {
-            width: 100%;
-            padding: 0.95rem;
-            background: var(--bronze-dore);
-            color: #ffffff;
-            border: none;
-            border-radius: 50px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.07em;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: var(--transition-medium);
-            box-shadow: 0 6px 20px rgba(184, 137, 79, 0.3);
-        }
-
-        .btn-soumettre:hover {
-            background: #c9974e;
-            box-shadow: 0 10px 28px rgba(184, 137, 79, 0.45);
-            transform: translateY(-2px);
-        }
-
-        /* ============ LIGHTBOX ============ */
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            background: rgba(0, 0, 0, 0.92);
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .lightbox.actif {
-            display: flex;
-        }
-
-        .lightbox img {
-            max-width: 90vw;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-            object-fit: contain;
-            cursor: default;
-            animation: zoomIn 0.3s ease;
-        }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .lightbox-fermer {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 2.5rem;
-            color: #fff;
-            cursor: pointer;
-            z-index: 10000;
-            background: none;
-            border: none;
-            transition: var(--transition-medium);
-            line-height: 1;
-        }
-
-        .lightbox-fermer:hover {
-            color: var(--or-pale);
-            transform: scale(1.1);
-        }
-
-        .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 3rem;
-            color: #fff;
-            cursor: pointer;
-            background: none;
-            border: none;
-            z-index: 10000;
-            transition: var(--transition-medium);
-            padding: 1rem;
-            user-select: none;
-        }
-
-        .lightbox-nav:hover {
-            color: var(--or-pale);
-        }
-        .lightbox-prev {
-            left: 1rem;
-        }
-        .lightbox-next {
-            right: 1rem;
-        }
-
-        /* ============ FOOTER ============ */
-        .site-footer {
-            background: #120e0a;
-            color: var(--beige-pierre);
-            padding: 3rem 2rem 1.5rem;
-            border-top: 1px solid rgba(212, 169, 98, 0.15);
-        }
-
-        .footer-conteneur {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .footer-colonne h4 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            color: var(--or-pale);
-            margin-bottom: 1.2rem;
-            letter-spacing: 0.05em;
-        }
-
-        .footer-colonne p,
-        .footer-colonne a {
-            font-size: 0.85rem;
-            color: var(--beige-pierre);
-            line-height: 1.8;
-            text-decoration: none;
-            display: block;
-            transition: var(--transition-medium);
-        }
-
-        .footer-colonne a:hover {
-            color: var(--or-pale);
-            text-decoration: underline;
-        }
-
-        .footer-nom {
-            font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--or-pale);
-            letter-spacing: 0.05em;
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-siren {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.8rem;
-            color: rgba(232, 220, 200, 0.6);
-            letter-spacing: 0.05em;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 1.5rem;
-            text-align: center;
-            font-size: 0.78rem;
-            color: rgba(232, 220, 200, 0.5);
-            letter-spacing: 0.03em;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .footer-bottom a {
-            color: rgba(232, 220, 200, 0.5);
-            text-decoration: none;
-            transition: var(--transition-medium);
-        }
-
-        .footer-bottom a:hover {
-            color: var(--or-pale);
-            text-decoration: underline;
-        }
-
-        .footer-bottom .separateur {
-            color: rgba(255, 255, 255, 0.15);
-        }
-
-        /* ============ ANIMATIONS SCROLL ============ */
-        .anim-scroll {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .anim-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .anim-scroll-gauche {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .anim-scroll-gauche.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-scroll-droite {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .anim-scroll-droite.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .anim-scroll-zoom {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .anim-scroll-zoom.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Délais échelonnés pour la galerie */
-        .galerie-item:nth-child(1) {
-            transition-delay: 0.05s;
-        }
-        .galerie-item:nth-child(2) {
-            transition-delay: 0.1s;
-        }
-        .galerie-item:nth-child(3) {
-            transition-delay: 0.15s;
-        }
-        .galerie-item:nth-child(4) {
-            transition-delay: 0.2s;
-        }
-        .galerie-item:nth-child(5) {
-            transition-delay: 0.25s;
-        }
-        .galerie-item:nth-child(6) {
-            transition-delay: 0.3s;
-        }
-        .galerie-item:nth-child(7) {
-            transition-delay: 0.05s;
-        }
-        .galerie-item:nth-child(8) {
-            transition-delay: 0.1s;
-        }
-        .galerie-item:nth-child(9) {
-            transition-delay: 0.15s;
-        }
-        .galerie-item:nth-child(10) {
-            transition-delay: 0.2s;
-        }
-        .galerie-item:nth-child(11) {
-            transition-delay: 0.25s;
-        }
-        .galerie-item:nth-child(12) {
-            transition-delay: 0.3s;
-        }
-        .galerie-item:nth-child(13) {
-            transition-delay: 0.05s;
-        }
-        .galerie-item:nth-child(14) {
-            transition-delay: 0.1s;
-        }
-
-        /* ============ RESPONSIVE ============ */
-        @media (max-width: 900px) {
-            .presentation-conteneur,
-            .contact-conteneur {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-
-            .presentation-image {
-                order: -1;
-                max-height: 350px;
-            }
-
-            .presentation-infos {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .nav-liste {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 280px;
-                height: 100vh;
-                background: rgba(26, 21, 16, 0.97);
-                flex-direction: column;
-                padding: 6rem 2rem 2rem;
-                gap: 1.5rem;
-                transition: right 0.4s ease;
-                backdrop-filter: blur(20px);
-                z-index: 999;
-                border-left: 1px solid rgba(212, 169, 98, 0.2);
-            }
-
-            .nav-liste.actif {
-                right: 0;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero-boutons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .galerie-grille {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 0.8rem;
-            }
-
-            .lightbox-nav {
-                font-size: 2rem;
-                padding: 0.5rem;
-            }
-            .lightbox-prev {
-                left: 0.3rem;
-            }
-            .lightbox-next {
-                right: 0.3rem;
-            }
-            .lightbox-fermer {
-                top: 1rem;
-                right: 1rem;
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 500px) {
-            .presentation-infos {
-                grid-template-columns: 1fr;
-            }
-            .galerie-grille {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.5rem;
-            }
-            .contact-formulaire {
-                padding: 1.5rem;
-            }
-            .header-conteneur {
-                padding: 0 1rem;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                gap: 0.4rem;
-            }
-            .footer-bottom .separateur {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De la Basse Terre — Élevage Cane Corso & Fox Terrier | Élevage de chiens</title>
+  <meta name="description" content="L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiots sont élevés chez nous, dans notre maison, parmi nos enfants et nos autres animaux.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="De la Basse Terre — Élevage Cane Corso & Fox Terrier">
+  <meta property="og:description" content="L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiots sont élevés chez nous, dans notre maison, parmi nos enfants et nos autres animaux.">
+  <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness","AnimalShelter"],
+    "name": "De la Basse Terre",
+    "description": "L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiots sont élevés chez nous, dans notre maison, parmi nos enfants et nos autres animaux.",
+    "telephone": "07 86 90 94 59",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gréez-sur-Roc",
+      "addressRegion": "Sarthe",
+      "addressCountry": "FR"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ony:  #0d1b2a;
+      --gld:  #c4963a;
+      --amb:  #8b6914;
+      --crm:  #f5f0e6;
+      --bg:   #f5f0e6;
+      --stn:  #8a7e6e;
+      --txt:  #1a1a1a;
+      --FD:   'Cinzel', serif;
+      --FN:   'Raleway', sans-serif;
+      --nav:  72px;
+      --r:    4px;
+      --gld-gradient: linear-gradient(135deg, #c4963a 0%, #e0c87a 45%, #8b6914 100%);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--FN); background: var(--bg); color: var(--txt); overflow-x: hidden; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); }
+    .reveal.on { opacity: 1; transform: none; }
+
+    .sec__eyebrow {
+      display: inline-flex; align-items: center; gap: .8rem;
+      font-family: var(--FN); font-size: .6rem; font-weight: 700;
+      letter-spacing: .26em; text-transform: uppercase; color: var(--gld);
+      margin-bottom: 1rem;
+    }
+    .sec__eyebrow::before, .sec__eyebrow::after {
+      content: ''; display: block; width: 28px; height: 1px;
+      background: var(--gld); opacity: .5;
+    }
+    .sec__head { text-align: center; margin-bottom: 4rem; }
+    .sec__head::after { content: '◆'; display: block; color: var(--gld); font-size: .5rem; letter-spacing: .5em; margin-top: 1.2rem; opacity: .45; }
+    .sec__title { font-family: var(--FD); font-size: clamp(1.9rem, 3.8vw, 3rem); font-weight: 600; color: var(--ony); line-height: 1.1; letter-spacing: .03em; }
+    .sec__title em { font-style: italic; color: var(--amb); }
+    .sec__sub { max-width: 560px; margin: 1rem auto 0; font-family: var(--FN); font-size: .92rem; color: var(--stn); line-height: 1.85; font-weight: 300; }
+    .sec__head--light .sec__title { color: var(--crm); }
+    .sec__head--light .sec__sub { color: rgba(245,237,224,.55); }
+    .sec__head--light::after { opacity: .3; }
+
+    .btn { display: inline-block; padding: .8rem 2.2rem; font-family: var(--FN); font-weight: 600; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; transition: background .25s, color .25s, transform .18s, box-shadow .25s; border-radius: var(--r); }
+    .btn--gold { background: var(--gld-gradient); color: var(--ony); box-shadow: 0 4px 20px rgba(196,150,58,.35); }
+    .btn--gold:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(196,150,58,.5); filter: brightness(1.08); }
+    .btn--dark { background: var(--ony); color: var(--crm); border: 1px solid rgba(196,150,58,.25); }
+    .btn--dark:hover { background: #1a2e42; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(13,27,42,.4); border-color: var(--gld); }
+    .btn--outline { background: transparent; color: var(--crm); border: 1px solid rgba(196,150,58,.5); }
+    .btn--outline:hover { background: rgba(196,150,58,.12); border-color: var(--gld); transform: translateY(-2px); }
+
+    /* ── NAV ── */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav); background: rgba(13,27,42,.96); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(196,150,58,.15); display: flex; align-items: center; padding: 0 4vw; transition: box-shadow .3s, border-color .3s; }
+    nav.scrolled { box-shadow: 0 4px 32px rgba(0,0,0,.5); border-bottom-color: rgba(196,150,58,.3); }
+    .nav__logo { font-family: var(--FD); font-size: 1.05rem; font-weight: 600; color: var(--gld); line-height: 1.1; margin-right: auto; letter-spacing: .06em; }
+    .nav__logo span { display: block; font-family: var(--FN); font-size: .55rem; font-weight: 500; color: rgba(245,240,230,.45); letter-spacing: .26em; text-transform: uppercase; margin-top: .15rem; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; }
+    .nav__links > li > a { font-size: .65rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: rgba(245,240,230,.7); transition: color .2s; position: relative; }
+    .nav__links > li > a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gld); transition: width .25s; }
+    .nav__links > li > a:hover { color: var(--gld); }
+    .nav__links > li > a:hover::after { width: 100%; }
+    .nav__cta { margin-left: 1.2rem; }
+    .nav__burger { display: none; flex-direction: column; gap: 5px; padding: .5rem; }
+    .nav__burger span { width: 22px; height: 1.5px; background: var(--gld); border-radius: 2px; transition: transform .25s, opacity .25s; }
+    .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav__burger.open span:nth-child(2) { opacity: 0; }
+    .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    .nav__mobile { display: none; position: fixed; inset: 0; z-index: 90; background: var(--ony); padding: calc(var(--nav) + 1.5rem) 2rem 2rem; flex-direction: column; gap: .2rem; overflow-y: auto; }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { font-size: .82rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(245,240,230,.7); padding: .85rem 0; border-bottom: 1px solid rgba(196,150,58,.1); transition: color .2s; }
+    .nav__mobile a:hover { color: var(--gld); }
+
+    /* ── HERO ── */
+    .hero { position: relative; height: 100svh; min-height: 640px; display: flex; align-items: center; justify-content: center; margin-top: var(--nav); overflow: hidden; }
+    .hero__bg { position: absolute; inset: 0; background: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg') center/cover no-repeat; transform: scale(1.06); transition: transform 12s ease; }
+    .hero.loaded .hero__bg { transform: scale(1); }
+    .hero__over { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(13,27,42,.88) 0%, rgba(13,27,42,.72) 40%, rgba(13,27,42,.85) 100%); }
+    .hero__grain { position: absolute; inset: 0; opacity: .04; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+    .hero__deco-left, .hero__deco-right { position: absolute; top: 50%; width: 1px; height: 35%; background: linear-gradient(to bottom, transparent, rgba(196,150,58,.4), transparent); transform: translateY(-50%); }
+    .hero__deco-left { left: 5vw; } .hero__deco-right { right: 5vw; }
+    .hero__content { position: relative; z-index: 1; color: var(--crm); text-align: center; padding: 0 1.5rem; max-width: 820px; }
+    .hero__eyebrow { font-family: var(--FN); font-size: .62rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: var(--gld); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+    .hero__eyebrow::before, .hero__eyebrow::after { content: ''; display: block; width: 48px; height: 1px; background: linear-gradient(to right, transparent, var(--gld)); }
+    .hero__eyebrow::after { background: linear-gradient(to left, transparent, var(--gld)); }
+    .hero__title-wrap { position: relative; display: inline-block; padding: 1.6rem 2.8rem; margin-bottom: 1.4rem; }
+    .hero__title-wrap::before, .hero__title-wrap::after { content: ''; position: absolute; width: 50px; height: 50px; border-color: rgba(196,150,58,.55); border-style: solid; }
+    .hero__title-wrap::before { top: 0; left: 0; border-width: 1px 0 0 1px; }
+    .hero__title-wrap::after { bottom: 0; right: 0; border-width: 0 1px 1px 0; }
+    .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { position: absolute; width: 50px; height: 50px; border-color: rgba(196,150,58,.55); border-style: solid; }
+    .hero__title-wrap .corner-tr { top: 0; right: 0; border-width: 1px 1px 0 0; }
+    .hero__title-wrap .corner-bl { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
+    .hero__title { font-family: var(--FD); font-size: clamp(2.4rem, 6vw, 5.8rem); font-weight: 600; line-height: 1.05; background: var(--gld-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: .04em; }
+    .hero__subtitle { font-family: var(--FN); font-size: .7rem; font-weight: 600; letter-spacing: .32em; text-transform: uppercase; color: rgba(245,240,230,.55); margin-bottom: 1.6rem; }
+    .hero__sub { font-size: clamp(.88rem, 1.5vw, 1rem); font-weight: 300; color: rgba(245,240,230,.78); line-height: 1.82; max-width: 540px; margin: 0 auto 2.6rem; }
+    .hero__btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); color: rgba(245,240,230,.35); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: .5rem; }
+    .hero__scroll::after { content: ''; width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(196,150,58,.5), transparent); animation: scrollLine 2.2s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100%{opacity:0;transform:scaleY(0);transform-origin:top} 50%{opacity:1;transform:scaleY(1)} }
+
+    /* ── BANDEAU STATS ── */
+    .bandeau { background: var(--ony); color: rgba(245,240,230,.6); display: grid; grid-template-columns: repeat(4,1fr); border-top: 1px solid rgba(196,150,58,.2); border-bottom: 1px solid rgba(196,150,58,.12); }
+    .ban__item { padding: 1.8rem 1rem; text-align: center; border-right: 1px solid rgba(196,150,58,.08); position: relative; }
+    .ban__item:last-child { border-right: none; }
+    .ban__item::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 28px; height: 1px; background: var(--gld); opacity: .5; }
+    .ban__n { font-family: var(--FD); font-size: 1.5rem; font-weight: 600; color: var(--gld); line-height: 1; margin-bottom: .4rem; letter-spacing: .04em; }
+    .ban__l { font-family: var(--FN); font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; opacity: .5; }
+
+    /* ── SECTIONS ── */
+    section { padding: 7rem 4vw; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--bg); }
+    .about__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about__imgs { position: relative; height: 540px; }
+    .about__main { position: absolute; left: 0; top: 0; width: 70%; height: 78%; border-radius: var(--r); overflow: hidden; box-shadow: 0 28px 70px rgba(13,27,42,.22); border: 1px solid rgba(196,150,58,.15); }
+    .about__accent { position: absolute; right: 0; bottom: 0; width: 46%; height: 50%; border-radius: var(--r); overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,.18); border: 3px solid var(--bg); outline: 1px solid rgba(196,150,58,.2); }
+    .about__medal { position: absolute; right: 3%; top: 30%; z-index: 2; width: 80px; height: 80px; border-radius: 50%; background: var(--gld-gradient); color: var(--ony); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(196,150,58,.5); font-family: var(--FD); font-size: .78rem; font-weight: 700; text-align: center; line-height: 1.2; letter-spacing: .04em; }
+    .about__medal small { font-family: var(--FN); font-size: .42rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-top: .2rem; opacity: .75; }
+    .about__text h2 { font-family: var(--FD); font-size: clamp(1.6rem, 2.8vw, 2.4rem); font-weight: 600; margin-bottom: 1.4rem; line-height: 1.15; letter-spacing: .03em; }
+    .about__text h2 em { font-style: italic; color: var(--amb); }
+    .about__text p { font-family: var(--FN); font-weight: 300; color: #6b5a4e; line-height: 1.9; margin-bottom: 1.1rem; font-size: .95rem; }
+    .about__list { margin: 1.8rem 0; display: flex; flex-direction: column; gap: .7rem; }
+    .about__li { display: flex; align-items: flex-start; gap: .95rem; font-family: var(--FN); font-size: .9rem; color: #6b5a4e; line-height: 1.65; font-weight: 300; }
+    .about__li-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gld-gradient); flex-shrink: 0; margin-top: .58rem; box-shadow: 0 0 6px rgba(196,150,58,.5); }
+    .about__li strong { color: var(--ony); font-weight: 600; }
+
+    /* ── RACE ── */
+    .race { background: var(--crm); }
+    .race__wrap { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .race__img { position: relative; height: 540px; border-radius: var(--r); overflow: hidden; box-shadow: 0 28px 65px rgba(13,27,42,.18); border: 1px solid rgba(196,150,58,.18); }
+    .race__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,.35) 0%, transparent 50%); }
+    .race__content p { font-family: var(--FN); font-weight: 300; font-size: .94rem; line-height: 1.9; color: #6b5a4e; margin-bottom: 1rem; }
+    .race__info-box { display: flex; align-items: flex-start; gap: .9rem; background: var(--ony); color: rgba(245,240,230,.8); border-radius: var(--r); padding: 1.3rem 1.5rem; margin: 1.8rem 0; font-family: var(--FN); font-size: .86rem; line-height: 1.75; font-weight: 300; border-left: 2px solid var(--gld); }
+    .race__info-ico { font-size: 1.3rem; flex-shrink: 0; margin-top: .05rem; }
+    .race__info-box strong { color: var(--gld); font-weight: 600; display: block; margin-bottom: .25rem; font-size: .88rem; letter-spacing: .04em; }
+
+    /* ── GARANTIES ── */
+    .garanties { background: var(--ony); }
+    .garanties .sec__eyebrow { color: var(--gld); }
+    .garanties .sec__eyebrow::before, .garanties .sec__eyebrow::after { background: var(--gld); }
+    .garanties .sec__title { color: var(--crm); }
+    .garanties .sec__title em { color: var(--gld); }
+    .garanties .sec__sub { color: rgba(245,240,230,.5); }
+    .garanties .sec__head::after { opacity: .3; }
+    .gar__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+    .gar__card { background: rgba(255,255,255,.04); border: 1px solid rgba(196,150,58,.18); border-radius: var(--r); padding: 1.8rem 1.6rem; transition: background .3s, border-color .3s, transform .3s; position: relative; overflow: hidden; }
+    .gar__card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: var(--gld-gradient); opacity: 0; transition: opacity .3s; }
+    .gar__card:hover { background: rgba(196,150,58,.07); border-color: rgba(196,150,58,.4); transform: translateY(-3px); }
+    .gar__card:hover::before { opacity: 1; }
+    .gar__ico { width: 42px; height: 42px; margin-bottom: 1.1rem; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 1px solid rgba(196,150,58,.25); border-radius: var(--r); background: rgba(196,150,58,.08); }
+    .gar__title { font-family: var(--FD); font-size: .88rem; font-weight: 600; color: var(--gld); margin-bottom: .5rem; letter-spacing: .04em; }
+    .gar__desc { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: rgba(245,240,230,.6); line-height: 1.75; }
+
+    /* ── REPRODUCTEURS ── */
+    .repro { background: var(--bg); }
+    .repro__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 2rem; }
+    .dog__card { border-radius: var(--r); overflow: hidden; box-shadow: 0 4px 24px rgba(13,27,42,.08); background: #fff; border: 1px solid rgba(196,150,58,.12); transition: transform .35s, box-shadow .35s, border-color .35s; }
+    .dog__card:hover { transform: translateY(-6px); box-shadow: 0 22px 56px rgba(13,27,42,.15); border-color: rgba(196,150,58,.3); }
+    .dog__img { height: 320px; overflow: hidden; position: relative; }
+    .dog__img img { transition: transform .7s ease; }
+    .dog__card:hover .dog__img img { transform: scale(1.07); }
+    .dog__over { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,.82) 0%, transparent 55%); }
+    .dog__name-wrap { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1.6rem; }
+    .dog__name { font-family: var(--FD); font-size: 1.9rem; font-weight: 600; color: var(--crm); line-height: 1; letter-spacing: .04em; }
+    .dog__sex-label { font-family: var(--FN); font-size: .58rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gld); margin-top: .3rem; }
+    .dog__body { padding: 1.4rem 1.6rem; }
+    .dog__tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .dog__tag { background: var(--crm); border-radius: 2px; padding: .22rem .75rem; font-family: var(--FN); font-size: .62rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ony); border: 1px solid rgba(196,150,58,.2); }
+    .dog__desc { font-family: var(--FN); font-size: .88rem; font-weight: 300; color: #8a7060; line-height: 1.8; }
+
+    /* ── PORTÉE ── */
+    .portee { background: var(--ony); color: var(--crm); }
+    .portee__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .portee__img { position: relative; height: 460px; border-radius: var(--r); overflow: hidden; border: 1px solid rgba(196,150,58,.2); }
+    .portee__img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,.55), transparent 60%); }
+    .portee__content .sec__eyebrow { justify-content: flex-start; }
+    .portee__content .sec__title { color: var(--crm); text-align: left; }
+    .portee__content .sec__title em { color: var(--gld); }
+    .portee__content p { font-family: var(--FN); font-size: .94rem; font-weight: 300; line-height: 1.88; color: rgba(245,240,230,.68); margin-bottom: 1.1rem; }
+    .portee__timeline { margin: 2rem 0; display: flex; flex-direction: column; gap: .8rem; }
+    .portee__step { display: flex; align-items: flex-start; gap: 1.1rem; }
+    .portee__step-dot { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(196,150,58,.5); display: flex; align-items: center; justify-content: center; font-family: var(--FD); font-size: .85rem; color: var(--gld); flex-shrink: 0; background: rgba(196,150,58,.06); }
+    .portee__step-txt strong { display: block; font-family: var(--FN); font-size: .82rem; font-weight: 700; color: var(--crm); margin-bottom: .12rem; letter-spacing: .05em; }
+    .portee__step-txt span { font-family: var(--FN); font-size: .82rem; font-weight: 300; color: rgba(245,240,230,.5); }
+
+    /* ── GALERIE ── */
+    .galerie { background: var(--bg); }
+    .gal__grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .gi { overflow: hidden; border-radius: var(--r); position: relative; cursor: pointer; }
+    .gi img { height: 230px; transition: transform .6s cubic-bezier(.16,1,.3,1); }
+    .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 2; }
+    .gi:nth-child(1) img, .gi:nth-child(5) img { height: 100%; }
+    .gi:hover img { transform: scale(1.08); }
+    .gi__over { position: absolute; inset: 0; background: rgba(13,27,42,.55); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity .3s; }
+    .gi:hover .gi__over { opacity: 1; }
+    .gi__over span { color: var(--gld); font-family: var(--FD); font-size: 1.6rem; width: 48px; height: 48px; border: 1px solid rgba(196,150,58,.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    #lb { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,.96); align-items: center; justify-content: center; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: var(--r); border: 1px solid rgba(196,150,58,.2); }
+    #lb-close { position: absolute; top: 1.4rem; right: 1.8rem; color: var(--gld); font-size: 1.6rem; cursor: pointer; opacity: .6; font-family: var(--FD); }
+    #lb-close:hover { opacity: 1; }
+    #lb-prev, #lb-next { position: absolute; top: 50%; transform: translateY(-50%); color: var(--gld); font-size: 2.4rem; padding: 1.2rem; opacity: .45; cursor: pointer; }
+    #lb-prev:hover, #lb-next:hover { opacity: 1; }
+    #lb-prev { left: 1rem; } #lb-next { right: 1rem; }
+
+    /* ── TÉMOIGNAGES ── */
+    .temoignages { background: var(--crm); }
+    .temo__grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1.8rem; }
+    .temo { background: var(--bg); border-radius: var(--r); padding: 2rem; box-shadow: 0 2px 20px rgba(13,27,42,.06); border: 1px solid rgba(196,150,58,.12); position: relative; transition: border-color .3s, box-shadow .3s; }
+    .temo:hover { border-color: rgba(196,150,58,.3); box-shadow: 0 12px 40px rgba(13,27,42,.1); }
+    .temo__quote { font-family: var(--FD); font-size: 3.8rem; color: var(--gld); opacity: .18; position: absolute; top: .5rem; left: 1.4rem; line-height: 1; }
+    .temo__stars { color: var(--gld); font-size: .9rem; margin-bottom: 1.1rem; letter-spacing: .06em; }
+    .temo__text { font-family: var(--FN); font-size: .9rem; font-weight: 300; line-height: 1.85; color: #7a6252; margin-bottom: 1.5rem; font-style: italic; position: relative; z-index: 1; }
+    .temo__author { display: flex; align-items: center; gap: .85rem; }
+    .temo__av { width: 38px; height: 38px; border-radius: 50%; overflow: hidden; background: var(--crm); flex-shrink: 0; border: 1px solid rgba(196,150,58,.2); }
+    .temo__name { font-family: var(--FN); font-weight: 700; font-size: .84rem; color: var(--ony); }
+    .temo__dog { font-size: .7rem; color: var(--stn); }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--bg); }
+    .contact__wrap { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+    .contact__info h3 { font-family: var(--FD); font-size: 1.6rem; font-weight: 600; margin-bottom: 1.6rem; line-height: 1.15; letter-spacing: .04em; color: var(--ony); }
+    .cinfo { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2.2rem; }
+    .cinfo__item { display: flex; align-items: flex-start; gap: .9rem; }
+    .cinfo__ico { width: 40px; height: 40px; border-radius: var(--r); background: var(--crm); display: flex; align-items: center; justify-content: center; font-size: .95rem; flex-shrink: 0; border: 1px solid rgba(196,150,58,.2); }
+    .cinfo__label { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #c0b0a0; margin-bottom: .14rem; }
+    .cinfo__val { font-family: var(--FN); font-size: .93rem; font-weight: 600; color: var(--ony); }
+    .cinfo__val a:hover { color: var(--amb); }
+    .cinfo__sub { font-size: .78rem; font-weight: 300; color: var(--stn); margin-top: .1rem; }
+    .certif-badge { display: inline-flex; align-items: center; gap: .5rem; background: var(--ony); color: rgba(245,240,230,.8); border-radius: 2px; padding: .5rem 1.1rem; font-family: var(--FN); font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; border: 1px solid rgba(196,150,58,.25); }
+    .certif-badge span { color: var(--gld); }
+    .contact__form { background: var(--crm); border-radius: var(--r); padding: 2.6rem; border: 1px solid rgba(196,150,58,.15); }
+    .form__title { font-family: var(--FD); font-size: 1.3rem; font-weight: 600; margin-bottom: .4rem; color: var(--ony); letter-spacing: .04em; }
+    .form__sub { font-family: var(--FN); font-size: .84rem; font-weight: 300; color: var(--stn); margin-bottom: 2rem; line-height: 1.65; }
+    .form__section { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--stn); margin: 1.5rem 0 .9rem; padding-bottom: .4rem; border-bottom: 1px solid rgba(13,27,42,.07); }
+    .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form__group { display: flex; flex-direction: column; gap: .34rem; margin-bottom: 1rem; }
+    .form__group label { font-family: var(--FN); font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ony); }
+    .form__group input, .form__group select, .form__group textarea { width: 100%; padding: .75rem 1rem; border: 1px solid rgba(13,27,42,.12); border-radius: var(--r); font-family: var(--FN); font-size: .88rem; font-weight: 300; color: var(--ony); background: #fff; outline: none; transition: border-color .2s, box-shadow .2s; }
+    .form__group input:focus, .form__group select:focus, .form__group textarea:focus { border-color: var(--gld); box-shadow: 0 0 0 3px rgba(196,150,58,.12); }
+    .form__group textarea { resize: vertical; min-height: 115px; }
+    .form__submit { width: 100%; margin-top: .4rem; padding: .95rem; font-size: .78rem; }
+    .form__rgpd { font-family: var(--FN); font-size: .7rem; font-weight: 300; color: #bbb; text-align: center; margin-top: .85rem; line-height: 1.55; }
+
+    /* ── FAQ ── */
+    .conditions { background: var(--crm); }
+    .conditions__wrap { max-width: 760px; margin: 0 auto; }
+    .acc { border-bottom: 1px solid rgba(13,27,42,.07); }
+    .acc__q { width: 100%; text-align: left; padding: 1.2rem 0; font-family: var(--FN); font-weight: 600; font-size: .9rem; letter-spacing: .02em; color: var(--ony); display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color .2s; }
+    .acc__q:hover { color: var(--amb); }
+    .acc__q .arr { font-size: .75rem; color: var(--gld); transition: transform .3s; flex-shrink: 0; }
+    .acc__q.open .arr { transform: rotate(180deg); }
+    .acc__a { display: none; padding-bottom: 1.2rem; font-family: var(--FN); font-size: .9rem; font-weight: 300; color: #7a6252; line-height: 1.85; }
+    .acc__a.open { display: block; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ony); color: rgba(245,240,230,.45); padding: 4.5rem 4vw 2.2rem; }
+    .footer__wrap { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.8fr 1fr 1fr; gap: 3.5rem; }
+    .footer__logo { font-family: var(--FD); font-size: 1.2rem; font-weight: 600; color: var(--gld); letter-spacing: .06em; margin-bottom: .55rem; }
+    .footer__logo span { display: block; font-family: var(--FN); font-size: .54rem; letter-spacing: .24em; text-transform: uppercase; color: rgba(245,240,230,.25); margin-top: .25rem; }
+    .footer__logo-line { width: 48px; height: 1px; background: linear-gradient(to right, var(--gld), transparent); margin: .8rem 0 1.1rem; }
+    footer p { font-family: var(--FN); font-size: .8rem; font-weight: 300; line-height: 1.78; margin-bottom: .3rem; }
+    .footer__col h4 { font-family: var(--FN); font-size: .58rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(245,240,230,.7); margin-bottom: 1.2rem; padding-bottom: .5rem; border-bottom: 1px solid rgba(196,150,58,.15); }
+    .footer__col a { display: block; font-family: var(--FN); font-size: .8rem; font-weight: 300; margin-bottom: .42rem; transition: color .2s; }
+    .footer__col a:hover { color: var(--gld); }
+    .footer__bottom { max-width: 1200px; margin: 2.2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(196,150,58,.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; }
+    .footer__bottom p { font-size: .72rem; margin: 0; }
+
+    /* ── RESPO NSIVE ── */
+    @media (max-width: 1020px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__burger { display: flex; }
+      .about__grid, .race__wrap, .portee__wrap, .contact__wrap, .footer__wrap { grid-template-columns: 1fr; }
+      .about__imgs { height: 360px; }
+      .race__img { height: 340px; }
+      .portee__img { height: 300px; }
+      .temo__grid { grid-template-columns: 1fr; }
+      .gar__grid { grid-template-columns: repeat(2,1fr); }
+      .bandeau { grid-template-columns: repeat(2,1fr); }
+      .ban__item:nth-child(2) { border-right: none; }
+      .ban__item:nth-child(1), .ban__item:nth-child(2) { border-bottom: 1px solid rgba(196,150,58,.08); }
+    }
+    @media (max-width: 700px) {
+      section { padding: 4.5rem 1.4rem; }
+      .gal__grid { grid-template-columns: 1fr 1fr; }
+      .gi:nth-child(1), .gi:nth-child(5) { grid-row: span 1; }
+      .gi:nth-child(1) img, .gi:nth-child(5) img { height: 230px; }
+      .form__row { grid-template-columns: 1fr; }
+      .hero__btns { flex-direction: column; align-items: center; }
+      .hero__title-wrap { padding: 1.2rem 1.6rem; }
+      .hero__title-wrap::before, .hero__title-wrap::after, .hero__title-wrap .corner-tr, .hero__title-wrap .corner-bl { width: 30px; height: 30px; }
+      .hero__deco-left, .hero__deco-right { display: none; }
+    }
+    @media (max-width: 480px) {
+      .gar__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
 </head>
 <body>
 
-    <!-- ==================== HEADER ==================== -->
-    <header class="site-header" id="header">
-        <div class="header-conteneur">
-            <a href="#hero" class="logo" aria-label="De la Basse Terre - Accueil">
-                <img
-                src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg"
-                alt="Logo De la Basse Terre"
-                class="logo-icone"
-                loading="eager"
-                width="42"
-                height="42">
-                <span class="logo-texte">De la Basse Terre<small>Élevage de Cane Corso</small></span>
-            </a>
-            <nav>
-                <button class="menu-toggle" id="menuToggle" aria-label="Menu de navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-liste" id="navListe">
-                    <li><a href="#hero" class="nav-lien actif">Accueil</a></li>
-                    <li><a href="#presentation" class="nav-lien">L'élevage</a></li>
-                    <li><a href="#galerie" class="nav-lien">Galerie</a></li>
-                    <li><a href="#contact" class="nav-lien">Contact</a></li>
-                    <li><a href="#contact" class="nav-lien nav-cta">Nous écrire</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav__logo">
+    De la Basse Terre
+    <span>Cane Corso & Fox Terrier · Élevage de chiens</span>
+  </a>
+  <ul class="nav__links">
+    <li><a href="#about">L'Élevage</a></li>
+    <li><a href="#race">Cane Corso</a></li>
+    <li><a href="#garanties">Garanties</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn--gold nav__cta">Nous contacter</a>
+  <button class="nav__burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="hero">
-        <div class="hero-fond">
-            <img
-            src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_15.jpg"
-            alt="Cane Corso - Élevage De la Basse Terre"
-            loading="eager"
-            fetchpriority="high"
-            width="1920"
-            height="1080">
-        </div>
-        <div class="hero-overlay"></div>
-        <div class="hero-contenu">
-            <span class="hero-badge">Élevage familial</span>
-            <h1 class="hero-titre">De la <span>Basse Terre</span></h1>
-            <p class="hero-sous-titre">Élevage de Cane Corso &amp; Fox Terriers à Poil Lisse</p>
-            <p class="hero-localisation">
-                <span>📍 Gréez-sur-Roc</span>
-                <span class="separateur"></span>
-                <span>Sarthe, Pays de la Loire</span>
-            </p>
-            <div class="hero-boutons">
-                <a href="#galerie" class="btn-primaire">Découvrir nos chiens</a>
-                <a href="#contact" class="btn-secondaire">Nous contacter</a>
-            </div>
-        </div>
-        <div class="hero-scroll" onclick="document.getElementById('presentation').scrollIntoView({behavior:'smooth'})">
-            <span>↓</span> Défiler
-        </div>
-    </section>
+<div class="nav__mobile" id="mob-nav">
+  <a href="#about">L'Élevage</a>
+  <a href="#race">Cane Corso</a>
+  <a href="#garanties">Garanties</a>
+  <a href="#galerie">Galerie</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn--gold" style="margin-top:1.2rem;text-align:center">Nous contacter</a>
+</div>
 
-    <!-- ==================== PRESENTATION ==================== -->
-    <section class="presentation" id="presentation">
-        <div class="presentation-conteneur">
-            <div class="presentation-image anim-scroll-gauche">
-                <img
-                src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_8.jpg"
-                alt="Nos Cane Corso en cadre familial"
-                loading="lazy"
-                width="600"
-                height="450">
-            </div>
-            <div class="presentation-texte anim-scroll-droite">
-                <span class="section-etiquette">Notre histoire</span>
-                <h2>Un élevage <span>familial</span> et passionné</h2>
-                <p>
-                    L'élevage de la Basse Terre est un petit élevage de <strong>Cane Corso</strong> basé dans la Sarthe,
-                    à <strong>Gréez-sur-Roc</strong>. Nos chiens sont élevés à la maison, avec nos enfants.
-                    Nous avons également d'autres animaux. Nous avons un petit élevage.
-                </p>
-                <p>
-                    Nos chiens évoluent dans un <strong>cadre familial</strong>. Ils sont avant tout nos animaux de compagnie.
-                    Nous élevons aussi des <strong>Fox Terriers à Poil Lisse</strong>, dans le même esprit de respect
-                    et de passion pour le monde canin.
-                </p>
-                <div class="presentation-infos">
-                    <div class="info-bloc">
-                        <span class="info-icone">🏠</span>
-                        <div>
-                            <strong>Cadre familial</strong>
-                            <span>Chiens élevés à la maison</span>
-                        </div>
-                    </div>
-                    <div class="info-bloc">
-                        <span class="info-icone">🐾</span>
-                        <div>
-                            <strong>Deux races</strong>
-                            <span>Cane Corso &amp; Fox Terrier</span>
-                        </div>
-                    </div>
-                    <div class="info-bloc">
-                        <span class="info-icone">📍</span>
-                        <div>
-                            <strong>Localisation</strong>
-                            <span>Gréez-sur-Roc, Sarthe</span>
-                        </div>
-                    </div>
-                    <div class="info-bloc">
-                        <span class="info-icone">❤️</span>
-                        <div>
-                            <strong>Passion</strong>
-                            <span>Avant tout nos compagnons</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__over"></div>
+  <div class="hero__grain"></div>
+  <div class="hero__deco-left"></div>
+  <div class="hero__deco-right"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">Élevage de chiens · Gréez-sur-Roc, Sarthe</div>
+    <div class="hero__title-wrap">
+      <div class="corner-tr"></div>
+      <div class="corner-bl"></div>
+      <h1 class="hero__title">De la Basse Terre</h1>
+    </div>
+    <p class="hero__subtitle">Élevage Familial de Cane Corso & Fox Terrier</p>
+    <p class="hero__sub">L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiotssont élevés ches nous, dans notre maison, parmi nos enfants et nos autres animau. Ils évoluent donc dans un cadre familial, ils sont d'abord nos animau de compagnie. L'élevage est situé à Gréez-sur-Roc, dans la Sarthe.</p>
+    <div class="hero__btns">
+      <a href="#contact" class="btn btn--gold">Chiotss disponibles</a>
+      <a href="#about" class="btn btn--outline">Découvrir l'élevage</a>
+    </div>
+  </div>
+  <div class="hero__scoll">Découvrir</div>
+</section>
 
-    <!-- ==================== GALERIE ==================== -->
-    <section class="galerie" id="galerie">
-        <div class="galerie-entete anim-scroll">
-            <span class="section-etiquette">Galerie photos</span>
-            <h2>Nos Cane Corso</h2>
-            <p>Découvrez en images nos magnifiques chiens, élevés avec amour dans notre famille.</p>
-        </div>
-        <div class="galerie-grille" id="galerieGrille">
-            <!-- 14 photos - toutes utilisées -->
-            <div class="galerie-item anim-scroll-zoom" data-index="0">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg" alt="Cane Corso - De la Basse Terre 1" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="1">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_2.jpg" alt="Cane Corso - De la Basse Terre 2" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="2">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_3.jpg" alt="Cane Corso - De la Basse Terre 3" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="3">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_4.jpg" alt="Cane Corso - De la Basse Terre 4" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="4">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_6.jpg" alt="Cane Corso - De la Basse Terre 5" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="5">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_7.jpg" alt="Cane Corso - De la Basse Terre 6" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="6">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_8.jpg" alt="Cane Corso - De la Basse Terre 7" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="7">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_9.jpg" alt="Cane Corso - De la Basse Terre 8" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="8">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_10.jpg" alt="Cane Corso - De la Basse Terre 9" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="9">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_11.jpg" alt="Cane Corso - De la Basse Terre 10" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="10">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_12.jpg" alt="Cane Corso - De la Basse Terre 11" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="11">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_13.jpg" alt="Cane Corso - De la Basse Terre 12" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="12">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_14.jpg" alt="Cane Corso - De la Basse Terre 13" loading="lazy" width="400" height="300">
-            </div>
-            <div class="galerie-item anim-scroll-zoom" data-index="13">
-                <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_15.jpg" alt="Cane Corso - De la Basse Terre 14" loading="lazy" width="400" height="300">
-            </div>
-        </div>
-    </section>
+<!-- BANDEAU STATS -->
+<div class="bandeau">
+  <div class="ban__item reveal">
+    <div class="ban__n">Cane Corso</div>
+    <div class="ban__l">Race élevée</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.08s">
+    <div class="ban__n">Certifié</div>
+    <div class="ban__l">Éleveur pro</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.16s">
+    <div class="ban__n">LOF</div>
+    <div class="ban__l">Chiotss garantis</div>
+  </div>
+  <div class="ban__item reveal" style="transition-delay:.24s">
+    <div class="ban__n">Gréez-sur-Roc</div>
+    <div class="ban__l">Localisation</div>
+  </div>
+</div>
 
-    <!-- ==================== LIGHTBOX ==================== -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
-        <button class="lightbox-fermer" id="lightboxFermer" aria-label="Fermer">&times;</button>
-        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Image précédente">‹</button>
-        <img src="" alt="Vue agrandie" id="lightboxImg">
-        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Image suivante">›</button>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about__grid">
+    <div class="about__imgs reveal">
+      <div class="about__main">
+        <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_2.jpg" alt="De la Basse Terre">
+      </div>
+      <div class="about__accent">
+        <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_3.jpg" alt="Cane Corso">
+      </div>
+      <div class="about__medal">
+        ♦<small>Familial</small>
+      </div>
+    </div>
+    <div class="about__text reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Notre élevage</p>
+      <h2>Un élevage familial,<br><em>une passion du Cane Corso</em></h2>
+      <p>L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiotssont élevés ches nous, dans notre maison, parmi nos enfants et nos autres animau. Ils évoluent donc dans un cadre familial, ils sont d'abord nos animau de compagnie.</p>
+      <p>L'élevage est situé à Gréez-sur-Roc, dans la Sarthe. Nous élevons aussi des Cane Corso, une race majestueuse, fidèle et protectrice, idéale pour les familles en quête d'un compagnon loyal et équilibré.</p>
+      <div class="about__list">
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiotss élevés en maison, socialisés dès la naissance</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé efectués</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Sevrage respectueux</strong> — chiotss prêts à partir, jamais trop tôt</div></div>
+        <div class="about__li"><div class="about__li-dot"></div><div><strong>Suivi après adoption</strong> — nous restons disponibles pour vous accompagner</div></div>
+      </div>
+      <a href="#contact" class="btn btn--dark">Prendre contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- LA RACE -->
+<section class="race" id="race">
+  <div class="race__wrap">
+    <div class="race__img reveal">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_4.jpg" alt="Cane Corso">
+    </div>
+    <div class="race__content reveal" style="transition-delay:.12s">
+      <p class="sec__eyebrow">La race</p>
+      <h2 class="sec__title">Le <em>Cane Corso</em></h2>
+      <p>Le Cane Corso est un chien de garde et de défense d'origine italienne, reconnu pour sa puissance, sa loyauté et son tempérament équilibré. C'est un compagnon fidèle qui s'intègre parfaitement à la vie de famille tout en restant un excelent gardien.</p>
+      <p>Nous élevons également des Fox Terriers à Poil Lisse, une race vive, inteligente et afectueuse, idéale pour les familles actives.</p>
+      <div class="race__info-box">
+        <div class="race__info-ico">🐾</div>
+        <div>
+          <strong>Élevage responsable</strong>
+          Ches De la Basse Terre, nous mettons un point d'honeur à élever nos chiens dans les meileures conditions, en respectant leur nature et leurs besions. Chaque chiot quite notre élevage en pleine santé et prêt à intégrer sa nouvelle famille.
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--gold">Nous contacter</a>
+    </div>
+  </div>
+</section>
+
+<!-- GARANTIES -->
+<section class="garanties" id="garanties">
+  <div class="sec__head sec__head--light">
+    <p class="sec__eyebrow">Sérieux &amp; transparence</p>
+    <h2 class="sec__title">Nos <em>Garanties</em></h2>
+    <p class="sec__sub">Chaque chiot De la Basse Terre repart avec un accompagnement complet et toutes les garanties d'un élevage sérieux.</p>
+  </div>
+  <div class="gar__grid">
+    <div class="gar__card reveal">
+      <div class="gar__ico">🧬</div>
+      <div class="gar__title">Reproducteurs contrôlés</div>
+      <p class="gar__desc">Nos reproducteurs sont soumis aux tests de santé apropriés à la race afin de dépister les maladies héréditaires et garantir des chiotss sains.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.08s">
+      <div class="gar__ico">💉</div>
+      <div class="gar__title">Vacination &amp; vermifugation</div>
+      <p class="gar__desc">Chaque chiot repart vacciné (primo-vaccination complète) et vermifugé selon le protocole vétérinaire, avec son carnet de santé à jour.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.16s">
+      <div class="gar__ico">🍼</div>
+      <div class="gar__title">Sevrage complet</div>
+      <p class="gar__desc">Nos chiotss ne quitent leur mère qu'après un sevrage total et respectueux, avec la socialisation nécéssaire pour s'adapter à leur nouvelle famille.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.24s">
+      <div class="gar__ico"></div>
+      <div class="gar__title">Identification &amp; documents</div>
+      <p class="gar__desc">Chaque chiot est identifié par micropuce et accompagné de son livret de santé oficiell, ainsi que des documents de cession requis par la loi françaies.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.32s">
+      <div class="gar__ico">🏡</div>
+      <div class="gar__title">Élevé en famille</div>
+      <p class="gar__desc">Nos chiotss grandissent au cœur de la vie familiale, socialisés avec les enfants, d'autres animau et habitués aux sons et situations du quotidien.</p>
+    </div>
+    <div class="gar__card reveal" style="transition-delay:.4s">
+      <div class="gar__ico">📞</div>
+      <div class="gar__title">Suivi après adoption</div>
+      <p class="gar__desc">Nous restons disponibles après la remise du chiot pour vous conseiler et vous accompagner tout au long de la vie de votre compagnon.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REPRODUCTEURS -->
+<section class="repro" id="repro">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Nos chiens</p>
+    <h2 class="sec__title">Nos <em>Reproducteurs</em></h2>
+    <p class="sec__sub">Découvrez nos magnifiques Cane Corso et Fox Terriers, sélectionés avec soin.</p>
+  </div>
+  <div class="repro__grid">
+    <div class="dog__card reveal">
+      <div class="dog__img">
+        <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_6.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Brutus</div>
+          <div class="dog__sex-label">Mâle · Cane Corso</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Confirmé</span>
+        </div>
+        <p class="dog__desc">Puissant et équilibré, Brutus incarne toutes les qualités du Cane Corso. Un tempérament doux avec la famille et une présence rassurante.</p>
+      </div>
+    </div>
+    <div class="dog__card reveal" style="transition-delay:.1s">
+      <div class="dog__img">
+        <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_7.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Diana</div>
+          <div class="dog__sex-label">Femelle · Cane Corso</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Excellente mère</span>
+        </div>
+        <p class="dog__desc">Douce, attentive et protectrice, Diana est une mère exemplaire qui transmet son calme et son équilibre à chacun de ses chiots.</p>
+      </div>
+    </div>
+    <div class="dog__card reveal" style="transition-delay:.2s">
+      <div class="dog__img">
+        <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_8.jpg" alt="Fox Terrier — De la Basse Terre" loading="lazy">
+        <div class="dog__over"></div>
+        <div class="dog__name-wrap">
+          <div class="dog__name">Gribouille</div>
+          <div class="dog__sex-label">Femelle · Fox Terrier Poil Lisse</div>
+        </div>
+      </div>
+      <div class="dog__body">
+        <div class="dog__tags">
+          <span class="dog__tag">LOF</span>
+          <span class="dog__tag">Vive &amp; Joyeuse</span>
+        </div>
+        <p class="dog__desc">Pétillante et intelligente, Gribouille est notre petite Fox Terrier au caractère bien trempé et au cœur tendre.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTÉE / CHIOTS -->
+<section class="portee" id="portee">
+  <div class="portee__wrap">
+    <div class="portee__img reveal">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_9.jpg" alt="Chiot Cane Corso — De la Basse Terre">
+    </div>
+    <div class="portee__content reveal" style="transition-delay:.15s">
+      <p class="sec__eyebrow">Disponibilités</p>
+      <h2 class="sec__title">Chiotss<br><em>Cane Corso &amp; Fox Terrier</em></h2>
+      <p>Pour connaître nos disponibilités actuelles ou vous inscrire sur liste d'attente, contactez-nous directement. Nous prenons le temps de connaître chaque famille afin d'assurer le meilleur acueil pour chaque chiot.</p>
+      <p>Tous nos chiotss partent avec leur suivi vétérinaire complet, vaccinés, vermifugés et identifiés.</p>
+      <div class="portee__timeline">
+        <div class="portee__step">
+          <div class="portee__step-dot">1</div>
+          <div class="portee__step-txt"><strong>Premier contact</strong><span>Contactez-nous pour échanger sur vos atentes</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">2</div>
+          <div class="portee__step-txt"><strong>Visite &amp; rencontre</strong><span>Venez rencontrer nos chiens à Gréez-sur-Roc</span></div>
+        </div>
+        <div class="portee__step">
+          <div class="portee__step-dot">3</div>
+          <div class="portee__step-txt"><strong>Adoption</strong><span>Départ après sevrage complet — avec tous les documents</span></div>
+        </div>
+      </div>
+      <a href="#contact" class="btn btn--gold">S'inscrire sur liste d'attente</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Galerie</p>
+    <h2 class="sec__title">Nos <em>Cane Corso &amp; Fox Terriers</em></h2>
+    <p class="sec__sub">La vie ches De la Basse Terre — Gréez-sur-Roc, Sarthe.</p>
+  </div>
+  <div class="gal__grid">
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_2.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_3.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_4.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_6.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_7.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_8.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_10.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_11.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_12.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_13.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_14.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+    <div class="gi" onclick="openLb(this)">
+      <img src="https://res.cloudinary.com/dhwukhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_15.jpg" alt="Cane Corso — De la Basse Terre" loading="lazy">
+      <div class="gi__over"><span>+</span></div>
+    </div>
+  </div>
+</section>
+<div id="lb" role="dialog" aria-label="Photo agrandie">
+  <span id="lb-close" onclick="closeLb()" aria-label="Fermer">✕</span>
+  <span id="lb-prev" onclick="lbNav(-1)" aria-label="Précédent">‹</span>
+  <img id="lb-img" src="" alt="">
+  <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
+</div>
+
+<!-- TÉMOIGNAGES -->
+<section class="temoignages" id="temoignages">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Témoignages</p>
+    <h2 class="sec__title">Ils nous ont <em>fait confiance</em></h2>
+    <p class="sec__sub">Ce que nos familles adoptives disent de leur compagnon.</p>
+  </div>
+  <div class="temo__grid">
+    <div class="temo reveal">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Nous avons adopté notre Cane Corso chez De la Basse Terre et tout s'est merveilleusement passé. Chiot équilibré, en pleine santé, et un élevage familial très sérieux. Nous recommandons chaleureusement !</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23c4963a'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='%23fff' font-size='16' font-family='serif'%3ES%3C/text%3E%3C/svg%3E" alt=""></div>
+        <div>
+          <div class="temo__name">Sophie &amp; Laurent</div>
+          <div class="temo__dog">Cane Corso — adopté en 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.1s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Un élevage à taile humaine où l'on sent que les chiens sont aimés et respectés. Notre petit Fox Terrier est un bonheur au quotidien. Merci pour votre acueil et vos conseils.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23c4963a'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='%23fff' font-size='16' font-family='serif'%3EC%3C/text%3E%3C/svg%3E" alt=""></div>
+        <div>
+          <div class="temo__name">Camille D.</div>
+          <div class="temo__dog">Fox Terrier Poil Lisse — adopté en 2024</div>
+        </div>
+      </div>
+    </div>
+    <div class="temo reveal" style="transition-delay:.2s">
+      <div class="temo__quote">"</div>
+      <div class="temo__stars">★★★★★</div>
+      <p class="temo__text">Un immense merci à l'équipe de De la Basse Terre. Notre Cane Corso est aujourd'hui un membre à part entière de la famille, doux avec les enfants et d'une loyauté sans faille. Élevage remarquable.</p>
+      <div class="temo__author">
+        <div class="temo__av"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23c4963a'/%3E%3Ctext x='20' y='26' text-anchor='middle' fill='%23fff' font-size='16' font-family='serif'%3EP%3C/text%3E%3C/svg%3E" alt=""></div>
+        <div>
+          <div class="temo__name">Pierre &amp; Julie</div>
+          <div class="temo__dog">Cane Corso — adopté en 2023</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Contact</p>
+    <h2 class="sec__title">Nous <em>contacter</em></h2>
+    <p class="sec__sub">Pour vous inscrire sur liste d'attente ou poser vos questions, contactez-nous par téléphone ou via le formulaire ci-dessous.</p>
+  </div>
+  <div class="contact__wrap">
+    <div class="contact__info reveal">
+      <h3>De la Basse Terre</h3>
+      <div class="cinfo">
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📍</div>
+          <div>
+            <div class="cinfo__label">Localisation</div>
+            <div class="cinfo__val">Gréez-sur-Roc<br>Sarthe, France</div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">📞</div>
+          <div>
+            <div class="cinfo__label">Téléphone</div>
+            <div class="cinfo__val"><a href="tel:0786909459">07 86 90 94 59</a></div>
+          </div>
+        </div>
+        <div class="cinfo__item">
+          <div class="cinfo__ico">🕐</div>
+          <div>
+            <div class="cinfo__label">Disponibilités</div>
+            <div class="cinfo__val">Nous contacter</div>
+            <div class="cinfo__sub">Pour connaître les chiots disponibles</div>
+          </div>
+        </div>
+      </div>
+      <div class="certif-badge">
+        <span>✦</span> Élevage familial · SIREN 928223577
+      </div>
     </div>
 
-    <!-- ==================== CONTACT ==================== -->
-    <section class="contact" id="contact">
-        <div class="contact-conteneur">
-            <div class="contact-infos anim-scroll-gauche">
-                <span class="section-etiquette">Contact</span>
-                <h2>Parlons de <span>votre projet</span></h2>
-                <p>
-                    Vous souhaitez en savoir plus sur notre élevage, nos chiots disponibles ou simplement échanger
-                    sur la race ? N'hésitez pas à nous contacter. Nous serons ravis de vous répondre.
-                </p>
-                <div class="contact-details">
-                    <div class="contact-detail">
-                        <span class="icone">📞</span>
-                        <span><a href="tel:0786909459">07.86.90.94.59</a></span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="icone">📍</span>
-                        <span>Gréez-sur-Roc, Sarthe (72)</span>
-                    </div>
-                    <div class="contact-detail">
-                        <span class="icone">🐾</span>
-                        <span>Cane Corso &amp; Fox Terriers à Poil Lisse</span>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-formulaire anim-scroll-droite" id="formulaireContact">
-                <h3>Envoyez-nous un message</h3>
-                <form id="contactForm" action="#" method="POST">
-                    <div class="form-groupe">
-                        <label for="nom">Nom</label>
-                        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
-                    </div>
-                    <div class="form-groupe">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
-                    </div>
-                    <div class="form-groupe">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-soumettre">Envoyer le message</button>
-                </form>
-            </div>
+    <div class="contact__form reveal" style="transition-delay:.15s">
+      <div class="form__title">Demande de renseignements</div>
+      <div class="form__sub">Appelez directement au <strong>07 86 90 94 59</strong> ou laissez votre message ici.</div>
+      <form action="#" method="post">
+        <div class="form__row">
+          <div class="form__group">
+            <label for="prenom">Prénom *</label>
+            <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+          </div>
+          <div class="form__group">
+            <label for="nom">Nom *</label>
+            <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+          </div>
         </div>
-    </section>
-
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="site-footer">
-        <div class="footer-conteneur">
-            <div class="footer-colonne">
-                <div class="footer-nom">De la Basse Terre</div>
-                <p class="footer-siren">SIRET : 928 223 577</p>
-                <p>Élevage de chiens</p>
-                <p>Gréez-sur-Roc, Sarthe</p>
-            </div>
-            <div class="footer-colonne">
-                <h4>Navigation</h4>
-                <a href="#hero">Accueil</a>
-                <a href="#presentation">L'élevage</a>
-                <a href="#galerie">Galerie</a>
-                <a href="#contact">Contact</a>
-            </div>
-            <div class="footer-colonne">
-                <h4>Nos races</h4>
-                <p>Cane Corso</p>
-                <p>Fox Terriers à Poil Lisse</p>
-            </div>
-            <div class="footer-colonne">
-                <h4>Contact</h4>
-                <p>📞 <a href="tel:0786909459">07.86.90.94.59</a></p>
-                <p>📍 Gréez-sur-Roc, 72320</p>
-            </div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.fr">
+          </div>
+          <div class="form__group">
+            <label for="tel">Téléphone</label>
+            <input type="tel" id="tel" name="tel" placeholder="06 XX XX XX XX">
+          </div>
         </div>
-        <div class="footer-bottom">
-            <span>© 2026 De la Basse Terre</span>
-            <span class="separateur">|</span>
-            <span>SIRET 928223577</span>
-            <span class="separateur">|</span>
-            <span>Élevage de chiens</span>
-            <span class="separateur">|</span>
-            <a href="#">Mentions légales</a>
-            <span class="separateur">|</span>
-            <a href="#">CGV</a>
-            <span class="separateur">|</span>
-            <a href="#">Politique de confidentialité</a>
+        <div class="form__section">Votre projet</div>
+        <div class="form__row">
+          <div class="form__group">
+            <label for="sexe">Sexe souhaité</label>
+            <select id="sexe" name="sexe">
+              <option value="">Sans préférence</option>
+              <option value="femelle">Femelle</option>
+              <option value="male">Mâle</option>
+            </select>
+          </div>
+          <div class="form__group">
+            <label for="usage">Projet</label>
+            <select id="usage" name="usage">
+              <option value="">— Choisir —</option>
+              <option value="compagnon">Chien de compagnie</option>
+              <option value="famille">Compagnon de famille</option>
+              <option value="garde">Chien de garde</option>
+              <option value="sport">Sport canin</option>
+            </select>
+          </div>
         </div>
-    </footer>
+        <div class="form__group">
+          <label for="message">Votre message *</label>
+          <textarea id="message" name="message" required placeholder="Parlez-nous de vous, votre logement, votre expérience avec les chiens…"></textarea>
+        </div>
+        <button type="submit" class="btn btn--gold form__submit">Envoyer ma demande</button>
+        <p class="form__rgpd">Vos données sont utilisées uniquement pour répondre à votre demande.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <!-- ==================== SCRIPTS ==================== -->
-    <script>
-        (function() {
-            // ============ MENU MOBILE ============
-            const menuToggle = document.getElementById('menuToggle');
-            const navListe = document.getElementById('navListe');
-            const header = document.getElementById('header');
+<!-- FAQ -->
+<section class="conditions" id="conditions">
+  <div class="sec__head">
+    <p class="sec__eyebrow">Informations</p>
+    <h2 class="sec__title">Questions <em>fréquentes</em></h2>
+  </div>
+  <div class="conditions__wrap">
+    <div class="acc">
+      <button class="acc__q">Puis-je venir visiter l'élevage avant d'adopter ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Oui, les visites sont les bienvenues et nous les encourageons vivement. Rencontrer nos chiens, voir l'environnement dans lequel grandissent nos chiots et échanger avec nous — c'est la meilleure façon de s'assurer que notre élevage correspond à vos attentes. Les visites se font sur rendez-vous à Gréez-sur-Roc, dans la Sarthe. Contactez-nous au 07 86 90 94 59 pour planifier.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quels documents accompagnent le chiot à son départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Chaque chiot repart avec son carnet de santé à jour (vaccins, vermifugations), son certificat d'identification (micropuce), le certificat de cession, ainsi que les résultats des contrôles vétérinaires. Un contrat de vente est signé lors de la remise du chiot.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Quel âge a le chiot au moment du départ ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Nos chiots quittent l'élevage au minimum à 8 semaines révolues, après un sevrage complet et respectueux. Ils sont socialisés, habitués à la vie en famille et prêts à intégrer leur nouveau foyer.</p>
+      </div>
+    </div>
+    <div class="acc">
+      <button class="acc__q">Comment se passe la réservation ? <span class="arr">▾</span></button>
+      <div class="acc__a">
+        <p>Après un premier échange et une visite, une fois le chiot attribué, une réservation peut être confirmée. Contactez-nous directement au 07 86 90 94 59 pour connaître les disponibilités et les modalités de réservation.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            menuToggle.addEventListener('click', function() {
-                menuToggle.classList.toggle('actif');
-                navListe.classList.toggle('actif');
-            });
+<!-- FOOTER -->
+<footer>
+  <div class="footer__wrap">
+    <div>
+      <div class="footer__logo">
+        De la Basse Terre
+        <span>Élevage Cane Corso & Fox Terrier · Gréez-sur-Roc</span>
+      </div>
+      <div class="footer__logo-line"></div>
+      <p>L'élevage de la Basse Terre est un petit élevage familial de Fox Terriers à Poil Lisse et de Cane Corso. Nos chiens et nos chiots sont élevés chez nous, dans notre maison, parmi nos enfants et nos autres animaux.</p>
+      <p style="margin-top:.9rem">
+        📞 <a href="tel:0786909459" style="transition:color .2s">07 86 90 94 59</a>
+        <br>📍 Gréez-sur-Roc, Sarthe, France
+      </p>
+    </div>
+    <div class="footer__col">
+      <h4>Navigation</h4>
+      <a href="#about">L'Élevage</a>
+      <a href="#race">Cane Corso</a>
+      <a href="#garanties">Garanties</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer__col">
+      <h4>Informations</h4>
+      <a href="#conditions">Mentions légales</a>
+      <a href="#conditions">CGV</a>
+      <a href="#conditions">Politique de confidentialité</a>
+      <p style="margin-top:.8rem">SIREN : 928223577</p>
+      <p>Chiots élevés en famille</p>
+      <p>Primo-vaccination incluse</p>
+      <p>Identification micropuce</p>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <p>© 2026 De la Basse Terre — Élevage Cane Corso &amp; Fox Terrier</p>
+    <p>Élevage de chiens · SIRET 928223577</p>
+  </div>
+</footer>
 
-            // Fermer le menu au clic sur un lien
-            document.querySelectorAll('.nav-lien').forEach(lien => {
-                lien.addEventListener('click', () => {
-                    menuToggle.classList.remove('actif');
-                    navListe.classList.remove('actif');
-                });
-            });
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
 
-            // ============ HEADER SCROLL REDUCTION ============
-            let lastScroll = 0;
-            window.addEventListener('scroll', function() {
-                const currentScroll = window.pageYOffset;
-                if (currentScroll > 80) {
-                    header.classList.add('reduit');
-                } else {
-                    header.classList.remove('reduit');
-                }
-                lastScroll = currentScroll;
-            });
+  const burger = document.getElementById('burger');
+  const mobNav = document.getElementById('mob-nav');
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobNav.classList.toggle('open');
+    document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    burger.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
 
-            // ============ HERO SURVOL ============
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.addEventListener('mouseenter', function() {
-                    hero.classList.add('survol');
-                });
-                hero.addEventListener('mouseleave', function() {
-                    hero.classList.remove('survol');
-                });
-            }
+  window.addEventListener('load', () => document.querySelector('.hero').classList.add('loaded'));
 
-            // ============ INTERSECTION OBSERVER - ANIMATIONS SCROLL ============
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px 0px -60px 0px',
-                threshold: 0.15
-            };
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        // Une fois visible, on arrête d'observer
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+  const lb    = document.getElementById('lb');
+  const lbImg = document.getElementById('lb-img');
+  let lbItems = [], lbIdx = 0;
+  function openLb(el) {
+    lbItems = Array.from(document.querySelectorAll('.gi img'));
+    lbIdx   = lbItems.indexOf(el.querySelector('img'));
+    lbImg.src = lbItems[lbIdx].src;
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
 
-            // Observer tous les éléments animés
-            document.querySelectorAll('.anim-scroll, .anim-scroll-gauche, .anim-scroll-droite, .anim-scroll-zoom')
-                .forEach(el => {
-                    observer.observe(el);
-                });
-
-            // ============ LIGHTBOX ============
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxFermer = document.getElementById('lightboxFermer');
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-            const galerieItems = document.querySelectorAll('.galerie-item');
-            let currentIndex = 0;
-
-            // Tableau des URLs des images de la galerie
-            const imagesUrls = [
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_1.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_2.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_3.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_4.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_6.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_7.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_8.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_9.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_10.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_11.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_12.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_13.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_14.jpg',
-                'https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-cane_corso/cane_corso_15.jpg'
-            ];
-
-            function ouvrirLightbox(index) {
-                currentIndex = index;
-                lightboxImg.src = imagesUrls[currentIndex];
-                lightboxImg.alt = 'Cane Corso - De la Basse Terre - Photo ' + (currentIndex + 1);
-                lightbox.classList.add('actif');
-                lightbox.setAttribute('aria-hidden', 'false');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function fermerLightbox() {
-                lightbox.classList.remove('actif');
-                lightbox.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-                lightboxImg.src = '';
-            }
-
-            function imageSuivante() {
-                currentIndex = (currentIndex + 1) % imagesUrls.length;
-                lightboxImg.src = imagesUrls[currentIndex];
-                lightboxImg.alt = 'Cane Corso - De la Basse Terre - Photo ' + (currentIndex + 1);
-            }
-
-            function imagePrecedente() {
-                currentIndex = (currentIndex - 1 + imagesUrls.length) % imagesUrls.length;
-                lightboxImg.src = imagesUrls[currentIndex];
-                lightboxImg.alt = 'Cane Corso - De la Basse Terre - Photo ' + (currentIndex + 1);
-            }
-
-            galerieItems.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    ouvrirLightbox(index);
-                });
-            });
-
-            lightboxFermer.addEventListener('click', (e) => {
-                e.stopPropagation();
-                fermerLightbox();
-            });
-
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    fermerLightbox();
-                }
-            });
-
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                imageSuivante();
-            });
-
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                imagePrecedente();
-            });
-
-            // Navigation clavier
-            document.addEventListener('keydown', function(e) {
-                if (!lightbox.classList.contains('actif')) return;
-                if (e.key === 'Escape') {
-                    fermerLightbox();
-                } else if (e.key === 'ArrowRight') {
-                    imageSuivante();
-                } else if (e.key === 'ArrowLeft') {
-                    imagePrecedente();
-                }
-            });
-
-            // ============ FORMULAIRE CONTACT ============
-            const contactForm = document.getElementById('contactForm');
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = contactForm.querySelector('.btn-soumettre');
-                const originalText = btn.textContent;
-                btn.textContent = 'Message envoyé ✓';
-                btn.style.background = '#2d7d46';
-                btn.style.boxShadow = '0 6px 20px rgba(45,125,70,0.4)';
-                btn.disabled = true;
-
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '';
-                    btn.style.boxShadow = '';
-                    btn.disabled = false;
-                    contactForm.reset();
-                }, 3000);
-            });
-
-            // ============ ACTIVE NAV LINK ON SCROLL ============
-            const sections = document.querySelectorAll('section[id]');
-            const navLiens = document.querySelectorAll('.nav-lien:not(.nav-cta)');
-
-            function mettreAJourNavActif() {
-                let scrollPosition = window.scrollY + 120;
-                let sectionActive = null;
-
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.offsetHeight;
-                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                        sectionActive = section.getAttribute('id');
-                    }
-                });
-
-                navLiens.forEach(lien => {
-                    lien.classList.remove('actif');
-                    if (lien.getAttribute('href') === '#' + sectionActive) {
-                        lien.classList.add('actif');
-                    }
-                });
-
-                // Si on est tout en haut, active "Accueil"
-                if (window.scrollY < 100) {
-                    navLiens.forEach(l => l.classList.remove('actif'));
-                    const accueilLien = document.querySelector('.nav-lien[href="#hero"]');
-                    if (accueilLien) accueilLien.classList.add('actif');
-                }
-            }
-
-            window.addEventListener('scroll', mettreAJourNavActif);
-            mettreAJourNavActif(); // appel initial
-
-            console.log('🐾 De la Basse Terre - Élevage de Cane Corso - Site prêt !');
-        })();
-    </script>
+  document.querySelectorAll('.acc__q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.classList.toggle('open');
+      q.nextElementSibling.classList.toggle('open');
+    });
+  });
+</script>
 </body>
 </html>
