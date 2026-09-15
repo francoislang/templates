@@ -175,6 +175,54 @@ def _inject_tracking(path):
         print(f"  WARNING tracking non injecte: {e}")
 
 
+REFERENCE_PATH = REPO_ROOT / "_templates" / "reference.html"
+
+# Seuils du garde-fou. Calibres sur les sites issus du template Jinja
+# (8 sections, ~14 photos, ~55 ko) face aux improvisations de l'IA quand la
+# reference manquait (3 a 4 sections, parfois 2 photos, 15 ko).
+MIN_SECTIONS = 6
+MIN_PHOTOS = 10
+MIN_OCTETS = 30000
+
+
+def _charger_reference() -> str:
+    """Le site modele envoye a l'IA, en entier.
+
+    Il vit dans _templates/ et non dans un dossier de site : un dossier de site
+    peut etre supprime par un nettoyage du depot, ce qui etait deja arrive et
+    laissait le prompt avec une reference vide.
+    """
+    try:
+        return REFERENCE_PATH.read_text(encoding="utf-8")
+    except Exception as e:
+        print(f"   ⚠️  reference illisible ({REFERENCE_PATH}): {e}")
+        return ""
+
+
+def _site_est_correct(html: str) -> tuple[bool, str]:
+    """Verifie qu'un site genere est assez riche pour etre montre a un prospect.
+
+    Retourne (True, "") ou (False, raison lisible).
+    """
+    if not html or not html.strip():
+        return False, "vide"
+    if "</html>" not in html.lower():
+        return False, "HTML incomplet (generation coupee)"
+
+    octets = len(html.encode("utf-8"))
+    sections = len(re.findall(r"<section", html, re.IGNORECASE))
+    photos = len(set(re.findall(
+        r"https?://[^\"'\s]+\.(?:jpe?g|png|webp|avif)", html, re.IGNORECASE)))
+
+    if sections < MIN_SECTIONS:
+        return False, f"{sections} sections (minimum {MIN_SECTIONS})"
+    if photos < MIN_PHOTOS:
+        return False, f"{photos} photos (minimum {MIN_PHOTOS})"
+    if octets < MIN_OCTETS:
+        return False, f"{octets} octets (minimum {MIN_OCTETS})"
+    return True, ""
+
+
 def generate_demo_site(profile, force=False):
     """Genere un site via DeepSeek V4 Pro (OpenRouter).
 
@@ -214,12 +262,10 @@ def generate_demo_site(profile, force=False):
                          photo_url=p_url, photos_race=photos)
         return r[1] if r else None
 
-    # Reference joyaux-d-anubis
-    ref = ""
-    try:
-        ref = (REPO_ROOT / "joyaux-d-anubis" / "index.html").read_text(encoding="utf-8")[:4000]
-    except Exception:
-        pass
+    # Site de reference : _templates/reference.html, fige exactement pour cet usage.
+    # Il est envoye ENTIER : tronque, le modele ne voit que le <head> et improvise
+    # tout le reste, ce qui donne des sites a 4 sections au lieu de 8.
+    ref = _charger_reference()
 
     lieu = f"a {ville} ({dept})" if ville and dept else (dept or "France")
     pl = "\n".join(f"  {p}" for p in photos)
@@ -241,6 +287,8 @@ CONTENU :
 
 REGLES:
 - Reproduis EXACTEMENT la structure HTML, sections et classes du site de reference
+- La reference ci-dessus est COMPLETE : reprends TOUTES ses sections, dans le meme
+  ordre, sans en supprimer aucune. Un site a moins de 6 sections sera rejete.
 - Hero: utilise une photo Cloudinary (JAMAIS chien.com)
 - Galerie: utilise TOUTES les {len(photos)} photos fournies. Boucle si besoin.
 - Formulaire contact (nom, email, message)
@@ -253,12 +301,17 @@ REGLES:
 
     def _fallback(raison):
         """Repli sur le template Jinja : mieux vaut un site correct qu'aucun site."""
-        print(f"   ⚠️  IA indisponible ({raison}) — repli sur le template universel")
+        print(f"   ⚠️  Repli sur le template universel ({raison})")
         from generator import generate_site
         r2 = generate_site(name=name, race=race, phone=phone, city=ville or dept,
                            description=desc, siren=siren, departement=dept,
                            photo_url=p_url, photos_race=photos)
         return r2[1] if r2 else None
+
+    # Sans reference, le modele improvise et rend un site indigent : autant
+    # passer directement par le template, dont la qualite est garantie.
+    if not ref.strip():
+        return _fallback(f"{REFERENCE_PATH.name} introuvable")
 
     payload = {
         "model": "deepseek/deepseek-v4-pro",
@@ -320,6 +373,13 @@ REGLES:
     # Ne garder que le HTML pur (enlever texte avant DOCTYPE et apres /html)
     m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
     if m: html = m.group(1)
+
+    # Garde-fou : un site trop pauvre dessert la prospection. Mieux vaut le
+    # template universel, previsible, qu'une improvisation a 4 sections.
+    ok, raison = _site_est_correct(html)
+    if not ok:
+        return _fallback(f"site genere trop pauvre — {raison}")
+
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
     _sanitize(target, slug, {"email": profile.get("email", ""), "phone": phone})
     _inject_tracking(target)
