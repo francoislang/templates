@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Villa du Sieur Paoli - Élevage de Yorkshire Terrier</title>
+    <meta name="description" content="La Villa du Sieur Paoli, élevage familial de Yorkshire Terrier depuis 1991. Chiots inscrits au LOF, parents primés visibles. Situé dans l'Avesnois, entre Valenciennes et Le Quesnoy. Sur rendez-vous uniquement.">
+    <meta name="keywords" content="élevage yorkshire, yorkshire terrier, chiot yorkshire, LOF, élevage familial, Avesnois, Valenciennes, Le Quesnoy, La Villa du Sieur Paoli">
+    <meta name="author" content="La Villa du Sieur Paoli">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://francoislang.github.io/templates/la-villa-du-sieur-paoli/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="La Villa du Sieur Paoli - Élevage de Yorkshire Terrier">
+    <meta property="og:description" content="Élevage familial de Yorkshire Terrier depuis 1991. Chiots LOF, parents primés visibles. Situé dans l'Avesnois.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_1.jpg">
+    <meta property="og:url" content="https://francoislang.github.io/templates/la-villa-du-sieur-paoli/">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="La Villa du Sieur Paoli">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="La Villa du Sieur Paoli - Élevage de Yorkshire Terrier">
+    <meta name="twitter:description" content="Élevage familial de Yorkshire Terrier depuis 1991. Chiots LOF, parents primés visibles.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_1.jpg">
+
+    <!-- Favicon (optionnel) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐾</text></svg>">
+
+    <!-- Polices Google Fonts : Cinzel + Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AnimalShelter",
+      "name": "La Villa du Sieur Paoli",
+      "description": "Élevage familial de Yorkshire Terrier fondé en 1991. Chiots inscrits au LOF, parents primés visibles. Situé dans l'Avesnois, entre Valenciennes et Le Quesnoy.",
+      "telephone": "03.27.27.64.93",
+      "email": "03.27.27.64.93",
+      "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_1.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Avesnois",
+        "addressRegion": "Hauts-de-France",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.2367",
+        "longitude": "3.6345"
+      },
+      "url": "https://francoislang.github.io/templates/la-villa-du-sieur-paoli/",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "SIREN",
+        "value": "440364974"
+      },
+      "foundingDate": "1991",
+      "species": "Yorkshire Terrier"
+    }
+    </script>
+
+    <style>
+        :root {
+            --color-primary: #2c3e50;      /* Bleu ardoise profond */
+            --color-secondary: #c59b6d;    /* Doré / Tan Yorkshire */
+            --color-accent: #8e6b4a;       /* Brun terre */
+            --color-bg: #f9f7f4;           /* Fond crème doux */
+            --color-text: #333333;
+            --color-light: #ffffff;
+            --color-border: #e0dcd5;
+            --font-heading: 'Cinzel', serif;
+            --font-body: 'Raleway', sans-serif;
+            --transition: all 0.3s ease;
+            --shadow: 0 8px 24px rgba(0,0,0,0.08);
+            --shadow-hover: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: var(--color-primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* --- ANIMATIONS SCROLL --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- HEADER / NAVIGATION --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .site-header.scrolled {
+            background-color: rgba(255,255,255,0.98);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-tel {
+            background-color: var(--color-primary);
+            color: white !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav-tel:hover {
+            background-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-tel::after {
+            display: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(44,62,80,0.85) 0%, rgba(142,107,74,0.75) 100%),
+                        url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_1.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            color: var(--color-secondary);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .hero .desc-hero {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: var(--transition);
+            cursor: pointer;
+            border: 2px solid transparent;
+            font-family: var(--font-body);
+        }
+
+        .btn-primary {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: white;
+            border-color: var(--color-secondary);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: white;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 6rem 0;
+            background-color: var(--color-light);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            margin-bottom: 3rem;
+            font-weight: 500;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-text .highlight {
+            color: var(--color-secondary);
+            font-weight: 600;
+        }
+
+        .about-image {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery {
+            padding: 6rem 0;
+            background-color: var(--color-bg);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+            aspect-ratio: 4 / 3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-5px);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact {
+            padding: 6rem 0;
+            background-color: var(--color-light);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .info-item i {
+            font-size: 1.5rem;
+            color: var(--color-secondary);
+            min-width: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: var(--color-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--color-bg);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(197,155,109,0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* --- FOOTER --- */
+        .site-footer {
+            background-color: var(--color-primary);
+            color: rgba(255,255,255,0.8);
+            padding: 3rem 0 2rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-col h4 {
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.7;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-secondary);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1.5rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Simple : on masque pour mobile, on peut ajouter un menu hamburger plus tard */
+            }
+            .nav-container {
+                justify-content: center;
+            }
+            .hero {
+                background-attachment: scroll;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-top {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+            .btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ HEADER ============ -->
+    <header class="site-header" id="siteHeader">
+        <div class="container nav-container">
+            <a href="#" class="logo">La Villa du <span>Sieur Paoli</span></a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#accueil" class="active">Accueil</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="tel:0327276493" class="nav-tel">📞 03.27.27.64.93</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section id="accueil" class="hero">
+        <div class="hero-content">
+            <p class="subtitle">Élevage familial depuis 1991</p>
+            <h1>La Villa du Sieur Paoli</h1>
+            <p class="desc-hero">
+                Yorkshire Terrier d'exception, inscrits au LOF. Parents primés visibles.<br>
+                Situé dans l'Avesnois, à la campagne, entre Valenciennes et Le Quesnoy.
+            </p>
+            <div class="hero-buttons">
+                <a href="#apropos" class="btn btn-primary">Découvrir l'élevage</a>
+                <a href="#galerie" class="btn btn-outline">Voir nos Yorkshires</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="apropos" class="about">
+        <div class="container">
+            <h2 class="section-title reveal">Notre Élevage</h2>
+            <p class="section-subtitle reveal">Passion &amp; Tradition depuis 1991</p>
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        <strong>La Villa du Sieur Paoli</strong> est un élevage familial fondé en <span class="highlight">1991</span>.
+                        Nous élevons exclusivement des <span class="highlight">Yorkshire Terrier</span> inscrits au <strong>LOF</strong> (Livre des Origines Français).
+                    </p>
+                    <p>
+                        L'élevage est situé dans un petit village de l'<strong>Avesnois</strong>, à la campagne, entre Valenciennes et Le Quesnoy.
+                        Nos Yorkshires vivent en liberté et les parents sont <strong>primés et visibles</strong>.
+                    </p>
+                    <p>
+                        Nous accordons une importance particulière à la santé, au caractère et au respect du standard de la race.
+                        Les chiots sont élevés en famille, socialisés et suivis avec attention.
+                    </p>
+                    <p>
+                        <em>Je reçois uniquement sur rendez-vous.</em>
+                    </p>
+                </div>
+                <div class="about-image reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_2.jpg" alt="Yorkshire Terrier au repos dans l'élevage La Villa du Sieur Paoli">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GALLERY ============ -->
+    <section id="galerie" class="gallery">
+        <div class="container">
+            <h2 class="section-title reveal">Galerie Photos</h2>
+            <p class="section-subtitle reveal">Nos Yorkshires en images</p>
+            <div class="gallery-grid">
+                <!-- 15 photos fournies -->
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_1.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_2.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_3.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_4.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_5.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_6.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_7.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_8.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_9.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_10.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_11.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_12.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_13.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_14.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+                <div class="gallery-item reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-yorkshire_terrier/yorkshire_terrier_15.jpg" alt="Yorkshire Terrier - La Villa du Sieur Paoli" loading="lazy">
+                </div>
+            </div>
+            <p style="text-align:center; margin-top: 2rem; font-style: italic; color: #666;">
+                Toutes nos photos proviennent de notre élevage.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title reveal">Contactez-nous</h2>
+            <p class="section-subtitle reveal">Une question ? Un projet d'adoption ? Écrivez-nous.</p>
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <i>📍</i>
+                        <span><strong>Lieu :</strong> Élevage de chiens<br>Petit village de l'Avesnois, entre Valenciennes et Le Quesnoy</span>
+                    </div>
+                    <div class="info-item">
+                        <i>📞</i>
+                        <span><strong>Téléphone :</strong> 03.27.27.64.93</span>
+                    </div>
+                    <div class="info-item">
+                        <i>🐾</i>
+                        <span><strong>Race :</strong> Yorkshire Terrier (exclusivement LOF)</span>
+                    </div>
+                    <div class="info-item">
+                        <i>ℹ️</i>
+                        <span><strong>SIREN :</strong> 440364974</span>
+                    </div>
+                    <div class="info-item">
+                        <i>🕒</i>
+                        <span><strong>Visites :</strong> uniquement sur rendez-vous</span>
+                    </div>
+                </div>
+                <form class="contact-form reveal" action="#" method="POST">
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Votre message..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start;">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col">
+                    <h4>La Villa du Sieur Paoli</h4>
+                    <p>Élevage de Yorkshire Terrier</p>
+                    <p>Fondé en 1991</p>
+                    <p>SIREN : 440364974</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>03.27.27.64.93</p>
+                    <p>Avesnois, entre Valenciennes et Le Quesnoy</p>
+                    <p>Sur rendez-vous uniquement</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens utiles</h4>
+                    <a href="#">Mentions légales</a>
+                    <a href="#">CGV</a>
+                    <a href="#">Politique de confidentialité</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 La Villa du Sieur Paoli</span>
+                <span>SIRET 440364974</span>
+                <span>Élevage de chiens</span>
+                <a href="#" style="color: inherit;">Mentions légales</a>
+                <a href="#" style="color: inherit;">CGV</a>
+                <a href="#" style="color: inherit;">Politique confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ SCRIPT ANIMATIONS SCROLL (IntersectionObserver) ============ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // IntersectionObserver pour les éléments avec classe .reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Une fois révélé, on peut arrêter d'observer pour la performance
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            revealElements.forEach(el => observer.observe(el));
+
+            // Changement de style du header au scroll
+            const header = document.getElementById('siteHeader');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Mise à jour de l'année automatiquement si nécessaire (mais on garde 2026 demandé)
+            // On laisse 2026 comme demandé.
+        });
+    </script>
+</body>
+</html>

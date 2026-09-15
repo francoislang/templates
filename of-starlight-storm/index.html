@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Of Starlight Storm - Élevage de Carlins à Sévrier, Haute-Savoie</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Of Starlight Storm - Élevage de Carlins LOF à Sévrier (74). Chiots inscrits au Livre des Origines Français, élevés en famille. Reproducteurs testés et sélectionnés.">
+    <meta name="keywords" content="élevage carlin, carlin LOF, chiot carlin, élevage Sévrier, Haute-Savoie, chien carlin, Of Starlight Storm">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Of Starlight Storm">
+    <meta name="geo.region" content="FR-74">
+    <meta name="geo.placename" content="Sévrier">
+    <meta name="geo.position" content="45.8639;6.1398">
+    <meta name="ICBM" content="45.8639, 6.1398">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Of Starlight Storm - Élevage de Carlins LOF">
+    <meta property="og:description" content="Élevage familial de Carlins à Sévrier (Haute-Savoie). Chiots LOF, reproducteurs testés, élevés au cœur du foyer.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_1.jpg">
+    <meta property="og:url" content="https://francoislang.github.io/templates/of-starlight-storm/">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Of Starlight Storm">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Of Starlight Storm - Élevage de Carlins LOF">
+    <meta name="twitter:description" content="Élevage familial de Carlins à Sévrier (74). Chiots LOF, reproducteurs testés.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_1.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐾</text></svg>">
+
+    <!-- Google Fonts: Cinzel + Raleway -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AnimalShelter",
+        "name": "Of Starlight Storm",
+        "description": "Élevage de Carlins inscrits au Livre des Origines Français (LOF) à Sévrier, Haute-Savoie. Chiots élevés en famille avec une attention particulière à leur santé et leur équilibre.",
+        "telephone": "+33 6 44 16 10 35",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Sévrier",
+            "addressRegion": "Haute-Savoie",
+            "postalCode": "74320",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 45.8639,
+            "longitude": 6.1398
+        },
+        "url": "https://francoislang.github.io/templates/of-starlight-storm/",
+        "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_1.jpg",
+        "priceRange": "€€",
+        "openingHours": "Mo-Su 09:00-20:00",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+33 6 44 16 10 35",
+            "contactType": "customer service",
+            "availableLanguage": ["French"]
+        },
+        "knowsAbout": ["Élevage de Carlins", "Chiot LOF", "Chien Carlin"],
+        "areaServed": ["Haute-Savoie", "Auvergne-Rhône-Alpes", "France"]
+    }
+    </script>
+
+    <style>
+        /* ============ CSS Variables & Reset ============ */
+        :root {
+            --color-fawn: #C4956A;
+            --color-fawn-light: #E8C39E;
+            --color-fawn-pale: #F5E1C8;
+            --color-cream: #FFF8F0;
+            --color-cream-dark: #FAF0E6;
+            --color-dark-brown: #3E2723;
+            --color-dark-brown-2: #4A2C17;
+            --color-black: #1A1A1A;
+            --color-white: #FFFFFF;
+            --color-gray: #6B5D4F;
+            --color-gray-light: #A08C7A;
+            --color-shadow: rgba(62, 39, 35, 0.15);
+            --color-overlay: rgba(26, 18, 14, 0.55);
+
+            --font-heading: 'Cinzel', 'Georgia', serif;
+            --font-body: 'Raleway', 'Arial', sans-serif;
+
+            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --border-radius-sm: 8px;
+            --border-radius-md: 16px;
+            --border-radius-lg: 24px;
+            --border-radius-xl: 40px;
+
+            --max-width: 1200px;
+            --header-height: 80px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--color-dark-brown);
+            background-color: var(--color-cream);
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        /* ============ Scroll Animation Classes ============ */
+        .animate-fade-up,
+        .animate-fade-in,
+        .animate-fade-left,
+        .animate-fade-right,
+        .animate-zoom-in {
+            opacity: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            will-change: opacity, transform;
+        }
+
+        .animate-fade-up {
+            transform: translateY(40px);
+        }
+
+        .animate-fade-in {
+            transform: translateY(0);
+            transition-duration: 1.2s;
+        }
+
+        .animate-fade-left {
+            transform: translateX(-50px);
+        }
+
+        .animate-fade-right {
+            transform: translateX(50px);
+        }
+
+        .animate-zoom-in {
+            transform: scale(0.85);
+        }
+
+        .visible {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Stagger delays */
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+        .delay-5 {
+            transition-delay: 0.5s;
+        }
+        .delay-6 {
+            transition-delay: 0.6s;
+        }
+
+        /* ============ Header / Navigation ============ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 248, 240, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(196, 149, 106, 0.2);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+        }
+
+        .site-header.scrolled {
+            box-shadow: 0 4px 20px rgba(62, 39, 35, 0.12);
+            background: rgba(255, 248, 240, 0.98);
+        }
+
+        .header-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-dark-brown);
+            letter-spacing: 0.05em;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-fawn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-name {
+            font-size: 1.15rem;
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-gray);
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            color: var(--color-dark-brown);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-fawn);
+            transition: var(--transition-smooth);
+            border-radius: 2px;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: var(--color-fawn);
+        }
+
+        .nav-cta {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 10px 22px;
+            background: var(--color-dark-brown);
+            color: var(--color-cream);
+            border-radius: 50px;
+            letter-spacing: 0.05em;
+            border: 2px solid var(--color-dark-brown);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--color-dark-brown);
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--color-dark-brown);
+            border-radius: 3px;
+            transition: var(--transition-smooth);
+            display: block;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(7.5px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-7.5px) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            max-width: 320px;
+            height: 100vh;
+            background: var(--color-cream);
+            padding: 100px 30px 40px;
+            z-index: 999;
+            transition: var(--transition-smooth);
+            flex-direction: column;
+            gap: 20px;
+            border-left: 1px solid rgba(196, 149, 106, 0.2);
+            box-shadow: -4px 0 30px rgba(62, 39, 35, 0.15);
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu .nav-link {
+            font-size: 1.1rem;
+            padding: 10px 0;
+        }
+
+        .mobile-menu .nav-cta {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 998;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .mobile-overlay.show {
+            opacity: 1;
+        }
+
+        /* ============ Hero Section ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-image: url('https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_1.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            background-repeat: no-repeat;
+            margin-top: var(--header-height);
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    var(--color-overlay) 0%,
+                    rgba(26, 18, 14, 0.35) 50%,
+                    var(--color-overlay) 100%);
+            z-index: -1;
+        }
+
+        .hero-inner {
+            max-width: 800px;
+            padding: 40px 20px;
+            color: var(--color-white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 1.5px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50px;
+            margin-bottom: 30px;
+            background: rgba(196, 149, 106, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 0.04em;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-location {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--color-fawn-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            padding: 14px 32px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--color-fawn);
+            color: var(--color-dark-brown);
+            border-color: var(--color-fawn);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-fawn-light);
+            border-color: var(--color-fawn-light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(196, 149, 106, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-white);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--color-white);
+            transform: translateY(-3px);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        /* ============ About Section ============ */
+        .about-section {
+            padding: 100px 20px;
+            background: var(--color-cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196, 149, 106, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .about-section::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(196, 149, 106, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .section-container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            font-weight: 700;
+            color: var(--color-dark-brown);
+            text-align: center;
+            margin-bottom: 16px;
+            letter-spacing: 0.03em;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--color-gray);
+            text-align: center;
+            max-width: 550px;
+            margin: 0 auto 50px;
+            letter-spacing: 0.04em;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-dark-brown);
+            margin-bottom: 18px;
+            letter-spacing: 0.04em;
+        }
+
+        .about-text p {
+            color: var(--color-gray);
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-size: 0.98rem;
+        }
+
+        .about-text strong {
+            color: var(--color-dark-brown);
+            font-weight: 600;
+        }
+
+        .about-info-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .info-card {
+            background: var(--color-white);
+            padding: 24px 20px;
+            border-radius: var(--border-radius-md);
+            text-align: center;
+            border: 1px solid rgba(196, 149, 106, 0.2);
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 16px rgba(62, 39, 35, 0.06);
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(62, 39, 35, 0.12);
+            border-color: rgba(196, 149, 106, 0.4);
+        }
+
+        .info-card-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .info-card-label {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-gray-light);
+            margin-bottom: 6px;
+        }
+
+        .info-card-value {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--color-dark-brown);
+            letter-spacing: 0.02em;
+        }
+
+        .info-card-value a {
+            color: var(--color-dark-brown);
+        }
+
+        .info-card-value a:hover {
+            color: var(--color-fawn);
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: var(--border-radius-lg);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(62, 39, 35, 0.2);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            min-height: 400px;
+            border-radius: var(--border-radius-lg);
+            transition: transform 0.6s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-image-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255, 248, 240, 0.92);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: var(--border-radius-md);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-dark-brown);
+            border: 1px solid rgba(196, 149, 106, 0.3);
+        }
+
+        /* ============ Gallery Section ============ */
+        .gallery-section {
+            padding: 100px 20px;
+            background: var(--color-cream-dark);
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            aspect-ratio: 1 / 1;
+            box-shadow: 0 6px 20px rgba(62, 39, 35, 0.1);
+            transition: var(--transition-smooth);
+            background: var(--color-fawn-pale);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(26, 18, 14, 0.3) 100%);
+            opacity: 0;
+            transition: var(--transition-smooth);
+            border-radius: var(--border-radius-md);
+            pointer-events: none;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item::before {
+            content: '👁';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            font-size: 2rem;
+            color: var(--color-white);
+            z-index: 2;
+            opacity: 0;
+            transition: var(--transition-bounce);
+            pointer-events: none;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item:hover::before {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: var(--border-radius-md);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            animation: lightboxZoom 0.3s ease;
+        }
+
+        @keyframes lightboxZoom {
+            from {
+                transform: scale(0.7);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: var(--color-white);
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2001;
+            transition: var(--transition-smooth);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-prev,
+        .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: var(--color-white);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2001;
+        }
+
+        .lightbox-prev:hover,
+        .lightbox-next:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lightbox-prev {
+            left: 30px;
+        }
+        .lightbox-next {
+            right: 30px;
+        }
+
+        /* ============ Contact Section ============ */
+        .contact-section {
+            padding: 100px 20px;
+            background: var(--color-cream);
+            position: relative;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact-info-box {
+            background: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            padding: 40px 32px;
+            border: 1px solid rgba(196, 149, 106, 0.2);
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.08);
+        }
+
+        .contact-info-box h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--color-dark-brown);
+            margin-bottom: 12px;
+            letter-spacing: 0.03em;
+        }
+
+        .contact-info-box>p {
+            color: var(--color-gray);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-fawn-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .contact-detail-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-gray-light);
+            margin-bottom: 2px;
+        }
+
+        .contact-detail-value {
+            font-weight: 500;
+            color: var(--color-dark-brown);
+            font-size: 0.95rem;
+        }
+
+        .contact-detail-value a:hover {
+            color: var(--color-fawn);
+        }
+
+        .contact-form {
+            background: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            padding: 40px 32px;
+            border: 1px solid rgba(196, 149, 106, 0.2);
+            box-shadow: 0 10px 30px rgba(62, 39, 35, 0.08);
+        }
+
+        .contact-form h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--color-dark-brown);
+            margin-bottom: 24px;
+            letter-spacing: 0.03em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-gray);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid rgba(196, 149, 106, 0.3);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--color-dark-brown);
+            background: var(--color-cream);
+            transition: var(--transition-smooth);
+            outline: none;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-fawn);
+            box-shadow: 0 0 0 3px rgba(196, 149, 106, 0.15);
+            background: var(--color-white);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--color-gray-light);
+            font-weight: 300;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: var(--color-dark-brown);
+            color: var(--color-cream);
+            border: 2px solid var(--color-dark-brown);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .btn-submit:hover {
+            background: transparent;
+            color: var(--color-dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(62, 39, 35, 0.15);
+        }
+
+        /* ============ Footer ============ */
+        .site-footer {
+            background: var(--color-dark-brown);
+            color: var(--color-cream);
+            padding: 60px 20px 30px;
+            position: relative;
+        }
+
+        .footer-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 248, 240, 0.15);
+            margin-bottom: 30px;
+        }
+
+        .footer-brand .logo-name {
+            font-size: 1.5rem;
+            color: var(--color-cream);
+        }
+
+        .footer-brand .logo-subtitle {
+            color: var(--color-fawn-light);
+        }
+
+        .footer-brand p {
+            margin-top: 16px;
+            font-size: 0.88rem;
+            color: rgba(255, 248, 240, 0.7);
+            max-width: 350px;
+            line-height: 1.6;
+        }
+
+        .footer-heading {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-fawn-light);
+            margin-bottom: 18px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 0.88rem;
+            color: rgba(255, 248, 240, 0.7);
+            transition: var(--transition-smooth);
+        }
+
+        .footer-links a:hover {
+            color: var(--color-fawn-light);
+            padding-left: 5px;
+        }
+
+        .footer-contact-item {
+            font-size: 0.88rem;
+            color: rgba(255, 248, 240, 0.7);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: rgba(255, 248, 240, 0.6);
+        }
+
+        .footer-bottom .siren {
+            color: rgba(255, 248, 240, 0.5);
+            font-size: 0.75rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-legal-links a {
+            color: rgba(255, 248, 240, 0.6);
+            font-size: 0.8rem;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--color-fawn-light);
+        }
+
+        /* ============ Lightbox Animation ============ */
+        .lightbox .lightbox-prev,
+        .lightbox .lightbox-next {
+            opacity: 0.4;
+        }
+
+        .lightbox .lightbox-prev:hover,
+        .lightbox .lightbox-next:hover {
+            opacity: 1;
+        }
+
+        /* ============ Responsive ============ */
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                order: -1;
+                max-height: 400px;
+            }
+
+            .about-image img {
+                min-height: 300px;
+                max-height: 400px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-desktop {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .mobile-overlay {
+                display: block;
+                pointer-events: none;
+            }
+
+            .mobile-overlay.show {
+                pointer-events: auto;
+            }
+
+            .hero-title {
+                font-size: clamp(2.2rem, 8vw, 3.2rem);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-section,
+            .gallery-section,
+            .contact-section {
+                padding: 70px 16px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .about-info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+            .lightbox-next {
+                right: 10px;
+            }
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+                font-size: 2rem;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-badge {
+                font-size: 0.7rem;
+                padding: 6px 14px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-form,
+            .contact-info-box {
+                padding: 22px 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .animate-fade-up,
+            .animate-fade-in,
+            .animate-fade-left,
+            .animate-fade-right,
+            .animate-zoom-in {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============ Header ============ -->
+    <header class="site-header" id="siteHeader" role="banner">
+        <div class="header-inner">
+            <a href="#hero" class="logo" aria-label="Of Starlight Storm - Accueil">
+                <span class="logo-icon">🐾</span>
+                <span class="logo-text">
+                    <span class="logo-name">Of Starlight Storm</span>
+                    <span class="logo-subtitle">Élevage de Carlins</span>
+                </span>
+            </a>
+
+            <nav class="nav-desktop" role="navigation" aria-label="Navigation principale">
+                <a href="#hero" class="nav-link active">Accueil</a>
+                <a href="#about" class="nav-link">Notre Élevage</a>
+                <a href="#gallery" class="nav-link">Galerie</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-cta">Nous Contacter</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Navigation mobile">
+        <a href="#hero" class="nav-link mobile-nav-link">Accueil</a>
+        <a href="#about" class="nav-link mobile-nav-link">Notre Élevage</a>
+        <a href="#gallery" class="nav-link mobile-nav-link">Galerie</a>
+        <a href="#contact" class="nav-link mobile-nav-link">Contact</a>
+        <a href="#contact" class="nav-cta">Nous Contacter</a>
+    </nav>
+
+    <!-- ============ Hero Section ============ -->
+    <section class="hero" id="hero" role="main" aria-label="Section héro">
+        <div class="hero-inner">
+            <span class="hero-badge animate-fade-in">🐾 Élevage Familial de Carlins</span>
+            <h1 class="hero-title animate-fade-up delay-1">Of Starlight Storm</h1>
+            <p class="hero-subtitle animate-fade-up delay-2">Élevage de Carlins inscrits au LOF</p>
+            <p class="hero-location animate-fade-up delay-3">
+                📍 Sévrier, Haute-Savoie &nbsp;|&nbsp; 📞 06.44.16.10.35
+            </p>
+            <div class="hero-buttons animate-fade-up delay-4">
+                <a href="#gallery" class="btn btn-primary">Voir la Galerie</a>
+                <a href="#contact" class="btn btn-outline">Nous Contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ About Section ============ -->
+    <section class="about-section" id="about" aria-label="Notre élevage">
+        <div class="section-container">
+            <h2 class="section-title animate-fade-up">Notre Élevage</h2>
+            <p class="section-subtitle animate-fade-up delay-1">Une passion pour une race attachante</p>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <h3 class="animate-fade-left">Bienvenue chez Of Starlight Storm</h3>
+                    <p class="animate-fade-left delay-1">
+                        <strong>Notre élevage de Carlins</strong> est né de notre passion pour cette race
+                        attachante. Nos chiens et nos chiots sont inscrits au
+                        <strong>Livre des Origines Français (LOF)</strong>.
+                    </p>
+                    <p class="animate-fade-left delay-2">
+                        Ils grandissent au cœur de notre foyer et partagent pleinement notre quotidien.
+                        Nous accordons une attention particulière à leur <strong>santé</strong> et à leur
+                        <strong>équilibre</strong>, avec des reproducteurs testés et sélectionnés avec soin.
+                    </p>
+                    <p class="animate-fade-left delay-3">
+                        <em>Contactez-nous pour en savoir plus.</em>
+                    </p>
+
+                    <div class="about-info-cards">
+                        <div class="info-card animate-fade-up delay-4">
+                            <span class="info-card-icon">🐕</span>
+                            <span class="info-card-label">Race</span>
+                            <span class="info-card-value">Carlin</span>
+                        </div>
+                        <div class="info-card animate-fade-up delay-5">
+                            <span class="info-card-icon">📋</span>
+                            <span class="info-card-label">Inscription</span>
+                            <span class="info-card-value">LOF</span>
+                        </div>
+                        <div class="info-card animate-fade-up delay-5">
+                            <span class="info-card-icon">📍</span>
+                            <span class="info-card-label">Lieu</span>
+                            <span class="info-card-value">Sévrier (74)</span>
+                        </div>
+                        <div class="info-card animate-fade-up delay-6">
+                            <span class="info-card-icon">📞</span>
+                            <span class="info-card-label">Téléphone</span>
+                            <span class="info-card-value"><a href="tel:0644161035">06.44.16.10.35</a></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image animate-fade-right">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_10.jpg"
+                    alt="Carlin - chiot de l'élevage Of Starlight Storm"
+                    loading="lazy">
+                    <div class="about-image-badge">
+                        <span>❤️ Élevés en famille</span>
+                        <span>🏆 Reproducteurs testés</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Gallery Section ============ -->
+    <section class="gallery-section" id="gallery" aria-label="Galerie photos">
+        <div class="section-container">
+            <h2 class="section-title animate-fade-up">Galerie</h2>
+            <p class="section-subtitle animate-fade-up delay-1">Découvrez nos Carlins en images</p>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item animate-zoom-in" data-index="0">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_1.jpg"
+                    alt="Carlin - photo 1" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-1" data-index="1">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_2.jpg"
+                    alt="Carlin - photo 2" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-2" data-index="2">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_3.jpg"
+                    alt="Carlin - photo 3" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-3" data-index="3">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_4.jpg"
+                    alt="Carlin - photo 4" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-4" data-index="4">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_5.jpg"
+                    alt="Carlin - photo 5" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-5" data-index="5">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_6.jpg"
+                    alt="Carlin - photo 6" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in" data-index="6">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_7.jpg"
+                    alt="Carlin - photo 7" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-1" data-index="7">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_8.jpg"
+                    alt="Carlin - photo 8" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-2" data-index="8">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_9.jpg"
+                    alt="Carlin - photo 9" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-3" data-index="9">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_10.jpg"
+                    alt="Carlin - photo 10" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-4" data-index="10">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_11.jpg"
+                    alt="Carlin - photo 11" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-5" data-index="11">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_12.jpg"
+                    alt="Carlin - photo 12" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in" data-index="12">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_13.jpg"
+                    alt="Carlin - photo 13" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-1" data-index="13">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_14.jpg"
+                    alt="Carlin - photo 14" loading="lazy">
+                </div>
+                <div class="gallery-item animate-zoom-in delay-2" data-index="14">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-carlin/carlin_15.jpg"
+                    alt="Carlin - photo 15" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Lightbox ============ -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Visionneuse d'images">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">✕</button>
+        <button class="lightbox-prev" id="lightboxPrev" aria-label="Image précédente">‹</button>
+        <img src="" alt="Image agrandie" id="lightboxImage">
+        <button class="lightbox-next" id="lightboxNext" aria-label="Image suivante">›</button>
+    </div>
+
+    <!-- ============ Contact Section ============ -->
+    <section class="contact-section" id="contact" aria-label="Contact">
+        <div class="section-container">
+            <h2 class="section-title animate-fade-up">Contact</h2>
+            <p class="section-subtitle animate-fade-up delay-1">Une question ? Écrivez-nous</p>
+
+            <div class="contact-grid">
+                <div class="contact-info-box animate-fade-left">
+                    <h3>Of Starlight Storm</h3>
+                    <p>N'hésitez pas à nous contacter pour toute question sur nos chiots ou pour organiser une visite.</p>
+
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">📍</span>
+                        <div>
+                            <div class="contact-detail-label">Lieu</div>
+                            <div class="contact-detail-value">Sévrier, Haute-Savoie</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">📞</span>
+                        <div>
+                            <div class="contact-detail-label">Téléphone</div>
+                            <div class="contact-detail-value">
+                                <a href="tel:0644161035">06.44.16.10.35</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">🐕</span>
+                        <div>
+                            <div class="contact-detail-label">Race</div>
+                            <div class="contact-detail-value">Carlin - LOF</div>
+                        </div>
+                    </div>
+
+                    <div class="contact-detail">
+                        <span class="contact-detail-icon">📋</span>
+                        <div>
+                            <div class="contact-detail-label">SIREN</div>
+                            <div class="contact-detail-value">&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form animate-fade-right" id="contactForm" action="#" method="POST" role="form" aria-label="Formulaire de contact">
+                    <h3>Envoyez-nous un message</h3>
+
+                    <div class="form-group">
+                        <label for="contactName">Nom</label>
+                        <input type="text" id="contactName" name="nom" placeholder="Votre nom complet" required autocomplete="name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" name="email" placeholder="Votre adresse email" required autocomplete="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" name="message" placeholder="Votre message..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ Footer ============ -->
+    <footer class="site-footer" id="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#hero" class="logo" style="color: var(--color-cream);">
+                        <span class="logo-icon" style="background: var(--color-fawn);">🐾</span>
+                        <span class="logo-text">
+                            <span class="logo-name">Of Starlight Storm</span>
+                            <span class="logo-subtitle">Élevage de Carlins</span>
+                        </span>
+                    </a>
+                    <p>Élevage familial de Carlins LOF à Sévrier, en Haute-Savoie. Nos chiens et chiots grandissent au cœur de notre foyer, entourés d'amour et de soins.</p>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Navigation</h4>
+                    <div class="footer-links">
+                        <a href="#hero">Accueil</a>
+                        <a href="#about">Notre Élevage</a>
+                        <a href="#gallery">Galerie</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Coordonnées</h4>
+                    <div class="footer-contact-item">📍 Sévrier, Haute-Savoie</div>
+                    <div class="footer-contact-item">📞 <a href="tel:0644161035" style="color: rgba(255,248,240,0.7);">06.44.16.10.35</a></div>
+                    <div class="footer-contact-item">🐕 Carlin - LOF</div>
+                    <div class="footer-contact-item siren">SIREN : &nbsp;</div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Of Starlight Storm. Tous droits réservés.</span>
+                <div class="footer-legal-links">
+                    <a href="#">Mentions légales</a>
+                    <a href="#">CGV</a>
+                    <a href="#">Politique confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============ JavaScript ============ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ===== Header scroll effect =====
+            const header = document.getElementById('siteHeader');
+            let lastScrollY = 0;
+
+            function handleHeaderScroll() {
+                const scrollY = window.scrollY;
+                if (scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                lastScrollY = scrollY;
+            }
+
+            window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+            handleHeaderScroll();
+
+            // ===== Mobile menu =====
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileOverlay = document.getElementById('mobileOverlay');
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu.classList.contains('open');
+                mobileMenu.classList.toggle('open');
+                mobileOverlay.classList.toggle('show');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', !isOpen);
+                if (!isOpen) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('open');
+                mobileOverlay.classList.remove('show');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+
+            // ===== IntersectionObserver for scroll animations =====
+            const animatedElements = document.querySelectorAll(
+                '.animate-fade-up, .animate-fade-in, .animate-fade-left, .animate-fade-right, .animate-zoom-in'
+            );
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+
+                animatedElements.forEach(el => observer.observe(el));
+            } else {
+                // Fallback: show all elements immediately
+                animatedElements.forEach(el => el.classList.add('visible'));
+            }
+
+            // ===== Smooth scroll for nav links (native CSS smooth scroll is used) =====
+            // ===== Active nav link highlighting =====
+            const sections = document.querySelectorAll('section[id], section#hero');
+            const navLinks = document.querySelectorAll('.nav-link:not(.mobile-nav-link)');
+
+            function updateActiveNavLink() {
+                const scrollPos = window.scrollY + 120;
+                let currentSectionId = null;
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                        currentSectionId = section.id;
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+            updateActiveNavLink();
+
+            // ===== Lightbox functionality =====
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const lightboxPrev = document.getElementById('lightboxPrev');
+            const lightboxNext = document.getElementById('lightboxNext');
+            let currentImageIndex = 0;
+            const galleryImages = Array.from(galleryItems).map(item => item.querySelector('img'));
+
+            function openLightbox(index) {
+                currentImageIndex = index;
+                updateLightboxImage();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function updateLightboxImage() {
+                const img = galleryImages[currentImageIndex];
+                if (img) {
+                    lightboxImage.src = img.src;
+                    lightboxImage.alt = img.alt;
+                }
+            }
+
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                updateLightboxImage();
+            }
+
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                updateLightboxImage();
+            }
+
+            galleryItems.forEach((item, index) => {
+                item.addEventListener('click', () => openLightbox(index));
+                item.setAttribute('tabindex', '0');
+                item.setAttribute('role', 'button');
+                item.setAttribute('aria-label', 'Agrandir la photo ' + (index + 1));
+                item.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(index);
+                    }
+                });
+            });
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxPrev.addEventListener('click', showPrevImage);
+            lightboxNext.addEventListener('click', showNextImage);
+
+            // Close lightbox on overlay click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Keyboard navigation for lightbox
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    switch (e.key) {
+                        case 'Escape':
+                            closeLightbox();
+                            break;
+                        case 'ArrowLeft':
+                            showPrevImage();
+                            break;
+                        case 'ArrowRight':
+                            showNextImage();
+                            break;
+                    }
+                }
+            });
+
+            // ===== Contact form handling =====
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('contactName').value.trim();
+                const email = document.getElementById('contactEmail').value.trim();
+                const message = document.getElementById('contactMessage').value.trim();
+
+                if (!name || !email || !message) {
+                    alert('Veuillez remplir tous les champs du formulaire.');
+                    return;
+                }
+
+                // Simple email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Veuillez saisir une adresse email valide.');
+                    return;
+                }
+
+                // Show success feedback (simulated)
+                const submitBtn = contactForm.querySelector('.btn-submit');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = '✓ Message envoyé avec succès !';
+                submitBtn.style.background = '#4CAF50';
+                submitBtn.style.borderColor = '#4CAF50';
+
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.style.borderColor = '';
+                    contactForm.reset();
+                }, 3000);
+
+                // In a production environment, you would send the form data
+                // to a backend service, email API, or form handling service
+                console.log('Formulaire soumis:', { name, email, message });
+            });
+
+            // ===== Gallery hover effect enhancement =====
+            // Preload gallery images for smoother hover
+            galleryImages.forEach(img => {
+                const src = img.getAttribute('src');
+                if (src) {
+                    const preloadLink = document.createElement('link');
+                    preloadLink.rel = 'preload';
+                    preloadLink.as = 'image';
+                    preloadLink.href = src;
+                    document.head.appendChild(preloadLink);
+                }
+            });
+
+            console.log('Of Starlight Storm - Site web chargé avec succès');
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="fr-CA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Star Bully's | Élevage d'American Bully</title>
+    <meta name="description" content="North Star Bully's - Élevage passionné d'American Bully de haute qualité. Chiens sains, équilibrés et au tempérament exceptionnel. Découvrez nos chiots disponibles.">
+    <meta name="keywords" content="American Bully, élevage, chiens, North Star Bully's, chiots, American Bully Québec, élevage canin">
+    <meta name="author" content="North Star Bully's">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://francoislang.github.io/templates/north-star-bully-s/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:title" content="North Star Bully's | Élevage d'American Bully">
+    <meta property="og:description" content="North Star Bully's - Élevage passionné dédié à l'American Bully de haute qualité. Découvrez nos chiots disponibles.">
+    <meta property="og:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://francoislang.github.io/templates/north-star-bully-s/">
+    <meta property="og:site_name" content="North Star Bully's">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="North Star Bully's | Élevage d'American Bully">
+    <meta name="twitter:description" content="Élevage passionné d'American Bully de haute qualité. Chiens sains, équilibrés et au tempérament exceptionnel.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='48'>🐾</text></svg>">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-dark: #1a1a1a;
+            --color-dark-secondary: #252525;
+            --color-gold: #b8944b;
+            --color-gold-light: #d4b870;
+            --color-gold-pale: #e8d9b8;
+            --color-cream: #faf7f1;
+            --color-cream-dark: #f0ece3;
+            --color-white: #ffffff;
+            --color-gray: #5c5c5c;
+            --color-gray-light: #8a8a8a;
+            --color-border: #e0d9cc;
+            --color-overlay: rgba(10, 10, 10, 0.55);
+            --color-overlay-light: rgba(20, 20, 20, 0.35);
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 6px 28px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.14);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.18);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --max-width: 1280px;
+            --header-height: 80px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--color-cream);
+            color: var(--color-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ============ HEADER / NAV ============ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all var(--transition-smooth);
+            height: var(--header-height);
+        }
+
+        .header.scrolled {
+            background: rgba(20, 20, 20, 0.97);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header__inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .header__logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: 0.06em;
+            transition: color var(--transition-smooth);
+            white-space: nowrap;
+        }
+
+        .header__logo:hover {
+            color: var(--color-gold-light);
+        }
+
+        .header__logo-icon {
+            font-size: 1.6rem;
+            color: var(--color-gold);
+            transition: transform var(--transition-bounce);
+        }
+
+        .header__logo:hover .header__logo-icon {
+            transform: rotate(-15deg) scale(1.15);
+        }
+
+        .header__nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .header__nav-link {
+            text-decoration: none;
+            color: var(--color-white);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            padding: 6px 0;
+            transition: color var(--transition-smooth);
+        }
+
+        .header__nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-gold);
+            border-radius: 2px;
+            transition: width var(--transition-smooth);
+        }
+
+        .header__nav-link:hover,
+        .header__nav-link:focus-visible {
+            color: var(--color-gold-light);
+        }
+
+        .header__nav-link:hover::after,
+        .header__nav-link:focus-visible::after {
+            width: 100%;
+        }
+
+        .header__phone {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--color-gold-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color var(--transition-smooth);
+            white-space: nowrap;
+        }
+
+        .header__phone:hover {
+            color: var(--color-white);
+        }
+
+        .header__phone-icon {
+            font-size: 1.1rem;
+        }
+
+        /* Mobile menu */
+        .header__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 8px;
+            z-index: 1001;
+        }
+
+        .header__burger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--color-white);
+            border-radius: 3px;
+            transition: all var(--transition-smooth);
+        }
+
+        .header__burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .header__burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .header__burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            background-color: var(--color-dark);
+            padding-top: var(--header-height);
+        }
+
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero__bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(10, 10, 10, 0.65) 0%,
+                    rgba(15, 15, 15, 0.5) 40%,
+                    rgba(10, 10, 10, 0.7) 100%);
+            z-index: 1;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 40px 24px;
+        }
+
+        .hero__badge {
+            display: inline-block;
+            background: var(--color-gold);
+            color: var(--color-dark);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            padding: 10px 22px;
+            border-radius: 50px;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+        }
+
+        .hero__title {
+            font-family: 'Cinzel', serif;
+            font-weight: 800;
+            font-size: clamp(2.6rem, 6vw, 4.8rem);
+            color: var(--color-white);
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero__title span {
+            color: var(--color-gold-light);
+            display: block;
+            font-size: 0.45em;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        .hero__subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 36px;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--color-gold);
+            color: var(--color-dark);
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all var(--transition-smooth);
+            border: 2px solid var(--color-gold);
+            cursor: pointer;
+        }
+
+        .hero__cta:hover {
+            background: transparent;
+            color: var(--color-gold-light);
+            border-color: var(--color-gold-light);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero__scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            letter-spacing: 0.06em;
+            animation: floatDown 2.2s ease-in-out infinite;
+            cursor: pointer;
+        }
+
+        .hero__scroll-indicator span {
+            font-size: 1.4rem;
+        }
+
+        @keyframes floatDown {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(12px);
+            }
+        }
+
+        /* ============ SECTIONS ============ */
+        .section {
+            padding: 90px 24px;
+            position: relative;
+        }
+
+        .section__inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        .section__header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section__tag {
+            display: inline-block;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            color: var(--color-gold);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section__title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--color-dark);
+            letter-spacing: 0.03em;
+            line-height: 1.2;
+        }
+
+        .section__title--light {
+            color: var(--color-white);
+        }
+
+        .section__divider {
+            width: 60px;
+            height: 3px;
+            background: var(--color-gold);
+            margin: 16px auto 0;
+            border-radius: 3px;
+        }
+
+        /* ============ ABOUT ============ */
+        .about {
+            background-color: var(--color-white);
+        }
+
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about__image-wrapper {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            aspect-ratio: 4/3;
+        }
+
+        .about__image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .about__image-wrapper:hover img {
+            transform: scale(1.04);
+        }
+
+        .about__image-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: var(--color-gold);
+            color: var(--color-dark);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            padding: 8px 18px;
+            border-radius: 50px;
+        }
+
+        .about__content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .about__heading {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--color-dark);
+            letter-spacing: 0.03em;
+        }
+
+        .about__text {
+            font-size: 1.05rem;
+            color: var(--color-gray);
+            line-height: 1.8;
+        }
+
+        .about__features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .about__feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--color-cream);
+            border-radius: var(--radius-md);
+            border-left: 3px solid var(--color-gold);
+        }
+
+        .about__feature-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            color: var(--color-gold);
+        }
+
+        .about__feature-text {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--color-dark);
+            line-height: 1.4;
+        }
+
+        /* ============ GALLERY ============ */
+        .gallery {
+            background-color: var(--color-dark-secondary);
+        }
+
+        .gallery__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .gallery__item {
+            position: relative;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+            background: #1a1a1a;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-smooth);
+        }
+
+        .gallery__item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .gallery__item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery__item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery__item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .gallery__item:hover .gallery__item-overlay {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .gallery__item-icon {
+            color: white;
+            font-size: 2.5rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all var(--transition-bounce);
+        }
+
+        .gallery__item:hover .gallery__item-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* ============ LIGHTBOX ============ */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox__img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            object-fit: contain;
+            cursor: default;
+            animation: zoomIn 0.35s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .lightbox__close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            z-index: 10000;
+            background: none;
+            border: none;
+            transition: color var(--transition-smooth);
+            line-height: 1;
+            padding: 10px;
+        }
+
+        .lightbox__close:hover {
+            color: var(--color-gold-light);
+        }
+
+        .lightbox__prev,
+        .lightbox__next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.2rem;
+            color: white;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-smooth);
+            z-index: 10000;
+        }
+
+        .lightbox__prev:hover,
+        .lightbox__next:hover {
+            background: var(--color-gold);
+            color: var(--color-dark);
+        }
+        .lightbox__prev {
+            left: 20px;
+        }
+        .lightbox__next {
+            right: 20px;
+        }
+
+        /* ============ CONTACT ============ */
+        .contact {
+            background-color: var(--color-white);
+        }
+
+        .contact__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .contact__info {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .contact__info-heading {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--color-dark);
+            letter-spacing: 0.03em;
+        }
+
+        .contact__info-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1rem;
+            color: var(--color-gray);
+        }
+
+        .contact__info-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-cream);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            color: var(--color-gold);
+        }
+
+        .contact__info-link {
+            color: var(--color-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color var(--transition-smooth);
+        }
+
+        .contact__info-link:hover {
+            color: var(--color-gold);
+        }
+
+        .contact__form-wrapper {
+            background: var(--color-cream);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .contact__form-title {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            color: var(--color-dark);
+        }
+
+        .contact__form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .contact__field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .contact__label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-dark);
+            letter-spacing: 0.02em;
+        }
+
+        .contact__input,
+        .contact__textarea {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.95rem;
+            padding: 13px 16px;
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-sm);
+            background: var(--color-white);
+            color: var(--color-dark);
+            transition: all var(--transition-smooth);
+            outline: none;
+            resize: vertical;
+            width: 100%;
+        }
+
+        .contact__input:focus,
+        .contact__textarea:focus {
+            border-color: var(--color-gold);
+            box-shadow: 0 0 0 4px rgba(184, 148, 75, 0.1);
+        }
+
+        .contact__textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .contact__submit {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.04em;
+            padding: 15px 32px;
+            background: var(--color-gold);
+            color: var(--color-dark);
+            border: 2px solid var(--color-gold);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            align-self: flex-start;
+            text-transform: uppercase;
+        }
+
+        .contact__submit:hover {
+            background: var(--color-dark);
+            color: var(--color-gold-light);
+            border-color: var(--color-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact__success {
+            display: none;
+            padding: 16px 20px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        .contact__success.visible {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            background: var(--color-dark);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 48px 24px 28px;
+        }
+
+        .footer__inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .footer__top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .footer__brand {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--color-white);
+            letter-spacing: 0.05em;
+        }
+
+        .footer__brand span {
+            color: var(--color-gold-light);
+            font-size: 0.5em;
+            display: block;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            margin-top: 2px;
+        }
+
+        .footer__social {
+            display: flex;
+            gap: 14px;
+        }
+
+        .footer__social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            text-decoration: none;
+            transition: all var(--transition-smooth);
+            font-size: 1.1rem;
+        }
+
+        .footer__social-link:hover {
+            background: var(--color-gold);
+            color: var(--color-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer__bottom {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.85rem;
+        }
+
+        .footer__copyright {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .footer__links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .footer__links a {
+            color: rgba(255, 255, 255, 0.65);
+            text-decoration: none;
+            transition: color var(--transition-smooth);
+            font-size: 0.85rem;
+        }
+
+        .footer__links a:hover {
+            color: var(--color-gold-light);
+        }
+
+        .footer__separator {
+            color: rgba(255, 255, 255, 0.25);
+            user-select: none;
+        }
+
+        /* ============ SCROLL ANIMATIONS (IntersectionObserver) ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1024px) {
+            .about__grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .about__image-wrapper {
+                max-width: 550px;
+                margin: 0 auto;
+            }
+            .contact__grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header__nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: rgba(20, 20, 20, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                gap: 28px;
+                padding: 40px;
+                transition: right 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                z-index: 1000;
+            }
+            .header__nav.active {
+                right: 0;
+            }
+            .header__burger {
+                display: flex;
+            }
+            .header__phone {
+                display: none;
+            }
+            .header__phone-mobile {
+                display: flex;
+                margin-top: 8px;
+            }
+            .hero__title {
+                font-size: 2.2rem;
+            }
+            .gallery__grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .about__features {
+                grid-template-columns: 1fr;
+            }
+            .footer__bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 12px;
+            }
+            .footer__top {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section {
+                padding: 60px 16px;
+            }
+            .lightbox__prev {
+                left: 8px;
+            }
+            .lightbox__next {
+                right: 8px;
+            }
+            .lightbox__prev,
+            .lightbox__next {
+                width: 38px;
+                height: 38px;
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery__grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .hero__cta {
+                padding: 14px 28px;
+                font-size: 0.9rem;
+            }
+            .contact__form-wrapper {
+                padding: 24px 18px;
+            }
+            .header__logo {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "North Star Bully's",
+            "description": "North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité. Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament exceptionnel.",
+            "telephone": "+1-514-562-7133",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Québec",
+                "addressRegion": "QC",
+                "addressCountry": "CA"
+            },
+            "image": "https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg",
+            "url": "https://francoislang.github.io/templates/north-star-bully-s/",
+            "openingHours": "Mo-Su 09:00-18:00",
+            "priceRange": "$$",
+            "sameAs": [
+                "https://francoislang.github.io/templates/north-star-bully-s/",
+                "https://francoislang.github.io/templates/north-star-bully-s/"
+            ]
+        }
+    </script>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header" role="banner">
+        <div class="header__inner">
+            <a href="#hero" class="header__logo" aria-label="North Star Bully's - Accueil">
+                <span class="header__logo-icon">🐾</span>
+                North Star Bully's
+            </a>
+
+            <nav role="navigation" aria-label="Navigation principale">
+                <ul class="header__nav" id="headerNav">
+                    <li><a href="#hero" class="header__nav-link">Accueil</a></li>
+                    <li><a href="#about" class="header__nav-link">À propos</a></li>
+                    <li><a href="#gallery" class="header__nav-link">Galerie</a></li>
+                    <li><a href="#contact" class="header__nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a href="tel:+15145627133" class="header__phone" aria-label="Téléphoner au 514-562-7133">
+                <span class="header__phone-icon">📞</span> 514-562-7133
+            </a>
+
+            <button class="header__burger" id="headerBurger" aria-label="Menu mobile" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero" aria-labelledby="heroTitle">
+        <div class="hero__bg">
+            <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
+            alt="American Bully - North Star Bully's"
+            loading="eager"
+            fetchpriority="high">
+        </div>
+        <div class="hero__overlay"></div>
+
+        <div class="hero__content reveal">
+            <span class="hero__badge">Élevage de chiens</span>
+            <h1 class="hero__title" id="heroTitle">
+                North Star Bully's
+                <span>American Bully</span>
+            </h1>
+            <p class="hero__subtitle">
+                Des chiens sains, équilibrés et au tempérament exceptionnel, issus d'un élevage passionné
+                dédié à la race American Bully.
+            </p>
+            <a href="#gallery" class="hero__cta">Découvrir nos chiens</a>
+        </div>
+
+        <div class="hero__scroll-indicator" aria-hidden="true" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+            <span>↓</span> Défiler
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="section about" id="about" aria-labelledby="aboutTitle">
+        <div class="section__inner">
+            <div class="about__grid">
+                <div class="about__image-wrapper reveal">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg"
+                    alt="American Bully - Élevage North Star Bully's"
+                    loading="lazy">
+                    <span class="about__image-badge">American Bully</span>
+                </div>
+                <div class="about__content reveal reveal-delay-2">
+                    <h2 class="about__heading" id="aboutTitle">Notre élevage</h2>
+                    <p class="about__text">
+                        North Star Bully's est un élevage passionné dédié à l'American Bully de haute qualité.
+                        Nous nous spécialisons dans la production de chiens sains, équilibrés et au tempérament
+                        exceptionnel, en mettant l'accent sur la qualité de la lignée et le bien-être de nos animaux.
+                    </p>
+                    <p class="about__text">
+                        Chaque portée est soigneusement planifiée pour offrir des petits robustes et bien
+                        socialisés, prêts à rejoindre leur nouvelle famille. Pour plus d'informations ou pour
+                        découvrir nos chiots disponibles, n'hésitez pas à nous contacter.
+                    </p>
+                    <div class="about__features">
+                        <div class="about__feature reveal reveal-delay-3">
+                            <span class="about__feature-icon">🏆</span>
+                            <span class="about__feature-text">Lignée de haute qualité</span>
+                        </div>
+                        <div class="about__feature reveal reveal-delay-3">
+                            <span class="about__feature-icon">❤️</span>
+                            <span class="about__feature-text">Bien-être animal prioritaire</span>
+                        </div>
+                        <div class="about__feature reveal reveal-delay-4">
+                            <span class="about__feature-icon">🐶</span>
+                            <span class="about__feature-text">Chiots bien socialisés</span>
+                        </div>
+                        <div class="about__feature reveal reveal-delay-4">
+                            <span class="about__feature-icon">🩺</span>
+                            <span class="about__feature-text">Suivi vétérinaire rigoureux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GALLERY ==================== -->
+    <section class="section gallery" id="gallery" aria-labelledby="galleryTitle">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__tag">Galerie photo</span>
+                <h2 class="section__title section__title--light" id="galleryTitle">Nos American Bully</h2>
+                <div class="section__divider"></div>
+            </div>
+
+            <div class="gallery__grid" id="galleryGrid">
+                <!-- 13 photos -->
+                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_1.jpg"
+                    alt="American Bully 1 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_2.jpg"
+                    alt="American Bully 2 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_3.jpg"
+                    alt="American Bully 3 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_4.jpg"
+                    alt="American Bully 4 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_5.jpg"
+                    alt="American Bully 5 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_6.jpg"
+                    alt="American Bully 6 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_7.jpg"
+                    alt="American Bully 7 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_8.jpg"
+                    alt="American Bully 8 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_9.jpg"
+                    alt="American Bully 9 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_10.jpg"
+                    alt="American Bully 10 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-1" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_11.jpg"
+                    alt="American Bully 11 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal reveal-delay-2" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_12.jpg"
+                    alt="American Bully 12 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+                <div class="gallery__item reveal" data-src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg">
+                    <img src="https://res.cloudinary.com/dhwukxhgc/image/upload/q_auto/f_auto/photo-american_bully/american_bully_14.jpg"
+                    alt="American Bully 14 - North Star Bully's" loading="lazy">
+                    <div class="gallery__item-overlay"><span class="gallery__item-icon">🔍</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LIGHTBOX ==================== -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox__close" id="lightboxClose" aria-label="Fermer la lightbox">&times;</button>
+        <button class="lightbox__prev" id="lightboxPrev" aria-label="Image précédente">❮</button>
+        <button class="lightbox__next" id="lightboxNext" aria-label="Image suivante">❯</button>
+        <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    </div>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section contact" id="contact" aria-labelledby="contactTitle">
+        <div class="section__inner">
+            <div class="section__header reveal">
+                <span class="section__tag">Nous joindre</span>
+                <h2 class="section__title" id="contactTitle">Contactez-nous</h2>
+                <div class="section__divider"></div>
+            </div>
+
+            <div class="contact__grid">
+                <div class="contact__info reveal">
+                    <h3 class="contact__info-heading">North Star Bully's</h3>
+                    <p style="color:var(--color-gray);line-height:1.7;">
+                        Élevage de chiens spécialisé dans l'American Bully. Situé au Québec,
+                        nous sommes disponibles pour répondre à toutes vos questions.
+                    </p>
+                    <div class="contact__info-item">
+                        <span class="contact__info-icon">📞</span>
+                        <div>
+                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Téléphone</span>
+                            <a href="tel:+15145627133" class="contact__info-link">514-562-7133</a>
+                        </div>
+                    </div>
+                    <div class="contact__info-item">
+                        <span class="contact__info-icon">📍</span>
+                        <div>
+                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Lieu</span>
+                            <span class="contact__info-link">Élevage de chiens – Québec, Canada</span>
+                        </div>
+                    </div>
+                    <div class="contact__info-item">
+                        <span class="contact__info-icon">🐾</span>
+                        <div>
+                            <span style="display:block;font-size:0.8rem;color:var(--color-gray-light);">Race</span>
+                            <span class="contact__info-link">American Bully</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact__form-wrapper reveal reveal-delay-2">
+                    <h3 class="contact__form-title">Envoyez-nous un message</h3>
+                    <form class="contact__form" id="contactForm" novalidate>
+                        <div class="contact__field">
+                            <label class="contact__label" for="contactName">Nom complet *</label>
+                            <input class="contact__input" type="text" id="contactName" name="name"
+                            placeholder="Votre nom" required autocomplete="name">
+                        </div>
+                        <div class="contact__field">
+                            <label class="contact__label" for="contactEmail">Adresse courriel *</label>
+                            <input class="contact__input" type="email" id="contactEmail" name="email"
+                            placeholder="votre@courriel.com" required autocomplete="email">
+                        </div>
+                        <div class="contact__field">
+                            <label class="contact__label" for="contactMessage">Message *</label>
+                            <textarea class="contact__textarea" id="contactMessage" name="message"
+                            placeholder="Écrivez votre message ici..."
+                        required></textarea>
+                    </div>
+                    <button type="submit" class="contact__submit">Envoyer le message</button>
+                    <div class="contact__success" id="contactSuccess">
+                        ✅ Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+        <div class="footer__top">
+            <div class="footer__brand">
+                North Star Bully's
+                <span>Élevage de chiens</span>
+            </div>
+            <div class="footer__social">
+                <a href="#" class="footer__social-link" aria-label="Facebook">📘</a>
+                <a href="#" class="footer__social-link" aria-label="Instagram">📷</a>
+                <a href="tel:5145627133">514-562-7133</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="footer__copyright">
+                &copy; 2026 North Star Bully's — Élevage de chiens
+            </p>
+            <ul class="footer__links">
+                <li><a href="#">Mentions légales</a></li>
+                <li><span class="footer__separator">|</span></li>
+                <li><a href="#">CGV</a></li>
+                <li><span class="footer__separator">|</span></li>
+                <li><a href="#">Politique de confidentialité</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!-- ==================== SCRIPTS ==================== -->
+<script>
+    (function() {
+        // === HEADER SCROLL EFFECT ===
+        const header = document.getElementById('header');
+        let lastScrollY = 0;
+
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            if (scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+            lastScrollY = scrollY;
+        }
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll();
+
+        // === MOBILE BURGER MENU ===
+        const burger = document.getElementById('headerBurger');
+        const nav = document.getElementById('headerNav');
+        const navLinks = nav.querySelectorAll('.header__nav-link');
+
+        burger.addEventListener('click', function() {
+            const isActive = nav.classList.contains('active');
+            burger.classList.toggle('active');
+            nav.classList.toggle('active');
+            burger.setAttribute('aria-expanded', !isActive);
+            document.body.style.overflow = isActive ? '' : 'hidden';
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                nav.classList.remove('active');
+                burger.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // === INTERSECTION OBSERVER (Scroll Animations) ===
+        const revealElements = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // === LIGHTBOX ===
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        const galleryItems = document.querySelectorAll('.gallery__item');
+        let currentImageIndex = 0;
+        const galleryImages = Array.from(galleryItems).map(item => item.getAttribute('data-src'));
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImg.src = galleryImages[currentImageIndex];
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            updateLightboxButtons();
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            lightboxImg.src = '';
+        }
+
+        function showPrev() {
+            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = galleryImages[currentImageIndex];
+                lightboxImg.style.opacity = '1';
+            }, 150);
+            updateLightboxButtons();
+        }
+
+        function showNext() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            lightboxImg.style.opacity = '0';
+            setTimeout(() => {
+                lightboxImg.src = galleryImages[currentImageIndex];
+                lightboxImg.style.opacity = '1';
+            }, 150);
+            updateLightboxButtons();
+        }
+
+        function updateLightboxButtons() {
+            lightboxPrev.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+            lightboxNext.style.display = galleryImages.length > 1 ? 'flex' : 'none';
+        }
+
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => openLightbox(index));
+        });
+
+        lightboxClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLightbox();
+        });
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        lightboxPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showPrev();
+        });
+
+        lightboxNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showNext();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+        });
+
+        // === CONTACT FORM ===
+        const contactForm = document.getElementById('contactForm');
+        const contactSuccess = document.getElementById('contactSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (!name || !email || !message) {
+                alert('Veuillez remplir tous les champs obligatoires.');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Veuillez entrer une adresse courriel valide.');
+                return;
+            }
+
+            // Simulation d'envoi
+            contactSuccess.classList.add('visible');
+            contactForm.reset();
+
+            setTimeout(() => {
+                contactSuccess.classList.remove('visible');
+            }, 5000);
+
+            console.log('Formulaire soumis:', { name, email, message });
+        });
+
+        // === SMOOTH SCROLL POUR LIENS ANCRE (fallback pour anciens navigateurs) ===
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset -
+                        headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        console.log('🐾 North Star Bully\'s — Site prêt. Élevage d\'American Bully de haute qualité.');
+    })();
+</script>
+</body>
+</html>
