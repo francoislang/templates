@@ -19,6 +19,52 @@ def slugify(text: str) -> str:
     return text.strip("-")
 
 
+# Un segment de transformation Cloudinary : "q_auto", "f_auto", "w_600,c_fill"...
+_TRANSFO = re.compile(r"^[a-z]{1,3}_[^/]+(?:,[a-z]{1,3}_[^/]+)*$")
+
+
+def cld(url, width=900, crop="fill", gravity="auto", height=None):
+    """Redimensionne une image Cloudinary a la volee, via son URL.
+
+    Sans transformation de largeur, Cloudinary sert l'original : les photos
+    scrapees font souvent 2000 a 5000 px pour une vignette affichee a 300 px.
+    Une galerie de 15 photos pesait ainsi plusieurs dizaines de megaoctets.
+
+    Les transformations deja presentes en tete d'URL sont remplacees et non
+    empilees, pour rester idempotent si le filtre est applique deux fois.
+    Une URL non-Cloudinary est renvoyee telle quelle.
+    """
+    if not url or "res.cloudinary.com" not in url or "/image/upload/" not in url:
+        return url
+
+    prefix, reste = url.split("/image/upload/", 1)
+    segments = reste.split("/")
+    while segments and _TRANSFO.match(segments[0]):
+        segments.pop(0)
+    chemin = "/".join(segments)
+    if not chemin:
+        return url
+
+    transfo = ["f_auto", "q_auto", f"w_{int(width)}"]
+    if height:
+        transfo.append(f"h_{int(height)}")
+    if crop:
+        transfo.append(f"c_{crop}")
+        if crop in ("fill", "thumb", "lfill"):
+            transfo.append(f"g_{gravity}")
+    return f"{prefix}/image/upload/{','.join(transfo)}/{chemin}"
+
+
+def make_env() -> Environment:
+    """Environnement Jinja commun aux deux points d'entree du generateur."""
+    env = Environment(
+        loader=FileSystemLoader(str(config.REPO_ROOT / "_templates")),
+        autoescape=False,
+    )
+    env.filters["cld"] = cld
+    return env
+
+
 def generate_from_config(config_path: str):
     """
     Génère un site HTML à partir d'un fichier YAML de configuration.
@@ -35,11 +81,7 @@ def generate_from_config(config_path: str):
     if not (config.REPO_ROOT / "_templates" / template_file).exists():
         return None
 
-    env = Environment(
-        loader=FileSystemLoader(str(config.REPO_ROOT / "_templates")),
-        autoescape=False,
-    )
-    tmpl = env.get_template(template_file)
+    tmpl = make_env().get_template(template_file)
     html = tmpl.render(**data)
 
     slug = slugify(data["elevage"]["nom"])
@@ -173,12 +215,7 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
     }
 
     # Rendre le template Jinja2
-    from jinja2 import Environment, FileSystemLoader
-    env = Environment(
-        loader=FileSystemLoader(str(config.REPO_ROOT / "_templates")),
-        autoescape=False,
-    )
-    tmpl = env.get_template(template_file)
+    tmpl = make_env().get_template(template_file)
     html = tmpl.render(**data)
 
     target_file.write_text(html, encoding="utf-8")

@@ -9,7 +9,9 @@
   {% if elevage.url %}<meta property="og:url" content="{{ elevage.url }}">{% endif %}
   <meta property="og:title"       content="{{ elevage.nom }} — {{ elevage.race }}">
   <meta property="og:description" content="{{ elevage.description_seo or ('Élevage ' + elevage.race + ' — ' + elevage.nom) }}">
-  {% if photos.hero %}<meta property="og:image" content="{{ photos.og or photos.hero }}">{% endif %}
+  {% if photos.hero %}<meta property="og:image" content="{{ (photos.og or photos.hero)|cld(1200, height=630) }}">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">{% endif %}
 
   <script type="application/ld+json">
   {
@@ -112,7 +114,7 @@
 
     /* ── HERO ── */
     .hero { position: relative; height: 100svh; min-height: 640px; display: flex; align-items: center; justify-content: center; margin-top: var(--nav); overflow: hidden; }
-    .hero__bg { position: absolute; inset: 0; background: url('{{ photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' }}') center/cover no-repeat; transform: scale(1.06); transition: transform 12s ease; }
+    .hero__bg { position: absolute; inset: 0; background: url('{{ (photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(1920, gravity='auto') }}') center/cover no-repeat; transform: scale(1.06); transition: transform 12s ease; }
     .hero.loaded .hero__bg { transform: scale(1); }
     .hero__over { position: absolute; inset: 0; background: linear-gradient(170deg, rgba(22,15,8,.88) 0%, rgba(22,15,8,.72) 40%, rgba(22,15,8,.85) 100%); }
     .hero__grain { position: absolute; inset: 0; opacity: .04; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
@@ -338,6 +340,8 @@
   <!-- tracking -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
   <!-- /tracking -->
+  <link rel="preload" as="image" fetchpriority="high" href="{{ (photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(1920, gravity='auto') }}">
+  <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 </head>
 <body>
 
@@ -420,11 +424,11 @@
   <div class="about__grid">
     <div class="about__imgs reveal">
       <div class="about__main">
-        <img src="{{ photos.about_1 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' }}" alt="{{ elevage.nom }}">
+        <img src="{{ (photos.about_1 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(900) }}" alt="{{ elevage.nom }}" width="900" height="675" loading="lazy" decoding="async">
       </div>
       {% if photos.about_2 %}
       <div class="about__accent">
-        <img src="{{ photos.about_2 }}" alt="{{ elevage.race }}">
+        <img src="{{ photos.about_2|cld(700) }}" alt="{{ elevage.race }}" width="700" height="525" loading="lazy" decoding="async">
       </div>
       {% endif %}
       <div class="about__medal">
@@ -458,7 +462,7 @@
 <section class="race" id="race">
   <div class="race__wrap">
     <div class="race__img reveal">
-      <img src="{{ photos.race or photos.about_2 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' }}" alt="{{ elevage.race }}">
+      <img src="{{ (photos.race or photos.about_2 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(900) }}" alt="{{ elevage.race }}" width="900" height="675" loading="lazy" decoding="async">
     </div>
     <div class="race__content reveal" style="transition-delay:.12s">
       <p class="sec__eyebrow">La race</p>
@@ -530,7 +534,7 @@
     {% for r in reproducteurs %}
     <div class="dog__card reveal" {% if loop.index > 1 %}style="transition-delay:{{ (loop.index - 1) * 0.15 }}s"{% endif %}>
       <div class="dog__img">
-        <img src="{{ r.photo or photos.hero }}" alt="{{ r.nom }} — {{ elevage.race }}">
+        <img src="{{ (r.photo or photos.hero)|cld(600) }}" alt="{{ r.nom }} — {{ elevage.race }}" width="600" height="600" loading="lazy" decoding="async">
         <div class="dog__over"></div>
         <div class="dog__name-wrap">
           <div class="dog__name">{{ r.nom }}</div>
@@ -555,7 +559,7 @@
 <section class="portee" id="portee">
   <div class="portee__wrap">
     <div class="portee__img reveal">
-      <img src="{{ photos.about_1 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg' }}" alt="Chiots {{ elevage.race }} — {{ elevage.nom }}">
+      <img src="{{ (photos.about_1 or photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(900) }}" alt="Chiots {{ elevage.race }} — {{ elevage.nom }}" width="900" height="675" loading="lazy" decoding="async">
     </div>
     <div class="portee__content reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Disponibilités</p>
@@ -592,7 +596,7 @@
   <div class="gal__grid">
     {% for url in photos.galerie %}
     <div class="gi" onclick="openLb(this)">
-      <img src="{{ url }}" alt="{{ elevage.race }} — {{ elevage.nom }}" loading="lazy">
+      <img src="{{ url|cld(600) }}" data-full="{{ url|cld(1600, crop='limit') }}" alt="{{ elevage.race }} — {{ elevage.nom }}" width="600" height="600" loading="lazy" decoding="async">
       <div class="gi__over"><span>+</span></div>
     </div>
     {% endfor %}
@@ -620,7 +624,7 @@
       <div class="temo__stars">★★★★★</div>
       <p class="temo__text">{{ t.texte }}</p>
       <div class="temo__author">
-        {% if t.avatar %}<div class="temo__av"><img src="{{ t.avatar }}" alt="{{ t.nom }}"></div>{% else %}<div class="temo__av"></div>{% endif %}
+        {% if t.avatar %}<div class="temo__av"><img src="{{ t.avatar|cld(160, gravity='face') }}" alt="{{ t.nom }}" width="80" height="80" loading="lazy" decoding="async"></div>{% else %}<div class="temo__av"></div>{% endif %}
         <div>
           <div class="temo__name">{{ t.nom }}</div>
           <div class="temo__dog">{{ t.detail or (elevage.race + ' · ' + (elevage.departement or 'France')) }}</div>
@@ -845,12 +849,12 @@
   function openLb(el) {
     lbItems = Array.from(document.querySelectorAll('.gi img'));
     lbIdx   = lbItems.indexOf(el.querySelector('img'));
-    lbImg.src = lbItems[lbIdx].src;
+    lbImg.src = lbItems[lbIdx].dataset.full || lbItems[lbIdx].src;
     lb.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeLb() { lb.classList.remove('open'); document.body.style.overflow = ''; }
-  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].src; }
+  function lbNav(d) { lbIdx = (lbIdx + d + lbItems.length) % lbItems.length; lbImg.src = lbItems[lbIdx].dataset.full || lbItems[lbIdx].src; }
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('open')) return;
