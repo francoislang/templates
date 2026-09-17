@@ -297,6 +297,20 @@ REGLES:
 - Schema.org JSON-LD, Open Graph, meta SEO
 - CHOISIS des couleurs QUI CORRESPONDENT A LA RACE (pas les memes que la reference)
 - Police Cinzel + Raleway
+
+PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
+- Les URLs Cloudinary fournies ci-dessus se terminent par .../image/upload/<chemin>.
+  Insere TOUJOURS une transformation de taille juste apres /image/upload/ :
+    hero et og:image  -> f_auto,q_auto,w_1920,c_fill,g_auto
+    images de section -> f_auto,q_auto,w_900,c_fill,g_auto
+    vignettes galerie -> f_auto,q_auto,w_600,c_fill,g_auto
+  Sans cette transformation, Cloudinary sert l'original de plusieurs megaoctets.
+- Chaque <img> porte loading="lazy", decoding="async" et ses attributs
+  width et height, SAUF l'image du hero.
+- Dans <head> : <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+  et un <link rel="preload" as="image" fetchpriority="high"> sur l'image du hero.
+- Si une visionneuse agrandit les photos, la vignette porte un data-full avec
+  l'URL en w_1600,c_limit et le script lit ce data-full.
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
     def _fallback(raison):
@@ -451,12 +465,55 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
 def get_repo_root() -> str:
     return str(config.REPO_ROOT)
 
+
+def _jeton_github() -> str:
+    """Lit GITHUB_TOKEN_PUSH_HERMES dans .env (il n'est pas exporte dans l'env)."""
+    for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
+        if not fp.exists():
+            continue
+        for ligne in fp.read_text(encoding="utf-8").splitlines():
+            if ligne.startswith("GITHUB_TOKEN_PUSH_HERMES") and "=" in ligne:
+                return ligne.split("=", 1)[1].strip().strip('"').strip("'")
+    return ""
+
+
+def _masquer_jeton(texte: str) -> str:
+    """Retire le jeton d'un message avant de l'ecrire dans un journal."""
+    jeton = _jeton_github()
+    if jeton and jeton in texte:
+        texte = texte.replace(jeton, "***")
+    return re.sub(r"(https://)[^@/\s]+@", r"\1***@", texte)
+
+
+def _remote_non_interactif(repo_root) -> str:
+    """URL de push qui ne declenche aucune demande d'autorisation.
+
+    Le remote `origin` est en SSH et la cle est servie par l'agent 1Password,
+    qui demande une validation a chaque usage. C'est tres bien quand Francois
+    pousse a la main, mais launchd tourne a 9h sans personne devant l'ecran :
+    la demande reste sans reponse et le push echoue en silence.
+
+    On pousse donc en HTTPS avec le jeton du .env, qui ne demande rien.
+    `origin` n'est pas modifie : les push manuels gardent leur validation.
+    """
+    jeton = _jeton_github()
+    if jeton:
+        return f"https://x-access-token:{jeton}@github.com/{GITHUB_REPO_SLUG}.git"
+    print("  ⚠️ Git: GITHUB_TOKEN_PUSH_HERMES absent du .env, repli sur origin (SSH)")
+    return "origin"
+
+
 def commit_and_push(sites_count: int) -> bool:
-    """Commit et push les nouveaux sites sur GitHub."""
+    """Commit et push les nouveaux sites sur GitHub.
+
+    Le push ne doit jamais attendre une validation humaine : le pipeline
+    tourne sous launchd a 9h, sans session interactive.
+    """
     repo_root = get_repo_root()
+    remote = _remote_non_interactif(repo_root)
     subprocess.run(
-        ["git", "-C", str(repo_root), "pull", "--rebase", "origin", "main"],
-        capture_output=True, timeout=30
+        ["git", "-C", str(repo_root), "pull", "--rebase", remote, "main"],
+        capture_output=True, timeout=60
     )
     try:
         # JAMAIS `git add -A` : le depot est public et le dossier de travail
@@ -472,17 +529,28 @@ def commit_and_push(sites_count: int) -> bool:
             check=True, capture_output=True
         )
 
-        # Utiliser le token GitHub si present
+        # Push non interactif : voir _remote_non_interactif().
         env = os.environ.copy()
-        gh_token = os.environ.get("GITHUB_TOKEN_PUSH_HERMES")
+        env["GIT_TERMINAL_PROMPT"] = "0"       # git n'attend jamais une saisie
+        env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes"
 
-        subprocess.run(
-            ["git", "-C", str(repo_root), "push", "origin", "main"],
-            check=True, capture_output=True, env=env
+        r = subprocess.run(
+            ["git", "-C", str(repo_root), "push", remote, "main"],
+            check=True, capture_output=True, env=env, timeout=120
         )
+        # Ne jamais laisser le jeton apparaitre dans un journal.
+        sortie = _masquer_jeton((r.stderr or b"").decode("utf-8", "replace"))
+        if sortie.strip():
+            print(f"  git: {sortie.strip()}")
         return True
     except subprocess.CalledProcessError as e:
-        print(f"  ⚠️ Git: {e.stderr.decode() if e.stderr else e}")
+        detail = e.stderr.decode("utf-8", "replace") if e.stderr else str(e)
+        print(f"  ⚠️ Git: {_masquer_jeton(detail)}")
+        return False
+    except subprocess.TimeoutExpired:
+        # Un push qui n'en finit pas, c'est une invite d'authentification
+        # restee bloquee : on echoue franchement plutot que d'attendre.
+        print("  ⚠️ Git: push interrompu (delai depasse)")
         return False
 
 
