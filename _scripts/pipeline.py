@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Pipeline prospection: lit la DB `annonces`, genere sites + CRM + Telegram."""
 import sys, os, re, time, json, subprocess, sqlite3
+import fcntl
 import unicodedata
+from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 sys.path.insert(0, os.path.dirname(__file__))
@@ -12,6 +14,54 @@ from cloudinary_check import get_photos_for_breed
 
 REPO_ROOT = Path(__file__).parent.parent
 DB_PATH = REPO_ROOT / "_data" / "annonces.db"
+VERROU_PATH = REPO_ROOT / "_data" / ".pipeline.lock"
+
+
+class PipelineDejaEnCours(RuntimeError):
+    """Une autre execution du pipeline detient deja le verrou."""
+
+
+@contextmanager
+def verrou_exclusif(attente_max: int = 0):
+    """Empeche deux executions simultanees du pipeline sur cette machine.
+
+    Le pipeline peut etre declenche par plusieurs sources a la fois : launchd
+    sur le Mac, une tache Kanban Hermes, ou un lancement a la main. Deux
+    executions en parallele se marchent dessus sur le depot git et laissent
+    un .git/index.lock orphelin qui bloque tous les commits suivants.
+
+    On utilise flock plutot qu'un simple fichier temoin : le verrou est
+    relache par le noyau si le processus meurt, meme brutalement, donc il ne
+    reste jamais de verrou fantome a nettoyer a la main.
+
+    attente_max : secondes d'attente avant d'abandonner (0 = abandon immediat).
+    """
+    VERROU_PATH.parent.mkdir(parents=True, exist_ok=True)
+    f = open(VERROU_PATH, "a+", encoding="utf-8")
+    debut = time.monotonic()
+    while True:
+        try:
+            fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+            break
+        except OSError:
+            if time.monotonic() - debut >= attente_max:
+                f.seek(0)
+                detenteur = f.read().strip() or "processus inconnu"
+                f.close()
+                raise PipelineDejaEnCours(detenteur)
+            time.sleep(1)
+
+    f.seek(0)
+    f.truncate()
+    f.write(f"pid={os.getpid()} depuis={datetime.now(timezone.utc).isoformat(timespec='seconds')}\n")
+    f.flush()
+    try:
+        yield
+    finally:
+        try:
+            fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+        finally:
+            f.close()
 GITHUB_REPO_SLUG = "francoislang/templates"
 
 def slugify(text):
@@ -731,5 +781,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Pipeline prospection eleveurs")
     parser.add_argument("--dry-run", action="store_true",
                         help="Simulation sans ecrire ni notifier")
+    parser.add_argument("--attendre", type=int, default=0, metavar="SECONDES",
+                        help="attendre que le verrou se libere au lieu d'abandonner")
     args = parser.parse_args()
-    run(dry_run=args.dry_run)
+
+    # Un seul pipeline a la fois : launchd, Hermes et un lancement manuel
+    # peuvent tres bien tomber en meme temps.
+    try:
+        with verrou_exclusif(attente_max=args.attendre):
+            run(dry_run=args.dry_run)
+    except PipelineDejaEnCours as e:
+        print(f"⏭️  Pipeline deja en cours ({e}) — execution ignoree.")
+        sys.exit(0)
