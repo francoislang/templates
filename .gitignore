@@ -88,3 +88,4 @@ Claude outputs/
 
 # verrou d'execution du pipeline (local, jamais partage)
 _data/.pipeline.lock
+_data/migration_crm.json

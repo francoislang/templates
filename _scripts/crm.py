@@ -62,6 +62,12 @@ def _extract_number(phone: str) -> str:
 
 
 # ID du projet GitHub
+# Les fiches prospects portent des noms et des numeros de telephone : elles
+# vivent dans un depot PRIVE. Le depot templates est public (GitHub Pages) et
+# ses Issues etaient lisibles par n'importe qui, sans authentification.
+CRM_REPO = os.environ.get("CRM_REPO", "francoislang/crm-prospection")
+ISSUES_API = f"https://api.github.com/repos/{CRM_REPO}/issues"
+
 PROJECT_ID = "PVT_kwHOBcibjc4BZSav"
 
 # Mapping statut -> option ID (a completer apres configuration des colonnes)
@@ -213,7 +219,7 @@ def _phones_from_rest_issues() -> set[str]:
     page = 1
     while True:
         r = requests.get(
-            "https://api.github.com/repos/francoislang/templates/issues",
+            f"{ISSUES_API}",
             headers=_headers(),
             params={"state": "all", "per_page": 100, "page": page},
             timeout=15,
@@ -280,7 +286,7 @@ def _names_from_rest_issues() -> set[str]:
     page = 1
     while True:
         r = requests.get(
-            "https://api.github.com/repos/francoislang/templates/issues",
+            f"{ISSUES_API}",
             headers=_headers(),
             params={"state": "all", "per_page": 100, "page": page},
             timeout=15,
@@ -385,7 +391,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
     }
 
     r = requests.post(
-        "https://api.github.com/repos/francoislang/templates/issues",
+        f"{ISSUES_API}",
         headers=_headers(), json=issue_data, timeout=15
     )
 
@@ -394,7 +400,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
         issue_data_no_labels = dict(issue_data)
         issue_data_no_labels.pop("labels", None)
         r = requests.post(
-            "https://api.github.com/repos/francoislang/templates/issues",
+            f"{ISSUES_API}",
             headers=_headers(), json=issue_data_no_labels, timeout=15
         )
         if r.status_code in (201, 200):
@@ -403,7 +409,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
             if issue_number:
                 for label in labels:
                     requests.post(
-                        f"https://api.github.com/repos/francoislang/templates/issues/{issue_number}/labels",
+                        f"{ISSUES_API}/{issue_number}/labels",
                         headers=_headers(), json={"labels": [label]}, timeout=15
                     )
 
@@ -485,7 +491,7 @@ def update_entry(page_id: str, notes: str = None) -> None:
     # page_id est le numero d issue
     if notes:
         r = requests.patch(
-            f"https://api.github.com/repos/francoislang/templates/issues/{page_id}",
+            f"{ISSUES_API}/{page_id}",
             headers=_headers(),
             json={"body": notes},
             timeout=15
