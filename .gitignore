@@ -82,3 +82,6 @@ _data/*.db.bak*
 _data/logs/
 *.bak2
 _scripts/*.bak*
+
+# fichiers deposes par l'app Claude (captures, exports) — jamais dans le depot
+Claude outputs/
