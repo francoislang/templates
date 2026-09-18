@@ -25,9 +25,31 @@ def _headers():
     }
 
 
-def _graphql(query: dict) -> dict:
-    r = requests.post("https://api.github.com/graphql", json=query, headers=_headers(), timeout=15)
-    return r.json()
+class GraphQLError(RuntimeError):
+    """L'API GraphQL de GitHub a renvoye une erreur applicative."""
+
+
+def _graphql(query: dict, strict: bool = True) -> dict:
+    """Appelle l'API GraphQL de GitHub.
+
+    GitHub repond HTTP 200 meme quand la requete echoue : l'erreur est dans le
+    corps, sous la cle "errors". Sans ce controle, un try/except autour de
+    _graphql() ne se declenche jamais et les echecs passent inapercus — c'est
+    ainsi qu'une Issue a ete creee sans jamais etre ajoutee au board, en
+    silence. strict=False pour les lectures, ou une reponse partielle suffit.
+    """
+    r = requests.post("https://api.github.com/graphql", json=query,
+                      headers=_headers(), timeout=15)
+    try:
+        d = r.json()
+    except ValueError:
+        raise GraphQLError(f"reponse illisible (HTTP {r.status_code})")
+    if r.status_code != 200:
+        raise GraphQLError(f"HTTP {r.status_code}: {str(d)[:200]}")
+    if strict and d.get("errors"):
+        messages = "; ".join(e.get("message", "?") for e in d["errors"])
+        raise GraphQLError(messages[:300])
+    return d
 
 
 def _normalize(phone: str) -> str:
@@ -76,7 +98,7 @@ def _load_status_options():
       }}
     }}
     '''}
-    d = _graphql(q)
+    d = _graphql(q, strict=False)
     nodes = d.get('data', {}).get('node', {}).get('fields', {}).get('nodes', [])
     for node in nodes:
         if node and 'options' in node:
@@ -124,7 +146,7 @@ def _get_project_items() -> list[dict]:
           }}
         }}
         """}
-        data = _graphql(q)
+        data = _graphql(q, strict=False)
         # Graceful fallback: if project not accessible (null), return empty
         node_data = data.get("data", {}).get("node")
         if node_data is None:
@@ -281,6 +303,21 @@ def _names_from_rest_issues() -> set[str]:
     return names
 
 
+def _alerter(message: str) -> None:
+    """Signale un echec CRM la ou Francois le verra vraiment.
+
+    Un print dans un cron launchd finit dans un fichier que personne ne lit :
+    c'est ainsi qu'une Issue est restee hors du board pendant trois jours sans
+    que rien ne le signale. On double donc le print d'une alerte Telegram.
+    """
+    print(f"  ⚠️ CRM: {message}")
+    try:
+        import telegram
+        telegram.send(f"⚠️ CRM — {message}")
+    except Exception as e:
+        print(f"  (alerte Telegram impossible: {e})")
+
+
 def add_entry(elevage: str, races: list[str], phone: str,
               demo_url: str = None, notes: str = None) -> str:
     """
@@ -395,7 +432,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
             '''}
             _graphql(q)
         except Exception as e:
-            print(f"  ⚠️ Board: ajout au projet echoue ({e})")
+            _alerter(f"Issue #{issue_number} creee mais NON ajoutee au board : {e}")
 
     # Mettre a jour le statut si on a les options
     _load_status_options()
@@ -438,7 +475,7 @@ def add_entry(elevage: str, races: list[str], phone: str,
                 '''}
                 _graphql(q3)
         except Exception as e:
-            print(f"  ⚠️ Board: mise a jour statut echouee ({e})")
+            _alerter(f"Issue #{issue_number} sur le board mais sans statut : {e}")
 
     return str(issue_number)
 

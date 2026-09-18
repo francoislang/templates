@@ -121,9 +121,12 @@ def main():
     if regeneres and not args.no_commit:
         subprocess.run(["git", "-C", str(REPO_ROOT), "add", "--"]
                        + [f"{s}/index.html" for s in regeneres], check=False)
+        # Pas de nom d'elevage dans le message : le depot est public et
+        # l'historique git est indexe par les moteurs de recherche.
         subprocess.run(["git", "-C", str(REPO_ROOT), "commit", "-m",
-                        f"Regenere {len(regeneres)} site(s) : {', '.join(regeneres)}"], check=False)
-        subprocess.run(["git", "-C", str(REPO_ROOT), "push", "origin", "main"], check=False)
+                        f"Regenere {len(regeneres)} site(s)"], check=False)
+        subprocess.run(["git", "-C", str(REPO_ROOT), "push",
+                        pipeline._remote_non_interactif(REPO_ROOT), "main"], check=False)
         print(f"\n📤 {len(regeneres)} site(s) regenere(s) et pousse(s)")
 
 
