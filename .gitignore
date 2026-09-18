@@ -85,3 +85,6 @@ _scripts/*.bak*
 
 # fichiers deposes par l'app Claude (captures, exports) — jamais dans le depot
 Claude outputs/
+
+# verrou d'execution du pipeline (local, jamais partage)
+_data/.pipeline.lock
