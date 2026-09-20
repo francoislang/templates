@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.francoislang.vues</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-lc</string>
+        <string>"$HOME/Local/Perso/templates/_scripts/run_vues.sh"</string>
+    </array>
+
+    <!-- Toutes les heures. Le script lui-meme s'abstient d'alerter
+         en dehors de 8h-21h, inutile d'encombrer le plist. -->
+    <key>StartInterval</key>
+    <integer>3600</integer>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/vues.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/vues.err</string>
+</dict>
+</plist>
