@@ -13,7 +13,7 @@ REPO="$HOME/Local/Perso/templates"
 SRC="$REPO/_scripts/launchd"
 DEST="$HOME/Library/LaunchAgents"
 UID_GUI="gui/$(id -u)"
-AGENTS=(com.francoislang.prospection com.francoislang.relances)
+AGENTS=(com.francoislang.prospection com.francoislang.relances com.francoislang.vues)
 
 mkdir -p "$DEST"
 
@@ -38,7 +38,7 @@ for label in "${AGENTS[@]}"; do
 done
 
 # S'assurer que les scripts lances restent executables
-chmod +x "$REPO"/_scripts/run_daily.sh "$REPO"/_scripts/run_relances.sh 2>/dev/null
+chmod +x "$REPO"/_scripts/run_daily.sh "$REPO"/_scripts/run_relances.sh "$REPO"/_scripts/run_vues.sh 2>/dev/null
 
 echo ""
 echo "Agents charges (PID, code de sortie du dernier lancement, label) :"
