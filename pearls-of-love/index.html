@@ -337,9 +337,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
   <link rel="preload" as="image" fetchpriority="high" href="https://res.cloudinary.com/dhwukxhgc/image/upload/f_auto,q_auto,w_1920,c_fill,g_auto/photo-berger_americain_miniature/berger_americain_miniature_1.jpg">
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 </head>
@@ -438,11 +436,9 @@
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage familial,<br><em>une passion du Berger Americain Miniature</em></h2>
-      
-        
+
           <p>En Isère, l’élevage Pearls of Love est né d’une passion pour les chiens de berger, développée au fil des années, d'abord avec le Berger Australien, puis le Berger Américain Miniature. Les chiens vivent au sein de la maison et partagent pleinement le quotidien, aux côtés des enfants. Chaque portée est élevée avec attention, dans un environnement familial favorisant une socialisation naturelle. Les chiots, issus de parents testés et suivis, grandissent dans un cadre sain, propice à un tempérament équilibré.</p>
-        
-      
+
       <div class="about__list">
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, socialisés dès la naissance</div></div>
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé effectués</div></div>
@@ -519,7 +515,6 @@
 </section>
 
 
-
 <!-- PORTÉE / CHIOTS -->
 <section class="portee" id="portee">
   <div class="portee__wrap">
@@ -549,7 +544,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- GALERIE -->
 <section class="galerie" id="galerie">
@@ -618,7 +612,6 @@
   <img id="lb-img" src="" alt="">
   <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
 </div>
-
 
 
 
@@ -816,7 +809,6 @@
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  
   const lb    = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
   let lbItems = [], lbIdx = 0;
@@ -836,7 +828,6 @@
     if (e.key === 'ArrowLeft') lbNav(-1);
     if (e.key === 'ArrowRight') lbNav(1);
   });
-  
 
   document.querySelectorAll('.acc__q').forEach(q => {
     q.addEventListener('click', () => {
@@ -845,5 +836,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s=pearls-of-love" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>

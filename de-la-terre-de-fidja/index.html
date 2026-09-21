@@ -28,8 +28,7 @@
       "addressRegion": "Élevage de chiens",
       "addressCountry": "FR"
     }
-    
-    
+
   }
   </script>
 
@@ -337,9 +336,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
   <link rel="preload" as="image" fetchpriority="high" href="https://res.cloudinary.com/dhwukxhgc/image/upload/f_auto,q_auto,w_1920,c_fill,g_auto/photo-berger_australien/berger_australien_1.jpg">
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 </head>
@@ -438,11 +435,9 @@
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage familial,<br><em>une passion du Berger Australien</em></h2>
-      
-        
+
           <p>En Saône-et-Loire, entre Autun et Chalon-sur-Saône, l’élevage de la Terre de Fidja s'occupe de Bergers Australiens dans un cadre familial et rural. Nos chiens vivent au quotidien avec nous et évoluent au sein de la maison, ce qui favorise leur équilibre et leur sociabilité. Nous mettons l’accent sur la sélection, le suivi des lignées et le bien-être de nos compagnons, avec une attention portée à leur développement dès les premières semaines. Nous faisons aussi des portées de Bergers Américains Miniatures.</p>
-        
-      
+
       <div class="about__list">
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, socialisés dès la naissance</div></div>
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé effectués</div></div>
@@ -519,7 +514,6 @@
 </section>
 
 
-
 <!-- PORTÉE / CHIOTS -->
 <section class="portee" id="portee">
   <div class="portee__wrap">
@@ -549,7 +543,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- GALERIE -->
 <section class="galerie" id="galerie">
@@ -623,7 +616,6 @@
   <img id="lb-img" src="" alt="">
   <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
 </div>
-
 
 
 
@@ -821,7 +813,6 @@
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  
   const lb    = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
   let lbItems = [], lbIdx = 0;
@@ -841,7 +832,6 @@
     if (e.key === 'ArrowLeft') lbNav(-1);
     if (e.key === 'ArrowRight') lbNav(1);
   });
-  
 
   document.querySelectorAll('.acc__q').forEach(q => {
     q.addEventListener('click', () => {
@@ -850,5 +840,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s=de-la-terre-de-fidja" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>

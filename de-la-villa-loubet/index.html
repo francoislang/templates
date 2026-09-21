@@ -29,8 +29,7 @@
       "addressRegion": "Élevage de chiens",
       "addressCountry": "FR"
     }
-    
-    
+
   }
   </script>
 
@@ -307,9 +306,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
 </head>
 <body>
 
@@ -406,11 +403,9 @@
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage d'exception,<br><em>une passion du Berger Australien</em></h2>
-      
-        
+
           <p>De La Villa Loubet est un élevage spécialisé dans le Berger Australien d'exception. Nos chiens sont inscrits dans le Livre des Origines Français (LOF). Nous faisons un travail rigoureux et qualitatif pour vous proposer des chiots excellents et en bonne santé. Nos reproducteurs sont tous intégralement testés pour les maladies propres à la race, mais également actifs au quotidien : ils pratiquent divers sports canins dans lesquels ils montrent un mental équilibré et volontaire. Nous ne produisons qu'un nombre limité de portées par an afin de garantir un suivi optimal et une socialisation exemplaire de chaque chiot.</p>
-        
-      
+
       <div class="about__list">
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage LOF</strong> — chiens inscrits au Livre des Origines Français</div></div>
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs intégralement testés</div></div>
@@ -487,7 +482,6 @@
 </section>
 
 
-
 <!-- PORTÉE / CHIOTS -->
 <section class="portee" id="portee">
   <div class="portee__wrap">
@@ -517,7 +511,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- GALERIE -->
 <section class="galerie" id="galerie">
@@ -591,7 +584,6 @@
   <img id="lb-img" src="" alt="">
   <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
 </div>
-
 
 
 
@@ -790,7 +782,6 @@
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  
   const lb    = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
   let lbItems = [], lbIdx = 0;
@@ -815,7 +806,6 @@
     if (e.key === 'ArrowLeft') lbNav(-1);
     if (e.key === 'ArrowRight') lbNav(1);
   });
-  
 
   document.querySelectorAll('.acc__q').forEach(q => {
     q.addEventListener('click', () => {
@@ -824,5 +814,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s=de-la-villa-loubet" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>

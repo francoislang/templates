@@ -337,9 +337,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
   <link rel="preload" as="image" fetchpriority="high" href="{{ (photos.hero or 'https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg')|cld(1920, gravity='auto') }}">
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 </head>
@@ -871,5 +869,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s={{ elevage.slug }}" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>

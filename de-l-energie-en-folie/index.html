@@ -335,9 +335,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
 </head>
 <body>
 
@@ -434,11 +432,9 @@
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage familial,<br><em>une passion du Berger Americain Miniature</em></h2>
-      
-        
+
           <p>Situé dans la Drôme, l’élevage de l'Énergie en Folie évolue dans un environnement rural entouré de champs et de vergers, propice à la vie de chiens actifs et équilibrés. Ici, les chiens partagent le quotidien du foyer, sans isolement, dans une ambiance familiale où tout est pensé pour leur bien-être. Nos Bergers Américains Miniatures y grandissent au contact de l’humain et des autres animaux, développant un tempérament vif, intelligent et très proche de leur entourage. Nous faisons également des portées de Bergers Australiens.</p>
-        
-      
+
       <div class="about__list">
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, socialisés dès la naissance</div></div>
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé effectués</div></div>
@@ -515,7 +511,6 @@
 </section>
 
 
-
 <!-- PORTÉE / CHIOTS -->
 <section class="portee" id="portee">
   <div class="portee__wrap">
@@ -545,7 +540,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- GALERIE -->
 <section class="galerie" id="galerie">
@@ -614,7 +608,6 @@
   <img id="lb-img" src="" alt="">
   <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
 </div>
-
 
 
 
@@ -812,7 +805,6 @@
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  
   const lb    = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
   let lbItems = [], lbIdx = 0;
@@ -832,7 +824,6 @@
     if (e.key === 'ArrowLeft') lbNav(-1);
     if (e.key === 'ArrowRight') lbNav(1);
   });
-  
 
   document.querySelectorAll('.acc__q').forEach(q => {
     q.addEventListener('click', () => {
@@ -841,5 +832,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s=de-l-energie-en-folie" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>
