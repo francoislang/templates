@@ -1,0 +1,13 @@
+name = "compteur-demos"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# Le binding KV : l'identifiant est donne par `wrangler kv namespace create`
+# et doit etre colle ici avant le premier deploiement.
+[[kv_namespaces]]
+binding = "COMPTEUR"
+id = "A_REMPLACER"
+
+# Le jeton de lecture des statistiques n'est PAS dans ce fichier :
+# il se pose avec `wrangler secret put TOKEN`, il ne doit jamais
+# se retrouver dans le depot public.

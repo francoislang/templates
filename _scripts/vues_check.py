@@ -25,13 +25,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 import requests
-import config
 import telegram
 
 ETAT = Path(__file__).parent.parent / "_data" / "vues.json"
 DB_PATH = Path(__file__).parent.parent / "_data" / "annonces.db"
-API = "https://api.umami.is/v1"
-PREFIXE = "/templates/"          # chemin des sites sur GitHub Pages
 
 # On ne derange pas la nuit : launchd reveille le script toutes les heures,
 # mais une alerte a 3h du matin n'a aucune valeur.
@@ -39,15 +36,15 @@ HEURE_MIN, HEURE_MAX = 8, 21
 
 
 def _cle() -> tuple[str, str]:
-    """(website_id, api_key) depuis le .env."""
-    wid = (config.UMAMI_WEBSITE_ID or "").strip()
-    cle = ""
+    """(url du Worker, jeton de lecture) depuis le .env."""
+    valeurs = {}
     env = Path(__file__).parent.parent / ".env"
     if env.exists():
         for ligne in env.read_text(encoding="utf-8").splitlines():
-            if ligne.startswith("UMAMI_API_KEY") and "=" in ligne:
-                cle = ligne.split("=", 1)[1].strip().strip('"').strip("'")
-    return wid, cle
+            for nom in ("COMPTEUR_URL", "COMPTEUR_TOKEN"):
+                if ligne.startswith(nom) and "=" in ligne:
+                    valeurs[nom] = ligne.split("=", 1)[1].strip().strip('"').strip("'")
+    return valeurs.get("COMPTEUR_URL", ""), valeurs.get("COMPTEUR_TOKEN", "")
 
 
 def _noms() -> dict[str, str]:
@@ -64,30 +61,24 @@ def _noms() -> dict[str, str]:
     return out
 
 
-def vues_par_site(wid: str, cle: str, jours: int = 60) -> dict[str, int]:
-    """Vues cumulees par slug, sur la fenetre demandee."""
-    fin = datetime.now(timezone.utc)
-    debut = fin - timedelta(days=jours)
-    r = requests.get(
-        f"{API}/websites/{wid}/metrics",
-        params={"type": "url",
-                "startAt": int(debut.timestamp() * 1000),
-                "endAt": int(fin.timestamp() * 1000),
-                "limit": 500},
-        headers={"x-umami-api-key": cle, "Accept": "application/json"},
-        timeout=30)
+def vues_par_site(url: str, jeton: str) -> dict[str, int]:
+    """Vues cumulees par slug, lues sur le Worker Cloudflare."""
+    r = requests.get(f"{url.rstrip('/')}/stats",
+                     headers={"Authorization": f"Bearer {jeton}"},
+                     timeout=30)
+    if r.status_code == 401:
+        raise RuntimeError("jeton refuse par le compteur (COMPTEUR_TOKEN)")
     if r.status_code != 200:
-        raise RuntimeError(f"Umami HTTP {r.status_code}: {r.text[:200]}")
+        raise RuntimeError(f"compteur HTTP {r.status_code}: {r.text[:200]}")
+    return {slug: int(d.get("n") or 0) for slug, d in (r.json() or {}).items()}
 
-    out = {}
-    for ligne in r.json():
-        chemin = (ligne.get("x") or "").split("?")[0]
-        if not chemin.startswith(PREFIXE):
-            continue
-        slug = chemin[len(PREFIXE):].strip("/").split("/")[0]
-        if slug:
-            out[slug] = out.get(slug, 0) + int(ligne.get("y") or 0)
-    return out
+
+def detail_par_site(url: str, jeton: str) -> dict:
+    """Comme vues_par_site, mais en gardant les horodatages."""
+    r = requests.get(f"{url.rstrip('/')}/stats",
+                     headers={"Authorization": f"Bearer {jeton}"}, timeout=30)
+    r.raise_for_status()
+    return r.json() or {}
 
 
 def charger() -> dict:
@@ -102,20 +93,19 @@ def sauver(e: dict) -> None:
 
 
 def main(mode: str) -> int:
-    wid, cle = _cle()
-    if not wid or wid == "UMAMI_ID_A_REMPLACER":
-        print("UMAMI_WEBSITE_ID absent du .env — rien a faire.")
+    url, jeton = _cle()
+    if not url or not url.startswith("http"):
+        print("COMPTEUR_URL absent du .env — rien a faire.")
         return 0
-    if not cle:
-        print("UMAMI_API_KEY absent du .env — rien a faire.")
+    if not jeton:
+        print("COMPTEUR_TOKEN absent du .env — rien a faire.")
         return 0
 
     if mode == "test":
-        actuelles = vues_par_site(wid, cle)
-        print(json.dumps(actuelles, indent=1, ensure_ascii=False))
+        print(json.dumps(detail_par_site(url, jeton), indent=1, ensure_ascii=False))
         return 0
 
-    actuelles = vues_par_site(wid, cle)
+    actuelles = vues_par_site(url, jeton)
     etat = charger()
     noms = _noms()
 

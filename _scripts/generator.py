@@ -193,6 +193,8 @@ def generate_site(name: str, race: str, phone: str, city: str = "",
         "template": "universal",
         "elevage": {
             "nom": name, "race": race,
+            # Le pixel de comptage a besoin du slug pour distinguer les demos.
+            "slug": slugify(name),
             "departement": departement or city or "",
             "region": departement or city or "",
             "code_postal": "", "telephone": phone,

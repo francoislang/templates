@@ -213,16 +213,30 @@ def _sanitize(path, slug, contact=None):
         print(f"  WARNING nettoyage non applique: {e}")
 
 
+def _compteur_url() -> str:
+    """URL du Worker de comptage, depuis le .env."""
+    for fp in (REPO_ROOT / ".env",):
+        if not fp.exists():
+            continue
+        for ligne in fp.read_text(encoding="utf-8").splitlines():
+            if ligne.startswith("COMPTEUR_URL") and "=" in ligne:
+                return ligne.split("=", 1)[1].strip().strip('"').strip("'")
+    return os.environ.get("COMPTEUR_URL", "").strip()
+
+
 def _inject_tracking(path):
-    """Ajoute le snippet de tracking dans un site fraichement genere par l'IA."""
-    website_id = (config.UMAMI_WEBSITE_ID or os.environ.get("UMAMI_WEBSITE_ID", "")).strip()
-    if not website_id:
+    """Pose le pixel de comptage dans un site fraichement genere par l'IA.
+
+    Les sites issus du template Jinja l'ont deja : il est dans le template.
+    """
+    url = _compteur_url()
+    if not url.startswith("http"):
         return
     try:
         import set_tracking
-        set_tracking.apply(path, website_id)
+        set_tracking.apply(path, url)
     except Exception as e:
-        print(f"  WARNING tracking non injecte: {e}")
+        print(f"  WARNING pixel de comptage non injecte: {e}")
 
 
 REFERENCE_PATH = REPO_ROOT / "_templates" / "reference.html"

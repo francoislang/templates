@@ -337,9 +337,7 @@
       .gar__grid { grid-template-columns: 1fr; }
     }
   </style>
-  <!-- tracking -->
-  <script defer src="https://cloud.umami.is/script.js" data-website-id="UMAMI_ID_A_REMPLACER"></script>
-  <!-- /tracking -->
+  
   <link rel="preload" as="image" fetchpriority="high" href="https://res.cloudinary.com/dhwukxhgc/image/upload/f_auto,q_auto,w_1920,c_fill,g_auto/photo-berger_americain_miniature/berger_americain_miniature_1.jpg">
   <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 </head>
@@ -438,11 +436,9 @@
     <div class="about__text reveal" style="transition-delay:.15s">
       <p class="sec__eyebrow">Notre élevage</p>
       <h2>Un élevage familial,<br><em>une passion du Berger Americain Miniature</em></h2>
-      
-        
+
           <p>Au Domaine de Malokyty Hateya, le Berger Américain Miniature est élevé dans une approche simple centrée sur le quotidien des chiens. Nos compagnons ne sont jamais mis à l'écart : ils vivent, observent, expérimentent et grandissent au rythme de la vie de tous les jours. Ce cadre leur permet de développer naturellement leurs capacités d’adaptation et leur aisance face aux situations variées. Nous élevons également d'autres races, dont le Beagle, le Berger Blanc Suisse et le Berger Australien. Par ailleurs, nous mettons notre expertise en éducation canine à votre disposition. Enfin, nous sommes aussi un élevage félin spécialisé dans le Maine Coon.</p>
-        
-      
+
       <div class="about__list">
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Élevage familial</strong> — chiots élevés en maison, socialisés dès la naissance</div></div>
         <div class="about__li"><div class="about__li-dot"></div><div><strong>Sélection rigoureuse</strong> — reproducteurs contrôlés, tests de santé effectués</div></div>
@@ -519,7 +515,6 @@
 </section>
 
 
-
 <!-- PORTÉE / CHIOTS -->
 <section class="portee" id="portee">
   <div class="portee__wrap">
@@ -549,7 +544,6 @@
     </div>
   </div>
 </section>
-
 
 <!-- GALERIE -->
 <section class="galerie" id="galerie">
@@ -618,7 +612,6 @@
   <img id="lb-img" src="" alt="">
   <span id="lb-next" onclick="lbNav(1)" aria-label="Suivant">›</span>
 </div>
-
 
 
 
@@ -816,7 +809,6 @@
   }, { threshold: .1 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  
   const lb    = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
   let lbItems = [], lbIdx = 0;
@@ -836,7 +828,6 @@
     if (e.key === 'ArrowLeft') lbNav(-1);
     if (e.key === 'ArrowRight') lbNav(1);
   });
-  
 
   document.querySelectorAll('.acc__q').forEach(q => {
     q.addEventListener('click', () => {
@@ -845,5 +836,8 @@
     });
   });
 </script>
+  <!-- tracking -->
+  <img src="URL_COMPTEUR_A_REMPLACER/p?s=du-domaine-de-malokyty-hateya" alt="" width="1" height="1" style="position:absolute;left:-9999px" aria-hidden="true">
+  <!-- /tracking -->
 </body>
 </html>
