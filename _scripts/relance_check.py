@@ -357,6 +357,16 @@ def main():
             if send_telegram(msg):
                 relances_envoyees += 1
                 print(f"     ✅ Envoyé !")
+                # On repousse le compteur d'une semaine : sans cela la meme
+                # relance repartirait chaque jour en J+8, J+9, J+10... La
+                # fiche ressortira donc dans 7 jours si elle est toujours
+                # dans « A relancer ».
+                suivante = today.strftime("%Y-%m-%d")
+                if set_relance_date(item["item_id"], suivante):
+                    print(f"     📅 Prochaine relance possible le "
+                          f"{(today + timedelta(days=7)).strftime('%d/%m')}")
+                else:
+                    print(f"     ⚠️ Date non repoussee — relance possible en double demain")
             else:
                 print(f"     ❌ Échec envoi")
 
