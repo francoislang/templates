@@ -177,6 +177,42 @@ def send_telegram(text: str) -> bool:
 
 # ── Main ─────────────────────────────────────────────────
 
+def _cle_elevage(nom: str) -> str:
+    """Nom d'elevage normalise, pour rapprocher board et base."""
+    import unicodedata
+    t = re.sub(r"^\[[^\]]*\]\s*", "", nom or "")
+    t = re.split(r"\s+[—\-]\s+|\s+-\s+", t)[0]
+    t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]", "", t.lower())
+
+
+_DATES_CACHE = None
+
+
+def _date_traitement(nom_elevage: str):
+    """Date reelle de traitement du prospect, lue dans _data/annonces.db."""
+    global _DATES_CACHE
+    if _DATES_CACHE is None:
+        import sqlite3
+        _DATES_CACHE = {}
+        db = Path(__file__).resolve().parent.parent / "_data" / "annonces.db"
+        if db.exists():
+            c = sqlite3.connect(str(db))
+            c.row_factory = sqlite3.Row
+            for r in c.execute("SELECT name, min(processed_at) p FROM annonces "
+                               "WHERE processed_at IS NOT NULL AND processed_at != '' "
+                               "AND name IS NOT NULL GROUP BY name"):
+                _DATES_CACHE[_cle_elevage(r["name"])] = r["p"][:10]
+            c.close()
+    brut = _DATES_CACHE.get(_cle_elevage(nom_elevage))
+    if not brut:
+        return None
+    try:
+        return datetime.strptime(brut, "%Y-%m-%d").date()
+    except ValueError:
+        return None
+
+
 def main():
     today = datetime.now(timezone.utc).date()
     print(f"📅 Relance check — {today}")
@@ -257,15 +293,23 @@ def main():
         print(f"  #{item['issue_number']} | {item['elevage']} ({item['race']})")
         print(f"     📞 {item['phone']}")
 
-        # Si pas de date Relance J+7, l'initialiser avec la date de updatedAt
+        # Si pas de date Relance J+7, l'initialiser.
         if not item["relance_date"]:
-            # Utiliser updatedAt comme proxy de la date de mise en colonne
-            try:
-                updated_date = datetime.strptime(
-                    item["updated_at"][:10], "%Y-%m-%d"
-                ).date()
-            except (ValueError, IndexError):
-                updated_date = today
+            # La date de verite est processed_at en base, pas updatedAt du
+            # board : toute modification d'une fiche (ou une migration des
+            # Issues, comme le 18/09) remet updatedAt a zero et decale la
+            # relance d'autant. On ne retombe sur updatedAt qu'en dernier
+            # recours, si l'eleveur est introuvable en base.
+            reelle = _date_traitement(item["elevage"])
+            if reelle:
+                updated_date = reelle
+            else:
+                try:
+                    updated_date = datetime.strptime(
+                        item["updated_at"][:10], "%Y-%m-%d"
+                    ).date()
+                except (ValueError, IndexError):
+                    updated_date = today
 
             date_str = updated_date.strftime("%Y-%m-%d")
             print(f"     📅 Initialisation Relance J+7 → {date_str}")
