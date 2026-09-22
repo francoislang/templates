@@ -134,7 +134,7 @@ _BREED_COLORS = {
     "Carlin": {"primaire": "#8B5A3A", "accent": "#D4A76A", "fond": "#FAF3E8"},
     "Berger Australien": {"primaire": "#2D5A3D", "accent": "#C4A35A", "fond": "#F5F0E8"},
     "Shiba Inu": {"primaire": "#C0392B", "accent": "#F0C040", "fond": "#FDF8F0"},
-    "Golden Retriever": {"primaire": "#B8860B", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "Golden Retriever": {"primaire": "#3B2F1E", "accent": "#B07D1E", "fond": "#FDF9F0"},
     "Bouledogue Francais": {"primaire": "#4A3728", "accent": "#C4956A", "fond": "#F7F0E8"},
     "Border Collie": {"primaire": "#1A5276", "accent": "#85C1E9", "fond": "#F0F4F8"},
     "Cavalier King Charles": {"primaire": "#6B3A5A", "accent": "#E8B4C8", "fond": "#FDF5F8"},
@@ -146,25 +146,62 @@ _BREED_COLORS = {
     "Chihuahua": {"primaire": "#8B4513", "accent": "#DEB887", "fond": "#FFF8F0"},
     "Rhodesian Ridgeback": {"primaire": "#8B2500", "accent": "#D2691E", "fond": "#FDF5E6"},
     "Yorkshire Terrier": {"primaire": "#4A6741", "accent": "#8FBC8F", "fond": "#F5FAF0"},
-    "Bichon Frise": {"primaire": "#FFB6C1", "accent": "#FF69B4", "fond": "#FFF5F8"},
+    "Bichon Frise": {"primaire": "#3A3340", "accent": "#8E6C88", "fond": "#FCFAFB"},
     "Rottweiler": {"primaire": "#1A1A2E", "accent": "#B8860B", "fond": "#F0ECE6"},
-    "Beagle": {"primaire": "#D4A76A", "accent": "#8B4513", "fond": "#FFF8E7"},
-    "Loulou de Pomeranie": {"primaire": "#FF8C00", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "Beagle": {"primaire": "#2F2A24", "accent": "#A0561F", "fond": "#FAF6F0"},
+    "Loulou de Pomeranie": {"primaire": "#3A2E26", "accent": "#B96A28", "fond": "#FDF8F2"},
     "Schnauzer": {"primaire": "#36454F", "accent": "#C0C0C0", "fond": "#F0F0F0"},
-    "West Highland White Terrier": {"primaire": "#F5F5DC", "accent": "#DCDCDC", "fond": "#FFFFFF"},
-    "Berger Blanc Suisse": {"primaire": "#E8E8E8", "accent": "#C0C0C0", "fond": "#FAFAFA"},
-    "Akita Inu": {"primaire": "#CC5500", "accent": "#FFD700", "fond": "#FFF8E7"},
+    "West Highland White Terrier": {"primaire": "#2E3A33", "accent": "#6B5B7B", "fond": "#FBFAF7"},
+    "Berger Blanc Suisse": {"primaire": "#243642", "accent": "#5E7F94", "fond": "#F6F8F9"},
+    "Akita Inu": {"primaire": "#3B2415", "accent": "#B2661A", "fond": "#FFF8E7"},
     "American Bully": {"primaire": "#2F1B0E", "accent": "#8B4513", "fond": "#F5ECE6"},
-    "Malinois": {"primaire": "#8B7355", "accent": "#556B2F", "fond": "#F5F0E8"},
+    "Malinois": {"primaire": "#2B2621", "accent": "#6E7A3C", "fond": "#F6F3EC"},
 }
 
 
+DEFAUT_COULEURS = {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"}
+
+
+def _luminance(hexa: str) -> float:
+    c = [int(hexa[i:i + 2], 16) / 255 for i in (1, 3, 5)]
+    c = [v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4 for v in c]
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]
+
+
+def contraste(a: str, b: str) -> float:
+    """Rapport de contraste WCAG entre deux couleurs (1 = identique, 21 = max)."""
+    l1, l2 = sorted((_luminance(a), _luminance(b)), reverse=True)
+    return (l1 + 0.05) / (l2 + 0.05)
+
+
+def palette_lisible(c: dict) -> bool:
+    """La primaire sert d'encre : elle doit trancher franchement sur le fond.
+
+    Une palette calquee sur le pelage du chien donnait du blanc sur blanc
+    pour le Berger Blanc Suisse (contraste 1,17) — le site etait illisible.
+
+    Seule l'encre est bloquante. L'accent sert a des titres decoratifs en
+    grande taille et a des degrades : plusieurs palettes existantes l'ont
+    volontairement discret (or sur creme), et les rejeter reviendrait a
+    uniformiser des sites qui fonctionnent bien.
+    """
+    try:
+        return contraste(c["primaire"], c["fond"]) >= 4.5
+    except Exception:
+        return False
+
+
 def _breed_colors(race: str) -> dict:
-    default = {"primaire": "#1B3A4B", "accent": "#D4622A", "fond": "#F7F4EF"}
     for key in _BREED_COLORS:
         if key.lower() in race.lower():
-            return _BREED_COLORS[key]
-    return default
+            c = _BREED_COLORS[key]
+            if palette_lisible(c):
+                return c
+            print(f"  WARNING palette '{key}' illisible "
+                  f"(contraste {contraste(c['primaire'], c['fond']):.2f}) "
+                  f"— repli sur la palette par defaut")
+            return DEFAUT_COULEURS
+    return DEFAUT_COULEURS
 
 
 def generate_site(name: str, race: str, phone: str, city: str = "",
