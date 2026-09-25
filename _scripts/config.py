@@ -56,3 +56,13 @@ def _int(name: str, default: int) -> int:
 
 SITES_PER_DAY = _int("SITES_PER_DAY", 3)
 PAGES_TO_SCRAPE = _int("PAGES_TO_SCRAPE", 5)
+
+
+def _bool(name: str, default: bool = False) -> bool:
+    return _get(name, "1" if default else "0").strip().lower() in ("1", "true", "oui", "yes")
+
+
+# Par defaut on ne demarche que les eleveurs sans site web. Mettre
+# DEMARCHER_AVEC_SITE=1 dans .env pour attaquer aussi ceux qui en ont un
+# (offre de refonte) une fois le vivier "sans site" epuise.
+DEMARCHER_AVEC_SITE = _bool("DEMARCHER_AVEC_SITE", False)
