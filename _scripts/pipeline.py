@@ -86,23 +86,6 @@ def _key_name(name):
     return re.sub(r"[^a-z0-9]+", "", t.lower())
 
 
-def compter_vivier() -> int:
-    """Nombre d'eleveurs distincts encore demarchables (meme filtre que la selection)."""
-    filtre = "" if config.DEMARCHER_AVEC_SITE else "AND (website IS NULL OR website = '')"
-    conn = sqlite3.connect(str(DB_PATH))
-    try:
-        return conn.execute(f"""
-            SELECT COUNT(DISTINCT phone) FROM annonces
-            WHERE processed_at IS NULL
-              AND phone IS NOT NULL AND phone != ''
-              AND name  IS NOT NULL AND name  != ''
-              AND race  IS NOT NULL AND race  != ''
-              {filtre}
-        """).fetchone()[0]
-    finally:
-        conn.close()
-
-
 def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize):
     """Retourne jusqu'a `limit` profils non traites depuis _data/annonces.db.
 
@@ -113,16 +96,7 @@ def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize
     """
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
-
-    # On ne demarche que les eleveurs SANS site web declare. Sinon l'offre
-    # n'est plus "exister en ligne" mais "remplacer ce que vous avez deja",
-    # et le prix parait toujours trop eleve. Le champ `website` de chien.com
-    # est un lien de redirection /t/out-NNNNN.php : sa seule presence suffit
-    # a dire que l'eleveur a un site.
-    filtre_site = "" if config.DEMARCHER_AVEC_SITE else \
-        "          AND (website IS NULL OR website = '')\n"
-
-    cur = conn.execute(f"""
+    cur = conn.execute("""
         SELECT source_url, name, race, phone, email, website, siren,
                ville, code_postal, departement, description, photo_url
         FROM annonces
@@ -130,7 +104,7 @@ def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize
           AND phone IS NOT NULL AND phone != ''
           AND name IS NOT NULL AND name != ''
           AND race IS NOT NULL AND race != ''
-{filtre_site}        ORDER BY scraped_at DESC
+        ORDER BY scraped_at DESC
     """)
 
     groupes = {}
@@ -666,20 +640,10 @@ def run(dry_run: bool = False):
     for i, b in enumerate(new_breeders, 1):
         print(f"      #{i}: {b['name']} ({b['races'][0]}) — {b['phone']}")
     print(f"   -> {len(new_breeders)} prospect(s) selectionne(s) depuis la DB")
-    print(f"   -> vivier restant : {compter_vivier()} eleveur(s) sans site web")
     
     if not new_breeders:
-        if config.DEMARCHER_AVEC_SITE:
-            msg = "ℹ️ Aucun nouvel éleveur à démarcher (tous déjà dans le CRM)."
-        else:
-            msg = (
-                "✅ Vivier épuisé : plus aucun éleveur sans site web à démarcher.\n"
-                "Pour attaquer ceux qui ont déjà un site (offre de refonte), "
-                "mettre DEMARCHER_AVEC_SITE=1 dans .env."
-            )
-        print(msg)
         if not dry_run:
-            telegram.send(msg)
+            telegram.send("ℹ️ Aucun nouvel éleveur (déjà tous dans le CRM).")
         return
 
     # 3. Traiter chaque eleveur
