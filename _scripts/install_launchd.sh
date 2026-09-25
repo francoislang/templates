@@ -1,5 +1,5 @@
 #!/bin/bash
-# Installe (ou reinstalle) les deux agents launchd du projet.
+# Installe (ou reinstalle) les agents launchd du projet.
 #
 # launchd ne lit que ~/Library/LaunchAgents : un plist qui vit dans le depot
 # n'est jamais charge tant qu'il n'a pas ete copie la. C'est la cause du
@@ -13,7 +13,7 @@ REPO="$HOME/Local/Perso/templates"
 SRC="$REPO/_scripts/launchd"
 DEST="$HOME/Library/LaunchAgents"
 UID_GUI="gui/$(id -u)"
-AGENTS=(com.francoislang.prospection com.francoislang.relances com.francoislang.vues)
+AGENTS=(com.francoislang.prospection com.francoislang.prospection-pro com.francoislang.relances com.francoislang.vues)
 
 mkdir -p "$DEST"
 
