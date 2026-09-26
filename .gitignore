@@ -90,3 +90,6 @@ Claude outputs/
 _data/.pipeline*.lock
 _data/migration_crm.json
 _data/vues.json
+
+# sauvegardes de base avant nettoyage
+_data/*.avant-*
