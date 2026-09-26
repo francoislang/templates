@@ -93,3 +93,4 @@ _data/vues.json
 
 # sauvegardes de base avant nettoyage
 _data/*.avant-*
+_data/test_*.db

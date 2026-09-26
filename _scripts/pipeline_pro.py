@@ -582,7 +582,7 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False) -> Non
                 races=[METIERS[metier]["metier"]],
                 phone=p.get("telephone", ""),
                 demo_url=url,
-                notes=f"Site actuel: aucun | "
+                notes=f"Site actuel: {p.get('site_web') or 'aucun'} | "
                       f"Description: {METIERS[metier]['metier']} a "
                       f"{p.get('commune','')} | Pitch: {texte}",
             )
