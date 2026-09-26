@@ -87,6 +87,6 @@ _scripts/*.bak*
 Claude outputs/
 
 # verrou d'execution du pipeline (local, jamais partage)
-_data/.pipeline.lock
+_data/.pipeline*.lock
 _data/migration_crm.json
 _data/vues.json
