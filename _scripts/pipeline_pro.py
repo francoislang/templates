@@ -51,6 +51,23 @@ CACHE_PHOTOS = REPO_ROOT / "_data" / "photos_pro.json"
 
 PAR_DEFAUT = 5          # prospects par execution
 
+# Tranches d'effectif INSEE gardees par defaut. Le NAF 45.20A ne contient pas
+# que des ateliers de quartier : il ramene aussi MIDAS FRANCE, NORAUTO ou des
+# holdings de reseau, qui ne sont pas des prospects et que le tri par nombre
+# d'avis Google fait remonter en tete. On plafonne donc a 19 salaries.
+#   NN/vide non renseigne (tres souvent une TPE)   11  10 a 19
+#   00  0 salarie      01  1-2    02  3-5    03  6-9
+# Au-dela (12 = 20-49, 21 = 50-99, 22 = 100-199...) : reseau ou groupe.
+EFFECTIFS_TPE = ("", "NN", "00", "01", "02", "03", "11")
+
+# Mots qui trahissent une personne morale dans le champ `dirigeant` : SIRENE y
+# met la societe mere quand l'entreprise est detenue par une autre. Les mettre
+# dans le pitch comme interlocuteur ferait demander « Monsieur Holding » au
+# telephone.
+MORAUX = {"holding", "sa", "sas", "sasu", "sarl", "eurl", "sci", "spa", "s.p.a",
+          "groupe", "group", "ltd", "gmbh", "bv", "nv", "participations",
+          "finance", "financiere", "invest", "investissements", "france"}
+
 
 # --------------------------------------------------------------------------
 # les marches
@@ -197,7 +214,9 @@ def prospects(conn, cle_metier: str, limit: int) -> list[dict]:
     avis tourne et peut payer, un a 2 avis est souvent une coquille vide.
     """
     conf = METIERS[cle_metier]
+    effectifs = conf.get("effectifs", EFFECTIFS_TPE)
     marques = ",".join("?" * len(conf["naf"]))
+    tranches = ",".join("?" * len(effectifs))
     conn.row_factory = sqlite3.Row
     cur = conn.execute(f"""
         SELECT siren, nom, enseigne, dirigeant, telephone, adresse, code_postal,
@@ -210,15 +229,18 @@ def prospects(conn, cle_metier: str, limit: int) -> list[dict]:
           AND COALESCE(site_web,'') = ''
           AND COALESCE(confiance,'') IN ('haute','moyenne')
           AND COALESCE(statut_google,'OPERATIONAL') = 'OPERATIONAL'
+          AND COALESCE(effectif,'') IN ({tranches})
         ORDER BY COALESCE(avis,0) DESC, COALESCE(note,0) DESC
         LIMIT ?
-    """, [*conf["naf"], limit])
+    """, [*conf["naf"], *effectifs, limit])
     return [dict(r) for r in cur]
 
 
 def compter(conn, cle_metier: str) -> int:
     conf = METIERS[cle_metier]
+    effectifs = conf.get("effectifs", EFFECTIFS_TPE)
     marques = ",".join("?" * len(conf["naf"]))
+    tranches = ",".join("?" * len(effectifs))
     # Exactement les memes conditions que prospects(), sinon la reserve annoncee
     # est gonflee et le message "vivier vide" ne se declenche jamais.
     return conn.execute(f"""
@@ -230,7 +252,8 @@ def compter(conn, cle_metier: str) -> int:
           AND COALESCE(site_web,'') = ''
           AND COALESCE(confiance,'') IN ('haute','moyenne')
           AND COALESCE(statut_google,'OPERATIONAL') = 'OPERATIONAL'
-    """, conf["naf"]).fetchone()[0]
+          AND COALESCE(effectif,'') IN ({tranches})
+    """, [*conf["naf"], *effectifs]).fetchone()[0]
 
 
 def marquer(conn, siren: str, *, metier: str, slug=None, url=None,
@@ -469,6 +492,20 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
 # pitch
 # --------------------------------------------------------------------------
 
+def dirigeant_physique(dirigeant: str | None, nom_societe: str = "") -> str:
+    """Le dirigeant, seulement si c'est bien une personne et pas une societe mere."""
+    if not dirigeant:
+        return ""
+    mots = re.findall(r"[\w.]+", dirigeant.lower())
+    if any(m.strip(".") in MORAUX for m in mots):
+        return ""
+    # « GARAGE DUPONT » comme dirigeant de « GARAGE DUPONT SARL » : c'est la
+    # societe elle-meme, pas quelqu'un a demander au telephone.
+    if nom_societe and dirigeant.strip().lower() in nom_societe.strip().lower():
+        return ""
+    return dirigeant.strip()
+
+
 def pitch(prospect: dict, cle_metier: str, demo_url: str | None) -> str:
     conf = METIERS[cle_metier]
     nom = prospect.get("enseigne") or prospect.get("nom") or ""
@@ -478,8 +515,9 @@ def pitch(prospect: dict, cle_metier: str, demo_url: str | None) -> str:
         f"({prospect.get('departement','')})",
         f"Tel : {prospect.get('telephone','')}",
     ]
-    if prospect.get("dirigeant"):
-        lignes.append(f"Interlocuteur : {prospect['dirigeant']}")
+    humain = dirigeant_physique(prospect.get("dirigeant"), nom)
+    if humain:
+        lignes.append(f"Interlocuteur : {humain}")
     if prospect.get("avis"):
         note = f"{prospect['note']:.1f}" if prospect.get("note") else "?"
         lignes.append(f"Google : {note}/5 sur {prospect['avis']} avis")
@@ -575,7 +613,15 @@ def main() -> None:
                    help="affiche la taille du vivier et sort")
     p.add_argument("--attendre", type=int, default=0,
                    help="secondes d'attente si une autre execution tourne")
+    p.add_argument("--db", default=None,
+                   help="base a utiliser au lieu de _data/annonces.db "
+                        "(pour essayer le circuit sans toucher la vraie base)")
     args = p.parse_args()
+
+    if args.db:
+        global DB_PATH
+        DB_PATH = Path(args.db)
+        print(f"base de test : {DB_PATH}")
 
     if args.reste:
         conn = sqlite3.connect(str(DB_PATH))
