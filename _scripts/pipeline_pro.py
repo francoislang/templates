@@ -1,25 +1,33 @@
 #!/usr/bin/env python3
-"""Circuit de prospection parallele, hors elevage canin.
+"""Circuit de prospection parallele : generation, CRM, message Telegram.
 
-Ne touche a rien du pipeline eleveurs : source differente (table `sirene`
-au lieu de `annonces`), verrou different, agent launchd different, horaire
-different. Les deux peuvent tourner le meme jour sans se marcher dessus.
+Meme logique que le pipeline eleveurs, mais sur une autre source et sans
+jamais toucher a celui-ci : base differente (_data/prospection.db au lieu de
+_data/annonces.db), verrou different, agent launchd different, journal
+different. Les deux peuvent tourner le meme jour.
 
-Chaine complete d'un nouveau marche :
+Chaine amont :
+    collecte_osm.py     masse + telephone + presence de site   (OpenStreetMap)
+    recherche_web.py    verification « a-t-il un site »        (API Brave)
+    places.py           note et avis Google                    (facultatif)
+    pipeline_pro.py     site de demo + fiche CRM + Telegram    (ce script)
 
-    1. sirene.py       qui existe, ou, quelle taille        (gratuit, sans cle)
-    2. places.py       telephone, site web, note, avis      (Google Places)
-    3. pipeline_pro.py site de demo + CRM + Telegram        (ce script)
+Ce que ce script produit pour chaque prospect :
+    1. un site de demonstration, publie sur GitHub Pages
+    2. une fiche dans le CRM GitHub
+    3. un message Telegram pret a servir d'appel telephonique, construit a
+       partir des faits reellement constates sur ce garage-la
 
-Les helpers lourds (reference HTML, garde-fou qualite, anonymisation,
-pixel de comptage, commit et push) sont importes de pipeline.py tels quels,
-sans le modifier.
+Deux differences avec le circuit eleveurs, assumees :
+  - le gabarit garage n'utilise aucune photographie (planches techniques en
+    SVG), donc ni Cloudinary ni Pexels ne sont sollicites ;
+  - chaque site recoit une des dix identites visuelles de variantes.py,
+    tiree par hachage de son slug, pour que cent sites ne se ressemblent pas.
 
 Usage :
     python3 _scripts/pipeline_pro.py --metier garage --dry-run
     python3 _scripts/pipeline_pro.py --metier garage --nombre 5
-    python3 _scripts/pipeline_pro.py --metier nautique
-    python3 _scripts/pipeline_pro.py --metier garage --reste
+    python3 _scripts/pipeline_pro.py --reste
 """
 from __future__ import annotations
 
@@ -38,102 +46,39 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-import config           # noqa: E402
-import crm              # noqa: E402
-import photos           # noqa: E402
-import pipeline as pl   # noqa: E402  (reutilise ses helpers, ne le modifie pas)
-import telegram         # noqa: E402
+import crm                 # noqa: E402
+import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
+import telegram            # noqa: E402
+import variantes           # noqa: E402
 
 REPO_ROOT = Path(__file__).parent.parent
-DB_PATH = REPO_ROOT / "_data" / "annonces.db"
+DB_PATH = REPO_ROOT / "_data" / "prospection.db"
 VERROU_PATH = REPO_ROOT / "_data" / ".pipeline_pro.lock"
-CACHE_PHOTOS = REPO_ROOT / "_data" / "photos_pro.json"
+PAGES = "https://francoislang.github.io/templates"
+PAR_DEFAUT = 5
 
-PAR_DEFAUT = 5          # prospects par execution
-
-# Tranches d'effectif INSEE gardees par defaut. Le NAF 45.20A ne contient pas
-# que des ateliers de quartier : il ramene aussi MIDAS FRANCE, NORAUTO ou des
-# holdings de reseau, qui ne sont pas des prospects et que le tri par nombre
-# d'avis Google fait remonter en tete. On plafonne donc a 19 salaries.
-#   NN/vide non renseigne (tres souvent une TPE)   11  10 a 19
-#   00  0 salarie      01  1-2    02  3-5    03  6-9
-# Au-dela (12 = 20-49, 21 = 50-99, 22 = 100-199...) : reseau ou groupe.
-EFFECTIFS_TPE = ("", "NN", "00", "01", "02", "03", "11")
-
-# Mots qui trahissent une personne morale dans le champ `dirigeant` : SIRENE y
-# met la societe mere quand l'entreprise est detenue par une autre. Les mettre
-# dans le pitch comme interlocuteur ferait demander « Monsieur Holding » au
-# telephone.
-MORAUX = {"holding", "sa", "sas", "sasu", "sarl", "eurl", "sci", "spa", "s.p.a",
-          "groupe", "group", "ltd", "gmbh", "bv", "nv", "participations",
-          "finance", "financiere", "invest", "investissements", "france"}
-
-
-# --------------------------------------------------------------------------
-# les marches
-# --------------------------------------------------------------------------
-# `naf`      : codes a collecter avec sirene.py (informatif ici, sert au filtre)
-# `metier`   : comment nommer l'activite dans le site et le pitch
-# `requetes` : recherches photo, du plus specifique au plus generique
-# `ambiance` : consigne de direction artistique passee au modele
-# `arguments`: ce que le site doit faire gagner au prospect, pour le pitch
 
 METIERS: dict[str, dict] = {
     "garage": {
-        "naf": ["45.20A", "45.20B"],
-        "metier": "garage automobile independant",
-        "pluriel": "garages",
-        "requetes": [
-            "car repair garage workshop mechanic",
-            "auto repair shop interior tools",
-            "mechanic working under car lift",
-            "car engine maintenance close up",
-        ],
-        "ambiance": (
-            "atelier, metal brosse, gris anthracite et une couleur d'accent "
-            "franche (orange, rouge ou bleu). Serieux et technique, jamais "
-            "clinquant. Typographies sans empattement, lisibles."
-        ),
-        "sections_metier": [
-            "Prestations (revision, freinage, distribution, climatisation, "
-            "diagnostic electronique, pneumatiques)",
-            "Marques et vehicules pris en charge",
-            "Devis gratuit et delais",
-            "Vehicule de pret / vehicule de courtoisie",
-            "Horaires et acces (plan)",
-        ],
-        "arguments": [
-            "un automobiliste cherche un garage sur son telephone, au bord de la route",
-            "le devis en ligne evite les appels pour rien",
-            "les avis Google affiches rassurent face aux chaines",
+        "metier": "garage automobile indépendant",
+        "gabarit": "reference-garage.html",
+        "sections": [
+            "Prestations (entretien, freinage, pneumatiques, diagnostic)",
+            "Detail des prestations principales",
+            "L'atelier, en planches techniques",
+            "Avis clients",
+            "Contact, adresse et acces",
         ],
     },
     "nautique": {
-        "naf": ["33.15Z", "30.12Z"],
-        "metier": "chantier naval / atelier de reparation de bateaux",
-        "pluriel": "chantiers",
-        "requetes": [
-            "boatyard shipyard sailboat repair",
-            "sailboat hull maintenance workshop",
-            "marina boat lift crane",
-            "wooden boat restoration craftsman",
-        ],
-        "ambiance": (
-            "bord de mer, bleu profond, sable, bois clair. Photographie large, "
-            "beaucoup de blanc, elegant et artisanal."
-        ),
-        "sections_metier": [
-            "Services (carenage, hivernage, stratification, moteur, greement, "
-            "electronique de bord)",
-            "Realisations et chantiers passes",
-            "Manutention et capacites (tonnage, levage, place a sec)",
-            "Devis et delais",
+        "metier": "chantier naval / atelier de réparation de bateaux",
+        "gabarit": "reference-nautique.html",
+        "sections": [
+            "Services (carenage, hivernage, stratification, moteur, greement)",
+            "Realisations",
+            "Manutention et capacites",
+            "Avis clients",
             "Acces au port et coordonnees",
-        ],
-        "arguments": [
-            "un refit se decide sur des photos de realisations",
-            "le proprietaire compare trois chantiers avant d'appeler",
-            "l'hivernage se reserve en ligne des septembre",
         ],
     },
 }
@@ -149,7 +94,6 @@ class DejaEnCours(RuntimeError):
 
 @contextmanager
 def verrou(attente_max: int = 0):
-    """Verrou distinct de celui du pipeline eleveurs : les deux coexistent."""
     VERROU_PATH.parent.mkdir(parents=True, exist_ok=True)
     f = open(VERROU_PATH, "a+", encoding="utf-8")
     debut = time.monotonic()
@@ -164,8 +108,7 @@ def verrou(attente_max: int = 0):
                 f.close()
                 raise DejaEnCours(detenteur)
             time.sleep(1)
-    f.seek(0)
-    f.truncate()
+    f.seek(0); f.truncate()
     f.write(f"pid={os.getpid()} depuis={datetime.now(timezone.utc).isoformat(timespec='seconds')}\n")
     f.flush()
     try:
@@ -181,187 +124,131 @@ def verrou(attente_max: int = 0):
 # base
 # --------------------------------------------------------------------------
 
-COLONNES = {
-    "traite_at": "TEXT",
-    "site_slug": "TEXT",
-    "site_url": "TEXT",
-    "crm_issue_url": "TEXT",
-    "erreur": "TEXT",
-    "metier": "TEXT",
-}
-
-
-def preparer(conn: sqlite3.Connection) -> None:
+def ouvrir() -> sqlite3.Connection:
+    if not DB_PATH.exists():
+        sys.exit(
+            f"{DB_PATH} n'existe pas.\n"
+            "  1) python3 _scripts/collecte_osm.py --region bretagne\n"
+            "  2) python3 _scripts/pipeline_pro.py --reste"
+        )
+    conn = sqlite3.connect(str(DB_PATH))
+    conn.row_factory = sqlite3.Row
     tables = {r[0] for r in conn.execute(
         "SELECT name FROM sqlite_master WHERE type='table'")}
-    if "sirene" not in tables:
-        sys.exit(
-            "La table `sirene` n'existe pas.\n"
-            "  1) python3 _scripts/sirene.py --naf 45.20A\n"
-            "  2) python3 _scripts/places.py --naf 45.20A --max-appels 300"
-        )
-    deja = {r[1] for r in conn.execute("PRAGMA table_info(sirene)")}
-    for col, typ in COLONNES.items():
+    if "prospects" not in tables:
+        sys.exit("La table `prospects` n'existe pas. Lance collecte_osm.py d'abord.")
+    deja = {r[1] for r in conn.execute("PRAGMA table_info(prospects)")}
+    for col, typ in {"traite_at": "TEXT", "site_genere": "TEXT",
+                     "crm_issue": "TEXT", "variante": "TEXT",
+                     "erreur": "TEXT"}.items():
         if col not in deja:
-            conn.execute(f"ALTER TABLE sirene ADD COLUMN {col} {typ}")
+            conn.execute(f"ALTER TABLE prospects ADD COLUMN {col} {typ}")
     conn.commit()
+    return conn
 
 
-def prospects(conn, cle_metier: str, limit: int) -> list[dict]:
-    """Les prospects joignables, sans site, pas encore traites, les plus gros d'abord.
+# Les enseignes de reseau restent exclues en toutes circonstances : leur
+# communication est pilotee par la tete de reseau, elles ne decident rien.
+# En revanche « propre » (le garage a deja un site) est un vivier valable :
+# un site de 2015 qui bloque le zoom est un prospect, pas un client perdu.
+_FILTRE_SANS_SITE = "site_statut = 'aucun'"
+_FILTRE_TOUS      = "site_statut IN ('aucun','propre')"
 
-    `avis` (nombre d'avis Google) sert de proxy d'activite : un atelier a 60
-    avis tourne et peut payer, un a 2 avis est souvent une coquille vide.
+
+def _filtre(avec_site: bool) -> str:
+    return f"""
+      metier = ?
+  AND {_FILTRE_TOUS if avec_site else _FILTRE_SANS_SITE}
+  AND COALESCE(telephone,'') <> ''
+  AND COALESCE(nom,'') <> ''
+  AND traite_at IS NULL
+"""
+
+
+def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
+              avec_site: bool = False) -> list[dict]:
+    """Les plus etoffes d'abord : un garage avec beaucoup d'avis tourne.
+
+    Trois protections contre le doublon, parce que `traite_at` sur la cle OSM
+    ne suffit pas :
+      - un numero deja demarche est ecarte, meme porte par une autre fiche
+        (81 lignes de la base partagent un numero avec une autre) ;
+      - un numero deja present dans le CRM est ecarte, comme le fait le
+        pipeline eleveurs ;
+      - a l'interieur d'un meme lot, on ne garde qu'une fiche par numero.
     """
-    conf = METIERS[cle_metier]
-    effectifs = conf.get("effectifs", EFFECTIFS_TPE)
-    marques = ",".join("?" * len(conf["naf"]))
-    tranches = ",".join("?" * len(effectifs))
-    conn.row_factory = sqlite3.Row
-    cur = conn.execute(f"""
-        SELECT siren, nom, enseigne, dirigeant, telephone, adresse, code_postal,
-               ville, departement, note, avis, effectif, date_creation
-        FROM sirene
-        WHERE naf IN ({marques})
-          AND traite_at IS NULL
-          AND enrichi_at IS NOT NULL
-          AND COALESCE(telephone,'') <> ''
-          AND COALESCE(site_web,'') = ''
-          AND COALESCE(confiance,'') IN ('haute','moyenne')
-          AND COALESCE(statut_google,'OPERATIONAL') = 'OPERATIONAL'
-          AND COALESCE(effectif,'') IN ({tranches})
-        ORDER BY COALESCE(avis,0) DESC, COALESCE(note,0) DESC
-        LIMIT ?
-    """, [*conf["naf"], *effectifs, limit])
-    return [dict(r) for r in cur]
+    cur = conn.execute(
+        f"SELECT * FROM prospects WHERE {_filtre(avec_site)} "
+        "  AND telephone NOT IN (SELECT telephone FROM prospects "
+        "      WHERE traite_at IS NOT NULL AND COALESCE(telephone,'') <> '') "
+        # CAST explicite : si une colonne arrive en TEXT (import CSV, autre
+        # collecteur), « 8 » passerait avant « 49 » en tri alphabetique et on
+        # demarcherait les plus petits garages en premier sans s'en apercevoir.
+        "ORDER BY (site_statut='aucun') DESC, "
+        "CAST(COALESCE(avis,0) AS INTEGER) DESC, "
+        "CAST(COALESCE(note,0) AS REAL) DESC, "
+        "departement, commune, nom LIMIT ?", (metier, limit * 4))
 
+    def _cle_tel(t: str) -> str:
+        return re.sub(r"\D", "", t or "")
 
-def compter(conn, cle_metier: str) -> int:
-    conf = METIERS[cle_metier]
-    effectifs = conf.get("effectifs", EFFECTIFS_TPE)
-    marques = ",".join("?" * len(conf["naf"]))
-    tranches = ",".join("?" * len(effectifs))
-    # Exactement les memes conditions que prospects(), sinon la reserve annoncee
-    # est gonflee et le message "vivier vide" ne se declenche jamais.
-    return conn.execute(f"""
-        SELECT COUNT(*) FROM sirene
-        WHERE naf IN ({marques})
-          AND traite_at IS NULL
-          AND enrichi_at IS NOT NULL
-          AND COALESCE(telephone,'') <> ''
-          AND COALESCE(site_web,'') = ''
-          AND COALESCE(confiance,'') IN ('haute','moyenne')
-          AND COALESCE(statut_google,'OPERATIONAL') = 'OPERATIONAL'
-          AND COALESCE(effectif,'') IN ({tranches})
-    """, [*conf["naf"], *effectifs]).fetchone()[0]
-
-
-def marquer(conn, siren: str, *, metier: str, slug=None, url=None,
-            issue=None, erreur=None) -> None:
-    conn.execute(
-        "UPDATE sirene SET traite_at=?, metier=?, site_slug=?, site_url=?, "
-        "crm_issue_url=?, erreur=? WHERE siren=?",
-        (datetime.now(timezone.utc).isoformat(timespec="seconds"), metier,
-         slug, url, issue, erreur, siren),
-    )
-    conn.commit()
-
-
-# --------------------------------------------------------------------------
-# photos : une banque par metier, constituee une fois puis reutilisee
-# --------------------------------------------------------------------------
-
-def photos_metier(cle_metier: str, combien: int = 14, rafraichir=False) -> list[str]:
-    conf = METIERS[cle_metier]
-    cache = {}
-    if CACHE_PHOTOS.exists():
-        try:
-            cache = json.loads(CACHE_PHOTOS.read_text(encoding="utf-8"))
-        except ValueError:
-            cache = {}
-    if not rafraichir and len(cache.get(cle_metier, [])) >= combien:
-        return cache[cle_metier][:combien]
-
-    urls: list[str] = list(cache.get(cle_metier, []))
-    for requete in conf["requetes"]:
-        if len(urls) >= combien:
+    vus = set(tel_crm or ())
+    lot = []
+    for r in cur:
+        d = dict(r)
+        t = _cle_tel(d.get("telephone"))
+        if not t or t in vus:
+            continue
+        vus.add(t)
+        lot.append(d)
+        if len(lot) >= limit:
             break
-        manque = combien - len(urls)
-        trouvees = photos.search_images(requete, count=manque) or []
-        for i, img in enumerate(trouvees):
-            public_id = f"{cle_metier}_{len(urls) + 1}"
-            cloud = photos.upload_to_cloudinary(img["url"], public_id, race=cle_metier)
-            urls.append(cloud or img["url"])
-            if len(urls) >= combien:
-                break
+    return lot
 
-    cache[cle_metier] = urls
-    CACHE_PHOTOS.write_text(json.dumps(cache, indent=2, ensure_ascii=False),
-                            encoding="utf-8")
-    return urls[:combien]
+
+def compter(conn, metier: str, avec_site: bool = False) -> int:
+    return conn.execute(
+        f"SELECT COUNT(DISTINCT telephone) FROM prospects "
+        f"WHERE {_filtre(avec_site)}", (metier,)).fetchone()[0]
+
+
+def marquer(conn, cle: str, **champs) -> None:
+    champs["traite_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    conn.execute(
+        f"UPDATE prospects SET {','.join(c + '=?' for c in champs)} WHERE cle=?",
+        [*champs.values(), cle])
+    conn.commit()
 
 
 # --------------------------------------------------------------------------
-# generation du site
+# generation
 # --------------------------------------------------------------------------
-
-def charger_reference(cle_metier: str) -> str:
-    """Le site modele envoye au modele, par ordre de preference.
-
-    _templates/reference-<metier>.html  -> gabarit propre au metier
-    _templates/reference.html           -> repli, le gabarit elevage
-
-    Tant qu'un metier n'a pas son propre gabarit on retombe sur celui des
-    eleveurs : ca marche, mais le modele doit desapprendre son vocabulaire,
-    d'ou le garde-fou anti-vocabulaire-canin plus bas. Des qu'un marche se
-    confirme, lui ecrire son reference-<metier>.html supprime le probleme
-    a la source et donne des sections vraiment adaptees.
-    """
-    propre = REPO_ROOT / "_templates" / f"reference-{cle_metier}.html"
-    if propre.exists():
-        try:
-            texte = propre.read_text(encoding="utf-8")
-            if texte.strip():
-                print(f"   gabarit : {propre.name}")
-                return texte
-        except OSError as e:
-            print(f"   /!\\ {propre.name} illisible ({e}), repli sur reference.html")
-    print("   gabarit : reference.html (elevage) — pas encore de gabarit "
-          f"« {cle_metier} »")
-    return pl._charger_reference()
-
 
 def _cle_openrouter() -> str:
     for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
         if not fp.exists():
             continue
-        for line in fp.read_text(encoding="utf-8").splitlines():
-            if line.startswith(("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY")) and "=" in line:
-                return line.split("=", 1)[1].strip().strip('"').strip("'")
+        for ligne in fp.read_text(encoding="utf-8").splitlines():
+            if ligne.startswith(("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY")) and "=" in ligne:
+                return ligne.split("=", 1)[1].strip().strip('"').strip("'")
     return ""
 
 
 def _appeler_modele(prompt: str) -> tuple[str, str]:
-    """Retourne (html, erreur). Meme protocole que pipeline.py."""
     import requests
     cle = _cle_openrouter()
     if not cle:
         return "", "OPENROUTER_API_KEY absente"
-    payload = {
-        "model": "deepseek/deepseek-v4-pro",
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 24000,
-        "stream": True,
-    }
+    payload = {"model": "deepseek/deepseek-v4-pro",
+               "messages": [{"role": "user", "content": prompt}],
+               "max_tokens": 24000, "stream": True}
     derniere = ""
     for tentative in (1, 2):
         try:
-            r = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers={"Authorization": f"Bearer {cle}",
-                         "Content-Type": "application/json"},
-                json=payload, timeout=(30, 900), stream=True,
-            )
+            r = requests.post("https://openrouter.ai/api/v1/chat/completions",
+                              headers={"Authorization": f"Bearer {cle}",
+                                       "Content-Type": "application/json"},
+                              json=payload, timeout=(30, 900), stream=True)
             if r.status_code != 200:
                 derniere = f"HTTP {r.status_code}"
                 print(f"   /!\\ OpenRouter {derniere} ({tentative}/2)")
@@ -392,75 +279,96 @@ def _appeler_modele(prompt: str) -> tuple[str, str]:
     return "", derniere or "echec inconnu"
 
 
-def generer_site(prospect: dict, cle_metier: str, images: list[str],
-                 force=False) -> tuple[str | None, str]:
-    """Retourne (url_demo, erreur)."""
-    conf = METIERS[cle_metier]
-    nom = (prospect.get("enseigne") or prospect.get("nom") or "").strip()
+def charger_gabarit(metier: str) -> str:
+    conf = METIERS[metier]
+    propre = REPO_ROOT / "_templates" / conf["gabarit"]
+    if propre.exists():
+        texte = propre.read_text(encoding="utf-8")
+        if texte.strip():
+            print(f"   gabarit : {propre.name}")
+            return texte
+    print(f"   gabarit : repli sur reference.html — {conf['gabarit']} absent")
+    return pl._charger_reference()
+
+
+def _appliquer_variante(html: str, v: dict) -> str:
+    """Injecte l'identite visuelle apres coup plutot que de la demander au
+    modele : deterministe, verifiable, et le modele ne peut pas la rater."""
+    bloc = variantes.css(v)
+    if "</style>" in html:
+        html = html.replace("</style>", bloc + "\n</style>", 1)
+    else:
+        html = html.replace("</head>", f"<style>\n{bloc}\n</style>\n</head>", 1)
+    lien = variantes.lien_police(v)
+    if "fonts.googleapis.com" in html:
+        html = re.sub(r'<link href="https://fonts\.googleapis\.com[^>]*>', lien, html, count=1)
+    else:
+        html = html.replace("</head>", lien + "\n</head>", 1)
+    return html
+
+
+def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, dict]:
+    """Retourne (url, erreur, variante)."""
+    conf = METIERS[metier]
+    nom = (p.get("nom") or "").strip()
     slug = pl.slugify(nom)
+    v = variantes.pour(slug)
     cible = REPO_ROOT / slug / "index.html"
     if cible.exists() and not force:
-        return f"https://francoislang.github.io/templates/{slug}", ""
+        return f"{PAGES}/{slug}/", "", v
 
-    ref = charger_reference(cle_metier)
-    if not ref.strip():
-        return None, "aucune reference HTML lisible"
-    if not images:
-        return None, "aucune photo disponible"
+    gabarit = charger_gabarit(metier)
+    if not gabarit.strip():
+        return None, "aucun gabarit lisible", v
 
-    ville = prospect.get("ville") or ""
-    dept = prospect.get("departement") or ""
-    lieu = f"a {ville} ({dept})" if ville and dept else (ville or dept or "France")
-    liste_photos = "\n".join(f"  {u}" for u in images)
-    sections = "\n".join(f"  - {s}" for s in conf["sections_metier"])
+    ville = p.get("commune") or ""
+    cp = p.get("code_postal") or ""
+    faits = [f"- Nom : {nom}", f"- Activite : {conf['metier']}",
+             f"- Telephone : {p.get('telephone','')}"]
+    for libelle, champ in (("Adresse", "adresse"), ("Code postal", "code_postal"),
+                           ("Commune", "commune"), ("Horaires", "horaires"),
+                           ("Email", "email")):
+        if p.get(champ):
+            faits.append(f"- {libelle} : {p[champ]}")
+    if p.get("avis"):
+        note = f"{p['note']:.1f}" if p.get("note") else "?"
+        faits.append(f"- Avis Google : {note}/5 sur {p['avis']} avis")
 
     prompt = f"""Cree un site vitrine HTML complet pour un {conf['metier']}.
 
-REFERENCE (structure a reproduire exactement) :
-{ref}
+GABARIT DE REFERENCE (structure a reproduire exactement) :
+{gabarit}
 
-CONTENU :
-- Nom: {nom}
-- Activite: {conf['metier']}
-- Tel: {prospect.get('telephone','')}
-- Adresse: {prospect.get('adresse','')} {prospect.get('code_postal','')} {ville}
-- Lieu: {lieu}
-- SIREN: {prospect.get('siren','')}
-- Photos ({len(images)} dispo):
-{liste_photos}
+FAITS VERIFIES — tu ne peux utiliser QUE ceux-la :
+{chr(10).join(faits)}
 
-SECTIONS METIER a couvrir, en plus de la structure de reference :
-{sections}
+SECTIONS a couvrir :
+{chr(10).join('  - ' + s for s in conf['sections'])}
 
-REGLES:
-- Reproduis EXACTEMENT la structure HTML, les sections et les classes de la
-  reference. Elle est COMPLETE : reprends TOUTES ses sections, dans le meme
-  ordre. Un site a moins de 6 sections sera rejete.
-- Adapte le VOCABULAIRE au metier : il ne s'agit pas d'un elevage. Aucun mot
-  lie aux animaux, aux chiots, aux portees ou aux races ne doit apparaitre.
-- Hero: une des photos Cloudinary fournies.
-- Galerie: utilise TOUTES les {len(images)} photos. Boucle si besoin.
-- Formulaire de contact (nom, telephone, email, message) oriente demande de devis.
-- Footer: (c) 2026 {nom}, {f"SIREN {prospect.get('siren')}" if prospect.get('siren') else ""}, {ville or dept or "France"}, Mentions legales, CGV, Politique de confidentialite
-- Animations au defilement (IntersectionObserver)
-- Schema.org JSON-LD (type LocalBusiness), Open Graph, meta SEO avec la ville
-- DIRECTION ARTISTIQUE : {conf['ambiance']}
-
-PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
-- Les URLs Cloudinary se terminent par .../image/upload/<chemin>. Insere
-  TOUJOURS une transformation juste apres /image/upload/ :
-    hero et og:image  -> f_auto,q_auto,w_1920,c_fill,g_auto
-    images de section -> f_auto,q_auto,w_900,c_fill,g_auto
-    vignettes galerie -> f_auto,q_auto,w_600,c_fill,g_auto
-- Chaque <img> porte loading="lazy", decoding="async", width et height,
-  SAUF l'image du hero.
-- Dans <head> : <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-  et un <link rel="preload" as="image" fetchpriority="high"> sur le hero.
+REGLES ABSOLUES :
+- N'INVENTE AUCUN FAIT sur cette entreprise reelle. Le site sera montre a son
+  patron. Interdiction d'inventer un tarif, une duree de garantie, un nombre
+  de salaries, une annee de creation, un vehicule de pret, une habilitation,
+  ou le moindre avis client redige. Si une information ne figure pas dans la
+  liste ci-dessus, elle n'apparait pas sur la page.
+- Les avis sont un emplacement vide qui dit qu'il se remplira avec les vrais
+  avis Google. Jamais de temoignage redige.
+- Si les horaires ne sont pas dans les faits verifies, ecris « A confirmer »
+  et n'active pas l'indicateur ouvert/ferme.
+- Reproduis TOUTES les sections du gabarit, dans le meme ordre.
+- Garde le bloc « bon de travail » de fin de page et sa mecanique d'affichage
+  par ?notes : il n'est pas destine au prospect.
+- Adapte le vocabulaire au metier. Aucun mot lie aux animaux, aux chiots, aux
+  portees ou aux races.
+- Telephone cliquable (tel:), formulaire de devis, JSON-LD, meta SEO avec la
+  commune, mobile d'abord, contrastes au minimum 4,5:1.
+- NE CHANGE PAS les couleurs ni la police du gabarit : une identite visuelle
+  est appliquee automatiquement apres generation.
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
     html, err = _appeler_modele(prompt)
     if not html:
-        return None, err
+        return None, err, v
 
     html = re.sub(r"^```html?\n?", "", html)
     html = re.sub(r"\n?```\s*$", "", html)
@@ -469,153 +377,245 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
         html = m.group(1)
 
     ok, raison = pl._site_est_correct(html)
-    if not ok:
-        return None, f"site trop pauvre — {raison}"
+    if not ok and "photos" not in raison:
+        # Le gabarit garage n'a volontairement aucune photographie : le
+        # garde-fou « 10 photos minimum » ne s'applique pas ici.
+        return None, f"site trop pauvre — {raison}", v
 
-    # Garde-fou propre a ce circuit : le modele part parfois sur le vocabulaire
-    # canin parce que la reference est un site d'elevage.
     fuite = re.findall(r"\b(chiot\w*|chien\w*|port[ée]e\w*|[ée]levage\w*|LOF)\b",
                        html, re.IGNORECASE)
     if len(fuite) > 2:
-        return None, f"vocabulaire canin residuel ({len(fuite)} occurrences)"
+        return None, f"vocabulaire canin residuel ({len(fuite)} occurrences)", v
+
+    html = _appliquer_variante(html, v)
 
     cible.parent.mkdir(exist_ok=True)
     cible.write_text(html, encoding="utf-8")
-    pl._sanitize(cible, slug, {"email": "", "phone": prospect.get("telephone", "")})
+    pl._sanitize(cible, slug, {"email": p.get("email", ""),
+                               "phone": p.get("telephone", "")})
     pl._inject_tracking(cible)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"],
                    capture_output=True)
-    return f"https://francoislang.github.io/templates/{slug}", ""
+    return f"{PAGES}/{slug}/", "", v
 
 
 # --------------------------------------------------------------------------
-# pitch
+# message Telegram — c'est lui qui sert a passer l'appel
 # --------------------------------------------------------------------------
 
-def dirigeant_physique(dirigeant: str | None, nom_societe: str = "") -> str:
-    """Le dirigeant, seulement si c'est bien une personne et pas une societe mere."""
-    if not dirigeant:
-        return ""
-    mots = re.findall(r"[\w.]+", dirigeant.lower())
-    if any(m.strip(".") in MORAUX for m in mots):
-        return ""
-    # « GARAGE DUPONT » comme dirigeant de « GARAGE DUPONT SARL » : c'est la
-    # societe elle-meme, pas quelqu'un a demander au telephone.
-    if nom_societe and dirigeant.strip().lower() in nom_societe.strip().lower():
-        return ""
-    return dirigeant.strip()
+def pitch(p: dict, metier: str, demo_url: str | None) -> str:
+    """Le message a envoyer au garagiste, pret a copier-coller.
 
+    Meme registre que le pitch eleveurs : on s'adresse a la personne, on dit
+    d'ou on vient, ce qu'on propose et pourquoi, on donne la demo. Les
+    arguments sont personnalises avec les faits reellement constates sur ce
+    garage — jamais avec des generalites, et jamais avec un fait invente.
+    """
+    nom = (p.get("nom") or "").strip()
+    ville = (p.get("commune") or "").strip()
+    dept = (p.get("departement") or "").strip()
+    lieu = f"à {ville}" if ville else "dans votre secteur"
 
-def pitch(prospect: dict, cle_metier: str, demo_url: str | None) -> str:
-    conf = METIERS[cle_metier]
-    nom = prospect.get("enseigne") or prospect.get("nom") or ""
-    lignes = [
-        f"*{nom}*",
-        f"{conf['metier'].capitalize()} — {prospect.get('ville','')} "
-        f"({prospect.get('departement','')})",
-        f"Tel : {prospect.get('telephone','')}",
+    avis = p.get("avis")
+    note = f"{p['note']:.1f}".replace(".", ",") if p.get("note") else ""
+    a_facebook = bool((p.get("facebook") or "").strip())
+    a_mail = bool((p.get("email") or "").strip())
+
+    a_un_site = (p.get("site_statut") == "propre") and bool(p.get("site_web"))
+
+    # Ouverture : on dit comment on l'a trouve, ce qui rend l'approche concrete.
+    if a_un_site:
+        # On ne juge PAS son site : on ne l'a pas regarde. On propose une
+        # comparaison, ce qui est honnete et se refuse moins facilement.
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+                     f"{lieu} et je suis tombé sur votre site, {p['site_web']}.")
+    elif avis and note and int(avis) >= 10:
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+                     f"{lieu} et je suis tombé sur le vôtre : {avis} avis à "
+                     f"{note}/5, et pourtant aucun site à vous.")
+    elif a_facebook:
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+                     f"{lieu} et je n'ai trouvé de vous qu'une page Facebook.")
+    else:
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+                     f"{lieu} et je n'ai trouvé votre établissement que sur des "
+                     f"annuaires.")
+
+    # Avantages : les deux premiers dependent de sa situation reelle.
+    avantages = []
+    if a_un_site:
+        avantages.append("Une page qui se lit correctement sur un téléphone, "
+                         "là où se font aujourd'hui la plupart des recherches "
+                         "de garage")
+    elif avis and note and int(avis) >= 10:
+        avantages.append(f"Vos {avis} avis affichés chez vous, et plus seulement "
+                         f"sur un annuaire qui vous met en concurrence avec "
+                         f"trois autres garages sur la même page")
+    else:
+        avantages.append("Une adresse à vous quand on cherche votre nom, plutôt "
+                         "qu'une fiche d'annuaire que vous ne contrôlez pas")
+    if not a_mail:
+        avantages.append("Un formulaire de devis qui arrive même quand l'atelier "
+                         "est fermé, au lieu d'un téléphone qui sonne dans le vide")
+    else:
+        avantages.append("Un formulaire de devis avec la plaque et le modèle, pour "
+                         "répondre juste sans dix allers-retours")
+    avantages += [
+        "Vos horaires, votre adresse et vos prestations trouvables en une "
+        "recherche, depuis un téléphone, au bord de la route",
+        "Moins d'appels pour rien : ce que vous prenez en charge et ce que vous "
+        "ne faites pas, c'est écrit",
     ]
-    humain = dirigeant_physique(prospect.get("dirigeant"), nom)
-    if humain:
-        lignes.append(f"Interlocuteur : {humain}")
-    if prospect.get("avis"):
-        note = f"{prospect['note']:.1f}" if prospect.get("note") else "?"
-        lignes.append(f"Google : {note}/5 sur {prospect['avis']} avis")
-    if prospect.get("date_creation"):
-        lignes.append(f"Cree en {str(prospect['date_creation'])[:4]}")
-    lignes.append("Pas de site web reference sur Google.")
+
+    parties = [
+        "Bonjour,",
+        "",
+        ouverture,
+        "",
+        "Je suis François-Frédéric, développeur web basé à Nancy. J'ai eu envie "
+        + ("de vous proposer une autre version, pour comparaison — sans vous "
+           "dire que la vôtre est mauvaise, je ne la connais pas assez."
+           if a_un_site else
+           "de vous proposer quelque chose : un site vitrine qui vous "
+           "appartienne, au lieu de laisser les comparateurs capter vos clients."),
+        "",
+        ("Ce que la version que j'ai préparée apporte :" if a_un_site
+         else "Un site à vous, c'est concrètement :"),
+    ]
+    parties += [f"\u2022  {a}" for a in avantages]
+
     if demo_url:
-        lignes.append(f"\nDemo : {demo_url}")
-    lignes.append("\nAngles d'accroche :")
-    lignes += [f"- {a}" for a in conf["arguments"]]
-    lignes += ["", "Francois-Frederic Lang", "langfrancoisfrederic@gmail.com",
-               "06 32 81 42 00"]
-    return "\n".join(lignes)
+        parties += ["", "J'ai préparé une démo gratuite, sans engagement :",
+                    demo_url, "",
+                    "Si elle vous plaît et que vous souhaitez en discuter, "
+                    "n'hésitez pas à me répondre."]
+    else:
+        parties += ["", "Si vous souhaitez en discuter, n'hésitez pas à me répondre."]
+
+    parties += ["", "Bien cordialement,", "", "François-Frédéric Lang",
+                "langfrancoisfrederic@gmail.com", "06 32 81 42 00"]
+    return "\n".join(parties)
+
+
+def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
+    """Le message Telegram : l'entete pour toi, le pitch a transferer."""
+    nom = (p.get("nom") or "").strip()
+    parties = [f"\U0001F527 {nom} — {METIERS[metier]['metier']}"]
+    if p.get("telephone"):
+        parties.append(f"\U0001F4DE {p['telephone']}")
+    if (p.get("email") or "").strip():
+        parties.append(f"\U0001F4E7 {p['email']}")
+    lieu = (p.get("commune") or "").strip()
+    if lieu and p.get("departement"):
+        lieu += f" ({p['departement']})"
+    if p.get("adresse"):
+        lieu = f"{p['adresse']}, {lieu}" if lieu else p["adresse"]
+    if lieu:
+        parties.append(f"\U0001F4CD {lieu}")
+    if p.get("avis"):
+        note = f"{p['note']:.1f}".replace(".", ",") if p.get("note") else "?"
+        parties.append(f"\u2B50 {note}/5 sur {p['avis']} avis")
+    if p.get("site_statut") == "propre" and p.get("site_web"):
+        parties.append(f"\u267B\uFE0F REFONTE — a deja {p['site_web']}")
+    else:
+        parties.append("\u2728 PREMIER SITE — aucun site aujourd'hui")
+    if demo_url:
+        parties.append(f"\U0001F310 {demo_url}")
+        parties.append(f"\U0001F4DD Tes notes : {demo_url}?notes")
+    else:
+        parties.append("\u26A0\uFE0F Site non genere")
+    parties.append(f"\U0001F3A8 Identite : {v['nom']}")
+
+    parties += ["", "--- PITCH A ENVOYER ---", pitch(p, metier, demo_url),
+                "--- FIN DU PITCH ---"]
+    return "\n".join(parties)
 
 
 # --------------------------------------------------------------------------
 # execution
 # --------------------------------------------------------------------------
 
-def run(cle_metier: str, nombre: int, dry_run: bool) -> None:
-    conf = METIERS[cle_metier]
-    conn = sqlite3.connect(str(DB_PATH))
-    preparer(conn)
+def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False) -> None:
+    conn = ouvrir()
+    reste = compter(conn, metier, avec_site)
 
-    reste = compter(conn, cle_metier)
-    lot = prospects(conn, cle_metier, nombre)
-    print(f"Marche « {cle_metier} » : {len(lot)} prospect(s) ce tour, "
-          f"{reste} en reserve")
+    # Le CRM est la memoire longue : une fiche peut y exister sans que la
+    # base locale le sache (relance manuelle, import, autre machine).
+    tel_crm = set()
+    if not dry_run:
+        try:
+            tel_crm = {re.sub(r"\D", "", t) for t in crm.get_existing_phones()}
+            print(f"{len(tel_crm)} numeros deja presents dans le CRM, ecartes")
+        except Exception as e:
+            print(f"/!\\ CRM injoignable ({e}) — on continue sans ce controle")
+
+    lot = a_traiter(conn, metier, nombre, tel_crm, avec_site)
+    print(f"Marche « {metier} » : {len(lot)} prospect(s) ce tour, {reste} en reserve")
+
     if not lot:
-        msg = (f"Vivier « {cle_metier} » vide. Relancer sirene.py puis "
-               f"places.py pour en collecter d'autres.")
+        msg = (f"Vivier « {metier} » vide. Relancer collecte_osm.py sur "
+               f"d'autres departements.")
         print(msg)
         if not dry_run:
             telegram.send(msg)
         return
 
-    images = [] if dry_run else photos_metier(cle_metier)
-    if not dry_run and not images:
-        print("Aucune photo pour ce metier : on s'arrete avant de generer.")
-        return
-
     faits = 0
     for p in lot:
-        nom = p.get("enseigne") or p.get("nom")
-        print(f"\n{'=' * 52}\n{nom} — {p.get('ville','')} — {p.get('telephone','')}")
+        nom = p.get("nom")
+        print(f"\n{'=' * 54}\n{nom} — {p.get('commune','')} — {p.get('telephone','')}")
         if dry_run:
-            print(pitch(p, cle_metier, None))
+            v = variantes.pour(pl.slugify(nom or ""))
+            print(message(p, metier, f"{PAGES}/{pl.slugify(nom or '')}/", v))
             continue
 
-        url, err = generer_site(p, cle_metier, images)
+        url, err, v = generer_site(p, metier)
         if err:
             print(f"   /!\\ {err}")
-            marquer(conn, p["siren"], metier=cle_metier, erreur=err)
+            marquer(conn, p["cle"], erreur=err, variante=v["nom"])
             continue
 
-        texte = pitch(p, cle_metier, url)
+        texte = message(p, metier, url, v)
         try:
             issue = crm.add_entry(
                 elevage=nom,
-                races=[conf["metier"]],
+                races=[METIERS[metier]["metier"]],
                 phone=p.get("telephone", ""),
                 demo_url=url,
-                notes=f"SIREN: {p.get('siren','')} | Site actuel: aucun | "
-                      f"Description: {conf['metier']} a {p.get('ville','')} | "
-                      f"Pitch: {texte}",
+                notes=f"Site actuel: aucun | "
+                      f"Description: {METIERS[metier]['metier']} a "
+                      f"{p.get('commune','')} | Pitch: {texte}",
             )
         except Exception as e:
             issue = None
-            print(f"   /!\\ CRM: {e}")
+            print(f"   /!\\ CRM : {e}")
 
-        marquer(conn, p["siren"], metier=cle_metier,
-                slug=pl.slugify(nom), url=url, issue=str(issue) if issue else None)
+        marquer(conn, p["cle"], site_genere=url, variante=v["nom"],
+                crm_issue=str(issue) if issue else None)
         telegram.send(texte)
+        print(f"   -> {url}  ({v['nom']})")
         faits += 1
 
     if faits and not dry_run:
         pl.commit_and_push(faits)
-        telegram.send(f"{faits} site(s) « {cle_metier} » publies. "
-                      f"Reserve restante : {compter(conn, cle_metier)}")
+        telegram.send(f"{faits} site(s) « {metier} » publies. "
+                      f"Reserve restante : {compter(conn, metier, avec_site)}")
     conn.close()
 
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--metier", required=True, choices=sorted(METIERS),
-                   help="marche a prospecter")
-    p.add_argument("--nombre", type=int, default=PAR_DEFAUT,
-                   help=f"prospects a traiter (defaut {PAR_DEFAUT})")
+    p.add_argument("--metier", default="garage", choices=sorted(METIERS))
+    p.add_argument("--nombre", type=int, default=PAR_DEFAUT)
     p.add_argument("--dry-run", action="store_true",
-                   help="affiche les prospects et les pitchs, ne genere rien")
-    p.add_argument("--reste", action="store_true",
-                   help="affiche la taille du vivier et sort")
-    p.add_argument("--attendre", type=int, default=0,
-                   help="secondes d'attente si une autre execution tourne")
-    p.add_argument("--db", default=None,
-                   help="base a utiliser au lieu de _data/annonces.db "
-                        "(pour essayer le circuit sans toucher la vraie base)")
+                   help="affiche les messages Telegram sans rien generer ni envoyer")
+    p.add_argument("--reste", action="store_true", help="taille du vivier et sortie")
+    p.add_argument("--avec-site", action="store_true",
+                   help="inclure les garages qui ont deja un site (offre de "
+                        "refonte). Les enseignes de reseau restent exclues.")
+    p.add_argument("--attendre", type=int, default=0)
+    p.add_argument("--db", default=None, help="base de test au lieu de prospection.db")
     args = p.parse_args()
 
     if args.db:
@@ -624,18 +624,18 @@ def main() -> None:
         print(f"base de test : {DB_PATH}")
 
     if args.reste:
-        conn = sqlite3.connect(str(DB_PATH))
-        preparer(conn)
-        for cle in sorted(METIERS):
-            print(f"  {cle:10} : {compter(conn, cle)} prospect(s) en reserve")
+        conn = ouvrir()
+        for m in sorted(METIERS):
+            print(f"  {m:10} : {compter(conn, m):5} sans site  |  "
+                  f"{compter(conn, m, True):5} en incluant les refontes")
         conn.close()
         return
 
     try:
         with verrou(args.attendre):
-            run(args.metier, args.nombre, args.dry_run)
+            run(args.metier, args.nombre, args.dry_run, args.avec_site)
     except DejaEnCours as e:
-        print(f"Une autre execution de pipeline_pro tourne deja ({e}). Abandon.")
+        print(f"Une autre execution tourne deja ({e}). Abandon.")
         sys.exit(75)
 
 
