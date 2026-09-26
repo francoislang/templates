@@ -282,6 +282,32 @@ def photos_metier(cle_metier: str, combien: int = 14, rafraichir=False) -> list[
 # generation du site
 # --------------------------------------------------------------------------
 
+def charger_reference(cle_metier: str) -> str:
+    """Le site modele envoye au modele, par ordre de preference.
+
+    _templates/reference-<metier>.html  -> gabarit propre au metier
+    _templates/reference.html           -> repli, le gabarit elevage
+
+    Tant qu'un metier n'a pas son propre gabarit on retombe sur celui des
+    eleveurs : ca marche, mais le modele doit desapprendre son vocabulaire,
+    d'ou le garde-fou anti-vocabulaire-canin plus bas. Des qu'un marche se
+    confirme, lui ecrire son reference-<metier>.html supprime le probleme
+    a la source et donne des sections vraiment adaptees.
+    """
+    propre = REPO_ROOT / "_templates" / f"reference-{cle_metier}.html"
+    if propre.exists():
+        try:
+            texte = propre.read_text(encoding="utf-8")
+            if texte.strip():
+                print(f"   gabarit : {propre.name}")
+                return texte
+        except OSError as e:
+            print(f"   /!\\ {propre.name} illisible ({e}), repli sur reference.html")
+    print("   gabarit : reference.html (elevage) — pas encore de gabarit "
+          f"« {cle_metier} »")
+    return pl._charger_reference()
+
+
 def _cle_openrouter() -> str:
     for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
         if not fp.exists():
@@ -353,9 +379,9 @@ def generer_site(prospect: dict, cle_metier: str, images: list[str],
     if cible.exists() and not force:
         return f"https://francoislang.github.io/templates/{slug}", ""
 
-    ref = pl._charger_reference()
+    ref = charger_reference(cle_metier)
     if not ref.strip():
-        return None, "reference.html introuvable"
+        return None, "aucune reference HTML lisible"
     if not images:
         return None, "aucune photo disponible"
 
