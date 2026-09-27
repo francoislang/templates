@@ -20,6 +20,12 @@
   --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#fff;
   --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
   --r:16px; --r-s:10px;
+  /* ombre portee franche, sans flou : c'est elle qui donne le rebond au
+     survol du modele, et elle ne declenche pas la regle « lueur coloree »
+     puisqu'elle est decalee et neutre */
+  --ombre-dure:5px 5px 0 var(--encre);
+  --ombre-dure-s:3px 3px 0 var(--encre);
+  --res:cubic-bezier(.22,1,.36,1);
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
   --s7:48px; --s8:64px; --s9:96px; --large:1200px;
 }
@@ -45,11 +51,13 @@ a{color:inherit}
   padding:15px var(--s5);border-radius:var(--r-s);font-weight:800;font-size:16px;
   text-decoration:none;border:2px solid transparent;cursor:pointer;
   font-family:inherit;min-height:48px;
-  transition:transform .15s ease,background-color .15s ease,border-color .15s}
-.btn:hover{transform:translateY(-2px)}
+  transition:transform .18s ease,background-color .18s ease,
+    border-color .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translate(-2px,-2px)}
 @media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
 .btn--c{background:var(--cuivre);color:var(--txt-accent)}
-.btn--c:hover{filter:brightness(1.07)}
+.btn--c:hover{filter:brightness(1.05);box-shadow:var(--ombre-dure)}
+.btn--o:hover{box-shadow:var(--ombre-dure-s)}
 .btn--f{border-color:rgba(255,255,255,.34);color:#fff}
 .btn--f:hover{border-color:#fff}
 .btn--o{border-color:var(--bord);color:var(--encre)}
@@ -78,7 +86,11 @@ a{color:inherit}
   font-variant-numeric:tabular-nums}
 @media (min-width:1000px){.hdr__tel{display:inline-flex;margin-left:0}}
 .hdr__tel:hover{color:var(--cuivre)}
-.hdr .btn{margin-left:auto;padding:11px 18px;min-height:44px;font-size:15px}
+/* sous 560 px l'appel a l'action du bandeau depasse la fenetre : la
+   barre fixe du bas porte deja les deux actions */
+.hdr .btn{display:none}
+@media (min-width:560px){.hdr .btn{display:inline-flex;margin-left:auto;
+  padding:11px 18px;min-height:44px;font-size:15px}}
 @media (min-width:1000px){.hdr .btn{margin-left:0}}
 
 /* ---- ouverture ---- */
@@ -107,7 +119,16 @@ a{color:inherit}
    que des faits releves — horaires, adresse, numero, etat du moment */
 .fiche{background:var(--creme);color:var(--encre);border-radius:var(--r);
   padding:var(--s5);box-shadow:0 14px 26px -18px rgba(0,0,0,.5)}
-@media (min-width:980px){.fiche{transform:rotate(-1.4deg);padding:var(--s6)}}
+@media (min-width:980px){
+  .fiche{transform:rotate(-1.6deg);padding:var(--s6);
+    transition:transform .3s var(--res),box-shadow .3s ease}
+  .fiche:hover{transform:rotate(0deg);box-shadow:0 18px 30px -18px rgba(0,0,0,.55)}
+  .fiche{animation:pose .42s var(--res) both}
+}
+@keyframes pose{
+  from{transform:rotate(-9deg) scale(1.06);opacity:0}
+  to{transform:rotate(-1.6deg) scale(1);opacity:1}
+}
 .fiche__t{display:flex;align-items:center;justify-content:space-between;
   gap:var(--s4);padding-bottom:var(--s4);border-bottom:2px solid var(--encre)}
 .fiche__t b{font-size:15px;font-weight:800;letter-spacing:.02em}
@@ -166,6 +187,19 @@ a{color:inherit}
 @media (min-width:820px){.reg li{grid-template-columns:54px 62px 1fr 210px;
   gap:var(--s5);align-items:center}}
 .reg li:last-child{border-bottom:1px solid var(--bord)}
+@media (min-width:820px){
+  .reg li{padding-inline:var(--s4);border-radius:var(--r-s);
+    transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease}
+  .reg li:hover{background:var(--blanc);transform:translate(-2px,-2px);
+    box-shadow:var(--ombre-dure-s);position:relative;z-index:1}
+  .reg li:hover .reg__q{transform:rotate(-4deg) scale(1);opacity:1}
+  .reg__q{transform:rotate(-4deg) scale(.86);opacity:.55;
+    transition:transform .3s var(--res),opacity .3s ease;transform-origin:right center}
+}
+@media (prefers-reduced-motion:reduce){
+  .reg__q{transform:none;opacity:1}
+  .fiche{animation:none}
+}
 .reg__n{font-size:14px;font-weight:800;color:var(--texte-2);
   font-variant-numeric:tabular-nums}
 .reg__n::before{content:"0" counter(r)}
@@ -191,6 +225,14 @@ a{color:inherit}
 @media (min-width:760px){.pan{padding:var(--s6)}}
 .pan h3{font-size:21px}
 .etat{margin-top:var(--s3);font-weight:800;font-size:17px}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;
+  background:currentColor;margin-right:9px;position:relative;vertical-align:middle}
+.pastille::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid currentColor;animation:souffle 1.8s ease-out infinite}
+@keyframes souffle{
+  from{transform:scale(1);opacity:.55}
+  to{transform:scale(2.6);opacity:0}
+}
 .etat--oui{color:#18653F}
 .etat--non{color:var(--texte-2)}
 .hor{margin:var(--s5) 0 0;border-top:1px solid var(--bord)}
@@ -573,11 +615,13 @@ a{color:inherit}
     var cj=pr(h[j]);
     for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){
       el.textContent="Ouvert, jusqu'à "+hm(cj[i][1]);
+      el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;
       el.className="etat etat--oui"; return; } }
     for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
       for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
         el.textContent="Fermé, ouvre "+(k===0?"à "+hm(cs[i][0])
           :(k===1?"demain à ":J[jj]+" à ")+hm(cs[i][0]));
+        el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;
         el.className="etat etat--non"; return; } }
   }
   document.querySelectorAll(".etat[data-h]").forEach(poser);
