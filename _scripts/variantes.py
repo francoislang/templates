@@ -14,6 +14,14 @@ critere qui compte et qu'on oublie toujours : une couleur de texte doit
 tenir sur le fond des CARTES (encre2), pas seulement sur le fond de
 section (encre) — sinon ca passe a l'oeil et echoue la ou on lit vraiment.
 
+Ces douze controles ne suffisent pourtant pas : ils mesurent les jetons
+declares, pas les pixels rendus. Le detecteur de controle_design.py, qui rend
+la page, a trouve deux defauts qu'ils laissaient passer — « nuit-menthe »
+(#289F7B sur bleu nuit) etait classee texte neon cyan sur fond sombre, la
+signature couleur la plus reconnaissable d'une page generee, et l'accent de
+« basalte-corail » tombait a 4,47:1 sur une surface translucide. La premiere
+a ete remplacee par « nuit-sable », la seconde eclaircie.
+
     python3 _scripts/variantes.py --verifier      # rejoue les 120 controles
     python3 _scripts/variantes.py --lister
     python3 _scripts/variantes.py --css graphite-cuivre
@@ -26,12 +34,12 @@ import hashlib
 VARIANTES: list[dict[str, str]] = [
     {"nom": "graphite-cuivre", "encre": "#111927", "encre2": "#1C273B", "accent": "#E76A23", "txt_accent": "#1A1002", "accent_clair": "#BF4B08", "brume": "#8491A9", "brume_clair": "#B7C1D1", "bord_fantome": "#506A95", "motif": "arcs", "police": "Manrope"},
     {"nom": "ardoise-safran", "encre": "#111E27", "encre2": "#1C2E3B", "accent": "#C7880A", "txt_accent": "#1A1002", "accent_clair": "#996600", "brume": "#8197A7", "brume_clair": "#B7C7D1", "bord_fantome": "#496E88", "motif": "grille", "police": "Archivo"},
-    {"nom": "nuit-menthe", "encre": "#111827", "encre2": "#1C253B", "accent": "#289F7B", "txt_accent": "#1A1002", "accent_clair": "#157F5F", "brume": "#848FA9", "brume_clair": "#B4BCCF", "bord_fantome": "#526798", "motif": "pointille", "police": "Inter"},
+    {"nom": "nuit-sable", "encre": "#111827", "encre2": "#1C253B", "accent": "#D9C08C", "txt_accent": "#1A1002", "accent_clair": "#7A6430", "brume": "#848FA9", "brume_clair": "#B4BCCF", "bord_fantome": "#526798", "motif": "pointille", "police": "Inter"},
     {"nom": "charbon-brique", "encre": "#271811", "encre2": "#3B261C", "accent": "#E7715F", "txt_accent": "#1A1002", "accent_clair": "#D52A10", "brume": "#A99084", "brume_clair": "#D1C0B7", "bord_fantome": "#8B604B", "motif": "diagonale", "police": "Figtree"},
     {"nom": "marine-ambre", "encre": "#111B27", "encre2": "#1C2A3B", "accent": "#D77B09", "txt_accent": "#1A1002", "accent_clair": "#A85D00", "brume": "#8193A7", "brume_clair": "#B7C3D1", "bord_fantome": "#4D6B8F", "motif": "arcs", "police": "Outfit"},
     {"nom": "foret-laiton", "encre": "#11271C", "encre2": "#1C3B2B", "accent": "#C39C28", "txt_accent": "#1A1002", "accent_clair": "#886A11", "brume": "#81A794", "brume_clair": "#C1D7CC", "bord_fantome": "#427B5E", "motif": "grille", "police": "Plus Jakarta Sans"},
     {"nom": "acier-cobalt", "encre": "#111C27", "encre2": "#1C2B3B", "accent": "#5097E7", "txt_accent": "#1A1002", "accent_clair": "#0E6CD8", "brume": "#8194A7", "brume_clair": "#B7C4D1", "bord_fantome": "#4D6E8F", "motif": "diagonale", "police": "Be Vietnam Pro"},
-    {"nom": "basalte-corail", "encre": "#111127", "encre2": "#1C1C3B", "accent": "#E95949", "txt_accent": "#1A1002", "accent_clair": "#DA200B", "brume": "#8787AB", "brume_clair": "#B4B4CF", "bord_fantome": "#5D5DA8", "motif": "pointille", "police": "Public Sans"},
+    {"nom": "basalte-corail", "encre": "#111127", "encre2": "#1C1C3B", "accent": "#ED6A5B", "txt_accent": "#1A1002", "accent_clair": "#DA200B", "brume": "#8787AB", "brume_clair": "#B4B4CF", "bord_fantome": "#5D5DA8", "motif": "pointille", "police": "Public Sans"},
     {"nom": "olive-ocre", "encre": "#1C2711", "encre2": "#2B3B1C", "accent": "#DA913E", "txt_accent": "#1A1002", "accent_clair": "#A15E12", "brume": "#94A781", "brume_clair": "#CCD7C1", "bord_fantome": "#5E7B42", "motif": "arcs", "police": "Sora"},
     {"nom": "prune-citron", "encre": "#201127", "encre2": "#311C3B", "accent": "#AE9A13", "txt_accent": "#1A1002", "accent_clair": "#7F6F05", "brume": "#9D84A9", "brume_clair": "#C9B7D1", "bord_fantome": "#84549C", "motif": "grille", "police": "Rubik"}
 ]
