@@ -58,6 +58,16 @@ VERROU_PATH = REPO_ROOT / "_data" / ".pipeline_pro.lock"
 PAGES = "https://francoislang.github.io/templates"
 PAR_DEFAUT = 5
 
+# Le gabarit garage est livre deja colore : la palette « acier » fait partie
+# du fichier de reference. La rotation des dix identites de variantes.py est
+# donc desactivee ici, sinon elle ecraserait ce choix.
+#
+# Contrepartie assumee : cent sites generes se ressembleront. La rotation se
+# remet en mettant IDENTITE_FIXE a None, et le vivier a piocher serait alors
+# _templates/fiche-accueil/couleur-*.css, les huit palettes validees sur ce
+# gabarit-la, plutot que les dix de variantes.py, calibrees sur l'ancien.
+IDENTITE_FIXE = "acier"
+
 
 METIERS: dict[str, dict] = {
     "garage": {
@@ -353,7 +363,7 @@ def _corriger_design(html: str, cible: Path, v: dict) -> str:
         print(f"   /!\\ version corrigee rejetee ({raison})")
         return html
     # le modele peut avoir efface le bloc d identite en reecrivant le <style>
-    if f"Identite \u00ab {v['nom']} \u00bb" not in corrige:
+    if not IDENTITE_FIXE and f"Identite \u00ab {v['nom']} \u00bb" not in corrige:
         corrige = _appliquer_variante(corrige, v)
 
     cible.write_text(corrige, encoding="utf-8")
@@ -373,7 +383,7 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
     conf = METIERS[metier]
     nom = (p.get("nom") or "").strip()
     slug = pl.slugify(nom)
-    v = variantes.pour(slug)
+    v = {"nom": IDENTITE_FIXE} if IDENTITE_FIXE else variantes.pour(slug)
     cible = REPO_ROOT / slug / "index.html"
     if cible.exists() and not force:
         return f"{PAGES}/{slug}/", "", v
@@ -464,7 +474,8 @@ REGLES ABSOLUES :
     if len(fuite) > 2:
         return None, f"vocabulaire canin residuel ({len(fuite)} occurrences)", v
 
-    html = _appliquer_variante(html, v)
+    if not IDENTITE_FIXE:
+        html = _appliquer_variante(html, v)
 
     cible.parent.mkdir(exist_ok=True)
     cible.write_text(html, encoding="utf-8")
@@ -644,7 +655,8 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
         nom = p.get("nom")
         print(f"\n{'=' * 54}\n{nom} — {p.get('commune','')} — {p.get('telephone','')}")
         if dry_run:
-            v = variantes.pour(pl.slugify(nom or ""))
+            v = ({"nom": IDENTITE_FIXE} if IDENTITE_FIXE
+                 else variantes.pour(pl.slugify(nom or "")))
             print(message(p, metier, f"{PAGES}/{pl.slugify(nom or '')}/", v))
             continue
 
