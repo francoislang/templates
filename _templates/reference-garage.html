@@ -64,7 +64,7 @@
   --large:1120px;
   --r:16px;
   --r-s:10px;
-  --ombre:0 1px 2px rgba(16,26,46,.05),0 14px 34px -14px rgba(16,26,46,.2);
+  --ombre:0 2px 5px rgba(0,0,0,.09);
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -72,7 +72,7 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   font-size:var(--fs-base);line-height:1.62;color:var(--encre);background:var(--blanc);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 img,svg{max-width:100%;height:auto;display:block}
 a{color:inherit}
@@ -84,8 +84,9 @@ ul{margin:0;padding:0;list-style:none}
 .form :focus-visible,.perso :focus-visible,.sec--gris :focus-visible{outline-color:var(--encre)}
 svg[stroke-width]{stroke-width:2}
 
-.env{width:100%;max-width:var(--large);margin-inline:auto;padding-inline:var(--sp-5)}
-@media (min-width:760px){.env{padding-inline:var(--sp-6)}}
+.env{width:100%;max-width:var(--large);margin-inline:auto}
+.hdr,.hero,.band,.sec,.perso,.pied{padding-inline:var(--sp-5)}
+@media (min-width:760px){.hdr,.hero,.band,.sec,.perso,.pied{padding-inline:var(--sp-6)}}
 .sec{padding-block:var(--pas)}
 section[id],main[id]{scroll-margin-top:86px}
 main:focus{outline:none}
@@ -137,7 +138,7 @@ main:focus{outline:none}
 .mq svg rect{fill:var(--cuivre)}
 .mq svg circle,.mq svg path{stroke:var(--encre)}
 .mq svg circle:last-of-type{fill:var(--encre);stroke:none}
-.mq__s{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;
+.mq__s{display:block;font-size:11.5px;font-weight:700;letter-spacing:.14em;
   text-transform:uppercase;color:var(--brume);margin-top:3px}
 .nav{display:none;margin-left:auto;gap:26px}
 @media (min-width:1020px){.nav{display:flex}}
@@ -166,8 +167,6 @@ main:focus{outline:none}
     rgba(255,255,255,.09) 0 2px,transparent 2px 18px);
   mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%);
   -webkit-mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%)}
-.hero__halo{position:absolute;width:720px;height:720px;right:-250px;top:-300px;pointer-events:none;
-  background:radial-gradient(circle,rgba(230,126,61,.17),transparent 62%)}
 .hero__in{position:relative;padding-block:clamp(var(--sp-7),7vw,88px) clamp(56px,8vw,var(--sp-9))}
 .hero__g{display:grid;gap:var(--sp-7);align-items:center}
 @media (min-width:980px){.hero__g{grid-template-columns:1.1fr .9fr;gap:56px}}
@@ -197,8 +196,8 @@ main:focus{outline:none}
 
 .cart{background:linear-gradient(168deg,var(--encre-2),#152340);
   border:1px solid var(--bord-sombre);border-radius:var(--r);
-  padding:clamp(var(--sp-5),3.2vw,var(--sp-6));box-shadow:0 26px 60px -24px rgba(0,0,0,.6)}
-.cart h2{font-size:18px;color:var(--blanc);padding-bottom:var(--sp-4);
+  padding:clamp(var(--sp-5),3.2vw,var(--sp-6))}
+.cart h2{font-size:26px;color:var(--blanc);padding-bottom:var(--sp-4);
   border-bottom:1px solid var(--bord-sombre)}
 .cart dl{margin:0}
 .cart div{display:flex;justify-content:space-between;gap:var(--sp-4);align-items:baseline;
@@ -216,7 +215,7 @@ main:focus{outline:none}
 @media (min-width:840px){.band__in{grid-template-columns:repeat(4,minmax(0,1fr))}}
 .band dt{font-size:clamp(20px,3vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.05;
   font-variant-numeric:tabular-nums}
-.band dd{margin:var(--sp-2) 0 0;font-size:13.5px;font-weight:700;line-height:1.4;opacity:.8}
+.band dd{margin:var(--sp-2) 0 0;font-size:13.5px;font-weight:700;line-height:1.4}
 .band a{text-decoration:none;border-bottom:2px solid rgba(26,16,2,.35)}
 .band a:hover{border-color:#1A1002}
 
@@ -226,15 +225,17 @@ main:focus{outline:none}
 @media (min-width:1000px){.grid--4{grid-template-columns:repeat(4,1fr)}}
 .card{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
   padding:28px var(--sp-5);min-width:0;
+  display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-content:start;
   transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
+.card>*{grid-column:1/-1}
+.card .card__i{grid-column:1;grid-row:1}
+.card h3{grid-column:2;grid-row:1;align-self:center}
 .card:hover{transform:translateY(-3px);box-shadow:var(--ombre);border-color:#B6C2D6}
 @media (prefers-reduced-motion:reduce){.card:hover{transform:none}}
-.card h3{font-size:var(--fs-lg);letter-spacing:-.012em;margin-bottom:10px}
-.card p{color:var(--texte);font-size:var(--fs-sm);line-height:1.55}
-.card__i{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
-  background:linear-gradient(160deg,#16233D,var(--encre));color:var(--cuivre);
-  margin-bottom:var(--sp-4);border:1px solid var(--bord-sombre);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 -6px 10px rgba(0,0,0,.35)}
+.card h3{font-size:20px;letter-spacing:-.012em;margin-bottom:0}
+.card p{color:var(--texte);font-size:var(--fs-sm);line-height:1.55;margin-top:14px}
+.card__i{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:var(--encre);color:var(--cuivre);border:1px solid var(--bord-sombre)}
 .card__i svg{width:22px;height:22px}
 .tags{margin-top:var(--sp-4);display:flex;flex-wrap:wrap;gap:7px}
 .tags li{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
@@ -278,7 +279,7 @@ main:focus{outline:none}
   background-image:linear-gradient(rgba(16,26,46,.045) 1px,transparent 1px),
     linear-gradient(90deg,rgba(16,26,46,.045) 1px,transparent 1px);background-size:22px 22px}
 .cl__v svg{width:min(62%,180px);color:#8494AC;margin-top:14px}
-.cl__e{position:absolute;left:var(--sp-5);top:var(--sp-4);font-size:10px;font-weight:800;
+.cl__e{position:absolute;left:var(--sp-5);top:var(--sp-4);font-size:12px;font-weight:800;
   letter-spacing:.13em;text-transform:uppercase;color:var(--blanc);background:var(--encre);
   padding:4px 9px;border-radius:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
 
@@ -297,8 +298,9 @@ main:focus{outline:none}
 .note-chiffre .et{display:flex;justify-content:center;margin-top:var(--sp-3);
   color:var(--cuivre-sombre)}
 .note-txt p{color:var(--texte);font-size:16px}
+.note-txt{max-width:66ch}
 .note-txt p + p{margin-top:var(--sp-3)}
-.note-slot{margin-top:var(--sp-4);padding:var(--sp-4) var(--sp-5);border-radius:var(--r-s);
+.note-slot{margin-top:var(--sp-4);max-width:66ch;padding:var(--sp-4) var(--sp-5);border-radius:var(--r-s);
   border:1px dashed var(--bord);background:var(--papier);font-size:var(--fs-sm);
   color:var(--texte-2)}
 .note-slot b{color:var(--encre)}
@@ -314,9 +316,9 @@ main:focus{outline:none}
 .inf dt{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
   color:var(--brume);margin-bottom:5px}
 .inf dd{margin:0;color:var(--blanc);font-weight:700;font-size:16.5px;line-height:1.5}
-.inf dd a[href^="tel"]{color:var(--blanc);text-decoration:none;display:inline-block;
+.inf dd a[href^="tel"]:not(.btn){color:var(--blanc);text-decoration:none;display:inline-block;
   padding-block:var(--sp-1);border-bottom:1px solid rgba(255,255,255,.32)}
-.inf dd a[href^="tel"]:hover{border-color:var(--cuivre)}
+.inf dd a[href^="tel"]:not(.btn):hover{border-color:var(--cuivre)}
 .inf dd small{display:block;font-weight:500;font-size:var(--fs-xs);color:var(--brume);
   margin-top:var(--sp-1)}
 
@@ -332,7 +334,7 @@ main:focus{outline:none}
   background:var(--blanc);width:100%;transition:border-color .15s,box-shadow .15s}
 .f textarea{resize:vertical;min-height:104px}
 .f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--encre);
-  box-shadow:0 0 0 3px rgba(16,26,46,.09)}
+  box-shadow:0 0 0 3px rgba(0,0,0,.13)}
 .f input::placeholder,.f textarea::placeholder{color:var(--gris-champ)}
 .rgpd{display:flex;gap:var(--sp-3);align-items:flex-start;font-size:13.5px;
   color:var(--texte-2);margin-top:var(--sp-4)}
@@ -348,15 +350,15 @@ main:focus{outline:none}
 /* Le bon de travail n'est PAS destine au prospect. Il est masque par defaut
    et ne s'affiche qu'avec ?notes dans l'URL. Si le JS ne tourne pas, il reste
    masque : c'est le bon sens du repli, on ne montre jamais par accident. */
-.perso{display:none;background:#FBEEE0;border-left:5px solid var(--cuivre-sombre)}
+.perso{display:none;background:#FBEEE0;border-top:3px solid var(--cuivre-sombre)}
 .perso.ouvert{display:block}
 .perso__url{margin-top:var(--sp-5);font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
   font-size:13px;color:#8F4310;background:rgba(255,255,255,.7);border:1px dashed #E0BE97;
   border-radius:var(--r-s);padding:var(--sp-3) var(--sp-4);display:inline-block}
 .perso__in{padding-block:clamp(var(--sp-7),5vw,var(--sp-8))}
 .perso h2{font-size:clamp(23px,3vw,31px);color:#3A2200}
-.perso__c{display:inline-flex;align-items:center;gap:9px;font-size:11.5px;font-weight:800;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--cuivre-sombre);
+.perso__c{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:800;
+  letter-spacing:.04em;color:var(--cuivre-sombre);
   margin-bottom:var(--sp-3);font-family:ui-monospace,'SFMono-Regular',Menlo,monospace}
 .perso p{color:#5C3B14;max-width:70ch;margin-top:var(--sp-3)}
 .perso ul{margin-top:var(--sp-5);display:grid;gap:var(--sp-3)}
@@ -494,7 +496,6 @@ main:focus{outline:none}
 
   <section class="sec" id="prestations">
     <div class="env">
-      <p class="surt">Nos prestations</p>
       <h2 class="h2">Quatre métiers sous le même toit</h2>
       <p class="chapo">
         L'atelier couvre l'entretien courant et le pneumatique, vend des véhicules
@@ -563,7 +564,6 @@ main:focus{outline:none}
 
   <section class="sec sec--sombre" id="pneus">
     <div class="env">
-      <p class="surt">Pneumatiques</p>
       <h2 class="h2">Ce qui se monte à l'atelier</h2>
       <p class="chapo">
         Le montage couvre les jantes jusqu'en 17 pouces, en acier comme en alliage,
@@ -602,7 +602,6 @@ main:focus{outline:none}
 
   <section class="sec" id="atelier">
     <div class="env">
-      <p class="surt">L'atelier</p>
       <h2 class="h2">12 rue des Ateliers, à Vitré</h2>
       <p class="chapo">
         Pas de photo de studio ici : l'atelier se décrit en planches, comme dans un
@@ -651,7 +650,6 @@ main:focus{outline:none}
 
   <section class="sec sec--gris" id="avis">
     <div class="env">
-      <p class="surt">Avis clients</p>
       <h2 class="h2">Quarante-neuf clients ont déjà donné leur avis</h2>
       <p class="chapo">
         La note ci-dessous est celle relevée sur les fiches publiques de
@@ -685,7 +683,6 @@ main:focus{outline:none}
 
   <section class="sec sec--sombre" id="contact">
     <div class="env">
-      <p class="surt">Nous contacter</p>
       <h2 class="h2">Appelez, ou laissez votre demande</h2>
 
       <div class="duo">
