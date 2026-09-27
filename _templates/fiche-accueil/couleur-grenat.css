@@ -1,0 +1,21 @@
+/* Palette « grenat et sable » — l'inverse des autres pistes : ici c'est le
+   fond qui porte la couleur, et l'accent qui s'éclaircit.
+   Aplat de marque : un rouge très sombre, presque brun — carrosserie ancienne,
+   cuir de siège, couverture de carnet d'entretien. Sec, jamais bordeaux.
+   Accent : du sable, un laiton blanchi, la couleur d'une étiquette jaunie. */
+:root{
+  --encre:#36130F;          /* grenat profond : bandeau, ouverture, contact */
+  --encre-2:#48201A;        /* le même grenat, un cran relevé : bandeau de faits */
+  --cuivre:#E7C894;         /* sable / laiton blanchi : l'accent sur fond sombre */
+  --cuivre-sombre:#A33020;  /* le grenat vif : l'accent sur les fonds clairs */
+  --txt-accent:#2B0E0A;     /* grenat noir : le texte posé sur le sable plein */
+  --brume:#B29A90;          /* taupe rosé : texte secondaire sur fond sombre */
+  --brume-clair:#E0D2CA;    /* sable délavé : texte courant sur fond sombre */
+  --bord-fantome:#926658;   /* filet de cuir usé sur l'aplat */
+  --creme:#F2EFEE;          /* le papier : gris chaud très clair, pas du beige */
+  --creme-2:#E6E1DF;        /* seconde teinte claire : section horaires */
+  --blanc:#FFFFFF;          /* cartes : blanc pur */
+  --bord:#D8D1CE;           /* filets sur fond clair */
+  --texte:#3A2F2C;          /* texte courant : brun ardoise */
+  --texte-2:#63534E;        /* texte discret */
+}

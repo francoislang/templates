@@ -1,0 +1,20 @@
+/* Ciment et jaune d'atelier.
+   L'aplat de marque n'est ni un noir ni un bleu : c'est un gris de beton,
+   franchement gris — le sol d'un atelier, un mur parpaing peint. L'accent
+   est le jaune de manutention : pont elevateur, chariot, bande au sol. */
+:root{
+  --encre:#545853;          /* beton peint : gris moyen, leger voile vert */
+  --encre-2:#434741;        /* le soubassement, un ton plus bas que le mur */
+  --cuivre:#FFCB1F;         /* jaune de manutention, sur le gris */
+  --cuivre-sombre:#7C5F06;  /* le meme jaune cuit, pour les fonds clairs */
+  --txt-accent:#241C05;     /* cambouis : le texte pose sur le jaune plein */
+  --brume:#D1D4CF;          /* secondaire sur le beton : il faut monter haut */
+  --brume-clair:#E6E8E3;    /* texte courant sur le beton */
+  --bord-fantome:#AFB2AB;   /* trait de craie sur le mur */
+  --creme:#F1F2EF;          /* le papier : gris de plan, aucun beige */
+  --creme-2:#E5E7E2;        /* seconde teinte claire : section horaires */
+  --blanc:#FFFFFF;          /* cartes */
+  --bord:#D3D6CF;           /* filets sur fond clair */
+  --texte:#2E322B;          /* texte courant sur fond clair */
+  --texte-2:#5A5E54;        /* texte discret sur fond clair */
+}
