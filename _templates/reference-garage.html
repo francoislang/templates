@@ -306,6 +306,41 @@ main:focus{outline:none}
 .note-slot b{color:var(--encre)}
 
 /* ---- contact ---- */
+.tete{display:grid;gap:var(--sp-4)}
+@media (min-width:1000px){.tete{grid-template-columns:1.02fr .98fr;
+  column-gap:56px;align-items:end}}
+.tete .h2{max-width:22ch;margin:0;text-wrap:balance}
+.tete .chapo{margin:0;max-width:54ch}
+
+/* ---- horaires et acces ---- */
+.duo--at{margin-top:var(--sp-7)}
+@media (min-width:900px){.duo--at{grid-template-columns:1fr 1fr;gap:var(--sp-6);
+  align-items:stretch}}
+.duo.duo--at{align-items:stretch}
+.duo--at .pan{display:flex;flex-direction:column}
+.duo--at .pan__n{margin-top:auto;padding-top:var(--sp-5)}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
+  padding:clamp(var(--sp-5),3vw,var(--sp-6))}
+.pan__t{font-size:20px;letter-spacing:-.01em}
+.etat{margin-top:var(--sp-3);font-weight:800;font-size:var(--fs-base)}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:var(--sp-5) 0 0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--sp-4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:var(--fs-sm)}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.hor .hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.adr{margin-top:var(--sp-3);font-style:normal;font-size:var(--fs-md);
+  font-weight:700;line-height:1.5}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
+.pan__a .btn{flex:1 1 190px}
+.btn--o{border-color:var(--bord);color:var(--encre)}
+.btn--o:hover{border-color:var(--encre)}
+.pan__n{margin-top:var(--sp-5);font-size:var(--fs-sm);color:var(--texte-2);
+  max-width:46ch}
+
 .duo{display:grid;gap:var(--sp-7);margin-top:var(--sp-6)}
 @media (min-width:980px){.duo{grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start}}
 .inf>div{display:flex;gap:var(--sp-4);padding:var(--sp-5) 0;
@@ -496,12 +531,14 @@ main:focus{outline:none}
 
   <section class="sec" id="prestations">
     <div class="env">
-      <h2 class="h2">Quatre métiers sous le même toit</h2>
-      <p class="chapo">
+      <div class="tete">
+        <h2 class="h2">Quatre métiers sous le même toit</h2>
+        <p class="chapo">
         L'atelier couvre l'entretien courant et le pneumatique, vend des véhicules
         d'occasion et lave les voitures. Pour une intervention particulière,
         le plus simple reste d'appeler : la réponse est immédiate.
       </p>
+      </div>
 
       <div class="grid grid--4">
         <article class="card app">
@@ -564,12 +601,14 @@ main:focus{outline:none}
 
   <section class="sec sec--sombre" id="pneus">
     <div class="env">
-      <h2 class="h2">Ce qui se monte à l'atelier</h2>
-      <p class="chapo">
+      <div class="tete">
+        <h2 class="h2">Ce qui se monte à l'atelier</h2>
+        <p class="chapo">
         Le montage couvre les jantes jusqu'en 17 pouces, en acier comme en alliage,
         y compris sur 4×4 et utilitaires. L'éco-contribution réglementaire s'ajoute
         au montage, comme partout.
       </p>
+      </div>
 
       <div class="pneus">
         <div class="pneu pneu--phare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -602,59 +641,66 @@ main:focus{outline:none}
 
   <section class="sec" id="atelier">
     <div class="env">
-      <h2 class="h2">12 rue des Ateliers, à Vitré</h2>
-      <p class="chapo">
-        Pas de photo de studio ici : l'atelier se décrit en planches, comme dans un
-        manuel de réparation. Chaque planche peut laisser sa place à une vraie
-        photographie, une par une, sans rien changer d'autre.
-      </p>
+      <div class="tete">
+        <h2 class="h2">12 rue des Ateliers, à Vitré</h2>
+        <p class="chapo">
+          L'atelier est ouvert du lundi au samedi. L'état affiché se calcule à
+          l'heure où vous lisez cette page, pour éviter le déplacement pour rien.
+        </p>
+      </div>
 
-      <div class="cls">
-        <!-- Planches techniques. Une photo Cloudinary remplace le dessin :
-             https://res.cloudinary.com/<cloud>/image/upload/f_auto,q_auto,w_1200,c_fill,g_auto/<id> -->
-        <figure class="cl" data-cloudinary="yourcar35_atelier">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <path d="M20 108h160M44 108V84a10 10 0 013-7l16-17a10 10 0 017-3h60a10 10 0 017 3l16 17a10 10 0 013 7v24"/>
-              <path d="M70 60h60"/><circle cx="66" cy="116" r="9"/><circle cx="134" cy="116" r="9"/>
-              <path d="M30 128h140M52 128v10M148 128v10"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 01 — Atelier</figcaption></figure>
-        <figure class="cl" data-cloudinary="yourcar35_pneus">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <circle cx="100" cy="75" r="46"/><circle cx="100" cy="75" r="17"/>
-              <path d="M100 29v18M100 103v18M54 75h18M128 75h18"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 02 — Montage</figcaption></figure>
-        <figure class="cl" data-cloudinary="yourcar35_vo">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <path d="M30 100h140M48 100V78a9 9 0 012-6l14-16a9 9 0 017-3h58a9 9 0 017 3l14 16a9 9 0 012 6v22"/>
-              <circle cx="68" cy="108" r="8"/><circle cx="132" cy="108" r="8"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 03 — Occasions</figcaption></figure>
-        <figure class="cl" data-cloudinary="yourcar35_equipe">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <circle cx="100" cy="56" r="21"/><path d="M56 120a44 44 0 0188 0"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 04 — L'équipe</figcaption></figure>
+      <div class="duo duo--at">
+        <div class="pan">
+          <h3 class="pan__t">Horaires d'ouverture</h3>
+          <p class="etat" id="etat"
+             data-h='[null,[540,720,840,1140],[540,720,840,1140],[540,720,840,1140],[540,720,840,1140],[540,720,840,1140],[540,720,840,1140]]'>
+            Du lundi au samedi, 9h–12h et 14h–19h.</p>
+          <dl class="hor">
+            <div><dt>Lundi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div><dt>Mardi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div><dt>Mercredi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div><dt>Jeudi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div><dt>Vendredi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div><dt>Samedi</dt><dd>9h–12h · 14h–19h</dd></div>
+            <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+          </dl>
+          <script>
+          // Souligner la ligne du jour : lundi est la premiere du tableau.
+          (function(){ var l = document.querySelectorAll(".hor > div"), j = new Date().getDay();
+            if (l.length === 7) l[(j + 6) % 7].classList.add("hor--jour"); })();
+          </script>
+        </div>
+
+        <div class="pan">
+          <h3 class="pan__t">Venir à l'atelier</h3>
+          <address class="adr">
+            12 rue des Ateliers<br>35500 Vitré
+          </address>
+          <div class="pan__a">
+            <a class="btn btn--c"
+               href="https://www.google.com/maps/dir/?api=1&amp;destination=12%20rue%20des%20Ateliers%2C%2035500%20Vitr%C3%A9">
+              Ouvrir l'itinéraire
+            </a>
+            <a class="btn btn--o" href="tel:+33261914018">Appeler l'atelier</a>
+          </div>
+          <p class="pan__n">
+            Un appel avant de passer permet de savoir si le créneau est libre et
+            si la pièce est en stock.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="sec sec--gris" id="avis">
     <div class="env">
-      <h2 class="h2">Quarante-neuf clients ont déjà donné leur avis</h2>
-      <p class="chapo">
+      <div class="tete">
+        <h2 class="h2">Quarante-neuf clients ont déjà donné leur avis</h2>
+        <p class="chapo">
         La note ci-dessous est celle relevée sur les fiches publiques de
         l'établissement. Aucun témoignage n'est inventé sur cette page.
       </p>
+      </div>
 
       <div class="note-bloc">
         <p class="note-chiffre">
@@ -669,13 +715,11 @@ main:focus{outline:none}
           </span>
         </p>
         <div class="note-txt">
-          <p>Une note de 4,7 sur 49 avis, c'est un volume qu'on n'obtient pas par
-             hasard : il faut plusieurs années et des clients qui reviennent.</p>
-          <p>C'est aujourd'hui le seul endroit où cette réputation est visible —
-             et elle l'est sur la fiche d'un annuaire, pas chez vous.</p>
-          <p class="note-slot"><b>Emplacement des avis détaillés.</b>
-             Les trois avis les plus récents viendront ici, repris mot pour mot
-             depuis la fiche publique, avec un lien pour tous les lire.</p>
+          <p>Quarante-neuf personnes ont pris le temps de noter l'atelier, et la
+             moyenne tient à 4,7 sur 5. C'est ce qui se rapproche le plus d'un
+             avis de voisin quand on cherche un garage qu'on ne connaît pas.</p>
+          <p>Aucun témoignage n'est réécrit ni mis en scène sur cette page : la
+             note affichée est celle des fiches publiques de l'établissement.</p>
         </div>
       </div>
     </div>
@@ -785,11 +829,11 @@ main:focus{outline:none}
       </p>
       <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
       <ul>
-        <li><b>Horaires d'ouverture — les sources se contredisent</b>
-          Une fiche annonce lundi à vendredi 9h–19h et samedi 9h30–17h30 ;
-          une autre lundi 9h30–12h, mardi à vendredi 9h30–18h et samedi 10h–16h.
-          <em>Aucune n'a été retenue. Une fois les horaires confirmés, l'indicateur
-          ouvert/fermé en direct pourra être activé.</em></li>
+        <li><b>Horaires d'ouverture — à confirmer avant tout</b>
+          Ceux affichés viennent des fiches publiques, et l'indicateur
+          « ouvert maintenant » se calcule dessus. <em>C'est le point à valider
+          en premier : un horaire faux envoie un client devant un rideau
+          baissé.</em></li>
         <li><b>Tarifs</b>
           Une plateforme de pneumatiques affiche 20 € pour le montage et
           l'équilibrage, mais c'est son tarif à elle, pas forcément celui de
@@ -803,9 +847,10 @@ main:focus{outline:none}
           Aucune adresse publique n'a été trouvée. <em>Le formulaire compose donc
           un SMS vers le portable. Avec une adresse, on bascule sur un courriel.</em></li>
         <li><b>Photos de l'atelier</b>
-          Quatre planches techniques tiennent lieu de visuels. <em>Elles peuvent
-          rester telles quelles — c'est un parti pris assumé — ou céder la place
-          à de vraies photos, une par une.</em></li>
+          La page n'en contient aucune : mieux vaut pas d'image qu'une photo de
+          banque d'images. <em>Trois clichés pris au téléphone — la façade, la
+          zone de travail, une voiture sur le pont — suffisent et se posent
+          dans la section « Venir à l'atelier ».</em></li>
         <li><b>Note structurée pour Google</b>
           Le balisage déclare 4,7 sur 49 avis. <em>À conserver seulement si le
           garage confirme la note, et idéalement à compléter par deux ou trois avis
@@ -894,6 +939,42 @@ main:focus{outline:none}
 </script>
 
 <script>
+// Etat d'ouverture : lu depuis data-h sur #etat, sept entrees (dimanche en
+// premier), chacune nulle ou une suite de minutes depuis minuit par paires.
+// Aucun horaire n'est ecrit en dur ici : si la donnee manque, la phrase de
+// repli ecrite dans le HTML reste affichee telle quelle.
+(function(){
+  var el = document.getElementById("etat");
+  if (!el) return;
+  var h; try { h = JSON.parse(el.getAttribute("data-h")); } catch (e) { return; }
+  if (!Array.isArray(h) || h.length !== 7) return;
+  var JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function paires(x){ var r=[],i; if(!x) return r;
+    for (i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r; }
+  function hm(v){ var a=Math.floor(v/60), b=v%60;
+    return b ? a+"h"+(b<10?"0":"")+b : a+"h"; }
+  var d = new Date(), j = d.getDay(), m = d.getHours()*60 + d.getMinutes(), i, k, jj, cs;
+  var cj = paires(h[j]);
+  for (i=0;i<cj.length;i++) {
+    if (m >= cj[i][0] && m < cj[i][1]) {
+      el.textContent = "Ouvert maintenant, jusqu'à " + hm(cj[i][1]);
+      el.className = "etat etat--oui";
+      return;
+    }
+  }
+  for (k=0;k<8;k++) {
+    jj = (j+k) % 7; cs = paires(h[jj]);
+    for (i=0;i<cs.length;i++) {
+      if (k === 0 && cs[i][0] <= m) continue;
+      el.textContent = "Fermé, ouvre "
+        + (k === 0 ? "à " + hm(cs[i][0])
+                   : (k === 1 ? "demain à " : JOURS[jj] + " à ") + hm(cs[i][0]));
+      el.className = "etat etat--non";
+      return;
+    }
+  }
+})();
+
 (function(){
   "use strict";
 

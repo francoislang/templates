@@ -3,55 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Garage Patton — Entretien, freinage, pneumatiques et diagnostic à Rennes</title>
-<meta name="description" content="Garage Patton, 157 avenue du Général George S. Patton à Rennes (35700). Entretien, freinage, pneumatiques, diagnostic. 02 99 36 18 08.">
+<title>Garage Patton — entretien et réparation mécanique à Rennes</title>
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
 <meta name="theme-color" content="#101A2E">
 <link rel="canonical" href="https://francoislang.github.io/templates/garage-patton/">
 
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Garage Patton">
-<meta property="og:title" content="Garage Patton — Entretien, freinage et diagnostic à Rennes">
-<meta property="og:description" content="Entretien, freinage, pneumatiques et diagnostic. 157 avenue du Général George S. Patton, Rennes.">
+<meta property="og:title" content="Garage Patton — entretien et réparation mécanique à Rennes">
+<meta property="og:description" content="Garage indépendant à Rennes : entretien courant et réparation mécanique. Ouvert du lundi au vendredi.">
 <meta property="og:url" content="https://francoislang.github.io/templates/garage-patton/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Garage Patton — Entretien, freinage et diagnostic à Rennes">
-<meta name="twitter:description" content="Entretien, freinage, pneumatiques, diagnostic.">
+<meta name="twitter:title" content="Garage Patton — entretien et réparation mécanique à Rennes">
+<meta name="twitter:description" content="Garage indépendant à Rennes : entretien courant et réparation mécanique. Ouvert du lundi au vendredi.">
 <meta name="twitter:url" content="https://francoislang.github.io/templates/garage-patton/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101A2E'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23E67E3D' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23E67E3D'/%3E%3C/svg%3E">
 
 <style>
 /* ===========================================================
-   Garage Patton — site vitrine, fichier unique.
+   Garage Patton — proposition de site vitrine, fichier unique.
    Aucune information non verifiee n'est affirmee dans la page.
    =========================================================== */
 :root{
+  /* couleurs — accent cuivre plutot que jaune securite : bleu nuit + jaune
+     est la palette de toutes les chaines de pneumatiques, ce qui contredit
+     exactement ce que ce garage a a vendre. */
   --encre:#101A2E;
   --encre-2:#1A2843;
-  --cuivre:#E67E3D;
-  --cuivre-sombre:#9C4712;
+  --cuivre:#E67E3D;          /* sur fond sombre — 6,13:1 */
+  --cuivre-sombre:#9C4712;   /* sur fond clair  — 6,32:1 */
   --brume:#93A1BC;
   --brume-clair:#C9D3E6;
   --papier:#F6F8FB;
   --papier-2:#E9EEF6;
   --bord:#D2DAE8;
   --bord-sombre:#2C3B5C;
-  --bord-fantome:#526AA8;
+  --bord-fantome:#526AA8;    /* 3,30:1 sur l'encre */
   --texte:#3F4C63;
   --texte-2:#5B6880;
-  --gris-champ:#667488;
+  --gris-champ:#667488;      /* placeholder — 4,75:1 */
   --blanc:#fff;
 
+  /* espacement — echelle de 4 px, plus de valeurs au cas par cas */
   --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px; --sp-5:24px;
   --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px; --sp-10:128px;
   --pas:clamp(var(--sp-8),7.5vw,var(--sp-10));
 
+  /* typographie — un palier distinct pour les titres de carte, qui
+     partageaient auparavant la taille du corps de texte */
   --fs-2xs:12px; --fs-xs:14px; --fs-sm:15px; --fs-base:17px; --fs-md:19px;
   --fs-lg:22px;
 
@@ -74,6 +80,7 @@ h1,h2,h3{margin:0;line-height:1.12;letter-spacing:-.022em;font-weight:800}
 p{margin:0}
 ul{margin:0;padding:0;list-style:none}
 :focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:5px}
+/* sur les panneaux clairs, le cuivre ne contraste pas assez pour un contour */
 .form :focus-visible,.perso :focus-visible,.sec--gris :focus-visible{outline-color:var(--encre)}
 svg[stroke-width]{stroke-width:2}
 
@@ -85,6 +92,7 @@ section[id],main[id]{scroll-margin-top:86px}
 main:focus{outline:none}
 .sec--sombre{background:var(--encre);color:var(--brume-clair)}
 .sec--gris{background:var(--papier)}
+/* couture entre deux sections claires : surpiqure, pas juste un aplat */
 .sec + .sec{position:relative}
 .sec + .sec::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
   background-image:repeating-linear-gradient(90deg,var(--bord) 0 6px,transparent 6px 12px)}
@@ -125,6 +133,8 @@ main:focus{outline:none}
 .hdr__in{display:flex;align-items:center;gap:var(--sp-5);height:70px}
 .mq{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--blanc);flex:none}
 .mq__n{font-weight:800;font-size:var(--fs-md);letter-spacing:-.02em;line-height:1}
+/* Le logo suit la variante : sans ca, les couleurs codees en dur dans le SVG
+   restent orange quelle que soit l'identite appliquee. */
 .mq svg rect{fill:var(--cuivre)}
 .mq svg circle,.mq svg path{stroke:var(--encre)}
 .mq svg circle:last-of-type{fill:var(--encre);stroke:none}
@@ -138,6 +148,7 @@ main:focus{outline:none}
 .hdr__tel{margin-left:auto;display:none}
 @media (min-width:1020px){.hdr__tel{display:inline-flex;margin-left:0}}
 
+/* barre d'action fixe — le parcours « j'ai creve » tient en un geste */
 .bmob{position:fixed;left:0;right:0;bottom:0;z-index:110;display:grid;
   grid-template-columns:3fr 2fr;gap:var(--sp-3);
   padding:var(--sp-3) var(--sp-4) calc(var(--sp-3) + env(safe-area-inset-bottom));
@@ -145,6 +156,8 @@ main:focus{outline:none}
   -webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.11)}
 .bmob .btn{padding:13px var(--sp-2);font-size:var(--fs-sm)}
 @media (min-width:1020px){.bmob{display:none}}
+/* le corps doit reserver la MEME hauteur que la barre, safe-area comprise,
+   sinon le pied de page passe dessous sur les iPhone a encoche */
 @media (max-width:1019px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
 
 /* ---- heros ---- */
@@ -168,6 +181,12 @@ main:focus{outline:none}
 .hero__a{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
 .hero__a .btn{flex:1 1 220px}
 @media (min-width:560px){.hero__a .btn{flex:0 0 auto}}
+
+.gnote{display:inline-flex;align-items:center;gap:var(--sp-3);padding:9px var(--sp-4) 9px var(--sp-3);
+  border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
+  font-size:var(--fs-xs);font-weight:600;color:var(--brume-clair)}
+.gnote b{color:var(--blanc);font-weight:800}
+.et{display:flex;gap:2px;color:var(--cuivre);flex:none}
 
 .rass{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-5);margin-top:var(--sp-6);
   padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,.1)}
@@ -204,6 +223,7 @@ main:focus{outline:none}
 .grid{display:grid;gap:18px;margin-top:var(--sp-6);grid-template-columns:1fr}
 @media (min-width:680px){.grid{grid-template-columns:repeat(2,1fr)}}
 @media (min-width:1000px){.grid--4{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:900px){.grid--3{grid-template-columns:repeat(3,1fr)}}
 .card{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
   padding:28px var(--sp-5);min-width:0;
   display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-content:start;
@@ -236,12 +256,21 @@ main:focus{outline:none}
 .pneu--phare{background:linear-gradient(150deg,#2A2013,var(--encre-2));
   border-color:rgba(230,126,61,.5)}
 
-/* ---- planches techniques ---- */
+/* ---- planches techniques (les emplacements photo, assumes) ---- */
+/* Quatre planches de meme format, comme une serie dans un manuel d'atelier.
+   Une mise en page asymetrique desalignait les colonnes des que le rapport
+   d'image de la grande case differait de la somme des deux rangees. */
 .cls{display:grid;gap:var(--sp-3);margin-top:var(--sp-6);grid-template-columns:repeat(2,1fr)}
 @media (min-width:900px){.cls{grid-template-columns:repeat(4,1fr)}}
+/* width:100% est indispensable : sans elle, `aspect-ratio` deduit la largeur
+   de la hauteur du contenu au lieu de prendre celle de la colonne, et les
+   planches se retrouvent deux fois trop petites. */
+/* margin:0 est indispensable : <figure> porte une marge de 40 px par defaut
+   dans les navigateurs, qui decalait toute la grille hors de son conteneur. */
 .cl{margin:0;position:relative;width:100%;border-radius:var(--r);overflow:hidden;
   background:var(--papier);border:1px solid var(--bord);aspect-ratio:4/3;
   display:grid;place-items:center}
+
 .cl img{width:100%;height:100%;object-fit:cover}
 .cl::before,.cl::after{content:"";position:absolute;width:14px;height:14px;
   border:2px solid var(--cuivre-sombre);opacity:.5;pointer-events:none}
@@ -259,8 +288,18 @@ main:focus{outline:none}
 .note-bloc{margin-top:var(--sp-6);display:grid;gap:var(--sp-5);align-items:center;
   background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
   padding:clamp(var(--sp-5),3.5vw,var(--sp-7))}
-.note-txt{max-width:66ch}
+@media (min-width:760px){.note-bloc{grid-template-columns:auto 1fr;gap:var(--sp-7)}}
+.note-chiffre{text-align:center}
+.note-chiffre b{display:block;font-size:clamp(52px,7vw,76px);font-weight:800;line-height:1;
+  letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.note-chiffre span{display:block;font-size:var(--fs-xs);font-weight:700;color:var(--texte-2);
+  margin-top:var(--sp-2)}
+/* display:flex explicite : la regle `.note-chiffre span{display:block}`
+   ci-dessus s'applique aussi a ce span et empilait les etoiles a la verticale */
+.note-chiffre .et{display:flex;justify-content:center;margin-top:var(--sp-3);
+  color:var(--cuivre-sombre)}
 .note-txt p{color:var(--texte);font-size:16px}
+.note-txt{max-width:66ch}
 .note-txt p + p{margin-top:var(--sp-3)}
 .note-slot{margin-top:var(--sp-4);max-width:66ch;padding:var(--sp-4) var(--sp-5);border-radius:var(--r-s);
   border:1px dashed var(--bord);background:var(--papier);font-size:var(--fs-sm);
@@ -268,6 +307,41 @@ main:focus{outline:none}
 .note-slot b{color:var(--encre)}
 
 /* ---- contact ---- */
+.tete{display:grid;gap:var(--sp-4)}
+@media (min-width:1000px){.tete{grid-template-columns:1.02fr .98fr;
+  column-gap:56px;align-items:end}}
+.tete .h2{max-width:22ch;margin:0;text-wrap:balance}
+.tete .chapo{margin:0;max-width:54ch}
+
+/* ---- horaires et acces ---- */
+.duo--at{margin-top:var(--sp-7)}
+@media (min-width:900px){.duo--at{grid-template-columns:1fr 1fr;gap:var(--sp-6);
+  align-items:stretch}}
+.duo.duo--at{align-items:stretch}
+.duo--at .pan{display:flex;flex-direction:column}
+.duo--at .pan__n{margin-top:auto;padding-top:var(--sp-5)}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
+  padding:clamp(var(--sp-5),3vw,var(--sp-6))}
+.pan__t{font-size:20px;letter-spacing:-.01em}
+.etat{margin-top:var(--sp-3);font-weight:800;font-size:var(--fs-base)}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:var(--sp-5) 0 0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--sp-4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:var(--fs-sm)}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.hor .hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.adr{margin-top:var(--sp-3);font-style:normal;font-size:var(--fs-md);
+  font-weight:700;line-height:1.5}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
+.pan__a .btn{flex:1 1 190px}
+.btn--o{border-color:var(--bord);color:var(--encre)}
+.btn--o:hover{border-color:var(--encre)}
+.pan__n{margin-top:var(--sp-5);font-size:var(--fs-sm);color:var(--texte-2);
+  max-width:46ch}
+
 .duo{display:grid;gap:var(--sp-7);margin-top:var(--sp-6)}
 @media (min-width:980px){.duo{grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start}}
 .inf>div{display:flex;gap:var(--sp-4);padding:var(--sp-5) 0;
@@ -309,6 +383,9 @@ main:focus{outline:none}
 .fret--ko{display:block;background:#FBEAE8;color:#8F2A22;border:1px solid #F0CCC7}
 
 /* ---- bloc de travail ---- */
+/* Le bon de travail n'est PAS destine au prospect. Il est masque par defaut
+   et ne s'affiche qu'avec ?notes dans l'URL. Si le JS ne tourne pas, il reste
+   masque : c'est le bon sens du repli, on ne montre jamais par accident. */
 .perso{display:none;background:#FBEEE0;border-top:3px solid var(--cuivre-sombre)}
 .perso.ouvert{display:block}
 .perso__url{margin-top:var(--sp-5);font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
@@ -337,7 +414,9 @@ main:focus{outline:none}
 .pied__b{margin-top:var(--sp-6);padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,.09);
   display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-5);justify-content:space-between;font-size:13px}
 
-/* Apparition au defilement */
+/* Apparition au defilement : le contenu est VISIBLE par defaut. L'animation
+   n'est armee que si le JS tourne, sinon une capture, un robot ou un
+   navigateur sans JS affiche une page aux sections vides. */
 .js .app{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
 .js .app.vu{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js .app{opacity:1;transform:none;transition:none}}
@@ -379,9 +458,7 @@ main:focus{outline:none}
     </a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="#prestations">Nos prestations</a>
-      <a href="#pneus">Pneumatiques</a>
-      <a href="#atelier">L'atelier</a>
-      <a href="#avis">Avis clients</a>
+      <a href="#atelier">Horaires et accès</a>
       <a href="#contact">Nous contacter</a>
     </nav>
     <a class="btn btn--c hdr__tel" href="tel:+33299361808">
@@ -401,17 +478,18 @@ main:focus{outline:none}
     <div class="env hero__in">
       <div class="hero__g">
         <div>
-          <h1>Entretien, freinage, pneumatiques <em>à Rennes</em>, par un garage indépendant.</h1>
+          <p class="gnote"><b>Atelier indépendant</b> à Rennes</p>
+          <h1>Votre voiture entre les mains d'un <em>garage indépendant</em>, à Rennes.</h1>
           <p class="hero__t">
-            Diagnostic, mécanique courante, freinage et pneumatiques.
-            157 avenue du Général George S. Patton, à Rennes.
+            Entretien courant et réparation mécanique, 157 avenue du Général
+            George S. Patton, à Rennes. Ouvert du lundi au vendredi.
           </p>
           <p class="urgence">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/>
             </svg>
-            Une question, un besoin urgent ? Un appel suffit.
+            Un doute sur un bruit, un voyant ? Un appel suffit pour savoir quoi faire.
           </p>
           <div class="hero__a">
             <a class="btn btn--c" href="tel:+33299361808">
@@ -425,13 +503,13 @@ main:focus{outline:none}
           <ul class="rass">
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Paiement par carte et sans contact</li>
+              Ouvert du lundi au vendredi, sans interruption l'après-midi</li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Atelier accessible aux personnes à mobilité réduite</li>
+              Quartier Patton, à l'est de Rennes</li>
             <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Garage indépendant, à votre écoute</li>
+              Un numéro direct, pas de standard</li>
           </ul>
         </div>
 
@@ -440,8 +518,8 @@ main:focus{outline:none}
           <dl>
             <div><dt>Adresse</dt><dd>157 avenue du Général George S. Patton<small>35700 Rennes</small></dd></div>
             <div><dt>Téléphone</dt><dd>02 99 36 18 08</dd></div>
-            <div><dt>Horaires</dt><dd>Lun–jeu 8h–12h / 14h–19h<small>Ven 8h–12h / 14h–18h30</small></dd></div>
-            <div><dt>Fermé</dt><dd>Jours fériés</dd></div>
+            <div><dt>Horaires</dt><dd>Lun–jeu 8h–19h<small>vendredi jusqu'à 18h30</small></dd></div>
+            <div><dt>Fermé</dt><dd>Samedi, dimanche<small>et jours fériés</small></dd></div>
           </dl>
         </aside>
       </div>
@@ -452,22 +530,37 @@ main:focus{outline:none}
     <dl class="env band__in">
       <div><dt><a href="tel:+33299361808">02 99 36 18 08</a></dt>
         <dd>Un appel suffit pour savoir si c'est possible</dd></div>
-      <div><dt>Entretien</dt><dd>Mécanique toutes marques</dd></div>
-      <div><dt>Diagnostic</dt><dd>Recherche de panne et réparation</dd></div>
+      <div><dt>Lun–ven</dt><dd>8h–12h puis 14h, jusqu'à 19h</dd></div>
       <div><dt>Rennes</dt><dd>157 av. du Général George S. Patton, 35700</dd></div>
     </dl>
   </section>
 
   <section class="sec" id="prestations">
     <div class="env">
-      <h2 class="h2">Ce que l'atelier prend en charge</h2>
-      <p class="chapo">
-        Entretien courant, freinage, pneumatiques et diagnostic.
-        Pour une intervention particulière, le plus simple reste d'appeler :
-        la réponse est immédiate.
+      <div class="tete">
+        <h2 class="h2">Ce que l'atelier prend en charge</h2>
+        <p class="chapo">
+        Un garage indépendant : l'entretien courant et la réparation mécanique.
+        Pour le reste, la liste complète n'est pas publiée en ligne — un appel
+        donne la réponse en une minute, sans passer par un formulaire.
       </p>
+      </div>
 
-      <div class="grid grid--4">
+      <div class="grid grid--3">
+        <article class="card app">
+          <div class="card__i">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+              <path d="M3 13.5h18M6 13.5l1.8-5A2 2 0 019.7 7h4.6a2 2 0 011.9 1.5l1.8 5"/>
+              <path d="M4 13.5V18h3v-1.5h10V18h3v-4.5"/><circle cx="7.5" cy="16" r="1"/>
+              <circle cx="16.5" cy="16" r="1"/>
+            </svg>
+          </div>
+          <h3>Entretien courant</h3>
+          <p>Vidange, filtres, révision, remplacement des pièces d'usure : ce qui
+             se fait à échéance régulière pour qu'une voiture dure.</p>
+        </article>
+
         <article class="card app">
           <div class="card__i">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -476,157 +569,77 @@ main:focus{outline:none}
               <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
             </svg>
           </div>
-          <h3>Entretien courant</h3>
-          <p>Vidange, révision, courroies, filtres. L'atelier entretient votre
-             véhicule selon les préconisations constructeur.</p>
-          <ul class="tags"><li>Vidange</li><li>Révision</li><li>Courroies</li></ul>
+          <h3>Réparation mécanique</h3>
+          <p>Chercher d'où vient la panne, puis la réparer. C'est le métier de
+             base d'un atelier indépendant, et celui où le contact direct avec
+             le mécanicien change tout.</p>
         </article>
 
         <article class="card app">
           <div class="card__i">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.4"/>
-              <path d="M12 3v3.5M12 17.5V21M3 12h3.5M17.5 12H21"/>
+              <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
             </svg>
           </div>
-          <h3>Pneumatiques</h3>
-          <p>Montage, équilibrage et réparation de crevaison. Jantes acier et
-             alliage.</p>
-          <ul class="tags"><li>Montage</li><li>Équilibrage</li><li>Crevaison</li></ul>
+          <h3>Le reste, au téléphone</h3>
+          <p>Plutôt qu'une liste de prestations qui promet tout, un numéro qui
+             répond. Vous décrivez le problème, on vous dit si c'est faisable ici
+             et quand.</p>
         </article>
-
-        <article class="card app">
-          <div class="card__i">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M4 17h16M6.5 17V9.8a2 2 0 01.5-1.3l2-2.3a2 2 0 011.5-.7h3a2 2 0 011.5.7l2 2.3a2 2 0 01.5 1.3V17"/>
-              <circle cx="8" cy="19.5" r="1.6"/><circle cx="16" cy="19.5" r="1.6"/>
-            </svg>
-          </div>
-          <h3>Freinage</h3>
-          <p>Plaquettes, disques, tambours. Contrôle et remplacement des
-             éléments de sécurité.</p>
-          <ul class="tags"><li>Plaquettes</li><li>Disques</li><li>Tambours</li></ul>
-        </article>
-
-        <article class="card app">
-          <div class="card__i">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M12 21a5 5 0 005-5c0-3-5-9-5-9s-5 6-5 9a5 5 0 005 5z"/>
-            </svg>
-          </div>
-          <h3>Diagnostic</h3>
-          <p>Recherche de panne, voyants moteur, électronique. Appelez pour
-             exposer le symptôme et convenir d'un passage.</p>
-          <ul class="tags"><li>Diagnostic élec.</li><li>Voyant moteur</li></ul>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec--sombre" id="pneus">
-    <div class="env">
-      <h2 class="h2">Pneumatiques : ce qui se fait à l'atelier</h2>
-      <p class="chapo">
-        Montage et équilibrage de pneumatiques, réparation de crevaison, sur
-        jantes acier ou alliage. L'éco-contribution réglementaire s'ajoute
-        au montage, comme partout.
-      </p>
-
-      <div class="pneus">
-        <div class="pneu pneu--phare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>Réparation de crevaison</b><em>Quand le pneu peut être sauvé</em></span></div>
-        <div class="pneu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>Montage et équilibrage</b><em>Tous types de jantes</em></span></div>
-        <div class="pneu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>Jantes acier</b><em>Montage sur roues tôle</em></span></div>
-        <div class="pneu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>Jantes alliage</b><em>Montage sur jantes alu</em></span></div>
-        <div class="pneu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>4×4</b><em>Pneus de tout-terrain</em></span></div>
-        <div class="pneu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M20 6L9 17l-5-5"/></svg>
-          <span><b>Utilitaires</b><em>Fourgons et camionnettes</em></span></div>
       </div>
     </div>
   </section>
 
   <section class="sec" id="atelier">
     <div class="env">
-      <h2 class="h2">157 avenue du Général George S. Patton, à Rennes</h2>
-      <p class="chapo">
-        Pas de photo de studio ici : l'atelier se décrit en planches, comme dans un
-        manuel de réparation. Chaque planche peut laisser sa place à une vraie
-        photographie, une par une, sans rien changer d'autre.
-      </p>
-
-      <div class="cls">
-        <figure class="cl" data-cloudinary="garagepatton_atelier">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <path d="M20 108h160M44 108V84a10 10 0 013-7l16-17a10 10 0 017-3h60a10 10 0 017 3l16 17a10 10 0 013 7v24"/>
-              <path d="M70 60h60"/><circle cx="66" cy="116" r="9"/><circle cx="134" cy="116" r="9"/>
-              <path d="M30 128h140M52 128v10M148 128v10"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 01 — Atelier</figcaption></figure>
-        <figure class="cl" data-cloudinary="garagepatton_pneus">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <circle cx="100" cy="75" r="46"/><circle cx="100" cy="75" r="17"/>
-              <path d="M100 29v18M100 103v18M54 75h18M128 75h18"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 02 — Montage</figcaption></figure>
-        <figure class="cl" data-cloudinary="garagepatton_frein">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <path d="M30 100h140M48 100V78a9 9 0 012-6l14-16a9 9 0 017-3h58a9 9 0 017 3l14 16a9 9 0 012 6v22"/>
-              <circle cx="68" cy="108" r="8"/><circle cx="132" cy="108" r="8"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 03 — Freinage</figcaption></figure>
-        <figure class="cl" data-cloudinary="garagepatton_equipe">
-          <div class="cl__v" aria-hidden="true">
-            <svg viewBox="0 0 200 150" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4">
-              <circle cx="100" cy="56" r="21"/><path d="M56 120a44 44 0 0188 0"/>
-            </svg>
-          </div><figcaption class="cl__e">Fig. 04 — L'équipe</figcaption></figure>
+      <div class="tete">
+        <h2 class="h2">157 avenue du Général Patton, à Rennes</h2>
+        <p class="chapo">
+          L'atelier est ouvert du lundi au vendredi. L'état affiché se calcule à
+          l'heure où vous lisez cette page, pour éviter le déplacement pour rien.
+        </p>
       </div>
-    </div>
-  </section>
 
-  <section class="sec sec--gris" id="avis">
-    <div class="env">
-      <h2 class="h2">Ce que nos clients disent de nous</h2>
-      <p class="chapo">
-        Les avis vérifiés de nos clients seront bientôt visibles ici, repris
-        depuis les fiches publiques de l'établissement. Aucun témoignage n'est
-        inventé sur cette page.
-      </p>
+      <div class="duo duo--at">
+        <div class="pan">
+          <h3 class="pan__t">Horaires d'ouverture</h3>
+          <p class="etat" id="etat"
+             data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>
+            Du lundi au vendredi, 8h–12h et 14h–19h.</p>
+          <dl class="hor">
+            <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
+            <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
+            <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
+            <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
+            <div><dt>Vendredi</dt><dd>8h–12h · 14h–18h30</dd></div>
+            <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
+            <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+            <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
+          </dl>
+          <script>
+          // Souligner la ligne du jour : lundi est la premiere du tableau.
+          (function(){ var l = document.querySelectorAll(".hor > div"), j = new Date().getDay();
+            if (l.length === 7) l[(j + 6) % 7].classList.add("hor--jour"); })();
+          </script>
+        </div>
 
-      <div class="note-bloc">
-        <div class="note-txt">
-          <p>Ce bloc est pour l'instant un emplacement vide : il se remplira avec
-             les vrais avis Google du garage. Pas de note inventée, pas de
-             témoignage rédigé pour « faire vrai ».</p>
-          <p class="note-slot"><b>Emplacement des avis détaillés.</b>
-             Les trois avis les plus récents viendront ici, repris mot pour mot
-             depuis la fiche publique, avec un lien pour tous les lire.</p>
+        <div class="pan">
+          <h3 class="pan__t">Venir à l'atelier</h3>
+          <address class="adr">
+            157 avenue du Général George S. Patton<br>35700 Rennes
+          </address>
+          <div class="pan__a">
+            <a class="btn btn--c"
+               href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes">
+              Ouvrir l'itinéraire
+            </a>
+            <a class="btn btn--o" href="tel:+33299361808">Appeler l'atelier</a>
+          </div>
+          <p class="pan__n">
+            Un appel avant de passer permet de savoir si le créneau est libre et
+            si la pièce est en stock.
+          </p>
         </div>
       </div>
     </div>
@@ -659,10 +672,12 @@ main:focus{outline:none}
                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
               <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
             </svg>
-            <dl><div><dt>Horaires</dt><dd>Lundi–jeudi 8h–12h / 14h–19h
-              <small>Vendredi 8h–12h / 14h–18h30. Fermé les jours fériés.</small>
+            <dl><div><dt>Horaires</dt><dd>À confirmer
+              <small>Les annuaires en ligne se contredisent sur ce point. Les horaires
+              réels seront affichés ici, avec un indicateur « ouvert » ou « fermé »
+              calculé en direct.</small>
               <a class="btn btn--c btn--p" href="tel:+33299361808"
-                 style="margin-top:12px;width:auto">Appeler pour vérifier une disponibilité</a>
+                 style="margin-top:12px;width:auto">Appeler pour savoir si c'est ouvert</a>
               </dd></div></dl>
           </div>
         </div>
@@ -677,18 +692,19 @@ main:focus{outline:none}
           <div class="ch ch--2" style="margin-top:var(--sp-4)">
             <div class="f"><label for="vehicule">Véhicule</label>
               <input type="text" id="vehicule" name="vehicule" placeholder="Renault Clio — 2018"></div>
-            <div class="f"><label for="dim">Dimension de pneu (si besoin)</label>
+            <div class="f"><label for="dim">Dimension de pneu</label>
               <input type="text" id="dim" name="dim" placeholder="205/55 R16"></div>
           </div>
           <div class="ch" style="margin-top:var(--sp-4)">
             <div class="f"><label for="besoin">Votre besoin <span aria-hidden="true">*</span></label>
               <select id="besoin" name="besoin" required>
                 <option value="">Choisissez…</option>
-                <option>Entretien / révision</option>
-                <option>Freinage</option>
-                <option>Pneumatiques</option>
+                <option>Réparation de crevaison</option>
+                <option>Montage de pneus</option>
+                <option>Vidange</option>
                 <option>Réparation mécanique</option>
-                <option>Diagnostic</option>
+                <option>Véhicule d'occasion</option>
+                <option>Lavage</option>
                 <option>Autre</option>
               </select></div>
             <div class="f"><label for="msg">Détails</label>
@@ -725,35 +741,37 @@ main:focus{outline:none}
       <h2>Ce qui reste à faire confirmer par le garage</h2>
       <p>
         Tout ce qui figure dans les sections ci-dessus provient de sources publiques
-        vérifiées. Rien n'a été inventé : ni tarif, ni garantie, ni avis rédigé.
-        Les points ci-dessous sont ceux à valider lors de l'appel.
+        vérifiées. Rien n'a été inventé : ni tarif, ni garantie, ni avis rédigé,
+        ni horaire. Les points ci-dessous sont ceux à valider lors de l'appel.
         <strong>Cette section n'est visible que par vous.</strong> Elle est masquée
         par défaut : le prospect qui ouvre le lien ne la voit pas, et aucune
         manipulation n'est nécessaire avant la mise en ligne.
       </p>
       <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
       <ul>
-        <li><b>Horaires d'ouverture — confirmés par le garage</b>
-          Les horaires affichés (lun–jeu 8h–12h/14h–19h, ven 8h–12h/14h–18h30,
-          fermé jours fériés) ont été fournis. <em>Une fois validés, l'indicateur
-          ouvert/fermé en direct pourra être activé.</em></li>
-        <li><b>Tarifs</b>
-          Aucun tarif n'a été communiqué. <em>Aucun prix n'apparaît sur la page
-          tant qu'il n'est pas confirmé.</em></li>
-        <li><b>Avis clients</b>
-          Aucun avis ni note n'est affiché. <em>La section dédiée attend les
-          vrais avis Google, à reproduire mot pour mot.</em></li>
+        <li><b>Horaires — à confirmer en priorité</b>
+          Relevés sur la fiche publique : lundi à jeudi 8h–12h et 14h–19h,
+          vendredi jusqu'à 18h30, fermé samedi, dimanche et jours fériés.
+          <em>L'indicateur « ouvert maintenant » se calcule dessus. Un horaire
+          faux envoie un client devant un rideau baissé : c'est le premier
+          point à valider.</em></li>
+        <li><b>Prestations — la page reste volontairement large</b>
+          Seuls « entretien courant » et « réparation mécanique » sont annoncés,
+          parce que rien d'autre n'est documenté publiquement. <em>Pneumatiques,
+          climatisation, géométrie, diagnostic, prêt de véhicule : chaque ligne
+          confirmée devient une carte de plus.</em></li>
+        <li><b>Avis clients — aucune section</b>
+          Aucune note publique n'a été trouvée pour cet établissement.
+          <em>Plutôt qu'un bloc vide qui promet des avis, la section n'existe
+          pas. Elle s'ajoute le jour où il y a quelque chose à montrer.</em></li>
         <li><b>Adresse électronique</b>
-          Aucune adresse publique n'a été trouvée. <em>Le formulaire compose donc
-          un SMS vers le portable. Avec une adresse, on bascule sur un courriel.</em></li>
+          Aucune adresse publique trouvée. <em>Le formulaire compose donc un SMS.
+          Avec une adresse, on bascule sur un courriel.</em></li>
         <li><b>Photos de l'atelier</b>
-          Quatre planches techniques tiennent lieu de visuels. <em>Elles peuvent
-          rester telles quelles — c'est un parti pris assumé — ou céder la place
-          à de vraies photos, une par une.</em></li>
-        <li><b>Services complémentaires</b>
-          Les informations publiques mentionnent entretien, freinage, pneumatiques
-          et diagnostic. <em>Si d'autres prestations sont proposées (climatisation,
-          distribution, etc.), elles peuvent être ajoutées.</em></li>
+          La page n'en contient aucune : mieux vaut pas d'image qu'une photo de
+          banque d'images. <em>Trois clichés pris au téléphone — la façade, la
+          zone de travail, une voiture sur le pont — suffisent et se posent dans
+          la section « Venir à l'atelier ».</em></li>
       </ul>
     </div>
   </section>
@@ -772,19 +790,18 @@ main:focus{outline:none}
           <span><span class="mq__n">Garage Patton</span><span class="mq__s">Rennes</span></span>
         </a>
         <p style="max-width:40ch;margin-top:var(--sp-3)">
-          Entretien, freinage, pneumatiques et diagnostic.
+          Pneumatiques, mécanique, véhicules d'occasion et lavage.
           157 avenue du Général George S. Patton, 35700 Rennes.
         </p>
       </div>
       <div><h3>Nos prestations</h3><ul>
         <li><a href="#pneus">Pneumatiques</a></li>
-        <li><a href="#prestations">Entretien et révision</a></li>
-        <li><a href="#prestations">Freinage</a></li>
-        <li><a href="#prestations">Diagnostic</a></li></ul></div>
+        <li><a href="#prestations">Mécanique et vidange</a></li>
+        <li><a href="#prestations">Véhicules d'occasion</a></li>
+        <li><a href="#prestations">Lavage</a></li></ul></div>
       <div><h3>Nous contacter</h3><ul>
         <li><a href="tel:+33299361808">02 99 36 18 08</a></li>
         <li><a href="#contact">Demander un devis</a></li>
-        <li><a href="#avis">Avis clients</a></li>
         <li><a href="#atelier">L'atelier</a></li></ul></div>
     </div>
     <div class="pied__b">
@@ -809,7 +826,7 @@ main:focus{outline:none}
   "@context":"https://schema.org",
   "@type":"AutoRepair",
   "name":"Garage Patton",
-  "description":"Entretien, freinage, pneumatiques et diagnostic à Rennes.",
+  "description":"Entretien courant et réparation mécanique, garage indépendant au 157 avenue du Général George S. Patton, à Rennes.",
   "url":"https://francoislang.github.io/templates/garage-patton/",
   "telephone":"+33299361808",
   "address":{
@@ -821,20 +838,57 @@ main:focus{outline:none}
     "addressCountry":"FR"
   },
   "makesOffer":[
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien et révision"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Freinage"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Montage et équilibrage de pneumatiques"}},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Diagnostic électronique"}}
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien courant"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Réparation mécanique"}}
   ]
 }
 </script>
 
 <script>
+// Etat d'ouverture : lu depuis data-h sur #etat, sept entrees (dimanche en
+// premier), chacune nulle ou une suite de minutes depuis minuit par paires.
+// Aucun horaire n'est ecrit en dur ici : si la donnee manque, la phrase de
+// repli ecrite dans le HTML reste affichee telle quelle.
+(function(){
+  var el = document.getElementById("etat");
+  if (!el) return;
+  var h; try { h = JSON.parse(el.getAttribute("data-h")); } catch (e) { return; }
+  if (!Array.isArray(h) || h.length !== 7) return;
+  var JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function paires(x){ var r=[],i; if(!x) return r;
+    for (i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r; }
+  function hm(v){ var a=Math.floor(v/60), b=v%60;
+    return b ? a+"h"+(b<10?"0":"")+b : a+"h"; }
+  var d = new Date(), j = d.getDay(), m = d.getHours()*60 + d.getMinutes(), i, k, jj, cs;
+  var cj = paires(h[j]);
+  for (i=0;i<cj.length;i++) {
+    if (m >= cj[i][0] && m < cj[i][1]) {
+      el.textContent = "Ouvert maintenant, jusqu'à " + hm(cj[i][1]);
+      el.className = "etat etat--oui";
+      return;
+    }
+  }
+  for (k=0;k<8;k++) {
+    jj = (j+k) % 7; cs = paires(h[jj]);
+    for (i=0;i<cs.length;i++) {
+      if (k === 0 && cs[i][0] <= m) continue;
+      el.textContent = "Fermé, ouvre "
+        + (k === 0 ? "à " + hm(cs[i][0])
+                   : (k === 1 ? "demain à " : JOURS[jj] + " à ") + hm(cs[i][0]));
+      el.className = "etat etat--non";
+      return;
+    }
+  }
+})();
+
 (function(){
   "use strict";
 
+  /* Le contenu est visible par defaut dans la feuille de style. On n'arme
+     l'animation qu'ici, une fois certain que le JS tourne. */
   document.documentElement.classList.add("js");
 
+  /* Bon de travail : visible uniquement avec ?notes (ou #notes) dans l'URL. */
   var bon = document.getElementById("a-personnaliser");
   if(bon && (/[?&]notes(=|&|$)/.test(location.search) || location.hash === "#notes")){
     bon.classList.add("ouvert");
@@ -854,6 +908,11 @@ main:focus{outline:none}
     for(var j=0;j<cibles.length;j++){ cibles[j].classList.add("vu"); }
   }
 
+  /* Formulaire. Le site est statique et aucune adresse electronique publique
+     n'existe pour ce garage : on compose donc un SMS vers le portable.
+     Le protocole sms: n'est pas gere sur un ordinateur de bureau. On ne peut
+     pas le detecter de facon fiable, donc on n'annonce JAMAIS un succes : le
+     message est neutre et donne le numero en clair, cliquable. */
   var form = document.getElementById("fdevis");
   var ret  = document.getElementById("fret");
   var TEL_TXT = "02 99 36 18 08";

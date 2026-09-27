@@ -412,10 +412,30 @@ REGLES ABSOLUES :
   de salaries, une annee de creation, un vehicule de pret, une habilitation,
   ou le moindre avis client redige. Si une information ne figure pas dans la
   liste ci-dessus, elle n'apparait pas sur la page.
-- Les avis sont un emplacement vide qui dit qu'il se remplira avec les vrais
-  avis Google. Jamais de temoignage redige.
-- Si les horaires ne sont pas dans les faits verifies, ecris « A confirmer »
-  et n'active pas l'indicateur ouvert/ferme.
+- UNE SECTION DONT LES FAITS MANQUENT DISPARAIT ENTIEREMENT. Jamais de bloc
+  vide qui annonce qu'il se remplira un jour : c'est ce qui fait qu'une page
+  a l'air inachevee. Pas d'avis dans les faits verifies -> pas de section
+  avis, et le lien correspondant sort aussi du menu et du pied de page. Pas
+  de donnee pneumatique -> pas de section pneumatique. Meme regle pour le
+  balisage JSON-LD : pas de aggregateRating sans note reelle.
+- LA PAGE S'ADRESSE AUX CLIENTS DU GARAGE, jamais au garagiste. Aucune phrase
+  du genre « cette reputation n'est visible que sur un annuaire, pas chez
+  vous » : c'est un argumentaire de vente de site web, il n'a rien a faire
+  sur une page que liront des automobilistes. Ce discours-la va dans le bloc
+  « bon de travail », masque derriere ?notes.
+- INTERDICTION DES FORMULES PASSE-PARTOUT non presentes dans les faits :
+  « toutes marques », « devis gratuit », « paiement par carte », « accessible
+  aux personnes a mobilite reduite », « vehicule de pret », « sur place :
+  occasions et lavage ». Le gabarit en contient parce qu'elles etaient vraies
+  pour l'atelier qui a servi de modele ; elles ne le sont pas ici.
+- HORAIRES. Le gabarit affiche un tableau et un indicateur « ouvert
+  maintenant ». L'indicateur lit l'attribut data-h de #etat : sept entrees,
+  dimanche en premier, chacune nulle (ferme) ou une suite de minutes depuis
+  minuit par paires — 8h00 vaut 480, 19h00 vaut 1140. Remplis-le a partir des
+  horaires verifies, et mets dans le tableau les memes horaires en toutes
+  lettres. Si les horaires ne figurent pas dans les faits, retire le panneau
+  « Horaires d'ouverture » et son script, et garde seulement « Venir a
+  l'atelier ».
 - Reproduis TOUTES les sections du gabarit, dans le meme ordre.
 - Garde le bloc « bon de travail » de fin de page et sa mecanique d'affichage
   par ?notes : il n'est pas destine au prospect.
