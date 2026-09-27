@@ -12,15 +12,16 @@
         <string>"$HOME/Local/Perso/templates/_scripts/run_pro.sh"</string>
     </array>
 
-    <!-- Du lundi au vendredi a 14h10. Decale du pipeline eleveurs (9h00)
-         pour que les deux ne se disputent jamais le depot git. -->
+    <!-- Du lundi au vendredi a 9h30. Le pipeline eleveurs part a 9h00 :
+         run_pro.sh attend donc que son verrou soit relache avant de
+         commencer, sinon les deux se disputeraient le push git. -->
     <key>StartCalendarInterval</key>
     <array>
-        <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>14</integer><key>Minute</key><integer>10</integer></dict>
-        <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>14</integer><key>Minute</key><integer>10</integer></dict>
-        <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>14</integer><key>Minute</key><integer>10</integer></dict>
-        <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>14</integer><key>Minute</key><integer>10</integer></dict>
-        <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>14</integer><key>Minute</key><integer>10</integer></dict>
+        <dict><key>Weekday</key><integer>1</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>2</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>3</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>4</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Weekday</key><integer>5</integer><key>Hour</key><integer>9</integer><key>Minute</key><integer>30</integer></dict>
     </array>
 
     <key>RunAtLoad</key>

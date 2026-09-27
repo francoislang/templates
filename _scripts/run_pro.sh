@@ -34,6 +34,35 @@ NOMBRE="${NOMBRE:-5}"
 
 echo "marche=$METIER nombre=$NOMBRE"
 
+# Le pipeline eleveurs part a 9h00 et ce circuit a 9h30 : s'il tourne
+# encore, on patiente. Les deux verrous sont distincts, mais le depot git
+# est partage et deux push simultanes se marchent dessus. Vingt minutes au
+# plus, puis on part quand meme -- mieux vaut un push en conflit qu'une
+# journee sans prospection.
+VERROU="$REPO/_data/.pipeline.lock"
+attente=0
+while [ -f "$VERROU" ] && "$PY" -c "
+import fcntl, sys
+try:
+    f = open('$VERROU')
+    fcntl.flock(f.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    fcntl.flock(f.fileno(), fcntl.LOCK_UN)
+    sys.exit(1)          # verrou libre
+except BlockingIOError:
+    sys.exit(0)          # verrou tenu
+except OSError:
+    sys.exit(1)
+" 2>/dev/null; do
+    if [ "$attente" -ge 1200 ]; then
+        echo "AVERTISSEMENT: le pipeline eleveurs tourne encore apres 20 min, on demarre quand meme"
+        break
+    fi
+    [ "$attente" -eq 0 ] && echo "le pipeline eleveurs tourne, on patiente..."
+    sleep 30
+    attente=$((attente + 30))
+done
+[ "$attente" -gt 0 ] && echo "attente du pipeline eleveurs : ${attente}s"
+
 git pull --rebase --autostash origin main || echo "AVERTISSEMENT: git pull a echoue, on continue"
 
 # --attendre 600 : si le pipeline eleveurs pousse au meme moment, on patiente
