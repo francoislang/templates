@@ -1,0 +1,20 @@
+/* Bleu franc — l'outremer d'une combinaison de mecanicien neuve et d'une
+   plaque emaillee vissee au mur. L'aplat de marque n'est pas un fond sombre
+   neutre : c'est une couleur, en grand. L'accent n'est pas un orange de plus,
+   c'est le jaune de securite peint sur les chandelles et les casiers. */
+:root{
+  --encre:#143398;         /* outremer : bandeau, ouverture, contact */
+  --encre-2:#1C43BC;       /* le meme bleu, un cran plus vif : bandeau de faits */
+  --cuivre:#FFC42E;        /* jaune de securite, sur les fonds bleus */
+  --cuivre-sombre:#7A5409; /* le meme jaune, cuit au brou, sur les fonds clairs */
+  --txt-accent:#20180A;    /* texte sur l'aplat jaune */
+  --brume:#A9BAE2;         /* texte secondaire sur le bleu */
+  --brume-clair:#D5DFF6;   /* texte courant sur le bleu */
+  --bord-fantome:#7A91D7;  /* filet discret sur l'aplat */
+  --creme:#F2F4F7;         /* le papier : gris froid, aucune trace de beige */
+  --creme-2:#E5E8EE;       /* seconde teinte claire : section horaires */
+  --blanc:#FFFFFF;         /* cartes */
+  --bord:#D4D9E2;          /* filets sur fond clair */
+  --texte:#2B3240;         /* texte courant sur fond clair */
+  --texte-2:#535B6A;       /* texte discret sur fond clair */
+}
