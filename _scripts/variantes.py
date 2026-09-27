@@ -32,16 +32,16 @@ import argparse
 import hashlib
 
 VARIANTES: list[dict[str, str]] = [
-    {"nom": "graphite-cuivre", "encre": "#111927", "encre2": "#1C273B", "accent": "#E76A23", "txt_accent": "#1A1002", "accent_clair": "#BF4B08", "brume": "#8491A9", "brume_clair": "#B7C1D1", "bord_fantome": "#506A95", "motif": "arcs", "police": "Manrope"},
-    {"nom": "ardoise-safran", "encre": "#111E27", "encre2": "#1C2E3B", "accent": "#C7880A", "txt_accent": "#1A1002", "accent_clair": "#996600", "brume": "#8197A7", "brume_clair": "#B7C7D1", "bord_fantome": "#496E88", "motif": "grille", "police": "Archivo"},
+    {"nom": "graphite-cuivre", "encre": "#111927", "encre2": "#1C273B", "accent": "#E76A23", "txt_accent": "#1A1002", "accent_clair": "#B94807", "brume": "#8491A9", "brume_clair": "#B7C1D1", "bord_fantome": "#506A95", "motif": "arcs", "police": "Manrope"},
+    {"nom": "ardoise-safran", "encre": "#111E27", "encre2": "#1C2E3B", "accent": "#C7880A", "txt_accent": "#1A1002", "accent_clair": "#946200", "brume": "#8197A7", "brume_clair": "#B7C7D1", "bord_fantome": "#496E88", "motif": "grille", "police": "Archivo"},
     {"nom": "nuit-sable", "encre": "#111827", "encre2": "#1C253B", "accent": "#D9C08C", "txt_accent": "#1A1002", "accent_clair": "#7A6430", "brume": "#848FA9", "brume_clair": "#B4BCCF", "bord_fantome": "#526798", "motif": "pointille", "police": "Inter"},
-    {"nom": "charbon-brique", "encre": "#271811", "encre2": "#3B261C", "accent": "#E7715F", "txt_accent": "#1A1002", "accent_clair": "#D52A10", "brume": "#A99084", "brume_clair": "#D1C0B7", "bord_fantome": "#8B604B", "motif": "diagonale", "police": "Figtree"},
-    {"nom": "marine-ambre", "encre": "#111B27", "encre2": "#1C2A3B", "accent": "#D77B09", "txt_accent": "#1A1002", "accent_clair": "#A85D00", "brume": "#8193A7", "brume_clair": "#B7C3D1", "bord_fantome": "#4D6B8F", "motif": "arcs", "police": "Outfit"},
+    {"nom": "charbon-brique", "encre": "#271811", "encre2": "#3B261C", "accent": "#E7715F", "txt_accent": "#1A1002", "accent_clair": "#D0290F", "brume": "#A99084", "brume_clair": "#D1C0B7", "bord_fantome": "#8B604B", "motif": "diagonale", "police": "Figtree"},
+    {"nom": "marine-ambre", "encre": "#111B27", "encre2": "#1C2A3B", "accent": "#D77B09", "txt_accent": "#1A1002", "accent_clair": "#A25A00", "brume": "#8193A7", "brume_clair": "#B7C3D1", "bord_fantome": "#4D6B8F", "motif": "arcs", "police": "Outfit"},
     {"nom": "foret-laiton", "encre": "#11271C", "encre2": "#1C3B2B", "accent": "#C39C28", "txt_accent": "#1A1002", "accent_clair": "#886A11", "brume": "#81A794", "brume_clair": "#C1D7CC", "bord_fantome": "#427B5E", "motif": "grille", "police": "Plus Jakarta Sans"},
-    {"nom": "acier-cobalt", "encre": "#111C27", "encre2": "#1C2B3B", "accent": "#5097E7", "txt_accent": "#1A1002", "accent_clair": "#0E6CD8", "brume": "#8194A7", "brume_clair": "#B7C4D1", "bord_fantome": "#4D6E8F", "motif": "diagonale", "police": "Be Vietnam Pro"},
-    {"nom": "basalte-corail", "encre": "#111127", "encre2": "#1C1C3B", "accent": "#ED6A5B", "txt_accent": "#1A1002", "accent_clair": "#DA200B", "brume": "#8787AB", "brume_clair": "#B4B4CF", "bord_fantome": "#5D5DA8", "motif": "pointille", "police": "Public Sans"},
-    {"nom": "olive-ocre", "encre": "#1C2711", "encre2": "#2B3B1C", "accent": "#DA913E", "txt_accent": "#1A1002", "accent_clair": "#A15E12", "brume": "#94A781", "brume_clair": "#CCD7C1", "bord_fantome": "#5E7B42", "motif": "arcs", "police": "Sora"},
-    {"nom": "prune-citron", "encre": "#201127", "encre2": "#311C3B", "accent": "#AE9A13", "txt_accent": "#1A1002", "accent_clair": "#7F6F05", "brume": "#9D84A9", "brume_clair": "#C9B7D1", "bord_fantome": "#84549C", "motif": "grille", "police": "Rubik"}
+    {"nom": "acier-cobalt", "encre": "#111C27", "encre2": "#1C2B3B", "accent": "#5097E7", "txt_accent": "#1A1002", "accent_clair": "#0D69D3", "brume": "#8194A7", "brume_clair": "#B7C4D1", "bord_fantome": "#4D6E8F", "motif": "diagonale", "police": "Be Vietnam Pro"},
+    {"nom": "basalte-corail", "encre": "#111127", "encre2": "#1C1C3B", "accent": "#ED6A5B", "txt_accent": "#1A1002", "accent_clair": "#D31F0A", "brume": "#8787AB", "brume_clair": "#B4B4CF", "bord_fantome": "#5D5DA8", "motif": "pointille", "police": "Public Sans"},
+    {"nom": "olive-ocre", "encre": "#1C2711", "encre2": "#2B3B1C", "accent": "#DA913E", "txt_accent": "#1A1002", "accent_clair": "#9D5C11", "brume": "#94A781", "brume_clair": "#CCD7C1", "bord_fantome": "#5E7B42", "motif": "arcs", "police": "Sora"},
+    {"nom": "prune-citron", "encre": "#201127", "encre2": "#311C3B", "accent": "#AE9A13", "txt_accent": "#1A1002", "accent_clair": "#7C6C04", "brume": "#9D84A9", "brume_clair": "#C9B7D1", "bord_fantome": "#84549C", "motif": "grille", "police": "Rubik"}
 ]
 
 # Seuils WCAG : 4,5:1 pour du texte, 3:1 pour une bordure ou un contour.
@@ -51,6 +51,7 @@ PAIRES = [
     ("texte du bouton sur accent",  "txt_accent",   "accent",     4.5),
     ("accent clair sur blanc",      "accent_clair", "#FFFFFF",    4.5),
     ("accent clair sur papier",     "accent_clair", "#F6F8FB",    4.5),
+    ("accent clair sur papier 2",   "accent_clair", "#EDF1F7",    4.5),
     ("brume sur fond de section",   "brume",        "encre",      4.5),
     ("brume sur fond de carte",     "brume",        "encre2",     4.5),
     ("brume claire sur section",    "brume_clair",  "encre",      4.5),
