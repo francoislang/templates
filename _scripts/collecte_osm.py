@@ -92,7 +92,7 @@ REGIONS = {
 
 # Enseignes de reseau et concessions : leur communication est pilotee par la
 # tete de reseau, ce ne sont pas des prospects.
-RESEAUX = {
+RESEAUX_GARAGE = {
     "roady", "norauto", "midas", "feu vert", "feuvert", "speedy", "point s",
     "euromaster", "first stop", "ad expert", "garage ad", "bosch car service",
     "precisium", "top garage", "vulco", "profil plus", "carter cash",
@@ -104,12 +104,64 @@ RESEAUX = {
     "land rover", "jaguar", "subaru", "mitsubishi", "cupra",
 }
 
+# Cote nautique, deux familles a ecarter. Les enseignes d'accastillage, dont
+# la communication est pilotee par la centrale. Et les chantiers de
+# construction en serie : ce sont des industriels, pas des artisans qu'on
+# demarche. La liste est empirique et se completera en voyant les donnees,
+# comme il a fallu le faire pour le pare-brise cote garage.
+RESEAUX_NAUTIQUE = {
+    # accastillage et distribution
+    "accastillage diffusion", "uship", "u-ship", "bigship", "big ship",
+    "comptoir de la mer", "nautic store", "nautistore", "marine store",
+    "sea design", "accastillage", "coopérative maritime", "cooperative maritime",
+    "decathlon", "tribord",
+    # constructeurs en serie
+    "beneteau", "bénéteau", "jeanneau", "dufour", "lagoon", "fountaine pajot",
+    "amel", "alubat", "garcia", "outremer", "catana", "nautitech", "zodiac",
+    "bombard", "sunseeker", "princess", "azimut", "rodman", "quicksilver",
+    "brunswick", "yamaha", "suzuki marine", "mercury", "volvo penta",
+    "groupe beneteau", "chantiers de l'atlantique", "naval group", "piriou",
+}
+
+# Un metier = une liste de filtres Overpass et une liste d'enseignes a
+# ecarter. Tout le reste de la collecte est commun.
+#
+# Cote nautique, waterway=boatyard est le tag central : le wiki le definit
+# comme « un lieu ou l'on construit, repare et entrepose des bateaux hors de
+# l'eau », ce qui est exactement la cible. craft=sailmaker ramene les
+# voileries, qui reparent les voiles et le greement -- la demande de depart.
+# industrial=shipyard ramene aussi de gros chantiers : ils seront ecartes par
+# la liste d'enseignes plutot que par le filtre, parce que la frontiere entre
+# un chantier naval de vingt personnes et un industriel ne tient pas dans un
+# tag.
+METIERS_OSM = {
+    "garage": {
+        "filtres": ['nwr["shop"="car_repair"](area.d);',
+                    'nwr["shop"="tyres"](area.d);',
+                    'nwr["craft"="car_repair"](area.d);'],
+        "reseaux": RESEAUX_GARAGE,
+    },
+    "nautique": {
+        "filtres": ['nwr["waterway"="boatyard"](area.d);',
+                    'nwr["craft"="boatbuilder"](area.d);',
+                    'nwr["craft"="sailmaker"](area.d);',
+                    'nwr["shop"="boat"](area.d);',
+                    'nwr["industrial"="shipyard"](area.d);',
+                    'nwr["service:boat:repair"="yes"](area.d);',
+                    'nwr["boat:repair"="yes"](area.d);'],
+        "reseaux": RESEAUX_NAUTIQUE,
+    },
+}
+
+# Le metier courant : fixe une fois pour toutes par --metier, lu partout
+# ailleurs. Une variable de module plutot qu'un parametre traine de fonction
+# en fonction.
+METIER = "garage"
+
 REQUETE = """[out:json][timeout:{t}];
 area["boundary"="administrative"]["admin_level"="6"]["ref:INSEE"="{dept}"]->.d;
 (
-  nwr["shop"="car_repair"](area.d);
-  nwr["shop"="tyres"](area.d);
-  nwr["craft"="car_repair"](area.d);
+{filtres}
 );
 out center tags;"""
 
@@ -128,8 +180,15 @@ def _slug(t: str) -> str:
 
 
 def _est_reseau(*champs: str) -> bool:
+    """Vrai si l'un des champs porte une enseigne du metier courant.
+
+    Comparaison bornee par des espaces, et non par sous-chaine : « ad » ne
+    doit pas se declencher au milieu d'un mot, et « renault » ne doit pas
+    attraper un patronyme qui le contient.
+    """
     texte = " " + _sans_accents(" ".join(c or "" for c in champs)).lower() + " "
-    return any(" " + r + " " in texte for r in RESEAUX)
+    return any(" " + r + " " in texte
+               for r in METIERS_OSM[METIER]["reseaux"])
 
 
 def _tel_fr(brut: str) -> str:
@@ -236,7 +295,9 @@ def interroger(dept: str) -> list[dict] | None:
     """
     _etat["serveur"] = 0          # toujours repartir du serveur principal
     vides = 0
-    corps = REQUETE.format(t=TIMEOUT_REQ, dept=dept).encode("utf-8")
+    filtres = "\n".join("  " + f for f in METIERS_OSM[METIER]["filtres"])
+    corps = REQUETE.format(t=TIMEOUT_REQ, dept=dept,
+                           filtres=filtres).encode("utf-8")
     for essai in range(len(SERVEURS) * 2):
         url = SERVEURS[_etat["serveur"] % len(SERVEURS)]
         req = urllib.request.Request(
@@ -303,7 +364,7 @@ def extraire(el: dict, dept: str) -> dict | None:
         "horaires": t.get("opening_hours") or "",
         "latitude": el.get("lat") or (el.get("center") or {}).get("lat"),
         "longitude": el.get("lon") or (el.get("center") or {}).get("lon"),
-        "metier": "garage",
+        "metier": METIER,
         "sources": json.dumps([f"https://www.openstreetmap.org/"
                                f"{el.get('type','node')}/{el.get('id')}"]),
         "recense_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -329,8 +390,9 @@ CREATE INDEX IF NOT EXISTS idx_p_dept    ON prospects(departement);
 CREATE INDEX IF NOT EXISTS idx_p_traite  ON prospects(traite_at);
 
 CREATE TABLE IF NOT EXISTS depts_faits (
-    departement TEXT PRIMARY KEY, trouves INTEGER, avec_tel INTEGER,
-    avec_mail INTEGER, prospects INTEGER, fait_at TEXT NOT NULL
+    metier TEXT NOT NULL DEFAULT 'garage', departement TEXT, trouves INTEGER,
+    avec_tel INTEGER, avec_mail INTEGER, prospects INTEGER,
+    fait_at TEXT NOT NULL, PRIMARY KEY (metier, departement)
 );
 """
 COLONNES_SUP = {"email": "TEXT", "horaires": "TEXT",
@@ -390,8 +452,8 @@ def traiter_dept(conn, dept: str) -> tuple[int, int, int, int]:
 
     for x in lignes:
         enregistrer(conn, x)
-    conn.execute("INSERT OR REPLACE INTO depts_faits VALUES (?,?,?,?,?,?)",
-                 (dept, len(lignes), tel, mail, prosp,
+    conn.execute("INSERT OR REPLACE INTO depts_faits VALUES (?,?,?,?,?,?,?)",
+                 (METIER, dept, len(lignes), tel, mail, prosp,
                   datetime.now(timezone.utc).isoformat(timespec="seconds")))
     conn.commit()
     pc = lambda n: f"{100 * n / len(lignes):.0f}%" if lignes else "—"
@@ -411,9 +473,10 @@ def prospects(conn, chemin_csv, mini_tel, tous) -> None:
     lignes = conn.execute(
         "SELECT nom, commune, code_postal, departement, telephone, "
         "COALESCE(email,''), adresse, COALESCE(horaires,''), cle "
-        f"FROM prospects WHERE site_statut='aucun' {where_tel}{cond} "
-        "ORDER BY departement, commune, nom").fetchall()
-    print(f"\n{len(lignes)} prospect(s) sans site et joignables\n")
+        f"FROM prospects WHERE metier=? AND site_statut='aucun' "
+        f"{where_tel}{cond} ORDER BY departement, commune, nom",
+        (METIER,)).fetchall()
+    print(f"\n{len(lignes)} prospect(s) « {METIER} » sans site et joignables\n")
     for nom, com, cp, dep, tel, mail, adr, _h, _c in lignes[:40]:
         print(f"  {nom[:34]:34} {(cp or ''):6} {(com or '')[:20]:20} "
               f"{(tel or '—'):16} {mail[:28]}")
@@ -429,30 +492,47 @@ def prospects(conn, chemin_csv, mini_tel, tous) -> None:
 
 
 def stats(conn) -> None:
-    tot = conn.execute("SELECT COUNT(*) FROM prospects").fetchone()[0]
-    if not tot:
+    """Un tableau par metier : les deux marches partagent la base."""
+    lignes = conn.execute(
+        "SELECT metier, COUNT(*) FROM prospects GROUP BY 1 ORDER BY 2 DESC"
+    ).fetchall()
+    if not lignes:
         print("\nBase vide. Lance d'abord --dept 35 ou --tous.")
         return
-    q = lambda s: conn.execute(s).fetchone()[0]
-    tel = q("SELECT COUNT(*) FROM prospects WHERE COALESCE(telephone,'')<>''")
-    mail = q("SELECT COUNT(*) FROM prospects WHERE COALESCE(email,'')<>''")
-    print(f"\n{tot} etablissements en base")
-    print(f"  avec telephone : {tel}  ({100*tel/tot:.0f}%)")
-    print(f"  avec email     : {mail}  ({100*mail/tot:.0f}%)")
-    print("\nPar statut de site :")
-    for s, n in conn.execute("SELECT site_statut, COUNT(*) FROM prospects "
-                             "GROUP BY 1 ORDER BY 2 DESC"):
-        print(f"  {s:8} : {n}")
-    p = q("SELECT COUNT(*) FROM prospects WHERE site_statut='aucun' "
-          "AND COALESCE(telephone,'')<>'' AND traite_at IS NULL")
-    print(f"\nPROSPECTS EXPLOITABLES (sans site, joignables, non traites) : {p}")
-    faits = q("SELECT COUNT(*) FROM depts_faits")
-    print(f"{faits} departement(s) collecte(s) sur {len(DEPARTEMENTS)}")
+    for metier, tot in lignes:
+        q = lambda s: conn.execute(s, (metier,)).fetchone()[0]
+        tel = q("SELECT COUNT(*) FROM prospects WHERE metier=? "
+                "AND COALESCE(telephone,'')<>''")
+        mail = q("SELECT COUNT(*) FROM prospects WHERE metier=? "
+                 "AND COALESCE(email,'')<>''")
+        joignable = q("SELECT COUNT(*) FROM prospects WHERE metier=? AND "
+                      "(COALESCE(telephone,'')<>'' OR COALESCE(email,'')<>'')")
+        print(f"\n=== {metier} — {tot} etablissements ===")
+        print(f"  avec telephone      : {tel}  ({100*tel/tot:.0f}%)")
+        print(f"  avec email          : {mail}  ({100*mail/tot:.0f}%)")
+        print(f"  joignables (l'un ou l'autre) : {joignable}  "
+              f"({100*joignable/tot:.0f}%)")
+        for s, n in conn.execute(
+                "SELECT site_statut, COUNT(*) FROM prospects WHERE metier=? "
+                "GROUP BY 1 ORDER BY 2 DESC", (metier,)):
+            print(f"    {s:8} : {n}")
+        pr = q("SELECT COUNT(*) FROM prospects WHERE metier=? "
+               "AND site_statut='aucun' AND COALESCE(telephone,'')<>'' "
+               "AND traite_at IS NULL")
+        faits = conn.execute("SELECT COUNT(*) FROM depts_faits WHERE metier=?",
+                             (metier,)).fetchone()[0]
+        print(f"  EXPLOITABLES (sans site, joignables, non traites) : {pr}")
+        print(f"  {faits} departement(s) collecte(s) sur {len(DEPARTEMENTS)}")
 
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--metier", default="garage", choices=sorted(METIERS_OSM),
+                   help="marche a collecter. garage : reparation automobile. "
+                        "nautique : chantiers, voileries et reparateurs de "
+                        "bateaux. Les deux cohabitent dans la meme base, "
+                        "separes par la colonne metier.")
     p.add_argument("--dept", action="append", help="code departement (repetable)")
     p.add_argument("--region", action="append",
                    help="nom de region : " + ", ".join(sorted(REGIONS)))
@@ -467,6 +547,9 @@ def main() -> None:
     p.add_argument("--csv", default=None)
     p.add_argument("--stats", action="store_true")
     args = p.parse_args()
+
+    global METIER
+    METIER = args.metier
 
     conn = ouvrir()
     if args.stats:
@@ -485,13 +568,15 @@ def main() -> None:
         p.error("donne --dept, --region, --tous, --prospects ou --stats")
 
     if args.reprendre:
-        faits = {r[0] for r in conn.execute("SELECT departement FROM depts_faits")}
+        faits = {r[0] for r in conn.execute(
+            "SELECT departement FROM depts_faits WHERE metier=?", (METIER,))}
         depts = [d for d in depts if d not in faits]
 
     depts = list(dict.fromkeys(depts))
     print("Controle de couverture des serveurs Overpass :")
     verifier_serveurs()
-    print(f"\n{len(depts)} departement(s) a collecter. Une requete chacun, "
+    print(f"\nMarche « {METIER} » — {len(depts)} departement(s) a collecter. "
+          f"Une requete chacun, "
           f"{PAUSE} s de pause entre deux — Overpass est un service benevole.")
     t = m = e = pr = 0
     for i, d in enumerate(depts, 1):
