@@ -648,6 +648,26 @@ def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
 # execution
 # --------------------------------------------------------------------------
 
+# Une panne passagere ne doit jamais consommer un prospect. Le HTTP 402
+# d'OpenRouter (credit epuise) l'a montre : sans ce tri, une nuit de credit
+# a zero brulait cinq fiches par execution, marquees traitees, definitivement
+# sorties du vivier, sans qu'aucun site n'ait ete produit.
+PASSAGERES = ("HTTP 402", "HTTP 429", "HTTP 500", "HTTP 502", "HTTP 503",
+              "HTTP 504", "HTTP 520", "HTTP 524", "Timeout", "ConnectionError",
+              "ReadTimeout", "ConnectTimeout", "ChunkedEncodingError",
+              "reponse vide", "echec inconnu")
+# Celles-la ne s'arrangeront pas d'elles-memes : inutile d'enchainer le lot.
+FATALES = ("HTTP 401", "HTTP 402", "HTTP 403", "OPENROUTER_API_KEY absente")
+
+
+def _est_passagere(raison: str) -> bool:
+    return any(m in (raison or "") for m in PASSAGERES)
+
+
+def _est_fatale(raison: str) -> bool:
+    return any(m in (raison or "") for m in FATALES)
+
+
 class _SansCRM(Exception):
     """Sentinelle du mode essai : on saute la fiche CRM sans la traiter
     comme une panne."""
@@ -694,7 +714,19 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
         url, err, v = generer_site(p, metier, force=refaire)
         if err:
             print(f"   /!\\ {err}")
-            marquer(conn, p["cle"], erreur=err, variante=v["nom"])
+            if _est_passagere(err):
+                # on n'ecrit pas traite_at : la fiche reste dans le vivier
+                print("   panne passagere — le prospect reste a traiter")
+            else:
+                marquer(conn, p["cle"], erreur=err, variante=v["nom"])
+            if _est_fatale(err):
+                msg = (f"Arret du lot : {err}. "
+                       f"Rien n'a ete consomme, {len(lot)} prospect(s) "
+                       f"restent a traiter.")
+                print(msg)
+                if not dry_run:
+                    telegram.send(f"\u26D4 {msg}")
+                break
             continue
 
         texte = message(p, metier, url, v)
