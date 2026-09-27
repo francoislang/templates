@@ -74,11 +74,12 @@ METIERS: dict[str, dict] = {
         "metier": "garage automobile indépendant",
         "gabarit": "reference-garage.html",
         "sections": [
-            "Prestations (entretien, freinage, pneumatiques, diagnostic)",
-            "Detail des prestations principales",
-            "L'atelier, en planches techniques",
-            "Avis clients",
-            "Contact, adresse et acces",
+            "Ouverture : nom, activite, appel a l'action, et la fiche "
+            "inclinee qui resume l'etat de l'atelier a l'heure qu'il est",
+            "Bandeau de trois faits, tires des donnees verifiees",
+            "Registre numerote des familles d'intervention",
+            "Horaires et acces, avec le tableau des horaires",
+            "Contact : numero en grand et formulaire qui compose un SMS",
         ],
     },
     "nautique": {
@@ -290,6 +291,31 @@ def _appeler_modele(prompt: str) -> tuple[str, str]:
     return "", derniere or "echec inconnu"
 
 
+MIN_SECTIONS_PRO = 4
+MIN_OCTETS_PRO = 16000
+
+
+def _site_est_correct(html: str) -> tuple[bool, str]:
+    """Le meme garde-fou que pour les eleveurs, aux seuils de ce circuit.
+
+    Celui de pipeline.py exige six sections et dix photographies : le gabarit
+    garage en a cinq et aucune photo, par choix. Et la regle « une section
+    sans donnees disparait » peut legitimement en retirer une de plus, d'ou
+    un plancher a quatre.
+    """
+    if not html or not html.strip():
+        return False, "vide"
+    if "</html>" not in html.lower():
+        return False, "HTML incomplet (generation coupee)"
+    sections = len(re.findall(r"<section", html, re.IGNORECASE))
+    if sections < MIN_SECTIONS_PRO:
+        return False, f"{sections} sections (minimum {MIN_SECTIONS_PRO})"
+    octets = len(html.encode("utf-8"))
+    if octets < MIN_OCTETS_PRO:
+        return False, f"{octets} octets (minimum {MIN_OCTETS_PRO})"
+    return True, ""
+
+
 def _nettoyer_html(html: str) -> str:
     """Retire la cloture Markdown et ne garde que le document."""
     html = re.sub(r"^```html?\n?", "", html)
@@ -358,8 +384,8 @@ def _corriger_design(html: str, cible: Path, v: dict) -> str:
         return html
 
     corrige = _nettoyer_html(corrige)
-    ok, raison = pl._site_est_correct(corrige)
-    if not ok and "photos" not in raison:
+    ok, raison = _site_est_correct(corrige)
+    if not ok:
         print(f"   /!\\ version corrigee rejetee ({raison})")
         return html
     # le modele peut avoir efface le bloc d identite en reecrivant le <style>
@@ -463,10 +489,8 @@ REGLES ABSOLUES :
 
     html = _nettoyer_html(html)
 
-    ok, raison = pl._site_est_correct(html)
-    if not ok and "photos" not in raison:
-        # Le gabarit garage n'a volontairement aucune photographie : le
-        # garde-fou « 10 photos minimum » ne s'applique pas ici.
+    ok, raison = _site_est_correct(html)
+    if not ok:
         return None, f"site trop pauvre — {raison}", v
 
     fuite = re.findall(r"\b(chiot\w*|chien\w*|port[ée]e\w*|[ée]levage\w*|LOF)\b",
