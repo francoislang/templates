@@ -66,7 +66,7 @@ PAR_DEFAUT = 5
 # remet en mettant IDENTITE_FIXE a None, et le vivier a piocher serait alors
 # _templates/fiche-accueil/couleur-*.css, les huit palettes validees sur ce
 # gabarit-la, plutot que les dix de variantes.py, calibrees sur l'ancien.
-IDENTITE_FIXE = "bleu-nuit"
+IDENTITE_FIXE = "acier"
 
 # Le modele est une variable, pas une constante gravee : un credit epuise ou
 # un fournisseur en panne ne doit pas arreter le circuit. MODELE_PRO dans
