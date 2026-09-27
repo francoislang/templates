@@ -1,0 +1,8 @@
+/* Palette actuelle — reprise telle quelle comme point de comparaison. */
+:root{
+  --encre:#101A2E; --encre-2:#182642;
+  --cuivre:#E67E3D; --cuivre-sombre:#9C4712; --txt-accent:#1A1002;
+  --brume:#93A1BC; --brume-clair:#C9D3E6; --bord-fantome:#526AA8;
+  --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#FFFFFF;
+  --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
+}

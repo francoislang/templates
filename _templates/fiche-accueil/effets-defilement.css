@@ -1,0 +1,98 @@
+/* =====================================================================
+   effets-defilement — la page se construit a mesure qu'on descend.
+   Un observateur revele chaque groupe a son arrivee, avec un decalage
+   de quelques dizaines de millisecondes entre les elements d'un meme
+   groupe. Le mouvement est de 8 px, jamais plus. Rien ne se rejoue.
+
+   Regle 2 du brief : la classe .rvl, seule a poser opacity:0, est
+   ajoutee par le script. Sans JavaScript, aucune de ces regles ne
+   trouve de cible et la page s'affiche complete.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------
+   1. Neutralisation du jeu d'effets repris du site de reference
+   --------------------------------------------------------------- */
+
+/* la fiche n'arrive plus en tampon : elle se fond comme le reste */
+.fiche{animation:none}
+@keyframes pose{from{opacity:1}to{opacity:1}}
+
+/* la pastille ne respire plus : un halo fixe, sans pulsation */
+.pastille::after{animation:none;transform:scale(1.9);opacity:.26}
+@keyframes souffle{from{opacity:.26}to{opacity:.26}}
+
+/* les boutons ne se decalent plus en diagonale, et perdent l'ombre dure */
+.btn{transition:transform .16s ease,background-color .16s ease,
+  border-color .16s ease,box-shadow .16s ease,filter .16s ease}
+.btn:hover{transform:none}
+.btn--c:hover{box-shadow:none}
+.btn--o:hover{box-shadow:none}
+
+/* ---------------------------------------------------------------
+   2. Le survol, requalifie : plus court que 250 ms, et seulement
+      la ou il existe un vrai pointeur (rien ne bouge sous le doigt)
+   --------------------------------------------------------------- */
+
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-1px)}
+}
+
+.ctc__tel{transition:filter .16s ease}
+.nav a,.hdr__tel{transition:color .16s ease,border-color .16s ease}
+
+@media (min-width:820px){
+  .reg li{transition:transform .18s ease,background-color .18s ease,
+    box-shadow .18s ease}
+  /* plus de soulevement en diagonale ni d'ombre portee franche */
+  .reg li:hover{transform:none;box-shadow:none}
+  /* la mention de droite ne pivote plus : elle se contente d'appuyer */
+  .reg__q{transform:none;opacity:.72;transition:opacity .18s ease}
+  .reg li:hover .reg__q{transform:none;opacity:1}
+}
+@media (min-width:820px) and (hover:hover) and (pointer:fine){
+  .reg li:hover{transform:translateX(3px)}
+}
+
+@media (min-width:980px){
+  /* la fiche ne se redresse plus d'un coup : elle se pose d'un demi-degre */
+  .fiche{transition:transform .2s cubic-bezier(.22,.61,.36,1),box-shadow .2s ease}
+  .fiche:hover{transform:rotate(-1.6deg)}
+}
+@media (min-width:980px) and (hover:hover) and (pointer:fine){
+  .fiche:hover{transform:rotate(-1.1deg)}
+}
+
+/* ---------------------------------------------------------------
+   3. L'arrivee au defilement
+   --------------------------------------------------------------- */
+
+.rvl{opacity:0;
+  transition:opacity .24s ease-out,
+    transform .38s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity,transform}
+.rvl--g{transform:translateY(8px)}
+.rvl--on{opacity:1}
+.rvl--on.rvl--g{transform:none}
+
+.rvl--d1{transition-delay:35ms}
+.rvl--d2{transition-delay:70ms}
+.rvl--d3{transition-delay:105ms}
+.rvl--d4{transition-delay:140ms}
+
+/* la fiche est deja inclinee : on ne lui prend que l'opacite, et on lui
+   rend sa duree de survol pendant qu'elle est encore observee */
+@media (min-width:980px){
+  .fiche.rvl{transition:opacity .24s ease-out,
+    transform .2s cubic-bezier(.22,.61,.36,1)}
+}
+
+/* ---------------------------------------------------------------
+   4. Mouvement reduit : etat final explicite, rien ne depend du script
+   --------------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  .rvl{opacity:1 !important;transition:none !important;will-change:auto}
+  .rvl--g{transform:none !important}
+  .pastille::after{animation:none}
+  .reg__q{opacity:1}
+}

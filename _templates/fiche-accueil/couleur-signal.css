@@ -1,0 +1,20 @@
+/* Signal — atelier lu de loin.
+   Un aplat graphite presque noir, un papier gris neutre et lumineux,
+   et un seul orange de signalisation (gilet de chantier, marquage au sol)
+   qui porte tout en occupant quelques pour cent de la surface. */
+:root{
+  --encre:#17191B;         /* graphite dense : bandeau, ouverture, contact */
+  --encre-2:#262A2D;       /* bandeau de faits, un cran au-dessus */
+  --cuivre:#FF8A1F;        /* l'accent sur fond sombre : orange signalisation */
+  --cuivre-sombre:#A83A05; /* le meme orange cuit, pour les fonds clairs */
+  --txt-accent:#1A1203;    /* texte sur l'aplat orange */
+  --brume:#9AA0A6;         /* texte secondaire sur fond sombre */
+  --brume-clair:#CFD4D8;   /* texte courant sur fond sombre */
+  --bord-fantome:#666C71;  /* filet discret sur fond sombre */
+  --creme:#F2F3F4;         /* le papier : gris neutre, aucune trace de beige */
+  --creme-2:#E5E7E9;       /* seconde teinte claire : section horaires */
+  --blanc:#FFFFFF;         /* cartes */
+  --bord:#D4D7DA;          /* filets sur fond clair */
+  --texte:#2E3336;         /* texte courant sur fond clair */
+  --texte-2:#54595E;       /* texte discret sur fond clair */
+}
