@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Patton — entretien et réparation mécanique à Rennes</title>
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
+<meta name="theme-color" content="#101A2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
+  --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
+  --bord-fantome:#526AA8; --papier:#F6F8FB; --papier-2:#EDF1F7;
+  --blanc:#fff; --bord:#D2DAE8; --bord-sombre:#2C3B5C;
+  --texte:#3F4C63; --texte-2:#5A6880;
+  --r:14px; --r-s:10px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px;
+  --large:1180px;
+  --police:'Inter';
+  --aide:var(--texte-2);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+body{margin:0;font-family:var(--police),ui-sans-serif,system-ui,-apple-system,
+  'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.62;
+  color:var(--encre);background:var(--blanc);-webkit-font-smoothing:antialiased;
+  overflow-x:clip}
+h1,h2,h3{margin:0;line-height:1.14;letter-spacing:-.025em;font-weight:800}
+p{margin:0}
+a{color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:5px}
+.env{width:100%;max-width:var(--large);margin-inline:auto}
+.saut{position:absolute;left:0;top:0;transform:translateY(-200%);z-index:200;
+  background:var(--cuivre);color:var(--txt-accent);padding:12px 20px;
+  font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
+.saut:focus{transform:translateY(0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s3);
+  padding:15px var(--s6);border-radius:var(--r-s);font-weight:800;font-size:16px;
+  text-decoration:none;border:2px solid transparent;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  transition:transform .16s ease,background-color .16s ease,border-color .16s}
+.btn:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--c:hover{filter:brightness(1.07)}
+.btn--o{border-color:var(--bord);color:var(--encre)}
+.btn--o:hover{border-color:var(--encre)}
+.btn--f{border-color:var(--bord-fantome);color:var(--blanc)}
+.btn--f:hover{border-color:var(--brume-clair)}
+.etat{font-weight:800}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--s4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:14px;font-weight:700}
+.f input,.f textarea,.f select{font:inherit;font-size:16px;padding:13px var(--s4);
+  border:1px solid var(--bord);border-radius:var(--r-s);background:var(--blanc);
+  color:var(--encre);width:100%}
+.f input:focus-visible,.f textarea:focus-visible,.f select:focus-visible{
+  outline:3px solid var(--cuivre);outline-offset:2px}
+.fret{font-size:15px;font-weight:700}
+
+:root{--police:'Libre Franklin'}
+
+body{background:var(--papier)}
+.ficheh{--aide:var(--brume)}
+.ficheh{background:var(--encre);color:var(--blanc);padding:var(--s6) var(--s5) var(--s7)}
+@media (min-width:760px){.ficheh{padding:var(--s7) var(--s6) var(--s8)}}
+.ficheh__in{max-width:760px;margin-inline:auto}
+.eyebrow{font-size:15px;font-weight:700;color:var(--cuivre)}
+.ficheh h1{font-size:clamp(32px,6vw,50px);margin-top:var(--s3);color:var(--blanc);
+  text-wrap:balance}
+.ficheh__t{margin-top:var(--s4);color:var(--brume-clair);font-size:18px;max-width:42ch}
+.ficheh__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.ficheh__a .btn{flex:1 1 200px}
+.corps{max-width:760px;margin:calc(var(--s7) * -1) auto var(--s8);
+  padding-inline:var(--s5);display:grid;gap:var(--s4)}
+@media (min-width:760px){.corps{padding-inline:var(--s6)}}
+.bloc{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
+  padding:var(--s5)}
+@media (min-width:760px){.bloc{padding:var(--s6)}}
+.bloc h2{font-size:22px}
+.bloc>*+*{margin-top:var(--s4)}
+.lig{display:flex;gap:var(--s4);align-items:baseline;justify-content:space-between;
+  padding:12px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.lig:last-child{border-bottom:0;padding-bottom:0}
+.lig b{font-size:17px;text-align:right}
+.serv{display:grid;gap:var(--s4)}
+.serv>div{padding-left:var(--s4);border-left:2px solid var(--cuivre-sombre)}
+.serv h3{font-size:18px}
+.serv p{margin-top:6px;color:var(--texte);font-size:15px;max-width:58ch}
+.bloc p{max-width:58ch}
+.ch{display:grid;gap:var(--s4)}
+@media (min-width:560px){.ch{grid-template-columns:1fr 1fr}}
+.piedf{max-width:760px;margin:0 auto;padding:0 var(--s5) var(--s8);
+  color:var(--texte-2);font-size:14px}
+
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<header class="ficheh">
+  <div class="ficheh__in">
+    <p class="eyebrow">Garage indépendant, à Rennes</p>
+    <h1>Garage Patton</h1>
+    <p class="ficheh__t">Entretien courant et réparation mécanique,
+      157 avenue du Général George S. Patton. Un seul numéro, une réponse directe.</p>
+    <div class="ficheh__a">
+      <a class="btn btn--c" href="tel:+33299361808">Appeler le 02 99 36 18 08</a>
+      <a class="btn btn--f" href="#demande">Laisser une demande</a>
+    </div>
+  </div>
+</header>
+
+<main id="principal" class="corps">
+  <section class="bloc">
+    <h2>L'essentiel</h2>
+    <div>
+      <div class="lig"><span>Téléphone</span><b><a href="tel:+33299361808">02 99 36 18 08</a></b></div>
+      <div class="lig"><span>Adresse</span><b>157 avenue du Général George S. Patton<br>35700 Rennes</b></div>
+      <div class="lig"><span>Aujourd'hui</span>
+        <b><span class="etat" id="etat" data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Voir les horaires</span></b></div>
+    </div>
+    <a class="btn btn--o" href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes" style="width:100%">Ouvrir l'itinéraire</a>
+  </section>
+
+  <section class="bloc">
+    <h2>Horaires</h2>
+    <dl class="hor">
+  <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Vendredi</dt><dd>8h–12h · 14h–18h30</dd></div>
+  <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
+  <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+  <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
+</dl>
+  </section>
+
+  <section class="bloc">
+    <h2>Ce que l'atelier prend en charge</h2>
+    <div class="serv">
+        <div><h3>Entretien courant</h3><p>Vidange, filtres, révision, pièces d'usure : ce qui se fait à échéance régulière pour qu'une voiture dure.</p></div>
+        <div><h3>Réparation mécanique</h3><p>Chercher d'où vient la panne, puis la réparer. Le métier de base d'un atelier indépendant, et celui où parler au mécanicien change tout.</p></div>
+        <div><h3>Le reste, au téléphone</h3><p>Plutôt qu'une liste qui promet tout, un numéro qui répond. Vous décrivez le problème, on vous dit si c'est faisable ici et quand.</p></div>
+    </div>
+  </section>
+
+  <section class="bloc" id="demande">
+    <h2>Laisser une demande</h2>
+    <form id="dem" novalidate>
+  <div class="ch">
+    <div class="f"><label for="nom">Votre nom</label>
+      <input id="nom" name="nom" type="text" autocomplete="name" required
+             placeholder="Camille Renard"></div>
+    <div class="f"><label for="tel">Votre téléphone</label>
+      <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
+             required placeholder="06 12 34 56 78"></div>
+  </div>
+  <div class="f" style="margin-top:var(--s4)">
+    <label for="det">Ce qui vous amène</label>
+    <textarea id="det" name="det" rows="3"
+              placeholder="Voyant moteur allumé depuis hier sur une Clio de 2016."></textarea>
+  </div>
+  <button class="btn btn--c" type="submit"
+          style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
+  <p class="fret" id="ret" role="status" aria-live="polite"
+     style="margin-top:var(--s3)"></p>
+  <p style="margin-top:var(--s3);font-size:14px;color:var(--aide)">
+    Aucune adresse électronique publique n'a été trouvée pour cet atelier :
+    le bouton ouvre un SMS prérempli vers le 02 99 36 18 08.</p>
+</form>
+  </section>
+</main>
+
+<footer class="piedf">
+  © 2026 Garage Patton — 157 avenue du Général George S. Patton, 35700 Rennes
+</footer>
+
+<script>
+
+// Etat d'ouverture, lu depuis data-h sur #etat : sept entrees, dimanche en
+// premier, minutes depuis minuit par paires, null si ferme. Sans donnee, la
+// phrase de repli ecrite dans le HTML reste affichee.
+(function(){
+  var el=document.getElementById("etat"); if(!el) return;
+  var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+  if(!Array.isArray(h)||h.length!==7) return;
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r;
+    for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;
+    return b? a+"h"+(b<10?"0":"")+b : a+"h";}
+  var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs;
+  var cj=pr(h[j]);
+  for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){
+    el.textContent="Ouvert maintenant, jusqu'à "+hm(cj[i][1]);
+    el.className="etat etat--oui"; return; } }
+  for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+    for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+      el.textContent="Fermé, ouvre "+(k===0?"à "+hm(cs[i][0])
+        :(k===1?"demain à ":J[jj]+" à ")+hm(cs[i][0]));
+      el.className="etat etat--non"; return; } }
+})();
+
+// Souligner la ligne du jour : lundi est la premiere du tableau.
+(function(){ var l=document.querySelectorAll(".hor > div"),j=new Date().getDay();
+  if(l.length>=7) l[(j+6)%7].classList.add("hor--jour"); })();
+
+// Le formulaire compose un SMS : aucune adresse electronique publique n'a ete
+// trouvee pour cet atelier. On n'annonce pas un envoi reussi, parce que rien
+// ne permet de le verifier depuis la page.
+(function(){
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=f.nom.value.trim(), t=f.tel.value.trim(), d=f.det.value.trim();
+    if(!n||!t){ document.getElementById("ret").textContent=
+      "Merci d'indiquer au moins votre nom et votre numéro."; return; }
+    var corps="Bonjour, "+n+" ("+t+")."+(d?" "+d:"");
+    document.getElementById("ret").textContent=
+      "Votre application de messages s'ouvre avec la demande préremplie. "
+      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
+    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+  });
+})();
+
+
+</script>
+</body>
+</html>

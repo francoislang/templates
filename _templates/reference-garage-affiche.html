@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Patton — entretien et réparation mécanique à Rennes</title>
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
+<meta name="theme-color" content="#101A2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
+  --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
+  --bord-fantome:#526AA8; --papier:#F6F8FB; --papier-2:#EDF1F7;
+  --blanc:#fff; --bord:#D2DAE8; --bord-sombre:#2C3B5C;
+  --texte:#3F4C63; --texte-2:#5A6880;
+  --r:14px; --r-s:10px;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px;
+  --large:1180px;
+  --police:'Inter';
+  --aide:var(--texte-2);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+body{margin:0;font-family:var(--police),ui-sans-serif,system-ui,-apple-system,
+  'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.62;
+  color:var(--encre);background:var(--blanc);-webkit-font-smoothing:antialiased;
+  overflow-x:clip}
+h1,h2,h3{margin:0;line-height:1.14;letter-spacing:-.025em;font-weight:800}
+p{margin:0}
+a{color:inherit}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:5px}
+.env{width:100%;max-width:var(--large);margin-inline:auto}
+.saut{position:absolute;left:0;top:0;transform:translateY(-200%);z-index:200;
+  background:var(--cuivre);color:var(--txt-accent);padding:12px 20px;
+  font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
+.saut:focus{transform:translateY(0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s3);
+  padding:15px var(--s6);border-radius:var(--r-s);font-weight:800;font-size:16px;
+  text-decoration:none;border:2px solid transparent;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  transition:transform .16s ease,background-color .16s ease,border-color .16s}
+.btn:hover{transform:translateY(-2px)}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--c:hover{filter:brightness(1.07)}
+.btn--o{border-color:var(--bord);color:var(--encre)}
+.btn--o:hover{border-color:var(--encre)}
+.btn--f{border-color:var(--bord-fantome);color:var(--blanc)}
+.btn--f:hover{border-color:var(--brume-clair)}
+.etat{font-weight:800}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--s4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:14px;font-weight:700}
+.f input,.f textarea,.f select{font:inherit;font-size:16px;padding:13px var(--s4);
+  border:1px solid var(--bord);border-radius:var(--r-s);background:var(--blanc);
+  color:var(--encre);width:100%}
+.f input:focus-visible,.f textarea:focus-visible,.f select:focus-visible{
+  outline:3px solid var(--cuivre);outline-offset:2px}
+.fret{font-size:15px;font-weight:700}
+
+:root{--police:'Archivo'}
+
+body{background:var(--encre);color:var(--blanc)}
+.aff{padding:var(--s6) var(--s5) var(--s8);position:relative;overflow:hidden}
+@media (min-width:760px){.aff{padding:var(--s7) var(--s6) var(--s9)}}
+.hero__tread{position:absolute;inset:0;pointer-events:none;opacity:.6;
+  background-image:repeating-radial-gradient(circle at 88% 6%,
+    rgba(255,255,255,.09) 0 2px,transparent 2px 18px);
+  mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%);
+  -webkit-mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%)}
+.aff__in{position:relative;max-width:var(--large);margin-inline:auto}
+.kick{display:inline-block;font-size:16px;font-weight:700;color:var(--cuivre)}
+.aff h1{font-size:clamp(46px,11vw,120px);line-height:.93;letter-spacing:-.045em;
+  margin-top:var(--s5);color:var(--blanc);text-wrap:balance}
+.aff__t{margin-top:var(--s5);font-size:clamp(18px,2.2vw,22px);color:var(--brume-clair);
+  max-width:40ch}
+.tel{display:inline-flex;align-items:center;gap:var(--s4);margin-top:var(--s7);
+  font-size:clamp(28px,5.5vw,56px);font-weight:800;letter-spacing:-.04em;
+  color:var(--cuivre);text-decoration:none;font-variant-numeric:tabular-nums;
+  border-bottom:3px solid currentColor;padding-bottom:6px}
+.tel:hover{filter:brightness(1.1)}
+.sous{margin-top:var(--s4);font-size:16px;color:var(--brume)}
+.aff{--aide:var(--brume)}
+.aff .etat--non{color:var(--brume-clair)}
+.aff .etat--oui{color:#7BD4A4}
+.band{background:var(--cuivre);color:var(--txt-accent);padding:var(--s6) var(--s5)}
+@media (min-width:760px){.band{padding:var(--s6)}}
+.band__in{max-width:var(--large);margin-inline:auto;display:grid;gap:var(--s5);
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.band dt{font-size:clamp(20px,2.6vw,28px);font-weight:800;letter-spacing:-.03em;
+  line-height:1.1}
+.band dd{margin:6px 0 0;font-size:14px;font-weight:700;line-height:1.45}
+.sec{padding:var(--s8) var(--s5)}
+@media (min-width:760px){.sec{padding:var(--s9) var(--s6)}}
+.sec--clair{background:var(--papier);color:var(--encre)}
+.sec__in{max-width:var(--large);margin-inline:auto}
+.sec h2{font-size:clamp(30px,5vw,54px);letter-spacing:-.035em;text-wrap:balance;
+  max-width:16ch}
+.gros{display:grid;gap:var(--s6);margin-top:var(--s7);counter-reset:n}
+@media (min-width:860px){.gros{grid-template-columns:repeat(3,1fr);gap:var(--s7)}}
+.gros>div{counter-increment:n;padding-top:var(--s5);
+  border-top:1px solid var(--bord)}
+.gros>div::before{content:"0" counter(n);display:block;font-size:14px;
+  font-weight:800;letter-spacing:.14em;color:var(--cuivre-sombre)}
+.gros h3{font-size:26px;margin-top:var(--s3)}
+.gros p{margin-top:var(--s3);color:var(--texte);font-size:16px}
+.sec:not(.sec--clair){--aide:var(--brume)}
+.sec:not(.sec--clair) .gros>div{border-top-color:var(--bord-sombre)}
+.sec:not(.sec--clair) .gros>div::before{color:var(--cuivre)}
+.sec:not(.sec--clair) .gros p,.sec:not(.sec--clair) .hor dt{color:var(--brume-clair)}
+.sec:not(.sec--clair) .hor{border-top-color:var(--bord-sombre)}
+.sec:not(.sec--clair) .hor>div{border-bottom-color:var(--bord-sombre)}
+.sec:not(.sec--clair) .hor dd{color:var(--blanc)}
+.sec:not(.sec--clair) .hor--off dd{color:var(--brume)}
+.sec:not(.sec--clair) .hor--jour dt,.sec:not(.sec--clair) .hor--jour dd{color:var(--cuivre)}
+.sec:not(.sec--clair) .etat--non{color:var(--brume-clair)}
+.sec:not(.sec--clair) .etat--oui{color:#7BD4A4}
+.sec:not(.sec--clair) .f input,.sec:not(.sec--clair) .f textarea{
+  background:var(--encre-2);border-color:var(--bord-sombre);color:var(--blanc)}
+.sec:not(.sec--clair) .fret{color:var(--brume-clair)}
+.deux{display:grid;gap:var(--s7);margin-top:var(--s7)}
+@media (min-width:900px){.deux{grid-template-columns:1fr 1fr;gap:var(--s8)}}
+.deux h3{font-size:22px;margin-bottom:var(--s4)}
+.ch{display:grid;gap:var(--s4)}
+@media (min-width:560px){.ch{grid-template-columns:1fr 1fr}}
+.piedf{background:var(--encre);color:var(--brume);padding:var(--s7) var(--s5);
+  font-size:14px}
+@media (min-width:760px){.piedf{padding:var(--s7) var(--s6)}}
+.piedf__in{max-width:var(--large);margin-inline:auto;display:flex;
+  flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<main id="principal">
+<section class="aff">
+  <div class="hero__tread" aria-hidden="true"></div>
+  <div class="aff__in">
+    <p class="kick">Garage indépendant · Rennes</p>
+    <h1>Un mécanicien<br>qui décroche.</h1>
+    <p class="aff__t">Entretien courant et réparation mécanique,
+      157 avenue du Général George S. Patton, à Rennes.</p>
+    <a class="tel" href="tel:+33299361808">02 99 36 18 08</a>
+    <p class="sous"><span class="etat" id="etat" data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Du lundi au vendredi, 8h–12h et 14h–19h.</span></p>
+  </div>
+</section>
+
+<section class="band" aria-label="En bref">
+  <dl class="band__in">
+    <div><dt>Lun–ven</dt><dd>8h–12h puis 14h, jusqu'à 19h</dd></div>
+    <div><dt>Rennes</dt><dd>157 avenue du Général George S. Patton, 35700</dd></div>
+    <div><dt>Sans standard</dt><dd>Le numéro tombe directement à l'atelier</dd></div>
+  </dl>
+</section>
+
+<section class="sec sec--clair">
+  <div class="sec__in">
+    <h2>Ce que l'atelier prend en charge</h2>
+    <div class="gros">
+      <div><h3>Entretien courant</h3><p>Vidange, filtres, révision, pièces d'usure : ce qui se fait à échéance régulière pour qu'une voiture dure.</p></div>
+      <div><h3>Réparation mécanique</h3><p>Chercher d'où vient la panne, puis la réparer. Le métier de base d'un atelier indépendant, et celui où parler au mécanicien change tout.</p></div>
+      <div><h3>Le reste, au téléphone</h3><p>Plutôt qu'une liste qui promet tout, un numéro qui répond. Vous décrivez le problème, on vous dit si c'est faisable ici et quand.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec__in">
+    <h2>Horaires, accès et demande</h2>
+    <div class="deux">
+      <div>
+        <h3>Horaires d'ouverture</h3>
+        <dl class="hor">
+  <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
+  <div><dt>Vendredi</dt><dd>8h–12h · 14h–18h30</dd></div>
+  <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
+  <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+  <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
+</dl>
+        <p style="margin-top:var(--s5)"><a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes">Ouvrir l'itinéraire</a></p>
+      </div>
+      <div>
+        <h3>Laisser une demande</h3>
+        <form id="dem" novalidate>
+  <div class="ch">
+    <div class="f"><label for="nom">Votre nom</label>
+      <input id="nom" name="nom" type="text" autocomplete="name" required
+             placeholder="Camille Renard"></div>
+    <div class="f"><label for="tel">Votre téléphone</label>
+      <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
+             required placeholder="06 12 34 56 78"></div>
+  </div>
+  <div class="f" style="margin-top:var(--s4)">
+    <label for="det">Ce qui vous amène</label>
+    <textarea id="det" name="det" rows="3"
+              placeholder="Voyant moteur allumé depuis hier sur une Clio de 2016."></textarea>
+  </div>
+  <button class="btn btn--c" type="submit"
+          style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
+  <p class="fret" id="ret" role="status" aria-live="polite"
+     style="margin-top:var(--s3)"></p>
+  <p style="margin-top:var(--s3);font-size:14px;color:var(--aide)">
+    Aucune adresse électronique publique n'a été trouvée pour cet atelier :
+    le bouton ouvre un SMS prérempli vers le 02 99 36 18 08.</p>
+</form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="piedf">
+  <div class="piedf__in">
+    <span>© 2026 Garage Patton</span>
+    <span>157 avenue du Général George S. Patton, 35700 Rennes — 02 99 36 18 08</span>
+  </div>
+</footer>
+
+<script>
+
+// Etat d'ouverture, lu depuis data-h sur #etat : sept entrees, dimanche en
+// premier, minutes depuis minuit par paires, null si ferme. Sans donnee, la
+// phrase de repli ecrite dans le HTML reste affichee.
+(function(){
+  var el=document.getElementById("etat"); if(!el) return;
+  var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+  if(!Array.isArray(h)||h.length!==7) return;
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r;
+    for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;
+    return b? a+"h"+(b<10?"0":"")+b : a+"h";}
+  var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs;
+  var cj=pr(h[j]);
+  for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){
+    el.textContent="Ouvert maintenant, jusqu'à "+hm(cj[i][1]);
+    el.className="etat etat--oui"; return; } }
+  for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+    for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+      el.textContent="Fermé, ouvre "+(k===0?"à "+hm(cs[i][0])
+        :(k===1?"demain à ":J[jj]+" à ")+hm(cs[i][0]));
+      el.className="etat etat--non"; return; } }
+})();
+
+// Souligner la ligne du jour : lundi est la premiere du tableau.
+(function(){ var l=document.querySelectorAll(".hor > div"),j=new Date().getDay();
+  if(l.length>=7) l[(j+6)%7].classList.add("hor--jour"); })();
+
+// Le formulaire compose un SMS : aucune adresse electronique publique n'a ete
+// trouvee pour cet atelier. On n'annonce pas un envoi reussi, parce que rien
+// ne permet de le verifier depuis la page.
+(function(){
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=f.nom.value.trim(), t=f.tel.value.trim(), d=f.det.value.trim();
+    if(!n||!t){ document.getElementById("ret").textContent=
+      "Merci d'indiquer au moins votre nom et votre numéro."; return; }
+    var corps="Bonjour, "+n+" ("+t+")."+(d?" "+d:"");
+    document.getElementById("ret").textContent=
+      "Votre application de messages s'ouvre avec la demande préremplie. "
+      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
+    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+  });
+})();
+
+
+</script>
+</body>
+</html>
