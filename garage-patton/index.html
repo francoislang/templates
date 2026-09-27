@@ -6,827 +6,597 @@
 <title>Garage Patton — entretien et réparation mécanique à Rennes</title>
 <meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
 <meta name="theme-color" content="#101A2E">
-<link rel="canonical" href="https://francoislang.github.io/templates/garage-patton/">
-
-<meta property="og:type" content="website">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="Garage Patton">
-<meta property="og:title" content="Garage Patton — entretien et réparation mécanique à Rennes">
-<meta property="og:description" content="Garage indépendant à Rennes : entretien courant et réparation mécanique. Ouvert du lundi au vendredi.">
-<meta property="og:url" content="https://francoislang.github.io/templates/garage-patton/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Garage Patton — entretien et réparation mécanique à Rennes">
-<meta name="twitter:description" content="Garage indépendant à Rennes : entretien courant et réparation mécanique. Ouvert du lundi au vendredi.">
-<meta name="twitter:url" content="https://francoislang.github.io/templates/garage-patton/">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23101A2E'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23E67E3D' stroke-width='2.4'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23E67E3D'/%3E%3C/svg%3E">
-
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===========================================================
-   Garage Patton — proposition de site vitrine, fichier unique.
-   Aucune information non verifiee n'est affirmee dans la page.
-   =========================================================== */
 :root{
-  /* couleurs — accent cuivre plutot que jaune securite : bleu nuit + jaune
-     est la palette de toutes les chaines de pneumatiques, ce qui contredit
-     exactement ce que ce garage a a vendre. */
-  --encre:#101A2E;
-  --encre-2:#1A2843;
-  --cuivre:#E67E3D;          /* sur fond sombre — 6,13:1 */
-  --cuivre-sombre:#9C4712;   /* sur fond clair  — 6,32:1 */
-  --brume:#93A1BC;
-  --brume-clair:#C9D3E6;
-  --papier:#F6F8FB;
-  --papier-2:#E9EEF6;
-  --bord:#D2DAE8;
-  --bord-sombre:#2C3B5C;
-  --bord-fantome:#526AA8;    /* 3,30:1 sur l'encre */
-  --texte:#3F4C63;
-  --texte-2:#5B6880;
-  --gris-champ:#667488;      /* placeholder — 4,75:1 */
-  --blanc:#fff;
-
-  /* espacement — echelle de 4 px, plus de valeurs au cas par cas */
-  --sp-1:4px;  --sp-2:8px;  --sp-3:12px; --sp-4:16px; --sp-5:24px;
-  --sp-6:32px; --sp-7:48px; --sp-8:64px; --sp-9:96px; --sp-10:128px;
-  --pas:clamp(var(--sp-8),7.5vw,var(--sp-10));
-
-  /* typographie — un palier distinct pour les titres de carte, qui
-     partageaient auparavant la taille du corps de texte */
-  --fs-2xs:12px; --fs-xs:14px; --fs-sm:15px; --fs-base:17px; --fs-md:19px;
-  --fs-lg:22px;
-
-  --large:1120px;
-  --r:16px;
-  --r-s:10px;
-  --ombre:0 2px 5px rgba(0,0,0,.09);
+  /* jetons repris par l'identite visuelle injectee */
+  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
+  --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
+  --bord-fantome:#526AA8;
+  /* le « champ » est l'aplat de marque : il suit l'encre, donc l'identite */
+  --champ:var(--encre);
+  --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#fff;
+  --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
+  --r:16px; --r-s:10px;
+  /* ombre portee franche, sans flou : c'est elle qui donne le rebond au
+     survol du modele, et elle ne declenche pas la regle « lueur coloree »
+     puisqu'elle est decalee et neutre */
+  --ombre-dure:5px 5px 0 var(--encre);
+  --ombre-dure-s:3px 3px 0 var(--encre);
+  --res:cubic-bezier(.22,1,.36,1);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --large:1200px;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{
-  margin:0;font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
-  font-size:var(--fs-base);line-height:1.62;color:var(--encre);background:var(--blanc);
-  -webkit-font-smoothing:antialiased;overflow-x:clip;
-}
-img,svg{max-width:100%;height:auto;display:block}
-a{color:inherit}
-h1,h2,h3{margin:0;line-height:1.12;letter-spacing:-.022em;font-weight:800}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+body{margin:0;background:var(--creme);color:var(--encre);overflow-x:clip;
+  font:17px/1.6 'Archivo',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.04;letter-spacing:-.035em;font-weight:800}
 p{margin:0}
-ul{margin:0;padding:0;list-style:none}
-:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:5px}
-/* sur les panneaux clairs, le cuivre ne contraste pas assez pour un contour */
-.form :focus-visible,.perso :focus-visible,.sec--gris :focus-visible{outline-color:var(--encre)}
-svg[stroke-width]{stroke-width:2}
-
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:6px}
 .env{width:100%;max-width:var(--large);margin-inline:auto}
-.hdr,.hero,.band,.sec,.perso,.pied{padding-inline:var(--sp-5)}
-@media (min-width:760px){.hdr,.hero,.band,.sec,.perso,.pied{padding-inline:var(--sp-6)}}
-.sec{padding-block:var(--pas)}
-section[id],main[id]{scroll-margin-top:86px}
-main:focus{outline:none}
-.sec--sombre{background:var(--encre);color:var(--brume-clair)}
-.sec--gris{background:var(--papier)}
-/* couture entre deux sections claires : surpiqure, pas juste un aplat */
-.sec + .sec{position:relative}
-.sec + .sec::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
-  background-image:repeating-linear-gradient(90deg,var(--bord) 0 6px,transparent 6px 12px)}
-.sec--sombre + .sec::before,.sec + .sec--sombre::before{display:none}
+.saut{position:absolute;left:0;top:0;transform:translateY(-200%);z-index:200;
+  background:var(--cuivre);color:var(--txt-accent);padding:12px 20px;
+  font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
+.saut:focus{transform:translateY(0)}
 
-.saut{position:absolute;left:-9999px;top:0;z-index:200;background:var(--cuivre);
-  color:#1A1002;padding:var(--sp-3) var(--sp-5);font-weight:700;border-radius:0 0 10px 0}
-.saut:focus{left:0}
-
-.surt{display:inline-flex;align-items:center;gap:var(--sp-3);font-size:var(--fs-2xs);
-  font-weight:800;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--cuivre-sombre);margin-bottom:var(--sp-4)}
-.sec--sombre .surt{color:var(--cuivre)}
-.surt::before{content:"";width:24px;height:3px;background:currentColor;border-radius:2px}
-.h2{font-size:clamp(28px,4.2vw,44px);max-width:20ch}
-.sec--sombre .h2{color:var(--blanc)}
-.chapo{margin-top:var(--sp-4);max-width:62ch;font-size:clamp(16.5px,1.9vw,var(--fs-md));
-  color:var(--texte)}
-.sec--sombre .chapo{color:var(--brume)}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-3);
-  padding:15px var(--sp-6);border-radius:var(--r-s);font-weight:800;font-size:16px;
-  text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;
-  transition:transform .16s ease,background-color .16s ease,border-color .16s ease}
-.btn:hover{transform:translateY(-2px)}
+/* ---- boutons ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px var(--s5);border-radius:var(--r-s);font-weight:800;font-size:16px;
+  text-decoration:none;border:2px solid transparent;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  transition:transform .18s ease,background-color .18s ease,
+    border-color .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translate(-2px,-2px)}
 @media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
-.btn--c{background:var(--cuivre);color:#1A1002}
-.btn--c:hover{background:#FF9452}
-.btn--f{border-color:var(--bord-fantome);color:var(--blanc)}
-.btn--f:hover{border-color:var(--brume-clair)}
-.btn--s{background:var(--encre);color:var(--blanc)}
-.btn--l{width:100%}
-.btn--p{padding:11px var(--sp-5);font-size:var(--fs-xs)}
-
-.hdr{position:sticky;top:0;z-index:100;background:rgba(16,26,46,.94);
-  backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.09)}
-.hdr__in{display:flex;align-items:center;gap:var(--sp-5);height:70px}
-.mq{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--blanc);flex:none}
-.mq__n{font-weight:800;font-size:var(--fs-md);letter-spacing:-.02em;line-height:1}
-/* Le logo suit la variante : sans ca, les couleurs codees en dur dans le SVG
-   restent orange quelle que soit l'identite appliquee. */
-.mq svg rect{fill:var(--cuivre)}
-.mq svg circle,.mq svg path{stroke:var(--encre)}
-.mq svg circle:last-of-type{fill:var(--encre);stroke:none}
-.mq__s{display:block;font-size:11.5px;font-weight:700;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--brume);margin-top:3px}
-.nav{display:none;margin-left:auto;gap:26px}
-@media (min-width:1020px){.nav{display:flex}}
-.nav a{text-decoration:none;color:var(--brume-clair);font-size:var(--fs-sm);font-weight:600;
-  padding:var(--sp-2) 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
-.nav a:hover{color:var(--blanc);border-color:var(--cuivre)}
-.hdr__tel{margin-left:auto;display:none}
-@media (min-width:1020px){.hdr__tel{display:inline-flex;margin-left:0}}
-
-/* barre d'action fixe — le parcours « j'ai creve » tient en un geste */
-.bmob{position:fixed;left:0;right:0;bottom:0;z-index:110;display:grid;
-  grid-template-columns:3fr 2fr;gap:var(--sp-3);
-  padding:var(--sp-3) var(--sp-4) calc(var(--sp-3) + env(safe-area-inset-bottom));
-  background:rgba(16,26,46,.97);backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.11)}
-.bmob .btn{padding:13px var(--sp-2);font-size:var(--fs-sm)}
-@media (min-width:1020px){.bmob{display:none}}
-/* le corps doit reserver la MEME hauteur que la barre, safe-area comprise,
-   sinon le pied de page passe dessous sur les iPhone a encoche */
-@media (max-width:1019px){body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}}
-
-/* ---- heros ---- */
-.hero{position:relative;background:var(--encre);color:var(--blanc);overflow:hidden}
-.hero__tread{position:absolute;inset:0;pointer-events:none;opacity:.7;
-  background-image:repeating-radial-gradient(circle at 88% 6%,
-    rgba(255,255,255,.09) 0 2px,transparent 2px 18px);
-  mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%);
-  -webkit-mask-image:radial-gradient(62% 62% at 88% 6%,#000 55%,transparent 80%)}
-.hero__in{position:relative;padding-block:clamp(var(--sp-7),7vw,88px) clamp(56px,8vw,var(--sp-9))}
-.hero__g{display:grid;gap:var(--sp-7);align-items:center}
-@media (min-width:980px){.hero__g{grid-template-columns:1.1fr .9fr;gap:56px}}
-.hero h1{font-size:clamp(33px,5.8vw,58px);letter-spacing:-.034em;
-  margin-block:var(--sp-5) var(--sp-5);color:var(--blanc);text-wrap:balance}
-.hero h1 em{font-style:normal;color:var(--cuivre)}
-.hero__t{font-size:clamp(var(--fs-base),2vw,var(--fs-md));color:var(--brume);max-width:52ch}
-.urgence{display:inline-flex;align-items:center;gap:var(--sp-2);margin-top:var(--sp-5);
-  background:rgba(230,126,61,.13);border:1px solid rgba(230,126,61,.45);color:var(--cuivre);
-  font-weight:700;font-size:var(--fs-xs);padding:9px var(--sp-4);border-radius:999px}
-.urgence svg{flex:none}
-.hero__a{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
-.hero__a .btn{flex:1 1 220px}
-@media (min-width:560px){.hero__a .btn{flex:0 0 auto}}
-
-.gnote{display:inline-flex;align-items:center;gap:var(--sp-3);padding:9px var(--sp-4) 9px var(--sp-3);
-  border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);
-  font-size:var(--fs-xs);font-weight:600;color:var(--brume-clair)}
-.gnote b{color:var(--blanc);font-weight:800}
-.et{display:flex;gap:2px;color:var(--cuivre);flex:none}
-
-.rass{display:flex;flex-wrap:wrap;gap:var(--sp-2) var(--sp-5);margin-top:var(--sp-6);
-  padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,.1)}
-.rass li{display:flex;align-items:center;gap:9px;font-size:var(--fs-xs);font-weight:600;
-  color:var(--brume-clair)}
-.rass svg{color:var(--cuivre);flex:none}
-
-.cart{background:linear-gradient(168deg,var(--encre-2),#152340);
-  border:1px solid var(--bord-sombre);border-radius:var(--r);
-  padding:clamp(var(--sp-5),3.2vw,var(--sp-6))}
-.cart h2{font-size:26px;color:var(--blanc);padding-bottom:var(--sp-4);
-  border-bottom:1px solid var(--bord-sombre)}
-.cart dl{margin:0}
-.cart div{display:flex;justify-content:space-between;gap:var(--sp-4);align-items:baseline;
-  padding:var(--sp-4) 0;border-bottom:1px dashed rgba(255,255,255,.12)}
-.cart div:last-child{border-bottom:0;padding-bottom:0}
-.cart dt{color:var(--brume-clair);font-size:var(--fs-sm);font-weight:600}
-.cart dd{margin:0;color:var(--blanc);font-weight:800;text-align:right;font-size:var(--fs-sm);
-  font-variant-numeric:tabular-nums}
-.cart dd small{display:block;font-weight:500;font-size:12.5px;color:var(--brume);margin-top:2px}
-
-/* ---- bandeau ---- */
-.band{background:var(--cuivre);color:#1A1002}
-.band__in{display:grid;gap:var(--sp-5);padding-block:var(--sp-6);
-  grid-template-columns:repeat(2,minmax(0,1fr))}
-@media (min-width:840px){.band__in{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.band dt{font-size:clamp(20px,3vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.05;
-  font-variant-numeric:tabular-nums}
-.band dd{margin:var(--sp-2) 0 0;font-size:13.5px;font-weight:700;line-height:1.4}
-.band a{text-decoration:none;border-bottom:2px solid rgba(26,16,2,.35)}
-.band a:hover{border-color:#1A1002}
-
-/* ---- cartes ---- */
-.grid{display:grid;gap:18px;margin-top:var(--sp-6);grid-template-columns:1fr}
-@media (min-width:680px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (min-width:1000px){.grid--4{grid-template-columns:repeat(4,1fr)}}
-@media (min-width:900px){.grid--3{grid-template-columns:repeat(3,1fr)}}
-.card{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
-  padding:28px var(--sp-5);min-width:0;
-  display:grid;grid-template-columns:auto 1fr;column-gap:14px;align-content:start;
-  transition:transform .18s ease,box-shadow .18s ease,border-color .18s}
-.card>*{grid-column:1/-1}
-.card .card__i{grid-column:1;grid-row:1}
-.card h3{grid-column:2;grid-row:1;align-self:center}
-.card:hover{transform:translateY(-3px);box-shadow:var(--ombre);border-color:#B6C2D6}
-@media (prefers-reduced-motion:reduce){.card:hover{transform:none}}
-.card h3{font-size:20px;letter-spacing:-.012em;margin-bottom:0}
-.card p{color:var(--texte);font-size:var(--fs-sm);line-height:1.55;margin-top:14px}
-.card__i{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
-  background:var(--encre);color:var(--cuivre);border:1px solid var(--bord-sombre)}
-.card__i svg{width:22px;height:22px}
-.tags{margin-top:var(--sp-4);display:flex;flex-wrap:wrap;gap:7px}
-.tags li{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
-  background:var(--papier);color:var(--texte);border:1px solid var(--bord)}
-
-/* ---- pneus ---- */
-.pneus{display:grid;gap:var(--sp-3);margin-top:var(--sp-6);grid-template-columns:repeat(2,1fr)}
-@media (max-width:379px){.pneus{grid-template-columns:1fr}}
-@media (min-width:780px){.pneus{grid-template-columns:repeat(3,1fr)}}
-.pneu{display:flex;gap:var(--sp-3);align-items:flex-start;padding:var(--sp-5) 20px;
-  border-radius:var(--r-s);background:var(--encre-2);border:1px solid var(--bord-sombre);
-  min-width:0}
-.pneu svg{width:18px;height:18px;color:var(--cuivre);flex:none;margin-top:3px}
-.pneu span{min-width:0;overflow-wrap:break-word;word-break:break-word}
-.pneu b{display:block;color:var(--blanc);font-size:var(--fs-sm);margin-bottom:3px}
-.pneu em{font-style:normal;font-size:var(--fs-xs);color:var(--brume)}
-.pneu--phare{background:linear-gradient(150deg,#2A2013,var(--encre-2));
-  border-color:rgba(230,126,61,.5)}
-
-/* ---- planches techniques (les emplacements photo, assumes) ---- */
-/* Quatre planches de meme format, comme une serie dans un manuel d'atelier.
-   Une mise en page asymetrique desalignait les colonnes des que le rapport
-   d'image de la grande case differait de la somme des deux rangees. */
-.cls{display:grid;gap:var(--sp-3);margin-top:var(--sp-6);grid-template-columns:repeat(2,1fr)}
-@media (min-width:900px){.cls{grid-template-columns:repeat(4,1fr)}}
-/* width:100% est indispensable : sans elle, `aspect-ratio` deduit la largeur
-   de la hauteur du contenu au lieu de prendre celle de la colonne, et les
-   planches se retrouvent deux fois trop petites. */
-/* margin:0 est indispensable : <figure> porte une marge de 40 px par defaut
-   dans les navigateurs, qui decalait toute la grille hors de son conteneur. */
-.cl{margin:0;position:relative;width:100%;border-radius:var(--r);overflow:hidden;
-  background:var(--papier);border:1px solid var(--bord);aspect-ratio:4/3;
-  display:grid;place-items:center}
-
-.cl img{width:100%;height:100%;object-fit:cover}
-.cl::before,.cl::after{content:"";position:absolute;width:14px;height:14px;
-  border:2px solid var(--cuivre-sombre);opacity:.5;pointer-events:none}
-.cl::before{top:9px;left:9px;border-right:0;border-bottom:0}
-.cl::after{bottom:9px;right:9px;border-left:0;border-top:0}
-.cl__v{width:100%;height:100%;display:grid;place-items:center;padding:var(--sp-4);
-  background-image:linear-gradient(rgba(16,26,46,.045) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(16,26,46,.045) 1px,transparent 1px);background-size:22px 22px}
-.cl__v svg{width:min(62%,180px);color:#8494AC;margin-top:14px}
-.cl__e{position:absolute;left:var(--sp-5);top:var(--sp-4);font-size:12px;font-weight:800;
-  letter-spacing:.13em;text-transform:uppercase;color:var(--blanc);background:var(--encre);
-  padding:4px 9px;border-radius:4px;font-variant-numeric:tabular-nums;white-space:nowrap}
-
-/* ---- avis ---- */
-.note-bloc{margin-top:var(--sp-6);display:grid;gap:var(--sp-5);align-items:center;
-  background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
-  padding:clamp(var(--sp-5),3.5vw,var(--sp-7))}
-@media (min-width:760px){.note-bloc{grid-template-columns:auto 1fr;gap:var(--sp-7)}}
-.note-chiffre{text-align:center}
-.note-chiffre b{display:block;font-size:clamp(52px,7vw,76px);font-weight:800;line-height:1;
-  letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.note-chiffre span{display:block;font-size:var(--fs-xs);font-weight:700;color:var(--texte-2);
-  margin-top:var(--sp-2)}
-/* display:flex explicite : la regle `.note-chiffre span{display:block}`
-   ci-dessus s'applique aussi a ce span et empilait les etoiles a la verticale */
-.note-chiffre .et{display:flex;justify-content:center;margin-top:var(--sp-3);
-  color:var(--cuivre-sombre)}
-.note-txt p{color:var(--texte);font-size:16px}
-.note-txt{max-width:66ch}
-.note-txt p + p{margin-top:var(--sp-3)}
-.note-slot{margin-top:var(--sp-4);max-width:66ch;padding:var(--sp-4) var(--sp-5);border-radius:var(--r-s);
-  border:1px dashed var(--bord);background:var(--papier);font-size:var(--fs-sm);
-  color:var(--texte-2)}
-.note-slot b{color:var(--encre)}
-
-/* ---- contact ---- */
-.tete{display:grid;gap:var(--sp-4)}
-@media (min-width:1000px){.tete{grid-template-columns:1.02fr .98fr;
-  column-gap:56px;align-items:end}}
-.tete .h2{max-width:22ch;margin:0;text-wrap:balance}
-.tete .chapo{margin:0;max-width:54ch}
-
-/* ---- horaires et acces ---- */
-.duo--at{margin-top:var(--sp-7)}
-@media (min-width:900px){.duo--at{grid-template-columns:1fr 1fr;gap:var(--sp-6);
-  align-items:stretch}}
-.duo.duo--at{align-items:stretch}
-.duo--at .pan{display:flex;flex-direction:column}
-.duo--at .pan__n{margin-top:auto;padding-top:var(--sp-5)}
-.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
-  padding:clamp(var(--sp-5),3vw,var(--sp-6))}
-.pan__t{font-size:20px;letter-spacing:-.01em}
-.etat{margin-top:var(--sp-3);font-weight:800;font-size:var(--fs-base)}
-.etat--oui{color:#18653F}
-.etat--non{color:var(--texte-2)}
-.hor{margin:var(--sp-5) 0 0;border-top:1px solid var(--bord)}
-.hor>div{display:flex;justify-content:space-between;gap:var(--sp-4);
-  padding:11px 0;border-bottom:1px solid var(--bord);font-size:var(--fs-sm)}
-.hor dt{color:var(--texte);font-weight:600}
-.hor dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
-.hor .hor--off dd{font-weight:600;color:var(--texte-2)}
-.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
-.adr{margin-top:var(--sp-3);font-style:normal;font-size:var(--fs-md);
-  font-weight:700;line-height:1.5}
-.pan__a{display:flex;flex-wrap:wrap;gap:var(--sp-3);margin-top:var(--sp-5)}
-.pan__a .btn{flex:1 1 190px}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--c:hover{filter:brightness(1.05);box-shadow:var(--ombre-dure)}
+.btn--o:hover{box-shadow:var(--ombre-dure-s)}
+.btn--f{border-color:rgba(255,255,255,.34);color:#fff}
+.btn--f:hover{border-color:#fff}
 .btn--o{border-color:var(--bord);color:var(--encre)}
 .btn--o:hover{border-color:var(--encre)}
-.pan__n{margin-top:var(--sp-5);font-size:var(--fs-sm);color:var(--texte-2);
-  max-width:46ch}
 
-.duo{display:grid;gap:var(--sp-7);margin-top:var(--sp-6)}
-@media (min-width:980px){.duo{grid-template-columns:.95fr 1.05fr;gap:56px;align-items:start}}
-.inf>div{display:flex;gap:var(--sp-4);padding:var(--sp-5) 0;
-  border-bottom:1px solid rgba(255,255,255,.1)}
-.inf>div:last-child{border-bottom:0}
-.inf>div>svg{width:21px;height:21px;color:var(--cuivre);flex:none;margin-top:3px}
-.inf dl{margin:0;min-width:0}
-.inf dt{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--brume);margin-bottom:5px}
-.inf dd{margin:0;color:var(--blanc);font-weight:700;font-size:16.5px;line-height:1.5}
-.inf dd a[href^="tel"]:not(.btn){color:var(--blanc);text-decoration:none;display:inline-block;
-  padding-block:var(--sp-1);border-bottom:1px solid rgba(255,255,255,.32)}
-.inf dd a[href^="tel"]:not(.btn):hover{border-color:var(--cuivre)}
-.inf dd small{display:block;font-weight:500;font-size:var(--fs-xs);color:var(--brume);
-  margin-top:var(--sp-1)}
+/* ---- barre ---- */
+.hdr{position:sticky;top:0;z-index:60;background:var(--champ);
+  padding:0 var(--s5);border-bottom:1px solid rgba(255,255,255,.12)}
+@media (min-width:760px){.hdr{padding:0 var(--s6)}}
+.hdr__in{max-width:var(--large);margin-inline:auto;display:flex;
+  align-items:center;gap:var(--s5);min-height:72px}
+.mq{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;flex:none}
+.mq__s{width:38px;height:38px;border-radius:9px;background:var(--cuivre);
+  display:grid;place-items:center;color:var(--txt-accent);flex:none}
+.mq__s svg{width:21px;height:21px}
+.mq__n{font-weight:800;font-size:18px;letter-spacing:-.025em;line-height:1.1}
+.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.1em;
+  color:var(--brume-clair);margin-top:2px}
+.nav{display:none;margin-left:auto;gap:var(--s5)}
+@media (min-width:1000px){.nav{display:flex}}
+.nav a{color:var(--brume-clair);text-decoration:none;font-size:15px;font-weight:600;
+  padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover{color:#fff;border-color:var(--cuivre)}
+.hdr__tel{display:none;margin-left:auto;align-items:center;gap:9px;color:#fff;
+  text-decoration:none;font-weight:800;font-size:16px;white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+@media (min-width:1000px){.hdr__tel{display:inline-flex;margin-left:0}}
+.hdr__tel:hover{color:var(--cuivre)}
+/* sous 560 px l'appel a l'action du bandeau depasse la fenetre : la
+   barre fixe du bas porte deja les deux actions */
+.hdr .btn{display:none}
+@media (min-width:560px){.hdr .btn{display:inline-flex;margin-left:auto;
+  padding:11px 18px;min-height:44px;font-size:15px}}
+@media (min-width:1000px){.hdr .btn{margin-left:0}}
 
-.form{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
-  padding:clamp(var(--sp-5),3.2vw,var(--sp-6));box-shadow:var(--ombre)}
-.ch{display:grid;gap:var(--sp-4)}
-@media (min-width:600px){.ch--2{grid-template-columns:1fr 1fr}}
-.f{display:flex;flex-direction:column;gap:7px;min-width:0}
-.f label{font-size:13.5px;font-weight:700;color:#37445C}
-.f label span{color:var(--cuivre-sombre)}
-.f input,.f select,.f textarea{font-family:inherit;font-size:16px;color:var(--encre);
-  padding:13px 15px;border:1.5px solid var(--bord);border-radius:var(--r-s);
-  background:var(--blanc);width:100%;transition:border-color .15s,box-shadow .15s}
-.f textarea{resize:vertical;min-height:104px}
-.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-color:var(--encre);
-  box-shadow:0 0 0 3px rgba(0,0,0,.13)}
-.f input::placeholder,.f textarea::placeholder{color:var(--gris-champ)}
-.rgpd{display:flex;gap:var(--sp-3);align-items:flex-start;font-size:13.5px;
-  color:var(--texte-2);margin-top:var(--sp-4)}
-.rgpd input{width:24px;height:24px;flex:none;margin-top:1px;accent-color:var(--encre)}
-.fnote{font-size:13.5px;color:var(--texte-2)}
-.fret{margin-top:var(--sp-4);padding:var(--sp-4);border-radius:var(--r-s);font-size:var(--fs-xs);
-  font-weight:600;display:none;line-height:1.55}
-.fret a{color:inherit;font-weight:800}
-.fret--info{display:block;background:#F4EDE6;color:#6B3A12;border:1px solid #E4D2C1}
-.fret--ko{display:block;background:#FBEAE8;color:#8F2A22;border:1px solid #F0CCC7}
+/* ---- ouverture ---- */
+.ouv{background:var(--champ);color:#fff;padding:var(--s7) var(--s5) var(--s8);
+  position:relative;overflow:hidden}
+@media (min-width:760px){.ouv{padding:var(--s8) var(--s6) var(--s9)}}
+.hero__tread{position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:repeating-radial-gradient(circle at 88% 4%,
+    rgba(255,255,255,.08) 0 2px,transparent 2px 19px);
+  mask-image:radial-gradient(60% 60% at 88% 4%,#000 55%,transparent 82%);
+  -webkit-mask-image:radial-gradient(60% 60% at 88% 4%,#000 55%,transparent 82%)}
+.ouv__in{position:relative;max-width:var(--large);margin-inline:auto;
+  display:grid;gap:var(--s7)}
+@media (min-width:980px){.ouv__in{grid-template-columns:1.06fr .94fr;
+  gap:var(--s8);align-items:center}}
+.surt{font-size:16px;font-weight:600;color:var(--brume-clair)}
+.surt b{font-weight:800;color:var(--cuivre)}
+.ouv h1{font-size:clamp(42px,7.4vw,78px);margin-top:var(--s5);max-width:11ch;
+  font-weight:900;letter-spacing:-.045em}
+.ouv h1 em{font-style:normal;color:var(--cuivre);display:block}
+.ouv__t{margin-top:var(--s5);font-size:18.5px;color:var(--brume-clair);max-width:44ch}
+.ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.ouv__a .btn{flex:1 1 210px}
 
-/* ---- bloc de travail ---- */
-/* Le bon de travail n'est PAS destine au prospect. Il est masque par defaut
-   et ne s'affiche qu'avec ?notes dans l'URL. Si le JS ne tourne pas, il reste
-   masque : c'est le bon sens du repli, on ne montre jamais par accident. */
-.perso{display:none;background:#FBEEE0;border-top:3px solid var(--cuivre-sombre)}
-.perso.ouvert{display:block}
-.perso__url{margin-top:var(--sp-5);font-family:ui-monospace,'SFMono-Regular',Menlo,monospace;
-  font-size:13px;color:#8F4310;background:rgba(255,255,255,.7);border:1px dashed #E0BE97;
-  border-radius:var(--r-s);padding:var(--sp-3) var(--sp-4);display:inline-block}
-.perso__in{padding-block:clamp(var(--sp-7),5vw,var(--sp-8))}
-.perso h2{font-size:clamp(23px,3vw,31px);color:#3A2200}
-.perso__c{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:800;
-  letter-spacing:.04em;color:var(--cuivre-sombre);
-  margin-bottom:var(--sp-3);font-family:ui-monospace,'SFMono-Regular',Menlo,monospace}
-.perso p{color:#5C3B14;max-width:70ch;margin-top:var(--sp-3)}
-.perso ul{margin-top:var(--sp-5);display:grid;gap:var(--sp-3)}
-@media (min-width:800px){.perso ul{grid-template-columns:repeat(2,1fr)}}
-.perso li{background:rgba(255,255,255,.78);border:1px solid #F0D2B8;border-radius:var(--r-s);
-  padding:var(--sp-4) 19px;font-size:var(--fs-sm);color:#5C3B14}
-.perso li b{display:block;font-size:var(--fs-sm);color:#2E1D00;margin-bottom:var(--sp-1)}
-.perso li em{font-style:normal;color:#8F4310}
-
-.pied{background:#0A1222;color:var(--brume);padding-block:var(--sp-7) var(--sp-5);font-size:var(--fs-sm)}
-.pied__h{display:grid;gap:30px}
-@media (min-width:820px){.pied__h{grid-template-columns:1.6fr 1fr 1fr}}
-.pied h3{color:var(--blanc);font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
-  margin-bottom:var(--sp-3);font-weight:800}
-.pied a{color:var(--brume);text-decoration:none;display:inline-block;padding-block:var(--sp-2)}
-.pied a:hover{color:var(--cuivre)}
-.pied__b{margin-top:var(--sp-6);padding-top:var(--sp-5);border-top:1px solid rgba(255,255,255,.09);
-  display:flex;flex-wrap:wrap;gap:var(--sp-3) var(--sp-5);justify-content:space-between;font-size:13px}
-
-/* Apparition au defilement : le contenu est VISIBLE par defaut. L'animation
-   n'est armee que si le JS tourne, sinon une capture, un robot ou un
-   navigateur sans JS affiche une page aux sections vides. */
-.js .app{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-.js .app.vu{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.js .app{opacity:1;transform:none;transition:none}}
-@media print{.hdr,.bmob,.hero__halo,.hero__tread{display:none!important}
-  body{color:#000;background:#fff;padding-bottom:0}}
-/* Identite « basalte-corail » */
-:root{
-  --encre:#111127;
-  --encre-2:#1C1C3B;
-  --cuivre:#ED6A5B;
-  --cuivre-sombre:#DA200B;
-  --txt-accent:#1A1002;
-  --brume:#8787AB;
-  --brume-clair:#B4B4CF;
-  --bord-fantome:#5D5DA8;
+/* la fiche inclinee : meme dispositif que le modele, mais elle n'affiche
+   que des faits releves — horaires, adresse, numero, etat du moment */
+.fiche{background:var(--creme);color:var(--encre);border-radius:var(--r);
+  padding:var(--s5);box-shadow:0 14px 26px -18px rgba(0,0,0,.5)}
+@media (min-width:980px){
+  .fiche{transform:rotate(-1.6deg);padding:var(--s6);
+    transition:transform .3s var(--res),box-shadow .3s ease}
+  .fiche:hover{transform:rotate(0deg);box-shadow:0 18px 30px -18px rgba(0,0,0,.55)}
+  .fiche{animation:pose .42s var(--res) both}
 }
-.btn--c{background:var(--cuivre);color:#1A1002}
-.saut{background:var(--cuivre);color:#1A1002}
-.band{background:var(--cuivre);color:#1A1002}
-.hero__tread{background-image:radial-gradient(rgba(255,255,255,.10) 1.4px,transparent 1.4px);
-  background-size:26px 26px;
-  mask-image:radial-gradient(105% 85% at 86% 8%,#000 20%,transparent 74%);
-  -webkit-mask-image:radial-gradient(105% 85% at 86% 8%,#000 20%,transparent 74%)}
+@keyframes pose{
+  from{transform:rotate(-9deg) scale(1.06);opacity:0}
+  to{transform:rotate(-1.6deg) scale(1);opacity:1}
+}
+.fiche__t{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s4);padding-bottom:var(--s4);border-bottom:2px solid var(--encre)}
+.fiche__t b{font-size:15px;font-weight:800;letter-spacing:.02em}
+.fiche__j{font-size:12.5px;font-weight:800;color:var(--cuivre-sombre);
+  border:1px solid var(--cuivre-sombre);border-radius:999px;padding:4px 11px;
+  white-space:nowrap}
+.fiche dl{margin:0}
+.fiche dl>div{display:flex;justify-content:space-between;align-items:baseline;
+  gap:var(--s4);padding:13px 0;border-bottom:1px dashed var(--bord)}
+.fiche dl>div:last-child{border-bottom:0;padding-bottom:0}
+.fiche dt{font-size:14.5px;color:var(--texte-2);font-weight:600}
+.fiche dd{margin:0;font-weight:800;font-size:16px;text-align:right;
+  font-variant-numeric:tabular-nums}
+.fiche dd small{display:block;font-weight:600;font-size:13px;color:var(--texte-2);
+  margin-top:2px}
+.fiche__p{margin-top:var(--s5);padding-top:var(--s4);border-top:2px solid var(--encre);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4)}
+.fiche__p span{font-size:13.5px;color:var(--texte-2)}
+.fiche__p b{font-size:19px;font-variant-numeric:tabular-nums}
+
+/* ---- bandeau de faits ---- */
+.faits{background:var(--encre-2);color:#fff;padding:var(--s7) var(--s5)}
+@media (min-width:760px){.faits{padding:var(--s7) var(--s6)}}
+.faits__in{max-width:var(--large);margin-inline:auto}
+.faits__g{display:grid;gap:var(--s5)}
+@media (min-width:720px){.faits__g{grid-template-columns:repeat(3,1fr);gap:var(--s6)}}
+.faits__g>div{padding-left:var(--s5);border-left:1px solid rgba(255,255,255,.18)}
+.faits__g b{display:block;font-size:clamp(30px,4.4vw,44px);font-weight:900;
+  letter-spacing:-.04em;line-height:1.05}
+.faits__g b i{font-style:normal;color:var(--cuivre)}
+.faits__g span{display:block;margin-top:10px;font-size:15px;color:var(--brume-clair)}
+.puces{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s6)}
+.puces li{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:650;
+  color:var(--brume-clair);border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;padding:8px 15px}
+.puces svg{width:15px;height:15px;color:var(--cuivre);flex:none}
+.puces{list-style:none;margin-bottom:0;padding:0}
+
+/* ---- sections claires ---- */
+.sec{padding:var(--s8) var(--s5)}
+@media (min-width:760px){.sec{padding:var(--s9) var(--s6)}}
+.sec--fonce{background:var(--champ);color:#fff}
+.sec__in{max-width:var(--large);margin-inline:auto}
+.tete{display:grid;gap:var(--s4)}
+@media (min-width:1000px){.tete{grid-template-columns:1.04fr .96fr;
+  column-gap:56px;align-items:end}}
+.tete h2{font-size:clamp(32px,5vw,52px);max-width:14ch;font-weight:900;
+  letter-spacing:-.04em;text-wrap:balance}
+.chapo{font-size:18px;color:var(--texte);max-width:52ch}
+.sec--fonce .chapo{color:var(--brume-clair)}
+
+/* ---- registre ---- */
+.reg{list-style:none;margin:var(--s7) 0 0;padding:0;counter-reset:r}
+.reg li{counter-increment:r;display:grid;gap:var(--s3);padding:var(--s5) 0;
+  border-top:1px solid var(--bord);align-items:start}
+@media (min-width:820px){.reg li{grid-template-columns:54px 62px 1fr 210px;
+  gap:var(--s5);align-items:center}}
+.reg li:last-child{border-bottom:1px solid var(--bord)}
+@media (min-width:820px){
+  .reg li{padding-inline:var(--s4);border-radius:var(--r-s);
+    transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease}
+  .reg li:hover{background:var(--blanc);transform:translate(-2px,-2px);
+    box-shadow:var(--ombre-dure-s);position:relative;z-index:1}
+  .reg li:hover .reg__q{transform:rotate(-4deg) scale(1);opacity:1}
+  .reg__q{transform:rotate(-4deg) scale(.86);opacity:.55;
+    transition:transform .3s var(--res),opacity .3s ease;transform-origin:right center}
+}
+@media (prefers-reduced-motion:reduce){
+  .reg__q{transform:none;opacity:1}
+  .fiche{animation:none}
+}
+.reg__n{font-size:14px;font-weight:800;color:var(--texte-2);
+  font-variant-numeric:tabular-nums}
+.reg__n::before{content:"0" counter(r)}
+.reg__i{width:50px;height:50px;border-radius:12px;background:var(--champ);
+  color:var(--cuivre);display:grid;place-items:center}
+.reg__i svg{width:25px;height:25px}
+.reg h3{font-size:21px;letter-spacing:-.02em}
+.reg p{margin-top:6px;color:var(--texte);font-size:15.5px;max-width:56ch}
+.reg__q{font-size:14.5px;font-weight:700;color:var(--cuivre-sombre);
+  text-align:left}
+@media (min-width:820px){.reg__q{text-align:right}}
+.reg__f{margin-top:var(--s5);display:flex;flex-wrap:wrap;gap:var(--s4);
+  align-items:baseline;justify-content:space-between}
+.reg__f p{color:var(--texte);font-size:15.5px}
+.reg__f a{font-weight:800;color:var(--cuivre-sombre)}
+
+/* ---- horaires et acces ---- */
+.duo{display:grid;gap:var(--s5);margin-top:var(--s7)}
+@media (min-width:900px){.duo{grid-template-columns:1fr 1fr;gap:var(--s6);
+  align-items:stretch}}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
+  padding:var(--s5);display:flex;flex-direction:column}
+@media (min-width:760px){.pan{padding:var(--s6)}}
+.pan h3{font-size:21px}
+.etat{margin-top:var(--s3);font-weight:800;font-size:17px}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;
+  background:currentColor;margin-right:9px;position:relative;vertical-align:middle}
+.pastille::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid currentColor;animation:souffle 1.8s ease-out infinite}
+@keyframes souffle{
+  from{transform:scale(1);opacity:.55}
+  to{transform:scale(2.6);opacity:0}
+}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:var(--s5) 0 0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--s4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums}
+.hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.adr{font-style:normal;margin-top:var(--s3);font-size:18px;font-weight:800;
+  line-height:1.5}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
+.pan__a .btn{flex:1 1 180px}
+.pan__n{margin-top:auto;padding-top:var(--s5);font-size:14.5px;color:var(--texte-2)}
+
+/* ---- contact ---- */
+.ctc{display:grid;gap:var(--s7);margin-top:var(--s7)}
+@media (min-width:900px){.ctc{grid-template-columns:.92fr 1.08fr;gap:var(--s8);
+  align-items:start}}
+.ctc__tel{display:inline-flex;align-items:center;gap:14px;margin-top:var(--s5);
+  font-size:clamp(30px,4.8vw,48px);font-weight:900;letter-spacing:-.045em;
+  color:var(--cuivre);text-decoration:none;font-variant-numeric:tabular-nums}
+.ctc__tel:hover{filter:brightness(1.12)}
+.ctc__l{display:flex;gap:14px;margin-top:var(--s5);align-items:flex-start}
+.ctc__l svg{width:21px;height:21px;color:var(--cuivre);flex:none;margin-top:3px}
+.ctc__l b{display:block;font-weight:800}
+.ctc__l span{color:var(--brume-clair);font-size:15px}
+.form{background:var(--creme);color:var(--encre);border:1px solid var(--bord);
+  border-radius:var(--r);padding:var(--s5)}
+@media (min-width:760px){.form{padding:var(--s6)}}
+.form h3{font-size:23px}
+.form__s{margin-top:8px;color:var(--texte-2);font-size:15px}
+.ch{display:grid;gap:var(--s4);margin-top:var(--s5)}
+@media (min-width:560px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:14px;font-weight:700}
+.f input,.f textarea{font:inherit;font-size:16px;padding:13px var(--s4);
+  border:1px solid var(--bord);border-radius:var(--r-s);background:var(--blanc);
+  color:var(--encre);width:100%}
+.f input:focus-visible,.f textarea:focus-visible{outline:3px solid var(--cuivre);
+  outline-offset:2px}
+.fret{margin-top:var(--s3);font-size:15px;font-weight:700}
+.fnote{margin-top:var(--s3);font-size:14px;color:var(--texte-2)}
+
+/* ---- pied ---- */
+.pied{background:var(--encre);color:var(--brume);padding:var(--s7) var(--s5);
+  font-size:14.5px}
+@media (min-width:760px){.pied{padding:var(--s7) var(--s6)}}
+.pied__in{max-width:var(--large);margin-inline:auto;display:flex;
+  flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+
+/* ---- barre mobile ---- */
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
+  grid-template-columns:1fr auto;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:var(--champ);border-top:1px solid rgba(255,255,255,.16)}
+.bmob .btn{padding:12px var(--s4);font-size:15px;min-height:46px}
+@media (min-width:1000px){.bmob{display:none}}
+@media (max-width:999px){body{padding-bottom:84px}}
+
+/* ---- couleur-acier.css ---- */
+/* Acier — le garage traite comme un objet industriel : aucune couleur chaude
+   nulle part. Un noir de fonte, un blanc franc, et pour seul accent l'eclat
+   froid d'un metal poli (acier brosse sur les fonds sombres, ardoise de zinc
+   sur les fonds clairs). L'accent ne se distingue jamais par sa saturation,
+   toujours par sa clarte et sa froideur ; les gris de texte, eux, restent
+   rigoureusement neutres pour ne jamais lui disputer la place. */
+:root{
+  --encre:#0C0D0E;          /* noir de fonte : bandeau, ouverture, contact */
+  --encre-2:#191B1C;        /* la meme fonte, un cran sous la lumiere */
+  --cuivre:#B4C6D0;         /* acier poli : l'accent sur les fonds sombres */
+  --cuivre-sombre:#3C5563;  /* zinc mouille : le meme accent sur fond clair */
+  --txt-accent:#0B1114;     /* texte grave dans la plaque d'acier */
+  --brume:#828282;          /* gris strictement neutre : secondaire sur sombre */
+  --brume-clair:#ABABAB;    /* gris neutre : texte courant sur sombre */
+  --bord-fantome:#66696B;   /* filet d'acier terni sur l'aplat */
+  --creme:#F2F3F3;          /* le papier : gris de tole claire, zero beige */
+  --creme-2:#E6E7E8;        /* seconde teinte : la meme tole, un ton dessous */
+  --blanc:#FFFFFF;          /* cartes : blanc franc */
+  --bord:#D6D8D9;           /* filets sur fond clair */
+  --texte:#2C2D2D;          /* texte courant : gris neutre, jamais bleute */
+  --texte-2:#575858;        /* texte discret : le meme gris, delave */
+}
+
 </style>
 </head>
 <body>
-
 <a class="saut" href="#principal">Aller au contenu</a>
 
 <header class="hdr">
-  <div class="env hdr__in">
-    <a class="mq" href="#principal" aria-label="Garage Patton, accueil">
-      <svg width="34" height="34" viewBox="0 0 32 32" aria-hidden="true">
-        <rect width="32" height="32" rx="7" fill="#E67E3D"/>
-        <circle cx="16" cy="16" r="9" fill="none" stroke="#101A2E" stroke-width="2.4"/>
-        <circle cx="16" cy="16" r="3" fill="#101A2E"/>
-      </svg>
-      <span><span class="mq__n">Garage Patton</span><span class="mq__s">Rennes</span></span>
+  <div class="hdr__in">
+    <a class="mq" href="#principal">
+      <span class="mq__s">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14.7 6.3a4 4 0 105.4 5.4l-2.6-.9-1.7 1.7-.9-2.6z"/>
+          <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
+        </svg>
+      </span>
+      <span class="mq__n">Garage Patton<span class="mq__v">Rennes · indépendant</span></span>
     </a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#prestations">Nos prestations</a>
-      <a href="#atelier">Horaires et accès</a>
+      <a href="#registre">Interventions</a>
+      <a href="#horaires">Horaires et accès</a>
       <a href="#contact">Nous contacter</a>
     </nav>
-    <a class="btn btn--c hdr__tel" href="tel:+33299361808">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
+    <a class="btn btn--c" href="#contact">Demander un rappel</a>
+    <a class="hdr__tel" href="tel:+33299361808">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-      </svg>RDV au 02 99 36 18 08
+      </svg>02 99 36 18 08
     </a>
   </div>
 </header>
 
-<main id="principal" tabindex="-1">
+<main id="principal">
 
-  <section class="hero">
-    <div class="hero__tread" aria-hidden="true"></div>
-    <div class="hero__halo" aria-hidden="true"></div>
-    <div class="env hero__in">
-      <div class="hero__g">
-        <div>
-          <p class="gnote"><b>Atelier indépendant</b> à Rennes</p>
-          <h1>Votre voiture entre les mains d'un <em>garage indépendant</em>, à Rennes.</h1>
-          <p class="hero__t">
-            Entretien courant et réparation mécanique, 157 avenue du Général
-            George S. Patton, à Rennes. Ouvert du lundi au vendredi.
-          </p>
-          <p class="urgence">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/>
-            </svg>
-            Un doute sur un bruit, un voyant ? Un appel suffit pour savoir quoi faire.
-          </p>
-          <div class="hero__a">
-            <a class="btn btn--c" href="tel:+33299361808">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-                <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-              </svg>Appeler le 02 99 36 18 08
-            </a>
-            <a class="btn btn--f" href="#contact">Obtenir un devis</a>
-          </div>
-          <ul class="rass">
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Ouvert du lundi au vendredi, sans interruption l'après-midi</li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Quartier Patton, à l'est de Rennes</li>
-            <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-              Un numéro direct, pas de standard</li>
-          </ul>
-        </div>
-
-        <aside class="cart" aria-labelledby="apercu">
-          <h2 id="apercu">En un coup d'œil</h2>
-          <dl>
-            <div><dt>Adresse</dt><dd>157 avenue du Général George S. Patton<small>35700 Rennes</small></dd></div>
-            <div><dt>Téléphone</dt><dd>02 99 36 18 08</dd></div>
-            <div><dt>Horaires</dt><dd>Lun–jeu 8h–19h<small>vendredi jusqu'à 18h30</small></dd></div>
-            <div><dt>Fermé</dt><dd>Samedi, dimanche<small>et jours fériés</small></dd></div>
-          </dl>
-        </aside>
+<section class="ouv">
+  <div class="hero__tread" aria-hidden="true"></div>
+  <div class="ouv__in">
+    <div>
+      <p class="surt"><b>Garage indépendant</b>, à l'est de Rennes</p>
+      <h1>Votre voiture chez <em>un indépendant.</em></h1>
+      <p class="ouv__t">Entretien courant et réparation mécanique, 157 avenue du
+        Général George S. Patton. Vous parlez au mécanicien qui ouvrira le capot,
+        pas à un standard.</p>
+      <div class="ouv__a">
+        <a class="btn btn--c" href="tel:+33299361808">Appeler le 02 99 36 18 08</a>
+        <a class="btn btn--f" href="#contact">Demander un rappel</a>
       </div>
     </div>
-  </section>
 
-  <section class="band" aria-label="En bref">
-    <dl class="env band__in">
-      <div><dt><a href="tel:+33299361808">02 99 36 18 08</a></dt>
-        <dd>Un appel suffit pour savoir si c'est possible</dd></div>
-      <div><dt>Lun–ven</dt><dd>8h–12h puis 14h, jusqu'à 19h</dd></div>
-      <div><dt>Rennes</dt><dd>157 av. du Général George S. Patton, 35700</dd></div>
-    </dl>
-  </section>
-
-  <section class="sec" id="prestations">
-    <div class="env">
-      <div class="tete">
-        <h2 class="h2">Ce que l'atelier prend en charge</h2>
-        <p class="chapo">
-        Un garage indépendant : l'entretien courant et la réparation mécanique.
-        Pour le reste, la liste complète n'est pas publiée en ligne — un appel
-        donne la réponse en une minute, sans passer par un formulaire.
-      </p>
+    <aside class="fiche" aria-labelledby="fiche-t">
+      <div class="fiche__t">
+        <b id="fiche-t">L'ATELIER AUJOURD'HUI</b>
+        <span class="fiche__j" id="jour">Dimanche</span>
       </div>
+      <dl>
+        <div><dt>État</dt>
+          <dd><span class="etat" id="etat"
+              data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Du lundi au vendredi</span></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+33299361808">02 99 36 18 08</a></dd></div>
+        <div><dt>Adresse</dt>
+          <dd>157 avenue du Général<small>George S. Patton, 35700 Rennes</small></dd></div>
+        <div><dt>Ouverture</dt><dd>8h–12h · 14h–19h<small>vendredi jusqu'à 18h30</small></dd></div>
+        <div><dt>Fermeture</dt><dd>Samedi et dimanche<small>et les jours fériés</small></dd></div>
+      </dl>
+      <p class="fiche__p">
+        <span>Le plus court chemin<br>vers l'atelier</span>
+        <b><a href="tel:+33299361808">02 99 36 18 08</a></b>
+      </p>
+    </aside>
+  </div>
+</section>
 
-      <div class="grid grid--3">
-        <article class="card app">
-          <div class="card__i">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M3 13.5h18M6 13.5l1.8-5A2 2 0 019.7 7h4.6a2 2 0 011.9 1.5l1.8 5"/>
-              <path d="M4 13.5V18h3v-1.5h10V18h3v-4.5"/><circle cx="7.5" cy="16" r="1"/>
-              <circle cx="16.5" cy="16" r="1"/>
-            </svg>
-          </div>
+<section class="faits" aria-label="En bref">
+  <div class="faits__in">
+    <div class="faits__g">
+      <div><b>Lun–ven<i>.</i></b><span>Fermé le samedi, le dimanche et les jours fériés</span></div>
+      <div><b>8<i>h</i>–19<i>h</i></b><span>Coupure de 12 h à 14 h. Le vendredi, jusqu'à 18 h 30</span></div>
+      <div><b>Rennes<i> est</i></b><span>157 avenue du Général George S. Patton, 35700</span></div>
+    </div>
+    <ul class="puces">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Garage indépendant, pas une enseigne de réseau</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Un seul numéro, qui sonne à l'atelier</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Ouvert sans interruption sur la journée, midi excepté</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="registre">
+  <div class="sec__in">
+    <div class="tete">
+      <h2>Le registre des interventions</h2>
+      <p class="chapo">Deux familles de travaux, annoncées parce qu'elles
+        définissent le métier d'un atelier indépendant. Tout le reste se
+        demande de vive voix : c'est plus rapide qu'une liste qui promet tout.</p>
+    </div>
+
+    <ol class="reg">
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13.5h18M6 13.5l1.8-5A2 2 0 019.7 7h4.6a2 2 0 011.9 1.5l1.8 5"/>
+            <path d="M4 13.5V18h3v-1.5h10V18h3v-4.5"/><circle cx="7.5" cy="16" r="1"/>
+            <circle cx="16.5" cy="16" r="1"/>
+          </svg>
+        </span>
+        <div>
           <h3>Entretien courant</h3>
-          <p>Vidange, filtres, révision, remplacement des pièces d'usure : ce qui
-             se fait à échéance régulière pour qu'une voiture dure.</p>
-        </article>
-
-        <article class="card app">
-          <div class="card__i">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M14.7 6.3a4 4 0 105.4 5.4l-2.6-.9-1.7 1.7-.9-2.6z"/>
-              <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
-            </svg>
-          </div>
+          <p>Vidange, filtres, révision, remplacement des pièces d'usure : les
+             opérations qui reviennent à échéance et qui gardent une voiture
+             en état.</p>
+        </div>
+        <span class="reg__q">Ce qui se planifie</span>
+      </li>
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a4 4 0 105.4 5.4l-2.6-.9-1.7 1.7-.9-2.6z"/>
+            <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
+          </svg>
+        </span>
+        <div>
           <h3>Réparation mécanique</h3>
           <p>Chercher d'où vient la panne, puis la réparer. C'est le métier de
-             base d'un atelier indépendant, et celui où le contact direct avec
-             le mécanicien change tout.</p>
-        </article>
-
-        <article class="card app">
-          <div class="card__i">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-            </svg>
-          </div>
-          <h3>Le reste, au téléphone</h3>
-          <p>Plutôt qu'une liste de prestations qui promet tout, un numéro qui
-             répond. Vous décrivez le problème, on vous dit si c'est faisable ici
-             et quand.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="atelier">
-    <div class="env">
-      <div class="tete">
-        <h2 class="h2">157 avenue du Général Patton, à Rennes</h2>
-        <p class="chapo">
-          L'atelier est ouvert du lundi au vendredi. L'état affiché se calcule à
-          l'heure où vous lisez cette page, pour éviter le déplacement pour rien.
-        </p>
-      </div>
-
-      <div class="duo duo--at">
-        <div class="pan">
-          <h3 class="pan__t">Horaires d'ouverture</h3>
-          <p class="etat" id="etat"
-             data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>
-            Du lundi au vendredi, 8h–12h et 14h–19h.</p>
-          <dl class="hor">
-            <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
-            <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
-            <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
-            <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
-            <div><dt>Vendredi</dt><dd>8h–12h · 14h–18h30</dd></div>
-            <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
-            <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
-            <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
-          </dl>
-          <script>
-          // Souligner la ligne du jour : lundi est la premiere du tableau.
-          (function(){ var l = document.querySelectorAll(".hor > div"), j = new Date().getDay();
-            if (l.length === 7) l[(j + 6) % 7].classList.add("hor--jour"); })();
-          </script>
+             base d'un atelier indépendant, et celui où parler directement au
+             mécanicien change tout.</p>
         </div>
-
-        <div class="pan">
-          <h3 class="pan__t">Venir à l'atelier</h3>
-          <address class="adr">
-            157 avenue du Général George S. Patton<br>35700 Rennes
-          </address>
-          <div class="pan__a">
-            <a class="btn btn--c"
-               href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes">
-              Ouvrir l'itinéraire
-            </a>
-            <a class="btn btn--o" href="tel:+33299361808">Appeler l'atelier</a>
-          </div>
-          <p class="pan__n">
-            Un appel avant de passer permet de savoir si le créneau est libre et
-            si la pièce est en stock.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec--sombre" id="contact">
-    <div class="env">
-      <h2 class="h2">Appelez, ou laissez votre demande</h2>
-
-      <div class="duo">
-        <div class="inf">
-          <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-            </svg>
-            <dl><div><dt>Téléphone</dt><dd><a href="tel:+33299361808">02 99 36 18 08</a>
-              <small>Le plus direct pour savoir si c'est faisable et quand.</small></dd></div></dl>
-          </div>
-          <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <path d="M12 21s-7.5-5-7.5-10.5a7.5 7.5 0 1115 0C19.5 16 12 21 12 21z"/>
-              <circle cx="12" cy="10.5" r="2.7"/>
-            </svg>
-            <dl><div><dt>Adresse</dt><dd>157 avenue du Général George S. Patton<br>35700 Rennes</dd></div></dl>
-          </div>
-          <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-              <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
-            </svg>
-            <dl><div><dt>Horaires</dt><dd>À confirmer
-              <small>Les annuaires en ligne se contredisent sur ce point. Les horaires
-              réels seront affichés ici, avec un indicateur « ouvert » ou « fermé »
-              calculé en direct.</small>
-              <a class="btn btn--c btn--p" href="tel:+33299361808"
-                 style="margin-top:12px;width:auto">Appeler pour savoir si c'est ouvert</a>
-              </dd></div></dl>
-          </div>
-        </div>
-
-        <form class="form" id="fdevis" novalidate>
-          <div class="ch ch--2">
-            <div class="f"><label for="nom">Votre nom <span aria-hidden="true">*</span></label>
-              <input type="text" id="nom" name="nom" autocomplete="name" required placeholder="Camille Renard"></div>
-            <div class="f"><label for="tel">Téléphone <span aria-hidden="true">*</span></label>
-              <input type="tel" id="tel" name="tel" autocomplete="tel" inputmode="tel" required placeholder="06 12 34 56 78"></div>
-          </div>
-          <div class="ch ch--2" style="margin-top:var(--sp-4)">
-            <div class="f"><label for="vehicule">Véhicule</label>
-              <input type="text" id="vehicule" name="vehicule" placeholder="Renault Clio — 2018"></div>
-            <div class="f"><label for="dim">Dimension de pneu</label>
-              <input type="text" id="dim" name="dim" placeholder="205/55 R16"></div>
-          </div>
-          <div class="ch" style="margin-top:var(--sp-4)">
-            <div class="f"><label for="besoin">Votre besoin <span aria-hidden="true">*</span></label>
-              <select id="besoin" name="besoin" required>
-                <option value="">Choisissez…</option>
-                <option>Réparation de crevaison</option>
-                <option>Montage de pneus</option>
-                <option>Vidange</option>
-                <option>Réparation mécanique</option>
-                <option>Véhicule d'occasion</option>
-                <option>Lavage</option>
-                <option>Autre</option>
-              </select></div>
-            <div class="f"><label for="msg">Détails</label>
-              <textarea id="msg" name="msg" placeholder="Deux pneus avant à changer sur jantes alu, 16 pouces."></textarea></div>
-          </div>
-          <label class="rgpd" for="ok">
-            <input type="checkbox" id="ok" name="ok" required>
-            <span>J'accepte que ces informations servent à me recontacter au sujet
-              de ma demande.</span>
-          </label>
-          <p class="fnote" style="margin-top:var(--sp-4)">
-            En validant, votre application de messages s'ouvre avec un SMS prérempli
-            à envoyer au garage.
-          </p>
-          <div style="margin-top:var(--sp-4)">
-            <button type="submit" class="btn btn--s btn--l">Envoyer ma demande</button>
-          </div>
-          <p class="fret" id="fret" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ BLOC DE TRAVAIL, À RETIRER AVANT MISE EN LIGNE ============ -->
-  <section class="perso" id="a-personnaliser">
-    <div class="env perso__in">
-      <p class="perso__c">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-          <path d="M12 9v4M12 17h.01M10.3 3.9L2.4 17a2 2 0 001.7 3h15.8a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/>
-        </svg>
-        Bon de travail — à personnaliser avant envoi
-      </p>
-      <h2>Ce qui reste à faire confirmer par le garage</h2>
-      <p>
-        Tout ce qui figure dans les sections ci-dessus provient de sources publiques
-        vérifiées. Rien n'a été inventé : ni tarif, ni garantie, ni avis rédigé,
-        ni horaire. Les points ci-dessous sont ceux à valider lors de l'appel.
-        <strong>Cette section n'est visible que par vous.</strong> Elle est masquée
-        par défaut : le prospect qui ouvre le lien ne la voit pas, et aucune
-        manipulation n'est nécessaire avant la mise en ligne.
-      </p>
-      <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
-      <ul>
-        <li><b>Horaires — à confirmer en priorité</b>
-          Relevés sur la fiche publique : lundi à jeudi 8h–12h et 14h–19h,
-          vendredi jusqu'à 18h30, fermé samedi, dimanche et jours fériés.
-          <em>L'indicateur « ouvert maintenant » se calcule dessus. Un horaire
-          faux envoie un client devant un rideau baissé : c'est le premier
-          point à valider.</em></li>
-        <li><b>Prestations — la page reste volontairement large</b>
-          Seuls « entretien courant » et « réparation mécanique » sont annoncés,
-          parce que rien d'autre n'est documenté publiquement. <em>Pneumatiques,
-          climatisation, géométrie, diagnostic, prêt de véhicule : chaque ligne
-          confirmée devient une carte de plus.</em></li>
-        <li><b>Avis clients — aucune section</b>
-          Aucune note publique n'a été trouvée pour cet établissement.
-          <em>Plutôt qu'un bloc vide qui promet des avis, la section n'existe
-          pas. Elle s'ajoute le jour où il y a quelque chose à montrer.</em></li>
-        <li><b>Adresse électronique</b>
-          Aucune adresse publique trouvée. <em>Le formulaire compose donc un SMS.
-          Avec une adresse, on bascule sur un courriel.</em></li>
-        <li><b>Photos de l'atelier</b>
-          La page n'en contient aucune : mieux vaut pas d'image qu'une photo de
-          banque d'images. <em>Trois clichés pris au téléphone — la façade, la
-          zone de travail, une voiture sur le pont — suffisent et se posent dans
-          la section « Venir à l'atelier ».</em></li>
-      </ul>
-    </div>
-  </section>
-</main>
-
-<footer class="pied">
-  <div class="env">
-    <div class="pied__h">
-      <div>
-        <a class="mq" href="#principal" style="margin-bottom:var(--sp-3)">
-          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-            <rect width="32" height="32" rx="7" fill="#E67E3D"/>
-            <circle cx="16" cy="16" r="9" fill="none" stroke="#101A2E" stroke-width="2.4"/>
-            <circle cx="16" cy="16" r="3" fill="#101A2E"/>
+        <span class="reg__q">Ce qui ne se planifie pas</span>
+      </li>
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
           </svg>
-          <span><span class="mq__n">Garage Patton</span><span class="mq__s">Rennes</span></span>
-        </a>
-        <p style="max-width:40ch;margin-top:var(--sp-3)">
-          Pneumatiques, mécanique, véhicules d'occasion et lavage.
-          157 avenue du Général George S. Patton, 35700 Rennes.
-        </p>
-      </div>
-      <div><h3>Nos prestations</h3><ul>
-        <li><a href="#pneus">Pneumatiques</a></li>
-        <li><a href="#prestations">Mécanique et vidange</a></li>
-        <li><a href="#prestations">Véhicules d'occasion</a></li>
-        <li><a href="#prestations">Lavage</a></li></ul></div>
-      <div><h3>Nous contacter</h3><ul>
-        <li><a href="tel:+33299361808">02 99 36 18 08</a></li>
-        <li><a href="#contact">Demander un devis</a></li>
-        <li><a href="#atelier">L'atelier</a></li></ul></div>
-    </div>
-    <div class="pied__b">
-      <span>© 2026 Garage Patton — 157 avenue du Général George S. Patton, 35700 Rennes</span>
-      <span>Mentions légales · Politique de confidentialité</span>
+        </span>
+        <div>
+          <h3>Le reste, de vive voix</h3>
+          <p>Pour tout ce qui n'entre dans aucune case, un appel au 02 99 36 18 08
+             répond plus vite qu'une page web. Vous décrivez, on vous dit si
+             c'est faisable ici et quand.</p>
+        </div>
+        <span class="reg__q">En une minute</span>
+      </li>
+    </ol>
+
+    <div class="reg__f">
+      <p>Aucun tarif n'est affiché tant qu'il n'a pas été confirmé par l'atelier.</p>
+      <a href="tel:+33299361808">Demander un prix au téléphone →</a>
     </div>
   </div>
-</footer>
+</section>
+
+<section class="sec" id="horaires" style="background:var(--creme-2)">
+  <div class="sec__in">
+    <div class="tete">
+      <h2>Horaires et accès</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez cette
+        page, pour éviter le déplacement pour rien.</p>
+    </div>
+    <div class="duo">
+      <div class="pan">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2"
+           data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Du lundi au vendredi, 8h–12h et 14h–19h.</p>
+        <dl class="hor">
+          <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Vendredi</dt><dd>8h–12h · 14h–18h30</dd></div>
+          <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
+          <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+          <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
+        </dl>
+      </div>
+      <div class="pan">
+        <h3>Venir à l'atelier</h3>
+        <address class="adr">157 avenue du Général George S. Patton<br>35700 Rennes</address>
+        <div class="pan__a">
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="tel:+33299361808">Appeler avant de passer</a>
+        </div>
+        <p class="pan__n">Un appel avant de venir permet de savoir si le créneau
+          est libre et si la pièce est en stock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--fonce" id="contact">
+  <div class="sec__in">
+    <div class="ctc">
+      <div>
+        <h2>Appelez, ou laissez-nous vous rappeler</h2>
+        <a class="ctc__tel" href="tel:+33299361808">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
+          </svg>02 99 36 18 08
+        </a>
+        <p class="ctc__l">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/>
+            <circle cx="12" cy="10.2" r="2.7"/>
+          </svg>
+          <span><b>157 avenue du Général George S. Patton</b>
+            35700 Rennes</span>
+        </p>
+        <p class="ctc__l">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
+          </svg>
+          <span><b>Du lundi au vendredi</b>
+            8h–12h et 14h–19h, le vendredi jusqu'à 18h30</span>
+        </p>
+      </div>
+
+      <form class="form" id="dem" novalidate>
+        <h3>Demande de rappel</h3>
+        <p class="form__s">Deux minutes, sans engagement. Le bouton ouvre un SMS
+          prérempli vers l'atelier.</p>
+        <div class="ch">
+          <div class="f"><label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required
+                   placeholder="Camille Renard"></div>
+          <div class="f"><label for="tel">Votre téléphone</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
+                   required placeholder="06 12 34 56 78"></div>
+        </div>
+        <div class="f" style="margin-top:var(--s4)">
+          <label for="veh">Votre véhicule</label>
+          <input id="veh" name="veh" type="text" placeholder="Clio de 2016">
+        </div>
+        <div class="f" style="margin-top:var(--s4)">
+          <label for="det">Ce qui vous amène</label>
+          <textarea id="det" name="det" rows="3"
+                    placeholder="Voyant moteur allumé depuis hier."></textarea>
+        </div>
+        <button class="btn btn--c" type="submit"
+                style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
+        <p class="fret" id="ret" role="status" aria-live="polite"></p>
+        <p class="fnote">Aucune adresse électronique publique n'a été trouvée pour
+          cet atelier : la demande part donc en SMS vers le 02 99 36 18 08.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33299361808">
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true">
-      <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-    </svg>Appeler
-  </a>
-  <a class="btn btn--f" href="#contact">Devis</a>
+  <a class="btn btn--c" href="tel:+33299361808">Appeler l'atelier</a>
+  <a class="btn btn--f" href="#contact">Rappel</a>
 </div>
+
+<footer class="pied">
+  <div class="pied__in">
+    <span>© 2026 Garage Patton — 157 avenue du Général George S. Patton, 35700 Rennes</span>
+    <span>Horaires et position relevés sur OpenStreetMap, nœud 567923341</span>
+  </div>
+</footer>
 
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"AutoRepair",
   "name":"Garage Patton",
-  "description":"Entretien courant et réparation mécanique, garage indépendant au 157 avenue du Général George S. Patton, à Rennes.",
+  "description":"Garage indépendant à Rennes : entretien courant et réparation mécanique.",
   "url":"https://francoislang.github.io/templates/garage-patton/",
   "telephone":"+33299361808",
   "address":{
@@ -837,6 +607,15 @@ main:focus{outline:none}
     "addressRegion":"Bretagne",
     "addressCountry":"FR"
   },
+  "geo":{"@type":"GeoCoordinates","latitude":48.125452,"longitude":-1.6667021},
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],
+     "opens":"08:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],
+     "opens":"14:00","closes":"19:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"08:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"14:00","closes":"18:30"}
+  ],
   "makesOffer":[
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien courant"}},
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Réparation mécanique"}}
@@ -845,119 +624,55 @@ main:focus{outline:none}
 </script>
 
 <script>
-// Etat d'ouverture : lu depuis data-h sur #etat, sept entrees (dimanche en
-// premier), chacune nulle ou une suite de minutes depuis minuit par paires.
-// Aucun horaire n'est ecrit en dur ici : si la donnee manque, la phrase de
-// repli ecrite dans le HTML reste affichee telle quelle.
+// Etat d'ouverture, lu depuis data-h : sept entrees, dimanche en premier,
+// minutes depuis minuit par paires, null si ferme. Sans donnee lisible, la
+// phrase de repli ecrite dans le HTML reste affichee telle quelle.
 (function(){
-  var el = document.getElementById("etat");
-  if (!el) return;
-  var h; try { h = JSON.parse(el.getAttribute("data-h")); } catch (e) { return; }
-  if (!Array.isArray(h) || h.length !== 7) return;
-  var JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
-  function paires(x){ var r=[],i; if(!x) return r;
-    for (i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r; }
-  function hm(v){ var a=Math.floor(v/60), b=v%60;
-    return b ? a+"h"+(b<10?"0":"")+b : a+"h"; }
-  var d = new Date(), j = d.getDay(), m = d.getHours()*60 + d.getMinutes(), i, k, jj, cs;
-  var cj = paires(h[j]);
-  for (i=0;i<cj.length;i++) {
-    if (m >= cj[i][0] && m < cj[i][1]) {
-      el.textContent = "Ouvert maintenant, jusqu'à " + hm(cj[i][1]);
-      el.className = "etat etat--oui";
-      return;
-    }
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r;
+    for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;
+    return b? a+"h"+(b<10?"0":"")+b : a+"h";}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs;
+    var cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){
+      el.textContent="Ouvert, jusqu'à "+hm(cj[i][1]);
+      el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;
+      el.className="etat etat--oui"; return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        el.textContent="Fermé, ouvre "+(k===0?"à "+hm(cs[i][0])
+          :(k===1?"demain à ":J[jj]+" à ")+hm(cs[i][0]));
+        el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;
+        el.className="etat etat--non"; return; } }
   }
-  for (k=0;k<8;k++) {
-    jj = (j+k) % 7; cs = paires(h[jj]);
-    for (i=0;i<cs.length;i++) {
-      if (k === 0 && cs[i][0] <= m) continue;
-      el.textContent = "Fermé, ouvre "
-        + (k === 0 ? "à " + hm(cs[i][0])
-                   : (k === 1 ? "demain à " : JOURS[jj] + " à ") + hm(cs[i][0]));
-      el.className = "etat etat--non";
-      return;
-    }
-  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour");
+  if(t){ var n=J[new Date().getDay()]; t.textContent=n.charAt(0).toUpperCase()+n.slice(1); }
+  var l=document.querySelectorAll(".hor > div"), j2=new Date().getDay();
+  if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
 })();
 
+// Le formulaire compose un SMS : pas d'adresse electronique connue. On
+// n'annonce pas un envoi reussi, rien ne permet de le verifier d'ici.
 (function(){
-  "use strict";
-
-  /* Le contenu est visible par defaut dans la feuille de style. On n'arme
-     l'animation qu'ici, une fois certain que le JS tourne. */
-  document.documentElement.classList.add("js");
-
-  /* Bon de travail : visible uniquement avec ?notes (ou #notes) dans l'URL. */
-  var bon = document.getElementById("a-personnaliser");
-  if(bon && (/[?&]notes(=|&|$)/.test(location.search) || location.hash === "#notes")){
-    bon.classList.add("ouvert");
-  }
-
-  var cibles = document.querySelectorAll(".app");
-  var anime = !window.matchMedia || !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(anime && "IntersectionObserver" in window){
-    var obs = new IntersectionObserver(function(es){
-      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("vu"); obs.unobserve(e.target); } });
-    },{threshold:.12, rootMargin:"0px 0px -40px 0px"});
-    for(var i=0;i<cibles.length;i++){
-      cibles[i].style.transitionDelay = (i % 4) * 65 + "ms";
-      obs.observe(cibles[i]);
-    }
-  }else{
-    for(var j=0;j<cibles.length;j++){ cibles[j].classList.add("vu"); }
-  }
-
-  /* Formulaire. Le site est statique et aucune adresse electronique publique
-     n'existe pour ce garage : on compose donc un SMS vers le portable.
-     Le protocole sms: n'est pas gere sur un ordinateur de bureau. On ne peut
-     pas le detecter de facon fiable, donc on n'annonce JAMAIS un succes : le
-     message est neutre et donne le numero en clair, cliquable. */
-  var form = document.getElementById("fdevis");
-  var ret  = document.getElementById("fret");
-  var TEL_TXT = "02 99 36 18 08";
-  var TEL_URI = "+33299361808";
-
-  function dire(html, classe){
-    if(!ret) return;
-    ret.innerHTML = html;
-    ret.className = "fret " + classe;
-  }
-
-  if(form){
-    form.addEventListener("submit", function(ev){
-      ev.preventDefault();
-      var nom = form.nom.value.trim(), tel = form.tel.value.trim(),
-          besoin = form.besoin.value, ok = form.ok.checked;
-
-      if(!nom || !tel || !besoin){
-        dire("Merci d'indiquer votre nom, votre téléphone et votre besoin.", "fret--ko");
-        return;
-      }
-      if(!/^[+0-9 ().-]{9,}$/.test(tel)){
-        dire("Ce numéro de téléphone ne semble pas valide.", "fret--ko"); return;
-      }
-      if(!ok){
-        dire("Merci de cocher la case pour qu'on puisse vous rappeler.", "fret--ko"); return;
-      }
-
-      var texte = [
-        besoin + " — " + nom + " (" + tel + ")",
-        form.vehicule.value.trim() ? "Véhicule : " + form.vehicule.value.trim() : "",
-        form.dim.value.trim() ? "Pneus : " + form.dim.value.trim() : "",
-        form.msg.value.trim()
-      ].filter(Boolean).join("\n");
-
-      dire('Votre application de messages devrait s\'ouvrir avec le SMS prérempli. '
-         + 'Si rien ne s\'ouvre — c\'est le cas sur un ordinateur — appelez '
-         + 'directement le <a href="tel:' + TEL_URI + '">' + TEL_TXT + '</a>.',
-         "fret--info");
-
-      window.location.href = "sms:" + TEL_URI + "?body=" + encodeURIComponent(texte);
-    });
-  }
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=f.nom.value.trim(), t=f.tel.value.trim(),
+        v=f.veh.value.trim(), d=f.det.value.trim();
+    if(!n||!t){ document.getElementById("ret").textContent=
+      "Merci d'indiquer au moins votre nom et votre numéro."; return; }
+    var corps="Bonjour, "+n+" ("+t+")."+(v?" "+v+".":"")+(d?" "+d:"");
+    document.getElementById("ret").textContent=
+      "Votre application de messages s'ouvre avec la demande préremplie. "
+      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
+    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+  });
 })();
 </script>
-
 </body>
 </html>
