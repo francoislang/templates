@@ -21,8 +21,8 @@ Ce que ce script produit pour chaque prospect :
 Deux differences avec le circuit eleveurs, assumees :
   - le gabarit garage n'utilise aucune photographie (planches techniques en
     SVG), donc ni Cloudinary ni Pexels ne sont sollicites ;
-  - chaque site recoit une des dix identites visuelles de variantes.py,
-    tiree par hachage de son slug, pour que cent sites ne se ressemblent pas.
+  - le gabarit est livre deja colore (palette « acier »), donc la rotation
+    des dix identites de variantes.py est desactivee : voir IDENTITE_FIXE.
 
 Usage :
     python3 _scripts/pipeline_pro.py --metier garage --dry-run
@@ -67,6 +67,13 @@ PAR_DEFAUT = 5
 # _templates/fiche-accueil/couleur-*.css, les huit palettes validees sur ce
 # gabarit-la, plutot que les dix de variantes.py, calibrees sur l'ancien.
 IDENTITE_FIXE = "acier"
+
+# Le modele est une variable, pas une constante gravee : un credit epuise ou
+# un fournisseur en panne ne doit pas arreter le circuit. MODELE_PRO dans
+# .env, ou --modele en ligne de commande, l'emportent. Les modeles en
+# « :free » d'OpenRouter ne consomment pas de credit et permettent de
+# repeter la chaine entiere sans rien depenser.
+MODELE = os.environ.get("MODELE_PRO") or "deepseek/deepseek-v4-pro"
 
 
 METIERS: dict[str, dict] = {
@@ -251,7 +258,8 @@ def _appeler_modele(prompt: str) -> tuple[str, str]:
     cle = _cle_openrouter()
     if not cle:
         return "", "OPENROUTER_API_KEY absente"
-    payload = {"model": "deepseek/deepseek-v4-pro",
+    print(f"   modele : {MODELE}")
+    payload = {"model": MODELE,
                "messages": [{"role": "user", "content": prompt}],
                "max_tokens": 24000, "stream": True}
     derniere = ""
@@ -774,6 +782,10 @@ def main() -> None:
                         "refonte). Les enseignes de reseau restent exclues.")
     p.add_argument("--refaire", action="store_true",
                    help="regenerer meme si le dossier du site existe deja")
+    p.add_argument("--modele", default=None,
+                   help="identifiant OpenRouter du modele, par exemple "
+                        "deepseek/deepseek-chat-v3-0324:free. Sinon MODELE_PRO "
+                        "dans .env, sinon deepseek/deepseek-v4-pro.")
     p.add_argument("--essai", action="store_true",
                    help="repetition : ne consulte pas le CRM et n'y ecrit pas. "
                         "Exige --db, pour ne jamais court-circuiter le "
@@ -786,6 +798,10 @@ def main() -> None:
         global DB_PATH
         DB_PATH = Path(args.db)
         print(f"base de test : {DB_PATH}")
+
+    if args.modele:
+        global MODELE
+        MODELE = args.modele
 
     if args.essai and not args.db:
         sys.exit("--essai exige --db : sans base de test, sauter le controle "
