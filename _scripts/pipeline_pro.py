@@ -46,6 +46,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
+import controle_design     # noqa: E402
 import crm                 # noqa: E402
 import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
 import telegram            # noqa: E402
@@ -279,6 +280,14 @@ def _appeler_modele(prompt: str) -> tuple[str, str]:
     return "", derniere or "echec inconnu"
 
 
+def _nettoyer_html(html: str) -> str:
+    """Retire la cloture Markdown et ne garde que le document."""
+    html = re.sub(r"^```html?\n?", "", html)
+    html = re.sub(r"\n?```\s*$", "", html)
+    m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
+    return m.group(1) if m else html
+
+
 def charger_gabarit(metier: str) -> str:
     conf = METIERS[metier]
     propre = REPO_ROOT / "_templates" / conf["gabarit"]
@@ -304,6 +313,58 @@ def _appliquer_variante(html: str, v: dict) -> str:
         html = re.sub(r'<link href="https://fonts\.googleapis\.com[^>]*>', lien, html, count=1)
     else:
         html = html.replace("</head>", lien + "\n</head>", 1)
+    return html
+
+
+def _corriger_design(html: str, cible: Path, v: dict) -> str:
+    """Passe le rendu au detecteur, puis une seule passe correctrice.
+
+    Le detecteur ne se trompe pas dans le meme sens que le modele : il rend la
+    page dans un Chrome et mesure. Une seule passe, parce qu'au-dela le modele
+    commence a defaire des choses justes pour satisfaire une regle qu'il a mal
+    comprise. Et on ne garde la correction que si elle ameliore le compte :
+    sinon on remet la premiere version.
+    """
+    constats, err = controle_design.analyser(cible.parent, cible.name)
+    if err:
+        print(f"   controle design saute ({err})")
+        return html
+    defauts = controle_design.echecs(constats)
+    if not defauts:
+        print("   design : aucun defaut")
+        return html
+    print(f"   design : {len(defauts)} defaut(s), passe correctrice")
+
+    corrige, err = _appeler_modele(
+        "Voici une page HTML complete. Un detecteur deterministe, qui rend la "
+        "page dans un navigateur et mesure, y a releve les defauts ci-dessous. "
+        "Corrige-les TOUS et ne change rien d'autre : memes sections, memes "
+        "textes, memes faits, memes couleurs, meme structure.\n\n"
+        f"DEFAUTS RELEVES :\n{controle_design.resume(constats)}\n\n"
+        f"PAGE :\n{html}\n\n"
+        "Reponds UNIQUEMENT avec le code HTML complet corrige.")
+    if not corrige:
+        print(f"   /!\\ passe correctrice impossible ({err})")
+        return html
+
+    corrige = _nettoyer_html(corrige)
+    ok, raison = pl._site_est_correct(corrige)
+    if not ok and "photos" not in raison:
+        print(f"   /!\\ version corrigee rejetee ({raison})")
+        return html
+    # le modele peut avoir efface le bloc d identite en reecrivant le <style>
+    if f"Identite \u00ab {v['nom']} \u00bb" not in corrige:
+        corrige = _appliquer_variante(corrige, v)
+
+    cible.write_text(corrige, encoding="utf-8")
+    apres = controle_design.echecs(
+        controle_design.analyser(cible.parent, cible.name)[0])
+    if len(apres) < len(defauts):
+        print(f"   design : {len(defauts)} -> {len(apres)} defaut(s)")
+        return corrige
+    print(f"   design : la correction n a pas aide ({len(apres)}), "
+          f"on garde la premiere version")
+    cible.write_text(html, encoding="utf-8")
     return html
 
 
@@ -370,11 +431,7 @@ REGLES ABSOLUES :
     if not html:
         return None, err, v
 
-    html = re.sub(r"^```html?\n?", "", html)
-    html = re.sub(r"\n?```\s*$", "", html)
-    m = re.search(r"(<!DOCTYPE html.*</html>)", html, re.DOTALL | re.IGNORECASE)
-    if m:
-        html = m.group(1)
+    html = _nettoyer_html(html)
 
     ok, raison = pl._site_est_correct(html)
     if not ok and "photos" not in raison:
@@ -391,6 +448,7 @@ REGLES ABSOLUES :
 
     cible.parent.mkdir(exist_ok=True)
     cible.write_text(html, encoding="utf-8")
+    html = _corriger_design(html, cible, v)
     pl._sanitize(cible, slug, {"email": p.get("email", ""),
                                "phone": p.get("telephone", "")})
     pl._inject_tracking(cible)
@@ -535,7 +593,8 @@ def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
 # execution
 # --------------------------------------------------------------------------
 
-def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False) -> None:
+def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
+        refaire: bool = False) -> None:
     conn = ouvrir()
     reste = compter(conn, metier, avec_site)
 
@@ -569,7 +628,7 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False) -> Non
             print(message(p, metier, f"{PAGES}/{pl.slugify(nom or '')}/", v))
             continue
 
-        url, err, v = generer_site(p, metier)
+        url, err, v = generer_site(p, metier, force=refaire)
         if err:
             print(f"   /!\\ {err}")
             marquer(conn, p["cle"], erreur=err, variante=v["nom"])
@@ -614,6 +673,8 @@ def main() -> None:
     p.add_argument("--avec-site", action="store_true",
                    help="inclure les garages qui ont deja un site (offre de "
                         "refonte). Les enseignes de reseau restent exclues.")
+    p.add_argument("--refaire", action="store_true",
+                   help="regenerer meme si le dossier du site existe deja")
     p.add_argument("--attendre", type=int, default=0)
     p.add_argument("--db", default=None, help="base de test au lieu de prospection.db")
     args = p.parse_args()
@@ -633,7 +694,8 @@ def main() -> None:
 
     try:
         with verrou(args.attendre):
-            run(args.metier, args.nombre, args.dry_run, args.avec_site)
+            run(args.metier, args.nombre, args.dry_run, args.avec_site,
+                args.refaire)
     except DejaEnCours as e:
         print(f"Une autre execution tourne deja ({e}). Abandon.")
         sys.exit(75)
