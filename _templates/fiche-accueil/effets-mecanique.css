@@ -1,0 +1,199 @@
+/* =====================================================================
+   effets-mecanique.css — piste « mecanique et net »
+
+   Principe : rien ne rebondit, rien ne flotte. Les choses s'enclenchent.
+   Trois gestes seulement :
+     1. le volet  — une revelation par masque qui balaie (clip-path)
+     2. le cran   — un glissement de quatre a cinq pixels, courbe seche
+     3. le filet  — un trait qui se trace (scaleX / scaleY)
+
+   Aucune couleur, taille, marge, largeur ni grille n'est touchee. Les
+   pseudo-elements crees ici sont decoratifs (content:"") et prennent
+   currentColor : ils n'introduisent aucune teinte nouvelle.
+   ===================================================================== */
+
+:root{
+  /* courbe seche : part net, s'arrete net, aucun depassement — les deux
+     ordonnees restent dans [0,1], donc pas d'elastique possible */
+  --mec-seche:cubic-bezier(.2,0,0,1);
+  --mec-crant:cubic-bezier(.35,0,.15,1);
+  --mec-d:0ms;            /* retard, pose par le script, element par element */
+}
+
+/* ---------------------------------------------------------------------
+   1. NEUTRALISATION DE LA BASE
+   Le tampon de la fiche, l'anneau qui respire, le soulevement des lignes
+   du registre avec ombre portee, la bascule de la mention de droite et le
+   decalage diagonal des boutons disparaissent avant d'etre remplaces.
+   ------------------------------------------------------------------ */
+
+@media (min-width:980px){
+  .fiche{
+    animation:none;                        /* @keyframes pose : supprime */
+    transition:transform .14s linear;
+  }
+  .fiche:hover{
+    /* la fiche ne se redresse plus : elle monte d'un cran et s'arrete la */
+    transform:rotate(-1.6deg) translateY(-3px);
+    box-shadow:0 14px 26px -18px rgba(0,0,0,.5);
+  }
+}
+
+@media (min-width:820px){
+  .reg li{transition:background-color .12s linear}
+  .reg li:hover{transform:none;box-shadow:none}   /* plus de soulevement */
+  .reg__q{
+    /* la mention reste lisible au repos : plus de rotation ni de .55 */
+    transform:none;opacity:.62;
+    transition:transform .12s linear,opacity .12s linear;
+  }
+  .reg li:hover .reg__q{transform:translateX(-4px);opacity:1}
+}
+
+.btn{transition:background-color .12s linear,border-color .12s linear,
+                filter .12s linear}
+.btn:hover{transform:none}
+.btn--c:hover,.btn--o:hover{box-shadow:none}
+
+/* l'anneau ne respire plus : il s'indexe. steps(1,end) fige chaque
+   position, on voit un cliquet et non un souffle. */
+.pastille::after{animation:mec-cliquet 2.4s steps(1,end) infinite}
+@keyframes mec-cliquet{
+  0%  {transform:scale(1);   opacity:.6}
+  26% {transform:scale(1.75);opacity:.34}
+  52% {transform:scale(2.5); opacity:0}
+  100%{transform:scale(2.5); opacity:0}
+}
+
+/* ---------------------------------------------------------------------
+   2. L'ENTREE — revelation par masque, jamais par fondu seul
+   Les etats masques sont tous conditionnes a html.mec, classe posee par
+   le script. Sans JavaScript la classe n'existe pas : rien n'est cache.
+   Une fois le volet ouvert, le script pose .mec-fini et le masque est
+   retire : ni ombre rognee, ni couche de composition laissee en place.
+   ------------------------------------------------------------------ */
+
+/* volet horizontal : le contenu se decouvre de gauche a droite */
+html.mec [data-mec="v"]{
+  clip-path:inset(0 100% 0 0);
+  transition:clip-path .38s var(--mec-seche) var(--mec-d),
+             transform .14s linear;
+  will-change:clip-path;
+}
+html.mec [data-mec="v"].mec-on{clip-path:inset(0)}
+
+/* volet vertical : le bloc se decouvre du haut vers le bas */
+html.mec [data-mec="p"]{
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path .42s var(--mec-seche) var(--mec-d),
+             transform .14s linear;
+  will-change:clip-path;
+}
+html.mec [data-mec="p"].mec-on{clip-path:inset(0)}
+
+/* le masque est rendu apres coup */
+html.mec [data-mec].mec-fini{clip-path:none;will-change:auto}
+
+/* cran : cinq pixels de glissement et c'est tout */
+html.mec [data-mec="c"]{
+  opacity:0;transform:translateY(5px);
+  transition:opacity .2s linear var(--mec-d),
+             transform .24s var(--mec-crant) var(--mec-d);
+}
+html.mec [data-mec="c"].mec-on{opacity:1;transform:none}
+
+/* filet vertical : le trait de gauche du bandeau de faits se trace */
+.faits__g>div{position:relative}
+.faits__g>div::before{
+  content:"";position:absolute;left:-1px;top:0;bottom:0;width:1px;
+  background:currentColor;opacity:.5;
+  transform:scaleY(1);transform-origin:top center;
+  transition:transform .34s var(--mec-seche) var(--mec-d);
+  pointer-events:none;
+}
+html.mec [data-mec="f"]::before{transform:scaleY(0)}
+html.mec [data-mec="f"].mec-on::before{transform:scaleY(1)}
+
+/* ---------------------------------------------------------------------
+   3. LE SURVOL — court, lineaire, reserve aux pointeurs fins
+   Rien de ceci ne se declenche au doigt : aucune cible ne bouge sous le
+   tap, et les 44 px des cibles tactiles restent intacts.
+   ------------------------------------------------------------------ */
+
+@media (hover:hover) and (pointer:fine){
+
+  /* le bouton pose un pied : un filet plein se tire sous l'etiquette */
+  .btn{position:relative;overflow:hidden}
+  .btn::after{
+    content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+    background:currentColor;opacity:.85;
+    transform:scaleX(0);transform-origin:left center;
+    transition:transform .14s linear;pointer-events:none;
+  }
+  .btn:hover::after,.btn:focus-visible::after{transform:scaleX(1)}
+
+  /* le numero de telephone : meme filet, sous les chiffres */
+  .ctc__tel{position:relative;transition:filter .12s linear}
+  .ctc__tel::after{
+    content:"";position:absolute;left:0;right:0;bottom:2px;height:3px;
+    background:currentColor;
+    transform:scaleX(0);transform-origin:left center;
+    transition:transform .16s linear;pointer-events:none;
+  }
+  .ctc__tel:hover::after,.ctc__tel:focus-visible::after{transform:scaleX(1)}
+
+  /* barre du haut : reglage net */
+  .nav a{transition:color .12s linear,border-color .12s linear}
+  .hdr__tel{transition:color .12s linear}
+
+  /* les puces du bandeau : deux pixels, lineaires, rien de plus */
+  .puces li{transition:transform .12s linear,border-color .12s linear}
+  .puces li:hover{transform:translateY(-2px)}
+
+  @media (min-width:820px){
+    /* la ligne du registre glisse de trois pixels, et un filet se trace
+       sur son trait superieur : la ligne s'enclenche, elle ne decolle pas */
+    .reg li{position:relative;
+            transition:background-color .12s linear,transform .12s linear}
+    .reg li:hover{transform:translateX(3px)}
+    .reg li::before{
+      content:"";position:absolute;left:0;right:0;top:-1px;height:2px;
+      background:currentColor;opacity:.85;
+      transform:scaleX(0);transform-origin:left center;
+      transition:transform .16s linear;pointer-events:none;
+    }
+    .reg li:hover::before,.reg li:focus-within::before{transform:scaleX(1)}
+    .reg__i{transition:transform .12s linear}
+    .reg li:hover .reg__i{transform:translateX(-2px)}
+  }
+}
+
+/* le filet de la barre collante se trace des que la page a bouge */
+.hdr::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+  background:currentColor;opacity:.55;
+  transform:scaleX(0);transform-origin:left center;
+  transition:transform .24s var(--mec-seche);pointer-events:none;
+}
+html.mec-fige .hdr::after{transform:scaleX(1)}
+
+/* ---------------------------------------------------------------------
+   4. MOUVEMENT REDUIT — tout desarme, etats finaux ecrits en clair
+   ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion:reduce){
+  /* les volets sont ouverts, les crans poses ; la rotation de repos de la
+     fiche appartient au gabarit, on n'y touche pas */
+  html.mec [data-mec]{
+    opacity:1 !important;clip-path:none !important;transition:none !important;
+  }
+  html.mec [data-mec="c"]{transform:none !important}
+  .faits__g>div::before,
+  html.mec [data-mec="f"]::before{
+    transform:scaleY(1) !important;transition:none !important}
+  .pastille::after{animation:none;transform:scale(1.9);opacity:.4}
+  .btn::after,.ctc__tel::after,.hdr::after,.reg li::before{
+    transform:scaleX(0) !important;transition:none !important}
+  .puces li:hover,.reg li:hover,.reg li:hover .reg__i{transform:none !important}
+  @media (min-width:980px){.fiche:hover{transform:rotate(-1.6deg)}}
+}

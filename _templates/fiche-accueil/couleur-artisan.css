@@ -1,0 +1,20 @@
+/* Palette « artisan » — l'enseigne peinte d'un garage de quartier.
+   Aplat de marque : un vert atelier profond, pas un bleu marine.
+   Accent : un laiton chaud (jaune d'ocre), la couleur d'une plaque
+   émaillée et d'un carnet d'entretien, tenu à quelques pour cent. */
+:root{
+  --encre:#1D2A24;         /* vert atelier profond, sourd, presque noir */
+  --encre-2:#2A3A32;       /* le même, relevé d'un cran pour le bandeau de faits */
+  --cuivre:#DFAE62;        /* laiton clair : l'accent sur les fonds sombres */
+  --cuivre-sombre:#845012; /* ocre brûlé : le même accent sur les fonds clairs */
+  --txt-accent:#241803;    /* brun noir : le texte posé sur le laiton plein */
+  --brume:#9BACA2;         /* gris vert moyen : texte secondaire sur sombre */
+  --brume-clair:#D3DCD5;   /* gris vert pâle : texte courant sur sombre */
+  --bord-fantome:#658371;  /* filet discret sur l'aplat */
+  --creme:#EFF2EE;         /* le papier : gris très clair teinté de vert */
+  --creme-2:#E3E8E2;       /* seconde teinte claire, un cran plus dense */
+  --blanc:#FFFFFF;         /* cartes : blanc pur */
+  --bord:#D1D8CF;          /* filets sur fond clair */
+  --texte:#2E3A33;         /* texte courant : vert ardoise, pas du noir */
+  --texte-2:#56615A;       /* texte discret */
+}

@@ -1,0 +1,18 @@
+/* Palette « matiere d'atelier » — la fonte huilee, le zinc brut, le bleu de
+   travail delave, et le rouge d'un cric pose sur l'etabli. */
+:root{
+  --encre:#1C1813;          /* fonte huilee : presque noir, chaud, pas bleu nuit */
+  --encre-2:#272119;        /* huile usagee : le meme bain, un cran plus clair */
+  --cuivre:#F2542B;         /* rouge de cric sous la baladeuse, sur fond sombre */
+  --cuivre-sombre:#A92C15;  /* le meme rouge, repeint mat, sur fond clair */
+  --txt-accent:#1B120B;     /* cambouis : le texte pose sur le rouge plein */
+  --brume:#93A2AC;          /* bleu de travail delave, secondaire */
+  --brume-clair:#C4CDD3;    /* bleu de travail lave cent fois, texte courant */
+  --bord-fantome:#5F6E79;   /* filet d'acier terni sur l'aplat */
+  --creme:#F1F0EE;          /* zinc brut : gris d'atelier, jamais du beige */
+  --creme-2:#E4E3E0;        /* tole un ton plus bas, section horaires */
+  --blanc:#FFFFFF;          /* carte : blanc d'etiquette */
+  --bord:#CFCDC9;           /* trait de crayon gras sur le metal */
+  --texte:#35322F;          /* fonte seche */
+  --texte-2:#5D5955;        /* poussiere de frein */
+}
