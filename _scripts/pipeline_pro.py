@@ -648,20 +648,27 @@ def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
 # execution
 # --------------------------------------------------------------------------
 
+class _SansCRM(Exception):
+    """Sentinelle du mode essai : on saute la fiche CRM sans la traiter
+    comme une panne."""
+
+
 def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
-        refaire: bool = False) -> None:
+        refaire: bool = False, essai: bool = False) -> None:
     conn = ouvrir()
     reste = compter(conn, metier, avec_site)
 
     # Le CRM est la memoire longue : une fiche peut y exister sans que la
     # base locale le sache (relance manuelle, import, autre machine).
     tel_crm = set()
-    if not dry_run:
+    if not dry_run and not essai:
         try:
             tel_crm = {re.sub(r"\D", "", t) for t in crm.get_existing_phones()}
             print(f"{len(tel_crm)} numeros deja presents dans le CRM, ecartes")
         except Exception as e:
             print(f"/!\\ CRM injoignable ({e}) — on continue sans ce controle")
+    if essai:
+        print("Mode essai : le CRM n'est ni consulte ni alimente.")
 
     lot = a_traiter(conn, metier, nombre, tel_crm, avec_site)
     print(f"Marche « {metier} » : {len(lot)} prospect(s) ce tour, {reste} en reserve")
@@ -691,7 +698,10 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
             continue
 
         texte = message(p, metier, url, v)
+        issue = None
         try:
+            if essai:
+                raise _SansCRM
             issue = crm.add_entry(
                 elevage=nom,
                 races=[METIERS[metier]["metier"]],
@@ -701,8 +711,9 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
                       f"Description: {METIERS[metier]['metier']} a "
                       f"{p.get('commune','')} | Pitch: {texte}",
             )
+        except _SansCRM:
+            pass
         except Exception as e:
-            issue = None
             print(f"   /!\\ CRM : {e}")
 
         marquer(conn, p["cle"], site_genere=url, variante=v["nom"],
@@ -731,6 +742,10 @@ def main() -> None:
                         "refonte). Les enseignes de reseau restent exclues.")
     p.add_argument("--refaire", action="store_true",
                    help="regenerer meme si le dossier du site existe deja")
+    p.add_argument("--essai", action="store_true",
+                   help="repetition : ne consulte pas le CRM et n'y ecrit pas. "
+                        "Exige --db, pour ne jamais court-circuiter le "
+                        "dedoublonnage sur la vraie base.")
     p.add_argument("--attendre", type=int, default=0)
     p.add_argument("--db", default=None, help="base de test au lieu de prospection.db")
     args = p.parse_args()
@@ -739,6 +754,10 @@ def main() -> None:
         global DB_PATH
         DB_PATH = Path(args.db)
         print(f"base de test : {DB_PATH}")
+
+    if args.essai and not args.db:
+        sys.exit("--essai exige --db : sans base de test, sauter le controle "
+                 "du CRM ferait re-demarcher des prospects deja contactes.")
 
     if args.reste:
         conn = ouvrir()
@@ -751,7 +770,7 @@ def main() -> None:
     try:
         with verrou(args.attendre):
             run(args.metier, args.nombre, args.dry_run, args.avec_site,
-                args.refaire)
+                args.refaire, args.essai)
     except DejaEnCours as e:
         print(f"Une autre execution tourne deja ({e}). Abandon.")
         sys.exit(75)
