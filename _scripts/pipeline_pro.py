@@ -203,7 +203,13 @@ def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
         # CAST explicite : si une colonne arrive en TEXT (import CSV, autre
         # collecteur), « 8 » passerait avant « 49 » en tri alphabetique et on
         # demarcherait les plus petits garages en premier sans s'en apercevoir.
-        "ORDER BY (site_statut='aucun') DESC, "
+        # Un prospect joignable au premier essai passe devant : portable,
+        # puis courriel, puis fixe. Sans cela le lot du jour se remplit de
+        # fixes, ou il faut tomber sur quelqu'un.
+        "ORDER BY (substr(replace(replace(replace(telephone,' ',''),'.',''),"
+        "'-','') ,1,2) IN ('06','07')) DESC, "
+        "(COALESCE(email,'') <> '') DESC, "
+        "(site_statut='aucun') DESC, "
         "CAST(COALESCE(avis,0) AS INTEGER) DESC, "
         "CAST(COALESCE(note,0) AS REAL) DESC, "
         "departement, commune, nom LIMIT ?", (metier, limit * 4))
@@ -524,6 +530,46 @@ REGLES ABSOLUES :
 # message Telegram — c'est lui qui sert a passer l'appel
 # --------------------------------------------------------------------------
 
+def canal(p: dict) -> tuple[str, str]:
+    """Par ou joindre ce prospect, et avec quelle coordonnee.
+
+    Mesure faite sur la base : 86 % des numeros sont des fixes, donc le SMS
+    ne marche que pour une minorite. L'ordre est celui de la reponse
+    attendue : un portable se lit tout de suite, un courriel se lit le soir,
+    un fixe suppose de tomber sur quelqu'un.
+    """
+    tel = re.sub(r"\D", "", p.get("telephone") or "")
+    if tel[:2] in ("06", "07"):
+        return "sms", p["telephone"]
+    mail = (p.get("email") or "").strip()
+    if mail:
+        return "mail", mail
+    if tel:
+        return "appel", p["telephone"]
+    return "aucun", ""
+
+
+def objet_mail(p: dict) -> str:
+    """La ligne d'objet, quand le canal est le courriel."""
+    ville = (p.get("commune") or "").strip()
+    nom = (p.get("nom") or "").strip()
+    if p.get("site_statut") == "propre":
+        return f"Une autre version du site de {nom}, pour comparaison"
+    return f"Un site pour {nom}" + (f", a {ville}" if ville else "")
+
+
+def pitch_sms(p: dict, demo_url: str | None) -> str:
+    """La version courte : un SMS se lit en entier ou pas du tout."""
+    nom = (p.get("nom") or "").strip()
+    debut = ("Bonjour, Francois-Frederic Lang, developpeur web a Nancy. "
+             f"J'ai prepare une demo de site pour {nom}")
+    fin = (", gratuite et sans engagement" if p.get("site_statut") != "propre"
+           else ", juste pour comparaison avec le votre")
+    q = " : " + demo_url if demo_url else ""
+    return (debut + fin + q + ". Si ca ne vous interesse pas, "
+            "repondez STOP et je n'insiste pas.")
+
+
 def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     """Le message a envoyer au garagiste, pret a copier-coller.
 
@@ -615,6 +661,20 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
 
     parties += ["", "Bien cordialement,", "", "François-Frédéric Lang",
                 "langfrancoisfrederic@gmail.com", "06 32 81 42 00"]
+
+    # En B2B la prospection par courriel se fait en opt-out, mais a trois
+    # conditions : dire qui l'on est et pourquoi on ecrit, dire d'ou vient
+    # l'adresse, et offrir un moyen simple de ne plus etre contacte. Les deux
+    # dernieres ne sont pas dans le corps du message ci-dessus.
+    if canal(p)[0] == "mail":
+        parties += [
+            "",
+            "—",
+            "Votre adresse figure dans les donnees publiques d'OpenStreetMap, "
+            "ou elle est renseignee pour votre etablissement. Ce message "
+            "concerne votre activite professionnelle. Repondez « STOP » et "
+            "je ne vous recontacterai pas.",
+        ]
     return "\n".join(parties)
 
 
@@ -646,6 +706,22 @@ def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
     else:
         parties.append("\u26A0\uFE0F Site non genere")
     parties.append(f"\U0001F3A8 Identite : {v['nom']}")
+
+    c, coord = canal(p)
+    entetes = {
+        "sms":   f"\U0001F4F2 PAR SMS au {coord}",
+        "mail":  f"\u2709\uFE0F PAR COURRIEL a {coord}",
+        "appel": f"\u260E\uFE0F PAR TELEPHONE au {coord} — fixe, pas de SMS",
+        "aucun": "\u26A0\uFE0F AUCUNE COORDONNEE",
+    }
+    parties += ["", entetes[c]]
+
+    if c == "sms":
+        parties += ["", "--- SMS A ENVOYER ---", pitch_sms(p, demo_url),
+                    "--- FIN DU SMS ---",
+                    "", "(version longue ci-dessous si tu preferes appeler)"]
+    elif c == "mail":
+        parties += ["", f"Objet : {objet_mail(p)}"]
 
     parties += ["", "--- PITCH A ENVOYER ---", pitch(p, metier, demo_url),
                 "--- FIN DU PITCH ---"]
