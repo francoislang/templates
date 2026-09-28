@@ -68,21 +68,47 @@ def _norm(t: str) -> str:
     return re.sub(r"\s+", " ", _sans_accents(t).lower()).strip()
 
 
-def est_reseau(nom: str) -> str | None:
-    """Retourne l'enseigne reconnue, ou None."""
+# Le nom ne dit pas tout : « Garage Martin » affilie a Top Garage porte un
+# nom d'independant mais un site de reseau. Le domaine, lui, ne ment pas.
+# 889 fiches du vivier refonte -- 27 % -- sont dans ce cas.
+HOTES_RESEAU = (
+    "top-garage.fr", "concessions.peugeot", "delko.", "avatacar.", "aplusglass",
+    "renault.fr", "dacia.fr", "citroen.fr", "peugeot.fr", "opel.fr", "ford.fr",
+    "toyota.fr", "nissan.fr", "volkswagen.fr", "audi.fr", "norauto.fr",
+    "midas.fr", "feuvert.fr", "speedy.fr", "euromaster.fr", "point-s.fr",
+    "carglass.fr", "monsieur-pare-brise", "france-pare-brise",
+    "mondial-parebrise", "rapid-pare-brise", "bosch-car-service", "adexpert.fr",
+    "garage-ad.fr", "vulco.", "profilplus.", "siligom.", "motrio.",
+    "bestdrive.", "eurorepar.", "precisium", "autobacs", "carter-cash",
+    "securitest", "autovision", "autosur", "dekra", "controle-technique",
+    "auto-securite", "vivauto", "identicar", "five-star",
+)
+
+
+def est_reseau(nom: str, site: str = "") -> str | None:
+    """Retourne l'enseigne reconnue, ou None. Le nom, puis le domaine."""
     n = _norm(nom)
     for r in RESEAUX_SUP:
         if r in n:
             return r
+    s = (site or "").lower()
+    for h in HOTES_RESEAU:
+        if h in s:
+            return h
     return None
 
 
 # --------------------------------------------------------------------------
 
 def passe_reseaux(conn, apercu: bool) -> int:
+    # Les deux viviers, pas seulement celui des sans-site. La premiere version
+    # ne traitait que « aucun », si bien que 889 succursales de reseau sont
+    # restees dans le vivier refonte -- Delko, A+ Glass, Top Garage, des
+    # concessions Peugeot -- pretes a etre demarchees comme des independants.
     lignes = conn.execute(
-        "SELECT cle, nom FROM prospects WHERE site_statut='aucun'").fetchall()
-    touches = [(c, n, est_reseau(n)) for c, n in lignes]
+        "SELECT cle, nom, COALESCE(site_web,'') FROM prospects "
+        "WHERE site_statut IN ('aucun','propre')").fetchall()
+    touches = [(c, n, est_reseau(n, s)) for c, n, s in lignes]
     touches = [(c, n, e) for c, n, e in touches if e]
     par_enseigne: dict[str, int] = {}
     for _, _, e in touches:

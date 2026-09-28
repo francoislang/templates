@@ -67,7 +67,15 @@ git pull --rebase --autostash origin main || echo "AVERTISSEMENT: git pull a ech
 
 # --attendre 600 : si le pipeline eleveurs pousse au meme moment, on patiente
 # au lieu d'echouer. Les deux verrous sont distincts, seul git est partage.
-"$PY" _scripts/pipeline_pro.py --metier "$METIER" --nombre "$NOMBRE" --attendre 600
+# Les garages qui ont deja un site font partie du vivier : on leur propose
+# une comparaison, pas une refonte imposee. Mettre AVEC_SITE_PRO=0 dans .env
+# pour revenir aux seuls sans-site.
+AVEC="$(grep -E '^AVEC_SITE_PRO=' .env 2>/dev/null | cut -d= -f2- | tr -d '"'"'"' ' || true)"
+OPT=""
+[ "${AVEC:-1}" != "0" ] && OPT="--avec-site"
+echo "avec-site=${AVEC:-1}"
+
+"$PY" _scripts/pipeline_pro.py --metier "$METIER" --nombre "$NOMBRE" $OPT --attendre 600
 code=$?
 
 echo "----- fin, code de sortie $code -----"
