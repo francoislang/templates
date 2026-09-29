@@ -3,21 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Garage PJ AUTOS 16 — entretien et réparation mécanique à Châteauneuf-sur-Charente</title>
-<meta name="description" content="Garage PJ AUTOS 16, garage indépendant à Châteauneuf-sur-Charente (16120). Entretien courant et réparation mécanique. Ouvert du lundi au samedi. 06 50 30 47 03.">
+<title>Garage Des 3 Ormes — entretien et réparation mécanique à Villeneuve-sur-Cher</title>
+<meta name="description" content="Garage Des 3 Ormes, garage indépendant au 3 Route des Trois Ormes à Villeneuve-sur-Cher (18400). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 06 80 02 90 40.">
 <meta name="theme-color" content="#101A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
+  /* jetons repris par l'identite visuelle injectee */
   --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
   --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
   --bord-fantome:#526AA8;
+  /* le « champ » est l'aplat de marque : il suit l'encre, donc l'identite */
   --champ:var(--encre);
   --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#fff;
   --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
   --r:16px; --r-s:10px;
+  /* ombre portee franche, sans flou : c'est elle qui donne le rebond au
+     survol du modele, et elle ne declenche pas la regle « lueur coloree »
+     puisqu'elle est decalee et neutre */
   --ombre-dure:5px 5px 0 var(--encre);
   --ombre-dure-s:3px 3px 0 var(--encre);
   --res:cubic-bezier(.22,1,.36,1);
@@ -31,7 +36,7 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--creme);color:var(--encre);overflow-x:clip;
   font:17px/1.6 'Archivo',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
   -webkit-font-smoothing:antialiased}
-h1,h2,h3{margin:0;line-height:1.3;letter-spacing:-.035em;font-weight:800}
+h1,h2,h3{margin:0;line-height:1.04;letter-spacing:-.035em;font-weight:800}
 p{margin:0}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:6px}
@@ -41,6 +46,7 @@ a{color:inherit}
   font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
 .saut:focus{transform:translateY(0)}
 
+/* ---- boutons ---- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
   padding:15px var(--s5);border-radius:var(--r-s);font-weight:800;font-size:16px;
   text-decoration:none;border:2px solid transparent;cursor:pointer;
@@ -57,6 +63,7 @@ a{color:inherit}
 .btn--o{border-color:var(--bord);color:var(--encre)}
 .btn--o:hover{border-color:var(--encre)}
 
+/* ---- barre ---- */
 .hdr{position:sticky;top:0;z-index:60;background:var(--champ);
   padding:0 var(--s5);border-bottom:1px solid rgba(255,255,255,.12)}
 @media (min-width:760px){.hdr{padding:0 var(--s6)}}
@@ -66,9 +73,9 @@ a{color:inherit}
 .mq__s{width:38px;height:38px;border-radius:9px;background:var(--cuivre);
   display:grid;place-items:center;color:var(--txt-accent);flex:none}
 .mq__s svg{width:21px;height:21px}
-.mq__n{font-weight:800;font-size:18px;letter-spacing:-.025em;line-height:1.3}
-.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.03em;
-  color:var(--brume-clair);margin-top:2px}
+.mq__n{font-weight:800;font-size:18px;letter-spacing:-.025em;line-height:1.1}
+.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.04em;
+  color:var(--brume-clair);margin-top:2px;line-height:1.5}
 .nav{display:none;margin-left:auto;gap:var(--s5)}
 @media (min-width:1000px){.nav{display:flex}}
 .nav a{color:var(--brume-clair);text-decoration:none;font-size:15px;font-weight:600;
@@ -79,11 +86,14 @@ a{color:inherit}
   font-variant-numeric:tabular-nums}
 @media (min-width:1000px){.hdr__tel{display:inline-flex;margin-left:0}}
 .hdr__tel:hover{color:var(--cuivre)}
+/* sous 560 px l'appel a l'action du bandeau depasse la fenetre : la
+   barre fixe du bas porte deja les deux actions */
 .hdr .btn{display:none}
 @media (min-width:560px){.hdr .btn{display:inline-flex;margin-left:auto;
   padding:11px 18px;min-height:44px;font-size:15px}}
 @media (min-width:1000px){.hdr .btn{margin-left:0}}
 
+/* ---- ouverture ---- */
 .ouv{background:var(--champ);color:#fff;padding:var(--s7) var(--s5) var(--s8);
   position:relative;overflow:hidden}
 @media (min-width:760px){.ouv{padding:var(--s8) var(--s6) var(--s9)}}
@@ -105,6 +115,8 @@ a{color:inherit}
 .ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
 .ouv__a .btn{flex:1 1 210px}
 
+/* la fiche inclinee : meme dispositif que le modele, mais elle n'affiche
+   que des faits releves — horaires, adresse, numero, etat du moment */
 .fiche{background:var(--creme);color:var(--encre);border-radius:var(--r);
   padding:var(--s5);box-shadow:0 14px 26px -18px rgba(0,0,0,.5)}
 @media (min-width:980px){
@@ -137,6 +149,7 @@ a{color:inherit}
 .fiche__p span{font-size:13.5px;color:var(--texte-2)}
 .fiche__p b{font-size:19px;font-variant-numeric:tabular-nums}
 
+/* ---- bandeau de faits ---- */
 .faits{background:var(--encre-2);color:#fff;padding:var(--s7) var(--s5)}
 @media (min-width:760px){.faits{padding:var(--s7) var(--s6)}}
 .faits__in{max-width:var(--large);margin-inline:auto}
@@ -144,7 +157,7 @@ a{color:inherit}
 @media (min-width:720px){.faits__g{grid-template-columns:repeat(3,1fr);gap:var(--s6)}}
 .faits__g>div{padding-left:var(--s5);border-left:1px solid rgba(255,255,255,.18)}
 .faits__g b{display:block;font-size:clamp(30px,4.4vw,44px);font-weight:900;
-  letter-spacing:-.04em;line-height:1.3}
+  letter-spacing:-.04em;line-height:1.05}
 .faits__g b i{font-style:normal;color:var(--cuivre)}
 .faits__g span{display:block;margin-top:10px;font-size:15px;color:var(--brume-clair)}
 .puces{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s6)}
@@ -154,6 +167,7 @@ a{color:inherit}
 .puces svg{width:15px;height:15px;color:var(--cuivre);flex:none}
 .puces{list-style:none;margin-bottom:0;padding:0}
 
+/* ---- sections claires ---- */
 .sec{padding:var(--s8) var(--s5)}
 @media (min-width:760px){.sec{padding:var(--s9) var(--s6)}}
 .sec--fonce{background:var(--champ);color:#fff}
@@ -166,6 +180,7 @@ a{color:inherit}
 .chapo{font-size:18px;color:var(--texte);max-width:52ch}
 .sec--fonce .chapo{color:var(--brume-clair)}
 
+/* ---- registre ---- */
 .reg{list-style:none;margin:var(--s7) 0 0;padding:0;counter-reset:r}
 .reg li{counter-increment:r;display:grid;gap:var(--s3);padding:var(--s5) 0;
   border-top:1px solid var(--bord);align-items:start}
@@ -201,6 +216,7 @@ a{color:inherit}
 .reg__f p{color:var(--texte);font-size:15.5px}
 .reg__f a{font-weight:800;color:var(--cuivre-sombre)}
 
+/* ---- horaires et acces ---- */
 .duo{display:grid;gap:var(--s5);margin-top:var(--s7)}
 @media (min-width:900px){.duo{grid-template-columns:1fr 1fr;gap:var(--s6);
   align-items:stretch}}
@@ -232,6 +248,7 @@ a{color:inherit}
 .pan__a .btn{flex:1 1 180px}
 .pan__n{margin-top:auto;padding-top:var(--s5);font-size:14.5px;color:var(--texte-2)}
 
+/* ---- contact ---- */
 .ctc{display:grid;gap:var(--s7);margin-top:var(--s7)}
 @media (min-width:900px){.ctc{grid-template-columns:.92fr 1.08fr;gap:var(--s8);
   align-items:start}}
@@ -260,12 +277,14 @@ a{color:inherit}
 .fret{margin-top:var(--s3);font-size:15px;font-weight:700}
 .fnote{margin-top:var(--s3);font-size:14px;color:var(--texte-2)}
 
+/* ---- pied ---- */
 .pied{background:var(--encre);color:var(--brume);padding:var(--s7) var(--s5);
   font-size:14.5px}
 @media (min-width:760px){.pied{padding:var(--s7) var(--s6)}}
 .pied__in{max-width:var(--large);margin-inline:auto;display:flex;
   flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
 
+/* ---- barre mobile ---- */
 .bmob{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
   grid-template-columns:1fr auto;gap:10px;
   padding:10px 14px calc(10px + env(safe-area-inset-bottom));
@@ -275,23 +294,28 @@ a{color:inherit}
 @media (max-width:999px){body{padding-bottom:84px}}
 
 /* ---- couleur-acier.css ---- */
+/* Acier — le garage traite comme un objet industriel : aucune couleur chaude
+   nulle part. Un noir de fonte, un blanc franc, et pour seul accent l'eclat
+   froid d'un metal poli (acier brosse sur les fonds sombres, ardoise de zinc
+   sur les fonds clairs). L'accent ne se distingue jamais par sa saturation,
+   toujours par sa clarte et sa froideur ; les gris de texte, eux, restent
+   rigoureusement neutres pour ne jamais lui disputer la place. */
 :root{
-  --encre:#0C0D0E;
-  --encre-2:#191B1C;
-  --cuivre:#B4C6D0;
-  --cuivre-sombre:#3C5563;
-  --txt-accent:#0B1114;
-  --brume:#828282;
-  --brume-clair:#ABABAB;
-  --bord-fantome:#66696B;
-  --creme:#F2F3F3;
-  --creme-2:#E6E7E8;
-  --blanc:#FFFFFF;
-  --bord:#D6D8D9;
-  --texte:#2C2D2D;
-  --texte-2:#575858;
+  --encre:#0C0D0E;          /* noir de fonte : bandeau, ouverture, contact */
+  --encre-2:#191B1C;        /* la meme fonte, un cran sous la lumiere */
+  --cuivre:#B4C6D0;         /* acier poli : l'accent sur les fonds sombres */
+  --cuivre-sombre:#3C5563;  /* zinc mouille : le meme accent sur fond clair */
+  --txt-accent:#0B1114;     /* texte grave dans la plaque d'acier */
+  --brume:#828282;          /* gris strictement neutre : secondaire sur sombre */
+  --brume-clair:#ABABAB;    /* gris neutre : texte courant sur sombre */
+  --bord-fantome:#66696B;   /* filet d'acier terni sur l'aplat */
+  --creme:#F2F3F3;          /* le papier : gris de tole claire, zero beige */
+  --creme-2:#E6E7E8;        /* seconde teinte : la meme tole, un ton dessous */
+  --blanc:#FFFFFF;          /* cartes : blanc franc */
+  --bord:#D6D8D9;           /* filets sur fond clair */
+  --texte:#2C2D2D;          /* texte courant : gris neutre, jamais bleute */
+  --texte-2:#575858;        /* texte discret : le meme gris, delave */
 }
-
 </style>
 </head>
 <body>
@@ -307,7 +331,7 @@ a{color:inherit}
           <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
         </svg>
       </span>
-      <span class="mq__n">Garage PJ AUTOS 16<span class="mq__v">Châteauneuf-sur-Charente · indépendant</span></span>
+      <span class="mq__n">Garage Des 3 Ormes<span class="mq__v">Villeneuve-sur-Cher · indépendant</span></span>
     </a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="#registre">Interventions</a>
@@ -315,11 +339,11 @@ a{color:inherit}
       <a href="#contact">Nous contacter</a>
     </nav>
     <a class="btn btn--c" href="#contact">Demander un rappel</a>
-    <a class="hdr__tel" href="tel:+33650304703">
+    <a class="hdr__tel" href="tel:+33680029040">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-      </svg>06 50 30 47 03
+      </svg>06 80 02 90 40
     </a>
   </div>
 </header>
@@ -330,13 +354,13 @@ a{color:inherit}
   <div class="hero__tread" aria-hidden="true"></div>
   <div class="ouv__in">
     <div>
-      <p class="surt"><b>Garage indépendant</b>, en Charente</p>
+      <p class="surt"><b>Garage indépendant</b>, à Villeneuve-sur-Cher</p>
       <h1>Votre voiture chez <em>un indépendant.</em></h1>
-      <p class="ouv__t">Entretien courant et réparation mécanique à Châteauneuf-sur-Charente.
-        Vous parlez au mécanicien qui ouvrira le capot,
+      <p class="ouv__t">Entretien courant et réparation mécanique, 3 Route des
+        Trois Ormes. Vous parlez au mécanicien qui ouvrira le capot,
         pas à un standard.</p>
       <div class="ouv__a">
-        <a class="btn btn--c" href="tel:+33650304703">Appeler le 06 50 30 47 03</a>
+        <a class="btn btn--c" href="tel:+33680029040">Appeler le 06 80 02 90 40</a>
         <a class="btn btn--f" href="#contact">Demander un rappel</a>
       </div>
     </div>
@@ -349,16 +373,16 @@ a{color:inherit}
       <dl>
         <div><dt>État</dt>
           <dd><span class="etat" id="etat"
-              data-h='[null,[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[540,720]]'>Du lundi au samedi</span></dd></div>
-        <div><dt>Téléphone</dt><dd><a href="tel:+33650304703">06 50 30 47 03</a></dd></div>
+              data-h='[null,[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],null]'>Du lundi au vendredi</span></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+33680029040">06 80 02 90 40</a></dd></div>
         <div><dt>Adresse</dt>
-          <dd>Châteauneuf-sur-Charente<small>16120</small></dd></div>
-        <div><dt>Ouverture</dt><dd>8h30–12h · 14h–18h30<small>samedi 9h–12h</small></dd></div>
-        <div><dt>Fermeture</dt><dd>Dimanche<small>et les jours fériés</small></dd></div>
+          <dd>3 Route des Trois Ormes<small>18400 Villeneuve-sur-Cher</small></dd></div>
+        <div><dt>Ouverture</dt><dd>9h–12h · 14h–18h</dd></div>
+        <div><dt>Fermeture</dt><dd>Samedi et dimanche</dd></div>
       </dl>
       <p class="fiche__p">
         <span>Le plus court chemin<br>vers l'atelier</span>
-        <b><a href="tel:+33650304703">06 50 30 47 03</a></b>
+        <b><a href="tel:+33680029040">06 80 02 90 40</a></b>
       </p>
     </aside>
   </div>
@@ -367,9 +391,9 @@ a{color:inherit}
 <section class="faits" aria-label="En bref">
   <div class="faits__in">
     <div class="faits__g">
-      <div><b>Lun–sam<i>.</i></b><span>Fermé le dimanche et les jours fériés</span></div>
-      <div><b>8h30<i>–18h30</i></b><span>Coupure de 12h à 14h. Samedi 9h–12h</span></div>
-      <div><b>Charente<i> 16</i></b><span>16120 Châteauneuf-sur-Charente</span></div>
+      <div><b>Lun–ven<i>.</i></b><span>Fermé le samedi et le dimanche</span></div>
+      <div><b>9<i>h</i>–18<i>h</i></b><span>Coupure de 12 h à 14 h</span></div>
+      <div><b>Villeneuve<i>-sur-Cher</i></b><span>3 Route des Trois Ormes, 18400</span></div>
     </div>
     <ul class="puces">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
@@ -440,7 +464,7 @@ a{color:inherit}
         </span>
         <div>
           <h3>Le reste, de vive voix</h3>
-          <p>Pour tout ce qui n'entre dans aucune case, un appel au 06 50 30 47 03
+          <p>Pour tout ce qui n'entre dans aucune case, un appel au 06 80 02 90 40
              répond plus vite qu'une page web. Vous décrivez, on vous dit si
              c'est faisable ici et quand.</p>
         </div>
@@ -450,7 +474,7 @@ a{color:inherit}
 
     <div class="reg__f">
       <p>Aucun tarif n'est affiché tant qu'il n'a pas été confirmé par l'atelier.</p>
-      <a href="tel:+33650304703">Demander un prix au téléphone →</a>
+      <a href="tel:+33680029040">Demander un prix au téléphone →</a>
     </div>
   </div>
 </section>
@@ -466,24 +490,23 @@ a{color:inherit}
       <div class="pan">
         <h3>Horaires d'ouverture</h3>
         <p class="etat" id="etat2"
-           data-h='[null,[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[510,720,840,1110],[540,720]]'>Du lundi au samedi.</p>
+           data-h='[null,[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],[540,720,840,1080],null]'>Du lundi au vendredi, 9h–12h · 14h–18h.</p>
         <dl class="hor">
-          <div><dt>Lundi</dt><dd>8h30–12h · 14h–18h30</dd></div>
-          <div><dt>Mardi</dt><dd>8h30–12h · 14h–18h30</dd></div>
-          <div><dt>Mercredi</dt><dd>8h30–12h · 14h–18h30</dd></div>
-          <div><dt>Jeudi</dt><dd>8h30–12h · 14h–18h30</dd></div>
-          <div><dt>Vendredi</dt><dd>8h30–12h · 14h–18h30</dd></div>
-          <div><dt>Samedi</dt><dd>9h–12h</dd></div>
+          <div><dt>Lundi</dt><dd>9h–12h · 14h–18h</dd></div>
+          <div><dt>Mardi</dt><dd>9h–12h · 14h–18h</dd></div>
+          <div><dt>Mercredi</dt><dd>9h–12h · 14h–18h</dd></div>
+          <div><dt>Jeudi</dt><dd>9h–12h · 14h–18h</dd></div>
+          <div><dt>Vendredi</dt><dd>9h–12h · 14h–18h</dd></div>
+          <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
           <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
-          <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
         </dl>
       </div>
       <div class="pan">
         <h3>Venir à l'atelier</h3>
-        <address class="adr">16120 Châteauneuf-sur-Charente</address>
+        <address class="adr">3 Route des Trois Ormes<br>18400 Villeneuve-sur-Cher</address>
         <div class="pan__a">
-          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&destination=Ch%C3%A2teauneuf-sur-Charente%2C%2016120">Ouvrir l'itinéraire</a>
-          <a class="btn btn--o" href="tel:+33650304703">Appeler avant de passer</a>
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=3%20Route%20des%20Trois%20Ormes%2C%2018400%20Villeneuve-sur-Cher%2C%20France">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="tel:+33680029040">Appeler avant de passer</a>
         </div>
         <p class="pan__n">Un appel avant de venir permet de savoir si le créneau
           est libre et si la pièce est en stock.</p>
@@ -497,11 +520,11 @@ a{color:inherit}
     <div class="ctc">
       <div>
         <h2>Appelez, ou laissez-nous vous rappeler</h2>
-        <a class="ctc__tel" href="tel:+33650304703">
+        <a class="ctc__tel" href="tel:+33680029040">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-          </svg>06 50 30 47 03
+          </svg>06 80 02 90 40
         </a>
         <p class="ctc__l">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -509,8 +532,8 @@ a{color:inherit}
             <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/>
             <circle cx="12" cy="10.2" r="2.7"/>
           </svg>
-          <span><b>16120 Châteauneuf-sur-Charente</b>
-            Charente</span>
+          <span><b>3 Route des Trois Ormes</b>
+            18400 Villeneuve-sur-Cher</span>
         </p>
         <p class="ctc__l">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -518,7 +541,16 @@ a{color:inherit}
             <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
           </svg>
           <span><b>Du lundi au vendredi</b>
-            8h30–12h et 14h–18h30, le samedi 9h–12h</span>
+            9h–12h · 14h–18h</span>
+        </p>
+        <p class="ctc__l">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 6L2 7"/>
+          </svg>
+          <span><b>Courriel</b>
+            garagedestroisormes@hotmail.com</span>
         </p>
       </div>
 
@@ -546,7 +578,8 @@ a{color:inherit}
         <button class="btn btn--c" type="submit"
                 style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
         <p class="fret" id="ret" role="status" aria-live="polite"></p>
-        <p class="fnote">La demande part en SMS vers le 06 50 30 47 03.</p>
+        <p class="fnote">Une adresse électronique existe : garagedestroisormes@hotmail.com.
+          La demande part en SMS vers le 06 80 02 90 40.</p>
       </form>
     </div>
   </div>
@@ -554,38 +587,52 @@ a{color:inherit}
 </main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33650304703">Appeler l'atelier</a>
+  <a class="btn btn--c" href="tel:+33680029040">Appeler l'atelier</a>
   <a class="btn btn--f" href="#contact">Rappel</a>
 </div>
 
 <footer class="pied">
   <div class="pied__in">
-    <span>© 2026 Garage PJ AUTOS 16 — 16120 Châteauneuf-sur-Charente</span>
-    <span>Lundi–vendredi 8h30–18h30 · Samedi 9h–12h</span>
+    <span>© 2026 Garage Des 3 Ormes — 3 Route des Trois Ormes, 18400 Villeneuve-sur-Cher</span>
   </div>
 </footer>
+
+<section id="bon-de-travail" hidden>
+  <h2>Bon de travail — notes de production</h2>
+  <p>Ce bloc n'est visible qu'avec <code>?notes</code> dans l'URL. Il n'est
+    pas destiné au prospect.</p>
+  <ul>
+    <li>Aucune donnée d'avis clients, de pneumatiques, de véhicules de prêt,
+      de tarifs, de garantie, d'année de création ou d'habilitation n'a été
+      fournie ; les sections correspondantes n'ont pas été créées.</li>
+    <li>Les mentions « toutes marques », « devis gratuit », « paiement par
+      carte » et autres formules passe-partout n'ont pas été utilisées car
+      absentes des faits vérifiés.</li>
+    <li>Aucune coordonnée géographique n'a été fournie ; le JSON-LD ne
+      contient pas de géolocalisation.</li>
+  </ul>
+</section>
 
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
   "@type":"AutoRepair",
-  "name":"Garage PJ AUTOS 16",
-  "description":"Garage indépendant à Châteauneuf-sur-Charente : entretien courant et réparation mécanique.",
-  "telephone":"+33650304703",
-  "email":"pjautos16@gmail.com",
+  "name":"Garage Des 3 Ormes",
+  "description":"Garage automobile indépendant à Villeneuve-sur-Cher : entretien courant et réparation mécanique.",
+  "telephone":"+33680029040",
+  "email":"garagedestroisormes@hotmail.com",
   "address":{
     "@type":"PostalAddress",
-    "postalCode":"16120",
-    "addressLocality":"Châteauneuf-sur-Charente",
-    "addressRegion":"Nouvelle-Aquitaine",
+    "streetAddress":"3 Route des Trois Ormes",
+    "postalCode":"18400",
+    "addressLocality":"Villeneuve-sur-Cher",
     "addressCountry":"FR"
   },
   "openingHoursSpecification":[
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],
-     "opens":"08:30","closes":"12:00"},
+     "opens":"09:00","closes":"12:00"},
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],
-     "opens":"14:00","closes":"18:30"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"12:00"}
+     "opens":"14:00","closes":"18:00"}
   ],
   "makesOffer":[
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien courant"}},
@@ -596,7 +643,8 @@ a{color:inherit}
 
 <script>
 // Etat d'ouverture, lu depuis data-h : sept entrees, dimanche en premier,
-// minutes depuis minuit par paires, null si ferme.
+// minutes depuis minuit par paires, null si ferme. Sans donnee lisible, la
+// phrase de repli ecrite dans le HTML reste affichee telle quelle.
 (function(){
   var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
   function pr(x){var r=[],i; if(!x) return r;
@@ -626,7 +674,8 @@ a{color:inherit}
   if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
 })();
 
-// Le formulaire compose un SMS vers l'atelier.
+// Le formulaire compose un SMS : pas d'adresse electronique connue. On
+// n'annonce pas un envoi reussi, rien ne permet de le verifier d'ici.
 (function(){
   var f=document.getElementById("dem"); if(!f) return;
   f.addEventListener("submit",function(e){
@@ -638,9 +687,17 @@ a{color:inherit}
     var corps="Bonjour, "+n+" ("+t+")."+(v?" "+v+".":"")+(d?" "+d:"");
     document.getElementById("ret").textContent=
       "Votre application de messages s'ouvre avec la demande préremplie. "
-      +"Si rien ne se passe, appelez le 06 50 30 47 03.";
-    window.location.href="sms:+33650304703?body="+encodeURIComponent(corps);
+      +"Si rien ne se passe, appelez le 06 80 02 90 40.";
+    window.location.href="sms:+33680029040?body="+encodeURIComponent(corps);
   });
+})();
+
+// Affichage du bloc de notes de production si ?notes est présent.
+(function(){
+  if(location.search.indexOf('notes') > -1){
+    var b=document.getElementById('bon-de-travail');
+    if(b) b.hidden=false;
+  }
 })();
 </script>
 </body>
