@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moderne Garage — entretien et réparation mécanique à Urciers</title>
+<meta name="description" content="Moderne Garage, garage indépendant à Urciers (36160). Entretien courant et réparation mécanique. Ouvert du lundi au samedi. 07 77 70 29 33.">
+<meta name="theme-color" content="#101A2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
+  --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
+  --bord-fantome:#526AA8;
+  --champ:var(--encre);
+  --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#fff;
+  --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
+  --r:16px; --r-s:10px;
+  --ombre-dure:5px 5px 0 var(--encre);
+  --ombre-dure-s:3px 3px 0 var(--encre);
+  --res:cubic-bezier(.22,1,.36,1);
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --large:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+body{margin:0;background:var(--creme);color:var(--encre);overflow-x:clip;
+  font:17px/1.6 'Archivo',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  -webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.04;letter-spacing:-.035em;font-weight:800}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--cuivre);outline-offset:3px;border-radius:6px}
+.env{width:100%;max-width:var(--large);margin-inline:auto}
+.saut{position:absolute;left:0;top:0;transform:translateY(-200%);z-index:200;
+  background:var(--cuivre);colar:var(--txt-accent);padding:12px 20px;
+  font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
+.saut:focus{transform:translateY(0)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:15px var(--s5);border-radius:var(--r-s);font-weight:800;font-size:16px;
+  text-decoration:none;border:2px solid transparent;cursor:pointer;
+  font-family:inherit;min-height:48px;
+  transition:transform .18s ease,background-color .18s ease,
+    border-color .18s ease,box-shadow .18s ease}
+.btn:hover{transform:translate(-2px,-2px)}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--c:hover{filter:brightness(1.05);box-shadow:var(--ombre-dure)}
+.btn--o:hover{box-shadow:var(--ombre-dure-s)}
+.btn--f{border-color:rgba(255,255,255,.34);color:#fff}
+.btn--f:hover{border-color:#fff}
+.btn--o{border-color:var(--bord);color:var(--encre)}
+.btn--o:hover{border-color:var(--encre)}
+
+.hdr{position:sticky;top:0;z-index:60;background:var(--champ);
+  padding:0 var(--s5);border-bottom:1px solid rgba(255,255,255,.12)}
+@media (min-width:760px){.hdr{padding:0 var(--s6)}}
+.hdr__in{max-width:var(--large);margin-inline:auto;display:flex;
+  align-items:center;gap:var(--s5);min-height:72px}
+.mq{display:flex;align-items:center;gap:11px;text-decoration:none;color:#fff;flex:none}
+.mq__s{width:38px;height:38px;border-radius:9px;background:var(--cuivre);
+  display:grid;place-items:center;color:var(--txt-accent);flex:none}
+.mq__s svg{width:21px;height:21px}
+.mq__n{font-weight:800;font-size:18px;letter-spacing:-.025em;line-height:1.1}
+.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.05em;
+  color:var(--brume-clair);margin-top:2px}
+.nav{display:none;margin-left:auto;gap:var(--s5)}
+@media (min-width:1000px){.av{display:flex}}
+.nav a{color:var(--brume-clair);text-decoration:none;font-size:15px;font-weight:600;
+  padding-block:6px;border-bottom:2px solid transparent}
+.nav a:hover{color:#fff;border-color:var(--cuivre)}
+.hdr__tel{display:none;margin-left:auto;align-items:center;gap:9px;color:#fff;
+  text-decoration:none;font-weight:800;font-size:16px;white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+@media (min-width:1000px){.rdr__tel{display:inline-flex;margin-left:0}}
+.hdr__tel:hover{color:var(--cuivre)}
+.hdr .btn{display:none}
+@media (min-width:560px){.rdr .btn{display:inline-flex;margin-left:auto;
+  padding:11px 18px;min-height:44px;font-size:15px}}
+@media (min-width:1000px){.rdr .btn{margin-left:0}}
+
+.ouv{background:var(--champ);color:#fff;padding:var(--s7) var(--s5) var(--s8);
+  position:relative;overflow:hidden}
+@media (min-width:760px){.uv{padding:var(--s8) var(--s6) var(--s9)}}
+.hero__tread{position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:repeating-radial-gradient(circle at 88% 4%,
+    rgba(255,255,255,.08) 0 2px,transparent 2px 19px);
+  mask-image:radial-gradient(60% 60% at 88% 4%,#000 55%,transparent 82%);
+  -webkit-mask-image:radial-gradient(60% 60% at 88% 4%,#000 55%,transparent 82%)}
+.ouv__in{position:relative;max-width:var(--large);margin-inline:auto;
+  display:grid;gap:var(--s7)}
+@media (min-width:980px){.uv__in{grid-template-columns:1.06fr .94fr;
+  gap:var(--s8);align-items:center}}
+.surt{font-size:16px;font-weight:600;color:var(--brume-clair)}
+.surt b{font-weight:800;color:var(--cuivre)}
+.ouv h1{font-size:clamp(42px,7.4vw,78px);margin-top:var(--s5);max-width:11ch;
+  font-weight:900;letter-spacing:-.045em}
+.ouv h1 em{font-style:normal;color:var(--cuivre);display:block}
+.ouv__t{margin-top:var(--s5);font-size:18.5px;color:var(--brume-clair);max-width:44ch}
+.ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.ouv__a .btn{flex:1 1 210px}
+
+.fiche{background:var(--creme);color:var(--encre);border-radius:var(--r);
+  padding:var(--s5);box-shadow:0 14px 26px -18px rgba(0,0,0,.5)}
+@media (min-width:980px){
+  .fiche{transform:rotate(-1.6deg);padding:var(--s6);
+    transition:transform .3s var(--res),box-shadow .3s ease}
+  .fiche:hover{transform:rotate(0deg);box-shadow:0 18px 30px -18px rgba(0,0,0,.55)}
+  .fiche{animation:pose .42s var(--res) both}
+}
+@keyframes pose{
+  from{transform:rotate(-9deg) scale(1.06);opacity:0}
+  to{transform:rotate(-1.6deg) scale(1);opacity:1}
+}
+.fiche__t{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s4);padding-bottom:var(--s4);border-bottom:2px solid var(--encre)}
+.fiche__t b{font-size:15px;font-weight:800;letter-spacing:.02em}
+.fiche__j{font-size:12.5px;font-weight:800;color:var(--cuivre-sombre);
+  border:1px solid var(--cuivre-sombre);border-radius:999px;padding:4px 11px;
+  white-space:nowrap}
+.fiche dl{margin:0}
+.fiche dl>div{display:flex;justify-content:space-between;align-items:baseline;
+  gap:var(--s4);padding:13px 0;border-bottom:1px dashed var(--bord)}
+.fiche dl>div:last-child{border-bottom:0;padding-bottom:0}
+.fiche dt{font-size:14.5px;color:var(--texte-2);font-weight:600}
+.fiche dd{margin:0;font-weight:800;font-size:16px;text-align:right;
+  font-variant-numeric:tabular-nums}
+.fiche dd small{display:block;font-weight:600;font-size:13px;color:var(--texte-2);
+  margin-top:2px}
+.fiche__p{margin-top:var(--s5);padding-top:var(--s4);border-top:2px solid var(--encre);
+  display:flex;align-items:center;justify-content:space-between;gap:var(--s4)}
+.fiche__p span{font-size:13.5px;color:var(--texte-2)}
+.fiche__p b{font-size:19px;font-variant-numeric:tabular-nums}
+
+.faits{background:var(--encre-2);color:#fff;padding:var(--s7) var(--s5)}
+@media (min-width:760px){.aints{padding:var(--s7) var(--s6)}}
+.faits__in{max-width:var(--large);margin-inline:auto}
+.faits__g{display:grid;gap:var(--s5)}
+@media (min-width:720px){.aints__g{grid-template-columns:repeat(3,1fr);gap:var(--s6)}}
+.faits__g>div{padding-left:var(--s5);border-left:1px solid rgba(255,255,255,.18)}
+.faits__g b{display:block;font-size:clamp(30px,4.4vw,44px);font-weight:900;
+  letter-spacing:-.04em;line-height:1.05}
+.faits__g b i{font-style:normal;color:var(--cuivre)}
+.faits__g span{display:block;margin-top:10px;font-size:15px;color:var(--brume-clair)}
+.puces{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--s6)}
+.puces li{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:650;
+  color:var(--brume-clair);border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;padding:8px 15px}
+.puces svg{width:15px;height:15px;color:var(--cuivre);flex:none}
+.puces{list-style:none;margin-bottom:0;padding:0}
+
+.sec{padding:var(--s8) var(--s5)}
+@media (min-width:760px){.ec{padding:var(--s9) var(--s6)}}
+.sec--fonce{background:var(--champ);color:#fff}
+.sec__in{max-width:var(--large);margin-inline:auto}
+.tete{display:grid;gap:var(--s4)}
+@media (min-width:1000px){.ete{grid-template-columns:1.04fr .96fr;
+  column-gap:56px;align-items:end}}
+.tete h2{font-size:clamp(32px,5vw,52px);max-width:14ch;font-weight:900;
+  letter-spacing:-.04em;text-wrap:balance}
+.chapo{font-size:18px;color:var(--texte);max-width:52ch}
+.sec--fonce .chapo{color:var(--brume-clair)}
+
+.reg{list-style:none;margin:var(--s7) 0 0;padding:0;counter-reset:r}
+.reg li{counter-increment:r;display:grid;gap:var(--s3);padding:var(--s5) 0;
+  border-top:1px solid var(--bord);align-items:start}
+@media (min-width:820px){.reg li{grid-template-columns:54px 62px 1fr 210px;
+  gap:var(--s5);align-items:center}}
+.reg li:last-child{border-bottom:1px solid var(--bord)}
+@media (min-width:820px){
+  .reg li{padding-inline:var(--s4);border-radius:var(--r-s);
+    transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease}
+  .reg li:hover{background:var(--blanc);transform:translate(-2px,-2px);
+    box-shadow:var(--ombre-dure-s);position:relative;z-index:1}
+  .reg li:hover .reg__q{transform:rotate(-4deg) scale(1);opacity:1}
+  .reg__q{transform:rotate(-4deg) scale(.86);opacity:.55;
+    transition:transform .3s var(--res),opacity .3s ease;transform-origin:right center}
+}
+@media (prefers-reduced-motion:reduce){
+  .reg__q{transform:none;opacity:1}
+  .fiche{animation:none}
+}
+.reg__n{font-size:14px;font-weight:800;color:var(--texte-2);
+  font-variant-numeric:tabular-nums}
+.reg__n::before{content:"0" counter(r)}
+.reg__i{width:50px;height:50px;border-radius:12px;background:var(--champ);
+  color:var(--cuivre);display:grid;place-items:center}
+.reg__i svg{width:25px;height:25px}
+.reg h3{font-size:21px;letter-spacing:-.02em}
+.reg p{margin-top:6px;color:var(--texte);font-size:15.5px;max-width:56ch}
+.reg__q{font-size:14.5px;font-weight:700;color:var(--cuivre-sombre);
+  text-align:left}
+@media (min-width:820px){.reg__q{text-align:right}}
+.reg__f{margin-top:var(--s5);display:flex;flex-wrap:wrap;gap:var(--s4);
+  align-items:baseline;justify-content:space-between}
+.reg__f p{color:var(--texte);font-size:15.5px}
+.reg__f a{font-weight:800;color:var(--cuivre-sombre)}
+
+.duo{display:grid;gap:var(--s5);margin-top:var(--s7)}
+@media (min-width:900px){.duo{grid-template-columns:1fr 1fr;gap:var(--s6);
+  align-items:stretch}}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
+  padding:var(--s5);display:flex;flex-direction:column}
+@media (min-width:760px){.an{padding:var(--s6)}}
+.pan h3{font-size:21px}
+.etat{margin-top:var(--s3);font-weight:800;font-size:17px}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;
+  background:currentColor;margin-right:9px;position:relative;vertical-align:middle}
+.pastille::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:2px solid currentColor;animation:souffle 1.8s ease-out infinite}
+@keyframes souffle{
+  from{transform:scale(1);opacity:.55}
+  to{transform:scale(2.6);opacity:0}
+}
+.etat--oui{color:#18653F}
+.etat--non{color:var(--texte-2)}
+.hor{margin:var(--s5) 0 0;border-top:1px solid var(--bord)}
+.hor>div{display:flex;justify-content:space-between;gap:var(--s4);
+  padding:11px 0;border-bottom:1px solid var(--bord);font-size:15px}
+.hor dt{color:var(--texte);font-weight:600}
+.hor dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums}
+.hor--off dd{font-weight:600;color:var(--texte-2)}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre)}
+.adr{font-style:normal;margin-top:var(--s3);font-size:18px;font-weight:800;
+  line-height:1.5}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
+.pan__a .btn{flex:1 1 180px}
+.pan__n{margin-top:auto;padding-top:var(--s5);font-size:14.5px;color:var(--texte-2)}
+
+.ctc{display:grid;gap:var(--s7);margin-top:var(--s7)}
+@media (min-width:900px){.ctc{grid-template-columns:.92fr 1.08fr;gap:var(--s8);
+  align-items:start}}
+.ctc__tel{display:inline-flex;align-items:center;gap:14px;margin-top:var(--s5);
+  font-size:clamp(30px,4.8vw,48px);font-weight:900;letter-spacing:-.045em;
+  color:var(--cuivre);text-decoration:none;font-variant-numeric:tabular-nums}
+.ctc__tel:hover{filter:brightness(1.12)}
+.ctc__l{display:flex;gap:14px;margin-top:var(--s5);align-items:flex-start}
+.ctc__l svg{width:21px;height:21px;color:var(--cuivre);flex:none;margin-top:3px}
+.ctc__l b{display:block;font-weight:800}
+.ctc__l span{color:var(--brume-clair);font-size:15px}
+.form{background:var(--creme);color:var(--encre);border:1px solid var(--bord);
+  border-radius:var(--r);padding:var(--s5)}
+@media (min-width:760px){.orm{padding:var(--s6)}}
+.form h3{font-size:23px}
+.form__s{margin-top:8px;color:var(--texte-2);font-size:15px}
+.ch{display:grid;gap:var(--s4);margin-top:var(--s5)}
+@media (min-width:560px){. ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px}
+.f label{font-size:14px;font-weight:700}
+.f input,.f textarea{font:inherit;font-size:16px;padding:13px var(--s4);
+  border:1px solid var(--bord);border-radius:var(--r-s);background:var(--blanc);
+  color:var(--encre);width:100%}
+.f input:focus-visible,.f textarea:focus-visible{outline:3px solid var(--cuivre);
+  outline-offset:2px}
+.fret{margin-top:var(--s3);font-size:15px;font-weight:700}
+.fnote{margin-top:var(--s3);font-size:14px;color:var(--texte-2)}
+
+.pied{background:var(--encre);color:var(--brume);padding:var(--s7) var(--s5);
+  font-size:14.5px}
+@media (min-width:760px){.pied{padding:var(--s7) var(--s6)}}
+.pied__in{max-width:var(--large);margin-inline:auto;display:flex;
+  flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
+
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
+  grid-template-columns:1fr auto;gap:10px;
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  background:var(--champ);border-top:1px solid rgba(255,255,255,.16)}
+.bmob .btn{padding:12px var(--s4);font-size:15px;min-height:46px}
+@media (min-width:1000px){. bmob{display:none}}
+@media (max-width:999px){body{padding-bottom:84px}}
+
+:root{
+  --encre:#0C0D0E;
+  --encre-2:#191B1C;
+  --cuivre:#B4C6D0;
+  --cuivre-sombre:#3C5563;
+  --txt-accent:#0B1114;
+  --brume:#828282;
+  --brume-clair:#ABABAB;
+  --bord-fantome:#66696B;
+  --creme:#F2F3F3;
+  --creme-2:#E6E7E8;
+  --blanc:#FFFFFF;
+  --bord:#D6D8D9;
+  --texte:#2C2D2D;
+  --texte-2:#575858;
+}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<header class="hdr">
+  <div class="hdr__in">
+    <a class="mq" href="#principal">
+      <span class="mq__s">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14.7 6.3a4 4 0 105.4 5.4l-2.6-.9-1.7 1.7-.9-2.6z"/>
+          <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
+        </svg>
+      </span>
+      <span class="mq__n">Moderne Garage<span class="mq__v">Urciers · indépendant</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#registre">Interventions</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Nous contacter</a>
+    </nav>
+    <a class="btn btn--c" href="#contact">Demander un rappel</a>
+    <a class="hdr__tel" href="tel:+33777702933">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
+      </svg>07 77 70 29 33
+    </a>
+  </div>
+</header>
+
+<main id="principal">
+
+<section class="ouv">
+  <div class="hero__tread" aria-hidden="true"></div>
+  <div class="ouv__in">
+    <div>
+      <p class="surt"><b>Garage indépendant</b>, à Urciers</p>
+      <h1>Votre voiture chez <em>un indépendant.</em></h1>
+      <p class="ouv__t">Entretien courant et réparation mécanique à Urciers (36160). Vous parlez au mécanicien qui ouvrira le capot, pas à un standard.</p>
+      <div class="ouv__a">
+        <a class="btn btn--c" href="tel:+33777702933">Appeler le 07 77 70 29 33</a>
+        <a class="btn btn--f" href="#contact">Demander un rappel</a>
+      </div>
+    </div>
+
+    <aside class="fiche" aria-labelledby="fiche-t">
+      <div class="fiche__t">
+        <b id="fiche-t">L'ATELIER AUJOURD'HUI</b>
+        <span class="fiche__j" id="jour">Dimanche</span>
+      </div>
+      <dl>
+        <div><dt>État</dt>
+          <dd><span class="etat" id="etat"
+              data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140]]'>Du lundi au samedi</span></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+33777702933">07 77 70 29 33</a></dd></div>
+        <div><dt>Adresse</dt>
+          <dd>Urciers<small>36160</small></dd></div>
+        <div><dt>Ouverture</dt><dd>8h–12h · 14h–19h<small>du lundi au samedi</small></dd></div>
+        <div><dt>Fermeture</dt><dd>Dimanche<small>et les jours fériés</small></dd></div>
+      </dl>
+      <p class="fiche__p">
+        <span>Le plus court chemin<br>vers l'atelier</span>
+        <b><a href="tel:+33777702933">07 77 70 29 33</a></b>
+      </p>
+    </aside>
+  </div>
+</section>
+
+<section class="faits" aria-label="En bref">
+  <div class="faits__in">
+    <div class="faits__g">
+      <div><b>Lun–sam<i>.</i></b><span>Fermé le dimanche et les jours fériés</span></div>
+      <div><b>8<i>h</i>–19<i>h</i></b><span>Coupure de 12 h à 14 h. Du lundi au samedi</span></div>
+      <div><b>Urciers<i> 36160</i></b><span>Dans l'Indre, à proximité de La Châtre</span></div>
+    </div>
+    <ul class="puces">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Garage indépendant, pas une enseigne de réseeau</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Un seul numéro, qui sonne à l'atelier</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        Ouvert sans interruption sur la journée, midi exepté</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="registre">
+  <div class="sec__in">
+    <div class="tete">
+      <h2>Le registre des interventions</h2>
+      <p class="chapo">Deux familles de travaux, anoncées parce qu'elles
+        définissent le métier d'un atelier indépendant. Tout le reste se
+        demande de vive voix : c'est plus rapide qu'une liste qui promet tout.</p>
+    </div>
+
+    <ol class="reg">
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13.5h18M6 13.5l1.8-5A2 2 0 019.7 7h4.6a2 2 0 011.9 1.5l1.8 5"/>
+            <path d="M4 13.5V18h3v-1.5h10V18h3v-4.5"/><circle cx="7.5" cy="16" r="1"/>
+            <circle cx="16.5" cy="16" r="1"/>
+          </svg>
+        </span>
+        <div>
+          <h3>Entretien courant</h3>
+          <p>Vidange, filtres, révision, remplacement des pièces d'usure : les
+             opérations qui reviennent à échéance et qui gardent une voiture
+             en état.</p>
+        </div>
+        <span class="reg__q">Ce qui se planifie</span>
+      </li>
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a4 4 0 105.4 5.4l-2.6-.9-1.7 1.7-.9-2.6z"/>
+            <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
+          </svg>
+        </span>
+        <div>
+          <h3>Réparation mécanique</h3>
+          <p>Chercher d'où vient la pane, puis la réparer. C'est le métier de
+             base d'un atelier indépendant, et celui où parler directement au
+             mécanicien change tout.</p>
+        </div>
+        <span class="reg__q">Ce qui ne se planifie pas</span>
+      </li>
+      <li>
+        <span class="reg__n"></span>
+        <span class="reg__i" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
+          </svg>
+        </span>
+        <div>
+          <h3>Le reste, de vive voix</h3>
+          <p>Pour tout ce qui n'entre dans aucune case, un appel au 07 77 70 29 33
+             répond plus vite qu'une page web. Vous décrivez, on vous dit si
+             c'est faisable ici et quand.</p>
+        </div>
+        <span class="reg__q">En une minute</span>
+      </li>
+    </ol>
+
+    <div class="reg__f">
+      <p>Aucun tarif n'est affiché tant qu'il n'a pas été confirmé par l'atelier.</p>
+      <a href="tel:+33777702933">Demander un prix au téléphone →</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="horaires" style="background:var(--creme-2)">
+  <div class="sec__in">
+    <div class="tete">
+      <h2>Horaires et accès</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez cette
+        page, pour éviter le déplacement pour rien.</p>
+    </div>
+    <div class="duo">
+      <div class="pan">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2"
+           data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140]]'>Du lundi au samedi, 8h–12h et 14h–19h.</p>
+        <dl class="hor">
+          <div><dt>Lundi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Mardi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Mercredi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Jeudi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Vendredi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div><dt>Samedi</dt><dd>8h–12h · 14h–19h</dd></div>
+          <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+          <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
+        </dl>
+      </div>
+      <div class="pan">
+        <h3>Venir à l'atelier</h3>
+        <address class="adr">Urciers<br>36160</address>
+        <div class="pan__a">
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=Urciers+36160">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="tel:+33777702933">Appeler avant de passer</a>
+        </div>
+        <p class="pan__n">Un appel avant de venir permet de savoir si le créneau
+          est libre et si la pièce est en stock.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--fonce" id="contact">
+  <div class="sec__in">
+    <div class="ctc">
+      <div>
+        <h2>Appelez, ou laissez-nous vous rappeler</h2>
+        <a class="ctc__tel" href="tel:+33777702933">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
+          </svg>07 77 70 29 33
+        </a>
+        <p class="ctc__l">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 10.5c 0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/>
+            <circle cx="12" cy="10.2" r="2.7"/>
+          </svg>
+          <span><b>Urciers</b>
+            36160</span>
+        </p>
+        <p class="ctc__l">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
+          </svg>
+          <span><b>Du lundi au samedi</b>
+            8h–12h et 14h–19h</span>
+        </p>
+      </div>
+
+      <form class="form" id="dem" novalidate>
+        <h3>Demande de rappel</h3>
+        <p class="form__s">Deux minutes, sans engagement. Le bouton ouvre un SMS
+          prérempli vers l'atelier.</p>
+        <div class="ch">
+          <div class="f"><label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required
+                   placeholder="Camille Renard"></div>
+          <div class="f"><label for="tel">Votre téléphone</label>
+            <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
+                   required placeholder="06 12 34 56 78"></div>
+        </div>
+        <div class="f" style="margin-top:var(--s4)">
+          <label for="veh">Votre véhicule</label>
+          <input id="veh" name="veh" type="text" placeholder="Clio de 2016">
+        </div>
+        <div class="f" style="margin-top:var(--s4)">
+          <label for="det">Ce qui vous amène</label>
+          <textarea id="det" name="det" rows="3"
+                    placeholder="Voyant moteur allumé depuis hier."></textarea>
+        </div>
+        <button class="btn btn--c" type="submit"
+                style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
+        <p class="fret" id="ret" role="status" aria-live="polite"></p>
+        <p class="fnote">La demande part en SMS vers le 07 77 70 29 33.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="bmob">
+  <a class="btn btn--c" href="tel:+33777702933">Appeler l'atelier</a>
+  <a class="btn btn--f" href="#contact">Rappel</a>
+</div>
+
+<footer class="pied">
+  <div class="pied__in">
+    <span>© 2026 Moderne Garage — Urciers, 36160</span>
+    <span>Horaires et position relevés sur OpenStreetMap, nœud 567923341</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"AutoRepair",
+  "name":"Moderne Garage",
+  "description":"Garage indépendant à Urciers : entretien courant et réparation mécanique.",
+  "url":"https://francoislang.github.io/templates/garage-patton/",
+  "telephone":"+33777702933",
+  "email":"dossantosribeiro.fabien@gmail.com",
+  "address":{
+    "@type":"PostalAddress",
+    "addressLocality":"Urciers",
+    "postalCode":"36160",
+    "addressCountry":"FR"
+  },
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+     "opens":"08:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+     "opens":"14:00","closes":"19:00"}
+  ],
+  "makesOffer":[
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien courant"}},
+    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Réparation mécanique"}}
+  ]
+}
+</script>
+
+<script>
+(function(){
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r;
+    for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;
+    return b? a+"h"+(b<10?"0":"")+b : a+"h";}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs;
+    var cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){
+      el.textContent="Ouvert, jusqu'à "+hm(cj[i][1]);
+      el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;
+      el.className="etat etat--oui"; return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        el.textContent="Fermé, ouvre "+(k===0?"à "+hm(cs[i][0])
+          :( k===1?"demain à ":J[jj]+" à ")+hm(cs[i][0]));
+        el.innerHTML='<pan class="pastille" aria-hidden="true"></span>'+el.textContent;
+        el.className="etat etat--non"; return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour");
+  if(t){ var n=J[new Date().getDay()]; t.textContent=n.charAt(0).toUpperCase()+n.slice(1); }
+  var l=document.querySelectorAll(".hor > div"), j2=new Date().getDay();
+  if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
+})();
+
+(function(){
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=f.nom.value.trim(), t=f.tel.value.trim(),
+        v=f.veh.value.trim(), d=f.det.value.trim();
+    if(!n||!t){ document.getElementById("ret").textContent=
+      "Merci d'indiquer au moins votre nom et votre numéro."; return; }
+    var corps="Bonjour, "+n+" ("+t+")."+(v?" "+v+".":"")+(d?" "+d:"");
+    document.getElementById("ret").textContent=
+      "Votre application de messages s'ouvre avec la demande préremplie. "
+      +"Si rien ne se passe, appelez le 07 77 70 29 33.";
+    window.location.href="sms:+33777702933?body="+encodeURIComponent(corps);
+  });
+})();
+</script>
+</body>
+</html>
