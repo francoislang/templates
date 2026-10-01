@@ -3,21 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Garage Wihtol — garage automobile indépendant à Bourgon</title>
-<meta name="description" content="Garage Wihtol, garage indépendant à Bourgon (53410). Entretien et réparation mécanique. Ouvert du mardi au samedi. 06 16 66 65 84.">
+<title>Guide Auto Moto — garage automobile indépendant à Damelevières</title>
+<meta name="description" content="Guide Auto Moto, garage indépendant à Damelevières (54360). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 06 21 27 13 63.">
 <meta name="theme-color" content="#101A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
+  /* jetons repris par l'identite visuelle injectee */
   --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
   --txt-accent:#1A1002; --brume:#93A1BC; --brume-clair:#C9D3E6;
   --bord-fantome:#526AA8;
+  /* le « champ » est l'aplat de marque : il suit l'encre, donc l'identite */
   --champ:var(--encre);
   --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#fff;
   --bord:#D3D7D2; --texte:#414741; --texte-2:#5C635C;
   --r:16px; --r-s:10px;
+  /* ombre portee franche, sans flou : c'est elle qui donne le rebond au
+     survol du modele, et elle ne declenche pas la regle « lueur coloree »
+     puisqu'elle est decalee et neutre */
   --ombre-dure:5px 5px 0 var(--encre);
   --ombre-dure-s:3px 3px 0 var(--encre);
   --res:cubic-bezier(.22,1,.36,1);
@@ -41,6 +46,7 @@ a{color:inherit}
   font-weight:800;text-decoration:none;border-radius:0 0 var(--r-s) 0}
 .saut:focus{transform:translateY(0)}
 
+/* ---- boutons ---- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;
   padding:15px var(--s5);border-radius:var(--r-s);font-weight:800;font-size:16px;
   text-decoration:none;border:2px solid transparent;cursor:pointer;
@@ -57,6 +63,7 @@ a{color:inherit}
 .btn--o{border-color:var(--bord);color:var(--encre)}
 .btn--o:hover{border-color:var(--encre)}
 
+/* ---- barre ---- */
 .hdr{position:sticky;top:0;z-index:60;background:var(--champ);
   padding:0 var(--s5);border-bottom:1px solid rgba(255,255,255,.12)}
 @media (min-width:760px){.hdr{padding:0 var(--s6)}}
@@ -67,7 +74,7 @@ a{color:inherit}
   display:grid;place-items:center;color:var(--txt-accent);flex:none}
 .mq__s svg{width:21px;height:21px}
 .mq__n{font-weight:800;font-size:18px;letter-spacing:-.025em;line-height:1.1}
-.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.04em;
+.mq__v{display:block;font-size:11.5px;font-weight:600;letter-spacing:.02em;
   color:var(--brume-clair);margin-top:2px}
 .nav{display:none;margin-left:auto;gap:var(--s5)}
 @media (min-width:1000px){.nav{display:flex}}
@@ -77,13 +84,14 @@ a{color:inherit}
 .hdr__tel{display:none;margin-left:auto;align-items:center;gap:9px;color:#fff;
   text-decoration:none;font-weight:800;font-size:16px;white-space:nowrap;
   font-variant-numeric:tabular-nums}
-@media (min-width:1000px){.hdr__tel{display:inline-flex;margin-left:0}}
+@media (min-width:1000px){. hdr__tel{display:inline-flex;margin-left:0}}
 .hdr__tel:hover{color:var(--cuivre)}
 .hdr .btn{display:none}
 @media (min-width:560px){.hdr .btn{display:inline-flex;margin-left:auto;
   padding:11px 18px;min-height:44px;font-size:15px}}
-@media (min-width:1000px){.hdr .btn{margin-left:0}}
+@media (min-width:1000px){. hdr .btn{margin-left:0}}
 
+/* ---- ouverture ---- */
 .ouv{background:var(--champ);color:#fff;padding:var(--s7) var(--s5) var(--s8);
   position:relative;overflow:hidden}
 @media (min-width:760px){.ouv{padding:var(--s8) var(--s6) var(--s9)}}
@@ -137,6 +145,7 @@ a{color:inherit}
 .fiche__p span{font-size:13.5px;color:var(--texte-2)}
 .fiche__p b{font-size:19px;font-variant-numeric:tabular-nums}
 
+/* ---- bandeau de faits ---- */
 .faits{background:var(--encre-2);color:#fff;padding:var(--s7) var(--s5)}
 @media (min-width:760px){.faits{padding:var(--s7) var(--s6)}}
 .faits__in{max-width:var(--large);margin-inline:auto}
@@ -154,18 +163,20 @@ a{color:inherit}
 .puces svg{width:15px;height:15px;color:var(--cuivre);flex:none}
 .puces{list-style:none;margin-bottom:0;padding:0}
 
+/* ---- sections claires ---- */
 .sec{padding:var(--s8) var(--s5)}
 @media (min-width:760px){.sec{padding:var(--s9) var(--s6)}}
 .sec--fonce{background:var(--champ);color:#fff}
 .sec__in{max-width:var(--large);margin-inline:auto}
 .tete{display:grid;gap:var(--s4)}
-@media (min-width:1000px){.tee{grid-template-columns:1.04fr .96fr;
+@media (min-width:1000px){.tete{grid-template-columns:1.04fr .96fr;
   column-gap:56px;align-items:end}}
 .tete h2{font-size:clamp(32px,5vw,52px);max-width:14ch;font-weight:900;
   letter-spacing:-.04em;text-wrap:balance}
 .chapo{font-size:18px;color:var(--texte);max-width:52ch}
 .sec--fonce .chapo{color:var(--brume-clair)}
 
+/* ---- registre ---- */
 .reg{list-style:none;margin:var(--s7) 0 0;padding:0;counter-reset:r}
 .reg li{counter-increment:r;display:grid;gap:var(--s3);padding:var(--s5) 0;
   border-top:1px solid var(--bord);align-items:start}
@@ -201,12 +212,13 @@ a{color:inherit}
 .reg__f p{color:var(--texte);font-size:15.5px}
 .reg__f a{font-weight:800;color:var(--cuivre-sombre)}
 
+/* ---- horaires et acces ---- */
 .duo{display:grid;gap:var(--s5);margin-top:var(--s7)}
 @media (min-width:900px){.duo{grid-template-columns:1fr 1fr;gap:var(--s6);
   align-items:stretch}}
 .pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);
   padding:var(--s5);display:flex;flex-direction:column}
-@media (min-width:760px){.an{padding:var(--s6)}}
+@media (min-width:760px){.pan{padding:var(--s6)}}
 .pan h3{font-size:21px}
 .etat{margin-top:var(--s3);font-weight:800;font-size:17px}
 .pastille{display:inline-block;width:9px;height:9px;border-radius:50%;
@@ -232,6 +244,7 @@ a{color:inherit}
 .pan__a .btn{flex:1 1 180px}
 .pan__n{margin-top:auto;padding-top:var(--s5);font-size:14.5px;color:var(--texte-2)}
 
+/* ---- contact ---- */
 .ctc{display:grid;gap:var(--s7);margin-top:var(--s7)}
 @media (min-width:900px){.ctc{grid-template-columns:.92fr 1.08fr;gap:var(--s8);
   align-items:start}}
@@ -245,11 +258,11 @@ a{color:inherit}
 .ctc__l span{color:var(--brume-clair);font-size:15px}
 .form{background:var(--creme);color:var(--encre);border:1px solid var(--bord);
   border-radius:var(--r);padding:var(--s5)}
-@media (min-width:760px){.orm{padding:var(--s6)}}
+@media (min-width:760px){.form{padding:var(--s6)}}
 .form h3{font-size:23px}
 .form__s{margin-top:8px;color:var(--texte-2);font-size:15px}
 .ch{display:grid;gap:var(--s4);margin-top:var(--s5)}
-@media (min-width:560px){. ch{grid-template-columns:1fr 1fr}}
+@media (min-width:560px){.ch{grid-template-columns:1fr 1fr}}
 .f{display:flex;flex-direction:column;gap:6px}
 .f label{font-size:14px;font-weight:700}
 .f input,.f textarea{font:inherit;font-size:16px;padding:13px var(--s4);
@@ -260,20 +273,23 @@ a{color:inherit}
 .fret{margin-top:var(--s3);font-size:15px;font-weight:700}
 .fnote{margin-top:var(--s3);font-size:14px;color:var(--texte-2)}
 
+/* ---- pied ---- */
 .pied{background:var(--encre);color:var(--brume);padding:var(--s7) var(--s5);
   font-size:14.5px}
-@media (min-width:760px){.ied{padding:var(--s7) var(--s6)}}
+@media (min-width:760px){.pied{padding:var(--s7) var(--s6)}}
 .pied__in{max-width:var(--large);margin-inline:auto;display:flex;
   flex-wrap:wrap;gap:var(--s4);justify-content:space-between}
 
+/* ---- barre mobile ---- */
 .bmob{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
   grid-template-columns:1fr auto;gap:10px;
   padding:10px 14px calc(10px + env(safe-area-inset-bottom));
   background:var(--champ);border-top:1px solid rgba(255,255,255,.16)}
 .bmob .btn{padding:12px var(--s4);font-size:15px;min-height:46px}
-@media (min-width:1000px){. mob{display:none}}
-@media (max-width:999px){body{padding-bottom:84px}}
+@meda (min-width:1000px){. bmob{display:none}}
+@meda (max-width:999px){body{padding-bottom:84px}}
 
+/* ---- couleur-acier.css ---- */
 :root{
   --encre:#0C0D0E;
   --encre-2:#191B1C;
@@ -305,7 +321,7 @@ a{color:inherit}
           <path d="M13.6 10.4L4 20l1.5 1.5 9.6-9.6"/>
         </svg>
       </span>
-      <span class="mq__n">Garage Wihtol<span class="mq__v">Bourgon · indépendant</span></span>
+      <span class="mq__n">Guide Auto Moto<span class="mq__v">Damelevières · indépendant</span></span>
     </a>
     <nav class="nav" aria-label="Navigation principale">
       <a href="#registre">Interventions</a>
@@ -313,11 +329,11 @@ a{color:inherit}
       <a href="#contact">Nous contacter</a>
     </nav>
     <a class="btn btn--c" href="#contact">Demander un rappel</a>
-    <a class="hdr__tel" href="tel:+33616666584">
+    <a class="hdr__tel" href="tel:+33621271363">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-      </svg>06 16 66 65 84
+      </svg>06 21 27 13 63
     </a>
   </div>
 </header>
@@ -328,11 +344,11 @@ a{color:inherit}
   <div class="hero__tread" aria-hidden="true"></div>
   <div class="ouv__in">
     <div>
-      <p class="surt"><b>Garage indépendant</b>, à Bourgon</p>
+      <p class="surt"><b>Garage indépendant</b>, à Damelevières</p>
       <h1>Votre voiture chez <em>un indépendant.</em></h1>
-      <p class="ouv__t">Garage automobile indépendant à Bourgon (53410). Vous parlez au mécanicien qui ouvre le capot, pas à un standard.</p>
+      <p class="ouv__t">Entretien courant et réparation mécanique. Vous parlez au mécanicien qui ouvrira le capot, pas à un standard.</p>
       <div class="ouv__a">
-        <a class="btn btn--c" href="tel:+33616666584">Appeler le 06 16 66 65 84</a>
+        <a class="btn btn--c" href="tel:+33621271363">Appeler le 06 21 27 13 63</a>
         <a class="btn btn--f" href="#contact">Demander un rappel</a>
       </div>
     </div>
@@ -345,16 +361,16 @@ a{color:inherit}
       <dl>
         <div><dt>État</dt>
           <dd><span class="etat" id="etat"
-              data-h='[null,null,[510,720,810,1080],[510,720,810,1080],[510,720,810,1080],[510,720,810,1080],[480,780]]'>Du mardi au samedi</span></dd></div>
-        <div><dt>Téléphone</dt><dd><a href="tel:+33616666584">06 16 66 65 84</a></dd></div>
+              data-h='[null,[540,1080],[540,1080],[540,1080],[540,1080],[540,1080],null]'>Du lundi au vendredi</span></dd></div>
+        <div><dt>Téléphone</dt><dd><a href="tel:+33621271363">06 21 27 13 63</a></dd></div>
         <div><dt>Adresse</dt>
-          <dd>Bourgon<small>53410</small></dd></div>
-        <div><dt>Ouverture</dt><dd>Mar–ven 8h30–12h · 13h30–18h<small>samedi 8h–13h</small></dd></div>
-        <div><dt>Fermeture</dt><dd>Dimanche et lundi</dd></div>
+          <dd>Damelevières<small>54360</small></dd></div>
+        <div><dt>Ouverture</dt><dd>9h–18h<small>du lundi au vendredi</small></dd></div>
+        <div><dt>Fermeture</dt><dd>Samedi et dimanche<small>et les jours fériés</small></dd></div>
       </dl>
       <p class="fiche__p">
         <span>Le plus court chemin<br>vers l'atelier</span>
-        <b><a href="tel:+33616666584">06 16 66 65 84</a></b>
+        <b><a href="tel:+33621271363">06 21 27 13 63</a></b>
       </p>
     </aside>
   </div>
@@ -363,9 +379,9 @@ a{color:inherit}
 <section class="faits" aria-label="En bref">
   <div class="faits__in">
     <div class="faits__g">
-      <div><b>Mar–ven<i>.</i></b><span>Fermé le dimanche et le lundi</span></div>
-      <div><b>8h30<i>–</i>18h</b><span>Coupure de 12 h à 13 h 30. Le samedi, 8 h à 13 h</span></div>
-      <div><b>Bourgon<i> 53</i></b><span>53410, en Mayenne</span></div>
+      <div><b>Lun–ven<i>.</i></b><span>Fermé le samedi, le dimanche et les jours fériés</span></div>
+      <div><b>9<i>h</i>–18<i>h</i></b><span>Ouvert sans interruption, du lundi au vendredi</span></div>
+      <div><b>Damelevières</b><span>54360, Meurthe-et-Moselle</span></div>
     </div>
     <ul class="puces">
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
@@ -376,7 +392,7 @@ a{color:inherit}
         Un seul numéro, qui sonne à l'atelier</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-        Ouvert sans interruption sur la journée, midi excepté</li>
+        Ouvert sans interruption, du lundi au vendredi</li>
     </ul>
   </div>
 </section>
@@ -436,7 +452,7 @@ a{color:inherit}
         </span>
         <div>
           <h3>Le reste, de vive voix</h3>
-          <p>Pour tout ce qui n'entre dans aucune case, un appel au 06 16 66 65 84
+          <p>Pour tout ce qui n'entre dans aucune case, un appel au 06 21 27 13 63
              répond plus vite qu'une page web. Vous décrivez, on vous dit si
              c'est faisable ici et quand.</p>
         </div>
@@ -446,7 +462,7 @@ a{color:inherit}
 
     <div class="reg__f">
       <p>Aucun tarif n'est affiché tant qu'il n'a pas été confirmé par l'atelier.</p>
-      <a href="tel:+33616666584">Demander un prix au téléphone →</a>
+      <a href="tel:+33621271363">Demander un prix au téléphone →</a>
     </div>
   </div>
 </section>
@@ -462,23 +478,24 @@ a{color:inherit}
       <div class="pan">
         <h3>Horaires d'ouverture</h3>
         <p class="etat" id="etat2"
-           data-h='[null,null,[510,720,810,1080],[510,720,810,1080],[510,720,810,1080],[510,720,810,1080],[480,780]]'>Du mardi au samedi.</p>
+           data-h='[null,[540,1080],[540,1080],[540,1080],[540,1080],[540,1080],null]'>Du lundi au vendredi, 9h–18h.</p>
         <dl class="hor">
-          <div class="hor--off"><dt>Lundi</dt><dd>Fermé</dd></div>
-          <div><dt>Mardi</dt><dd>8h30–12h · 13h30–18h</dd></div>
-          <div><dt>Mercredi</dt><dd>8h30–12h · 13h30–18h</dd></div>
-          <div><dt>Jeudi</dt><dd>8h30–12h · 13h30–18h</dd></div>
-          <div><dt>Vendredi</dt><dd>8h30–12h · 13h30–18h</dd></div>
-          <div><dt>Samedi</dt><dd>8h–13h</dd></div>
+          <div><dt>Lundi</dt><dd>9h–18h</dd></div>
+          <div><dt>Mardi</dt><dd>9h–18h</dd></div>
+          <div><dt>Mercredi</dt><dd>9h–18h</dd></div>
+          <div><dt>Jeudi</dt><dd>9h–18h</dd></div>
+          <div><dt>Vendredi</dt><dd>9h–18h</dd></div>
+          <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
           <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+          <div class="hor--off"><dt>Jours fériés</dt><dd>Fermé</dd></div>
         </dl>
       </div>
       <div class="pan">
         <h3>Venir à l'atelier</h3>
-        <address class="adr">Bourgon<br>53410</address>
+        <address class="adr">Damelevières<br>54360</address>
         <div class="pan__a">
-          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bourgon%2053410">Ouvrir l'itinéraire</a>
-          <a class="btn btn--o" href="tel:+33616666584">Appeler avant de passer</a>
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&destination=Damelevières+54360">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="tel:+33621271363">Appeler avant de passer</a>
         </div>
         <p class="pan__n">Un appel avant de venir permet de savoir si le créneau
           est libre et si la pièce est en stock.</p>
@@ -492,11 +509,11 @@ a{color:inherit}
     <div class="ctc">
       <div>
         <h2>Appelez, ou laissez-nous vous rappeler</h2>
-        <a class="ctc__tel" href="tel:+33616666584">
+        <a class="ctc__tel" href="tel:+33621271363">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3.1 19.5 19.5 0 01-6-6A19.8 19.8 0 012.1 4.2 2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 1.9.7 2.8a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.3-1.2a2 2 0 012.1-.5c.9.4 1.8.6 2.8.7a2 2 0 011.7 2z"/>
-          </svg>06 16 66 65 84
+          </svg>06 21 27 13 63
         </a>
         <p class="ctc__l">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -504,23 +521,22 @@ a{color:inherit}
             <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/>
             <circle cx="12" cy="10.2" r="2.7"/>
           </svg>
-          <span><b>Bourgon</b>
-            53410</span>
+          <span><b>Damelevières</b>
+            54360</span>
         </p>
         <p class="ctc__l">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
           </svg>
-          <span><b>Du mardi au samedi</b>
-            Mar–ven 8h30–12h et 13h30–18h, samedi 8h–13h</span>
+          <span><b>Du lundi au vendredi</b>
+            9h–18h sans interruption</span>
         </p>
       </div>
 
       <form class="form" id="dem" novalidate>
         <h3>Demande de rappel</h3>
-        <p class="form__s">Deux minutes, sans engagement. Le bouton ouvre un SMS
-          prérempli vers l'atelier.</p>
+        <p class="form__s">Deux minutes, sans engagement. Votre demande est envoyée par email à l'atelier.</p>
         <div class="ch">
           <div class="f"><label for="nom">Votre nom</label>
             <input id="nom" name="nom" type="text" autocomplete="name" required
@@ -541,8 +557,7 @@ a{color:inherit}
         <button class="btn btn--c" type="submit"
                 style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
         <p class="fret" id="ret" role="status" aria-live="polite"></p>
-        <p class="fnote">Vous pouvez également écrire à sarl.cantais@orange.fr.
-          La demande part en SMS vers le 06 16 66 65 84.</p>
+        <p class="fnote">Votre demande sera envoyée par email à tony.pizzi@wanadoo.fr. Vous pouvez aussi appeler directement le 06 21 27 13 63.</p>
       </form>
     </div>
   </div>
@@ -550,14 +565,14 @@ a{color:inherit}
 </main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33616666584">Appeler l'atelier</a>
+  <a class="btn btn--c" href="tel:+33621271363">Appeler l'atelier</a>
   <a class="btn btn--f" href="#contact">Rappel</a>
 </div>
 
 <footer class="pied">
   <div class="pied__in">
-    <span>© 2026 Garage Wihtol — Bourgon, 53410</span>
-    <span>sarl.cantais@orange.fr</span>
+    <span>© 2026 Guide Auto Moto — Damelevières, 54360</span>
+    <span>Garage automobile indépendant</span>
   </div>
 </footer>
 
@@ -565,24 +580,18 @@ a{color:inherit}
 {
   "@context":"https://schema.org",
   "@type":"AutoRepair",
-  "name":"Garage Wihtol",
-  "description":"Garage indépendant à Bourgon : entretien et réparation mécanique.",
-  "url":"https://francoislang.github.io/templates/garage-wihtol/",
-  "telephone":"+33616666584",
-  "email":"sarl.cantais@orange.fr",
+  "name":"Guide Auto Moto",
+  "description":"Garage indépendant à Damelevières : entretien courant et réparation mécanique.",
+  "telephone":"+33621271363",
   "address":{
     "@type":"PostalAddress",
-    "postalCode":"53410",
-    "addressLocality":"Bourgon",
-    "addressRegion":"Mayenne",
+    "addressLocality":"Damelevières",
+    "postalCode":"54360",
     "addressCountry":"FR"
   },
   "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],
-     "opens":"08:30","closes":"12:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday"],
-     "opens":"13:30","closes":"18:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"13:00"}
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],
+     "opens":"09:00","closes":"18:00"}
   ],
   "makesOffer":[
     {"@type":"Offer","itemOffered":{"@type":"Service","name":"Entretien courant"}},
@@ -592,6 +601,7 @@ a{color:inherit}
 </script>
 
 <script>
+// Etat d'ouverture
 (function(){
   var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
   function pr(x){var r=[],i; if(!x) return r;
@@ -621,6 +631,7 @@ a{color:inherit}
   if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
 })();
 
+// Formulaire email
 (function(){
   var f=document.getElementById("dem"); if(!f) return;
   f.addEventListener("submit",function(e){
@@ -629,11 +640,12 @@ a{color:inherit}
         v=f.veh.value.trim(), d=f.det.value.trim();
     if(!n||!t){ document.getElementById("ret").textContent=
       "Merci d'indiquer au moins votre nom et votre numéro."; return; }
+    var sujet="Demande de rappel - Guide Auto Moto";
     var corps="Bonjour, "+n+" ("+t+")."+(v?" "+v+".":"")+(d?" "+d:"");
     document.getElementById("ret").textContent=
-      "Votre application de messages s'ouvre avec la demande préremplie. "
-      +"Si rien ne se passe, appelez le 06 16 66 65 84.";
-    window.location.href="sms:+33616666584?body="+encodeURIComponent(corps);
+      "Votre messagerie s'ouvre avec la demande préremplie. "
+      +"Si rien ne se passe, appelez le 06 21 27 13 63.";
+    window.location.href="mailto:tony.pizzi@wanadoo.fr?subject="+encodeURIComponent(sujet)+"&body="+encodeURIComponent(corps);
   });
 })();
 </script>
