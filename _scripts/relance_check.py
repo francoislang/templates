@@ -213,6 +213,32 @@ def _date_traitement(nom_elevage: str):
         return None
 
 
+def _libelle(race: str) -> tuple[str, str, str]:
+    """Emoji, sujet de la phrase, et etiquette affichee, selon le marche.
+
+    Le champ « race » du board porte le metier pour les circuits pro :
+    « garage automobile independant », « chantier naval / atelier de
+    reparation de bateaux ». Tel quel dans la phrase, cela donnait
+    « votre elevage de garage automobile independant ».
+
+    Le libelle long reste celui des METIERS de pipeline_pro, parce qu'il
+    sert de description au modele qui genere le site. On ne le raccourcit
+    qu'a l'affichage, ici.
+
+    Tout ce qui n'est reconnu ni comme garage ni comme nautique retombe
+    sur l'elevage : le message du circuit chiens ne bouge pas d'un
+    caractere.
+    """
+    r = (race or "").lower()
+    if "carrosserie" in r and "garage" not in r:
+        return "\U0001F527", "votre carrosserie", "carrosserie"
+    if any(m in r for m in ("garage", "automobile", "mecanique", "pneu")):
+        return "\U0001F527", "votre garage automobile", "garage automobile"
+    if any(m in r for m in ("naval", "bateau", "nautique", "voilier")):
+        return "\u26F5", "votre chantier naval", "chantier naval"
+    return "\U0001F415", f"votre élevage de {race}", race
+
+
 def main():
     today = datetime.now(timezone.utc).date()
     print(f"📅 Relance check — {today}")
@@ -331,10 +357,11 @@ def main():
 
         if delta >= 7:
             # Construire le message Telegram
+            emoji, sujet, etiquette = _libelle(item["race"])
             msg = (
                 f"🔔 RELANCE À FAIRE — J+{delta}\n"
                 f"{'─' * 30}\n"
-                f"🐕 {item['elevage']} — {item['race']}\n"
+                f"{emoji} {item['elevage']} — {etiquette}\n"
                 f"📞 {item['phone']}\n"
             )
             if item["demo_url"]:
@@ -344,7 +371,7 @@ def main():
                 f"📝 PHRASE DE RELANCE :\n"
                 f"Bonjour,\n\n"
                 f"Je me permets de vous recontacter suite à mon message de la semaine "
-                f"dernière concernant votre élevage de {item['race']}.\n\n"
+                f"dernière concernant {sujet}.\n\n"
                 f"Avez-vous eu le temps de jeter un œil à la démo que je vous ai envoyée ? "
                 f"N'hésitez pas si vous avez des questions, je reste disponible pour en discuter.\n\n"
                 f"Bonne journée à vous,\n"
