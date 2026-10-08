@@ -47,6 +47,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 import controle_design     # noqa: E402
+import anonymiser          # noqa: E402
 import crm                 # noqa: E402
 import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
 import telegram            # noqa: E402
@@ -475,21 +476,23 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
     if not gabarit.strip():
         return None, "aucun gabarit lisible", v
 
-    ville = p.get("commune") or ""
-    cp = p.get("code_postal") or ""
+    # Le modele ne voit jamais les vraies coordonnees : il les recopierait
+    # dans un attribut data-, un commentaire ou un JSON-LD reformate, ou le
+    # remplacement posterieur ne va pas les chercher. Nom, commune et code
+    # postal restent -- c'est ce qui fait l'interet de la demonstration.
+    pub = anonymiser.fiche_publique(p)
+    ville = pub.get("commune") or ""
+    cp = pub.get("code_postal") or ""
     faits = [f"- Nom : {nom}", f"- Activite : {conf['metier']}",
-             f"- Telephone : {p.get('telephone','')}"]
-    if p.get("departement"):
-        faits.append(f"- Departement : {p['departement']}")
-    if p.get("latitude") and p.get("longitude"):
-        faits.append(f"- Coordonnees GPS : {p['latitude']}, {p['longitude']}")
-    for libelle, champ in (("Adresse", "adresse"), ("Code postal", "code_postal"),
-                           ("Commune", "commune"), ("Horaires", "horaires"),
-                           ("Email", "email")):
-        if p.get(champ):
-            faits.append(f"- {libelle} : {p[champ]}")
-    if p.get("avis"):
-        note = f"{p['note']:.1f}" if p.get("note") else "?"
+             f"- Telephone : {pub.get('telephone','')}"]
+    if pub.get("departement"):
+        faits.append(f"- Departement : {pub['departement']}")
+    for libelle, champ in (("Code postal", "code_postal"),
+                           ("Commune", "commune"), ("Horaires", "horaires")):
+        if pub.get(champ):
+            faits.append(f"- {libelle} : {pub[champ]}")
+    if pub.get("avis"):
+        note = f"{pub['note']:.1f}" if pub.get("note") else "?"
         faits.append(f"- Avis Google : {note}/5 sur {p['avis']} avis")
 
     prompt = f"""Cree un site vitrine HTML complet pour un {conf['metier']}.
@@ -543,6 +546,11 @@ REGLES ABSOLUES :
   commune, mobile d'abord, contrastes au minimum 4,5:1.
 - NE CHANGE PAS les couleurs ni la police du gabarit : une identite visuelle
   est appliquee automatiquement apres generation.
+- AUCUNE COORDONNEE AUTRE QUE CELLES CI-DESSUS. Pas d'adresse de rue, pas
+  de courriel, pas de numero SIREN, pas de coordonnees GPS au dix-millieme :
+  ces informations ne sont pas dans les faits, donc elles n'existent pas.
+  N'invente pas non plus d'adresse plausible pour remplir un bloc contact :
+  la commune et le code postal suffisent.
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
     html, err = _appeler_modele(prompt)
@@ -563,11 +571,21 @@ REGLES ABSOLUES :
     if not IDENTITE_FIXE:
         html = _appliquer_variante(html, v)
 
+    # Garde-fou : on relit la page finie et on refuse de publier s'il reste
+    # une coordonnee reelle. Ceinture et bretelles -- le modele n'a pas vu
+    # ces valeurs, mais une regression de prompt ne doit pas se traduire par
+    # une fuite en ligne.
+    restes = anonymiser.verifier(html, p)
+    if restes:
+        return None, "donnees reelles dans la page : " + ", ".join(restes), v
+
     cible.parent.mkdir(exist_ok=True)
     cible.write_text(html, encoding="utf-8")
     html = _corriger_design(html, cible, v)
-    pl._sanitize(cible, slug, {"email": p.get("email", ""),
-                               "phone": p.get("telephone", "")})
+    # _sanitize remplace les courriels inventes par celui du contact : on lui
+    # donne la fiche publique, sinon il reinjecte la vraie adresse.
+    pl._sanitize(cible, slug, {"email": pub.get("email", ""),
+                               "phone": pub.get("telephone", "")})
     pl._inject_tracking(cible)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"],
                    capture_output=True)
