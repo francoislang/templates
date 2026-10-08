@@ -96,6 +96,13 @@ def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize
     """
     conn = sqlite3.connect(str(DB_PATH))
     conn.row_factory = sqlite3.Row
+    # Liste d'exclusion : un eleveur qui demande son retrait ne doit plus
+    # jamais ressortir, meme si sa fiche est rescrapee ou si processed_at est
+    # remis a zero. La table est creee a la volee pour qu'une base copiee
+    # ailleurs ne plante pas.
+    conn.execute("""CREATE TABLE IF NOT EXISTS exclus (
+        source_url TEXT PRIMARY KEY, motif TEXT, ajoute_at TEXT)""")
+
     cur = conn.execute("""
         SELECT source_url, name, race, phone, email, website, siren,
                ville, code_postal, departement, description, photo_url
@@ -104,6 +111,7 @@ def fetch_unprocessed_profiles(limit, existing_phones, existing_names, normalize
           AND phone IS NOT NULL AND phone != ''
           AND name IS NOT NULL AND name != ''
           AND race IS NOT NULL AND race != ''
+          AND source_url NOT IN (SELECT source_url FROM exclus)
         ORDER BY scraped_at DESC
     """)
 
