@@ -89,6 +89,49 @@ METIERS: dict[str, dict] = {
             "Contact : numero en grand et formulaire qui compose un SMS",
         ],
     },
+    "menuisier": {
+        "metier": "menuisier / atelier de menuiserie bois",
+        "gabarit": "reference-menuisier.html",
+        "cherche": "un menuisier",
+        "pluriel": "menuisiers",
+        "devis": "Un formulaire de devis avec le type de projet et les "
+                 "dimensions, pour répondre juste sans dix allers-retours",
+        "sections": [
+            "Ouverture : nom, metier, appel a l'action, et le dessin "
+            "technique cote (SVG) avec l'etat d'ouverture en direct",
+            "Bandeau de trois faits, tires des donnees verifiees",
+            "Les travaux de menuiserie, en trois familles dessinees en coupe",
+            "Preparer votre demande : mesurer, photographier, decrire",
+            "Horaires et acces, avec le tableau des horaires",
+            "Contact : numero en grand et formulaire qui compose un SMS",
+        ],
+        "consignes": (
+            "- SPECIALITE. La source ne dit pas si l'atelier fait de "
+            "l'interieur, de l'exterieur, de l'agencement, de l'ebenisterie "
+            "ou de la charpente. Garde les trois familles du gabarit, "
+            "formulees au conditionnel du metier comme dans le gabarit, sauf "
+            "si le NOM de l'entreprise indique clairement une specialite "
+            "(« Ebenisterie », « Charpente », « Fenetres ») : dans ce cas, "
+            "adapte les familles a cette specialite.\n"
+            "- Garde le titre court du gabarit sur le principe (« coupe a vos "
+            "cotes ») et le dessin cote sans aucune dimension chiffree.\n"
+            "- Aucune mention Qualibat, RGE, decennale, garantie, essence de "
+            "bois travaillee ou zone d'intervention : rien de cela n'est "
+            "dans les faits.\n"
+            "- FORMULAIRE. Il compose un SMS : il ne vaut que si le telephone "
+            "commence par 06 ou 07. Avec un fixe et un email, il compose un "
+            "mailto vers cet email. Avec un fixe et sans email, retire le "
+            "formulaire et remplace-le par un encadre « Avant d'appeler » qui "
+            "renvoie a « Preparer votre demande » et porte un bouton d'appel.\n"
+            "- Email connu : affiche-le dans le contact, en lien mailto.\n"
+            "- Sans adresse ni commune : aucune adresse inventee. Le panneau "
+            "« Venir a l'atelier » dit que l'adresse se donne au telephone et "
+            "propose un itineraire vers les coordonnees GPS si elles sont "
+            "fournies. Le titre et le SEO citent le departement.\n"
+            "- Si le nom indique la charpente, remplace la fenetre du dessin "
+            "par une ferme de charpente cotee, sans chiffre."),
+        "emoji": "\U0001FA9A",
+    },
     "nautique": {
         "metier": "chantier naval / atelier de réparation de bateaux",
         "gabarit": "reference-nautique.html",
@@ -436,6 +479,10 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
     cp = p.get("code_postal") or ""
     faits = [f"- Nom : {nom}", f"- Activite : {conf['metier']}",
              f"- Telephone : {p.get('telephone','')}"]
+    if p.get("departement"):
+        faits.append(f"- Departement : {p['departement']}")
+    if p.get("latitude") and p.get("longitude"):
+        faits.append(f"- Coordonnees GPS : {p['latitude']}, {p['longitude']}")
     for libelle, champ in (("Adresse", "adresse"), ("Code postal", "code_postal"),
                            ("Commune", "commune"), ("Horaires", "horaires"),
                            ("Email", "email")):
@@ -468,7 +515,8 @@ REGLES ABSOLUES :
   avis, et le lien correspondant sort aussi du menu et du pied de page. Pas
   de donnee pneumatique -> pas de section pneumatique. Meme regle pour le
   balisage JSON-LD : pas de aggregateRating sans note reelle.
-- LA PAGE S'ADRESSE AUX CLIENTS DU GARAGE, jamais au garagiste. Aucune phrase
+{conf.get('consignes', '')}
+- LA PAGE S'ADRESSE AUX CLIENTS DE L'ENTREPRISE, jamais a son patron. Aucune phrase
   du genre « cette reputation n'est visible que sur un annuaire, pas chez
   vous » : c'est un argumentaire de vente de site web, il n'a rien a faire
   sur une page que liront des automobilistes. Ce discours-la va dans le bloc
@@ -582,6 +630,8 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     ville = (p.get("commune") or "").strip()
     dept = (p.get("departement") or "").strip()
     lieu = f"à {ville}" if ville else "dans votre secteur"
+    qui = METIERS[metier].get("cherche", "un garage")
+    pluriel = METIERS[metier].get("pluriel", "garages")
 
     avis = p.get("avis")
     note = f"{p['note']:.1f}".replace(".", ",") if p.get("note") else ""
@@ -594,17 +644,17 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     if a_un_site:
         # On ne juge PAS son site : on ne l'a pas regarde. On propose une
         # comparaison, ce qui est honnete et se refuse moins facilement.
-        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché {qui} "
                      f"{lieu} et je suis tombé sur votre site, {p['site_web']}.")
     elif avis and note and int(avis) >= 10:
-        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché {qui} "
                      f"{lieu} et je suis tombé sur le vôtre : {avis} avis à "
                      f"{note}/5, et pourtant aucun site à vous.")
     elif a_facebook:
-        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché {qui} "
                      f"{lieu} et je n'ai trouvé de vous qu'une page Facebook.")
     else:
-        ouverture = (f"Je me permets de vous contacter car j'ai cherché un garage "
+        ouverture = (f"Je me permets de vous contacter car j'ai cherché {qui} "
                      f"{lieu} et je n'ai trouvé votre établissement que sur des "
                      f"annuaires.")
 
@@ -613,11 +663,11 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     if a_un_site:
         avantages.append("Une page qui se lit correctement sur un téléphone, "
                          "là où se font aujourd'hui la plupart des recherches "
-                         "de garage")
+                         f"d'artisans")
     elif avis and note and int(avis) >= 10:
         avantages.append(f"Vos {avis} avis affichés chez vous, et plus seulement "
                          f"sur un annuaire qui vous met en concurrence avec "
-                         f"trois autres garages sur la même page")
+                         f"trois autres {pluriel} sur la même page")
     else:
         avantages.append("Une adresse à vous quand on cherche votre nom, plutôt "
                          "qu'une fiche d'annuaire que vous ne contrôlez pas")
@@ -625,11 +675,13 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
         avantages.append("Un formulaire de devis qui arrive même quand l'atelier "
                          "est fermé, au lieu d'un téléphone qui sonne dans le vide")
     else:
-        avantages.append("Un formulaire de devis avec la plaque et le modèle, pour "
-                         "répondre juste sans dix allers-retours")
+        avantages.append(METIERS[metier].get(
+            "devis", "Un formulaire de devis avec la plaque et le modèle, "
+                     "pour répondre juste sans dix allers-retours"))
     avantages += [
         "Vos horaires, votre adresse et vos prestations trouvables en une "
-        "recherche, depuis un téléphone, au bord de la route",
+        "recherche, depuis un téléphone" + (", au bord de la route"
+        if metier == "garage" else ""),
         "Moins d'appels pour rien : ce que vous prenez en charge et ce que vous "
         "ne faites pas, c'est écrit",
     ]
@@ -681,7 +733,8 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
 def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
     """Le message Telegram : l'entete pour toi, le pitch a transferer."""
     nom = (p.get("nom") or "").strip()
-    parties = [f"\U0001F527 {nom} — {METIERS[metier]['metier']}"]
+    em = METIERS[metier].get("emoji", "\U0001F527")
+    parties = [f"{em} {nom} — {METIERS[metier]['metier']}"]
     if p.get("telephone"):
         parties.append(f"\U0001F4DE {p['telephone']}")
     if (p.get("email") or "").strip():

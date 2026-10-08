@@ -94,3 +94,10 @@ _data/vues.json
 # sauvegardes de base avant nettoyage
 _data/*.avant-*
 _data/test_*.db
+
+# sites tests faits a la main, jamais publies
+_essais/
+
+# exports de prospects (noms, telephones, courriels) — depot public
+/*.csv
+_data/*.csv

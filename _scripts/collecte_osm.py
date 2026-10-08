@@ -123,6 +123,31 @@ RESEAUX_NAUTIQUE = {
     "groupe beneteau", "chantiers de l'atlantique", "naval group", "piriou",
 }
 
+# Cote menuiserie, trois familles a ecarter. Les fabricants-installateurs de
+# fenetres en reseau, dont la communication est pilotee par la franchise. Les
+# cuisinistes en enseigne. Et les negoces / GSB, qui remontent parfois sous
+# craft=carpenter quand ils ont un atelier de decoupe. Liste empirique, a
+# completer en lisant les donnees.
+RESEAUX_MENUISIER = {
+    # fenetres, portes, fermetures en reseau
+    "lapeyre", "k par k", "kpark", "tryba", "franciaflex", "art et fenetres",
+    "art & fenetres", "grosfillex", "monsieur store", "france fermetures",
+    "bel'm", "belm", "oknoplast", "les ouvertures", "solabaie", "internorm",
+    "mistermenuiserie", "mister menuiserie", "akena", "komilfo",
+    "la boutique du menuisier", "boutique du menuisier",
+    "kline", "k line", "bieber", "zilten", "sybaie", "proferm",
+    "repar'stores", "fenetrea", "lorenove", "sofrapa", "technal", "schuco",
+    # cuisinistes et agencement en enseigne
+    "schmidt", "cuisinella", "mobalpa", "ixina", "arthur bonnet", "socooc",
+    "socoo'c", "cuisine plus", "cuisines references", "aviva", "perene",
+    "nolte", "hygena", "ikea", "conforama",
+    # negoce et grandes surfaces de bricolage
+    "point p", "leroy merlin", "castorama", "brico depot", "mr bricolage",
+    "mr.bricolage", "bricomarche", "weldom", "gedimat", "bigmat", "big mat",
+    "tout faire", "dispano", "panofrance", "bois et materiaux", "chausson",
+    "samse", "vm materiaux", "doras",
+}
+
 # Un metier = une liste de filtres Overpass et une liste d'enseignes a
 # ecarter. Tout le reste de la collecte est commun.
 #
@@ -150,6 +175,19 @@ METIERS_OSM = {
                     'nwr["service:boat:repair"="yes"](area.d);',
                     'nwr["boat:repair"="yes"](area.d);'],
         "reseaux": RESEAUX_NAUTIQUE,
+    },
+    "menuisier": {
+        # craft=carpenter couvre menuisiers et charpentiers (le wiki ne les
+        # separe pas), craft=joiner la menuiserie d'agencement,
+        # craft=cabinet_maker les ebenistes, craft=window_construction les
+        # poseurs de fenetres. shop=doors ramene quelques ateliers-showrooms.
+        "filtres": ['nwr["craft"="carpenter"](area.d);',
+                    'nwr["craft"="joiner"](area.d);',
+                    'nwr["craft"="cabinet_maker"](area.d);',
+                    'nwr["craft"="window_construction"](area.d);',
+                    'nwr["craft"="parquet_layer"](area.d);',
+                    'nwr["shop"="doors"](area.d);'],
+        "reseaux": RESEAUX_MENUISIER,
     },
 }
 
@@ -531,7 +569,8 @@ def main() -> None:
     p.add_argument("--metier", default="garage", choices=sorted(METIERS_OSM),
                    help="marche a collecter. garage : reparation automobile. "
                         "nautique : chantiers, voileries et reparateurs de "
-                        "bateaux. Les deux cohabitent dans la meme base, "
+                        "bateaux. menuisier : menuisiers, ebenistes, poseurs de "
+                        "fenetres. Tous cohabitent dans la meme base, "
                         "separes par la colonne metier.")
     p.add_argument("--dept", action="append", help="code departement (repetable)")
     p.add_argument("--region", action="append",

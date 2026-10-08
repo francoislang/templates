@@ -27,6 +27,9 @@ fi
 
 cd "$REPO" || { echo "ERREUR: depot introuvable ($REPO)"; exit 1; }
 
+# METIER_PRO accepte une liste : « menuisier,garage » fait tourner les deux
+# marches a la suite, dans cet ordre. « menuisier:5,garage » fixe un nombre
+# propre a un marche ; sans nombre, c'est SITES_PRO_PAR_JOUR qui s'applique.
 METIER="$(grep -E '^METIER_PRO=' .env 2>/dev/null | cut -d= -f2- | tr -d '"'"'"' ' || true)"
 METIER="${METIER:-garage}"
 NOMBRE="$(grep -E '^SITES_PRO_PAR_JOUR=' .env 2>/dev/null | cut -d= -f2- | tr -d '"'"'"' ' || true)"
@@ -63,7 +66,14 @@ except OSError:
 done
 [ "$attente" -gt 0 ] && echo "attente du pipeline eleveurs : ${attente}s"
 
-git pull --rebase --autostash origin main || echo "AVERTISSEMENT: git pull a echoue, on continue"
+# Meme remote que commit_and_push() de pipeline.py : HTTPS avec le jeton du
+# .env. origin est en SSH via l'agent 1Password, qui attend une validation
+# que personne ne donne a 9h30 -- d'ou les « Permission denied (publickey) ».
+JETON="$(grep -E '^GITHUB_TOKEN_PUSH_HERMES=' .env 2>/dev/null | cut -d= -f2- | tr -d '"'"'"' ' || true)"
+DEPOT="origin"
+[ -n "$JETON" ] && DEPOT="https://x-access-token:${JETON}@github.com/francoislang/templates.git"
+git pull --rebase --autostash "$DEPOT" main 2>&1 | sed "s#${JETON:-@@aucun@@}#***#g" \
+    || echo "AVERTISSEMENT: git pull a echoue, on continue"
 
 # --attendre 600 : si le pipeline eleveurs pousse au meme moment, on patiente
 # au lieu d'echouer. Les deux verrous sont distincts, seul git est partage.
@@ -75,8 +85,19 @@ OPT=""
 [ "${AVEC:-1}" != "0" ] && OPT="--avec-site"
 echo "avec-site=${AVEC:-1}"
 
-"$PY" _scripts/pipeline_pro.py --metier "$METIER" --nombre "$NOMBRE" $OPT --attendre 600
-code=$?
+code=0
+IFS=',' read -r -a MARCHES <<< "$METIER"
+for entree in "${MARCHES[@]}"; do
+    m="${entree%%:*}"
+    n="$NOMBRE"
+    [ "$entree" != "$m" ] && n="${entree#*:}"
+    [ -z "$m" ] && continue
+    echo ""
+    echo "--- marche $m : $n site(s) ---"
+    "$PY" _scripts/pipeline_pro.py --metier "$m" --nombre "$n" $OPT --attendre 600
+    c=$?
+    [ "$c" -ne 0 ] && code=$c
+done
 
 echo "----- fin, code de sortie $code -----"
 

@@ -234,6 +234,8 @@ def _libelle(race: str) -> tuple[str, str, str]:
         return "\U0001F527", "votre carrosserie", "carrosserie"
     if any(m in r for m in ("garage", "automobile", "mecanique", "pneu")):
         return "\U0001F527", "votre garage automobile", "garage automobile"
+    if any(m in r for m in ("menuis", "ebenist", "ébénist")):
+        return "\U0001FA9A", "votre menuiserie", "menuiserie"
     if any(m in r for m in ("naval", "bateau", "nautique", "voilier")):
         return "\u26F5", "votre chantier naval", "chantier naval"
     return "\U0001F415", f"votre élevage de {race}", race

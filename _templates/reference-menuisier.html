@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menuiserie Vautrin — menuisier à Nancy</title>
+<meta name="description" content="Menuiserie Vautrin, menuisier à Nancy : menuiserie intérieure et extérieure en bois, sur mesure. 8 rue des Charpentiers, 54000 Nancy. Téléphone 03 53 01 42 17.">
+<!--
+  GABARIT DE REFERENCE « menuisier » pour pipeline_pro.py.
+  L'entreprise est FICTIVE : nom, adresse et numero servent seulement a
+  montrer ou va chaque fait. Le 03 53 01 xx xx fait partie des plages que
+  l'ARCEP reserve a la fiction : il ne sonne chez personne.
+  Contrat identique au gabarit garage : variables --encre/--cuivre...,
+  .btn--c, #etat[data-h], formulaire qui compose un SMS, bon de travail
+  #a-personnaliser visible seulement avec ?notes.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* --- variables du contrat (identite injectable) --- */
+  --encre:#2B2118;          /* noyer fume : ouverture, contact */
+  --encre-2:#3A2D21;        /* cartes sur fond sombre */
+  --cuivre:#E2BC78;         /* chene blond, copeau : accent sur sombre */
+  --cuivre-sombre:#7A4C12;  /* le meme accent sur fond clair */
+  --txt-accent:#231708;     /* texte pose sur l'accent */
+  --brume:#B9AB97;          /* secondaire sur sombre */
+  --brume-clair:#E0D7C9;    /* courant sur sombre */
+  --bord-fantome:#6E5C47;   /* filet discret sur sombre */
+  /* --- couleurs claires libres --- */
+  --papier:#ECEEE8;         /* papier calque d'atelier, gris froid */
+  --papier-2:#E1E4DD;
+  --blanc:#FFFFFF;
+  --graphite:#46525B;       /* le trait de crayon des cotes */
+  --texte:#2E312F;
+  --texte-2:#555B57;
+  --bord:#CDD1CA;
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  --s7:48px; --s8:64px; --s9:96px; --large:1160px;
+  --r:6px;
+  --res:cubic-bezier(.22,1,.36,1);
+  --f-titre:'Zilla Slab',Rockwell,'Roboto Slab',Georgia,serif;
+  --f-texte:'Work Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;font-family:var(--f-texte);font-size:17px;line-height:1.6;color:var(--texte);background:var(--papier);overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:700;line-height:1.1;margin:0;color:var(--encre);letter-spacing:-.005em}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0}
+ul,ol{list-style:none}
+:focus-visible{outline:3px solid var(--cuivre-sombre);outline-offset:3px}
+.sombre :focus-visible{outline-color:var(--cuivre)}
+.saut{position:absolute;left:-999px;top:8px;background:var(--blanc);padding:10px 14px;z-index:50}
+.saut:focus{left:8px}
+.env{max-width:var(--large);margin-inline:auto;padding-inline:20px}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;
+  border-radius:var(--r);font-weight:600;font-size:16px;text-decoration:none;border:2px solid transparent;
+  cursor:pointer;font-family:var(--f-texte);transition:transform .2s var(--res),background-color .2s}
+.btn:active{transform:translateY(1px)}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--c:hover{background:#ECCB90}
+.btn--f{border-color:var(--bord-fantome);color:var(--brume-clair);background:transparent}
+.btn--f:hover{border-color:var(--brume-clair)}
+.btn--o{border-color:var(--encre);color:var(--encre);background:transparent}
+.btn--o:hover{background:var(--encre);color:var(--papier)}
+
+/* en-tete */
+.hdr{background:var(--encre);color:var(--brume-clair);border-bottom:1px solid var(--bord-fantome)}
+.hdr__in{display:flex;align-items:center;gap:var(--s5);min-height:68px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--blanc);margin-right:auto;min-height:44px}
+.mq svg{width:30px;height:30px;color:var(--cuivre);flex:none}
+.mq__n{font-family:var(--f-titre);font-weight:700;font-size:20px;line-height:1.1}
+.mq__v{display:block;font-family:var(--f-texte);font-weight:400;font-size:13px;color:var(--brume)}
+.nav{display:none;gap:var(--s5)}
+.nav a{text-decoration:none;font-size:15px;padding-block:12px;color:var(--brume-clair)}
+.nav a:hover{color:var(--cuivre)}
+.hdr__tel{display:none;text-decoration:none;font-weight:600;color:var(--blanc);font-variant-numeric:tabular-nums;min-height:44px;align-items:center}
+@media (min-width:900px){.nav{display:flex}.hdr__tel{display:inline-flex}}
+
+/* ouverture */
+.ouv{background:var(--encre);color:var(--brume-clair);padding-block:var(--s7) var(--s8);overflow:hidden}
+.ouv__in{display:grid;gap:var(--s7);align-items:center}
+@media (min-width:960px){.ouv__in{grid-template-columns:1.15fr .85fr}}
+.ouv h1{color:var(--blanc);font-size:clamp(38px,6.4vw,68px);max-width:14ch}
+.cote{display:flex;align-items:center;gap:10px;margin-top:var(--s4);max-width:520px;color:var(--cuivre)}
+.cote::before,.cote::after{content:"";flex:1;height:1px;background:currentColor}
+.cote span{font-size:14px;letter-spacing:.02em;white-space:nowrap;color:var(--brume-clair)}
+.cote i{display:block;width:1px;height:14px;background:currentColor;transform:skewX(-35deg);flex:none}
+.ouv__t{margin-top:var(--s5);font-size:19px;max-width:44ch}
+.ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.ouv__d{position:relative}
+.plan{color:var(--brume);width:100%;max-width:420px;margin-inline:auto}
+.plan .bois{color:var(--cuivre)}
+.etat-l{margin-top:var(--s5);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:center;font-size:15px}
+.etat-l b{font-weight:600;color:var(--blanc)}
+.etat{display:inline-flex;align-items:center;gap:8px}
+.pastille{width:9px;height:9px;border-radius:50%;background:var(--brume);flex:none}
+.etat--oui .pastille{background:#7FC48A}
+.etat--non .pastille{background:#D98C6A}
+
+/* bandeau de faits */
+.faits{background:var(--papier-2);border-bottom:1px solid var(--bord)}
+.faits__g{display:grid;gap:var(--s5);padding-block:var(--s6)}
+@media (min-width:760px){.faits__g{grid-template-columns:repeat(3,1fr)}}
+.faits b{display:block;font-family:var(--f-titre);font-size:28px;color:var(--encre);line-height:1.15}
+.faits span{display:block;font-size:15px;color:var(--texte-2);margin-top:4px;max-width:34ch}
+
+/* sections */
+.sec{padding-block:clamp(var(--s7),8vw,var(--s9))}
+.tete{max-width:640px}
+.tete h2{font-size:clamp(30px,4.2vw,44px)}
+.chapo{margin-top:var(--s4);font-size:18px;color:var(--texte-2);max-width:58ch}
+
+/* travaux : liste reglee, chaque famille dessinee en coupe */
+.trav{margin-top:var(--s7);border-top:1px solid var(--graphite)}
+.trav li{display:grid;gap:var(--s3) var(--s6);padding-block:var(--s6);border-bottom:1px solid var(--bord)}
+@media (min-width:820px){.trav li{grid-template-columns:120px 1fr 1.3fr;align-items:start}}
+.trav svg{width:96px;height:64px;color:var(--graphite)}
+.trav svg .bois{color:var(--cuivre-sombre)}
+.trav h3{font-size:26px}
+.trav p{color:var(--texte-2);max-width:52ch}
+.trav__pied{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s5);align-items:center;justify-content:space-between;margin-top:var(--s6);font-size:16px;color:var(--texte-2)}
+.trav__pied a{color:var(--cuivre-sombre);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+
+/* preparer la demande : une vraie suite d'etapes, d'ou les numeros */
+.prep{background:var(--blanc);border-block:1px solid var(--bord)}
+.etapes{margin-top:var(--s7);display:grid;gap:var(--s5);counter-reset:e}
+@media (min-width:860px){.etapes{grid-template-columns:repeat(3,1fr);gap:var(--s6)}}
+.etapes li{counter-increment:e;position:relative;padding-top:var(--s6)}
+.etapes li::before{content:counter(e);position:absolute;top:0;left:0;font-family:var(--f-titre);font-weight:700;
+  font-size:20px;color:var(--cuivre-sombre)}
+.etapes li::after{content:"";position:absolute;top:13px;left:28px;right:0;height:1px;background:var(--bord)}
+.etapes h3{font-size:22px}
+.etapes p{margin-top:var(--s2);color:var(--texte-2)}
+.croquis{margin-top:var(--s4);width:100%;max-width:220px;color:var(--graphite)}
+
+/* horaires */
+.duo{display:grid;gap:var(--s6);margin-top:var(--s7)}
+@media (min-width:860px){.duo{grid-template-columns:1fr 1fr}}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:var(--s6)}
+.pan h3{font-size:24px}
+.pan .etat{margin-top:var(--s3);font-weight:600;color:var(--encre)}
+.hor{margin-top:var(--s5)}
+.hor div{display:flex;justify-content:space-between;gap:var(--s4);padding-block:10px;border-bottom:1px dashed var(--bord);font-variant-numeric:tabular-nums}
+.hor dt{font-weight:500}
+.hor dd{color:var(--texte-2);text-align:right}
+@media (max-width:420px){.hor dd{font-size:14px}}
+.hor--off dd{color:#7A7F7B}
+.hor--jour dt,.hor--jour dd{color:var(--cuivre-sombre);font-weight:700}
+.adr{font-style:normal;margin-top:var(--s4);font-size:19px;line-height:1.5;color:var(--encre)}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s5)}
+.pan__n{margin-top:var(--s5);font-size:15px;color:var(--texte-2)}
+
+/* contact */
+.sombre{background:var(--encre);color:var(--brume-clair)}
+.sombre h2{color:var(--blanc);font-size:clamp(30px,4.2vw,44px);max-width:18ch}
+.ctc{display:grid;gap:var(--s7)}
+@media (min-width:960px){.ctc{grid-template-columns:1fr 1fr;align-items:start}}
+.ctc__tel{display:inline-flex;align-items:center;gap:14px;margin-top:var(--s6);font-family:var(--f-titre);font-weight:700;
+  font-size:clamp(34px,5.4vw,52px);color:var(--cuivre);text-decoration:none;font-variant-numeric:tabular-nums;min-height:48px}
+.ctc__l{display:flex;gap:12px;margin-top:var(--s5);max-width:40ch}
+.ctc__l svg{width:22px;height:22px;flex:none;color:var(--cuivre);margin-top:3px}
+.ctc__l b{display:block;color:var(--blanc);font-weight:600}
+.form{background:var(--encre-2);border:1px solid var(--bord-fantome);border-radius:var(--r);padding:var(--s6)}
+.form h3{color:var(--blanc);font-size:26px}
+.form__s{margin-top:var(--s2);font-size:15px;color:var(--brume)}
+.ch{display:grid;gap:var(--s4);margin-top:var(--s5)}
+@media (min-width:560px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:6px}
+.f + .f{margin-top:0}
+.form .bloc{margin-top:var(--s4)}
+.f label{font-size:15px;font-weight:500;color:var(--brume-clair)}
+.f input,.f select,.f textarea{width:100%;min-height:48px;font:inherit;font-size:16px;color:var(--blanc);background:var(--encre);
+  border:1px solid var(--bord-fantome);border-radius:var(--r);padding:11px 13px}
+.f textarea{resize:vertical;min-height:96px}
+.f input::placeholder,.f textarea::placeholder{color:#9A8C79}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--cuivre);outline:none;box-shadow:0 0 0 2px var(--cuivre)}
+.fret{margin-top:var(--s3);font-size:15px;color:var(--brume-clair);min-height:1px}
+.fnote{margin-top:var(--s4);font-size:13px;color:var(--brume)}
+
+/* barre mobile */
+.bmob{position:sticky;bottom:0;z-index:20;display:grid;grid-template-columns:1.4fr 1fr;gap:8px;padding:10px 12px;
+  background:var(--encre);border-top:1px solid var(--bord-fantome)}
+@media (min-width:900px){.bmob{display:none}}
+
+/* bon de travail : JAMAIS destine au prospect, masque par defaut,
+   visible seulement avec ?notes. Sans JS il reste masque. */
+.perso{display:none;background:#F5EBD9;border-top:1px solid var(--cuivre-sombre)}
+.perso.ouvert{display:block}
+.perso h2{font-size:clamp(26px,3.4vw,34px)}
+.perso p{margin-top:var(--s3);max-width:68ch;color:#4B3A20}
+.perso__url{display:inline-block;margin-top:var(--s4);font-size:14px;background:var(--blanc);border:1px dashed #C9A56A;
+  border-radius:var(--r);padding:8px 12px}
+.perso ul{margin-top:var(--s5);display:grid;gap:var(--s3)}
+@media (min-width:820px){.perso ul{grid-template-columns:1fr 1fr}}
+.perso li{background:rgba(255,255,255,.8);border:1px solid #E3CFA9;border-radius:var(--r);padding:var(--s4);font-size:15px;color:#4B3A20}
+.perso li b{display:block;color:#2A1D08;margin-bottom:4px}
+
+.pied{background:#211912;color:var(--brume);padding-block:var(--s6) 90px;font-size:14px}
+@media (min-width:900px){.pied{padding-bottom:var(--s6)}}
+.pied__in{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);justify-content:space-between}
+
+/* === effets : trait === */
+/* Le dessin se trace au chargement. Les etats « caches » n'existent que sous
+   html.js (classe posee par le script) : sans JS, tout est affiche. */
+.js .trait-att .tr{stroke-dasharray:var(--l) var(--l);stroke-dashoffset:var(--l)}
+.js .trait-go .tr{stroke-dasharray:var(--l) var(--l);stroke-dashoffset:0;
+  transition:stroke-dashoffset calc(var(--t)*1ms) cubic-bezier(.45,.05,.3,1) calc(var(--d)*1ms)}
+/* cotes qui s'allongent depuis leur milieu */
+.js .tr-h,.js .tr-v{transform-box:fill-box;transform-origin:center}
+.js .trait-att .tr-h{transform:scaleX(0)}
+.js .trait-att .tr-v{transform:scaleY(0)}
+.js .trait-go .tr-h,.js .trait-go .tr-v{transition:transform calc(var(--t)*1ms) cubic-bezier(.22,1,.36,1) calc(var(--d)*1ms)}
+/* libelles et traits pointilles : simple apparition */
+.js .trait-att .fd{opacity:0}
+.js .trait-go .fd{transition:opacity calc(var(--t)*1ms) ease calc(var(--d)*1ms)}
+/* ligne de cote sous le titre : s'etire depuis le centre */
+.js .cote.trait-att::before,.js .cote.trait-att::after{transform:scaleX(0)}
+.js .cote::before{transform-origin:right center}
+.js .cote::after{transform-origin:left center}
+.js .cote.trait-go::before,.js .cote.trait-go::after{transition:transform 1s cubic-bezier(.45,.05,.3,1) .35s}
+.js .cote.trait-att i,.js .cote.trait-att span{opacity:0}
+.js .cote.trait-go span{transition:opacity .5s ease .15s}
+.js .cote.trait-go i{transition:opacity .3s ease 1.3s}
+@media (prefers-reduced-motion:reduce){
+  .js .trait-att .tr{stroke-dasharray:none;stroke-dashoffset:0}
+  .js .trait-att .tr-h,.js .trait-att .tr-v,.js .cote.trait-att::before,.js .cote.trait-att::after{transform:none}
+  .js .trait-att .fd,.js .cote.trait-att i,.js .cote.trait-att span{opacity:1}
+}
+/* === fin effets : trait === */
+
+/* === effets : matiere === */
+/* 1. fil du bois : bruit etire en x (feTurbulence) utilise comme masque d'une
+      couche --cuivre a tres faible opacite. Aucune image externe. */
+:root{
+  --fil:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='420'%3E%3Cfilter id='f' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0018 .085' numOctaves='3' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 -.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --fil-op:.045;
+}
+.hdr,.ouv,#contact{position:relative;isolation:isolate}
+.hdr::before,.ouv::before,#contact::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:var(--cuivre);opacity:var(--fil-op);
+  -webkit-mask:var(--fil) 0 0/900px 420px repeat;mask:var(--fil) 0 0/900px 420px repeat}
+.ouv::before{-webkit-mask-position:-140px 60px;mask-position:-140px 60px}
+#contact::before{-webkit-mask-position:220px -90px;mask-position:220px -90px}
+
+/* 2. bouton : le rabot leve un copeau clair, une seule passe */
+.btn--c{position:relative;overflow:hidden;isolation:isolate}
+.btn--c::after{content:"";position:absolute;top:0;bottom:0;left:0;width:45%;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--blanc) 55%,transparent) 55%,transparent);
+  transform:translateX(-120%) skewX(-18deg);transition:none}
+.btn--c:hover::after,.btn--c:focus-visible::after{transform:translateX(260%) skewX(-18deg);transition:transform .7s var(--res)}
+.btn--c:active{transform:translateY(1px);box-shadow:inset 0 2px 0 color-mix(in srgb,var(--txt-accent) 22%,transparent)}
+
+/* 3. pastille : respiration lente, seulement quand c'est ouvert */
+.etat--oui .pastille{animation:matiere-pouls 3.2s ease-in-out infinite}
+@keyframes matiere-pouls{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.78)}}
+
+/* 4. familles de travaux : filet trace, coupe teintee ; etapes : trait rempli */
+.trav li{position:relative}
+.trav li::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--cuivre-sombre);
+  transform:scaleX(0);transform-origin:left;transition:transform .35s var(--res)}
+.trav li:hover::after,.trav li:focus-within::after{transform:scaleX(1)}
+.trav svg .bois{transition:fill .3s}
+.trav li:hover svg .bois,.trav li:focus-within svg .bois{fill:color-mix(in srgb,var(--cuivre-sombre) 16%,transparent)}
+.etapes li::after{background:linear-gradient(var(--cuivre-sombre),var(--cuivre-sombre)) 0 0/0% 100% no-repeat var(--bord);
+  transition:background-size .4s var(--res)}
+.etapes li:hover::after{background-size:100% 100%}
+
+/* 5. grand numero : soulignement qui se trace (pointeur fin seulement) */
+@media (hover:hover) and (pointer:fine){
+  .ctc__tel{background:linear-gradient(currentColor,currentColor) 0 100%/0% 2px no-repeat;transition:background-size .4s var(--res)}
+  .ctc__tel:hover,.ctc__tel:focus-visible{background-size:100% 2px}
+}
+
+/* 6. selection, defilement, focus */
+::selection{background:var(--cuivre);color:var(--txt-accent)}
+html{scrollbar-width:thin;scrollbar-color:var(--cuivre-sombre) var(--papier-2)}
+a:focus-visible,button:focus-visible,summary:focus-visible{border-radius:2px;animation:matiere-focus .18s var(--res)}
+.btn:focus-visible{border-radius:var(--r)}
+@keyframes matiere-focus{from{outline-offset:7px}to{outline-offset:3px}}
+
+@media (prefers-reduced-motion:reduce){
+  .btn--c::after{display:none}
+  .etat--oui .pastille,a:focus-visible,button:focus-visible{animation:none}
+  .trav li::after,.trav svg .bois,.etapes li::after,.ctc__tel{transition:none}
+}
+/* === fin effets : matiere === */
+/* === effets : etabli === */
+/* En-tete colle en haut, compact apres le premier ecran */
+.hdr{position:sticky;top:0;z-index:30}
+.hdr__in{transition:min-height .2s var(--res)}
+.hdr .mq svg{transition:width .2s var(--res),height .2s var(--res)}
+.hdr.eb-compact .hdr__in{min-height:52px}
+.hdr.eb-compact .mq svg{width:24px;height:24px}
+section[id]{scroll-margin-top:64px}
+/* Scrollspy : lien de la section visible */
+.nav a{position:relative}
+.nav a[aria-current]{color:var(--cuivre)}
+.nav a[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:2px;background:var(--cuivre)}
+/* Etapes : lien vers le formulaire et case « c'est pret » */
+.eb-lien{display:inline-flex;align-items:center;min-height:44px;margin-top:var(--s3);color:var(--cuivre-sombre);font-weight:600;font-size:16px}
+.eb-lien:hover{text-decoration-thickness:2px}
+.eb-pret{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:var(--s2);font-size:15px;color:var(--texte-2);cursor:pointer}
+.eb-pret input{width:22px;height:22px;margin:0;accent-color:var(--cuivre-sombre);cursor:pointer}
+.etapes li.eb-fait h3{color:var(--cuivre-sombre)}
+.etapes li.eb-fait .eb-pret{color:var(--cuivre-sombre);font-weight:600}
+/* Croquis cote sous le champ des dimensions */
+.eb-cq{margin-top:var(--s3);padding:var(--s3);border:1px dashed var(--bord-fantome);border-radius:var(--r);
+  opacity:0;transform:translateY(-4px);transition:opacity .25s var(--res),transform .25s var(--res)}
+.eb-cq[hidden]{display:none}
+.eb-cq.eb-vu{opacity:1;transform:none}
+.eb-cq svg{width:100%;max-width:300px;height:auto;margin-inline:auto;overflow:visible}
+.eb-cq .eb-piece{stroke:var(--cuivre);stroke-width:2;fill:none}
+.eb-cq .eb-detail{stroke:var(--cuivre);stroke-width:1.4;fill:none}
+.eb-cq .eb-cote{stroke:var(--brume);stroke-width:1;fill:none}
+.eb-cq text{fill:var(--brume-clair);font-family:var(--f-texte);font-size:13px;font-variant-numeric:tabular-nums}
+.eb-cq__l{margin-top:var(--s2);font-size:13px;color:var(--brume);text-align:center}
+/* Retour visuel du bouton d'envoi */
+#dem button[type=submit].eb-ok{background:var(--brume-clair);color:var(--encre)}
+/* === fin effets : etabli === */
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<header class="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="Menuiserie Vautrin, accueil">
+      <!-- equerre de menuisier -->
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 4h7v17h17v7H5z"/><path d="M8 8h1.5M8 12h1.5M8 16h1.5M16 24v1.5M20 24v1.5M24 24v1.5" stroke-width="1.6"/>
+      </svg>
+      <span><span class="mq__n">Menuiserie Vautrin</span><span class="mq__v">Menuisier à Nancy</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#travaux">Travaux</a>
+      <a href="#demande">Préparer une demande</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="hdr__tel" href="tel:+33353014217">03 53 01 42 17</a>
+  </div>
+</header>
+
+<main id="principal">
+
+<section class="ouv sombre" aria-labelledby="titre">
+  <div class="env ouv__in">
+    <div>
+      <h1 id="titre">Le bois, coupé à vos cotes.</h1>
+      <p class="cote" aria-hidden="true"><i></i><span>menuiserie sur mesure à Nancy</span><i></i></p>
+      <p class="ouv__t">Menuiserie Vautrin, 8 rue des Charpentiers à Nancy.
+        Vous décrivez la pièce, vous parlez directement au menuisier qui la fabriquera.</p>
+      <div class="ouv__a">
+        <a class="btn btn--c" href="tel:+33353014217">Appeler le 03 53 01 42 17</a>
+        <a class="btn btn--f" href="#contact">Décrire mon projet</a>
+      </div>
+    </div>
+
+    <div class="ouv__d">
+      <!-- Elevation d'une croisee a deux vantaux, avec ses cotes.
+           Dessin generique : aucune dimension chiffree, rien a inventer. -->
+      <svg class="plan" viewBox="0 0 360 400" fill="none" role="img" aria-label="Dessin technique d'une fenêtre en bois à deux vantaux, avec ses cotes de largeur et de hauteur">
+        <g class="bois" stroke="currentColor" stroke-width="2.2">
+          <rect x="40" y="30" width="250" height="300" data-d="0" data-t="600"/>
+          <rect x="54" y="44" width="222" height="272" data-d="250" data-t="550"/>
+          <line x1="165" y1="44" x2="165" y2="316" data-d="600" data-t="300"/>
+          <rect x="68" y="58" width="84" height="244" data-d="750" data-t="450"/>
+          <rect x="178" y="58" width="84" height="244" data-d="850" data-t="450"/>
+          <path d="M30 330h270v14H30z" data-d="1100" data-t="350"/>
+        </g>
+        <g stroke="currentColor" stroke-width="1" opacity=".75">
+          <line x1="68" y1="180" x2="152" y2="180" data-d="1250" data-t="250"/><line x1="178" y1="180" x2="262" y2="180" data-d="1300" data-t="250"/>
+          <path d="M44 337c30-3 60 3 92 0s64-3 96 0 48 2 64 0" data-d="1350" data-t="350"/>
+          <path d="M156 175v10M174 175v10" stroke-width="2" data-d="1400" data-t="150"/>
+        </g>
+        <!-- cote horizontale -->
+        <g stroke="currentColor" stroke-width="1">
+          <line x1="40" y1="352" x2="40" y2="378" data-d="1500" data-t="200"/><line x1="290" y1="352" x2="290" y2="378" data-d="1500" data-t="200"/>
+          <line x1="40" y1="370" x2="290" y2="370" data-d="1650" data-t="500" data-c="h"/>
+          <line x1="35" y1="375" x2="45" y2="365" stroke-width="2" data-d="2100" data-t="120"/><line x1="285" y1="375" x2="295" y2="365" stroke-width="2" data-d="2100" data-t="120"/>
+        </g>
+        <text x="165" y="392" text-anchor="middle" fill="currentColor" font-family="Work Sans,sans-serif" font-size="15" data-d="2150" data-t="400">largeur : la vôtre</text>
+        <!-- cote verticale -->
+        <g stroke="currentColor" stroke-width="1">
+          <line x1="298" y1="30" x2="330" y2="30" data-d="1550" data-t="200"/><line x1="298" y1="330" x2="330" y2="330" data-d="1550" data-t="200"/>
+          <line x1="322" y1="30" x2="322" y2="330" data-d="1700" data-t="500" data-c="v"/>
+          <line x1="317" y1="35" x2="327" y2="25" stroke-width="2" data-d="2180" data-t="120"/><line x1="317" y1="335" x2="327" y2="325" stroke-width="2" data-d="2180" data-t="120"/>
+        </g>
+        <text x="342" y="180" text-anchor="middle" fill="currentColor" font-family="Work Sans,sans-serif" font-size="15" transform="rotate(-90 342 180)" data-d="2250" data-t="400">hauteur : la vôtre</text>
+      </svg>
+      <p class="etat-l"><b><span id="jour">Aujourd'hui</span> :</b>
+        <span class="etat" id="etat"
+          data-h='[null,[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1020],null]'>du lundi au vendredi</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="faits" aria-label="En bref">
+  <div class="env faits__g">
+    <div><b>Lundi au vendredi</b><span>Fermé le samedi, le dimanche et les jours fériés</span></div>
+    <div><b>8 h – 18 h</b><span>Coupure de 12 h à 13 h 30. Le vendredi, jusqu'à 17 h</span></div>
+    <div><b>Nancy</b><span>8 rue des Charpentiers, 54000</span></div>
+  </div>
+</section>
+
+<section class="sec" id="travaux" aria-labelledby="t-trav">
+  <div class="env">
+    <div class="tete">
+      <h2 id="t-trav">Les travaux de menuiserie</h2>
+      <p class="chapo">Trois grandes familles, dessinées en coupe comme sur l'établi.
+        Pour savoir si votre projet en fait partie, le plus simple est d'en parler.</p>
+    </div>
+    <ul class="trav">
+      <li>
+        <!-- coupe d'un chambranle mouluré -->
+        <svg viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path class="bois" d="M6 56V14c10 0 12-8 22-8h40v12H40c-6 0-8 6-14 6h-4v32z" stroke="currentColor"/>
+          <path d="M6 60h84M22 24v32" stroke-dasharray="3 3"/>
+        </svg>
+        <h3>Menuiserie intérieure</h3>
+        <p>Portes, placards, habillages, escaliers : ce qui se pose à l'intérieur
+          de la maison et doit tomber juste dans des murs qui ne sont jamais
+          tout à fait d'équerre.</p>
+      </li>
+      <li>
+        <!-- coupe d'un montant de fenetre avec feuillure -->
+        <svg viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path class="bois" d="M8 8h44v18H40v30H8z" stroke="currentColor"/>
+          <path d="M52 26h30M52 32h30" />
+          <path d="M40 40h48" stroke-dasharray="3 3"/>
+        </svg>
+        <h3>Menuiserie extérieure</h3>
+        <p>Fenêtres, portes d'entrée, volets : les ouvrants qui ferment la maison,
+          tiennent à la pluie et se manœuvrent tous les jours.</p>
+      </li>
+      <li>
+        <!-- assemblage tenon-mortaise -->
+        <svg viewBox="0 0 96 64" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path class="bois" d="M6 22h30v-8h16v36H36v-8H6z" stroke="currentColor"/>
+          <path d="M60 8h28v48H60zM60 24h14v16H60" />
+        </svg>
+        <h3>Le reste, de vive voix</h3>
+        <p>Un meuble, une réparation, une pièce introuvable : ce qui n'entre
+          dans aucune case se règle plus vite au téléphone qu'avec une liste
+          qui promet tout.</p>
+      </li>
+    </ul>
+    <div class="trav__pied">
+      <p>Aucun prix n'est affiché tant qu'il n'a pas été établi par l'atelier.</p>
+      <a href="#contact">Demander un prix pour mon projet</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec prep" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete">
+      <h2 id="t-prep">Préparer votre demande</h2>
+      <p class="chapo">Trois choses à avoir sous la main avant d'appeler.
+        Elles rendent le premier appel beaucoup plus utile.</p>
+    </div>
+    <ol class="etapes">
+      <li>
+        <h3>Mesurer</h3>
+        <p>Largeur et hauteur de l'emplacement, en centimètres. Prenez trois mesures
+          et gardez la plus petite : les murs bougent.</p>
+        <svg class="croquis" viewBox="0 0 220 60" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <line x1="8" y1="30" x2="212" y2="30"/><line x1="8" y1="14" x2="8" y2="46"/><line x1="212" y1="14" x2="212" y2="46"/>
+          <line x1="3" y1="35" x2="13" y2="25" stroke-width="2"/><line x1="207" y1="35" x2="217" y2="25" stroke-width="2"/>
+        </svg>
+      </li>
+      <li>
+        <h3>Photographier</h3>
+        <p>Une vue d'ensemble et une vue de près de l'existant. Au téléphone,
+          on peut vous demander de les envoyer par message.</p>
+      </li>
+      <li>
+        <h3>Décrire</h3>
+        <p>L'essence de bois ou la teinte souhaitée, l'usage de la pièce, et
+          si l'ancien ouvrage est à déposer.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="horaires" aria-labelledby="t-hor">
+  <div class="env">
+    <div class="tete">
+      <h2 id="t-hor">Horaires et accès</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez la page.</p>
+    </div>
+    <div class="duo">
+      <div class="pan">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2"
+           data-h='[null,[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1020],null]'>Du lundi au vendredi, 8 h – 12 h et 13 h 30 – 18 h.</p>
+        <dl class="hor">
+          <div><dt>Lundi</dt><dd>8 h – 12 h · 13 h 30 – 18 h</dd></div>
+          <div><dt>Mardi</dt><dd>8 h – 12 h · 13 h 30 – 18 h</dd></div>
+          <div><dt>Mercredi</dt><dd>8 h – 12 h · 13 h 30 – 18 h</dd></div>
+          <div><dt>Jeudi</dt><dd>8 h – 12 h · 13 h 30 – 18 h</dd></div>
+          <div><dt>Vendredi</dt><dd>8 h – 12 h · 13 h 30 – 17 h</dd></div>
+          <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd></div>
+          <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+        </dl>
+      </div>
+      <div class="pan">
+        <h3>Venir à l'atelier</h3>
+        <address class="adr">8 rue des Charpentiers<br>54000 Nancy</address>
+        <div class="pan__a">
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=8%20rue%20des%20Charpentiers%2C%2054000%20Nancy">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="tel:+33353014217">Appeler avant de passer</a>
+        </div>
+        <p class="pan__n">Un menuisier est souvent sur un chantier : un appel avant
+          de venir évite de trouver l'atelier fermé.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sombre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div>
+      <h2 id="t-ctc">Parlez de votre projet au menuisier</h2>
+      <a class="ctc__tel" href="tel:+33353014217">03 53 01 42 17</a>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/><circle cx="12" cy="10.2" r="2.7"/>
+        </svg>
+        <span><b>8 rue des Charpentiers</b>54000 Nancy</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9.5"/><path d="M12 6.8V12l3.4 2"/>
+        </svg>
+        <span><b>Du lundi au vendredi</b>8 h – 12 h et 13 h 30 – 18 h, le vendredi jusqu'à 17 h</span>
+      </p>
+    </div>
+
+    <form class="form" id="dem" novalidate>
+      <h3>Décrire mon projet</h3>
+      <p class="form__s">Le bouton ouvre un SMS prérempli vers l'atelier.
+        Vous le relisez avant de l'envoyer.</p>
+      <div class="ch">
+        <div class="f"><label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+        <div class="f"><label for="tel">Votre téléphone</label>
+          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06 12 34 56 78"></div>
+      </div>
+      <div class="f bloc"><label for="proj">Le projet</label>
+        <select id="proj" name="proj">
+          <option value="">Choisir…</option>
+          <option>Porte ou fenêtre</option>
+          <option>Placard ou rangement</option>
+          <option>Escalier</option>
+          <option>Meuble</option>
+          <option>Réparation</option>
+          <option>Autre</option>
+        </select></div>
+      <div class="f bloc"><label for="dim">Dimensions approximatives</label>
+        <input id="dim" name="dim" type="text" placeholder="90 × 215 cm"></div>
+      <div class="f bloc"><label for="det">Ce que vous imaginez</label>
+        <textarea id="det" name="det" rows="3" placeholder="Une porte de cave en chêne, à remplacer à l'identique."></textarea></div>
+      <button class="btn btn--c" type="submit" style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+      <p class="fnote">Aucune adresse électronique publique n'est connue pour cet
+        atelier : la demande part en SMS vers le 03 53 01 42 17.</p>
+    </form>
+  </div>
+</section>
+
+<!-- BON DE TRAVAIL : pour Francois, jamais pour le prospect. -->
+<section class="perso" id="a-personnaliser" aria-labelledby="t-perso">
+  <div class="env sec">
+    <h2 id="t-perso">Ce qui reste à faire confirmer par le menuisier</h2>
+    <p>Tout ce qui figure plus haut provient de sources publiques. Rien n'a été
+      inventé : ni tarif, ni garantie, ni avis, ni spécialité.
+      <strong>Cette section n'est visible que par vous.</strong></p>
+    <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
+    <ul>
+      <li><b>Spécialité réelle</b>Intérieur, extérieur, agencement, ébénisterie,
+        charpente : la source ne le dit pas. À demander en premier, puis ajuster
+        les trois familles de travaux.</li>
+      <li><b>Horaires</b>Ceux affichés viennent des fiches publiques, et
+        l'indicateur « ouvert maintenant » se calcule dessus.</li>
+      <li><b>Zone d'intervention</b>Jusqu'où se déplace-t-il pour une pose ?
+        C'est souvent la première question des clients.</li>
+      <li><b>Photos de réalisations</b>La page n'en contient aucune. Trois ou
+        quatre photos de chantiers terminés, prises au téléphone, valent mieux
+        que n'importe quel dessin.</li>
+      <li><b>Adresse électronique</b>Sans adresse connue, le formulaire compose
+        un SMS. Avec une adresse, il passe en courriel et accepte des photos.</li>
+      <li><b>Labels et assurances</b>Qualibat, RGE, décennale : à afficher
+        seulement s'il les a, avec leur numéro.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div class="bmob">
+  <a class="btn btn--c" href="tel:+33353014217">Appeler l'atelier</a>
+  <a class="btn btn--f" href="#contact">Mon projet</a>
+</div>
+
+<footer class="pied">
+  <div class="env pied__in">
+    <span>© 2026 Menuiserie Vautrin, 8 rue des Charpentiers, 54000 Nancy</span>
+    <span>Horaires et position relevés sur OpenStreetMap</span>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"HomeAndConstructionBusiness",
+  "name":"Menuiserie Vautrin",
+  "description":"Menuisier à Nancy : menuiserie intérieure et extérieure en bois, sur mesure.",
+  "url":"https://francoislang.github.io/templates/menuiserie-vautrin/",
+  "telephone":"+33353014217",
+  "address":{
+    "@type":"PostalAddress",
+    "streetAddress":"8 rue des Charpentiers",
+    "postalCode":"54000",
+    "addressLocality":"Nancy",
+    "addressCountry":"FR"
+  },
+  "openingHoursSpecification":[
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"08:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday"],"opens":"13:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"08:00","closes":"12:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"13:30","closes":"17:00"}
+  ]
+}
+</script>
+
+<script>
+// Etat d'ouverture, lu depuis data-h : sept entrees, dimanche en premier,
+// minutes depuis minuit par paires, null si ferme. Sans donnee lisible, la
+// phrase de repli ecrite dans le HTML reste affichee.
+(function(){
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt;
+    el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent; el.className="etat "+cls;}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        ecrire(el,"fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour");
+  if(t){ var n=J[new Date().getDay()]; t.textContent=n.charAt(0).toUpperCase()+n.slice(1); }
+  var l=document.querySelectorAll(".hor > div"), j2=new Date().getDay();
+  if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
+})();
+
+// Le formulaire compose un SMS. On n'annonce pas un envoi reussi :
+// rien ne permet de le verifier d'ici.
+(function(){
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var n=f.nom.value.trim(), t=f.tel.value.trim(), p=f.proj.value,
+        di=f.dim.value.trim(), de=f.det.value.trim(), r=document.getElementById("ret");
+    if(!n||!t){ r.textContent="Indiquez au moins votre nom et votre numéro."; return; }
+    var corps="Bonjour, "+n+" ("+t+")."+(p?" Projet : "+p+".":"")+(di?" Dimensions : "+di+".":"")+(de?" "+de:"");
+    r.textContent="Votre application de messages s'ouvre avec la demande préremplie. Si rien ne se passe, appelez le 03 53 01 42 17.";
+    window.location.href="sms:+33353014217?body="+encodeURIComponent(corps);
+  });
+})();
+
+// Bon de travail : visible uniquement avec ?notes (ou #notes).
+(function(){
+  var b=document.getElementById("a-personnaliser");
+  if(b&&(/[?&]notes(=|&|$)/.test(location.search)||location.hash==="#notes")) b.classList.add("ouvert");
+})();
+
+// === effets : trait ===
+// Le dessin technique se trace comme au crayon : au chargement pour le plan
+// du hero et la cote sous le titre, une seule fois a l'entree dans l'ecran
+// pour les croquis. Rien si l'utilisateur limite les animations.
+(function(){
+  var R=document.documentElement;
+  if(!window.matchMedia||matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  R.classList.add("js");
+
+  // Prepare un SVG : chaque trait recoit sa longueur (--l), son depart (--d)
+  // et sa duree (--t). Sans data-d, les traits s'enchainent dans l'ordre du DOM.
+  function preparer(svg){
+    var els=svg.querySelectorAll("path,line,rect,polyline,polygon,circle,text"),fin=0,i,e,l,d,t,c,auto=0;
+    for(i=0;i<els.length;i++){ e=els[i];
+      d=e.hasAttribute("data-d")?+e.getAttribute("data-d"):auto;
+      t=e.hasAttribute("data-t")?+e.getAttribute("data-t"):450;
+      auto=d+t*0.6; c=e.getAttribute("data-c");
+      if(e.tagName==="text"||e.hasAttribute("stroke-dasharray")) e.classList.add("fd");   // pointilles : on garde leur motif
+      else if(c) e.classList.add(c==="v"?"tr-v":"tr-h");
+      else { try{ l=e.getTotalLength(); }catch(x){ l=0; }
+        if(!l) e.classList.add("fd"); else { e.style.setProperty("--l",Math.ceil(l)+1); e.classList.add("tr"); } }
+      e.style.setProperty("--d",d); e.style.setProperty("--t",t);
+      fin=Math.max(fin,d+t);
+    }
+    svg._fin=fin;
+    svg.classList.add("trait-att");
+  }
+
+  // Lance le trace, puis retire les classes : le SVG retrouve son etat d'origine.
+  function tracer(el,fin){
+    if(el._encours) return; el._encours=1;
+    el.classList.remove("trait-go"); el.classList.add("trait-att");
+    void el.getBoundingClientRect();                     // force l'etat de depart
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){
+      el.classList.remove("trait-att"); el.classList.add("trait-go");
+      setTimeout(function(){ el.classList.remove("trait-go"); el._encours=0; },(fin||el._fin||0)+80);
+    }); });
+  }
+
+  // 1. Le moment d'ouverture : plan + cote sous le titre, ensemble.
+  var plan=document.querySelector(".ouv .plan"), cote=document.querySelector(".ouv .cote");
+  if(plan){ preparer(plan); tracer(plan); }
+  if(cote){ cote.classList.add("trait-att"); tracer(cote,1400); }
+
+  // 2. Les croquis se dessinent une fois, a leur entree dans l'ecran.
+  var cro=document.querySelectorAll(".trav svg, .croquis");
+  if(!("IntersectionObserver" in window)) return;          // vieux navigateur : dessins affiches tels quels
+  // Un croquis n'est masque que lorsqu'il approche du bas de l'ecran (bande
+  // de 25 %) : loin de l'ecran il reste affiche, pour une capture pleine page.
+  var prep=new IntersectionObserver(function(ent){
+    ent.forEach(function(x){ var s=x.target; if(s._fait) return;
+      s.classList.toggle("trait-att",x.isIntersecting); });
+  },{rootMargin:"0px 0px 25% 0px"});
+  var io=new IntersectionObserver(function(ent){
+    ent.forEach(function(x){ if(!x.isIntersecting) return; var s=x.target;
+      s._fait=1; io.unobserve(s); prep.unobserve(s); tracer(s); });
+  },{threshold:.5});
+  cro.forEach(function(s){ preparer(s); s.classList.remove("trait-att"); prep.observe(s); io.observe(s); });
+
+  // 3. Au survol d'une famille de travaux (souris), sa coupe se redessine.
+  if(matchMedia("(hover: hover) and (pointer: fine)").matches){
+    document.querySelectorAll(".trav li").forEach(function(li){
+      var s=li.querySelector("svg");
+      if(s) li.addEventListener("mouseenter",function(){ if(!s.classList.contains("trait-att")) tracer(s); });
+    });
+  }
+})();
+// === fin effets : trait ===
+</script>
+<script>
+/* === effets : etabli === */
+// Interactions utiles : chaque bloc verifie la presence de ses elements
+// et s'arrete sans erreur s'ils manquent (le pipeline peut retirer le formulaire).
+(function(){
+  var doux=!(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  var SVGNS="http://www.w3.org/2000/svg";
+
+  // --- 1. En-tete compact apres le premier ecran ---
+  (function(){
+    var hdr=document.querySelector(".hdr"); if(!hdr) return;
+    var ouv=document.querySelector(".ouv"), attente=false;
+    function seuil(){ return ouv? ouv.offsetTop+ouv.offsetHeight-80 : window.innerHeight; }
+    function maj(){
+      attente=false;
+      var y=window.pageYOffset||0, c=hdr.classList.contains("eb-compact");
+      // hysteresis de 40 px pour eviter le clignotement au seuil
+      if(!c&&y>seuil()) hdr.classList.add("eb-compact");
+      else if(c&&y<seuil()-40) hdr.classList.remove("eb-compact");
+    }
+    window.addEventListener("scroll",function(){ if(!attente){ attente=true; requestAnimationFrame(maj);} },{passive:true});
+    maj();
+  })();
+
+  // --- 2. Scrollspy : marque le lien du menu de la section visible ---
+  (function(){
+    var liens=document.querySelectorAll('.nav a[href^="#"]');
+    if(!liens.length||!("IntersectionObserver" in window)) return;
+    var parId={}, visibles={};
+    Array.prototype.forEach.call(liens,function(a){
+      var s=document.getElementById(a.getAttribute("href").slice(1)); if(s) parId[s.id]=a;
+    });
+    function marquer(){
+      var actif=null;
+      // la premiere section visible dans l'ordre du document l'emporte
+      Object.keys(parId).forEach(function(id){ if(!actif&&visibles[id]) actif=id; });
+      Object.keys(parId).forEach(function(id){
+        if(id===actif) parId[id].setAttribute("aria-current","true"); else parId[id].removeAttribute("aria-current");
+      });
+    }
+    var io=new IntersectionObserver(function(ent){
+      ent.forEach(function(e){ visibles[e.target.id]=e.isIntersecting; }); marquer();
+    },{rootMargin:"-40% 0px -55% 0px"});
+    Object.keys(parId).forEach(function(id){ io.observe(document.getElementById(id)); });
+  })();
+
+  // --- 3. Croquis cote sous #dim ---
+  // Lit « 90 × 215 », « 90x215 cm », « 1,20 m x 2 m », « 900*2150 mm »...
+  // Renvoie {l,h} en cm, ou null si rien d'interpretable.
+  function lireDim(txt){
+    if(!txt) return null;
+    var s=String(txt).toLowerCase().replace(/(\d),(\d)/g,"$1.$2").replace(/ /g," ");
+    var m=s.match(/(\d+(?:\.\d+)?)\s*(mm|cm|m)?\s*(?:[x×*✕]|par)\s*(\d+(?:\.\d+)?)\s*(mm|cm|m)?/);
+    if(!m) return null;
+    var a=parseFloat(m[1]), b=parseFloat(m[3]), ua=m[2]||m[4], ub=m[4]||m[2];
+    function enCm(v,u,autre){
+      if(u==="mm") return v/10;
+      if(u==="m") return v*100;
+      if(u==="cm") return v;
+      // sans unite : petits nombres = metres, tres grands = millimetres
+      if(v<=6&&autre<=6) return v*100;
+      if(v>=1000||autre>=1000) return v/10;
+      return v;
+    }
+    var l=enCm(a,ua,b), h=enCm(b,ub,a);
+    if(!(l>=1&&h>=1&&l<=2000&&h<=2000)) return null;
+    return {l:l,h:h};
+  }
+  function fmt(v){ var r=Math.round(v*10)/10; return String(r).replace(".",","); }
+
+  (function(){
+    var dim=document.getElementById("dim"); if(!dim) return;
+    var proj=document.getElementById("proj");
+    var champ=dim.parentNode;
+
+    // construction du croquis (absent du HTML : sans JS, rien ne s'affiche)
+    var boite=document.createElement("div"); boite.className="eb-cq"; boite.hidden=true;
+    var svg=document.createElementNS(SVGNS,"svg");
+    svg.setAttribute("viewBox","0 0 260 210"); svg.setAttribute("role","img");
+    function el(nom,cls){ var e=document.createElementNS(SVGNS,nom); if(cls) e.setAttribute("class",cls); svg.appendChild(e); return e; }
+    var piece=el("rect","eb-piece"), detail=el("path","eb-detail");
+    var coteB=el("path","eb-cote"), coteD=el("path","eb-cote");
+    var txtB=el("text"), txtD=el("text");
+    txtB.setAttribute("text-anchor","middle"); txtD.setAttribute("text-anchor","middle");
+    var legende=document.createElement("p"); legende.className="eb-cq__l"; legende.setAttribute("aria-live","polite");
+    boite.appendChild(svg); boite.appendChild(legende);
+    if(dim.nextSibling) champ.insertBefore(boite,dim.nextSibling); else champ.appendChild(boite);
+    dim.setAttribute("aria-describedby",(dim.getAttribute("aria-describedby")?dim.getAttribute("aria-describedby")+" ":"")+"eb-cq-l");
+    legende.id="eb-cq-l";
+
+    // zone de dessin : 180 x 150 unites, centree
+    var ZX=20, ZY=12, ZL=180, ZH=150, cur=null, anim=0, tLeg=0;
+
+    function silhouette(){
+      var v=proj? proj.value : "";
+      if(/porte|fen/i.test(v)) return "pf";
+      if(/placard|rangement/i.test(v)) return "pl";
+      return "";
+    }
+    function dessiner(w,h,d){
+      var x=ZX+(ZL-w)/2, y=ZY+(ZH-h)/2, s=silhouette(), p="";
+      piece.setAttribute("x",x.toFixed(1)); piece.setAttribute("y",y.toFixed(1));
+      piece.setAttribute("width",w.toFixed(1)); piece.setAttribute("height",h.toFixed(1));
+      if(s==="pf"){
+        if(d.h/d.l>=1.6){ // proportions de porte : une poignee
+          var px=x+w-Math.max(6,w*.14), py=y+h*.52;
+          p="M"+px.toFixed(1)+" "+(py-7).toFixed(1)+"v14";
+        }else{ // proportions de fenetre : une traverse et un meneau
+          p="M"+(x+4).toFixed(1)+" "+(y+h*.62).toFixed(1)+"H"+(x+w-4).toFixed(1)+
+            "M"+(x+w/2).toFixed(1)+" "+(y+4).toFixed(1)+"V"+(y+h-4).toFixed(1);
+        }
+      }else if(s==="pl"){ // placard : deux vantaux
+        p="M"+(x+w/2).toFixed(1)+" "+y.toFixed(1)+"V"+(y+h).toFixed(1);
+      }
+      detail.setAttribute("d",p);
+      // cote de largeur en bas
+      var yb=y+h+14, xd=x+w+14;
+      coteB.setAttribute("d","M"+x+" "+(y+h+4)+"V"+(yb+6)+"M"+(x+w)+" "+(y+h+4)+"V"+(yb+6)+"M"+x+" "+yb+"H"+(x+w)+
+        "M"+(x-4)+" "+(yb+4)+"l8 -8M"+(x+w-4)+" "+(yb+4)+"l8 -8");
+      txtB.setAttribute("x",(x+w/2).toFixed(1)); txtB.setAttribute("y",(yb+20).toFixed(1));
+      // cote de hauteur a droite
+      coteD.setAttribute("d","M"+(x+w+4)+" "+y+"H"+(xd+6)+"M"+(x+w+4)+" "+(y+h)+"H"+(xd+6)+"M"+xd+" "+y+"V"+(y+h)+
+        "M"+(xd-4)+" "+(y+4)+"l8 -8M"+(xd-4)+" "+(y+h+4)+"l8 -8");
+      var tx=xd+16, ty=y+h/2;
+      txtD.setAttribute("x",tx.toFixed(1)); txtD.setAttribute("y",ty.toFixed(1));
+      txtD.setAttribute("transform","rotate(-90 "+tx.toFixed(1)+" "+ty.toFixed(1)+")");
+    }
+    function maj(){
+      var d=lireDim(dim.value);
+      if(!d){ // rien d'interpretable : on masque, sans message
+        clearTimeout(tLeg); cancelAnimationFrame(anim);
+        boite.classList.remove("eb-vu"); boite.hidden=true; cur=null; legende.textContent="";
+        svg.removeAttribute("aria-label"); return;
+      }
+      var k=Math.min(ZL/d.l,ZH/d.h), w=Math.max(8,d.l*k), h=Math.max(8,d.h*k);
+      var etiq="Croquis à l'échelle : largeur "+fmt(d.l)+" cm, hauteur "+fmt(d.h)+" cm";
+      txtB.textContent=fmt(d.l)+" cm"; txtD.textContent=fmt(d.h)+" cm";
+      svg.setAttribute("aria-label",etiq);
+      // legende annoncee apres une pause de frappe, pour ne pas bavarder
+      clearTimeout(tLeg); tLeg=setTimeout(function(){ legende.textContent="Lu : "+fmt(d.l)+" × "+fmt(d.h)+" cm"; },500);
+      if(boite.hidden){ boite.hidden=false; requestAnimationFrame(function(){ boite.classList.add("eb-vu"); }); }
+      cancelAnimationFrame(anim);
+      var de=cur, t0=null;
+      if(!de||!doux){ cur={w:w,h:h}; dessiner(w,h,d); return; }
+      // transition douce entre l'ancien et le nouveau rectangle
+      (function pas(t){
+        if(t0===null) t0=t;
+        var u=Math.min(1,(t-t0)/260), e=1-Math.pow(1-u,3);
+        cur={w:de.w+(w-de.w)*e,h:de.h+(h-de.h)*e}; dessiner(cur.w,cur.h,d);
+        if(u<1) anim=requestAnimationFrame(pas);
+      })(performance.now());
+    }
+    dim.addEventListener("input",maj);
+    if(proj) proj.addEventListener("change",maj);
+    maj(); // valeur deja presente (retour arriere du navigateur)
+  })();
+
+  // --- 4. Etapes : lien « J'ai mes mesures » et check-list locale ---
+  (function(){
+    var etapes=document.querySelectorAll(".etapes > li"); if(!etapes.length) return;
+    var dim=document.getElementById("dim");
+    if(dim){
+      var a=document.createElement("a"); a.className="eb-lien"; a.href="#contact";
+      a.textContent="J'ai mes mesures, décrire mon projet";
+      a.addEventListener("click",function(e){
+        e.preventDefault();
+        var cible=document.getElementById("dem")||dim;
+        cible.scrollIntoView({behavior:doux?"smooth":"auto",block:"start"});
+        try{ dim.focus({preventScroll:true}); }catch(x){ dim.focus(); }
+      });
+      etapes[0].appendChild(a);
+    }
+    Array.prototype.forEach.call(etapes,function(li,i){
+      var lab=document.createElement("label"); lab.className="eb-pret";
+      var c=document.createElement("input"); c.type="checkbox"; c.id="eb-pret-"+(i+1);
+      var h=li.querySelector("h3");
+      lab.appendChild(c); lab.appendChild(document.createTextNode("C'est prêt"));
+      if(h) c.setAttribute("aria-label","C'est prêt : "+h.textContent.trim());
+      // etat garde en memoire seulement, rien n'est stocke
+      c.addEventListener("change",function(){ li.classList.toggle("eb-fait",c.checked); });
+      // juste apres le texte, pour que les trois cases restent alignees
+      var p=li.querySelector("p");
+      if(p&&p.nextSibling) li.insertBefore(lab,p.nextSibling); else li.appendChild(lab);
+    });
+  })();
+
+  // --- 5. Retour visuel du bouton d'envoi (la logique SMS reste celle du dessus) ---
+  (function(){
+    var f=document.getElementById("dem"); if(!f) return;
+    var b=f.querySelector('button[type="submit"]'); if(!b) return;
+    var orig=b.textContent, t=0;
+    f.addEventListener("submit",function(){
+      var n=f.nom&&f.nom.value.trim(), tel=f.tel&&f.tel.value.trim();
+      if(!n||!tel){ // le message existant s'affiche dans #ret ; on place le curseur sur le champ manquant
+        var vide=!n? f.nom : f.tel; if(vide&&vide.focus) vide.focus(); return;
+      }
+      clearTimeout(t); b.classList.add("eb-ok"); b.textContent="SMS préparé ✓";
+      t=setTimeout(function(){ b.classList.remove("eb-ok"); b.textContent=orig; },4000);
+    });
+  })();
+})();
+/* === fin effets : etabli === */
+</script>
+</body>
+</html>
