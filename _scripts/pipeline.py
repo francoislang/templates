@@ -303,10 +303,22 @@ def generate_demo_site(profile, force=False):
     import requests
     from pathlib import Path
 
+    import anonymiser
+
     name = profile["name"]; race = profile["races"][0]
-    phone = profile.get("phone",""); ville = profile.get("ville","")
-    dept = profile.get("departement",""); desc = profile.get("description","") or ""
-    siren = profile.get("siren",""); p_url = profile.get("photo_url","")
+    ville = profile.get("ville",""); dept = profile.get("departement","")
+    desc = profile.get("description","") or ""
+    p_url = profile.get("photo_url","")
+
+    # La page publiee ne porte aucune coordonnee reelle. Le numero affiche
+    # vient d'une plage que l'ARCEP reserve a la fiction, le SIREN ne sort
+    # pas, et la presentation reprise de l'annuaire est relue au cas ou elle
+    # contienne un numero ou un courriel. La base, elle, garde tout : c'est
+    # elle qui sert a appeler l'eleveur.
+    tel_reel = profile.get("phone", "")
+    phone = anonymiser.tel_fictif(tel_reel, profile.get("source_url") or name)
+    siren = ""
+    desc = anonymiser.nettoyer_texte(desc)
 
     slug = slugify(name)
     target = REPO_ROOT / slug / "index.html"
@@ -330,7 +342,7 @@ def generate_demo_site(profile, force=False):
     if not key:
         from generator import generate_site
         r = generate_site(name=name, race=race, phone=phone, city=ville or dept,
-                         description=desc, siren=siren, departement=dept,
+                         description=desc, siren="", departement=dept,
                          photo_url=p_url, photos_race=photos)
         return r[1] if r else None
 
@@ -383,6 +395,9 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
   et un <link rel="preload" as="image" fetchpriority="high"> sur l'image du hero.
 - Si une visionneuse agrandit les photos, la vignette porte un data-full avec
   l'URL en w_1600,c_limit et le script lit ce data-full.
+- AUCUNE COORDONNEE AUTRE QUE CELLES CI-DESSUS : pas d'adresse de rue, pas
+  de courriel, pas de SIREN, pas de coordonnees GPS. Si l'information n'est
+  pas dans le bloc CONTENU, elle n'apparait pas sur la page.
 - Reponds UNIQUEMENT avec le code HTML complet."""
 
     def _fallback(raison):
@@ -390,7 +405,7 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
         print(f"   ⚠️  Repli sur le template universel ({raison})")
         from generator import generate_site
         r2 = generate_site(name=name, race=race, phone=phone, city=ville or dept,
-                           description=desc, siren=siren, departement=dept,
+                           description=desc, siren="", departement=dept,
                            photo_url=p_url, photos_race=photos)
         return r2[1] if r2 else None
 
@@ -466,8 +481,16 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
     if not ok:
         return _fallback(f"site genere trop pauvre — {raison}")
 
+    restes = anonymiser.verifier(html, {"telephone": tel_reel,
+                                        "email": profile.get("email", ""),
+                                        "siren": profile.get("siren", "")})
+    if restes:
+        return _fallback("donnees reelles dans la page : " + ", ".join(restes))
+
     target.parent.mkdir(exist_ok=True); target.write_text(html, encoding="utf-8")
-    _sanitize(target, slug, {"email": profile.get("email", ""), "phone": phone})
+    # phone est deja le numero fictif ; email vide, pour que _sanitize ne
+    # reinjecte pas la vraie adresse a la place d'une adresse inventee.
+    _sanitize(target, slug, {"email": "", "phone": phone})
     _inject_tracking(target)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"

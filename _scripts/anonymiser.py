@@ -146,6 +146,37 @@ def appliquer(html: str, p: dict) -> tuple[str, list[str]]:
     return html, faits
 
 
+# Un texte de presentation repris d'un annuaire contient souvent le numero
+# ou le courriel en clair, au milieu d'une phrase. Il part aussi.
+_TEL_LIBRE = re.compile(
+    r"(?:\+\s?33|0)\s?[1-9](?:[\s.\-/\u00a0]?\d{2}){4}")
+_MAIL_LIBRE = re.compile(r"[\w.+-]+@[\w.-]+\.[a-z]{2,}", re.IGNORECASE)
+_SIREN_LIBRE = re.compile(r"\b\d{3}[\s.]?\d{3}[\s.]?\d{3}(?:[\s.]?\d{5})?\b")
+
+
+def _porte_coordonnee(phrase: str) -> bool:
+    return bool(_MAIL_LIBRE.search(phrase) or _TEL_LIBRE.search(phrase)
+                or _SIREN_LIBRE.search(phrase))
+
+
+def nettoyer_texte(texte: str) -> str:
+    """Retire d'un texte libre les coordonnees qui s'y seraient glissees.
+
+    On enleve la PHRASE entiere, pas seulement le numero : effacer les
+    chiffres au milieu d'une phrase laisse « Contactez-nous au ou par mail
+    a ! », qui se remarque bien plus qu'une phrase en moins. Et une phrase
+    dont l'objet est de donner un numero ne porte rien d'autre.
+
+    S'il ne reste rien, on rend une chaine vide : le prompt sait se passer
+    d'une presentation, il ne sait pas rattraper une phrase estropiee.
+    """
+    if not texte:
+        return texte
+    phrases = re.split(r"(?<=[.!?])\s+", texte)
+    gardees = [ph for ph in phrases if not _porte_coordonnee(ph)]
+    return " ".join(gardees).strip()
+
+
 def fiche_publique(p: dict) -> dict:
     """La fiche telle qu'elle peut servir a fabriquer une page publique.
 
