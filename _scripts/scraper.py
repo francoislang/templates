@@ -320,22 +320,14 @@ def fetch_profile(url: str, strict_race: bool = True):
 
 def fetch_profile_ai(url: str) -> dict | None:
     """
-    Extrait les infos d'un profil via DeepSeek V4 Flash (OpenRouter).
+    Extrait les infos d'un profil via DeepSeek V4 Flash (DeepSeek, OpenRouter en secours).
     Plus robuste que les regex, detecte tous les formats de telephone.
     Fallback vers fetch_profile() si l'appel API echoue.
     """
     import os, json
 
-    # Cle API OpenRouter
-    key = ""
-    for fp in [os.path.expanduser("~/.hermes/.env"), "/workspace/templates/.env"]:
-        for line in open(fp):
-            if "ANTHROPIC_API_KEY" in line and "=" in line:
-                key = line.split("=", 1)[1].strip()
-                if key: break
-        if key: break
-
-    if not key:
+    import llm
+    if not llm.disponible("deepseek/deepseek-v4-flash"):
         return fetch_profile(url)
 
     r = _get(url)
@@ -367,21 +359,11 @@ Réponds UNIQUEMENT avec un JSON valide (pas de texte autour) :
 }}"""
 
     try:
-        resp = requests.post(
-            "https://openrouter.ai/api/v1/chat/completions",
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-            json={
-                "model": "deepseek/deepseek-v4-flash",
-                "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 2000,
-            },
-            timeout=30,
-        )
-        data = resp.json()
-        if "choices" not in data:
+        content, _err = llm.generer(prompt, "deepseek/deepseek-v4-flash", max_tokens=2000,
+                                    flux=False, timeout=30, tentatives=1)
+        if not content:
             return fetch_profile(url)
 
-        content = data["choices"][0]["message"]["content"]
         # Extraire le JSON
         import re
         m = re.search(r"\{.*\}", content, re.DOTALL)

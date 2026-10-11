@@ -221,6 +221,22 @@ def _sanitize(path, slug, contact=None):
         print(f"  WARNING nettoyage non applique: {e}")
 
 
+def neutraliser_fichier(path, graine) -> list[str]:
+    """Derniere passe avant publication : numeros et courriels inventes par le
+    modele (ou laisses par un gabarit) remplaces par des valeurs fictives.
+    Renvoie ce qui resterait de joignable — vide = publiable."""
+    import anonymiser
+    path = Path(path)
+    if not path.exists():
+        return []
+    html = path.read_text(encoding="utf-8")
+    html, faits = anonymiser.neutraliser(html, str(graine))
+    for f in faits:
+        print(f"   anonymisation: {f}")
+    path.write_text(html, encoding="utf-8")
+    return anonymiser.coordonnees_non_fictives(html)
+
+
 def _compteur_url() -> str:
     """URL du Worker de comptage, depuis le .env."""
     for fp in (REPO_ROOT / ".env",):
@@ -296,7 +312,7 @@ def _site_est_correct(html: str) -> tuple[bool, str]:
 
 
 def generate_demo_site(profile, force=False):
-    """Genere un site via DeepSeek V4 Pro (OpenRouter).
+    """Genere un site via DeepSeek V4 Pro (DeepSeek en direct, OpenRouter en secours).
 
     force=True regenere meme si le fichier existe deja (utilise par regenerate.py).
     """
@@ -327,23 +343,15 @@ def generate_demo_site(profile, force=False):
 
     photos = get_photos_for_breed(race) or get_photos_for_race(race, count=15) or []
 
-    # Cle OpenRouter
-    key = ""
-    for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
-        if not fp.exists():
-            continue
-        for line in fp.read_text(encoding="utf-8").splitlines():
-            if line.startswith(("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY")) and "=" in line:
-                key = line.split("=", 1)[1].strip().strip('"').strip("'")
-                break
-        if key:
-            break
+    import llm
+    MODELE_ELEVEURS = "deepseek/deepseek-v4-pro"
 
-    if not key:
+    if not llm.disponible(MODELE_ELEVEURS):
         from generator import generate_site
         r = generate_site(name=name, race=race, phone=phone, city=ville or dept,
                          description=desc, siren="", departement=dept,
                          photo_url=p_url, photos_race=photos)
+        neutraliser_fichier(target, profile.get("source_url") or name)
         return r[1] if r else None
 
     # Site de reference : _templates/reference.html, fige exactement pour cet usage.
@@ -407,6 +415,7 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
         r2 = generate_site(name=name, race=race, phone=phone, city=ville or dept,
                            description=desc, siren="", departement=dept,
                            photo_url=p_url, photos_race=photos)
+        neutraliser_fichier(target, profile.get("source_url") or name)
         return r2[1] if r2 else None
 
     # Sans reference, le modele improvise et rend un site indigent : autant
@@ -414,58 +423,8 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
     if not ref.strip():
         return _fallback(f"{REFERENCE_PATH.name} introuvable")
 
-    payload = {
-        "model": "deepseek/deepseek-v4-pro",
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 24000,
-        "stream": True,
-    }
-
-    html = None
-    last_error = ""
-    for tentative in (1, 2):
-        try:
-            r = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-                json=payload,
-                timeout=(30, 900),   # 30 s pour se connecter, 15 min entre deux morceaux
-                stream=True,
-            )
-            if r.status_code != 200:
-                last_error = f"HTTP {r.status_code}"
-                print(f"   ⚠️  OpenRouter {last_error} (tentative {tentative}/2)")
-                continue
-            # Lecture en flux : chaque morceau relance le compteur d'inactivite,
-            # donc une generation longue ne declenche plus de timeout.
-            # decode_unicode=True ferait confiance a l'en-tete HTTP : sans charset
-            # explicite, requests retombe sur ISO-8859-1 et tous les accents
-            # ressortent en double encodage. On decode nous-memes en UTF-8.
-            morceaux = []
-            for ligne_brute in r.iter_lines(decode_unicode=False):
-                if not ligne_brute:
-                    continue
-                ligne = ligne_brute.decode("utf-8", "replace")
-                if not ligne.startswith("data: "):
-                    continue
-                brut = ligne[6:]
-                if brut.strip() == "[DONE]":
-                    break
-                try:
-                    delta = json.loads(brut)["choices"][0].get("delta", {})
-                except (ValueError, KeyError, IndexError):
-                    continue
-                if delta.get("content"):
-                    morceaux.append(delta["content"])
-            html = "".join(morceaux)
-            if html.strip():
-                break
-            last_error = "reponse vide"
-            print(f"   ⚠️  OpenRouter: reponse vide (tentative {tentative}/2)")
-        except requests.exceptions.RequestException as e:
-            last_error = type(e).__name__
-            print(f"   ⚠️  OpenRouter injoignable: {last_error} (tentative {tentative}/2)")
-            time.sleep(5)
+    # DeepSeek en direct, OpenRouter en secours (voir llm.py).
+    html, last_error = llm.generer(prompt, MODELE_ELEVEURS, max_tokens=24000)
 
     if not html or not html.strip():
         return _fallback(last_error or "echec inconnu")
@@ -491,6 +450,10 @@ PERFORMANCE DES IMAGES (obligatoire, la reference l'applique deja) :
     # phone est deja le numero fictif ; email vide, pour que _sanitize ne
     # reinjecte pas la vraie adresse a la place d'une adresse inventee.
     _sanitize(target, slug, {"email": "", "phone": phone})
+    restes = neutraliser_fichier(target, profile.get("source_url") or name)
+    if restes:
+        target.unlink()
+        return _fallback("coordonnees non fictives dans la page : " + ", ".join(restes[:3]))
     _inject_tracking(target)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"], capture_output=True)
     return f"https://francoislang.github.io/templates/{slug}"

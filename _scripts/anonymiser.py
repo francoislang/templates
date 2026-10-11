@@ -27,6 +27,11 @@ Usage en ligne de commande, pour reprendre les maquettes deja en ligne :
     python3 _scripts/anonymiser.py --apercu            # ce qui serait change
     python3 _scripts/anonymiser.py --appliquer         # tout le depot
     python3 _scripts/anonymiser.py --appliquer <slug>  # une seule maquette
+
+Depuis le 11 octobre, `neutraliser` complete `appliquer` : il remplace aussi
+les numeros et courriels que le modele invente (ou qu'un gabarit laisse en
+exemple), qui ne sont pas ceux du prospect mais peuvent etre ceux de
+quelqu'un. Les pipelines l'appellent en toute derniere passe.
 """
 from __future__ import annotations
 
@@ -230,6 +235,96 @@ def verifier(html: str, p: dict) -> list[str]:
 
 
 # --------------------------------------------------------------------------
+# coordonnees inventees par le modele
+
+# Ce que `appliquer` ne peut pas voir : le modele invente volontiers un
+# « 06 12 34 56 78 » ou un « contact@garage-dupont.fr ». Ce ne sont pas les
+# vraies coordonnees du prospect, mais ce sont peut-etre celles de quelqu'un
+# d'autre. Regle : sur une page publiee, tout numero hors des plages de
+# fiction et tout courriel hors du domaine fictif est remplace.
+
+_FICTIFS = tuple(sorted({v.replace(" ", "") for v in PLAGES.values()} | {"0199"}))
+# Ni precede ni suivi d'un caractere de mot, d'un chiffre ou d'un separateur
+# d'URL : une version Cloudinary « v1712345678 » ou un identifiant ne sont
+# pas des numeros.
+_TEL_INVENTE = re.compile(
+    r"(?<![\w/=.#-])(?:\+\s?33\s?(?:\(0\))?\s?|0)[1-9](?:[\s.\-\u00a0]?\d{2}){4}(?![\w-])")
+_MAIL_INVENTE = re.compile(r"(?<![\w.+-])[\w.+-]+@([\w-]+(?:\.[\w-]+)*\.[a-z]{2,})(?![\w.-])",
+                           re.IGNORECASE)
+_EXTENSIONS_FICHIER = {"png", "jpg", "jpeg", "webp", "svg", "gif", "avif", "css", "js"}
+_PLACEHOLDER = re.compile(r'placeholder\s*=\s*("[^"]*"|\'[^\']*\')', re.IGNORECASE)
+
+
+def _est_fictif(tel: str) -> bool:
+    return _chiffres(tel).startswith(_FICTIFS)
+
+
+def neutraliser(html: str, graine: str) -> tuple[str, list[str]]:
+    """Remplace les numeros et courriels inventes. Renvoie la page et le bilan."""
+    faits: list[str] = []
+    remplaces: dict[str, str] = {}
+    def _tel(m):
+        brut = m.group(0)
+        if _est_fictif(brut):
+            return brut
+        cle = _chiffres(brut)
+        if cle not in remplaces:
+            remplaces[cle] = tel_fictif(cle, graine + cle)
+        return remplaces[cle]
+    # d'abord les href tel: compactes (+33612345678), au format attendu par un lien
+    def _href_tel(m):
+        num = m.group(2)
+        if _est_fictif(num):
+            return m.group(0)
+        cle = _chiffres(num)
+        faux = remplaces.setdefault(cle, tel_fictif(cle, graine + cle))
+        return m.group(1) + "+33" + _chiffres(faux)[1:] + m.group(3)
+    html = re.sub(r'(href=["\']tel:)([^"\']+)(["\'])', _href_tel, html)
+    html = _TEL_INVENTE.sub(_tel, html)
+    if remplaces:
+        faits.append(f"{len(remplaces)} numero(s) invente(s) remplace(s)")
+
+    # Les courriels d'exemple des formulaires (placeholder="votre@email.fr")
+    # restent : ils ne menent a personne. Les numeros d'exemple, eux, sont
+    # deja passes en fictif ci-dessus.
+    gardes: list[str] = []
+    def _garder(m):
+        gardes.append(m.group(0))
+        return f"\x00{len(gardes) - 1}\x00"
+    html = _PLACEHOLDER.sub(_garder, html)
+
+    n_mail = 0
+    def _mail(m):
+        nonlocal n_mail
+        domaine = m.group(1).lower()
+        if domaine.rsplit(".", 1)[-1] in _EXTENSIONS_FICHIER:
+            return m.group(0)        # logo@2x.png n'est pas un courriel
+        if domaine == DOMAINE_FICTIF or domaine.endswith((".example", ".invalid")):
+            return m.group(0)
+        n_mail += 1
+        return f"contact@{DOMAINE_FICTIF}"
+    html = _MAIL_INVENTE.sub(_mail, html)
+    if n_mail:
+        faits.append(f"{n_mail} courriel(s) invente(s) remplace(s)")
+
+    html = re.sub(r"\x00(\d+)\x00", lambda m: gardes[int(m.group(1))], html)
+    return html, faits
+
+
+def coordonnees_non_fictives(html: str) -> list[str]:
+    """Ce qui reste de joignable apres `neutraliser`. Vide = publiable."""
+    sans_exemples = _PLACEHOLDER.sub("", html)
+    restes = [m.group(0) for m in _TEL_INVENTE.finditer(html)
+              if not _est_fictif(m.group(0))]
+    for m in _MAIL_INVENTE.finditer(sans_exemples):
+        d = m.group(1).lower()
+        if d.rsplit(".", 1)[-1] in _EXTENSIONS_FICHIER or d == DOMAINE_FICTIF:
+            continue
+        restes.append(m.group(0))
+    return restes
+
+
+# --------------------------------------------------------------------------
 # reprise des maquettes deja publiees
 
 def _prospects(db: Path) -> dict[str, dict]:
@@ -290,9 +385,11 @@ def main() -> int:
         p = fiches.get(slug)
         if not p:
             sans_fiche += 1
-            continue
+            p = {"cle": slug}      # pas de fiche : seules les inventions partent
         html = dossier.read_text(encoding="utf-8", errors="replace")
         neuf, faits = appliquer(html, p)
+        neuf, inventes = neutraliser(neuf, p.get("cle") or slug)
+        faits += inventes
         if not faits:
             intacts += 1
             continue

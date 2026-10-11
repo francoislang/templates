@@ -293,60 +293,11 @@ def marquer(conn, cle: str, **champs) -> None:
 # generation
 # --------------------------------------------------------------------------
 
-def _cle_openrouter() -> str:
-    for fp in (REPO_ROOT / ".env", Path(os.path.expanduser("~/.hermes/.env"))):
-        if not fp.exists():
-            continue
-        for ligne in fp.read_text(encoding="utf-8").splitlines():
-            if ligne.startswith(("OPENROUTER_API_KEY", "ANTHROPIC_API_KEY")) and "=" in ligne:
-                return ligne.split("=", 1)[1].strip().strip('"').strip("'")
-    return ""
-
-
 def _appeler_modele(prompt: str) -> tuple[str, str]:
-    import requests
-    cle = _cle_openrouter()
-    if not cle:
-        return "", "OPENROUTER_API_KEY absente"
-    print(f"   modele : {MODELE}")
-    payload = {"model": MODELE,
-               "messages": [{"role": "user", "content": prompt}],
-               "max_tokens": 24000, "stream": True}
-    derniere = ""
-    for tentative in (1, 2):
-        try:
-            r = requests.post("https://openrouter.ai/api/v1/chat/completions",
-                              headers={"Authorization": f"Bearer {cle}",
-                                       "Content-Type": "application/json"},
-                              json=payload, timeout=(30, 900), stream=True)
-            if r.status_code != 200:
-                derniere = f"HTTP {r.status_code}"
-                print(f"   /!\\ OpenRouter {derniere} ({tentative}/2)")
-                continue
-            morceaux = []
-            for brute in r.iter_lines(decode_unicode=False):
-                if not brute:
-                    continue
-                ligne = brute.decode("utf-8", "replace")
-                if not ligne.startswith("data: "):
-                    continue
-                corps = ligne[6:]
-                if corps.strip() == "[DONE]":
-                    break
-                try:
-                    delta = json.loads(corps)["choices"][0].get("delta", {})
-                except (ValueError, KeyError, IndexError):
-                    continue
-                if delta.get("content"):
-                    morceaux.append(delta["content"])
-            html = "".join(morceaux)
-            if html.strip():
-                return html, ""
-            derniere = "reponse vide"
-        except requests.exceptions.RequestException as e:
-            derniere = type(e).__name__
-            time.sleep(5)
-    return "", derniere or "echec inconnu"
+    # DeepSeek en direct, OpenRouter en secours (voir llm.py). Les erreurs
+    # gardent la forme « HTTP 402 »… attendue par PASSAGERES / FATALES.
+    import llm
+    return llm.generer(prompt, MODELE, max_tokens=24000)
 
 
 MIN_SECTIONS_PRO = 4
@@ -586,6 +537,12 @@ REGLES ABSOLUES :
     # donne la fiche publique, sinon il reinjecte la vraie adresse.
     pl._sanitize(cible, slug, {"email": pub.get("email", ""),
                                "phone": pub.get("telephone", "")})
+    # Derniere passe : la correction de design repasse par le modele, qui
+    # peut inventer un numero ou un courriel. Rien de joignable ne sort.
+    restes = pl.neutraliser_fichier(cible, p.get("cle") or nom)
+    if restes:
+        cible.unlink()
+        return None, "coordonnees non fictives dans la page : " + ", ".join(restes[:3]), v
     pl._inject_tracking(cible)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"],
                    capture_output=True)
