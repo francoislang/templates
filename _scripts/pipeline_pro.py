@@ -76,6 +76,15 @@ IDENTITE_FIXE = "acier"
 # repeter la chaine entiere sans rien depenser.
 MODELE = os.environ.get("MODELE_PRO") or "deepseek/deepseek-v4-pro"
 
+# Meme comportement que le circuit eleveurs : quand le modele ne repond pas
+# (credit epuise, panne) ou rend une page refusee, le site sort quand meme,
+# rempli sans IA a partir du gabarit de reference (gabarit_fixe.py). Apres
+# une premiere panne passagere, le reste du lot passe directement par le
+# gabarit fixe, pour ne pas attendre deux fournisseurs en echec a chaque
+# fiche. SANS_IA_PRO=1 dans .env (ou --sans-ia) force ce mode.
+SANS_IA = os.environ.get("SANS_IA_PRO", "").strip() in ("1", "oui", "true")
+_IA_EN_PANNE = False
+
 
 METIERS: dict[str, dict] = {
     "garage": {
@@ -415,6 +424,7 @@ def _corriger_design(html: str, cible: Path, v: dict) -> str:
 
 def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, dict]:
     """Retourne (url, erreur, variante)."""
+    global _IA_EN_PANNE
     conf = METIERS[metier]
     nom = (p.get("nom") or "").strip()
     slug = pl.slugify(nom)
@@ -423,9 +433,32 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
     if cible.exists() and not force:
         return f"{PAGES}/{slug}/", "", v
 
+    def _repli(raison: str):
+        """Site rempli sans IA, comme le template universel des eleveurs."""
+        import gabarit_fixe
+        print(f"   \u26a0\ufe0f  Repli sur le gabarit fixe ({raison})")
+        try:
+            page = gabarit_fixe.remplir(anonymiser.fiche_publique(p), metier, slug)
+        except Exception as e:
+            return None, f"{raison} ; repli impossible : {e}", v
+        cible.parent.mkdir(exist_ok=True)
+        cible.write_text(page, encoding="utf-8")
+        restes = pl.neutraliser_fichier(cible, p.get("cle") or nom)
+        restes += anonymiser.verifier(cible.read_text(encoding="utf-8"), p)
+        if restes:
+            cible.unlink()
+            return None, f"{raison} ; repli refuse : " + ", ".join(restes[:3]), v
+        pl._inject_tracking(cible)
+        subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"],
+                       capture_output=True)
+        return f"{PAGES}/{slug}/", "", v
+
+    if SANS_IA or _IA_EN_PANNE:
+        return _repli("IA desactivee" if SANS_IA else "IA en panne sur ce lot")
+
     gabarit = charger_gabarit(metier)
     if not gabarit.strip():
-        return None, "aucun gabarit lisible", v
+        return _repli("aucun gabarit lisible pour le modele")
 
     # Le modele ne voit jamais les vraies coordonnees : il les recopierait
     # dans un attribut data-, un commentaire ou un JSON-LD reformate, ou le
@@ -506,18 +539,20 @@ REGLES ABSOLUES :
 
     html, err = _appeler_modele(prompt)
     if not html:
-        return None, err, v
+        if _est_passagere(err) or _est_fatale(err):
+            _IA_EN_PANNE = True
+        return _repli(err or "reponse vide")
 
     html = _nettoyer_html(html)
 
     ok, raison = _site_est_correct(html)
     if not ok:
-        return None, f"site trop pauvre — {raison}", v
+        return _repli(f"site trop pauvre — {raison}")
 
     fuite = re.findall(r"\b(chiot\w*|chien\w*|port[ée]e\w*|[ée]levage\w*|LOF)\b",
                        html, re.IGNORECASE)
     if len(fuite) > 2:
-        return None, f"vocabulaire canin residuel ({len(fuite)} occurrences)", v
+        return _repli(f"vocabulaire canin residuel ({len(fuite)} occurrences)")
 
     if not IDENTITE_FIXE:
         html = _appliquer_variante(html, v)
@@ -528,7 +563,7 @@ REGLES ABSOLUES :
     # une fuite en ligne.
     restes = anonymiser.verifier(html, p)
     if restes:
-        return None, "donnees reelles dans la page : " + ", ".join(restes), v
+        return _repli("donnees reelles dans la page : " + ", ".join(restes))
 
     cible.parent.mkdir(exist_ok=True)
     cible.write_text(html, encoding="utf-8")
@@ -542,7 +577,7 @@ REGLES ABSOLUES :
     restes = pl.neutraliser_fichier(cible, p.get("cle") or nom)
     if restes:
         cible.unlink()
-        return None, "coordonnees non fictives dans la page : " + ", ".join(restes[:3]), v
+        return _repli("coordonnees non fictives dans la page : " + ", ".join(restes[:3]))
     pl._inject_tracking(cible)
     subprocess.run(["git", "-C", str(REPO_ROOT), "add", f"{slug}/index.html"],
                    capture_output=True)
@@ -895,6 +930,10 @@ def main() -> None:
                         "Exige --db, pour ne jamais court-circuiter le "
                         "dedoublonnage sur la vraie base.")
     p.add_argument("--attendre", type=int, default=0)
+    p.add_argument("--sans-ia", action="store_true",
+                   help="ne pas appeler le modele : sites remplis depuis le gabarit "
+                        "de reference (gabarit_fixe.py), comme le template universel "
+                        "des eleveurs")
     p.add_argument("--db", default=None, help="base de test au lieu de prospection.db")
     args = p.parse_args()
 
@@ -906,6 +945,10 @@ def main() -> None:
     if args.modele:
         global MODELE
         MODELE = args.modele
+
+    if args.sans_ia:
+        global SANS_IA
+        SANS_IA = True
 
     if args.essai and not args.db:
         sys.exit("--essai exige --db : sans base de test, sauter le controle "
