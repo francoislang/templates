@@ -28,6 +28,11 @@ Usage en ligne de commande, pour reprendre les maquettes deja en ligne :
     python3 _scripts/anonymiser.py --appliquer         # tout le depot
     python3 _scripts/anonymiser.py --appliquer <slug>  # une seule maquette
 
+Depuis le 12 octobre, plus aucun numero n'est affiche : tout telephone
+d'une page publiee devient le masque « 06 XX XX XX XX » (MASQUE_TEL), et
+les liens tel:/sms: pointent vers #contact. Un masque ne peut appartenir a
+personne, contrairement a un numero tire d'une plage de fiction.
+
 Depuis le 11 octobre, `neutraliser` complete `appliquer` : il remplace aussi
 les numeros et courriels que le modele invente (ou qu'un gabarit laisse en
 exemple), qui ne sont pas ceux du prospect mais peuvent etre ceux de
@@ -52,6 +57,14 @@ PLAGES = {
 }
 PLAGE_DEFAUT = "01 99 00"
 DOMAINE_FICTIF = "exemple-atelier.fr"
+MASQUE_TEL = "06 XX XX XX XX"
+LIEN_TEL = "#contact"          # cible des anciens liens tel: / sms:
+_HREF_TEL = re.compile(r'(href=["\'])(?:tel|sms):[^"\']*(["\'])', re.IGNORECASE)
+
+
+def masquer_liens(html: str) -> str:
+    """Les liens d'appel et de SMS ne menent plus a aucun numero."""
+    return _HREF_TEL.sub(lambda m: m.group(1) + LIEN_TEL + m.group(2), html)
 
 
 def _chiffres(s: str) -> str:
@@ -62,7 +75,13 @@ def _chiffres(s: str) -> str:
 
 
 def tel_fictif(tel_reel: str, graine: str) -> str:
-    """Un numero stable : la meme fiche rend toujours le meme faux numero."""
+    """Le numero affiche sur une maquette : toujours le masque.
+
+    (Avant le 12 octobre : un numero stable tire des plages de fiction.)"""
+    return MASQUE_TEL
+
+
+def _ancien_tel_fictif(tel_reel: str, graine: str) -> str:
     d = _chiffres(tel_reel)
     prefixe = PLAGES.get(d[:2], PLAGE_DEFAUT) if len(d) >= 2 else PLAGE_DEFAUT
     n = int(hashlib.sha256(graine.encode()).hexdigest()[:8], 16) % 10000
@@ -98,10 +117,8 @@ def appliquer(html: str, p: dict) -> tuple[str, list[str]]:
         if n:
             html = motif.sub(lambda m: faux, html)
             faits.append(f"telephone remplace ({n} occurrence(s)) -> {faux}")
-    # les href tel: gardent parfois une forme compactee
-    compact = "+33" + _chiffres(faux)[1:]
-    html = re.sub(r'(href=["\']tel:)[^"\']+(["\'])',
-                  lambda m: m.group(1) + compact + m.group(2), html)
+    # les liens tel:/sms: ne menent plus a aucun numero
+    html = masquer_liens(html)
 
     # --- courriel --------------------------------------------------------
     mail = (p.get("email") or "").strip()
@@ -256,7 +273,9 @@ _PLACEHOLDER = re.compile(r'placeholder\s*=\s*("[^"]*"|\'[^\']*\')', re.IGNORECA
 
 
 def _est_fictif(tel: str) -> bool:
-    return _chiffres(tel).startswith(_FICTIFS)
+    # Depuis le 12 octobre, aucun numero chiffre n'est tolere : seul le
+    # masque (qui ne contient pas de chiffres apres l'indicatif) passe.
+    return False
 
 
 def neutraliser(html: str, graine: str) -> tuple[str, list[str]]:
@@ -264,25 +283,16 @@ def neutraliser(html: str, graine: str) -> tuple[str, list[str]]:
     faits: list[str] = []
     remplaces: dict[str, str] = {}
     def _tel(m):
-        brut = m.group(0)
-        if _est_fictif(brut):
-            return brut
-        cle = _chiffres(brut)
-        if cle not in remplaces:
-            remplaces[cle] = tel_fictif(cle, graine + cle)
-        return remplaces[cle]
-    # d'abord les href tel: compactes (+33612345678), au format attendu par un lien
-    def _href_tel(m):
-        num = m.group(2)
-        if _est_fictif(num):
-            return m.group(0)
-        cle = _chiffres(num)
-        faux = remplaces.setdefault(cle, tel_fictif(cle, graine + cle))
-        return m.group(1) + "+33" + _chiffres(faux)[1:] + m.group(3)
-    html = re.sub(r'(href=["\']tel:)([^"\']+)(["\'])', _href_tel, html)
+        remplaces[_chiffres(m.group(0))] = MASQUE_TEL
+        return MASQUE_TEL
+    # d'abord les liens tel:/sms:, qui ne menent plus a aucun numero
+    avant = html
+    html = masquer_liens(html)
     html = _TEL_INVENTE.sub(_tel, html)
     if remplaces:
-        faits.append(f"{len(remplaces)} numero(s) invente(s) remplace(s)")
+        faits.append(f"{len(remplaces)} numero(s) masque(s) en {MASQUE_TEL}")
+    elif html != avant:
+        faits.append("liens d'appel neutralises")
 
     # Les courriels d'exemple des formulaires (placeholder="votre@email.fr")
     # restent : ils ne menent a personne. Les numeros d'exemple, eux, sont

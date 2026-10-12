@@ -20,7 +20,7 @@ elevage:
   departement: "Isère (38)"
   region: "Isère"
   code_postal: "38"
-  telephone: "06 12 34 56 78"
+  telephone: "06 XX XX XX XX"
   siren: ""                          # optionnel
   url: "https://www.example.fr/"     # site actuel de l'éleveur (si existant)
   facebook: "https://www.facebook.com/..."

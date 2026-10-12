@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Menuiserie Vautrin — menuisier à Nancy</title>
-<meta name="description" content="Menuiserie Vautrin, menuisier à Nancy : menuiserie intérieure et extérieure en bois, sur mesure. 8 rue des Charpentiers, 54000 Nancy. Téléphone 03 53 01 42 17.">
+<meta name="description" content="Menuiserie Vautrin, menuisier à Nancy : menuiserie intérieure et extérieure en bois, sur mesure. 8 rue des Charpentiers, 54000 Nancy. Téléphone 06 XX XX XX XX.">
 <!--
   GABARIT DE REFERENCE « menuisier » pour pipeline_pro.py.
   L'entreprise est FICTIVE : nom, adresse et numero servent seulement a
@@ -345,7 +345,7 @@ section[id]{scroll-margin-top:64px}
       <a href="#horaires">Horaires et accès</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="hdr__tel" href="tel:+33353014217">03 53 01 42 17</a>
+    <a class="hdr__tel" href="#contact">06 XX XX XX XX</a>
   </div>
 </header>
 
@@ -359,7 +359,7 @@ section[id]{scroll-margin-top:64px}
       <p class="ouv__t">Menuiserie Vautrin, 8 rue des Charpentiers à Nancy.
         Vous décrivez la pièce, vous parlez directement au menuisier qui la fabriquera.</p>
       <div class="ouv__a">
-        <a class="btn btn--c" href="tel:+33353014217">Appeler le 03 53 01 42 17</a>
+        <a class="btn btn--c" href="#contact">Appeler le 06 XX XX XX XX</a>
         <a class="btn btn--f" href="#contact">Décrire mon projet</a>
       </div>
     </div>
@@ -517,7 +517,7 @@ section[id]{scroll-margin-top:64px}
         <address class="adr">8 rue des Charpentiers<br>54000 Nancy</address>
         <div class="pan__a">
           <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=8%20rue%20des%20Charpentiers%2C%2054000%20Nancy">Ouvrir l'itinéraire</a>
-          <a class="btn btn--o" href="tel:+33353014217">Appeler avant de passer</a>
+          <a class="btn btn--o" href="#contact">Appeler avant de passer</a>
         </div>
         <p class="pan__n">Un menuisier est souvent sur un chantier : un appel avant
           de venir évite de trouver l'atelier fermé.</p>
@@ -530,7 +530,7 @@ section[id]{scroll-margin-top:64px}
   <div class="env ctc">
     <div>
       <h2 id="t-ctc">Parlez de votre projet au menuisier</h2>
-      <a class="ctc__tel" href="tel:+33353014217">03 53 01 42 17</a>
+      <a class="ctc__tel" href="#contact">06 XX XX XX XX</a>
       <p class="ctc__l">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/><circle cx="12" cy="10.2" r="2.7"/>
@@ -553,7 +553,7 @@ section[id]{scroll-margin-top:64px}
         <div class="f"><label for="nom">Votre nom</label>
           <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
         <div class="f"><label for="tel">Votre téléphone</label>
-          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06 12 34 56 78"></div>
+          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06 XX XX XX XX"></div>
       </div>
       <div class="f bloc"><label for="proj">Le projet</label>
         <select id="proj" name="proj">
@@ -572,7 +572,7 @@ section[id]{scroll-margin-top:64px}
       <button class="btn btn--c" type="submit" style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
       <p class="fret" id="ret" role="status" aria-live="polite"></p>
       <p class="fnote">Aucune adresse électronique publique n'est connue pour cet
-        atelier : la demande part en SMS vers le 03 53 01 42 17.</p>
+        atelier : la demande part en SMS vers le 06 XX XX XX XX.</p>
     </form>
   </div>
 </section>
@@ -606,7 +606,7 @@ section[id]{scroll-margin-top:64px}
 </main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33353014217">Appeler l'atelier</a>
+  <a class="btn btn--c" href="#contact">Appeler l'atelier</a>
   <a class="btn btn--f" href="#contact">Mon projet</a>
 </div>
 
@@ -624,7 +624,7 @@ section[id]{scroll-margin-top:64px}
   "name":"Menuiserie Vautrin",
   "description":"Menuisier à Nancy : menuiserie intérieure et extérieure en bois, sur mesure.",
   "url":"https://francoislang.github.io/templates/menuiserie-vautrin/",
-  "telephone":"+33353014217",
+  "telephone":"06 XX XX XX XX",
   "address":{
     "@type":"PostalAddress",
     "streetAddress":"8 rue des Charpentiers",
@@ -677,8 +677,8 @@ section[id]{scroll-margin-top:64px}
         di=f.dim.value.trim(), de=f.det.value.trim(), r=document.getElementById("ret");
     if(!n||!t){ r.textContent="Indiquez au moins votre nom et votre numéro."; return; }
     var corps="Bonjour, "+n+" ("+t+")."+(p?" Projet : "+p+".":"")+(di?" Dimensions : "+di+".":"")+(de?" "+de:"");
-    r.textContent="Votre application de messages s'ouvre avec la demande préremplie. Si rien ne se passe, appelez le 03 53 01 42 17.";
-    window.location.href="sms:+33353014217?body="+encodeURIComponent(corps);
+    r.textContent="Votre application de messages s'ouvre avec la demande préremplie. Si rien ne se passe, appelez le 06 XX XX XX XX.";
+    window.location.href="#contact"+encodeURIComponent(corps);
   });
 })();
 

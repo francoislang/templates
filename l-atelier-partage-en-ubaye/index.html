@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>L'atelier partagé en Ubaye — menuisier en Ubaye (04)</title>
-<meta name="description" content="L'atelier partagé en Ubaye, menuisier / atelier de menuiserie bois dans les Alpes-de-Haute-Provence (04). Téléphone 06 39 98 02 39.">
+<meta name="description" content="L'atelier partagé en Ubaye, menuisier / atelier de menuiserie bois dans les Alpes-de-Haute-Provence (04). Téléphone 06 XX XX XX XX.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -299,7 +299,7 @@ section[id]{scroll-margin-top:64px}
       <a href="#acces">Accès</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="hdr__tel" href="tel:+33639980239">06 39 98 02 39</a>
+    <a class="hdr__tel" href="#contact">06 XX XX XX XX</a>
   </div>
 </header>
 
@@ -313,7 +313,7 @@ section[id]{scroll-margin-top:64px}
       <p class="ouv__t">L'atelier partagé en Ubaye, dans les Alpes-de-Haute-Provence.
         Vous décrivez la pièce, vous parlez directement au menuisier qui la fabriquera.</p>
       <div class="ouv__a">
-        <a class="btn btn--c" href="tel:+33639980239">Appeler le 06 39 98 02 39</a>
+        <a class="btn btn--c" href="#contact">Appeler le 06 XX XX XX XX</a>
         <a class="btn btn--f" href="#contact">Décrire mon projet</a>
       </div>
     </div>
@@ -445,7 +445,7 @@ section[id]{scroll-margin-top:64px}
       <h3>Venir à l'atelier</h3>
       <address class="adr">Alpes-de-Haute-Provence</address>
       <div class="pan__a">
-        <a class="btn btn--c" href="tel:+33639980239">Appeler pour l'adresse</a>
+        <a class="btn btn--c" href="#contact">Appeler pour l'adresse</a>
       </div>
       <p class="pan__n">L'adresse exacte se communique au téléphone. Un menuisier est souvent sur un chantier : un appel avant de venir évite de trouver l'atelier fermé.</p>
     </div>
@@ -456,7 +456,7 @@ section[id]{scroll-margin-top:64px}
   <div class="env ctc">
     <div>
       <h2 id="t-ctc">Parlez de votre projet au menuisier</h2>
-      <a class="ctc__tel" href="tel:+33639980239">06 39 98 02 39</a>
+      <a class="ctc__tel" href="#contact">06 XX XX XX XX</a>
       <p class="ctc__l">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 10.5c0 5.2-8 11.5-8 11.5s-8-6.3-8-11.5a8 8 0 1116 0z"/><circle cx="12" cy="10.2" r="2.7"/>
@@ -473,7 +473,7 @@ section[id]{scroll-margin-top:64px}
         <div class="f"><label for="nom">Votre nom</label>
           <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
         <div class="f"><label for="tel">Votre téléphone</label>
-          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06 39 98 54 05"></div>
+          <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06 XX XX XX XX"></div>
       </div>
       <div class="f bloc"><label for="proj">Le projet</label>
         <select id="proj" name="proj">
@@ -492,7 +492,7 @@ section[id]{scroll-margin-top:64px}
       <button class="btn btn--c" type="submit" style="width:100%;margin-top:var(--s5)">Envoyer ma demande</button>
       <p class="fret" id="ret" role="status" aria-live="polite"></p>
       <p class="fnote">Aucune adresse électronique publique n'est connue pour cet
-        atelier : la demande part en SMS vers le 06 39 98 02 39.</p>
+        atelier : la demande part en SMS vers le 06 XX XX XX XX.</p>
     </form>
   </div>
 </section>
@@ -524,7 +524,7 @@ section[id]{scroll-margin-top:64px}
 </main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33639980239">Appeler l'atelier</a>
+  <a class="btn btn--c" href="#contact">Appeler l'atelier</a>
   <a class="btn btn--f" href="#contact">Mon projet</a>
 </div>
 
@@ -540,7 +540,7 @@ section[id]{scroll-margin-top:64px}
   "@type":"HomeAndConstructionBusiness",
   "name":"L'atelier partagé en Ubaye",
   "description":"Menuisier / atelier de menuiserie bois dans les Alpes-de-Haute-Provence (04).",
-  "telephone":"+33639980239"
+  "telephone":"06 XX XX XX XX"
 }
 </script>
 
@@ -555,8 +555,8 @@ section[id]{scroll-margin-top:64px}
         di=f.dim.value.trim(), de=f.det.value.trim(), r=document.getElementById("ret");
     if(!n||!t){ r.textContent="Indiquez au moins votre nom et votre numéro."; return; }
     var corps="Bonjour, "+n+" ("+t+")."+(p?" Projet : "+p+".":"")+(di?" Dimensions : "+di+".":"")+(de?" "+de:"");
-    r.textContent="Votre application de messages s'ouvre avec la demande préremplie. Si rien ne se passe, appelez le 06 39 98 02 39.";
-    window.location.href="sms:+33639980239?body="+encodeURIComponent(corps);
+    r.textContent="Votre application de messages s'ouvre avec la demande préremplie. Si rien ne se passe, appelez le 06 XX XX XX XX.";
+    window.location.href="#contact"+encodeURIComponent(corps);
   });
 })();
 

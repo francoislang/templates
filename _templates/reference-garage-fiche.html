@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Garage Patton — entretien et réparation mécanique à Rennes</title>
-<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 06 XX XX XX XX.">
 <meta name="theme-color" content="#101A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,7 +120,7 @@ body{background:var(--papier)}
     <p class="ficheh__t">Entretien courant et réparation mécanique,
       157 avenue du Général George S. Patton. Un seul numéro, une réponse directe.</p>
     <div class="ficheh__a">
-      <a class="btn btn--c" href="tel:+33299361808">Appeler le 02 99 36 18 08</a>
+      <a class="btn btn--c" href="#contact">Appeler le 06 XX XX XX XX</a>
       <a class="btn btn--f" href="#demande">Laisser une demande</a>
     </div>
   </div>
@@ -130,7 +130,7 @@ body{background:var(--papier)}
   <section class="bloc">
     <h2>L'essentiel</h2>
     <div>
-      <div class="lig"><span>Téléphone</span><b><a href="tel:+33299361808">02 99 36 18 08</a></b></div>
+      <div class="lig"><span>Téléphone</span><b><a href="#contact">06 XX XX XX XX</a></b></div>
       <div class="lig"><span>Adresse</span><b>157 avenue du Général George S. Patton<br>35700 Rennes</b></div>
       <div class="lig"><span>Aujourd'hui</span>
         <b><span class="etat" id="etat" data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Voir les horaires</span></b></div>
@@ -170,7 +170,7 @@ body{background:var(--papier)}
              placeholder="Camille Renard"></div>
     <div class="f"><label for="tel">Votre téléphone</label>
       <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
-             required placeholder="06 12 34 56 78"></div>
+             required placeholder="06 XX XX XX XX"></div>
   </div>
   <div class="f" style="margin-top:var(--s4)">
     <label for="det">Ce qui vous amène</label>
@@ -183,7 +183,7 @@ body{background:var(--papier)}
      style="margin-top:var(--s3)"></p>
   <p style="margin-top:var(--s3);font-size:14px;color:var(--aide)">
     Aucune adresse électronique publique n'a été trouvée pour cet atelier :
-    le bouton ouvre un SMS prérempli vers le 02 99 36 18 08.</p>
+    le bouton ouvre un SMS prérempli vers le 06 XX XX XX XX.</p>
 </form>
   </section>
 </main>
@@ -235,8 +235,8 @@ body{background:var(--papier)}
     var corps="Bonjour, "+n+" ("+t+")."+(d?" "+d:"");
     document.getElementById("ret").textContent=
       "Votre application de messages s'ouvre avec la demande préremplie. "
-      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
-    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+      +"Si rien ne se passe, appelez le 06 XX XX XX XX.";
+    window.location.href="#contact"+encodeURIComponent(corps);
   });
 })();
 

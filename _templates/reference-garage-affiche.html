@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Garage Patton — entretien et réparation mécanique à Rennes</title>
-<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 06 XX XX XX XX.">
 <meta name="theme-color" content="#101A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -157,7 +157,7 @@ body{background:var(--encre);color:var(--blanc)}
     <h1>Un mécanicien<br>qui décroche.</h1>
     <p class="aff__t">Entretien courant et réparation mécanique,
       157 avenue du Général George S. Patton, à Rennes.</p>
-    <a class="tel" href="tel:+33299361808">02 99 36 18 08</a>
+    <a class="tel" href="#contact">06 XX XX XX XX</a>
     <p class="sous"><span class="etat" id="etat" data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Du lundi au vendredi, 8h–12h et 14h–19h.</span></p>
   </div>
 </section>
@@ -208,7 +208,7 @@ body{background:var(--encre);color:var(--blanc)}
              placeholder="Camille Renard"></div>
     <div class="f"><label for="tel">Votre téléphone</label>
       <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
-             required placeholder="06 12 34 56 78"></div>
+             required placeholder="06 XX XX XX XX"></div>
   </div>
   <div class="f" style="margin-top:var(--s4)">
     <label for="det">Ce qui vous amène</label>
@@ -221,7 +221,7 @@ body{background:var(--encre);color:var(--blanc)}
      style="margin-top:var(--s3)"></p>
   <p style="margin-top:var(--s3);font-size:14px;color:var(--aide)">
     Aucune adresse électronique publique n'a été trouvée pour cet atelier :
-    le bouton ouvre un SMS prérempli vers le 02 99 36 18 08.</p>
+    le bouton ouvre un SMS prérempli vers le 06 XX XX XX XX.</p>
 </form>
       </div>
     </div>
@@ -232,7 +232,7 @@ body{background:var(--encre);color:var(--blanc)}
 <footer class="piedf">
   <div class="piedf__in">
     <span>© 2026 Garage Patton</span>
-    <span>157 avenue du Général George S. Patton, 35700 Rennes — 02 99 36 18 08</span>
+    <span>157 avenue du Général George S. Patton, 35700 Rennes — 06 XX XX XX XX</span>
   </div>
 </footer>
 
@@ -279,8 +279,8 @@ body{background:var(--encre);color:var(--blanc)}
     var corps="Bonjour, "+n+" ("+t+")."+(d?" "+d:"");
     document.getElementById("ret").textContent=
       "Votre application de messages s'ouvre avec la demande préremplie. "
-      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
-    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+      +"Si rien ne se passe, appelez le 06 XX XX XX XX.";
+    window.location.href="#contact"+encodeURIComponent(corps);
   });
 })();
 

@@ -409,7 +409,7 @@ def chercher(prospect: dict) -> dict:
                 "erreur": f"adresses ecartees ({len(candidats)} vues)"}
     enseigne = est_enseigne(meilleur)
     if enseigne:
-        # « danielle.capelli.stismier02@reseau.renault.fr » : releve sur un
+        # « prenom.nom.ville02@reseau.renault.fr » : releve sur un
         # vrai prospect de la base. L'adresse est bonne, mais le prospect ne
         # l'est pas -- c'est une succursale, pas un independant.
         return {"cle": prospect["cle"], "email": "", "source": "",

@@ -13,8 +13,8 @@ NOM = "Garage Patton"
 VILLE = "Rennes"
 CP = "35700"
 RUE = "157 avenue du Général George S. Patton"
-TEL = "02 99 36 18 08"
-TELB = "+33299361808"
+TEL = "06 XX XX XX XX"
+TELB = "#contact"  # plus de numero : les liens tel:/sms: sont neutralises
 ITIN = ("https://www.google.com/maps/dir/?api=1&amp;destination="
         "157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes")
 DATA_H = ("[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],"
@@ -205,7 +205,7 @@ FORMULAIRE = f"""<form id="dem" novalidate>
              placeholder="Camille Renard"></div>
     <div class="f"><label for="tel">Votre téléphone</label>
       <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
-             required placeholder="06 12 34 56 78"></div>
+             required placeholder="06 XX XX XX XX"></div>
   </div>
   <div class="f" style="margin-top:var(--s4)">
     <label for="det">Ce qui vous amène</label>

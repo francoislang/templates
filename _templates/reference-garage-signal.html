@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Garage Patton — entretien et réparation mécanique à Rennes</title>
-<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 02 99 36 18 08.">
+<meta name="description" content="Garage Patton, garage indépendant au 157 avenue du Général George S. Patton à Rennes (35700). Entretien courant et réparation mécanique. Ouvert du lundi au vendredi. 06 XX XX XX XX.">
 <meta name="theme-color" content="#101A2E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -258,7 +258,7 @@ body{background:var(--encre);color:var(--brume-clair)}
     <div class="pave">
       <div class="pave__a">
         <span class="pave__lab">Un seul numéro</span>
-        <a class="pave__tel" href="tel:+33299361808">02 99 36 18 08</a>
+        <a class="pave__tel" href="#contact">06 XX XX XX XX</a>
         <span class="etat" id="etat" data-h='[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],[480,720,840,1110],null]'>Du lundi au vendredi, 8h–12h et 14h–19h.</span>
         <a class="btn btn--f" href="#symptome">Préparer mon message</a>
       </div>
@@ -346,8 +346,8 @@ body{background:var(--encre);color:var(--brume-clair)}
         <p class="sym__e">Votre message</p>
         <p class="sym__m" id="msg" role="status" aria-live="polite"></p>
         <div class="sym__a">
-          <a class="btn btn--c" href="tel:+33299361808">Appeler le 02 99 36 18 08</a>
-          <a class="btn btn--f" id="sms" href="sms:+33299361808">Envoyer en SMS</a>
+          <a class="btn btn--c" href="#contact">Appeler le 06 XX XX XX XX</a>
+          <a class="btn btn--f" id="sms" href="#contact">Envoyer en SMS</a>
         </div>
       </div>
     </div>
@@ -390,7 +390,7 @@ body{background:var(--encre);color:var(--brume-clair)}
         <h3>Venir</h3>
         <address class="adr">157 avenue du Général George S. Patton<br>35700 Rennes</address>
         <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes">Ouvrir l'itinéraire</a>
-        <a class="btn btn--o" href="tel:+33299361808">Appeler avant de passer</a>
+        <a class="btn btn--o" href="#contact">Appeler avant de passer</a>
         <p class="plan__n">Un appel avant de venir permet de savoir si le
           créneau est libre et si la pièce est en stock.</p>
       </div>
@@ -428,7 +428,7 @@ body{background:var(--encre);color:var(--brume-clair)}
              placeholder="Camille Renard"></div>
     <div class="f"><label for="tel">Votre téléphone</label>
       <input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel"
-             required placeholder="06 12 34 56 78"></div>
+             required placeholder="06 XX XX XX XX"></div>
   </div>
   <div class="f" style="margin-top:var(--s4)">
     <label for="det">Ce qui vous amène</label>
@@ -441,7 +441,7 @@ body{background:var(--encre);color:var(--brume-clair)}
      style="margin-top:var(--s3)"></p>
   <p style="margin-top:var(--s3);font-size:14px;color:var(--aide)">
     Aucune adresse électronique publique n'a été trouvée pour cet atelier :
-    le bouton ouvre un SMS prérempli vers le 02 99 36 18 08.</p>
+    le bouton ouvre un SMS prérempli vers le 06 XX XX XX XX.</p>
 </form>
       </div>
     </div>
@@ -450,14 +450,14 @@ body{background:var(--encre);color:var(--brume-clair)}
 </main>
 
 <div class="bmob">
-  <a class="btn btn--c" href="tel:+33299361808">Appeler l'atelier</a>
+  <a class="btn btn--c" href="#contact">Appeler l'atelier</a>
   <a class="btn btn--f" href="#symptome">Décrire</a>
 </div>
 
 <footer class="piedf">
   <div class="piedf__in">
     <span>© 2026 Garage Patton</span>
-    <span>157 avenue du Général George S. Patton, 35700 Rennes — 02 99 36 18 08</span>
+    <span>157 avenue du Général George S. Patton, 35700 Rennes — 06 XX XX XX XX</span>
   </div>
 </footer>
 
@@ -504,8 +504,8 @@ body{background:var(--encre);color:var(--brume-clair)}
     var corps="Bonjour, "+n+" ("+t+")."+(d?" "+d:"");
     document.getElementById("ret").textContent=
       "Votre application de messages s'ouvre avec la demande préremplie. "
-      +"Si rien ne se passe, appelez le 02 99 36 18 08.";
-    window.location.href="sms:+33299361808?body="+encodeURIComponent(corps);
+      +"Si rien ne se passe, appelez le 06 XX XX XX XX.";
+    window.location.href="#contact"+encodeURIComponent(corps);
   });
 })();
 
@@ -552,7 +552,7 @@ body{background:var(--encre);color:var(--brume-clair)}
     else t=BASE+" : "+pris.slice(0,-1).join(", ")+" et "+pris[pris.length-1]
          +". Est-ce que c'est quelque chose que vous prenez ?";
     m.textContent=t;
-    if(s) s.setAttribute("href","sms:+33299361808?body="+encodeURIComponent(t));
+    if(s) s.setAttribute("href","sms:06 XX XX XX XX?body="+encodeURIComponent(t));
   }
   l.forEach(function(b){ b.addEventListener("click",function(){
     b.setAttribute("aria-pressed", b.getAttribute("aria-pressed")==="true"?"false":"true");
