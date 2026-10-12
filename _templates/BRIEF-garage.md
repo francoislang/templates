@@ -8,7 +8,7 @@ belle, pas seulement correcte.
 
 - Nom : **Garage Patton**
 - Activité : garage automobile indépendant (réparation et entretien)
-- Adresse : **157 avenue du Général George S. Patton**, **35700 Rennes**
+- Adresse : **XX rue de l'Exemple**, **35700 Rennes**
 - Téléphone : **06 XX XX XX XX** — lien `tel:06 XX XX XX XX`
 - Coordonnées : latitude 48.125452, longitude -1.6667021
 - Horaires : lundi à jeudi **8h–12h et 14h–19h**, vendredi **8h–12h et

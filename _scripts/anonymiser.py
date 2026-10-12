@@ -59,6 +59,7 @@ PLAGE_DEFAUT = "01 99 00"
 DOMAINE_FICTIF = "exemple-atelier.fr"
 MASQUE_TEL = "06 XX XX XX XX"
 MASQUE_SIREN = "XXX XXX XXX"
+MASQUE_RUE = "XX rue de l'Exemple"
 MASQUE_SIRET = "XXX XXX XXX XXXXX"
 MASQUE_TVA = "FR XX XXX XXX XXX"
 # Un SIREN/SIRET n'est reconnu qu'a cote de son libelle (SIREN, SIRET, RCS,
@@ -73,6 +74,104 @@ _TVA = re.compile(r'\bFR\s?\d{2}(?:[\s.]?\d{3}){3}\b')
 def _masque_entreprise(chiffres: str) -> str:
     n = len(re.sub(r"\D", "", chiffres))
     return MASQUE_SIRET if n >= 14 else MASQUE_SIREN if n == 9 else "X" * n
+
+
+# --- adresses postales ---------------------------------------------------
+# La commune et le code postal restent (ancrage local du pitch) ; le numero
+# et la rue deviennent « XX rue de l'Exemple », les coordonnees GPS sont
+# arrondies a deux decimales (la commune, pas la porte).
+_VOIE = (r"(?:rue|avenue|av\.|boulevard|bd|chemin|route|rte|impasse|all[ée]e|place"
+         r"|quai|cours|square|passage|sentier|lotissement|lieu[- ]dit|hameau"
+         r"|r[ée]sidence|faubourg|promenade|esplanade|voie|mont[ée]e|chauss[ée]e"
+         r"|rond[- ]point|zone artisanale|zone industrielle|za|zi|zac)")
+_MOT_RUE = (r"(?:[A-Z]\.(?=\s)|[A-ZÀ-Ý][\wÀ-ÿ'’\-]*|d[eu]s?|de\s+la|de\s+l['’]|la|le|les"
+            r"|l['’]\w*|d['’]\w*|aux?|et|sur|sous|en|saint|st|\d{1,4})")
+_RUE = re.compile(r"(?<![\w©/=%#.-])(?!(?:19|20)\d\d\b)\d{1,4}\s?(?:bis|ter|b|t)?\s*,?\s+(?i:" + _VOIE
+                  + r")(?:\s+" + _MOT_RUE + r"){1,8}")
+_LD_RUE = re.compile(r'("streetAddress"\s*:\s*")([^"]*)(")')
+_LIEN_CARTE = re.compile(r'((?:destination|daddr|query|q)=)([^"&\'<>\s]+)')
+_GPS_PAIRE = re.compile(r"(-?\d{1,3}\.\d{3,})((?:%2C|,)\s?)(-?\d{1,3}\.\d{3,})", re.IGNORECASE)
+_URL_CARTE = re.compile(r"""https?://[^"'\s<>]*(?:map|osm)[^"'\s<>]*""", re.IGNORECASE)
+_GPS_CLE = re.compile(r'("?(?:latitude|longitude|lat|lng|lon)"?\s*[:=]\s*"?)(-?\d{1,3}\.\d{3,})',
+                      re.IGNORECASE)
+
+
+def _a_une_rue(texte: str) -> bool:
+    t = texte.replace("+", " ")
+    return bool(re.search(r"\b" + _VOIE + r"\b", t, re.IGNORECASE)
+                or re.search(r"(?<!\d)\d{1,4}\s?(?:bis|ter)?\s", re.sub(r"\b\d{5}\b", "", t)))
+
+
+def _carte_commune(valeur: str) -> str:
+    """Parametre d'itineraire : on ne garde que « code postal + commune »."""
+    from urllib.parse import unquote, quote
+    brut = unquote(valeur.replace("+", " "))
+    if not _a_une_rue(brut):
+        return valeur
+    m = re.search(r"\b(\d{5})\s*,?\s*([^,]+)", brut)
+    if m:
+        garde = f"{m.group(1)} {m.group(2).strip()}"
+    else:                      # pas de code postal : dernier segment = commune
+        garde = brut.split(",")[-1].strip()
+        if _a_une_rue(garde):
+            garde = ""
+    return quote(garde)
+
+
+def masquer_adresses(html: str) -> tuple[str, int]:
+    """Rues -> « XX rue de l'Exemple », itineraires -> commune, GPS -> 2 decimales."""
+    n = 0
+    def _rue(m):
+        nonlocal n
+        if "Exemple" in m.group(0):
+            return MASQUE_RUE if m.group(0).strip() != MASQUE_RUE else m.group(0)
+        n += 1
+        return MASQUE_RUE
+    html = _RUE.sub(_rue, html)
+    def _ld(m):
+        nonlocal n
+        v = m.group(2)
+        if not v.strip() or v == MASQUE_RUE or not _a_une_rue(v + " "):
+            return m.group(0)
+        n += 1
+        return m.group(1) + MASQUE_RUE + m.group(3)
+    html = _LD_RUE.sub(_ld, html)
+    def _carte(m):
+        nonlocal n
+        v = _carte_commune(m.group(2))
+        if v != m.group(2):
+            n += 1
+        return m.group(1) + v
+    html = _LIEN_CARTE.sub(_carte, html)
+    def _arr(x):
+        return f"{float(x):.2f}"
+    def _paire(m):
+        nonlocal n
+        if len(m.group(1).split(".")[1]) <= 2 and len(m.group(3).split(".")[1]) <= 2:
+            return m.group(0)
+        n += 1
+        return _arr(m.group(1)) + m.group(2) + _arr(m.group(3))
+    # paires lat,lon : seulement dans les liens et cartes (une courbe CSS
+    # « cubic-bezier(0.175, 0.885…) » a la meme forme)
+    html = _URL_CARTE.sub(lambda u: _GPS_PAIRE.sub(_paire, u.group(0)), html)
+    def _cle(m):
+        nonlocal n
+        n += 1
+        return m.group(1) + _arr(m.group(2))
+    html = _GPS_CLE.sub(_cle, html)
+    return html, n
+
+
+def adresses_restantes(html: str) -> list[str]:
+    restes = [m.group(0) for m in _RUE.finditer(html) if "Exemple" not in m.group(0)]
+    restes += [m.group(2) for m in _LD_RUE.finditer(html)
+               if m.group(2).strip() and m.group(2) != MASQUE_RUE and _a_une_rue(m.group(2) + " ")]
+    restes += [m.group(2) for m in _LIEN_CARTE.finditer(html) if _carte_commune(m.group(2)) != m.group(2)]
+    for u in _URL_CARTE.finditer(html):
+        restes += [m.group(0) for m in _GPS_PAIRE.finditer(u.group(0))
+                   if len(m.group(1).split(".")[1]) > 2 or len(m.group(3).split(".")[1]) > 2]
+    restes += [m.group(2) for m in _GPS_CLE.finditer(html)]
+    return restes
 
 
 def masquer_entreprise(html: str) -> tuple[str, int]:
@@ -163,7 +262,7 @@ def appliquer(html: str, p: dict) -> tuple[str, list[str]]:
     if adresse:
         rue = re.sub(r"\s*\d{5}.*$", "", adresse).strip(" ,")
         if len(rue) > 6 and rue.lower() in html.lower():
-            html = re.sub(re.escape(rue), "12 rue de l'Exemple", html,
+            html = re.sub(re.escape(rue), MASQUE_RUE, html,
                           flags=re.IGNORECASE)
             faits.append("adresse precise remplacee")
 
@@ -351,6 +450,9 @@ def neutraliser(html: str, graine: str) -> tuple[str, list[str]]:
     html, n_ent = masquer_entreprise(html)
     if n_ent:
         faits.append(f"{n_ent} SIREN/SIRET/TVA masque(s)")
+    html, n_adr = masquer_adresses(html)
+    if n_adr:
+        faits.append(f"{n_adr} adresse(s)/GPS masque(s)")
     return html, faits
 
 
@@ -366,6 +468,7 @@ def coordonnees_non_fictives(html: str) -> list[str]:
         restes.append(m.group(0))
     restes += [m.group(2) for m in _LIBELLE_ENTREPRISE.finditer(html)]
     restes += [m.group(0) for m in _TVA.finditer(html)]
+    restes += adresses_restantes(html)
     return restes
 
 

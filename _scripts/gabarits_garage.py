@@ -12,11 +12,11 @@ from pathlib import Path
 NOM = "Garage Patton"
 VILLE = "Rennes"
 CP = "35700"
-RUE = "157 avenue du Général George S. Patton"
+RUE = "XX rue de l'Exemple"
 TEL = "06 XX XX XX XX"
 TELB = "#contact"  # plus de numero : les liens tel:/sms: sont neutralises
 ITIN = ("https://www.google.com/maps/dir/?api=1&amp;destination="
-        "157%20avenue%20du%20G%C3%A9n%C3%A9ral%20George%20S.%20Patton%2C%2035700%20Rennes")
+        "35700%20Rennes")
 DATA_H = ("[null,[480,720,840,1140],[480,720,840,1140],[480,720,840,1140],"
           "[480,720,840,1140],[480,720,840,1110],null]")
 

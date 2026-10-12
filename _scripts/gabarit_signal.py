@@ -19,7 +19,7 @@ from pathlib import Path
 
 import gabarits as G
 
-LAT, LON = 48.125452, -1.6667021
+LAT, LON = 48.11, -1.68  # centre de la commune, pas l'adresse
 BBOX = f"{LON-0.006:.5f},{LAT-0.0035:.5f},{LON+0.006:.5f},{LAT+0.0035:.5f}"
 CARTE = (f"https://www.openstreetmap.org/export/embed.html?bbox={BBOX}"
          f"&amp;layer=mapnik&amp;marker={LAT},{LON}")
