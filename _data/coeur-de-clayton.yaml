@@ -7,7 +7,7 @@ elevage:
   region: "Haute-Savoie"
   code_postal: "74270"
   telephone: "06 XX XX XX XX"
-  siren: "891658502"
+  siren: "XXX XXX XXX"
   url: ""
   facebook: ""
   facebook_label: ""
@@ -51,7 +51,7 @@ reproducteurs:
     role: "Passionnee depuis 2014"
     sexe_symbole: "♂"
     photo: "https://images.pexels.com/photos/13218809/pexels-photo-13218809.jpeg"
-    description: "Elevage professionnel raisonne, ne de l'amour inconditionnel pour le Berger Americain Miniature. Certifie ACACED, SIREN 891658502."
+    description: "Elevage professionnel raisonne, ne de l'amour inconditionnel pour le Berger Americain Miniature. Certifie ACACED, SIREN XXX XXX XXX."
 
 temoignages:
   - texte: "Concernant la race j'aurais beaucoup a vous raconter... Il y a les sportifs et ceux qui se menagent un peu trop, mais en general tous sont des pots de colle demandeurs de calins. Ce n'est pas un chien qui aboie plus qu'un autre, c'est tout simplement une histoire d'education."

@@ -58,6 +58,33 @@ PLAGES = {
 PLAGE_DEFAUT = "01 99 00"
 DOMAINE_FICTIF = "exemple-atelier.fr"
 MASQUE_TEL = "06 XX XX XX XX"
+MASQUE_SIREN = "XXX XXX XXX"
+MASQUE_SIRET = "XXX XXX XXX XXXXX"
+MASQUE_TVA = "FR XX XXX XXX XXX"
+# Un SIREN/SIRET n'est reconnu qu'a cote de son libelle (SIREN, SIRET, RCS,
+# taxID…) : un nombre de neuf chiffres seul peut etre n'importe quoi.
+_LIBELLE_ENTREPRISE = re.compile(
+    r'((?:siren|siret|r\.?\s?c\.?\s?s\.?|taxid|vatid|n°\s*d.immatriculation)'
+    r'(?:[\s:°#.,"\'=()\-\u2013\u2014/\u00a0]|value|n°|<[^>]*>){0,40}?)'
+    r'(\d(?:[\s.\u00a0]?\d){8,13})(?!\d)', re.IGNORECASE)
+_TVA = re.compile(r'\bFR\s?\d{2}(?:[\s.]?\d{3}){3}\b')
+
+
+def _masque_entreprise(chiffres: str) -> str:
+    n = len(re.sub(r"\D", "", chiffres))
+    return MASQUE_SIRET if n >= 14 else MASQUE_SIREN if n == 9 else "X" * n
+
+
+def masquer_entreprise(html: str) -> tuple[str, int]:
+    """SIREN, SIRET et TVA intracommunautaire -> masques XXX. Renvoie (page, nombre)."""
+    n = 0
+    def _sub(m):
+        nonlocal n
+        n += 1
+        return m.group(1) + _masque_entreprise(m.group(2))
+    html = _LIBELLE_ENTREPRISE.sub(_sub, html)
+    html, k = _TVA.subn(MASQUE_TVA, html)
+    return html, n + k
 LIEN_TEL = "#contact"          # cible des anciens liens tel: / sms:
 _HREF_TEL = re.compile(r'(href=["\'])(?:tel|sms):[^"\']*(["\'])', re.IGNORECASE)
 
@@ -144,8 +171,8 @@ def appliquer(html: str, p: dict) -> tuple[str, list[str]]:
     for champ in ("siren", "siret"):
         v = (p.get(champ) or "").strip()
         if v and v in html:
-            html = html.replace(v, "000 000 000")
-            faits.append(f"{champ} retire")
+            html = html.replace(v, MASQUE_SIRET if len(re.sub(r"\D", "", v)) >= 14 else MASQUE_SIREN)
+            faits.append(f"{champ} masque")
 
     # --- coordonnees GPS -------------------------------------------------
     # Un couple lat/lon au dix-millieme designe le batiment. On tronque a
@@ -318,6 +345,12 @@ def neutraliser(html: str, graine: str) -> tuple[str, list[str]]:
         faits.append(f"{n_mail} courriel(s) invente(s) remplace(s)")
 
     html = re.sub(r"\x00(\d+)\x00", lambda m: gardes[int(m.group(1))], html)
+
+    # SIREN / SIRET / TVA, reels ou inventes : jamais un numero, toujours XXX
+    html = html.replace("000 000 000", MASQUE_SIREN)
+    html, n_ent = masquer_entreprise(html)
+    if n_ent:
+        faits.append(f"{n_ent} SIREN/SIRET/TVA masque(s)")
     return html, faits
 
 
@@ -331,6 +364,8 @@ def coordonnees_non_fictives(html: str) -> list[str]:
         if d.rsplit(".", 1)[-1] in _EXTENSIONS_FICHIER or d == DOMAINE_FICTIF:
             continue
         restes.append(m.group(0))
+    restes += [m.group(2) for m in _LIBELLE_ENTREPRISE.finditer(html)]
+    restes += [m.group(0) for m in _TVA.finditer(html)]
     return restes
 
 

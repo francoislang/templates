@@ -38,8 +38,23 @@ def _graphql(query: dict, strict: bool = True) -> dict:
     ainsi qu'une Issue a ete creee sans jamais etre ajoutee au board, en
     silence. strict=False pour les lectures, ou une reponse partielle suffit.
     """
-    r = requests.post("https://api.github.com/graphql", json=query,
-                      headers=_headers(), timeout=15)
+    # GitHub renvoie parfois un 502/503/504 passager (ou coupe la connexion)
+    # sur les requetes lourdes du board : on retente trois fois, en espacant,
+    # avant d'abandonner. Le 12 octobre, un seul 504 a fait sauter les relances
+    # et le passage en « Perdu » de la journee.
+    import time
+    attentes = (5, 20, 60)
+    for essai in range(len(attentes) + 1):
+        try:
+            r = requests.post("https://api.github.com/graphql", json=query,
+                              headers=_headers(), timeout=40)
+        except (requests.ConnectionError, requests.Timeout) as e:
+            if essai == len(attentes):
+                raise GraphQLError(f"GitHub injoignable : {e}")
+            time.sleep(attentes[essai]); continue
+        if r.status_code in (502, 503, 504) and essai < len(attentes):
+            time.sleep(attentes[essai]); continue
+        break
     try:
         d = r.json()
     except ValueError:

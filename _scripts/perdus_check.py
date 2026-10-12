@@ -62,7 +62,7 @@ def _items(avec_historique: bool) -> list[dict]:
         apres = f', after: "{curseur}"' if curseur else ""
         q = {"query": f"""{{
           node(id: "{crm.PROJECT_ID}") {{ ... on ProjectV2 {{
-            items(first: 50{apres}) {{
+            items(first: {20 if avec_historique else 50}{apres}) {{
               pageInfo {{ hasNextPage endCursor }}
               nodes {{
                 id
