@@ -49,6 +49,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 import controle_design     # noqa: E402
 import anonymiser          # noqa: E402
 import crm                 # noqa: E402
+import envoi_mail          # noqa: E402
 import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
 import telegram            # noqa: E402
 import variantes           # noqa: E402
@@ -212,7 +213,11 @@ def ouvrir() -> sqlite3.Connection:
     deja = {r[1] for r in conn.execute("PRAGMA table_info(prospects)")}
     for col, typ in {"traite_at": "TEXT", "site_genere": "TEXT",
                      "crm_issue": "TEXT", "variante": "TEXT",
-                     "erreur": "TEXT"}.items():
+                     "erreur": "TEXT", "email": "TEXT", "mail_source": "TEXT",
+                     "mail_envoye_at": "TEXT", "mail_statut": "TEXT",
+                     "mail_message_id": "TEXT", "mail_objet": "TEXT",
+                     "mail_relance_at": "TEXT",
+                     "mail_relance_statut": "TEXT"}.items():
         if col not in deja:
             conn.execute(f"ALTER TABLE prospects ADD COLUMN {col} {typ}")
     conn.commit()
@@ -227,10 +232,17 @@ _FILTRE_SANS_SITE = "site_statut = 'aucun'"
 _FILTRE_TOUS      = "site_statut IN ('aucun','propre')"
 
 
+# Depuis le 19/10/2026 : plus de premier contact par SMS ni par appel. Seuls
+# les prospects qui ont une adresse sont pris, et ils recoivent un courriel.
+# CANAL_PRO=tous dans .env pour revenir a l'ancien fonctionnement.
+MAIL_SEUL = (os.environ.get("CANAL_PRO") or "mail").strip().lower() == "mail"
+
+
 def _filtre(avec_site: bool) -> str:
     return f"""
       metier = ?
   AND {_FILTRE_TOUS if avec_site else _FILTRE_SANS_SITE}
+  {"AND COALESCE(email,'') <> ''" if MAIL_SEUL else ""}
   AND COALESCE(telephone,'') <> ''
   AND COALESCE(nom,'') <> ''
   AND traite_at IS NULL
@@ -256,12 +268,12 @@ def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
         # CAST explicite : si une colonne arrive en TEXT (import CSV, autre
         # collecteur), « 8 » passerait avant « 49 » en tri alphabetique et on
         # demarcherait les plus petits garages en premier sans s'en apercevoir.
-        # Un prospect joignable au premier essai passe devant : portable,
-        # puis courriel, puis fixe. Sans cela le lot du jour se remplit de
-        # fixes, ou il faut tomber sur quelqu'un.
-        "ORDER BY (substr(replace(replace(replace(telephone,' ',''),'.',''),"
+        # Un prospect joignable sans toi passe devant : courriel (envoye par
+        # envoi_mail.py), puis portable, puis fixe. Sans cela le lot du jour
+        # se remplit de fixes, ou il faut tomber sur quelqu'un.
+        "ORDER BY (COALESCE(email,'') <> '') DESC, "
+        "(substr(replace(replace(replace(telephone,' ',''),'.',''),"
         "'-','') ,1,2) IN ('06','07')) DESC, "
-        "(COALESCE(email,'') <> '') DESC, "
         "(site_statut='aucun') DESC, "
         "CAST(COALESCE(avis,0) AS INTEGER) DESC, "
         "CAST(COALESCE(note,0) AS REAL) DESC, "
@@ -288,6 +300,34 @@ def compter(conn, metier: str, avec_site: bool = False) -> int:
     return conn.execute(
         f"SELECT COUNT(DISTINCT telephone) FROM prospects "
         f"WHERE {_filtre(avec_site)}", (metier,)).fetchone()[0]
+
+
+def mails_du_jour(conn) -> int:
+    """Courriels deja deposes ou envoyes aujourd'hui (heure locale)."""
+    return conn.execute(
+        "SELECT COUNT(*) FROM prospects WHERE mail_envoye_at IS NOT NULL "
+        "AND date(mail_envoye_at, 'localtime') = date('now', 'localtime')"
+    ).fetchone()[0]
+
+
+def deja_ecrit(conn, email: str) -> bool:
+    return conn.execute(
+        "SELECT 1 FROM prospects WHERE lower(trim(email)) = ? "
+        "AND mail_envoye_at IS NOT NULL LIMIT 1",
+        ((email or "").strip().lower(),)).fetchone() is not None
+
+
+def noter_mail(conn, cle: str, statut: str, message_id: str | None = None,
+               objet: str | None = None) -> None:
+    """Trace l'envoi sans toucher a traite_at."""
+    quand = (datetime.now(timezone.utc).isoformat(timespec="seconds")
+             if statut in ("brouillon", "envoye") else None)
+    conn.execute("UPDATE prospects SET mail_statut=?, "
+                 "mail_envoye_at=COALESCE(?, mail_envoye_at), "
+                 "mail_message_id=COALESCE(?, mail_message_id), "
+                 "mail_objet=COALESCE(?, mail_objet) WHERE cle=?",
+                 (statut, quand, message_id, objet, cle))
+    conn.commit()
 
 
 def marquer(conn, cle: str, **champs) -> None:
@@ -591,17 +631,16 @@ REGLES ABSOLUES :
 def canal(p: dict) -> tuple[str, str]:
     """Par ou joindre ce prospect, et avec quelle coordonnee.
 
-    Mesure faite sur la base : 86 % des numeros sont des fixes, donc le SMS
-    ne marche que pour une minorite. L'ordre est celui de la reponse
-    attendue : un portable se lit tout de suite, un courriel se lit le soir,
-    un fixe suppose de tomber sur quelqu'un.
+    Le courriel passe en premier : il part depuis le compte Workspace
+    (envoi_mail.py) sans que tu aies a recopier quoi que ce soit. Le SMS reste
+    pour les portables sans adresse, l'appel pour les fixes.
     """
     tel = re.sub(r"\D", "", p.get("telephone") or "")
-    if tel[:2] in ("06", "07"):
-        return "sms", p["telephone"]
     mail = (p.get("email") or "").strip()
     if mail:
         return "mail", mail
+    if tel[:2] in ("06", "07"):
+        return "sms", p["telephone"]
     if tel:
         return "appel", p["telephone"]
     return "aucun", ""
@@ -614,6 +653,17 @@ def objet_mail(p: dict) -> str:
     if p.get("site_statut") == "propre":
         return f"Une autre version du site de {nom}, pour comparaison"
     return f"Un site pour {nom}" + (f", a {ville}" if ville else "")
+
+
+def _origine_adresse(p: dict) -> str:
+    """D'ou vient l'adresse : la CNIL demande de le dire."""
+    src = (p.get("mail_source") or "").strip()
+    if p.get("mail_cherche_at") and (src == "accueil" or src.startswith("/")):
+        site = (p.get("site_web") or "").strip()
+        return ("Votre adresse est affichée sur votre site"
+                + (f" ({site})." if site else "."))
+    return ("Votre adresse figure dans les données publiques d'OpenStreetMap, "
+            "où elle est renseignée pour votre établissement.")
 
 
 def pitch_sms(p: dict, demo_url: str | None) -> str:
@@ -707,11 +757,13 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
            if a_un_site else
            "de vous proposer quelque chose : un site vitrine qui vous "
            "appartienne, au lieu de laisser les comparateurs capter vos clients."),
-        "",
-        ("Ce que la version que j'ai préparée apporte :" if a_un_site
-         else "Un site à vous, c'est concrètement :"),
     ]
-    parties += [f"\u2022  {a}" for a in avantages]
+    # La liste d'avantages sert d'argumentaire a l'appel ; dans un courriel,
+    # elle alourdit le message : retiree a la demande de Francois (18/10).
+    if canal(p)[0] != "mail":
+        parties += ["", ("Ce que la version que j'ai préparée apporte :"
+                         if a_un_site else "Un site à vous, c'est concrètement :")]
+        parties += [f"\u2022  {a}" for a in avantages]
 
     if demo_url:
         parties += ["", "J'ai préparé une démo gratuite, sans engagement :",
@@ -721,22 +773,15 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     else:
         parties += ["", "Si vous souhaitez en discuter, n'hésitez pas à me répondre."]
 
-    parties += ["", "Bien cordialement,", "", "François-Frédéric Lang",
-                "langfrancoisfrederic@gmail.com", "06 32 81 42 00"]
+    parties += ["", "Bien cordialement,", "", *envoi_mail.signature()]
 
     # En B2B la prospection par courriel se fait en opt-out, mais a trois
     # conditions : dire qui l'on est et pourquoi on ecrit, dire d'ou vient
     # l'adresse, et offrir un moyen simple de ne plus etre contacte. Les deux
     # dernieres ne sont pas dans le corps du message ci-dessus.
-    if canal(p)[0] == "mail":
-        parties += [
-            "",
-            "—",
-            "Votre adresse figure dans les donnees publiques d'OpenStreetMap, "
-            "ou elle est renseignee pour votre etablissement. Ce message "
-            "concerne votre activite professionnelle. Repondez « STOP » et "
-            "je ne vous recontacterai pas.",
-        ]
+    # Mention d'origine et de desinscription retiree du corps a la demande de
+    # Francois (18/10). La desinscription reste offerte par l'en-tete
+    # List-Unsubscribe (lien « Se desabonner » de Gmail), cf. envoi_mail.py.
     return "\n".join(parties)
 
 
@@ -773,7 +818,10 @@ def message(p: dict, metier: str, demo_url: str | None, v: dict) -> str:
     c, coord = canal(p)
     entetes = {
         "sms":   f"\U0001F4F2 PAR SMS au {coord}",
-        "mail":  f"\u2709\uFE0F PAR COURRIEL a {coord}",
+        "mail":  f"\u2709\uFE0F PAR COURRIEL a {coord}"
+                 + (" — envoi automatique" if envoi_mail.MODE == "envoi"
+                    and envoi_mail.actif() else
+                    " — brouillon dans Gmail" if envoi_mail.actif() else ""),
         "appel": f"\u260E\uFE0F PAR TELEPHONE au {coord} — fixe, pas de SMS",
         "aucun": "\u26A0\uFE0F AUCUNE COORDONNEE",
     }
@@ -828,16 +876,56 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
     # Le CRM est la memoire longue : une fiche peut y exister sans que la
     # base locale le sache (relance manuelle, import, autre machine).
     tel_crm = set()
+    mails_crm = set()
+    crm_ok = False         # sans le CRM, aucun courriel ne part
     if not dry_run and not essai:
         try:
             tel_crm = {re.sub(r"\D", "", t) for t in crm.get_existing_phones()}
             print(f"{len(tel_crm)} numeros deja presents dans le CRM, ecartes")
+            mails_crm = crm.get_existing_emails()
+            print(f"{len(mails_crm)} adresses deja presentes dans le CRM")
+            crm_ok = True
         except Exception as e:
-            print(f"/!\\ CRM injoignable ({e}) — on continue sans ce controle")
+            print(f"/!\\ CRM injoignable ({e}) — on continue sans ce controle, "
+                  "et sans courriel")
     if essai:
         print("Mode essai : le CRM n'est ni consulte ni alimente.")
 
-    lot = a_traiter(conn, metier, nombre, tel_crm, avec_site)
+    if MAIL_SEUL and not dry_run:
+        if not envoi_mail.actif():
+            msg = ("\u23F8\uFE0F Prospection « " + metier + " » en pause : le premier "
+                   "contact se fait desormais par courriel, et MAIL_ADRESSE / "
+                   "MAIL_MOT_DE_PASSE ne sont pas renseignes dans le .env "
+                   "(ou MAIL_MODE=off).")
+            print(msg)
+            telegram.send(msg)
+            return
+        if not essai and not crm_ok:
+            msg = (f"\u26A0\uFE0F CRM injoignable : prospection « {metier} » "
+                   "sautee ce tour-ci, pour ne recontacter personne.")
+            print(msg)
+            telegram.send(msg)
+            return
+        place = envoi_mail.PAR_JOUR - mails_du_jour(conn)
+        if place <= 0:
+            print(f"Plafond de {envoi_mail.PAR_JOUR} courriels/jour deja atteint.")
+            return
+        nombre = min(nombre, place)
+
+    lot = a_traiter(conn, metier, nombre * 3, tel_crm, avec_site)
+    if MAIL_SEUL and not dry_run and not essai:
+        # On ecarte AVANT de generer : inutile de produire un site pour
+        # quelqu'un qu'on ne contactera pas.
+        tels_vus, mails_vus = contacts_anterieurs(conn, set(), tel_crm, mails_crm)
+        avant = len(lot)
+        lot = [p for p in lot
+               if (p.get("email") or "").strip().lower() not in mails_vus
+               and _tel(p.get("telephone")) not in tels_vus
+               and (p.get("email") or "").strip().lower()
+               not in envoi_mail.desinscrits()]
+        if avant - len(lot):
+            print(f"{avant - len(lot)} prospect(s) deja contacte(s) ecarte(s)")
+    lot = lot[:nombre]
     print(f"Marche « {metier} » : {len(lot)} prospect(s) ce tour, {reste} en reserve")
 
     if not lot:
@@ -849,6 +937,7 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
         return
 
     faits = 0
+    a_ecrire = []          # (prospect, url) : courriels a deposer apres le push
     for p in lot:
         nom = p.get("nom")
         print(f"\n{'=' * 54}\n{nom} — {p.get('commune','')} — {p.get('telephone','')}")
@@ -897,15 +986,168 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
 
         marquer(conn, p["cle"], site_genere=url, variante=v["nom"],
                 crm_issue=str(issue) if issue else None)
-        telegram.send(texte)
+        if not (MAIL_SEUL and canal(p)[0] == "mail"):
+            telegram.send(texte)
         print(f"   -> {url}  ({v['nom']})")
         faits += 1
+        if canal(p)[0] == "mail" and not essai:
+            a_ecrire.append((p, url))
 
     if faits and not dry_run:
         pl.commit_and_push(faits)
         telegram.send(f"{faits} site(s) « {metier} » publies. "
                       f"Reserve restante : {compter(conn, metier, avec_site)}")
+    if a_ecrire and not dry_run:
+        if crm_ok:
+            ecrire(conn, metier, a_ecrire, tel_crm, mails_crm)
+        else:
+            telegram.send("\u26A0\uFE0F CRM injoignable : aucun courriel depose "
+                          "ce tour-ci, pour ne recontacter personne. Pitchs sur "
+                          "Telegram.")
     conn.close()
+
+
+def _en_ligne(url: str, attente_max: int = 300) -> bool:
+    """GitHub Pages met une a deux minutes a publier : on n'envoie pas un
+    lien qui repond encore 404."""
+    import requests
+    debut = time.monotonic()
+    while time.monotonic() - debut < attente_max:
+        try:
+            if requests.get(url, timeout=15).status_code == 200:
+                return True
+        except requests.RequestException:
+            pass
+        time.sleep(20)
+    return False
+
+
+def _tel(t: str | None) -> str:
+    """Numero ramene a 10 chiffres : 0612345678, que la source ecrive
+    +33 6 12..., 06.12... ou 0033..."""
+    d = re.sub(r"\D", "", t or "")
+    if d.startswith("0033"):
+        d = "0" + d[4:]
+    elif d.startswith("33") and len(d) == 11:
+        d = "0" + d[2:]
+    return d
+
+
+DEJA_CONTACTES = REPO_ROOT / "_data" / "deja_contactes.txt"
+
+
+def contacts_anterieurs(conn, cles_du_lot: set[str], tel_crm: set[str],
+                        mails_crm: set[str]) -> tuple[set[str], set[str]]:
+    """Tous les numeros et adresses deja demarches, par n'importe quel canal.
+
+    Sources :
+      - prospection.db : toute fiche deja traitee lors d'un tour precedent
+        (SMS, appel, courriel) — les fiches du lot en cours sont exclues,
+        puisqu'elles viennent d'etre marquees ;
+      - annonces.db : les eleveurs du pipeline principal deja traites ;
+      - le CRM GitHub : numeros et adresses lus en debut de tour, AVANT
+        l'ajout des fiches du jour ;
+      - _data/deja_contactes.txt : ceux contactes a la main, hors outils
+        (une adresse ou un numero par ligne).
+    """
+    tels = {_tel(t) for t in tel_crm}
+    mails = {m.lower() for m in mails_crm}
+
+    marques = ",".join("?" * len(cles_du_lot)) or "''"
+    for tel, mail in conn.execute(
+            f"SELECT telephone, email FROM prospects WHERE traite_at IS NOT NULL "
+            f"AND cle NOT IN ({marques})", list(cles_du_lot)):
+        tels.add(_tel(tel))
+        mails.add((mail or "").strip().lower())
+
+    annonces = REPO_ROOT / "_data" / "annonces.db"
+    if annonces.exists():
+        a = sqlite3.connect(f"file:{annonces}?mode=ro", uri=True)
+        try:
+            for tel, mail in a.execute(
+                    "SELECT phone, email FROM annonces "
+                    "WHERE processed_at IS NOT NULL OR crm_issue_url IS NOT NULL"):
+                tels.add(_tel(tel))
+                mails.add((mail or "").strip().lower())
+        finally:
+            a.close()
+
+    if DEJA_CONTACTES.exists():
+        for l in DEJA_CONTACTES.read_text(encoding="utf-8").splitlines():
+            l = l.strip()
+            if not l or l.startswith("#"):
+                continue
+            if "@" in l:
+                mails.add(l.lower())
+            else:
+                tels.add(_tel(l))
+
+    tels.discard("")
+    mails.discard("")
+    return tels, mails
+
+
+def ecrire(conn, metier: str, a_ecrire: list[tuple[dict, str]],
+           tel_crm: set[str], mails_crm: set[str]) -> None:
+    """Depose (ou envoie) les courriels du lot, dans la limite du jour.
+
+    Personne qui a deja ete demarche -- par SMS, par appel, par courriel,
+    par l'un ou l'autre pipeline, ou a la main -- ne recoit de courriel.
+    """
+    if not envoi_mail.actif():
+        print("Courriels : MAIL_MODE=off ou identifiants absents, pitch "
+              "laisse sur Telegram.")
+        return
+    tels_vus, mails_vus = contacts_anterieurs(
+        conn, {p["cle"] for p, _ in a_ecrire}, tel_crm, mails_crm)
+    bilan = {"brouillon": 0, "envoye": 0, "ignore": 0, "erreur": 0}
+    for p, url in a_ecrire:
+        nom = p.get("nom") or ""
+        dest = (p.get("email") or "").strip()
+        if mails_du_jour(conn) >= envoi_mail.PAR_JOUR:
+            print(f"   plafond de {envoi_mail.PAR_JOUR}/jour atteint — {nom} "
+                  "reste sur Telegram")
+            noter_mail(conn, p["cle"], "plafond")
+            bilan["ignore"] += 1
+            continue
+        if (deja_ecrit(conn, dest) or dest.lower() in mails_vus
+                or _tel(p.get("telephone")) in tels_vus):
+            print(f"   {nom} <{dest}> deja contacte (SMS, appel ou courriel) "
+                  "— aucun courriel")
+            noter_mail(conn, p["cle"], "deja_contacte")
+            bilan["ignore"] += 1
+            continue
+        if envoi_mail.MODE == "envoi" and url and not _en_ligne(url):
+            print(f"   {url} toujours hors ligne — {nom} passe en brouillon")
+            mode = "brouillon"
+        else:
+            mode = None
+        try:
+            statut, mid = envoi_mail.expedier(dest, objet_mail(p),
+                                              pitch(p, metier, url), mode)
+        except Exception as e:
+            print(f"   /!\\ courriel {nom} : {e}")
+            noter_mail(conn, p["cle"], f"erreur: {e}"[:200])
+            bilan["erreur"] += 1
+            continue
+        noter_mail(conn, p["cle"], statut, mid, objet_mail(p))
+        mails_vus.add(dest.lower())
+        tels_vus.add(_tel(p.get("telephone")))
+        bilan[statut] += 1
+        print(f"   \u2709 {nom} <{dest}> : {statut}")
+
+    morceaux = []
+    if bilan["envoye"]:
+        morceaux.append(f"{bilan['envoye']} envoye(s)")
+    if bilan["brouillon"]:
+        morceaux.append(f"{bilan['brouillon']} en brouillon dans Gmail, a relire")
+    if bilan["ignore"]:
+        morceaux.append(f"{bilan['ignore']} ignore(s) (deja contacte ou plafond)")
+    if bilan["erreur"]:
+        morceaux.append(f"{bilan['erreur']} en erreur")
+    if morceaux:
+        telegram.send("\u2709\uFE0F Courriels « " + metier + " » : "
+                      + ", ".join(morceaux))
 
 
 def main() -> None:

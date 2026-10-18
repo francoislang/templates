@@ -101,3 +101,9 @@ _essais/
 # exports de prospects (noms, telephones, courriels) — depot public
 /*.csv
 _data/*.csv
+
+# ─── Données de prospection (personnelles, ne jamais publier) ───────────────
+_data/deja_contactes.txt
+_data/desinscrits.txt
+_data/tmp_apercu/
+_data/essai_mail.html

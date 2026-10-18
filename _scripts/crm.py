@@ -266,6 +266,35 @@ def _phones_from_rest_issues() -> set[str]:
     return phones
 
 
+def get_existing_emails() -> set[str]:
+    """Adresses deja presentes dans les fiches du CRM (corps des Issues).
+
+    Leve une exception si l'API ne repond pas : l'appelant doit alors
+    s'abstenir d'ecrire, plutot que de recontacter quelqu'un.
+    """
+    mails = set()
+    page = 1
+    while True:
+        r = requests.get(f"{ISSUES_API}", headers=_headers(),
+                         params={"state": "all", "per_page": 100, "page": page},
+                         timeout=20)
+        if r.status_code != 200:
+            raise RuntimeError(f"CRM : HTTP {r.status_code} sur la page {page}")
+        issues = r.json()
+        if not issues:
+            break
+        for issue in issues:
+            if "pull_request" in issue:
+                continue
+            texte = f"{issue.get('title') or ''}\n{issue.get('body') or ''}"
+            for m in re.findall(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", texte):
+                mails.add(m.strip(".").lower())
+        page += 1
+        if page > 50:
+            break
+    return mails
+
+
 def get_existing_names() -> set[str]:
     """
     Recupere les noms d'elevages deja traites (statut != Nouveau).

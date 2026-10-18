@@ -509,7 +509,7 @@ def generate_pitch(profile: dict, demo_url: str | None) -> str:
         "Bonne continuation à vous et à vos loulous,",
         "",
         "François-Frédéric Lang",
-        "langfrancoisfrederic@gmail.com",
+        os.environ.get("MAIL_ADRESSE") or "langfrancoisfrederic@gmail.com",
         "06 32 81 42 00",
     ]
 

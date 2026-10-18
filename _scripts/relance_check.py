@@ -11,6 +11,8 @@ Usage (no_agent): python3 relance_check.py
 import requests, json, re, sys, os
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
+sys.path.insert(0, str(Path(__file__).parent))
+import config  # noqa: E402  (charge MAIL_ADRESSE depuis le .env)
 
 # ── Chargement .env ──────────────────────────────────────
 # Chercher .env : d'abord /workspace/templates/.env, puis relatif au script
@@ -241,10 +243,51 @@ def _libelle(race: str) -> tuple[str, str, str]:
     return "\U0001F415", f"votre élevage de {race}", race
 
 
+# Derniere semaine des relances par SMS / telephone. Apres cette date, plus
+# aucune relance de ce type n'arrive sur Telegram : les prospects sont
+# desormais contactes et relances par courriel (relance_mail.py).
+FIN_RELANCES_SMS = os.environ.get("RELANCES_SMS_JUSQUAU") or "2026-10-25"
+
+
+def _contactes_par_mail() -> tuple[set[str], set[str]]:
+    """Demos et numeros des prospects contactes par courriel : leur relance
+    part par courriel, jamais par SMS."""
+    import sqlite3
+    db = Path(__file__).resolve().parent.parent / "_data" / "prospection.db"
+    demos, tels = set(), set()
+    if not db.exists():
+        return demos, tels
+    c = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    try:
+        cols = {r[1] for r in c.execute("PRAGMA table_info(prospects)")}
+        if "mail_statut" not in cols:
+            return demos, tels
+        for demo, tel in c.execute(
+                "SELECT site_genere, telephone FROM prospects "
+                "WHERE mail_statut IN ('brouillon','envoye')"):
+            if demo:
+                demos.add(demo.rstrip("/"))
+            t = re.sub(r"\D", "", tel or "")
+            if t:
+                tels.add(t[-9:])
+    finally:
+        c.close()
+    return demos, tels
+
+
 def main():
     today = datetime.now(timezone.utc).date()
     print(f"📅 Relance check — {today}")
     print(f"{'─' * 50}")
+    try:
+        fin = datetime.strptime(FIN_RELANCES_SMS, "%Y-%m-%d").date()
+    except ValueError:
+        fin = None
+    if fin and today > fin:
+        print(f"Relances par SMS terminees depuis le {fin:%d/%m/%Y} : "
+              "les relances passent par courriel (relance_mail.py).")
+        return
+    demos_mail, tels_mail = _contactes_par_mail()
 
     items = get_all_items()
     print(f"📊 {len(items)} items sur le board")
@@ -273,6 +316,9 @@ def main():
 
         if status != "A relancer":
             continue
+        if ((demo_url and demo_url.rstrip("/") in demos_mail)
+                or (re.sub(r"\D", "", phone)[-9:] in tels_mail and phone)):
+            continue  # contacte par courriel : relance par courriel
 
         content = item.get("content") or {}
         title = content.get("title", "")
@@ -360,8 +406,10 @@ def main():
         if delta >= 7:
             # Construire le message Telegram
             emoji, sujet, etiquette = _libelle(item["race"])
+            chiffres = re.sub(r"\D", "", item["phone"] or "")
+            portable = chiffres[-9:-8] in ("6", "7") if len(chiffres) >= 9 else False
             msg = (
-                f"🔔 RELANCE À FAIRE — J+{delta}\n"
+                f"🔔 RELANCE {'PAR SMS' if portable else 'PAR TÉLÉPHONE'} — J+{delta}\n"
                 f"{'─' * 30}\n"
                 f"{emoji} {item['elevage']} — {etiquette}\n"
                 f"📞 {item['phone']}\n"
@@ -378,7 +426,7 @@ def main():
                 f"N'hésitez pas si vous avez des questions, je reste disponible pour en discuter.\n\n"
                 f"Bonne journée à vous,\n"
                 f"François-Frédéric Lang\n"
-                f"langfrancoisfrederic@gmail.com\n"
+                f"{os.environ.get('MAIL_ADRESSE') or 'langfrancoisfrederic@gmail.com'}\n"
                 f"06 32 81 42 00"
             )
 

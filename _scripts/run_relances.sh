@@ -31,6 +31,8 @@ cd "$REPO" || { echo "ERREUR: depot introuvable ($REPO)"; exit 1; }
 "$PY" _scripts/relance_check.py
 code=$?
 # Fiches restees plus de 30 jours en « recontacte » -> « Perdu ».
+echo "--- relance_mail ---"
+"$PY" _scripts/relance_mail.py || code=$?
 echo "--- perdus_check ---"
 "$PY" _scripts/perdus_check.py || code=$?
 echo "----- fin (code $code) -----"

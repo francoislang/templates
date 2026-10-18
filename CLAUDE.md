@@ -99,6 +99,23 @@ Il n'y a plus qu'un template Jinja2 : `_templates/universal.html.j2`. Le nouveau
 
 Pour un flow automatisé complet depuis une URL chien.com, utiliser `pipeline.py`.
 
+## Courriels de prospection (Google Workspace)
+
+`_scripts/envoi_mail.py` : quand un prospect de `pipeline_pro.py` a une adresse, le courriel devient le canal prioritaire (avant SMS et appel). Les messages sont traités **après** le push, quand la démo est en ligne.
+
+- `MAIL_MODE=brouillon` (défaut) : dépôt dans les Brouillons Gmail via IMAP, François relit puis envoie.
+- `MAIL_MODE=envoi` : envoi direct en SMTP (smtp.gmail.com:587). `off` : pitch uniquement sur Telegram.
+- Garde-fous : plafond `MAILS_PAR_JOUR` (20 par défaut), une adresse n'est jamais écrite deux fois, `_data/desinscrits.txt` (STOP) est respecté, en-tête List-Unsubscribe.
+- **Jamais de courriel à quelqu'un déjà démarché** (SMS, appel ou courriel) : comparaison par numéro ET par adresse avec prospection.db (fiches déjà traitées), annonces.db (éleveurs), le CRM GitHub (lu en début de tour) et `_data/deja_contactes.txt` (contacts faits à la main). Si le CRM est injoignable, aucun courriel ne part ce tour-là.
+- Colonnes ajoutées à `prospects` : `mail_envoye_at`, `mail_statut`.
+- Test : `.venv/bin/python _scripts/envoi_mail.py --verifier` puis `--test adresse@exemple.fr`.
+
+### Bascule SMS → courriel (19/10/2026)
+
+- `CANAL_PRO=mail` (défaut) : `pipeline_pro.py` ne prend que les prospects avec adresse, plus aucun pitch SMS/appel sur Telegram (seulement le bilan). Sans identifiants mail, le circuit se met en pause. `CANAL_PRO=tous` pour revenir en arrière.
+- `relance_check.py` (board « A relancer ») : relances SMS/téléphone sur Telegram jusqu'au `RELANCES_SMS_JUSQUAU` (2026-10-25) inclus, puis plus rien. Les prospects contactés par courriel en sont exclus.
+- `relance_mail.py` (lancé par `run_relances.sh`) : une seule relance par courriel à J+7, dans le même fil, sauf si le prospect a répondu, a dit STOP, ou si le premier courriel est resté en brouillon.
+
 ## Pièges connus
 
 - Le scraper extrait la race depuis le **slug d'URL** (pas le HTML) — plus fiable
