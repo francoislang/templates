@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mas-Rillier Nos Saveurs — producteur en vente directe dans l&#39;Ain</title>
+<meta name="description" content="Mas-Rillier Nos Saveurs, producteur en vente directe dans l&#39;Ain. Produits de la ferme et vente directe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
+  --txt-accent:#1A1002; --brume:#AEB6C4; --brume-clair:#DCE1E8; --bord-fantome:#3A4A66;
+  --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#FFFFFF; --bord:#D3D6D1;
+  --texte:#22262B; --texte-2:#555B62;
+  --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
+  --large:1120px; --r:10px;
+  --f-titre:'Fraunces',Georgia,'Times New Roman',serif;
+  --f-texte:'Work Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+:root{
+  --encre:#1D2A24;         /* vert atelier profond, sourd, presque noir */
+  --encre-2:#2A3A32;       /* le même, relevé d'un cran pour le bandeau de faits */
+  --cuivre:#DFAE62;        /* laiton clair : l'accent sur les fonds sombres */
+  --cuivre-sombre:#845012; /* ocre brûlé : le même accent sur les fonds clairs */
+  --txt-accent:#241803;    /* brun noir : le texte posé sur le laiton plein */
+  --brume:#9BACA2;         /* gris vert moyen : texte secondaire sur sombre */
+  --brume-clair:#D3DCD5;   /* gris vert pâle : texte courant sur sombre */
+  --bord-fantome:#658371;  /* filet discret sur l'aplat */
+  --creme:#EFF2EE;         /* le papier : gris très clair teinté de vert */
+  --creme-2:#E3E8E2;       /* seconde teinte claire, un cran plus dense */
+  --blanc:#FFFFFF;         /* cartes : blanc pur */
+  --bord:#D1D8CF;          /* filets sur fond clair */
+  --texte:#2E3A33;         /* texte courant : vert ardoise, pas du noir */
+  --texte-2:#56615A;       /* texte discret */
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;font-family:var(--f-texte);font-size:17px;line-height:1.6;color:var(--texte);background:var(--creme);overflow-x:hidden}
+svg{display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:700;line-height:1.12;margin:0;color:var(--encre)}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--cuivre-sombre);outline-offset:3px}
+.sombre :focus-visible{outline-color:var(--cuivre)}
+.saut{position:absolute;left:-9999px}.saut:focus{left:var(--s4);top:var(--s4);z-index:99;background:var(--blanc);padding:var(--s3) var(--s4)}
+.env{max-width:var(--large);margin:0 auto;padding:0 var(--s4)}
+@media (min-width:720px){.env{padding:0 var(--s6)}}
+.sombre{background:var(--encre);color:var(--brume-clair)}
+.sombre h1,.sombre h2,.sombre h3{color:var(--blanc)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:48px;padding:0 var(--s5);border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent;font-size:16px;cursor:pointer;font-family:inherit;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn--c{background:var(--cuivre);color:var(--txt-accent)}
+.btn--f{border-color:var(--bord-fantome);color:var(--blanc);background:transparent}
+.btn--o{border-color:var(--encre);color:var(--encre);background:transparent}
+/* en-tete */
+.hdr{position:sticky;top:0;z-index:20;background:var(--encre);color:var(--blanc);border-bottom:1px solid var(--bord-fantome)}
+.hdr__in{display:flex;align-items:center;gap:var(--s4);min-height:64px}
+.mq{display:flex;align-items:center;gap:var(--s3);text-decoration:none;margin-right:auto;min-width:0}
+.mq svg{flex:none;width:30px;height:30px;stroke:var(--cuivre)}
+.mq__n{display:block;font-family:var(--f-titre);font-weight:700;font-size:18px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:56vw}
+.mq__v{display:block;font-size:13px;color:var(--brume)}
+.nav{display:none;gap:var(--s5)}
+.nav a{text-decoration:none;font-size:15px;color:var(--brume-clair)}
+.nav a:hover{color:var(--cuivre)}
+.hdr__tel{display:none;text-decoration:none;font-weight:700;color:var(--cuivre)}
+@media (min-width:900px){.nav{display:flex}.hdr__tel{display:block}}
+/* ouverture */
+.ouv{padding:var(--s8) 0 var(--s8)}
+.ouv__in{display:grid;gap:var(--s7);align-items:center}
+@media (min-width:900px){.ouv__in{grid-template-columns:1.25fr 1fr}.ouv{padding:var(--s9) 0}}
+.surt{display:inline-block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cuivre);font-weight:600;margin-bottom:var(--s4)}
+.ouv h1{font-size:clamp(34px,7vw,60px);overflow-wrap:anywhere}
+.ouv__t{margin-top:var(--s5);font-size:19px;max-width:34em;color:var(--brume-clair)}
+.ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
+.fiche{background:var(--encre-2);border:1px solid var(--bord-fantome);border-radius:var(--r);padding:var(--s6);transform:rotate(-1.2deg);box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.fiche svg{width:48px;height:48px;stroke:var(--cuivre);margin-bottom:var(--s4)}
+.fiche dl div{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-top:1px dashed var(--bord-fantome)}
+.fiche dt{color:var(--brume)}
+.fiche dd{color:var(--blanc);font-weight:600;text-align:right;min-width:0}
+.fiche dl div{flex-wrap:wrap}
+.etat{font-weight:600}
+.pastille{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px;background:var(--brume)}
+.etat--oui .pastille{background:#3FBF6F}
+.etat--non .pastille{background:#E0574A}
+/* faits */
+.faits{background:var(--encre-2);color:var(--brume-clair);border-top:1px solid var(--bord-fantome)}
+.faits__g{display:grid;gap:var(--s4);padding-top:var(--s5);padding-bottom:var(--s5)}
+@media (min-width:720px){.faits__g{grid-template-columns:repeat(3,1fr)}}
+.faits b{display:block;color:var(--blanc);font-size:17px}
+.faits span{font-size:15px;color:var(--brume)}
+/* sections */
+.sec{padding:var(--s8) 0}
+@media (min-width:900px){.sec{padding:var(--s9) 0}}
+.tete{max-width:44em;margin-bottom:var(--s7)}
+.tete h2{font-size:clamp(28px,4.5vw,42px)}
+.chapo{margin-top:var(--s4);color:var(--texte-2);font-size:18px}
+.cartes{display:grid;gap:var(--s5)}
+@media (min-width:820px){.cartes{grid-template-columns:repeat(3,1fr)}}
+.carte{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:var(--s6);transition:transform .2s,box-shadow .2s}
+.carte:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08)}
+.carte i{display:block;font-style:normal;font-family:var(--f-titre);font-size:15px;color:var(--cuivre-sombre);font-weight:700;margin-bottom:var(--s3)}
+.carte h3{font-size:22px;margin-bottom:var(--s3)}
+.carte p{color:var(--texte-2)}
+.pied-cartes{margin-top:var(--s6);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;color:var(--texte-2);font-size:15px}
+.pied-cartes a{color:var(--cuivre-sombre);font-weight:600}
+.prep{background:var(--creme-2)}
+.etapes{display:grid;gap:var(--s5);counter-reset:e}
+@media (min-width:820px){.etapes{grid-template-columns:repeat(3,1fr)}}
+.etapes li{counter-increment:e;padding-top:var(--s5);border-top:3px solid var(--encre)}
+.etapes li::before{content:counter(e,decimal-leading-zero);display:block;font-family:var(--f-titre);font-size:30px;color:var(--cuivre-sombre);margin-bottom:var(--s2)}
+.etapes h3{font-size:21px;margin-bottom:var(--s2)}
+.etapes p{color:var(--texte-2)}
+.duo{display:grid;gap:var(--s5)}
+@media (min-width:820px){.duo{grid-template-columns:1fr 1fr}}
+.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:var(--s6)}
+.pan h3{font-size:22px;margin-bottom:var(--s4)}
+.hor div{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s2) 0;border-bottom:1px solid var(--bord)}
+.hor dt{font-weight:600}.hor dd{color:var(--texte-2);text-align:right}
+.hor--off dd{color:var(--texte-2);font-style:italic}
+.hor--jour{background:var(--creme);margin:0 calc(-1*var(--s3));padding-left:var(--s3)!important;padding-right:var(--s3)!important;border-radius:6px}
+.adr{font-style:normal;font-size:19px;margin-bottom:var(--s5)}
+.pan__a{display:flex;flex-wrap:wrap;gap:var(--s3)}
+.pan__n{margin-top:var(--s5);color:var(--texte-2);font-size:15px}
+.pan .etat{margin-bottom:var(--s4)}
+/* contact */
+.ctc{display:grid;gap:var(--s7)}
+@media (min-width:900px){.ctc{grid-template-columns:1fr 1.1fr}}
+.ctc h2{font-size:clamp(28px,4.5vw,42px)}
+.ctc__tel{display:inline-block;margin-top:var(--s5);font-family:var(--f-titre);font-size:clamp(30px,6vw,44px);color:var(--cuivre);text-decoration:none;font-weight:700}
+.ctc__l{margin-top:var(--s5);display:flex;gap:var(--s3);color:var(--brume-clair)}
+.ctc__l svg{flex:none;width:22px;height:22px;stroke:var(--cuivre);margin-top:3px}
+.ctc__l b{display:block;color:var(--blanc)}
+.form{background:var(--blanc);color:var(--texte);border-radius:var(--r);padding:var(--s6)}
+.form h3{font-size:24px;color:var(--encre)}
+.form__s{color:var(--texte-2);font-size:15px;margin:var(--s2) 0 var(--s5)}
+.ch{display:grid;gap:var(--s4)}
+@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px;margin-top:var(--s4)}
+.ch .f{margin-top:0}
+.f label{font-weight:600;font-size:15px}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--bord);border-radius:8px;background:var(--creme);color:var(--texte);width:100%}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--cuivre-sombre);outline:none}
+.fret{margin-top:var(--s4);font-weight:600;color:var(--cuivre-sombre)}
+/* bon de travail : jamais visible du prospect sans ?notes */
+.perso{display:none;background:#FFF8D6;color:#2A2410;border-top:4px dashed #8A6D00}
+.perso.ouvert{display:block}
+.perso h2{color:#2A2410;font-size:28px;margin-bottom:var(--s4)}
+.perso ul{margin-top:var(--s5);display:grid;gap:var(--s3)}
+.perso li b{display:block}
+.perso__url{margin-top:var(--s3);font-size:15px}
+/* pied, barre mobile */
+.pied{background:var(--encre);color:var(--brume);font-size:14px;padding:var(--s6) 0 calc(var(--s6) + 72px)}
+.pied__in{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);justify-content:space-between}
+@media (min-width:900px){.pied{padding-bottom:var(--s6)}}
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);padding:var(--s2) var(--s3);background:var(--encre);border-top:1px solid var(--bord-fantome)}
+.bmob .btn{min-height:46px;padding:0 var(--s3);font-size:15px}
+@media (min-width:900px){.bmob{display:none}}
+.apparait{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.apparait.vu{opacity:1;transform:none}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "Mas-Rillier Nos Saveurs",
+  "description": "Mas-Rillier Nos Saveurs, producteur en vente directe dans l'Ain. Produits de la ferme et vente directe.",
+  "url": "https://francoislang.github.io/templates/mas-rillier-nos-saveurs/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "XX rue de l'Exemple",
+    "addressCountry": "FR",
+    "postalCode": "01700",
+    "addressRegion": "Ain"
+  },
+  "telephone": "06 XX XX XX XX",
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Friday"
+      ],
+      "opens": "15:00",
+      "closes": "18:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Wednesday",
+      "opens": "09:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Thursday",
+      "opens": "15:00",
+      "closes": "18:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "12:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "13:30",
+      "closes": "15:00"
+    }
+  ],
+  "makesOffer": [
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Produits de la ferme"
+      }
+    },
+    {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "Service",
+        "name": "Vente directe"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<header class="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="Mas-Rillier Nos Saveurs, accueil">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15c0-5 3.6-9 8-9s8 4 8 9v3H4zM8 11v3M12 10v4M16 11v3"/></svg>
+      <span><span class="mq__n">Mas-Rillier Nos Saveurs</span><span class="mq__v">Producteur en vente directe dans l&#39;Ain</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#prestations">La boutique</a>
+      <a href="#demande">Préparer une commande</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+<a class="hdr__tel" href="#contact">06 XX XX XX XX</a>  </div>
+</header>
+
+<main id="principal">
+
+<section class="ouv sombre" aria-labelledby="titre">
+  <div class="env ouv__in">
+    <div>
+      <span class="surt">Producteur en vente directe dans l&#39;Ain</span>
+      <h1 id="titre">Mas-Rillier Nos Saveurs</h1>
+      <p class="ouv__t">Vous passez, vous goûtez, vous demandez conseil à ceux qui fabriquent et choisissent.</p>
+      <div class="ouv__a">
+        <a class="btn btn--c" href="#contact">Préparer une commande</a>
+<a class="btn btn--f" href="#contact">Appeler le 06 XX XX XX XX</a>      </div>
+    </div>
+    <div class="fiche" aria-label="En un coup d'œil">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15c0-5 3.6-9 8-9s8 4 8 9v3H4zM8 11v3M12 10v4M16 11v3"/></svg>
+      <dl>
+        <div><dt>Activité</dt><dd>Producteur en vente directe</dd></div>
+<div><dt>Où</dt><dd>Ain</dd></div>        <div><dt><span id="jour">Aujourd'hui</span></dt><dd><span class="etat" id="etat" data-h='[null,[540,720,900,1110],[540,720,900,1110],[540,720],[900,1110],[540,720,900,1110],[540,720,810,900]]'>du lundi au samedi</span></dd></div>
+        <div><dt>Contact</dt><dd>06 XX XX XX XX</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="faits" aria-label="En bref">
+  <div class="env faits__g">
+    <div><b>Du lundi au samedi</b><span>Fermé le dimanche et les jours fériés</span></div>
+    <div><b>9 h – 12 h · 15 h – 18 h 30</b><span>Le mercredi 9 h – 12 h; le jeudi 15 h – 18 h 30; le samedi 9 h – 12 h · 13 h 30 – 15 h</span></div>
+    <div><b>Ain</b><span>01700</span></div>
+  </div>
+</section>
+
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="env">
+    <div class="tete apparait">
+      <h2 id="t-presta">Ce que fait un producteur en vente directe</h2>
+      <p class="chapo">Les grandes familles du métier. Pour savoir si votre demande en fait
+        partie, le plus simple est de poser la question.</p>
+    </div>
+    <ul class="cartes">
+      <li class="carte apparait"><i>01</i><h3>Produits de la ferme</h3><p>Ce que l&#39;exploitation produit, vendu sur place.</p></li>
+      <li class="carte apparait"><i>02</i><h3>Vente directe</h3><p>Jours de vente, marchés, commandes : à voir avec le producteur.</p></li>
+      <li class="carte apparait"><i>03</i><h3>Le reste, de vive voix</h3><p>Ce qui n&#39;entre dans aucune case se règle plus vite par un message qu&#39;avec une liste qui promet tout.</p></li>
+    </ul>
+    <div class="pied-cartes">
+      <p>Aucun prix n'est affiché tant qu'il n'a pas été établi par la boutique.</p>
+      <a href="#contact">Préparer une commande</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec prep" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete apparait">
+      <h2 id="t-prep">Préparer une commande</h2>
+      <p class="chapo">Trois choses à avoir en tête avant d'écrire ou d'appeler.
+        Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <ol class="etapes">
+<li class="apparait"><h3>Ce qu&#39;il vous faut</h3><p>Les produits, même approximativement : on vous conseillera.</p></li>
+<li class="apparait"><h3>Pour quand</h3><p>Le jour et l&#39;heure de retrait souhaités.</p></li>
+<li class="apparait"><h3>Pour combien</h3><p>Le nombre de personnes, pour une commande ajustée.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="horaires" aria-labelledby="t-hor">
+  <div class="env">
+    <div class="tete apparait">
+      <h2 id="t-hor">Horaires et accès</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez la page.</p>
+    </div>
+    <div class="duo">
+      <div class="pan apparait">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2" data-h='[null,[540,720,900,1110],[540,720,900,1110],[540,720],[900,1110],[540,720,900,1110],[540,720,810,900]]'>Du lundi au samedi, 9 h – 12 h et 15 h – 18 h 30.</p>
+        <dl class="hor">
+          <div><dt>Lundi</dt><dd>9 h – 12 h · 15 h – 18 h 30</dd></div>
+          <div><dt>Mardi</dt><dd>9 h – 12 h · 15 h – 18 h 30</dd></div>
+          <div><dt>Mercredi</dt><dd>9 h – 12 h</dd></div>
+          <div><dt>Jeudi</dt><dd>15 h – 18 h 30</dd></div>
+          <div><dt>Vendredi</dt><dd>9 h – 12 h · 15 h – 18 h 30</dd></div>
+          <div><dt>Samedi</dt><dd>9 h – 12 h · 13 h 30 – 15 h</dd></div>
+          <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd></div>
+        </dl>
+      </div>
+      <div class="pan apparait">
+        <h3>Venir à la boutique</h3>
+        <address class="adr">XX rue de l'Exemple<br>01700</address>
+        <div class="pan__a">
+          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=01700">Ouvrir l'itinéraire</a>
+          <a class="btn btn--o" href="#contact">Prévenir avant de passer</a>
+        </div>
+        <p class="pan__n">Les horaires peuvent changer les jours fériés : un message avant de venir ne coûte rien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sombre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div>
+      <h2 id="t-ctc">Écrire à Mas-Rillier Nos Saveurs</h2>
+<a class="ctc__tel" href="#contact">06 XX XX XX XX</a>      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><b>XX rue de l'Exemple</b>01700</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span><b>Du lundi au samedi</b>9 h – 12 h et 15 h – 18 h 30, le mercredi 9 h – 12 h; le jeudi 15 h – 18 h 30; le samedi 9 h – 12 h · 13 h 30 – 15 h</span>
+      </p>
+    </div>
+    <form class="form" id="dem" novalidate>
+      <h3>Préparer une commande</h3>
+      <p class="form__s">Votre message arrive directement chez Mas-Rillier Nos Saveurs, qui vous répond.</p>
+      <div class="ch">
+        <div class="f"><label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+        <div class="f"><label for="tel">Votre téléphone ou courriel</label>
+          <input id="tel" name="tel" type="text" autocomplete="email" required placeholder="camille@exemple.fr"></div>
+      </div>
+      <div class="f"><label for="objet">Votre demande</label>
+        <select id="objet" name="objet">
+          <option value="">Choisir…</option>
+<option>Une commande</option><option>Une question</option><option>Autre</option>        </select></div>
+      <div class="f"><label for="det">Quelques mots</label>
+        <textarea id="det" name="det" rows="4" placeholder="Ce que vous souhaitez, et pour quand."></textarea></div>
+      <button class="btn btn--c" type="submit" style="width:100%;margin-top:var(--s5)">Envoyer</button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- BON DE TRAVAIL : pour Francois, jamais pour le prospect. -->
+<section class="perso" id="a-personnaliser" aria-labelledby="t-perso">
+  <div class="env sec">
+    <h2 id="t-perso">Ce qui reste à faire confirmer</h2>
+    <p>Tout ce qui figure plus haut provient de sources publiques. Rien n'a été
+      inventé : ni tarif, ni garantie, ni avis, ni spécialité.
+      <strong>Cette section n'est visible que par vous.</strong></p>
+    <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
+    <ul>
+      <li><b>Prestations réelles</b>Les trois familles décrivent le métier en général. À remplacer par ce que fait vraiment Mas-Rillier Nos Saveurs.</li>
+      <li><b>Horaires</b>Ceux affichés viennent d'OpenStreetMap ; l'indicateur « ouvert maintenant » se calcule dessus.</li>
+      <li><b>Photos</b>La page n'en contient aucune. Trois ou quatre photos prises au téléphone valent mieux que n'importe quelle illustration.</li>
+      <li><b>Coordonnées</b>Téléphone et adresse sont masqués sur la démo ; le formulaire sera relié à la vraie boîte mail.</li>
+      <li><b>Avis, labels, tarifs</b>À afficher seulement s'ils existent et sont vérifiables.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<div class="bmob">
+  <a class="btn btn--c" href="#contact">Appeler</a>
+  <a class="btn btn--f" href="#horaires">Horaires</a>
+</div>
+
+<footer class="pied">
+  <div class="env pied__in">
+    <span>© 2026 Mas-Rillier Nos Saveurs, 01700</span>
+    <span>Horaires relevés sur OpenStreetMap</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt;
+    el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent; el.className="etat "+cls;}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        ecrire(el,"fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour");
+  if(t){ var n=J[new Date().getDay()]; t.textContent=n.charAt(0).toUpperCase()+n.slice(1); }
+  var l=document.querySelectorAll(".hor > div"), j2=new Date().getDay();
+  if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
+})();
+(function(){
+  var f=document.getElementById("dem"); if(!f) return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var r=document.getElementById("ret");
+    if(!f.nom.value.trim()||!f.tel.value.trim()){ r.textContent="Indiquez au moins votre nom et un moyen de vous répondre."; return; }
+    r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement dans la boîte de réception de "+"Mas-Rillier Nos Saveurs"+".";
+    f.reset();
+  });
+})();
+(function(){
+  var b=document.getElementById("a-personnaliser");
+  if(b&&(/[?&]notes(=|&|$)/.test(location.search)||location.hash==="#notes")) b.classList.add("ouvert");
+})();
+(function(){
+  var els=document.querySelectorAll(".apparait");
+  if(!("IntersectionObserver" in window)||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){
+    els.forEach(function(e){e.classList.add("vu");}); return; }
+  var io=new IntersectionObserver(function(ent){ent.forEach(function(x){ if(x.isIntersecting){x.target.classList.add("vu"); io.unobserve(x.target);} });},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
+</body>
+</html>
