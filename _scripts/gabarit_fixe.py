@@ -304,7 +304,9 @@ def _ld(p: dict, metier: str, slug: str, lx: dict, sem, desc: str) -> str:
 def remplir(p: dict, metier: str, slug: str) -> str:
     """Le gabarit du metier, rempli avec la fiche publique `p` (deja anonymisee)."""
     if metier not in GABARITS:
-        raise GabaritInattendu(f"pas de gabarit fixe pour le metier {metier!r}")
+        # metiers du catalogue (metiers.py) : gabarit generique
+        import gabarit_generique
+        return gabarit_generique.remplir(p, metier, slug)
     html = (REPO_ROOT / "_templates" / GABARITS[metier]).read_text(encoding="utf-8")
     nom = (p.get("nom") or "").strip()
     if not nom:

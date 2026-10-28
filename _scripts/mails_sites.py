@@ -119,6 +119,8 @@ GAUCHE_UTILE = {
     "compta": -2, "comptabilite": -2, "facturation": -2, "rh": -3,
     "recrutement": -3, "emploi": -3, "webmaster": -2, "presse": -2,
     "sav": 0, "pieces": 0,
+    "salon": 2, "boutique": 2, "reservation": 2, "reservations": 2,
+    "hello": 2, "bienvenue": 1, "commande": 2, "commandes": 2,
 }
 
 # Une adresse chez un constructeur ou une enseigne (« ...@reseau.renault.fr »)
@@ -439,9 +441,19 @@ def _domaine(site: str) -> str:
 
 
 def vivier(conn, nombre: int, relancer: bool, statut: str,
-           seuil: int = 3) -> list[dict]:
+           seuil: int = 3, metier: str | None = None) -> list[dict]:
     where = ["COALESCE(site_web,'') <> ''", "COALESCE(email,'') = ''"]
     params: list = []
+    if metier == "multi":
+        # tous les metiers du catalogue multi-metiers (metiers.py)
+        sys.path.insert(0, str(Path(__file__).parent))
+        import metiers as _m
+        cles = list(_m.PAR_CLE)
+        where.append(f"metier IN ({','.join('?' * len(cles))})")
+        params += cles
+    elif metier:
+        where.append("metier = ?")
+        params.append(metier)
     if statut != "tous":
         where.append("site_statut = ?")
         params.append(statut)
@@ -503,13 +515,16 @@ def main() -> int:
     ap.add_argument("--seuil-domaine", type=int, default=3,
                     help="a partir de combien de fiches un domaine partage "
                          "est tenu pour un reseau et ecarte (0 = aucun filtre)")
+    ap.add_argument("--metier", default=None,
+                    help="limiter a un metier ; « multi » = tout le catalogue "
+                         "de metiers.py")
     ap.add_argument("--db", default=str(DB_PATH))
     args = ap.parse_args()
 
     conn = sqlite3.connect(args.db, timeout=30)
     migrer(conn)
     lots = vivier(conn, args.nombre, args.relancer, args.statut,
-                  args.seuil_domaine or 10 ** 9)
+                  args.seuil_domaine or 10 ** 9, args.metier)
     if not lots:
         print("Rien a faire : tous les sites du vivier ont deja ete visites.")
         return 0
