@@ -1,0 +1,934 @@
+<!doctype html>
+{#
+  Gabarit « bâtiment » (variables : familles/CONTRAT.md). Design validé : maquette Berthier Toitures.
+  Idée signature : le « cordeau de traceur » — chaque séparation de section est un cordeau qui vibre
+  et laisse sa trace de craie. Hero : un dessin d'exécution qui se trace au chargement (illus/<métier>.html),
+  planches de détail : details/<prof.details>-a.html et -b.html.
+#}
+{# ---------- calculs : titre du hero, tailles selon la longueur du nom ---------- #}
+{% macro cordeau(nuit) %}
+<div class="cordeau{% if nuit %} cordeau--nuit nuit{% endif %}" style="{% if nuit %}background:var(--ardoise);{% endif %}max-width:none" aria-hidden="true"><div class="env">
+  <svg viewBox="0 0 1000 40" preserveAspectRatio="none"><path class="craie" d="M0 20 L1000 20"/><path class="fil" d="M0 20 Q500 20 1000 20"/></svg>
+  <span class="ecr">Trait de cordeau</span><span class="pointe g"></span><span class="pointe d"></span></div></div>
+{% endmacro %}
+{% set activite = prof.activite or m.nom %}
+{% set mots = N.split() %}
+{% set ns = namespace(k=1, best=9999) %}
+{% for i in range(1, mots|length) %}
+{% set da = (mots[:i]|join(' ')|length) - (mots[i:]|join(' ')|length) %}
+{% if da|abs < ns.best %}{% set ns.best = da|abs %}{% set ns.k = i %}{% endif %}
+{% endfor %}
+{% set l1 = mots[:ns.k]|join(' ') %}
+{% set l2 = mots[ns.k:]|join(' ') %}
+{% set lmax = [l1|length, l2|length]|max %}
+{% set mlong = (mots|map('length')|max) if mots else 0 %}
+{% set t_cls = 't-xl' if (lmax > 18 or mlong > 13) else ('t-l' if (lmax > 13 or mlong > 10) else ('t-m' if lmax > 9 else '')) %}
+{% set n_cls = 'n-l' if N|length > 20 else '' %}
+{% set c_cls = 'n-l' if N|length > 22 else '' %}
+{% set nom_c = N|upper %}
+{% if nom_c|length > 17 %}{% set nom_c = (nom_c[:16]|trim) ~ "…" %}{% endif %}
+
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ N }} — {{ activite|lower }}{{ al }}</title>
+<meta name="description" content="{{ description }}">
+{{ ld_json }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800;900&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  document.documentElement.classList.add("js");
+  setTimeout(function(){ if(!window.__pret){ document.documentElement.classList.remove("js"); } }, 1500);
+</script>
+<style>
+:root{
+  --ardoise:#1A1F24; --ardoise-2:#222930; --ardoise-3:#36414A; --ardoise-4:#56626B;
+  --nuit:#111518;
+  --zinc:#9AA4AB; --zinc-clair:#C6CDD1; --zinc-pale:#DFE4E6;
+  --calque:#E8EBEB; --calque-2:#DCE1E2; --papier:#F5F7F7;
+  --graphite:#171C20; --graphite-2:#48525A;
+  --cordeau:#2347D9; --cordeau-sombre:#1A36A8; --cordeau-vif:#7499FF;
+  --cordeau-voile:rgba(35,71,217,.12);
+  --grille:rgba(35,71,217,.065); --grille-forte:rgba(35,71,217,.12);
+  --grille-n:rgba(116,153,255,.055); --grille-n-forte:rgba(116,153,255,.11);
+  --rouge:#E5484D; --vert:#3CC47C;
+  --t1:#2B343B; --t2:#3A444C; --t3:#46515A;
+  --f-titre:'Big Shoulders Display','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --f-texte:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'Martian Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --large:1240px;
+  --gx:max(16px, env(safe-area-inset-left));
+  --gd:max(16px, env(safe-area-inset-right));
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{margin:0;background:var(--calque);color:var(--graphite);font-family:var(--f-texte);font-size:clamp(16px,1.05vw + 12px,18px);line-height:1.6;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.32;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .52 0 0 0 0 .55 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:800;line-height:.95;margin:0;text-transform:uppercase;letter-spacing:.005em}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0;list-style:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--cordeau);outline-offset:3px}
+.nuit :focus-visible,.bmob :focus-visible,.menu :focus-visible{outline-color:var(--cordeau-vif)}
+.saut{position:absolute;left:-9999px;top:0}
+.saut:focus{left:16px;top:12px;z-index:99;background:var(--papier);color:var(--graphite);padding:12px 16px;border:2px solid var(--graphite)}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--gx);padding-right:var(--gd)}
+@media (min-width:720px){.env{padding-left:max(32px,env(safe-area-inset-left));padding-right:max(32px,env(safe-area-inset-right))}}
+
+.millimetre{background-color:var(--calque);
+  background-image:linear-gradient(var(--grille-forte) 1px,transparent 1px),linear-gradient(90deg,var(--grille-forte) 1px,transparent 1px),linear-gradient(var(--grille) 1px,transparent 1px),linear-gradient(90deg,var(--grille) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;background-position:var(--gp,0 0)}
+.nuit{background-color:var(--ardoise);color:var(--zinc-pale)}
+.nuit.millimetre{background-image:linear-gradient(var(--grille-n-forte) 1px,transparent 1px),linear-gradient(90deg,var(--grille-n-forte) 1px,transparent 1px),linear-gradient(var(--grille-n) 1px,transparent 1px),linear-gradient(90deg,var(--grille-n) 1px,transparent 1px)}
+.nuit h2,.nuit h3{color:#fff}
+
+/* boutons */
+.btn{--bg:var(--cordeau);--fg:#fff;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;
+  background:var(--bg);color:var(--fg);border:2px solid var(--bg);font-family:var(--f-texte);font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .25s var(--ease)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--graphite)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:none;box-shadow:none}
+.btn--trait{--bg:transparent;--fg:var(--graphite);border-color:var(--graphite)}
+.nuit .btn{--bg:var(--cordeau-vif);--fg:var(--ardoise)}
+.nuit .btn:hover{box-shadow:3px 3px 0 var(--zinc-pale)}
+.nuit .btn--trait{--bg:transparent;--fg:#fff;border-color:var(--zinc)}
+
+.surt{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cordeau)}
+.surt::before{content:"";width:9px;height:9px;background:currentColor;flex:none}
+.nuit .surt{color:var(--cordeau-vif)}
+
+/* en-tête */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(232,235,235,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1.5px solid var(--graphite);transition:box-shadow .3s}
+.hdr.defile{box-shadow:0 10px 30px -18px rgba(23,28,32,.5)}
+.hdr__in{display:flex;align-items:center;gap:20px;min-height:64px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-width:0;min-height:44px}
+.mq svg{width:38px;height:38px;flex:none}
+.mq__n{display:block;font-family:var(--f-titre);font-weight:800;font-size:23px;line-height:1;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.mq__t{min-width:0;display:block}
+.mq__n.n-l{font-size:18px;white-space:normal;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.mq__v{display:block;overflow:hidden;text-overflow:ellipsis;font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite-2);margin-top:4px;white-space:nowrap}
+.nav{display:none;gap:22px}
+.nav a{position:relative;white-space:nowrap;text-decoration:none;font-size:15px;font-weight:500;padding:10px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--cordeau);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr__tel{display:none;white-space:nowrap;min-height:44px;align-items:center;gap:8px;padding:0 14px;border:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:13px;font-weight:500;text-decoration:none;transition:background .2s,color .2s}
+.hdr__tel:hover{background:var(--graphite);color:var(--calque)}
+.hdr__tel svg{width:16px;height:16px}
+.burger{width:48px;height:48px;display:grid;place-items:center;background:var(--graphite);border:0;cursor:pointer;flex:none}
+.burger span{display:block;width:22px;height:2px;background:var(--calque);transition:transform .35s var(--ease)}
+.burger span+span{margin-top:-14px}
+.burger span:first-child{transform:translateY(-4px)}
+.burger span:last-child{transform:translateY(4px);width:14px;justify-self:end;margin-right:13px}
+.burger[aria-expanded="true"] span:first-child{transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:rotate(-45deg);width:22px;margin-right:13px}
+.burger{grid-template-areas:"a"}.burger span{grid-area:a;margin:0!important}
+@media (min-width:1100px){.nav{display:flex}.hdr__tel{display:inline-flex}.burger{display:none}}
+.menu{position:fixed;left:0;right:0;top:65px;bottom:0;z-index:39;padding:28px var(--gd) 120px var(--gx);overflow:auto;
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .5s var(--ease),visibility 0s .5s}
+.menu.ouvert{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .5s var(--ease),visibility 0s}
+.menu a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--ardoise-3);font-family:var(--f-titre);font-weight:800;font-size:clamp(34px,10vw,48px);line-height:1;text-transform:uppercase;text-decoration:none;color:#fff}
+.menu a small{font-family:var(--f-mono);font-size:11px;font-weight:400;color:var(--zinc);letter-spacing:.06em}
+.menu .btn{margin-top:28px;width:100%;font-family:var(--f-texte);font-size:17px;text-transform:none;border-bottom:2px solid var(--cordeau-vif)}
+@media (min-width:1100px){.menu{display:none}}
+
+/* hero */
+.ouv{position:relative;overflow:hidden;padding:40px 0 28px}
+.ouv__in{display:grid;gap:28px;align-items:center}
+@media (min-width:960px){.ouv{padding:64px 0 40px}.ouv__in{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px}}
+.ouv h1{margin-top:18px;font-size:clamp(64px,6.6vw + 8px,112px);font-weight:900;line-height:.84;letter-spacing:-.005em}
+.ouv h1 .l{display:block}
+.ouv h1{overflow-wrap:break-word;hyphens:manual}
+.ouv h1.t-m{font-size:clamp(54px,5vw + 8px,88px);line-height:.88}
+.ouv h1.t-l{font-size:clamp(46px,3.9vw + 8px,70px);line-height:.9}
+.ouv h1.t-xl{font-size:clamp(40px,3vw + 8px,56px);line-height:.92}
+.ouv h1.t-l .creux,.ouv h1.t-xl .creux{-webkit-text-stroke-width:1.5px}
+.ouv h1 .creux{color:transparent;-webkit-text-stroke:2px var(--graphite)}
+.ouv__t{margin-top:22px;font-size:clamp(18px,1vw + 13px,21px);line-height:1.5;max-width:28em;color:var(--graphite-2)}
+.ouv__t strong{color:var(--graphite);font-weight:600}
+.ouv__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:12px;color:var(--graphite-2)}
+.meta>span{display:inline-flex;align-items:center;gap:8px}
+.etat{font-weight:500}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--zinc);flex:none;margin-right:8px;vertical-align:1px}
+.etat--oui .pastille{background:var(--vert);box-shadow:0 0 0 0 rgba(60,196,124,.6);animation:pouls 2.2s infinite}
+.etat--non .pastille{background:var(--rouge)}
+@keyframes pouls{70%{box-shadow:0 0 0 8px rgba(60,196,124,0)}100%{box-shadow:0 0 0 0 rgba(60,196,124,0)}}
+
+.plan{position:relative;margin:0}
+.plan__svg{width:100%;height:auto;overflow:visible}
+.plan figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:6px;font-family:var(--f-mono);font-size:11px;color:var(--graphite-2);letter-spacing:.04em}
+.reticule{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s}
+.reticule.on{opacity:1}
+.reticule i{position:absolute;background:var(--cordeau);opacity:.45}
+.reticule .rx{left:0;right:0;height:1px;top:var(--y)}
+.reticule .ry{top:0;bottom:0;width:1px;left:var(--x)}
+.reticule b{position:absolute;left:var(--x);top:var(--y);transform:translate(10px,10px);font:500 10px/1 var(--f-mono);background:var(--cordeau);color:#fff;padding:5px 6px;white-space:nowrap}
+.plan svg text{font-family:var(--f-mono)}
+.lbl{font-size:13px;font-weight:500;fill:var(--graphite);letter-spacing:.04em}
+.lbl-c{font-size:12px;font-weight:500;fill:var(--cordeau);letter-spacing:.05em;paint-order:stroke;stroke:var(--calque);stroke-width:7px}
+
+/* animations du hero */
+.js .ouv .entre{animation:monte .9s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes monte{from{opacity:0;transform:translateY(22px)}}
+.js .ouv h1 .creux{animation:encre 1.4s var(--ease) 3.2s forwards}
+@keyframes encre{to{color:var(--graphite)}}
+.js .h-trace{stroke-dasharray:1;stroke-dashoffset:1;animation:dessin 1.1s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes dessin{to{stroke-dashoffset:0}}
+.js .h-guide{animation:guide 1.2s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:left center}
+.js .h-guide.v{transform-origin:center top}
+@keyframes guide{from{transform:scale(0,1);opacity:0}}
+.js .h-guide.v{animation-name:guidev}
+@keyframes guidev{from{transform:scale(1,0);opacity:0}}
+.js .tuile,.js .h-pose{animation:pose .5s cubic-bezier(.3,1.4,.5,1) both;animation-delay:var(--d);transform-box:fill-box}
+@keyframes pose{from{opacity:0;transform:translateY(-16px)}}
+.js .h-pop{animation:pop .7s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:center bottom}
+@keyframes pop{from{opacity:0;transform:scale(.6,.2)}}
+.js .h-fond{animation:fond .6s ease both;animation-delay:var(--d,0s)}
+@keyframes fond{from{opacity:0}}
+.js .h-x{animation:guide .8s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:left center}
+.js .h-y{animation:guidev .9s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:center top}
+
+/* bandeau défilant */
+.bande{background:var(--graphite);color:var(--zinc-clair);overflow:hidden;border-top:1.5px solid var(--graphite);border-bottom:1.5px solid var(--graphite)}
+.bande__r{display:flex;width:max-content;animation:defile 48s linear infinite}
+.bande:hover .bande__r{animation-play-state:paused}
+.bande ul{display:flex;align-items:center}
+.bande li{display:flex;align-items:center;gap:22px;padding:14px 22px 14px 0;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.bande li::after{content:"";width:12px;height:12px;flex:none;background:linear-gradient(var(--cordeau-vif),var(--cordeau-vif)) center/12px 1.5px no-repeat,linear-gradient(var(--cordeau-vif),var(--cordeau-vif)) center/1.5px 12px no-repeat}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* cordeau */
+.cordeau{position:relative;height:40px;margin:0 auto;max-width:var(--large)}
+.cordeau .env{position:relative;height:100%}
+.cordeau svg{width:100%;height:40px;overflow:visible}
+.cordeau .fil{fill:none;stroke:var(--cordeau);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.cordeau .craie{fill:none;stroke:var(--cordeau);stroke-width:5;vector-effect:non-scaling-stroke;opacity:.0;filter:url(#craie);transition:opacity .4s}
+.cordeau.claque .craie{opacity:.55}
+.no-js .cordeau .craie,html:not(.js) .cordeau .craie{opacity:.5}
+.cordeau .pointe{position:absolute;top:50%;width:11px;height:11px;margin-top:-5.5px;border:2px solid var(--cordeau);background:var(--calque);border-radius:50%}
+.cordeau .pointe.g{left:calc(var(--gx) - 5px)}
+.cordeau .pointe.d{right:calc(var(--gd) - 5px)}
+@media (min-width:720px){.cordeau .pointe.g{left:27px}.cordeau .pointe.d{right:27px}}
+.cordeau .ecr{position:absolute;right:calc(var(--gd) + 14px);top:2px;font:500 10px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cordeau)}
+@media (min-width:720px){.cordeau .ecr{right:48px}}
+.nuit .cordeau .pointe{background:var(--ardoise)}
+.cordeau--nuit .fil,.cordeau--nuit .craie{stroke:var(--cordeau-vif)}
+.cordeau--nuit .pointe{border-color:var(--cordeau-vif);background:var(--ardoise)}
+.cordeau--nuit .ecr{color:var(--cordeau-vif)}
+
+/* sections */
+.sec{padding:72px 0}
+@media (min-width:960px){.sec{padding:112px 0}}
+.tete{display:grid;gap:16px;margin-bottom:44px}
+@media (min-width:960px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:48px;margin-bottom:64px}}
+.tete h2{font-size:clamp(44px,4.6vw + 12px,88px);font-weight:900;line-height:.86;margin-top:14px}
+.chapo{font-size:clamp(17px,.5vw + 15px,19px);color:var(--graphite-2);max-width:32em}
+.nuit .chapo{color:var(--zinc-clair)}
+
+/* planches (prestations) */
+.planches{display:grid;gap:22px}
+@media (min-width:900px){.planches{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}.planche--c{grid-column:1/-1}}
+.planche{--trait:var(--graphite);position:relative;background:var(--papier);border:1.5px solid var(--graphite);padding:0;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.planche:hover{--trait:var(--cordeau);transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--graphite)}
+.planche__h{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite-2)}
+.planche__h b{font-weight:600;color:var(--graphite)}
+.planche__d{padding:18px 18px 0;border-bottom:1px dashed var(--zinc)}
+.planche__d svg{width:100%;height:auto;max-height:240px;margin:0 auto}
+.planche__d text{font-family:var(--f-mono);font-size:10px;font-weight:500;fill:var(--graphite-2);letter-spacing:.06em}
+.enc{stroke:var(--trait);transition:stroke .3s}
+.planche__c{padding:22px 22px 26px}
+.planche h3{font-size:clamp(34px,2.4vw + 18px,46px);font-weight:800}
+.planche p{margin-top:10px;color:var(--graphite-2);max-width:34em}
+.planche::before,.planche::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}
+.planche::before{top:-8px;left:-8px;border-left:1.5px solid var(--cordeau);border-top:1.5px solid var(--cordeau)}
+.planche::after{bottom:-8px;right:-8px;border-right:1.5px solid var(--cordeau);border-bottom:1.5px solid var(--cordeau)}
+.planche--c{background:var(--ardoise);color:var(--zinc-pale);border-color:var(--ardoise);display:grid;gap:8px}
+.planche--c h3{color:#fff}
+.planche--c p{color:var(--zinc-clair)}
+.planche--c .planche__h{border-color:var(--ardoise-3);color:var(--zinc)}
+.planche--c .planche__h b{color:#fff}
+.planche--c:hover{box-shadow:6px 6px 0 var(--cordeau)}
+.planche--c .planche__c{display:grid;gap:20px;align-items:center}
+.planche--c .btn{justify-self:start}
+@media (min-width:900px){.planche--c .planche__c{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto;gap:36px;padding:30px 32px 34px}}
+.planche--c .planche__c>svg{width:100%;max-width:300px;height:auto}
+.planche--c text{font-family:var(--f-mono);font-size:11px;font-weight:500;fill:var(--cordeau-vif);letter-spacing:.06em}
+.pied-pl{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--graphite-2);letter-spacing:.02em}
+.pied-pl a{color:var(--cordeau);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+
+/* zone */
+.zone__g{display:grid;gap:36px;align-items:start}
+@media (min-width:960px){.zone__g{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:56px}}
+.zone h2{font-size:clamp(42px,3.4vw + 14px,72px);font-weight:900;line-height:.86;margin-top:14px}
+.zone .chapo{margin-top:18px}
+.communes{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.communes button{min-height:44px;padding:0 14px;background:transparent;border:1px solid var(--ardoise-4);color:var(--zinc-pale);font-family:var(--f-mono);font-size:12px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.communes button:hover,.communes button[aria-pressed="true"]{background:var(--cordeau-vif);border-color:var(--cordeau-vif);color:var(--ardoise)}
+.communes button.siege{border-color:var(--cordeau-vif);color:#fff}
+.zone__n{margin-top:22px;font-family:var(--f-mono);font-size:12px;color:var(--zinc);line-height:1.7}
+.carte{position:relative;border:1px solid var(--ardoise-3);background:rgba(17,21,24,.45)}
+.carte svg{width:100%;height:auto}
+@media (max-width:600px){.carte{--ct:13.5px;margin-left:calc(-1*var(--gx) + 6px);margin-right:calc(-1*var(--gd) + 6px)}}
+.carte text{font-family:var(--f-mono)}
+.carte__h{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ardoise-3);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--zinc)}
+.c-rayon{stroke:var(--cordeau-vif);stroke-width:1;opacity:.55}
+.c-n circle{fill:var(--ardoise);stroke:var(--zinc-clair);stroke-width:1.5;transition:fill .2s,stroke .2s,r .2s}
+.c-n text{font-size:var(--ct,12px);fill:var(--zinc-clair);transition:fill .2s}
+.c-n.on circle{fill:var(--cordeau-vif);stroke:var(--cordeau-vif)}
+.c-n.on text{fill:#fff}
+.c-n.on .c-halo{opacity:1}
+.c-halo{fill:none!important;stroke:var(--cordeau-vif)!important;opacity:0;transition:opacity .2s}
+.c-zone{fill:none;stroke:var(--zinc-clair);stroke-width:1.2;stroke-dasharray:4 6;transition:stroke .25s,fill .25s,stroke-width .25s}
+.c-a text{font-size:var(--ct,12px);letter-spacing:.12em;fill:var(--zinc);paint-order:stroke;stroke:var(--ardoise);stroke-width:6px}
+.c-a.on .c-zone{stroke:var(--cordeau-vif);stroke-width:2;fill:rgba(116,153,255,.08)}
+.c-a.on text{fill:#fff}
+.c-a text.c-siege{font-size:15px;font-weight:600;fill:#fff;letter-spacing:.04em}
+.siege-pouls{transform-box:fill-box;transform-origin:center;animation:onde 2.6s ease-out infinite}
+@keyframes onde{from{transform:scale(.4);opacity:.9}to{transform:scale(2.4);opacity:0}}
+
+/* étapes */
+.etapes{display:grid;gap:0;position:relative}
+@media (min-width:900px){.etapes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.etape{position:relative;padding:0 0 40px 34px}
+.etape::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1.5px;background:var(--cordeau);transform-origin:top;transition:transform 1s var(--ease) var(--d,0s)}
+.etape::after{content:"";position:absolute;left:1px;top:-1px;width:16px;height:1.5px;background:var(--cordeau);box-shadow:0 0 0 0 transparent}
+.etape:last-child{padding-bottom:0}
+.etape:last-child::after{box-shadow:none}
+.etapes::after{content:"";position:absolute;left:1px;bottom:-1px;width:16px;height:1.5px;background:var(--cordeau)}
+@media (min-width:900px){
+  .etape{padding:0 32px 0 0}
+  .etape::before{left:0;right:0;top:8px;bottom:auto;width:auto;height:1.5px;transform-origin:left}
+  .etape::after{left:0;top:1px;width:1.5px;height:16px}
+  .etapes::after{left:auto;right:0;top:1px;bottom:auto;width:1.5px;height:16px}
+}
+.js .etapes:not(.vu) .etape::before{transform:scaleY(0)}
+@media (min-width:900px){.js .etapes:not(.vu) .etape::before{transform:scaleX(0)}}
+.cote{display:inline-block;position:relative;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--cordeau);background:var(--calque);padding:0 8px;margin-left:-8px}
+@media (min-width:900px){.cote{margin:0 0 0 24px;transform:translateY(0)}}
+.etape__ic{width:56px;height:56px;margin:18px 0 16px;border:1.5px solid var(--graphite);display:grid;place-items:center;background:var(--papier)}
+.etape__ic svg{width:34px;height:34px}
+.etape h3{font-size:clamp(32px,1.4vw + 20px,42px);font-weight:800}
+.etape p{margin-top:8px;color:var(--graphite-2);max-width:22em}
+
+/* horaires */
+.duo{display:grid;gap:22px;align-items:start}
+@media (min-width:900px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.pan{background:var(--papier);border:1.5px solid var(--graphite);position:relative}
+.pan__h{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite-2)}
+.pan__c{padding:24px 20px 26px}
+@media (min-width:720px){.pan__c{padding:28px 30px 30px}}
+.pan h3{font-size:clamp(32px,2vw + 20px,44px);font-weight:800}
+.pan .etat{display:block;margin-top:10px;font-family:var(--f-mono);font-size:13px}
+.hor{margin-top:20px;border-top:1px solid var(--graphite)}
+.hor>div{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:4px 14px;align-items:center;padding:11px 8px;border-bottom:1px solid var(--calque-2);position:relative}
+.hor dt{font-weight:600}
+.hor dd{font-family:var(--f-mono);font-size:clamp(11px,.3vw + 10px,12.5px);color:var(--graphite-2);text-align:right;white-space:nowrap}
+.hor .barre{grid-column:1/-1;position:relative;height:6px;background:repeating-linear-gradient(90deg,var(--calque-2) 0 1px,transparent 1px calc(100%/var(--n,14)));}
+.hor .barre i{position:absolute;top:0;bottom:0;background:var(--graphite-2)}
+.hor--off dd{font-style:italic}
+.hor--jour{background:var(--cordeau-voile)}
+.hor--jour::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cordeau)}
+.hor--jour .barre i{background:var(--cordeau)}
+.hor__ech{display:flex;justify-content:space-between;margin-top:8px;padding:0 8px;font-family:var(--f-mono);font-size:10px;color:var(--graphite-2)}
+.acces>svg{width:100%;height:auto;border-bottom:1.5px solid var(--graphite);background:var(--calque)}
+.acces text{font-family:var(--f-mono)}
+.adr{font-style:normal;font-size:clamp(20px,1vw + 15px,24px);line-height:1.35;margin-top:14px}
+.pan__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.pan__n{margin-top:18px;color:var(--graphite-2);font-size:15px}
+
+/* contact */
+.ctc{display:grid;gap:44px}
+@media (min-width:960px){.ctc{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:64px}}
+.ctc h2{font-size:clamp(44px,4vw + 12px,84px);font-weight:900;line-height:.86;margin-top:14px}
+.ctc h2{overflow-wrap:break-word}
+.ctc h2.n-l{font-size:clamp(38px,2.8vw + 12px,60px)}
+.ctc__tel{display:inline-flex;align-items:center;gap:14px;margin-top:28px;font-family:var(--f-titre);font-weight:800;font-size:clamp(36px,3vw + 18px,60px);line-height:1;color:var(--cordeau-vif);text-decoration:none;min-height:44px;white-space:nowrap}
+.ctc__tel svg{width:.6em;height:.6em}
+.ctc__l{margin-top:22px;display:flex;gap:14px;color:var(--zinc-clair)}
+.ctc__l svg{flex:none;width:22px;height:22px;stroke:var(--cordeau-vif);margin-top:3px}
+.ctc__l b{display:block;color:#fff;font-weight:600}
+.ctc__dir{margin-top:30px;padding-top:20px;border-top:1px dashed var(--ardoise-4);font-family:var(--f-mono);font-size:12px;color:var(--zinc);line-height:1.8;max-width:30em}
+.bon{position:relative;background:var(--papier);color:var(--graphite);border:1.5px solid var(--graphite);box-shadow:6px 6px 0 var(--cordeau)}
+@media (min-width:720px){.bon{box-shadow:10px 10px 0 var(--cordeau)}}
+.bon__n{text-align:right;min-width:0;overflow-wrap:anywhere}
+.bon__h{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;background:var(--graphite);color:var(--zinc-pale);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.bon__c{padding:24px 20px 28px}
+@media (min-width:720px){.bon__c{padding:30px 32px 34px}}
+.bon h3{font-size:clamp(34px,2vw + 22px,48px);font-weight:800;color:var(--graphite)}
+.bon__s{color:var(--graphite-2);font-size:15px;margin-top:8px}
+.ch{display:grid;gap:0 22px}
+@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:4px;margin-top:20px}
+.f label{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:10px 2px;border:0;border-bottom:1.5px solid var(--graphite);border-radius:0;background:transparent;color:var(--graphite);width:100%;min-height:46px;transition:border-color .2s,background .2s}
+.f select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--graphite) 50%),linear-gradient(135deg,var(--graphite) 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 9px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+.f textarea{resize:vertical;min-height:110px;background-image:repeating-linear-gradient(transparent 0 31px,var(--calque-2) 31px 32px);line-height:32px;padding-top:0}
+.f input::placeholder,.f textarea::placeholder{color:#6B747B}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-bottom-color:var(--cordeau);background-color:var(--cordeau-voile)}
+.f input:focus-visible,.f select:focus-visible,.f textarea:focus-visible{box-shadow:0 2px 0 0 var(--cordeau)}
+.bon .btn{width:100%;margin-top:28px}
+.nuit .bon .btn{--bg:var(--cordeau);--fg:#fff}
+.nuit .bon .btn:hover{box-shadow:3px 3px 0 var(--graphite)}
+.fret{margin-top:16px;font-weight:600;color:var(--cordeau-sombre);min-height:1.6em}
+
+/* bon de travail (privé) */
+.perso{display:none;background:#FFF8D6;color:#2A2410;border-top:4px dashed #8A6D00}
+.perso.ouvert{display:block}
+.perso h2{color:#2A2410;font-size:40px;margin-bottom:16px}
+.perso ul{margin-top:20px;display:grid;gap:12px}
+.perso li b{display:block}
+
+/* pied */
+.pied{background:var(--nuit);color:var(--zinc);font-size:14px;padding:40px 0 calc(110px + env(safe-area-inset-bottom))}
+@media (min-width:1100px){.pied{padding-bottom:40px}}
+.cartouche{display:grid;grid-template-columns:1fr;border:1px solid var(--ardoise-3)}
+.cartouche>div{padding:14px 16px;border-bottom:1px solid var(--ardoise-3)}
+.cartouche>div:last-child{border-bottom:0}
+.cartouche small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ardoise-4);color:#7D888F;margin-bottom:4px}
+.cartouche b{color:#fff;font-weight:600}
+.cartouche .nm{overflow-wrap:break-word;font-family:var(--f-titre);font-weight:800;font-size:28px;line-height:1;text-transform:uppercase;color:#fff}
+@media (min-width:720px){.cartouche{grid-template-columns:1.4fr 1fr 1fr 1fr}.cartouche--3{grid-template-columns:1.4fr 1fr 1fr}.cartouche>div{border-bottom:0;border-right:1px solid var(--ardoise-3)}.cartouche>div:last-child{border-right:0}}
+.pied__b{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:16px;font-family:var(--f-mono);font-size:11px;color:#7D888F}
+
+/* barre mobile */
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:8px;
+  padding:10px var(--gd) calc(10px + env(safe-area-inset-bottom)) var(--gx);background:rgba(17,21,24,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1.5px solid var(--cordeau-vif);
+  transition:transform .4s var(--ease)}
+.bmob.cache{transform:translateY(110%)}
+.bmob a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;font-weight:600;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.bmob svg{width:18px;height:18px;flex:none}
+.bmob__t{border:1.5px solid var(--zinc);color:#fff}
+.bmob__d{background:var(--cordeau-vif);color:var(--ardoise)}
+@media (min-width:1100px){.bmob{display:none}}
+
+/* révélations */
+.js .apparait{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.js .apparait.vu{opacity:1;transform:none}
+.js .trace{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease);transition-delay:var(--d,0s)}
+.js .vu .trace,.js .trace.vu{stroke-dashoffset:0}
+.js .fondu{opacity:0;transition:opacity .6s ease,stroke .25s,fill .25s;transition-delay:var(--d,0s),0s,0s}
+.js .vu .fondu{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .apparait{opacity:1;transform:none}
+  .js .trace,.js .h-trace{stroke-dasharray:none;stroke-dashoffset:0}
+  .js .fondu{opacity:1}
+  .js .ouv h1 .creux{color:var(--graphite)}
+  .js .etapes .etape::before{transform:none!important}
+  .cordeau .craie{opacity:.5}
+}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="craie" x="-2%" y="-200%" width="104%" height="500%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4 .9" numOctaves="2" seed="4" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
+      <feDisplacementMap in="c" in2="b" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="{{ N }}, accueil">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x=".75" y=".75" width="38.5" height="38.5" fill="#171C20" stroke="#171C20" stroke-width="1.5"/>
+        <path d="M7 23 20 11l13 12" stroke="#E8EBEB" stroke-width="2.6" stroke-linejoin="miter"/>
+        <path d="M11 20v10h18V20" stroke="#E8EBEB" stroke-width="1.6"/>
+        <path d="M5 33.5h30" stroke="#7499FF" stroke-width="1.6"/>
+        <circle cx="5" cy="33.5" r="1.6" fill="#7499FF"/><circle cx="35" cy="33.5" r="1.6" fill="#7499FF"/>
+      </svg>
+      <span class="mq__t"><span class="mq__n {{ n_cls }}">{{ N }}</span><span class="mq__v">{{ activite }}{% if court %} · {{ court }}{% endif %}</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#prestations">{{ fam.nav }}</a>
+      <a href="#zone">Zone d'intervention</a>
+      <a href="#demande">{{ fam.prep_titre }}</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    {% if a_tel %}<a class="hdr__tel" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>{{ tel }}</a>{% endif %}
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="menu nuit millimetre" id="menu" aria-label="Menu mobile">
+  <a href="#prestations">{{ fam.nav }} <small>{{ prof.menu_presta or m.prestations()[0][0] }}</small></a>
+  <a href="#zone">Zone <small>{% if court %}{{ court }} et alentours{% else %}Autour de l'entreprise{% endif %}</small></a>
+  <a href="#demande">Votre demande <small>En trois points</small></a>
+  <a href="#horaires">Horaires <small>Et accès</small></a>
+  <a href="#contact">Contact <small>{% if a_tel %}{{ tel }}{% else %}Un message{% endif %}</small></a>
+  <a class="btn" href="#contact">{{ fam.cta }}</a>
+</nav>
+
+<main id="principal">
+
+<section class="ouv millimetre" id="ouv" aria-labelledby="titre">
+  <div class="env ouv__in">
+    <div>
+      <p class="surt entre" style="--d:.1s">{{ activite }}{% if court %} — {{ court }}{% if cp %} ({{ cp[:2] }}){% endif %}{% endif %}</p>
+      <h1 id="titre" class="{{ t_cls }}"><span class="l entre" style="--d:.2s">{{ l1 }}</span>{% if l2 %}<span class="l creux entre" style="--d:.32s">{{ l2 }}</span>{% endif %}</h1>
+      <p class="ouv__t entre" style="--d:.5s"><strong>{{ prof.accroche or (m.prestations()[0][0] ~ ", " ~ m.prestations()[1][0]|lower ~ ".") }}</strong> {{ fam.ouverture }}</p>
+      <div class="ouv__a entre" style="--d:.65s">
+        <a class="btn" href="#contact">{{ fam.cta }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        {% if a_tel %}<a class="btn btn--trait" href="#contact">Appeler le {{ tel }}</a>{% else %}<a class="btn btn--trait" href="#horaires">Horaires et accès</a>{% endif %}
+      </div>
+      <p class="meta entre" style="--d:.8s">
+        {% if sem %}<span><span class="etat" data-h="{{ data_h }}">{{ r.court }} · {{ r.principal }}</span></span>{% else %}<span><span class="etat"><span class="pastille" aria-hidden="true"></span>Horaires sur demande</span></span>{% endif %}
+        {% if court %}<span>{{ court }} et communes voisines</span>{% endif %}
+      </p>
+    </div>
+
+    <figure class="plan" id="plan">
+      {{ illus|replace("%%NOM%%", nom_c) }}
+      <div class="reticule" id="reticule" aria-hidden="true"><i class="rx"></i><i class="ry"></i><b></b></div>
+      <figcaption><span>{{ prof.legende }}</span><span>Dessin indicatif</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bande" aria-hidden="true">
+  <div class="bande__r">
+    {% for _ in range(2) %}
+    <ul>{% for w in prof.bande %}<li>{{ w }}</li>{% endfor %}</ul>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">{{ fam.nav }}</p>
+        <h2 id="t-presta">Ce que fait {{ m.cherche }}</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">Les grandes familles du métier. Pour savoir si votre demande en fait partie, le plus simple est de poser la question.</p>
+    </div>
+
+    <ul class="planches">
+      {% set det = prof.details or "_famille" %}
+      {% set P = m.prestations() %}
+      <li class="planche apparait">
+        {% include ["familles/batiment/details/" ~ det ~ "-a.html", "familles/batiment/details/_famille-a.html"] %}
+        <div class="planche__c">
+          <h3>{{ P[0][0] }}</h3>
+          <p>{{ P[0][1] }}</p>
+        </div>
+      </li>
+
+      <li class="planche apparait" style="--d:.12s">
+        {% include ["familles/batiment/details/" ~ det ~ "-b.html", "familles/batiment/details/_famille-b.html"] %}
+        <div class="planche__c">
+          <h3>{{ P[1][0] }}</h3>
+          <p>{{ P[1][1] }}</p>
+        </div>
+      </li>
+
+      <li class="planche planche--c apparait">
+        <div class="planche__h"><b>Détail C</b><span>À voir ensemble</span></div>
+        <div class="planche__c">
+          <div>
+            <h3>{{ P[2][0] }}</h3>
+            <p>{{ P[2][1] }}</p>
+          </div>
+          <svg viewBox="0 0 280 110" fill="none" aria-hidden="true">
+            <path class="trace" pathLength="1" d="M14 84 H214" stroke="#7499FF" stroke-width="1.4" style="--d:.2s"/>
+            <path class="trace" pathLength="1" d="M8 90 L20 78 M208 90 L220 78 M14 70 V98 M214 70 V98" stroke="#7499FF" stroke-width="1.4" style="--d:.5s"/>
+            <text class="fondu" style="--d:.9s" x="114" y="74" text-anchor="middle">À VOIR ENSEMBLE</text>
+            <g class="fondu" style="--d:.6s">
+              <path d="M214 84 L224 64 L268 20 L278 30 L234 74 Z" fill="#36414A" stroke="#C6CDD1" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M214 84 L224 64 L234 74 Z" fill="#E8EBEB"/><path d="M214 84 l3.5-7 3.5 3.5z" fill="#171C20"/>
+              <path d="M260 28 l10 10" stroke="#C6CDD1" stroke-width="1.2"/>
+            </g>
+          </svg>
+          <a class="btn" href="#contact">{{ fam.cta }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pied-pl apparait">
+      <p>Aucun prix n'est affiché tant qu'il n'a pas été établi par l'entreprise.</p>
+      <a href="#contact">{{ fam.cta }} →</a>
+    </div>
+  </div>
+</section>
+
+{{ cordeau(true) }}
+
+<section class="sec nuit millimetre zone" id="zone" aria-labelledby="t-zone">
+  <div class="env zone__g">
+    <div>
+      <div class="apparait">
+        <p class="surt">Zone d'intervention</p>
+        <h2 id="t-zone">{% if court %}{{ court }} et les communes autour{% else %}Autour de l'entreprise{% endif %}</h2>
+        <p class="chapo">Le schéma n'est pas un plan à l'échelle. Pour savoir si votre commune est desservie, le plus simple est de poser la question.</p>
+      </div>
+      <ul class="communes apparait" style="--d:.1s" aria-label="Cercles de la zone d'intervention">
+        <li><button type="button" class="siege" data-c="r0" aria-pressed="true">{{ court or "L'entreprise" }}</button></li>
+        <li><button type="button" data-c="r1" aria-pressed="false">Communes voisines</button></li>
+        <li><button type="button" data-c="r2" aria-pressed="false">Un peu plus loin</button></li>
+      </ul>
+      <p class="zone__n apparait" style="--d:.2s">Plus loin que le dernier cercle ? Rien n'empêche de demander : la réponse dépend du chantier.</p>
+    </div>
+    <div class="carte apparait" style="--d:.15s" id="carte">
+      <div class="carte__h"><span>Plan de situation</span><span>Sans échelle</span></div>
+      <svg viewBox="0 0 640 520" role="img" aria-label="Schéma de la zone d'intervention : {{ court or "l'entreprise" }} au centre, entourée de cercles pour les communes voisines et un peu plus loin">
+        <g fill="none" stroke="#36414A" stroke-width="1">
+          <path d="M320 20V500M20 260H620" stroke-dasharray="2 8"/>
+          <path d="M150 90L490 430M490 90L150 430" stroke-dasharray="2 10" opacity=".7"/>
+        </g>
+        <g class="c-n c-a" data-c="r2">
+          <circle class="c-zone fondu" style="--d:.2s" cx="320" cy="260" r="230"/>
+          <text class="fondu" style="--d:.9s" x="320" y="22" text-anchor="middle">UN PEU PLUS LOIN</text>
+        </g>
+        <g class="c-n c-a" data-c="r1">
+          <circle class="c-zone fondu" style="--d:.1s" cx="320" cy="260" r="140"/>
+          <text class="fondu" style="--d:.7s" x="320" y="112" text-anchor="middle">COMMUNES VOISINES</text>
+        </g>
+        <g class="fondu" style="--d:.6s" stroke="#7499FF" stroke-width="1.4">
+          {% for x, y in [(419,161),(221,161),(419,359),(221,359),(320,120),(460,260),(320,400),(180,260),(483,97),(157,97),(483,423),(157,423),(550,260),(90,260),(320,490)] %}
+          <path d="M{{ x-4 }} {{ y }}h8M{{ x }} {{ y-4 }}v8"/>
+          {% endfor %}
+        </g>
+        <g class="c-n c-a on" data-c="r0">
+          <circle class="c-zone" cx="320" cy="260" r="58" style="stroke-dasharray:3 5"/>
+          <circle class="siege-pouls" cx="320" cy="260" r="16" fill="none" stroke="#7499FF" stroke-width="1.5"/>
+          <rect x="305" y="245" width="30" height="30" fill="#7499FF"/>
+          <path d="M311 262 L320 253 L329 262 M314 260 V268 H326 V260" fill="none" stroke="#1A1F24" stroke-width="2"/>
+          <text class="c-siege" x="320" y="{{ 304 }}" text-anchor="middle">{{ (court or "L'entreprise")|upper }}</text>
+        </g>
+        <g transform="translate(600 50)" fill="none" stroke="#C6CDD1" stroke-width="1.2">
+          <circle r="18" stroke="#36414A"/><path d="M0 -14 L5 4 L0 0 L-5 4Z" fill="#7499FF" stroke="none"/>
+          <text y="-22" text-anchor="middle" font-size="11" fill="#C6CDD1" stroke="none">N</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+{{ cordeau(false) }}
+
+<section class="sec millimetre" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">Avant d'appeler</p>
+        <h2 id="t-prep">Préparer votre demande</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">Trois choses à avoir en tête avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <ol class="etapes">
+      <li class="etape apparait" style="--d:0s">
+        <span class="cote">2 ou 3 phrases</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M5 9h16M5 15h12M5 21h8"/><path class="trace" pathLength="1" style="--d:.3s" d="M28 8l4 4-13 13-5 1 1-5z" stroke="#2347D9"/></svg></div>
+        <h3>Décrire</h3>
+        <p>Ce qui ne va pas, ou ce que vous voulez faire, en deux ou trois phrases.</p>
+      </li>
+      <li class="etape apparait" style="--d:.15s">
+        <span class="cote">Ensemble + détail</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M4 12h6l3-4h10l3 4h6v16H4z"/><circle class="trace" pathLength="1" style="--d:.3s" cx="18" cy="19" r="5.5" stroke="#2347D9"/></svg></div>
+        <h3>Photographier</h3>
+        <p>Une vue d'ensemble et une vue de près : elles évitent souvent un déplacement pour rien.</p>
+      </li>
+      <li class="etape apparait" style="--d:.3s">
+        <span class="cote">Commune + créneaux</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M3 30l9-4 12 4 9-4V6l-9 4-12-4-9 4z"/><path class="trace" pathLength="1" style="--d:.3s" d="M18 23s5-4.5 5-8.5a5 5 0 0 0-10 0c0 4 5 8.5 5 8.5z" stroke="#2347D9" fill="#F5F7F7"/></svg></div>
+        <h3>Situer</h3>
+        <p>La commune du chantier et vos disponibilités pour une visite.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="horaires" aria-labelledby="t-hor" style="background:var(--calque-2)">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">Horaires et accès</p>
+        <h2 id="t-hor">Joindre l'entreprise</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">{% if sem %}L'état affiché se calcule à l'heure où vous lisez la page. {% endif %}{{ prof.chantier }}</p>
+    </div>
+    <div class="duo">
+      <div class="pan apparait">
+        <div class="pan__h"><span>Planning de la semaine</span><span id="jour">Aujourd'hui</span></div>
+        <div class="pan__c">
+          <h3>Horaires</h3>
+          {% if sem %}
+          <p class="etat" id="etat2" data-h="{{ data_h }}">{{ r.jours }}, {{ r.principal_et }}.</p>
+          {% set lo = [360, (r.debut // 60) * 60]|min %}
+          {% set hi = [1200, ((r.fin + 59) // 60) * 60]|max %}
+          {% set span = hi - lo %}
+          <dl class="hor" id="hor">
+            {% for j in semaine %}
+            <div{% if not j.ouvert %} class="hor--off"{% endif %}><dt>{{ j.jour|capitalize }}</dt><dd>{{ j.texte }}</dd><span class="barre" aria-hidden="true" style="--n:{{ span // 60 }}">{% for a, b in j.creneaux %}<i style="left:{{ '%.2f'|format((a - lo) * 100 / span) }}%;width:{{ '%.2f'|format((b - a) * 100 / span) }}%"></i>{% endfor %}</span></div>
+            {% endfor %}
+          </dl>
+          <div class="hor__ech" aria-hidden="true"><span>{{ lo // 60 }} h</span><span>{{ (lo + hi) // 120 }} h{% if ((lo + hi) // 2) % 60 %} 30{% endif %}</span><span>{{ hi // 60 }} h</span></div>
+          {% else %}
+          <p class="etat"><span class="pastille" aria-hidden="true"></span>Horaires sur demande</p>
+          <p class="pan__n">Les horaires ne sont pas encore indiqués ici. Un message ou un appel suffit : vous convenez directement d'un moment pour échanger ou pour une visite.</p>
+          {% endif %}
+        </div>
+      </div>
+      <div class="pan acces apparait" style="--d:.12s">
+        <div class="pan__h"><span>Plan d'accès</span><span>{{ court }}</span></div>
+        <svg class="revele" viewBox="0 0 400 230" role="img" aria-label="Plan d'accès schématique : l'entreprise se trouve rue de l'Exemple{{ al }}">
+  <defs><pattern id="ilot" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="#C6CDD1" stroke-width="1"/></pattern></defs>
+  <g fill="url(#ilot)" stroke="#9AA4AB" stroke-width="1">
+    <path d="M20 20H150V80H20Z"/><path d="M178 20H300L280 80H178Z"/><path d="M326 20H390V120L306 92Z"/>
+    <path d="M20 108H150V200H20Z"/><path d="M178 108H268L240 200H178Z"/><path d="M296 120L390 150V210H268Z"/>
+  </g>
+  <g fill="none" stroke="#171C20" stroke-linecap="round">
+    <path class="trace" pathLength="1" d="M0 94H400" stroke-width="1.2" style="--d:.1s"/>
+    <path class="trace" pathLength="1" d="M164 0V230" stroke-width="1.2" style="--d:.2s"/>
+    <path class="trace" pathLength="1" d="M314 0L254 230" stroke-width="1.2" style="--d:.3s"/>
+  </g>
+  <path class="trace" pathLength="1" d="M0 94H400" stroke="#2347D9" stroke-width="5" style="--d:.5s"/>
+  <text x="24" y="90" font-size="10" fill="#2347D9" font-weight="600" letter-spacing="1">RUE DE L'EXEMPLE</text>
+  <g class="fondu" style="--d:1s">
+    <circle cx="232" cy="94" r="22" fill="rgba(35,71,217,.14)"/>
+    <path d="M232 98 l-12 -12 v-14 h24 v14z" fill="#2347D9"/>
+    <path d="M224 80 l8 -7 8 7 M226 79 v6 h12 v-6" fill="none" stroke="#fff" stroke-width="1.6"/>
+    <text x="250" y="76" font-size="11" font-weight="600" fill="#171C20">XX</text>
+  </g>
+  <g transform="translate(370 194)"><circle r="14" fill="#F5F7F7" stroke="#171C20"/><path d="M0 -9 L4 3 L0 0 L-4 3Z" fill="#171C20"/><text y="-18" text-anchor="middle" font-size="9" fill="#171C20">N</text></g>
+</svg>
+        <div class="pan__c">
+          <h3>Venir à l'entreprise</h3>
+          <address class="adr">XX rue de l'Exemple{% if cpc %}<br>{{ cpc }}{% endif %}</address>
+          <div class="pan__a">
+            <a class="btn" href="{{ itin }}">Ouvrir l'itinéraire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+            <a class="btn btn--trait" href="#contact">Prévenir avant de passer</a>
+          </div>
+          <p class="pan__n">Les horaires peuvent changer les jours fériés : un message avant de venir ne coûte rien.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec nuit millimetre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="apparait">
+      <p class="surt">Contact</p>
+      <h2 id="t-ctc" class="{{ c_cls }}">Écrire à {{ N }}</h2>
+      {% if a_tel %}<a class="ctc__tel" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>{{ tel }}</a>{% endif %}
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><b>XX rue de l'Exemple</b>{{ cpc }}</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        {% if sem %}<span><b>{{ r.jours }}</b>{{ r.principal_et }}{% if r.exceptions %} ; {{ r.exceptions }}{% endif %}</span>{% else %}<span><b>Horaires sur demande</b>Un message, et l'entreprise vous répond.</span>{% endif %}
+      </p>
+      <p class="ctc__dir">{{ fam.ouverture }} Pas de standard, pas d'intermédiaire.</p>
+    </div>
+
+    <form class="bon apparait" style="--d:.12s" id="dem" novalidate>
+      <div class="bon__h"><span>Bon de demande</span><span class="bon__n">{{ N }}</span></div>
+      <div class="bon__c">
+        <h3>{{ fam.cta }}</h3>
+        <p class="bon__s">Votre message arrive directement chez {{ N }}, qui vous répond.</p>
+        <div class="ch">
+          <div class="f"><label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+          <div class="f"><label for="tel">Téléphone ou courriel</label>
+            <input id="tel" name="tel" type="text" autocomplete="tel" required placeholder="Pour vous répondre"></div>
+          <div class="f"><label for="commune">Commune du chantier</label>
+            <input id="commune" name="commune" type="text" autocomplete="address-level2" placeholder="{{ court or "Votre commune" }}…"></div>
+          <div class="f"><label for="objet">Votre demande</label>
+            <select id="objet" name="objet">
+              <option value="">Choisir…</option>
+              {% for c in fam.choix %}
+              <option>{{ c }}</option>
+              {% endfor %}
+            </select></div>
+        </div>
+        <div class="f"><label for="det">Quelques mots</label>
+          <textarea id="det" name="det" rows="4" placeholder="Ce qui ne va pas, ou ce que vous voulez faire."></textarea></div>
+        <button class="btn" type="submit">Envoyer la demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+        <p class="fret" id="ret" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- BON DE TRAVAIL : pour François, jamais pour le prospect (visible avec ?notes). -->
+<section class="perso" id="a-personnaliser" aria-labelledby="t-perso">
+  <div class="env sec">
+    <h2 id="t-perso">Ce qui reste à faire confirmer</h2>
+    <p>Tout ce qui figure plus haut provient de sources publiques. Rien n'a été inventé : ni tarif, ni garantie, ni avis, ni spécialité. <strong>Cette section n'est visible que par vous.</strong></p>
+    <ul>
+      <li><b>Prestations réelles</b>Les planches décrivent le métier en général. À remplacer par ce que fait vraiment l'entreprise.</li>
+      <li><b>Zone d'intervention</b>Le schéma est centré sur la commune, sans liste de communes : à compléter avec celles que l'entreprise dessert vraiment.</li>
+      <li><b>Horaires</b>{% if sem %}L'indicateur « ouvert maintenant » se calcule sur les horaires affichés.{% else %}Aucun horaire public trouvé : « Horaires sur demande » en attendant.{% endif %}</li>
+      <li><b>Photos</b>La page n'en contient aucune. Trois ou quatre photos de chantier prises au téléphone valent mieux que n'importe quelle illustration.</li>
+      <li><b>Avis, labels, tarifs</b>À afficher seulement s'ils existent et sont vérifiables.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <div class="cartouche{% if not a_tel %} cartouche--3{% endif %}">
+      <div><small>Entreprise</small><span class="nm">{{ N }}</span></div>
+      <div><small>Activité</small><b>{{ activite }}</b></div>
+      <div><small>Adresse</small><b>XX rue de l'Exemple</b>{% if cpc %}<br>{{ cpc }}{% endif %}</div>
+      {% if a_tel %}<div><small>Téléphone</small><b>{{ tel }}</b></div>{% endif %}
+    </div>
+    <div class="pied__b"><span>© {{ annee }} {{ N }}{% if cpc %}, {{ cpc }}{% endif %}</span>{% if sem %}<span>Horaires relevés sur OpenStreetMap</span>{% endif %}</div>
+  </div>
+</footer>
+
+<div class="bmob" id="bmob">
+  {% if a_tel %}<a class="bmob__t" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Appeler</a>{% else %}<a class="bmob__t" href="#horaires">Horaires</a>{% endif %}
+  <a class="bmob__d" href="#contact">{{ fam.cta }}</a>
+</div>
+
+<script>
+(function(){
+  var NOM = {{ nom_js }};
+  var reduit = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fin = window.matchMedia && matchMedia("(pointer: fine)").matches;
+
+  /* --- ouvert / fermé --- */
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt; el.insertAdjacentHTML("afterbegin",'<span class="pastille" aria-hidden="true"></span>'); el.className="etat "+cls;}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"Ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour"), auj=new Date().getDay();
+  if(t){ var n=J[auj]; t.textContent="Aujourd'hui : "+n; }
+  var l=document.querySelectorAll("#hor > div");
+  if(l.length>=7) l[(auj+6)%7].classList.add("hor--jour");
+
+  /* --- formulaire --- */
+  var f=document.getElementById("dem");
+  if(f) f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var r=document.getElementById("ret");
+    if(!f.nom.value.trim()||!f.tel.value.trim()){ r.textContent="Indiquez au moins votre nom et un moyen de vous répondre."; (f.nom.value.trim()?f.tel:f.nom).focus(); return; }
+    r.textContent="Merci. Sur le site en ligne, votre demande arrive directement chez "+NOM+".";
+    f.reset();
+  });
+
+  /* --- bon de travail --- */
+  var b=document.getElementById("a-personnaliser");
+  if(b&&(/[?&]notes(=|&|$)/.test(location.search)||location.hash==="#notes")) b.classList.add("ouvert");
+
+  /* --- menu mobile --- */
+  var bg=document.getElementById("burger"), mn=document.getElementById("menu");
+  function menu(o){ bg.setAttribute("aria-expanded",o?"true":"false"); bg.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu"); mn.classList.toggle("ouvert",o); }
+  if(bg&&mn){
+    bg.addEventListener("click",function(){ menu(bg.getAttribute("aria-expanded")!=="true"); });
+    mn.querySelectorAll("a").forEach(function(a){ a.addEventListener("click",function(){ menu(false); }); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape") menu(false); });
+  }
+
+  /* --- carte : communes --- */
+  var noeuds={}; document.querySelectorAll("#carte .c-n").forEach(function(g){ noeuds[g.getAttribute("data-c")]=g; });
+  var puces=document.querySelectorAll(".communes button");
+  function montrer(c){
+    puces.forEach(function(p){ p.setAttribute("aria-pressed", p.getAttribute("data-c")===c ? "true":"false"); });
+    Object.keys(noeuds).forEach(function(k){ noeuds[k].classList.toggle("on",k===c); });
+  }
+  puces.forEach(function(p){
+    var c=p.getAttribute("data-c");
+    p.addEventListener("click",function(){ montrer(p.getAttribute("aria-pressed")==="true"?null:c); });
+    p.addEventListener("mouseenter",function(){ if(fin) montrer(c); });
+  });
+  Object.keys(noeuds).forEach(function(k){ noeuds[k].addEventListener("mouseenter",function(){ montrer(k); }); });
+
+  /* --- en-tête, barre mobile --- */
+  var hdr=document.getElementById("hdr"), bm=document.getElementById("bmob");
+  function surDefil(){ hdr.classList.toggle("defile", scrollY>8); }
+  addEventListener("scroll",surDefil,{passive:true}); surDefil();
+
+  /* --- cordeau claqué --- */
+  function claquer(c){
+    var fil=c.querySelector(".fil"); if(!fil) return;
+    if(reduit){ c.classList.add("claque"); return; }
+    var t0=null, tir=260;
+    function pas(ts){
+      if(t0===null) t0=ts; var t=ts-t0, y;
+      if(t<tir){ var p=t/tir; y=20-16*(1-Math.pow(1-p,3)); }
+      else { var s=(t-tir)/1000; y=20-16*Math.exp(-s*5.2)*Math.cos(s*2*Math.PI*6.5); if(!c.classList.contains("claque")&&y>20) c.classList.add("claque"); }
+      fil.setAttribute("d","M0 20 Q500 "+y.toFixed(2)+" 1000 20");
+      if(t<tir+1300) requestAnimationFrame(pas); else fil.setAttribute("d","M0 20 Q500 20 1000 20");
+    }
+    requestAnimationFrame(pas);
+  }
+
+  /* --- révélations --- */
+  var aRev=document.querySelectorAll(".apparait, .revele, .etapes"), cords=document.querySelectorAll(".cordeau");
+  if(!("IntersectionObserver" in window)||reduit){
+    aRev.forEach(function(e){e.classList.add("vu");}); cords.forEach(function(c){c.classList.add("claque");});
+  } else {
+    var io=new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add("vu"); io.unobserve(x.target);} }); },{rootMargin:"0px 0px -10% 0px"});
+    aRev.forEach(function(e){io.observe(e);});
+    var ic=new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ claquer(x.target); ic.unobserve(x.target);} }); },{rootMargin:"0px 0px -18% 0px"});
+    cords.forEach(function(c){ic.observe(c);});
+  }
+  if("IntersectionObserver" in window && bm){
+    var ib=new IntersectionObserver(function(ent){ ent.forEach(function(x){ bm.classList.toggle("cache", x.isIntersecting); }); },{threshold:.25});
+    var ct=document.getElementById("dem"); if(ct) ib.observe(ct);
+  }
+
+  /* --- réticule et parallaxe du hero --- */
+  var plan=document.getElementById("plan"), ret=document.getElementById("reticule"), ouv=document.getElementById("ouv");
+  if(fin && !reduit && plan && ret){
+    var lab=ret.querySelector("b");
+    plan.addEventListener("pointermove",function(e){
+      var r=plan.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+      ret.style.setProperty("--x",x+"px"); ret.style.setProperty("--y",y+"px");
+      var vx=Math.round(x/r.width*680), vy=Math.round(y/r.width*680);
+      lab.textContent="X "+("000"+vx).slice(-4)+"  Y "+("000"+vy).slice(-4);
+      ret.classList.add("on");
+    });
+    plan.addEventListener("pointerleave",function(){ ret.classList.remove("on"); });
+  }
+  if(!reduit && ouv){
+    var svgp=plan&&plan.querySelector("svg"), tic=false;
+    addEventListener("scroll",function(){
+      if(tic) return; tic=true;
+      requestAnimationFrame(function(){
+        var y=Math.min(scrollY,900);
+        ouv.style.setProperty("--gp","0 "+(y*.35).toFixed(1)+"px");
+        if(svgp && innerWidth>=960) svgp.style.transform="translateY("+(y*.06).toFixed(1)+"px)";
+        tic=false;
+      });
+    },{passive:true});
+  }
+
+  window.__pret=true;
+})();
+</script>
+</body>
+</html>

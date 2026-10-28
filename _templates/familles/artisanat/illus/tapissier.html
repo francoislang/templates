@@ -1,0 +1,76 @@
+<svg class="illus" viewBox="90 96 420 504" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Un fauteuil médaillon à mi-chemin de sa réfection : à gauche recouvert d'un tissu vert et bordé de clous dorés, à droite en toile blanche, sangles de jute visibles au dossier. Sur le socle, un rouleau de tissu et un marteau de tapissier.">
+  <defs>
+    <pattern id="ta-damas" width="28" height="34" patternUnits="userSpaceOnUse"><rect width="28" height="34" fill="#4E7F6A"/><path d="M14 4c6 6 6 12 0 18-6-6-6-12 0-18zM0 21c4 4 4 8 0 12M28 21c-4 4-4 8 0 12" fill="#6F9C87" opacity=".7"/></pattern>
+    <pattern id="ta-toile" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="6" height="6" fill="#E6DFCF"/><path d="M0 3h6M3 0v6" stroke="#CFC6B2" stroke-width=".8"/></pattern>
+    <clipPath id="ta-g"><rect x="120" y="80" width="180" height="420"/></clipPath>
+    <clipPath id="ta-d"><rect x="300" y="80" width="200" height="420"/></clipPath>
+  </defs>
+  <ellipse class="pose" cx="300" cy="484" rx="230" ry="22" fill="url(#ombre-g)"/>
+  <rect x="100" y="478" width="400" height="140" fill="url(#socle-g)"/>
+  <rect x="100" y="478" width="400" height="4" fill="#fff" opacity=".5"/>
+
+  <g data-p="1"><g class="pose" style="--d:.15s">
+    <!-- pieds arrière -->
+    <path d="M232 400l4 70h8l2-70zM354 400l2 70h8l4-70z" fill="#8A6644"/>
+    <!-- médaillon : cadre bois -->
+    <ellipse cx="300" cy="226" rx="92" ry="112" fill="url(#hetre-g)" filter="url(#grain-f)"/>
+    <!-- intérieur du médaillon : moitié gauche couverte, moitié droite en blanc -->
+    <g clip-path="url(#ta-g)">
+      <ellipse cx="300" cy="226" rx="78" ry="98" fill="url(#ta-damas)"/>
+      <ellipse cx="300" cy="226" rx="78" ry="98" fill="url(#lumiere)" opacity=".4"/>
+    </g>
+    <g clip-path="url(#ta-d)">
+      <ellipse cx="300" cy="226" rx="78" ry="98" fill="url(#ta-toile)"/>
+      <g stroke="#B59A6A" stroke-width="12" opacity=".9">
+        <path d="M300 150h70M300 200h78M300 250h76M300 300h56"/>
+        <path d="M322 134v186M352 140v170"/>
+      </g>
+      <g stroke="#8E7448" stroke-width="1" opacity=".6"><path d="M300 146h70M300 196h78M300 246h76M300 296h56M318 134v186M348 140v170"/></g>
+    </g>
+    <!-- clous décoratifs autour du médaillon, côté gauche -->
+    <g fill="url(#laiton-g)">
+      <circle cx="226" cy="226" r="3.2"/><circle cx="229" cy="200" r="3.2"/><circle cx="236" cy="176" r="3.2" class="lueur" style="--d2:.4s"/><circle cx="247" cy="155" r="3.2"/><circle cx="262" cy="138" r="3.2"/><circle cx="280" cy="128" r="3.2"/>
+      <circle cx="229" cy="252" r="3.2"/><circle cx="236" cy="276" r="3.2"/><circle cx="247" cy="297" r="3.2" class="lueur" style="--d2:1.6s"/><circle cx="262" cy="314" r="3.2"/><circle cx="280" cy="324" r="3.2"/>
+    </g>
+    <!-- consoles d'accotoirs -->
+    <path d="M214 288c-26 0-40 14-40 34 0 18 10 30 22 44" fill="none" stroke="url(#hetre-g)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M386 288c26 0 40 14 40 34 0 18-10 30-22 44" fill="none" stroke="url(#hetre-g)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M188 304c-6 10-4 20 2 26l26-2c-2-10-2-18 2-26z" fill="url(#ta-damas)"/>
+    <path d="M412 304c6 10 4 20-2 26l-26-2c2-10 2-18-2-26z" fill="url(#ta-toile)"/>
+    <!-- assise bombée -->
+    <g clip-path="url(#ta-g)">
+      <path d="M196 380c0-26 48-38 104-38s104 12 104 38z" fill="url(#ta-damas)"/>
+      <path d="M196 380c0-26 48-38 104-38s104 12 104 38z" fill="url(#lumiere)" opacity=".35"/>
+    </g>
+    <g clip-path="url(#ta-d)">
+      <path d="M196 380c0-26 48-38 104-38s104 12 104 38z" fill="url(#ta-toile)"/>
+      <path d="M306 372c20-2 60 0 92 6" stroke="#9A8E7A" stroke-width="1.4" stroke-dasharray="2 5" fill="none"/>
+    </g>
+    <!-- ceinture -->
+    <rect x="192" y="378" width="216" height="24" rx="3" fill="url(#hetre-g)" filter="url(#grain-f)"/>
+    <path d="M196 396h208" stroke="#8A6644" stroke-width="1.5"/>
+    <g fill="url(#laiton-g)">
+      <circle cx="204" cy="384" r="3.2"/><circle cx="218" cy="384" r="3.2"/><circle cx="232" cy="384" r="3.2" class="lueur" style="--d2:.9s"/><circle cx="246" cy="384" r="3.2"/><circle cx="260" cy="384" r="3.2"/><circle cx="274" cy="384" r="3.2"/><circle cx="288" cy="384" r="3.2" class="lueur" style="--d2:2.2s"/>
+    </g>
+    <!-- pieds avant cannelés -->
+    <g filter="url(#grain-f)">
+      <path d="M196 402h22l-5 76h-12z" fill="url(#hetre-g)"/>
+      <path d="M382 402h22l-4 76h-13z" fill="url(#hetre-g)"/>
+    </g>
+    <path d="M203 410l2 60M209 410l-1 60M389 410l2 60M395 410l-1 60" stroke="#8A6644" stroke-width="1.2"/>
+    <rect x="194" y="402" width="26" height="10" rx="2" fill="#C9A57A"/><rect x="380" y="402" width="26" height="10" rx="2" fill="#C9A57A"/>
+  </g></g>
+
+  <!-- rouleau de tissu et marteau -->
+  <g data-p="1.6"><g class="pose" style="--d:.5s">
+    <rect x="108" y="448" width="96" height="30" fill="url(#ta-damas)"/>
+    <path d="M108 448h96v8h-96z" fill="#fff" opacity=".12"/>
+    <ellipse cx="204" cy="463" rx="7" ry="15" fill="#3E6B58"/>
+    <ellipse cx="204" cy="463" rx="3" ry="6" fill="#C9A57A"/>
+  </g></g>
+  <g data-p="1.4"><g class="pose" style="--d:.65s">
+    <path d="M420 470l66-14" stroke="#8A6644" stroke-width="7" stroke-linecap="round"/>
+    <path d="M408 452l20 0 0 26-20 0z" fill="url(#noir-g)" transform="rotate(-12 418 465)"/>
+    <path d="M404 458l-12 3" stroke="#2A2724" stroke-width="5" stroke-linecap="round"/>
+  </g></g>
+</svg>

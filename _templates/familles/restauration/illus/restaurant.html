@@ -1,0 +1,50 @@
+<svg class="nature" id="nature" viewBox="0 0 420 350" role="img" aria-label="Illustration : une bougie allumée, un verre de vin et une carafe sur une table de bistrot">
+  <defs>
+    <radialGradient id="gFlamme" cx="50%" cy="70%" r="60%">
+      <stop offset="0" stop-color="#FFF6DA"/><stop offset=".45" stop-color="#FFC56E"/><stop offset="1" stop-color="#E0662E"/>
+    </radialGradient>
+    <linearGradient id="gCire" x1="0" x2="1">
+      <stop offset="0" stop-color="#F7E6C8"/><stop offset=".6" stop-color="#E9D2AA"/><stop offset="1" stop-color="#B99A6E"/>
+    </linearGradient>
+    <linearGradient id="gLaiton" x1="0" x2="1">
+      <stop offset="0" stop-color="#8C6630"/><stop offset=".45" stop-color="#F0CC8A"/><stop offset="1" stop-color="#8C6630"/>
+    </linearGradient>
+    <linearGradient id="gVin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A33A4E"/><stop offset="1" stop-color="#4A1220"/>
+    </linearGradient>
+  </defs>
+  <!-- carafe -->
+  <g opacity=".95">
+    <path d="M330 118v38c-26 24-31 70-25 140 3 22 72 22 75 0 6-70 1-116-25-140v-38z" fill="rgba(240,204,138,.06)" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M308 236c-2 22-2 40 0 60 3 20 68 20 70 0 2-20 2-38 0-60z" fill="url(#gVin)" opacity=".9"/>
+    <ellipse cx="342.5" cy="118" rx="14" ry="4" fill="none" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M318 190c-6 20-8 50-6 80" stroke="#FFE3B0" stroke-width="2" stroke-linecap="round" opacity=".55" fill="none"/>
+  </g>
+  <!-- bougeoir et bougie -->
+  <ellipse cx="230" cy="330" rx="44" ry="8" fill="url(#gLaiton)"/>
+  <path d="M224 328v-56h12v56" fill="url(#gLaiton)"/>
+  <path d="M198 262h64l-8 12h-48z" fill="url(#gLaiton)"/>
+  <rect x="214" y="152" width="32" height="112" rx="2" fill="url(#gCire)"/>
+  <path d="M214 156c0 10 4 14 4 24s5 8 5-4c0-8 6-10 8-20" fill="#F7E6C8"/>
+  <line x1="230" y1="152" x2="230" y2="141" stroke="#2A1A10" stroke-width="2" stroke-linecap="round"/>
+  <g id="flamme" data-lueur>
+    <path d="M230 86c9 16 16 30 12 44-3 12-21 12-24 0-4-14 3-28 12-44z" fill="url(#gFlamme)"/>
+    <ellipse cx="230" cy="130" rx="4" ry="7" fill="#9FC2FF" opacity=".55"/>
+  </g>
+  <!-- verre -->
+  <g>
+    <path d="M78 168c0 62 16 92 32 92s32-30 32-92" fill="rgba(240,204,138,.06)" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M81 204c3 36 15 52 29 52s26-16 29-52z" fill="url(#gVin)"/>
+    <ellipse cx="110" cy="168" rx="32" ry="5" fill="none" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M110 260v66" stroke="#D9A85B" stroke-width="2.2"/>
+    <ellipse cx="110" cy="329" rx="30" ry="5" fill="rgba(240,204,138,.15)" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M128 180c4 20 2 40-4 56" stroke="#FFE3B0" stroke-width="2.4" stroke-linecap="round" opacity=".7" fill="none"/>
+  </g>
+  <!-- chevalet « réservé » -->
+  <g>
+    <path d="M138 334l14-44h64l14 44z" fill="#F3EADB"/>
+    <path d="M152 290h64" stroke="#6E2433" stroke-width="3"/>
+    <text x="184" y="320" text-anchor="middle" font-family="Limelight, Georgia, serif" font-size="15" fill="#6E2433">Réservé</text>
+  </g>
+  <line x1="20" y1="336" x2="400" y2="336" stroke="#D9A85B" stroke-opacity=".35"/>
+</svg>

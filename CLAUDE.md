@@ -116,6 +116,21 @@ Pour un flow automatisé complet depuis une URL chien.com, utiliser `pipeline.py
 - `relance_check.py` (board « A relancer ») : relances SMS/téléphone sur Telegram jusqu'au `RELANCES_SMS_JUSQUAU` (2026-10-25) inclus, puis plus rien. Les prospects contactés par courriel en sont exclus.
 - `relance_mail.py` (lancé par `run_relances.sh`) : une seule relance par courriel à J+7, dans le même fil, sauf si le prospect a répondu, a dit STOP, ou si le premier courriel est resté en brouillon.
 
+## Prospection multi-métiers (25/10/2026)
+
+91 métiers joignables par courriel (bâtiment, bouche, beauté, restauration, hébergement, commerces, services, animaux…), déclarés dans **`_scripts/metiers.py`** — seul fichier à toucher pour ajouter un métier (étiquettes OSM, famille, 2 prestations, enseignes à exclure). Exclus volontairement : santé, pharmacie, vétérinaire, avocat, notaire, expert-comptable, banque/assurance.
+
+1. `collecte_multi.py --tous --reprendre` : une requête Overpass par département pour tout le catalogue, uniquement les fiches avec courriel ou site. Enseignes écartées par `brand:wikidata`, par nom, puis par domaine partagé (≥3 fiches). `--stats` pour le vivier par métier. À lancer depuis le Mac.
+2. `mails_sites.py --metier multi` : cherche l'adresse sur le site de ceux qui n'en ont pas (lancé automatiquement par `run_pro.sh`, `FOUILLE_MAILS_PRO`).
+3. `pipeline_pro.py --metier tous` (`METIER_PRO=tous`) : rotation, `METIERS_PAR_TOUR` métiers par jour, le moins récemment servi d'abord. Site de démo depuis `_templates/artisan.html.j2` via `gabarit_generique.py` (sans IA ; `IA_METIERS=1` pour passer par le modèle). Mêmes garde-fous courriel (déjà contacté, désinscrits, plafond `MAILS_PAR_JOUR`).
+- Aperçu d'un gabarit : `python3 _scripts/gabarit_generique.py coiffeur --sortie /tmp/a.html`.
+- En mode courriel, un prospect sans téléphone est accepté (dédoublonnage par adresse).
+
+### Gabarits par famille (28/10/2026)
+- `_templates/familles/<famille>/` : `page.html.j2` + `metiers.json` (textes propres à chacun des 91 métiers) + `illus/<cle>.html` (illustration sur mesure) ou `illus/_famille.html` (secours). Contrat des variables : `_templates/familles/CONTRAT.md`.
+- `gabarit_generique.remplir()` prend le gabarit de la famille du métier ; `artisan.html.j2` reste le secours si une famille n'a pas de `page.html.j2`.
+- Designs validés : maquettes dans `_maquettes/` (A) et `_maquettes-b/` (B). Retenus : B pour services, loisirs, hébergement, animaux ; A pour les autres.
+
 ## Pièges connus
 
 - Le scraper extrait la race depuis le **slug d'URL** (pas le HTML) — plus fiable

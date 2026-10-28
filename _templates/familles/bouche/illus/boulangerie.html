@@ -1,0 +1,74 @@
+<svg viewBox="0 0 560 500" role="presentation">
+  <defs>
+    <radialGradient id="bl-farine-dessus" cx="45%" cy="18%" r="50%">
+      <stop offset="0" stop-color="#F5F2EA" stop-opacity=".95"/>
+      <stop offset=".6" stop-color="#F5F2EA" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#F5F2EA" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="bl-clip-pain"><path d="M92 352c-6-118 80-190 188-190s196 72 188 190c-3 34-80 52-188 52S95 386 92 352z"/></clipPath>
+  </defs>
+  <!-- épis derrière -->
+  <g class="deco" filter="url(#trait)" stroke="#E9B65C" fill="none" stroke-width="2.4" stroke-linecap="round">
+    <path d="M150 340 C 140 250 120 170 84 92"/>
+    <path d="M178 330 C 182 240 186 160 210 70"/>
+    <g fill="#D9A04A" stroke="#7A4517" stroke-width="1.4">
+      <ellipse cx="88" cy="102" rx="6" ry="13" transform="rotate(-28 88 102)"/>
+      <ellipse cx="80" cy="120" rx="6" ry="13" transform="rotate(-62 80 120)"/>
+      <ellipse cx="103" cy="122" rx="6" ry="13" transform="rotate(8 103 122)"/>
+      <ellipse cx="93" cy="141" rx="6" ry="13" transform="rotate(-58 93 141)"/>
+      <ellipse cx="114" cy="142" rx="6" ry="13" transform="rotate(10 114 142)"/>
+      <ellipse cx="104" cy="161" rx="6" ry="13" transform="rotate(-55 104 161)"/>
+      <ellipse cx="123" cy="162" rx="6" ry="13" transform="rotate(12 123 162)"/>
+      <ellipse cx="208" cy="80" rx="6" ry="13" transform="rotate(14 208 80)"/>
+      <ellipse cx="196" cy="96" rx="6" ry="13" transform="rotate(-30 196 96)"/>
+      <ellipse cx="216" cy="100" rx="6" ry="13" transform="rotate(36 216 100)"/>
+      <ellipse cx="193" cy="118" rx="6" ry="13" transform="rotate(-30 193 118)"/>
+      <ellipse cx="212" cy="122" rx="6" ry="13" transform="rotate(38 212 122)"/>
+      <ellipse cx="190" cy="140" rx="6" ry="13" transform="rotate(-28 190 140)"/>
+      <ellipse cx="208" cy="144" rx="6" ry="13" transform="rotate(40 208 144)"/>
+    </g>
+    <path d="M84 92 L70 60M88 100 L96 64M210 70 L204 34M210 70 L226 38" stroke-width="1.2" opacity=".8"/>
+  </g>
+  <g filter="url(#trait)">
+    <path d="M28 380 C 120 350 430 344 538 372 L 552 474 C 420 492 150 496 14 470 Z" fill="url(#lin-tissu)" stroke="#2A1D14" stroke-width="2"/>
+    <path d="M24 400 C 140 374 420 370 541 392" stroke="#1E3D63" stroke-width="7" fill="none"/>
+    <path d="M23 414 C 140 389 420 385 543 406" stroke="#1E3D63" stroke-width="3" fill="none"/>
+    <path d="M18 452 C 150 470 420 470 549 452" stroke="#1E3D63" stroke-width="3" fill="none"/>
+    <path d="M40 470 l-8 16 M70 474 l-6 16 M100 477 l-5 15 M480 478 l4 15 M510 475 l6 15" stroke="#9D927E" stroke-width="2"/>
+  </g>
+  <ellipse cx="280" cy="398" rx="210" ry="22" fill="url(#ombre)"/>
+  <!-- la boule -->
+  <g class="sujet">
+    <g filter="url(#trait)">
+      <path d="M92 352c-6-118 80-190 188-190s196 72 188 190c-3 34-80 52-188 52S95 386 92 352z" fill="url(#croute)" stroke="#2A160A" stroke-width="3"/>
+    </g>
+    <g clip-path="url(#bl-clip-pain)">
+      <ellipse cx="270" cy="210" rx="170" ry="80" fill="url(#bl-farine-dessus)" filter="url(#farineux)"/>
+      <path d="M92 360 C 180 384 380 384 470 356 L 470 420 L 92 420Z" fill="#3E1E0A" opacity=".35"/>
+    </g>
+    <g filter="url(#trait)" stroke-linecap="round" fill="none">
+      <path d="M172 232 C 230 214 330 214 392 236" stroke="#F1CB86" stroke-width="12"/>
+      <path d="M172 232 C 230 214 330 214 392 236" stroke="#5C2F12" stroke-width="2.4" transform="translate(0 -6)"/>
+      <path d="M164 306 C 230 288 330 288 400 310" stroke="#F1CB86" stroke-width="12"/>
+      <path d="M164 306 C 230 288 330 288 400 310" stroke="#5C2F12" stroke-width="2.4" transform="translate(0 -6)"/>
+      <path d="M214 196 C 200 240 198 300 208 356" stroke="#EFC57C" stroke-width="11"/>
+      <path d="M214 196 C 200 240 198 300 208 356" stroke="#5C2F12" stroke-width="2.4" transform="translate(-5 0)"/>
+      <path d="M348 198 C 362 240 364 300 354 356" stroke="#EFC57C" stroke-width="11"/>
+      <path d="M348 198 C 362 240 364 300 354 356" stroke="#5C2F12" stroke-width="2.4" transform="translate(5 0)"/>
+    </g>
+    <path d="M140 270 C 150 220 190 190 236 180" stroke="#FFE2AA" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/>
+  </g>
+  <!-- vapeur -->
+  <g class="vapeur">
+    <path d="M240 150 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+    <path d="M290 146 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+    <path d="M338 154 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+  </g>
+  <!-- étiquette suspendue -->
+  <g transform="translate(430 120) rotate(8)" filter="url(#trait)">
+    <path d="M0 0 C 10 -40 30 -60 40 -80" stroke="#BDB39E" stroke-width="1.5" fill="none"/>
+    <path d="M-34 0 h68 l14 22 -14 22 h-68 z" fill="#F5F2EA" stroke="#2A1D14" stroke-width="2"/>
+    <circle cx="36" cy="22" r="4" fill="none" stroke="#2A1D14" stroke-width="1.5"/>
+    <text x="-2" y="29" text-anchor="middle" font-family="Yesteryear, cursive" font-size="21" fill="#1E3D63">levain</text>
+  </g>
+</svg>

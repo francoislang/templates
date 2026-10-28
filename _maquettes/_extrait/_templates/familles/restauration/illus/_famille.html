@@ -1,0 +1,53 @@
+<svg class="nature" id="nature" viewBox="0 0 420 350" role="img" aria-label="Illustration : une bougie allumée, une cloche de service sur son assiette, une serviette à carreaux et une carafe d'eau sur une table">
+  <defs>
+    <radialGradient id="gFlamme" cx="50%" cy="70%" r="60%">
+      <stop offset="0" stop-color="#FFF6DA"/><stop offset=".45" stop-color="#FFC56E"/><stop offset="1" stop-color="#E0662E"/>
+    </radialGradient>
+    <linearGradient id="gCire" x1="0" x2="1">
+      <stop offset="0" stop-color="#F7E6C8"/><stop offset=".6" stop-color="#E9D2AA"/><stop offset="1" stop-color="#B99A6E"/>
+    </linearGradient>
+    <linearGradient id="gLaiton" x1="0" x2="1">
+      <stop offset="0" stop-color="#8C6630"/><stop offset=".45" stop-color="#F0CC8A"/><stop offset="1" stop-color="#8C6630"/>
+    </linearGradient>
+    <linearGradient id="gVin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#A33A4E"/><stop offset="1" stop-color="#4A1220"/>
+    </linearGradient>
+    <linearGradient id="gEau" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9FC2FF" stop-opacity=".28"/><stop offset="1" stop-color="#9FC2FF" stop-opacity=".1"/>
+    </linearGradient>
+    <pattern id="pNappe" width="10" height="10" patternUnits="userSpaceOnUse"><rect width="10" height="10" fill="#F3EADB"/><rect width="5" height="10" fill="#8E3445" opacity=".55"/><rect width="10" height="5" fill="#8E3445" opacity=".55"/></pattern>
+  </defs>
+  <!-- carafe d'eau -->
+  <g opacity=".95">
+    <path d="M330 118v38c-26 24-31 70-25 140 3 22 72 22 75 0 6-70 1-116-25-140v-38z" fill="rgba(240,204,138,.06)" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M308 222c-2 26-3 50 0 74 3 20 68 20 70 0 3-24 2-48 0-74z" fill="url(#gEau)"/>
+    <ellipse cx="343" cy="222" rx="35" ry="4" fill="none" stroke="#C9DBFF" stroke-opacity=".5"/>
+    <ellipse cx="342.5" cy="118" rx="14" ry="4" fill="none" stroke="#D9A85B" stroke-width="1.6"/>
+    <path d="M318 190c-6 20-8 50-6 80" stroke="#FFE3B0" stroke-width="2" stroke-linecap="round" opacity=".55" fill="none"/>
+  </g>
+  <!-- bougeoir et bougie -->
+  <ellipse cx="230" cy="330" rx="40" ry="8" fill="url(#gLaiton)"/>
+  <path d="M224 328v-56h12v56" fill="url(#gLaiton)"/>
+  <path d="M198 262h64l-8 12h-48z" fill="url(#gLaiton)"/>
+  <rect x="214" y="152" width="32" height="112" rx="2" fill="url(#gCire)"/>
+  <path d="M214 156c0 10 4 14 4 24s5 8 5-4c0-8 6-10 8-20" fill="#F7E6C8"/>
+  <line x1="230" y1="152" x2="230" y2="141" stroke="#2A1A10" stroke-width="2" stroke-linecap="round"/>
+  <g id="flamme" data-lueur>
+    <g transform="translate(230 86) scale(1.0) translate(-230 -86)">
+      <path d="M230 86c9 16 16 30 12 44-3 12-21 12-24 0-4-14 3-28 12-44z" fill="url(#gFlamme)"/>
+      <ellipse cx="230" cy="130" rx="4" ry="7" fill="#9FC2FF" opacity=".55"/>
+    </g>
+  </g>
+  <!-- cloche de service -->
+  <g>
+    <ellipse cx="100" cy="326" rx="82" ry="9" fill="#F3EADB" stroke="#D9A85B" stroke-width="1.4"/>
+    <path d="M30 322c0-52 32-80 70-80s70 28 70 80z" fill="url(#gLaiton)"/>
+    <path d="M28 322h144" stroke="#8C6630" stroke-width="3" stroke-linecap="round"/>
+    <path d="M52 300c4-26 20-44 40-50" fill="none" stroke="#FFF6DA" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    <rect x="94" y="230" width="12" height="13" rx="3" fill="url(#gLaiton)"/>
+    <ellipse cx="100" cy="230" rx="10" ry="4" fill="#F0CC8A"/>
+  </g>
+  <!-- serviette à carreaux -->
+  <path d="M146 336l18-42 44 42z" fill="url(#pNappe)" stroke="#8C6630" stroke-width="1"/>
+  <line x1="20" y1="336" x2="400" y2="336" stroke="#D9A85B" stroke-opacity=".35"/>
+</svg>

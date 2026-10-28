@@ -1,0 +1,979 @@
+<!doctype html>
+<!--
+  Famille « bouche » — variante B (matin). Entreprise fictive : Le Fournil de la Craffe, Nancy (54000).
+  Idées retenues (inspiration, rien de copié) :
+  1. Packaging d'épicerie fine contemporaine (sélections World Brand Design, ex. « La Boulangerie Feinbäckerei ») :
+     étiquettes, tampons, kraft, un bleu franc unique et un jaune d'accent ; la marque se lit comme un emballage.
+  2. Décors de faïence de Lunéville (assiettes à marli fleuri, bleu de grand feu) : l'assiette devient l'illustration
+     du héros et le bleu de faïence sert de seule couleur de trait.
+  3. Sélections « meilleurs sites de boulangerie » (WebsitePlanet, Graphiste.com) : montrer le produit en grand,
+     en vitrine, plutôt qu'aligner des photos → ici une vitrine en grille dont chaque produit est un dessin vivant.
+  Direction : le matin, lumière froide et nette, blanc farine, bleu de Lunéville, jaune beurre, kraft.
+  Signature : la vitrine animée (le croissant gonfle, la baguette se rompt, la grigne s'ouvre, l'éclair se glace,
+  une part de tarte sort) + ruban « Sorti du four à … » qui calcule la dernière fournée à l'heure de la visite.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Fournil de la Craffe — boulangerie-pâtisserie à Nancy</title>
+<meta name="description" content="Boulangerie-pâtisserie artisanale à Nancy (54000) : pains, viennoiseries, pâtisseries de saison. Préparez votre commande en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&amp;display=swap" rel="stylesheet">
+<script>
+  /* Le masquage pour animation n'existe qu'avec JS ; secours : tout réapparaît après 1,5 s si le script principal échoue */
+  document.documentElement.classList.add("js");
+  setTimeout(function(){ if(!window.__craffeOK){ document.documentElement.classList.remove("js"); } }, 1500);
+</script>
+<style>
+:root{
+  --farine:#FBFAF7;      /* blanc farine */
+  --farine-2:#F1F0EB;
+  --papier:#FFFFFF;
+  --bleu:#1F4BA0;        /* bleu de Lunéville */
+  --bleu-encre:#132F68;
+  --bleu-2:#3C66B8;
+  --bleu-pale:#DCE4F3;
+  --bleu-voile:#EEF2FA;
+  --beurre:#F5D45E;      /* jaune beurre */
+  --beurre-pale:#FCEFBF;
+  --kraft:#C9A47B;
+  --kraft-2:#B88F63;
+  --texte:#132F68;
+  --texte-2:#41567E;
+  --vert:#1F7A4A;
+  --rouge:#B23A2E;
+  --gout:max(16px, env(safe-area-inset-left));
+  --goutd:max(16px, env(safe-area-inset-right));
+  --large:1240px;
+  --f-titre:'Josefin Sans','Futura','Century Gothic','Avenir Next',system-ui,sans-serif;
+  --f-texte:'Newsreader','Iowan Old Style','Georgia','Times New Roman',serif;
+  --trait:2.2px;
+  --ressort:cubic-bezier(.34,1.56,.64,1);
+  --doux:cubic-bezier(.2,.7,.2,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .07 0 0 0 0 .18 0 0 0 0 .41 0 0 0 .045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --fibres:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='k'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .55' numOctaves='3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .22 0 0 0 0 .1 0 0 0 .28 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23k)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:84px}
+body{margin:0;overflow-x:clip;background:var(--farine) var(--grain);color:var(--texte);font-family:var(--f-texte);font-size:clamp(1.05rem,.98rem + .3vw,1.2rem);line-height:1.55;font-optical-sizing:auto}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:700;line-height:1;margin:0;letter-spacing:.02em}
+p{margin:0}
+.ent{width:100%;max-width:calc(var(--large) + 64px);margin-inline:auto;padding-left:var(--gout);padding-right:var(--goutd)}
+@media (min-width:900px){.ent{padding-left:max(32px,env(safe-area-inset-left));padding-right:max(32px,env(safe-area-inset-right))}}
+.evite{position:absolute;left:12px;top:-60px;z-index:100;background:var(--bleu);color:#fff;padding:12px 18px;font-family:var(--f-titre);font-weight:600;text-decoration:none}
+.evite:focus{top:12px}
+:focus-visible{outline:3px solid var(--bleu);outline-offset:3px;box-shadow:0 0 0 6px var(--beurre)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* petites capitales d'étiquette */
+.cap{font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem}
+.ital{font-family:var(--f-texte);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0}
+
+/* boutons façon étiquette imprimée */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:52px;padding:.85em 1.4em .7em;font-family:var(--f-titre);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.86rem;text-decoration:none;border:2px solid var(--bleu);transition:transform .25s var(--ressort),box-shadow .25s var(--doux),background .2s}
+.btn--plein{background:var(--bleu);color:#fff;box-shadow:5px 5px 0 var(--beurre)}
+.btn--plein:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--beurre)}
+.btn--plein:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--beurre)}
+.btn--trait{background:var(--papier);color:var(--bleu)}
+.btn--trait:hover{background:var(--beurre-pale)}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ================= EN-TÊTE ================= */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(251,250,247,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--bleu);box-shadow:0 3px 0 -1px var(--farine),0 4px 0 -1px var(--bleu)}
+.hdr .ent{display:flex;align-items:center;gap:20px;height:74px}
+.marque{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.marque__tampon{width:52px;height:52px;flex:none;color:var(--bleu);transition:transform .8s var(--doux)}
+.marque:hover .marque__tampon{transform:rotate(-40deg)}
+.marque__n{display:block;font-family:var(--f-titre);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:1.02rem;line-height:1.1;padding-top:3px}
+.marque__v{display:block;font-style:italic;font-size:.92rem;color:var(--texte-2);line-height:1.2}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.76rem;text-decoration:none;padding:12px 12px 10px;background:linear-gradient(var(--beurre),var(--beurre)) 0 88%/0 38% no-repeat;transition:background-size .3s var(--doux)}
+.nav a:hover{background-size:100% 38%}
+.hdr__tel{font-family:var(--f-titre);font-weight:700;letter-spacing:.06em;text-decoration:none;white-space:nowrap;border:2px solid var(--bleu);padding:10px 14px 8px;font-size:.92rem}
+.hdr__tel:hover{background:var(--bleu);color:#fff}
+.burger{display:none;margin-left:auto;width:48px;height:48px;border:2px solid var(--bleu);background:var(--papier);color:var(--bleu);position:relative;cursor:pointer}
+.burger span{position:absolute;left:11px;right:11px;height:2.5px;background:currentColor;transition:transform .35s var(--ressort),opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21.5px}.burger span:nth-child(3){top:28px;right:19px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);right:11px}
+.menu-mob{position:fixed;left:0;right:0;top:74px;bottom:0;background:var(--bleu) var(--grain);color:#fff;padding:28px var(--goutd) calc(100px + env(safe-area-inset-bottom)) var(--gout);display:flex;flex-direction:column;gap:2px;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .4s cubic-bezier(.7,0,.2,1),visibility 0s .4s;overflow:auto}
+.menu-mob.ouvert{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .45s cubic-bezier(.7,0,.2,1)}
+.menu-mob a{font-family:var(--f-titre);font-weight:700;text-transform:uppercase;font-size:clamp(1.6rem,8vw,2.3rem);letter-spacing:.04em;text-decoration:none;padding:14px 0 10px;border-bottom:1px solid rgba(255,255,255,.25);display:flex;justify-content:space-between;align-items:center}
+.menu-mob a::after{content:"";width:12px;height:12px;border-top:2.5px solid var(--beurre);border-right:2.5px solid var(--beurre);transform:rotate(45deg)}
+.menu-mob p{margin-top:auto;padding-top:28px;font-style:italic;color:var(--beurre-pale)}
+
+/* ================= OUVERTURE ================= */
+.ouv{position:relative;padding:clamp(28px,5vw,64px) 0 clamp(40px,6vw,80px);overflow:hidden}
+.ouv .ent{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);grid-template-areas:"titre visuel" "texte visuel";column-gap:clamp(24px,4vw,64px);align-items:center}
+.ouv__titre{grid-area:titre;align-self:end}
+.ouv__texte{grid-area:texte;align-self:start}
+.ouv__visuel{grid-area:visuel;position:relative}
+.etiq{display:inline-flex;align-items:center;gap:10px;background:var(--kraft) var(--fibres);color:var(--bleu-encre);padding:9px 18px 7px 30px;position:relative;clip-path:polygon(14px 0,100% 0,100% 100%,14px 100%,0 50%)}
+.etiq::before{content:"";position:absolute;left:14px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;background:var(--farine);box-shadow:inset 0 0 0 1.5px var(--kraft-2)}
+h1{font-size:clamp(3.1rem,12.6vw,7.4rem);text-transform:uppercase;line-height:.9;letter-spacing:.01em;margin-top:22px;color:var(--bleu)}
+h1 .l{display:block}
+h1 .l2{display:flex;align-items:center;gap:.25em;font-size:.36em;line-height:1;margin:.12em 0 .2em}
+h1 .l2 i{font-family:var(--f-texte);font-style:italic;font-weight:400;text-transform:none;letter-spacing:0;font-size:1.9em;color:var(--bleu-encre)}
+h1 .l2::before,h1 .l2::after{content:"";flex:1;height:2px;background:var(--bleu);max-width:3.2em}
+h1 .l2::before{max-width:.9em}
+h1 .surl{position:relative;z-index:0}
+h1 .surl::after{content:"";position:absolute;z-index:-1;left:-.04em;right:-.04em;bottom:.08em;height:.3em;background:var(--beurre);transform-origin:left;transform:scaleX(var(--s,1));transition:transform .9s var(--doux) .9s}
+.chapo{font-size:clamp(1.2rem,1.05rem + .6vw,1.5rem);line-height:1.45;max-width:30ch;margin-top:26px}
+.chapo em{font-style:italic;color:var(--bleu)}
+.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.etat-pastille{display:inline-flex;align-items:center;gap:10px;margin-top:24px;font-family:var(--f-titre);font-weight:600;font-size:.86rem;letter-spacing:.06em;padding:8px 14px 6px;border:1.5px dashed var(--bleu);background:var(--papier)}
+.etat::before{content:"";display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--texte-2);margin-right:10px;vertical-align:1px}
+.etat--oui::before{background:var(--vert);box-shadow:0 0 0 0 rgba(31,122,74,.5);animation:pouls 2s infinite}
+.etat--non::before{background:var(--rouge)}
+@keyframes pouls{70%{box-shadow:0 0 0 9px rgba(31,122,74,0)}100%{box-shadow:0 0 0 0 rgba(31,122,74,0)}}
+.garanties{display:flex;flex-wrap:wrap;gap:8px 18px;margin:28px 0 0;padding:0;list-style:none}
+.garanties li{display:flex;align-items:center;gap:8px;font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--texte-2)}
+.garanties li::before{content:"";width:9px;height:9px;background:var(--beurre);border:1.5px solid var(--bleu);transform:rotate(45deg)}
+
+.assiette-cadre{position:relative;width:min(100%,560px);margin-inline:auto;aspect-ratio:1}
+.soleil{position:absolute;inset:-4% -8% auto auto;width:62%;aspect-ratio:1;border-radius:50%;background:var(--beurre);transform:translate3d(0,var(--py,0px),0)}
+.soleil::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px dotted var(--bleu)}
+.assiette{position:relative;width:100%;height:100%;color:var(--bleu);filter:drop-shadow(10px 14px 0 var(--bleu-pale))}
+.assiette .fond{fill:var(--papier)}
+.assiette .t{fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+.assiette .fleur,.assiette .pointille{fill:currentColor}
+.assiette .fleur circle{fill:var(--beurre);stroke:currentColor;stroke-width:1.5}
+.assiette .brin path{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.assiette .brin path+path{fill:currentColor;stroke:none}
+.assiette .brin circle{fill:currentColor}
+.rot{transform-box:view-box;transform-origin:50% 50%}
+.croissant path{fill:var(--papier);stroke:var(--bleu);stroke-width:var(--trait);stroke-linejoin:round;stroke-linecap:round}
+.croissant .tr{fill:none;stroke-width:1.6}
+.croissant .pointe{fill:none}
+.assiette .croissant .lobe path:first-child{fill:var(--beurre-pale)}
+.vapeur path{fill:none;stroke:var(--bleu-2);stroke-width:2;stroke-linecap:round;stroke-dasharray:4 7}
+.etiquette-pend{position:absolute;right:-2%;bottom:9%;background:var(--papier);border:2px solid var(--bleu);padding:12px 16px 10px 26px;transform:rotate(-8deg);transform-origin:100% 0;box-shadow:4px 4px 0 var(--kraft);clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%);text-align:left}
+.etiquette-pend::before{content:"";position:absolute;left:12px;top:50%;width:8px;height:8px;margin-top:-4px;border-radius:50%;border:2px solid var(--bleu)}
+.etiquette-pend b{display:block;font-family:var(--f-titre);text-transform:uppercase;letter-spacing:.14em;font-size:.82rem}
+.etiquette-pend span{font-style:italic;font-size:.95rem}
+.tampon-tourne{position:absolute;left:-3%;bottom:2%;width:28%;color:var(--bleu)}
+.tampon-tourne svg{animation:tourne 26s linear infinite}
+.tampon-tourne text{font-family:var(--f-titre);font-weight:700;font-size:12.5px;letter-spacing:.22em;fill:currentColor}
+@keyframes tourne{to{transform:rotate(360deg)}}
+
+/* entrée orchestrée */
+.js .entre{opacity:0;transform:translateY(22px)}
+.js.pret .entre{opacity:1;transform:none;transition:opacity .8s var(--doux) var(--d,0s),transform .9s var(--doux) var(--d,0s)}
+.js h1 .surl{--s:0}
+.js.pret h1 .surl{--s:1}
+.js .assiette .rot{transform:rotate(-30deg) scale(.86);opacity:0}
+.js.pret .assiette .rot{transform:none;opacity:1;transition:transform 1.4s var(--ressort) .25s,opacity .6s .25s}
+.js .soleil{scale:.2;opacity:0}
+.js.pret .soleil{scale:1;opacity:1;transition:scale 1.1s var(--ressort) .1s,opacity .4s .1s}
+.js .etiquette-pend{transform:rotate(-40deg) translateY(-20px);opacity:0}
+.js.pret .etiquette-pend{transform:rotate(-8deg);opacity:1;transition:transform 1.1s var(--ressort) 1.2s,opacity .3s 1.2s}
+
+/* ================= RUBAN « SORTI DU FOUR » ================= */
+.ruban-zone{position:relative;overflow:hidden;padding:18px 0;margin-top:-10px}
+.ruban{display:flex;align-items:stretch;background:var(--bleu);color:#fff;transform:rotate(-1.6deg);margin:0 -20px;border-top:2px solid var(--bleu-encre);border-bottom:2px solid var(--bleu-encre);box-shadow:0 6px 0 var(--beurre)}
+.ruban__fixe{flex:none;display:flex;flex-direction:column;justify-content:center;gap:2px;background:var(--beurre);color:var(--bleu-encre);padding:12px 22px 10px calc(20px + var(--gout));position:relative;z-index:1;clip-path:polygon(0 0,100% 0,calc(100% - 16px) 100%,0 100%);padding-right:36px}
+.ruban__fixe b{font-family:var(--f-titre);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:.95rem;white-space:nowrap}
+.ruban__fixe span{font-style:italic;font-size:.95rem;white-space:nowrap}
+.ruban__defile{overflow:hidden;flex:1;display:flex;align-items:center;mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
+.ruban__piste{display:flex;flex:none;animation:defile 46s linear infinite}
+.ruban:hover .ruban__piste{animation-play-state:paused}
+.ruban__piste ul{display:flex;flex:none;margin:0;padding:0;list-style:none}
+.ruban__piste li{display:flex;align-items:center;gap:14px;white-space:nowrap;padding:14px 22px 12px;font-family:var(--f-titre);font-weight:400;font-size:1.02rem;letter-spacing:.06em;text-transform:uppercase}
+.ruban__piste li strong{color:var(--beurre);font-weight:700}
+.ruban__piste li em{font-family:var(--f-texte);text-transform:none;letter-spacing:0;font-size:1.12rem}
+.ruban__piste li::after{content:"";width:16px;height:16px;margin-left:22px;background:var(--beurre);clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%)}
+.ruban__piste li.passe{opacity:.62}
+.ruban__piste li.derniere strong{background:var(--beurre);color:var(--bleu-encre);padding:3px 6px 1px}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ================= SECTIONS ================= */
+.sec{padding:clamp(64px,9vw,128px) 0}
+.tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 48px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.tete h2{font-size:clamp(2.3rem,1.6rem + 3.6vw,4.6rem);text-transform:uppercase;color:var(--bleu);line-height:.92}
+.tete h2 i{display:block;font-family:var(--f-texte);font-style:italic;font-weight:400;text-transform:none;font-size:.62em;letter-spacing:0;color:var(--bleu-encre);margin-top:.15em}
+.tete p{max-width:42ch;color:var(--texte-2)}
+.tete .cap{display:block;margin-bottom:14px;color:var(--texte-2)}
+
+/* révélations */
+.js .rv{opacity:0;transform:translateY(28px)}
+.js .rv.vu{opacity:1;transform:none;transition:opacity .8s var(--doux) var(--d,0s),transform .9s var(--doux) var(--d,0s)}
+
+/* ================= VITRINE ================= */
+.vitrine{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));border-top:2px solid var(--bleu);border-left:2px solid var(--bleu);background:var(--papier)}
+.prod{grid-column:span 4;border-right:2px solid var(--bleu);border-bottom:2px solid var(--bleu);position:relative;display:flex;flex-direction:column;background:var(--papier);isolation:isolate}
+.prod::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle,var(--bleu-pale) 1.6px,transparent 2.2px) 0 0/20px 20px;opacity:0;transition:opacity .4s}
+.prod.on::before{opacity:1}
+.p-baguette{grid-column:span 8}
+.prod__btn{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;padding:clamp(18px,3vw,36px) clamp(14px,2.4vw,32px) 8px;position:relative;-webkit-tap-highlight-color:transparent}
+.prod__btn:focus-visible{outline:3px solid var(--bleu);outline-offset:-8px;box-shadow:none}
+.prod__btn svg{width:100%;height:auto;overflow:visible}
+.prod__txt{padding:6px clamp(14px,2.4vw,32px) clamp(18px,2.6vw,30px);margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;border-top:1.5px dashed var(--bleu-pale)}
+.prod h3{font-size:clamp(1.1rem,.9rem + .8vw,1.55rem);text-transform:uppercase;letter-spacing:.06em;padding-top:12px}
+.prod p{font-size:.98rem;color:var(--texte-2);margin-top:6px;font-style:italic;max-width:34ch}
+.astuce{flex:none;font-family:var(--f-titre);font-weight:600;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-2);display:flex;align-items:center;gap:6px}
+.astuce::before{content:"";width:14px;height:14px;border-radius:50%;border:1.5px solid var(--bleu);background:radial-gradient(circle,var(--bleu) 2.5px,transparent 3px);transition:transform .4s var(--ressort)}
+.prod.on .astuce::before{transform:scale(1.4);background-color:var(--beurre)}
+.tampon{position:absolute;top:14px;right:14px;z-index:2;width:clamp(64px,7vw,86px);aspect-ratio:1;border-radius:50%;border:2px solid var(--bleu);display:grid;place-items:center;text-align:center;font-family:var(--f-titre);font-weight:700;text-transform:uppercase;font-size:clamp(.56rem,.5rem + .2vw,.66rem);letter-spacing:.12em;line-height:1.2;color:var(--bleu);transform:rotate(-12deg);background:var(--papier);box-shadow:inset 0 0 0 4px var(--papier),inset 0 0 0 5.5px var(--bleu);transition:transform .5s var(--ressort),background .3s;pointer-events:none}
+.prod.on .tampon{transform:rotate(4deg) scale(1.06);background:var(--beurre);box-shadow:inset 0 0 0 4px var(--beurre),inset 0 0 0 5.5px var(--bleu)}
+
+/* dessins au trait */
+.dessin .c{fill:var(--papier);stroke:var(--bleu);stroke-width:var(--trait);stroke-linejoin:round;stroke-linecap:round;transition:fill .4s}
+.dessin .l{fill:none;stroke:var(--bleu);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dessin .ombre{fill:var(--bleu-voile)}
+.prod.on .dessin .c{fill:var(--beurre-pale)}
+.dessin .vap path{fill:none;stroke:var(--bleu-2);stroke-width:2;stroke-linecap:round;stroke-dasharray:28;stroke-dashoffset:28;opacity:0;transition:stroke-dashoffset .9s var(--doux) .15s,opacity .3s}
+.prod.on .dessin .vap path{stroke-dashoffset:0;opacity:1}
+.prod.on .dessin .vap path:nth-child(2){transition-delay:.3s}
+.prod.on .dessin .vap path:nth-child(3){transition-delay:.45s}
+
+/* baguette : se rompt */
+.b-moitie{transform-box:fill-box;transition:transform .7s var(--ressort)}
+.b-g{transform-origin:100% 60%}.b-d{transform-origin:0% 60%}
+.prod.on .b-g{transform:translate(-16px,4px) rotate(-6deg)}
+.prod.on .b-d{transform:translate(16px,4px) rotate(6deg)}
+.b-mie{fill:var(--beurre-pale);stroke:var(--bleu);stroke-width:1.6;stroke-linejoin:round;opacity:0;transition:opacity .2s .1s}
+.prod.on .b-mie{opacity:1}
+.miette{fill:var(--bleu);opacity:0;transform-box:fill-box;transform-origin:center}
+.prod.on .miette{animation:miette .9s var(--doux) forwards}
+.prod.on .miette:nth-of-type(2){animation-delay:.05s}.prod.on .miette:nth-of-type(3){animation-delay:.12s}.prod.on .miette:nth-of-type(4){animation-delay:.08s}.prod.on .miette:nth-of-type(5){animation-delay:.16s}
+@keyframes miette{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--mx),34px) scale(.6)}}
+
+/* croissant : gonfle */
+.vit-croissant{transform-box:fill-box;transform-origin:50% 70%;transition:transform .7s var(--ressort)}
+.prod.on .vit-croissant{transform:scale(1.14)}
+.vit-croissant .lobe{transform-box:fill-box;transform-origin:50% 60%;transition:transform .6s var(--ressort)}
+.prod.on .vit-croissant .lobe{transform:scale(1.09)}
+.prod.on .vit-croissant .l-in,.prod.on .vit-croissant .l-in2{transition-delay:.08s}
+.prod.on .vit-croissant .l-oe,.prod.on .vit-croissant .l-oe2{transition-delay:.16s;transform:scale(1.12)}
+.prod.on .vit-croissant path{fill:var(--beurre-pale)}
+.prod.on .vit-croissant .tr,.prod.on .vit-croissant .pointe{fill:none}
+.vit-croissant path{transition:fill .4s}
+.souffle path{fill:none;stroke:var(--bleu);stroke-width:2;stroke-linecap:round;opacity:0;transform-box:fill-box;transform-origin:center;transition:opacity .3s,transform .6s var(--ressort)}
+.souffle path{transform:scale(.4)}
+.prod.on .souffle path{opacity:1;transform:scale(1);transition-delay:.2s}
+
+/* campagne : la grigne s'ouvre */
+.grigne{fill:var(--beurre);stroke:var(--bleu);stroke-width:1.8;stroke-linejoin:round;transform-box:fill-box;transform-origin:center;transform:scaleY(.08);transition:transform .7s var(--ressort)}
+.prod.on .grigne{transform:scaleY(1)}
+.prod.on .grigne:nth-of-type(2){transition-delay:.1s}.prod.on .grigne:nth-of-type(3){transition-delay:.2s}
+.boule{transform-box:fill-box;transform-origin:50% 100%;transition:transform .7s var(--ressort)}
+.prod.on .boule{transform:scale(1.05,1.08)}
+.farine circle{fill:var(--bleu-2)}
+
+/* éclair : se glace */
+.glace-rect{transform-box:fill-box;transform-origin:0 50%;transform:scaleX(0);transition:transform 1s var(--doux)}
+.prod.on .glace-rect{transform:scaleX(1)}
+.glace-trait{fill:none;stroke:var(--bleu);stroke-width:1.6;stroke-dasharray:5 5}
+.goutte{fill:var(--beurre);stroke:var(--bleu);stroke-width:1.6;transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0);transition:transform .6s var(--ressort) .8s}
+.prod.on .goutte{transform:scaleY(1)}
+.reflet{fill:none;stroke:var(--papier);stroke-width:3;stroke-linecap:round;opacity:0;transition:opacity .3s 1s}
+.prod.on .reflet{opacity:1}
+
+/* tarte : une part sort */
+.t-bord{fill:var(--papier);stroke:var(--bleu);stroke-width:var(--trait);stroke-linejoin:round}
+.t-fond{fill:var(--papier);stroke:var(--bleu);stroke-width:1.6;stroke-dasharray:3 4}
+.t-fruits ellipse{fill:var(--beurre-pale);stroke:var(--bleu);stroke-width:1.6;transition:fill .4s}
+.t-fruits path{fill:none;stroke:var(--bleu);stroke-width:1.3;stroke-linecap:round}
+.prod.on .t-fruits ellipse{fill:var(--beurre)}
+.t-trou{fill:var(--bleu-voile);stroke:var(--bleu);stroke-width:1.6;stroke-linejoin:round;opacity:0;transition:opacity .2s}
+.prod.on .t-trou{opacity:1}
+.t-part{transition:transform .7s var(--ressort)}
+.prod.on .t-part{transform:translate(15px,13px)}
+.t-assiette{fill:none;stroke:var(--bleu);stroke-width:1.6}
+
+/* ================= AU COMPTOIR (prestations) ================= */
+.comptoir{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(18px,2.4vw,32px);margin-top:clamp(48px,6vw,80px);align-items:stretch}
+.lab{position:relative;padding:clamp(26px,3vw,40px) clamp(22px,2.6vw,34px);display:flex;flex-direction:column;gap:12px;transition:transform .45s var(--ressort)}
+.lab:hover{transform:rotate(-1deg) translateY(-4px)}
+.lab h3{font-size:clamp(1.35rem,1.1rem + .9vw,1.9rem);text-transform:uppercase;letter-spacing:.04em}
+.lab .cap{color:inherit;opacity:.85}
+.lab p{font-size:1.05rem}
+.lab--kraft{background:var(--kraft) var(--fibres);color:var(--bleu-encre);clip-path:polygon(22px 0,calc(100% - 22px) 0,100% 22px,100% 100%,0 100%,0 22px);padding-top:56px}
+.lab--kraft::before{content:"";position:absolute;top:18px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--farine);box-shadow:inset 0 0 0 2px var(--kraft-2)}
+.lab--blanc{background:var(--papier);border:2px solid var(--bleu);box-shadow:inset 0 0 0 5px var(--papier),inset 0 0 0 6.5px var(--bleu);text-align:center;align-items:center}
+.lab--blanc .filet{width:60%;height:10px;background:radial-gradient(circle,var(--bleu) 1.6px,transparent 2px) 0 50%/10px 10px repeat-x}
+.lab--beurre{background:var(--beurre);color:var(--bleu-encre);border-radius:0 0 50% 50%/0 0 14% 14%;padding-bottom:clamp(40px,5vw,60px)}
+.lab--beurre .rond{position:absolute;right:16px;bottom:-22px;width:92px;height:92px;color:var(--bleu);transform:rotate(14deg)}
+.lab--beurre .rond text{font-family:var(--f-titre);font-weight:700;font-size:11px;letter-spacing:.18em;fill:currentColor}
+
+/* ================= PRÉPARER UNE COMMANDE ================= */
+.prep{background:var(--kraft) var(--fibres);color:var(--bleu-encre);position:relative}
+.prep::before,.prep::after{content:"";position:absolute;left:0;right:0;height:14px;background:radial-gradient(circle at 7px 0,var(--farine) 6px,transparent 6.5px) 0 0/14px 14px repeat-x}
+.prep::before{top:0}
+.prep::after{bottom:0;transform:scaleY(-1)}
+.prep .tete h2,.prep .tete h2 i{color:var(--bleu-encre)}
+.prep .tete p,.prep .tete .cap{color:var(--bleu-encre)}
+.tickets{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,2.6vw,36px)}
+.ticket{background:var(--papier);padding:clamp(24px,3vw,36px) clamp(20px,2.4vw,30px) clamp(26px,3vw,36px);position:relative;-webkit-mask:radial-gradient(circle at 0 50%,transparent 11px,#000 11.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 11px,#000 11.5px) right/51% 100% no-repeat;mask:radial-gradient(circle at 0 50%,transparent 11px,#000 11.5px) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 11px,#000 11.5px) right/51% 100% no-repeat;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.ticket:nth-child(2){transform:rotate(1.2deg) translateY(14px)}
+.ticket:nth-child(3){transform:rotate(-.8deg)}
+.ticket h3{font-size:1.35rem;text-transform:uppercase;letter-spacing:.05em;color:var(--bleu);margin-top:18px}
+.ticket p{margin-top:10px;color:var(--texte-2)}
+.ticket hr{border:0;border-top:2px dashed var(--bleu-pale);margin:20px 0 0}
+.ticket .pied{display:block;margin-top:12px;font-family:var(--f-titre);font-weight:600;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--texte-2)}
+.tamp{display:inline-grid;place-items:center;width:96px;height:96px;border-radius:50%;border:3px solid var(--bleu);color:var(--bleu);font-family:var(--f-titre);font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:1rem;transform:rotate(-14deg);box-shadow:inset 0 0 0 5px var(--papier),inset 0 0 0 7px var(--bleu);position:relative;background:var(--papier)}
+.tamp::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--grain);mix-blend-mode:screen;opacity:.9}
+.ticket:nth-child(2) .tamp{transform:rotate(9deg)}
+.ticket:nth-child(3) .tamp{transform:rotate(-4deg);background:var(--beurre);box-shadow:inset 0 0 0 5px var(--beurre),inset 0 0 0 7px var(--bleu)}
+.js .ticket.rv .tamp{opacity:0;scale:1.9}
+.js .ticket.rv.vu .tamp{opacity:1;scale:1;transition:scale .5s cubic-bezier(.5,0,.75,0) calc(var(--d,0s) + .45s),opacity .2s calc(var(--d,0s) + .45s)}
+.js .ticket.rv.vu{animation:secousse .25s calc(var(--d,0s) + .9s)}
+@keyframes secousse{50%{translate:0 3px}}
+.prep__cta{display:flex;flex-wrap:wrap;align-items:center;gap:18px 28px;margin-top:clamp(40px,5vw,64px)}
+.prep__cta p{font-style:italic;font-size:1.1rem;max-width:40ch}
+.prep .btn--plein{box-shadow:5px 5px 0 var(--bleu-encre);background:var(--bleu)}
+.prep .btn--plein:hover{box-shadow:8px 8px 0 var(--bleu-encre)}
+
+/* ================= HORAIRES & ACCÈS ================= */
+.acces{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.plaque{background:var(--papier);border:2px solid var(--bleu);box-shadow:inset 0 0 0 6px var(--papier),inset 0 0 0 7.5px var(--bleu),10px 10px 0 var(--bleu-pale);padding:clamp(26px,3.4vw,44px)}
+.plaque h3{font-size:1.4rem;text-transform:uppercase;letter-spacing:.08em;color:var(--bleu)}
+.plaque .etat{display:block;margin-top:14px;font-family:var(--f-titre);font-weight:600;letter-spacing:.04em}
+.jours{margin:22px 0 0;padding:0}
+.jours div{display:flex;align-items:baseline;gap:10px;padding:10px 10px 8px;margin:0 -10px}
+.jours dt{font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.12em;font-size:.84rem}
+.jours dd{margin:0 0 0 auto;font-variant-numeric:tabular-nums;white-space:nowrap}
+.jours div::after{content:"";order:1;flex:1;border-bottom:2px dotted var(--bleu-pale);min-width:12px}
+.jours dt{order:0}.jours dd{order:2}
+.jours .ferme dd{font-style:italic;color:var(--texte-2)}
+.jours .auj{background:var(--beurre)}
+.jours .auj dt::after{content:" · aujourd’hui";text-transform:none;letter-spacing:0;font-family:var(--f-texte);font-style:italic;font-weight:400}
+.plaque .note{margin-top:20px;font-size:.98rem;font-style:italic;color:var(--texte-2)}
+.carte{position:relative;border:2px solid var(--bleu);background:var(--papier)}
+.carte svg{width:100%;height:auto}
+.carte .rue{fill:none;stroke:var(--bleu-pale);stroke-linecap:round}
+.carte .rue-b{fill:none;stroke:var(--bleu);stroke-linecap:round}
+.carte .ilot{fill:var(--bleu-voile);stroke:var(--bleu-pale);stroke-width:1.5}
+.carte .eau{fill:var(--bleu-pale)}
+.carte .vague{fill:none;stroke:var(--bleu-2);stroke-width:1.5;stroke-linecap:round}
+.carte text{font-family:var(--f-titre);font-weight:600;letter-spacing:.14em;text-transform:uppercase;fill:var(--texte-2);font-size:12px}
+.carte .tram{fill:none;stroke:var(--bleu-2);stroke-width:3;stroke-dasharray:2 7;stroke-linecap:round}
+.carte .ici-onde{fill:none;stroke:var(--bleu);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:onde 2.4s var(--doux) infinite}
+@keyframes onde{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.4);opacity:0}}
+.carte__pied{display:flex;flex-wrap:wrap;gap:14px 20px;align-items:center;justify-content:space-between;padding:18px 20px;border-top:2px solid var(--bleu)}
+.carte__pied address{font-style:normal}
+.carte__pied address b{display:block;font-family:var(--f-titre);text-transform:uppercase;letter-spacing:.1em;font-size:.95rem}
+
+/* ================= CONTACT ================= */
+.ctc{background:var(--bleu) var(--grain);color:#fff}
+.ctc .ent{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,72px);align-items:start}
+.ctc h2{font-size:clamp(2.3rem,1.6rem + 3.4vw,4.4rem);text-transform:uppercase;line-height:.92}
+.ctc h2 i{display:block;font-family:var(--f-texte);font-style:italic;font-weight:400;text-transform:none;font-size:.6em;letter-spacing:0;color:var(--beurre);margin-top:.15em}
+.ctc__txt p{margin-top:22px;max-width:36ch;color:#E6ECF8}
+.ctc__tel{display:block;margin-top:32px;font-family:var(--f-titre);font-weight:700;font-size:clamp(1.9rem,1.4rem + 2vw,2.8rem);letter-spacing:.04em;color:var(--beurre);text-decoration:none}
+.ctc__tel small{display:block;font-family:var(--f-texte);font-style:italic;font-weight:400;font-size:1rem;letter-spacing:0;color:#E6ECF8;margin-bottom:4px}
+.ctc__adr{margin-top:22px;font-style:normal;color:#E6ECF8}
+.bon{background:var(--papier) var(--grain);color:var(--texte);padding:clamp(28px,3.6vw,48px) clamp(20px,3.2vw,44px) clamp(28px,3.4vw,40px);position:relative;box-shadow:12px 12px 0 var(--bleu-encre)}
+.bon::before{content:"";position:absolute;left:0;right:0;top:-9px;height:10px;background:radial-gradient(circle at 6px 10px,var(--papier) 5.5px,transparent 6px) 0 0/12px 10px repeat-x}
+.bon__tete{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding-bottom:16px;border-bottom:2px solid var(--bleu);margin-bottom:8px}
+.bon__tete h3{font-size:1.5rem;text-transform:uppercase;letter-spacing:.08em;color:var(--bleu)}
+.bon__tete span{font-style:italic;color:var(--texte-2);font-size:.95rem}
+.ch{display:block;padding:16px 0 4px;border-bottom:1.5px solid var(--bleu-pale)}
+.ch label,.ch legend{display:block;font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;color:var(--texte-2)}
+.ch input,.ch textarea{width:100%;border:0;background:transparent;font:inherit;color:var(--texte);padding:8px 0 10px;min-height:44px;font-size:1.12rem}
+.ch input:focus,.ch textarea:focus{outline:none}
+.ch:focus-within{border-bottom-color:var(--bleu);background:linear-gradient(transparent 70%,var(--beurre-pale) 70%)}
+.ch textarea{resize:vertical;min-height:110px;background:repeating-linear-gradient(transparent 0 33px,var(--bleu-pale) 33px 34px);line-height:34px;padding-top:0}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+fieldset.ch{border:0;border-bottom:1.5px solid var(--bleu-pale);margin:0;padding:16px 0 14px;min-width:0}
+.choix{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.choix input{position:absolute;opacity:0;width:1px;height:1px}
+.choix label{font-family:var(--f-titre);font-weight:600;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bleu);border:2px solid var(--bleu);padding:12px 14px 9px;cursor:pointer;min-height:44px;display:flex;align-items:center;transition:background .2s,transform .3s var(--ressort)}
+.choix input:checked+label{background:var(--bleu);color:#fff;transform:rotate(-2deg)}
+.choix input:focus-visible+label{outline:3px solid var(--bleu);outline-offset:3px;box-shadow:0 0 0 6px var(--beurre)}
+.bon__pied{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-top:26px}
+.bon__pied small{font-style:italic;color:var(--texte-2);font-size:.92rem;max-width:30ch}
+.bon .btn--plein{background:var(--bleu)}
+.merci{display:none;margin-top:22px;padding:18px 20px;background:var(--beurre-pale);border:2px solid var(--bleu);align-items:center;gap:16px}
+.merci.vis{display:flex}
+.merci .tamp{width:76px;height:76px;font-size:.72rem;flex:none;animation:frappe .45s cubic-bezier(.5,0,.75,0)}
+@keyframes frappe{from{scale:2;opacity:0}}
+
+/* ================= PIED ================= */
+.pied-page{background:var(--farine);padding:0 0 calc(40px + env(safe-area-inset-bottom))}
+.frise{height:22px;background:radial-gradient(circle at 11px 0,var(--bleu) 10px,transparent 10.5px) 0 0/22px 22px repeat-x,radial-gradient(circle at 11px 0,var(--beurre) 4px,transparent 4.5px) 0 0/22px 22px repeat-x}
+.pied-page .ent{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:32px;padding-top:48px}
+.pied-page h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.2em;margin-bottom:14px;color:var(--texte-2)}
+.pied-page ul{list-style:none;margin:0;padding:0}
+.pied-page li a{display:inline-block;padding:6px 0;text-decoration:none;font-family:var(--f-titre);font-weight:600;text-transform:uppercase;letter-spacing:.1em;font-size:.84rem}
+.pied-page li a:hover{text-decoration:underline;text-decoration-color:var(--beurre);text-decoration-thickness:4px}
+.pied-page .marque__n{font-size:1.3rem}
+.pied-page p{color:var(--texte-2);margin-top:8px;font-size:1rem}
+.mentions{grid-column:1/-1;border-top:1px solid var(--bleu-pale);padding-top:18px;font-size:.9rem;font-style:italic;color:var(--texte-2)}
+
+/* barre d'action mobile */
+.barre{display:none}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1080px){
+  .nav{display:none}
+  .hdr__tel{margin-left:auto}
+}
+@media (max-width:900px){
+  .ouv .ent{grid-template-columns:minmax(0,1fr);grid-template-areas:"titre" "visuel" "texte"}
+  .ouv__visuel{margin:26px 0 8px}
+  .assiette-cadre{width:min(92%,440px)}
+  .tete{grid-template-columns:minmax(0,1fr)}
+  .comptoir{grid-template-columns:minmax(0,1fr)}
+  .lab--beurre{margin-bottom:22px}
+  .tickets{grid-template-columns:minmax(0,1fr);gap:22px}
+  .ticket{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:20px;align-items:center}
+  .ticket .tamp{grid-row:span 3;width:84px;height:84px;font-size:.86rem}
+  .ticket h3{margin-top:0}
+  .ticket hr,.ticket .pied{grid-column:2}
+  .ticket:nth-child(2){transform:rotate(.8deg)}
+  .acces{grid-template-columns:minmax(0,1fr)}
+  .ctc .ent{grid-template-columns:minmax(0,1fr)}
+  .pied-page .ent{grid-template-columns:1fr 1fr}
+  .pied-page .ent>div:first-child{grid-column:1/-1}
+}
+@media (max-width:720px){
+  .hdr .ent{height:66px;gap:12px}
+  .menu-mob{top:66px}
+  .hdr__tel{display:none}
+  .burger{display:block}
+  .marque__tampon{width:44px;height:44px}
+  .marque__n{font-size:.9rem}
+  .marque__v{font-size:.84rem}
+  html{scroll-padding-top:76px}
+  .vitrine{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .prod{grid-column:span 1}
+  .p-baguette{grid-column:span 2}
+  .prod__txt{flex-direction:column;align-items:flex-start;gap:8px}
+  .prod p{font-size:.92rem}
+  .tampon{top:8px;right:8px;width:58px;font-size:.5rem}
+  .p-baguette .tampon{width:66px}
+  .prod__btn{padding-top:44px}
+  .p-baguette .prod__btn{padding-top:28px}
+  .ruban__fixe{padding:10px 26px 8px calc(16px + var(--gout))}
+  .ruban__fixe b{font-size:.8rem}.ruban__fixe span{font-size:.86rem}
+  .ruban__piste li{font-size:.9rem;padding:12px 16px 10px}
+  .duo{grid-template-columns:minmax(0,1fr)}
+  .actions .btn{flex:1 1 100%}
+  .barre{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;z-index:60;left:0;right:0;bottom:0;padding:10px var(--goutd) calc(10px + env(safe-area-inset-bottom)) var(--gout);background:rgba(251,250,247,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:2px solid var(--bleu);transform:translateY(110%);transition:transform .45s var(--ressort)}
+  .barre.vis{transform:none}
+  .barre a{min-height:50px;font-size:.78rem;padding:.8em .6em .6em;letter-spacing:.1em}
+  .barre .btn--plein{box-shadow:3px 3px 0 var(--beurre)}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .pied-page .ent{grid-template-columns:minmax(0,1fr)}
+  .etiquette-pend{right:-1%;bottom:4%;padding:9px 12px 7px 24px}
+  .etiquette-pend b{font-size:.7rem}.etiquette-pend span{font-size:.85rem}
+  .bon{box-shadow:7px 7px 0 var(--bleu-encre)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important;scroll-behavior:auto!important}
+  .ruban__defile{overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<a class="evite" href="#principal">Aller au contenu</a>
+
+<header class="hdr">
+  <div class="ent">
+    <a class="marque" href="#principal" aria-label="Le Fournil de la Craffe, accueil">
+      <svg class="marque__tampon" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><path id="cercle-logo" d="M50 50 m-35 0 a35 35 0 1 1 70 0 a35 35 0 1 1 -70 0"/></defs>
+        <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="50" cy="50" r="24" fill="#F5D45E" stroke="currentColor" stroke-width="2"/>
+        <text font-family="Josefin Sans, sans-serif" font-weight="700" font-size="11" letter-spacing="2.2" fill="currentColor"><textPath href="#cercle-logo">FOURNIL · CRAFFE · NANCY ·</textPath></text>
+        <path d="M38 56 C38 46 44 42 50 42 C56 42 62 46 62 56 Z" fill="#fff" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M44 50 l3 -4 M50 50 l3 -4 M56 50 l2 -3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span><span class="marque__n">Le Fournil de la Craffe</span><span class="marque__v">boulangerie · pâtisserie · Nancy</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#boutique">La boutique</a>
+      <a href="#commande">Préparer une commande</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="hdr__tel" href="#contact">06 XX XX XX XX</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mob" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="menu-mob" id="menu-mob" aria-label="Navigation mobile">
+    <a href="#boutique">La boutique</a>
+    <a href="#commande">Préparer une commande</a>
+    <a href="#horaires">Horaires et accès</a>
+    <a href="#contact">Contact</a>
+    <p>XX rue de l'Exemple, 54000 Nancy · 06 XX XX XX XX</p>
+  </nav>
+</header>
+
+<main id="principal">
+
+<!-- ================= OUVERTURE ================= -->
+<section class="ouv" aria-labelledby="titre">
+  <div class="ent">
+    <div class="ouv__titre">
+      <p class="etiq cap entre" style="--d:.1s">Boulangerie · Pâtisserie · Nancy</p>
+      <h1 id="titre" class="entre" style="--d:.25s"><span class="l">Le <span class="surl">Fournil</span></span><span class="l l2"><i>de la</i></span><span class="l">Craffe</span></h1>
+    </div>
+    <div class="ouv__visuel">
+      <div class="assiette-cadre">
+        <div class="soleil" aria-hidden="true"></div>
+        <svg class="assiette" viewBox="0 0 520 520" role="img" aria-labelledby="assiette-t">
+          <title id="assiette-t">Un croissant posé sur une assiette de faïence à décor bleu</title>
+          <g class="rot">
+            <circle class="fond" cx="260" cy="260" r="252"/>
+            <circle class="t" cx="260" cy="260" r="250" stroke-width="3"/>
+            <circle class="t" cx="260" cy="260" r="242" stroke-width="1.4"/>
+            <g class="fleur" transform="rotate(0.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(22.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(45.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(67.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(90.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(112.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(135.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(157.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(180.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(202.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(225.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(247.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(270.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(292.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="fleur" transform="rotate(315.0 260 260)"><circle cx="260" cy="40" r="3.6"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(0 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(72 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(144 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(216 260 40)"/><ellipse cx="260" cy="31.5" rx="3.6" ry="7" transform="rotate(288 260 40)"/></g><g class="brin" transform="rotate(337.5 260 260)"><path d="M246 46 Q258 30 276 34"/><path d="M254 38 q-6 -10 2 -16 q4 9 -2 16z"/><path d="M266 34 q2 -11 11 -11 q-1 9 -11 11z"/><circle cx="246" cy="47" r="2"/></g><g class="pointille"><circle cx="464" cy="260" r="1.6"/><circle cx="462.9" cy="281.3" r="1.6"/><circle cx="459.5" cy="302.4" r="1.6"/><circle cx="454" cy="323" r="1.6"/><circle cx="446.4" cy="343" r="1.6"/><circle cx="436.7" cy="362" r="1.6"/><circle cx="425" cy="379.9" r="1.6"/><circle cx="411.6" cy="396.5" r="1.6"/><circle cx="396.5" cy="411.6" r="1.6"/><circle cx="379.9" cy="425" r="1.6"/><circle cx="362" cy="436.7" r="1.6"/><circle cx="343" cy="446.4" r="1.6"/><circle cx="323" cy="454" r="1.6"/><circle cx="302.4" cy="459.5" r="1.6"/><circle cx="281.3" cy="462.9" r="1.6"/><circle cx="260" cy="464" r="1.6"/><circle cx="238.7" cy="462.9" r="1.6"/><circle cx="217.6" cy="459.5" r="1.6"/><circle cx="197" cy="454" r="1.6"/><circle cx="177" cy="446.4" r="1.6"/><circle cx="158" cy="436.7" r="1.6"/><circle cx="140.1" cy="425" r="1.6"/><circle cx="123.5" cy="411.6" r="1.6"/><circle cx="108.4" cy="396.5" r="1.6"/><circle cx="95" cy="379.9" r="1.6"/><circle cx="83.3" cy="362" r="1.6"/><circle cx="73.6" cy="343" r="1.6"/><circle cx="66" cy="323" r="1.6"/><circle cx="60.5" cy="302.4" r="1.6"/><circle cx="57.1" cy="281.3" r="1.6"/><circle cx="56" cy="260" r="1.6"/><circle cx="57.1" cy="238.7" r="1.6"/><circle cx="60.5" cy="217.6" r="1.6"/><circle cx="66" cy="197" r="1.6"/><circle cx="73.6" cy="177" r="1.6"/><circle cx="83.3" cy="158" r="1.6"/><circle cx="95" cy="140.1" r="1.6"/><circle cx="108.4" cy="123.5" r="1.6"/><circle cx="123.5" cy="108.4" r="1.6"/><circle cx="140.1" cy="95" r="1.6"/><circle cx="158" cy="83.3" r="1.6"/><circle cx="177" cy="73.6" r="1.6"/><circle cx="197" cy="66" r="1.6"/><circle cx="217.6" cy="60.5" r="1.6"/><circle cx="238.7" cy="57.1" r="1.6"/><circle cx="260" cy="56" r="1.6"/><circle cx="281.3" cy="57.1" r="1.6"/><circle cx="302.4" cy="60.5" r="1.6"/><circle cx="323" cy="66" r="1.6"/><circle cx="343" cy="73.6" r="1.6"/><circle cx="362" cy="83.3" r="1.6"/><circle cx="379.9" cy="95" r="1.6"/><circle cx="396.5" cy="108.4" r="1.6"/><circle cx="411.6" cy="123.5" r="1.6"/><circle cx="425" cy="140.1" r="1.6"/><circle cx="436.7" cy="158" r="1.6"/><circle cx="446.4" cy="177" r="1.6"/><circle cx="454" cy="197" r="1.6"/><circle cx="459.5" cy="217.6" r="1.6"/><circle cx="462.9" cy="238.7" r="1.6"/></g>
+            <circle class="t" cx="260" cy="260" r="192" stroke-width="2.4"/>
+            <circle class="t" cx="260" cy="260" r="186" stroke-width="1" stroke-dasharray="2 6"/>
+            <ellipse cx="262" cy="350" rx="140" ry="16" fill="#EEF2FA"/>
+            <g class="vapeur"><path d="M222 168 q-12 -20 0 -40 q12 -20 0 -40"/><path d="M262 160 q-12 -20 0 -40 q12 -20 0 -40"/><path d="M302 168 q-12 -20 0 -40 q12 -20 0 -40"/></g>
+            <g class="croissant" transform="translate(260 282) scale(1.6) translate(-100 -70)"><g class="lobe l-oe"><path d="M52 60 Q34 58 27 73 Q22 89 33 99 Q46 101 58 91 Q48 77 52 60Z"/><path class="tr" d="M34 78 Q42 74 48 80"/></g>
+<g class="lobe l-oe2"><path d="M148 60 Q166 58 173 73 Q178 89 167 99 Q154 101 142 91 Q152 77 148 60Z"/><path class="tr" d="M166 78 Q158 74 152 80"/></g>
+<g class="lobe l-in"><path d="M79 44 Q60 41 50 56 Q45 76 57 91 Q70 98 81 93 Q72 70 79 44Z"/><path class="tr" d="M56 64 Q66 60 74 66"/><path class="tr" d="M56 80 Q66 76 75 82"/></g>
+<g class="lobe l-in2"><path d="M121 44 Q140 41 150 56 Q155 76 143 91 Q130 98 119 93 Q128 70 121 44Z"/><path class="tr" d="M144 64 Q134 60 126 66"/><path class="tr" d="M144 80 Q134 76 125 82"/></g>
+<g class="lobe l-c"><path d="M79 41 Q100 22 121 41 Q131 70 121 94 Q100 104 79 94 Q69 70 79 41Z"/><path class="tr" d="M86 50 Q100 43 114 50"/><path class="tr" d="M83 67 Q100 60 117 67"/><path class="tr" d="M85 84 Q100 78 115 84"/></g>
+<path class="pointe" d="M29 76 Q14 88 17 106 Q24 108 32 99"/><path class="pointe" d="M171 76 Q186 88 183 106 Q176 108 168 99"/></g>
+          </g>
+        </svg>
+        <div class="tampon-tourne" aria-hidden="true">
+          <svg viewBox="0 0 120 120"><defs><path id="cercle-t" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs>
+            <circle cx="60" cy="60" r="58" fill="#FBFAF7" stroke="currentColor" stroke-width="2"/>
+            <text><textPath href="#cercle-t">CUIT ICI · CHAQUE MATIN · </textPath></text>
+            <g fill="currentColor"><circle cx="60" cy="60" r="5" fill="#F5D45E" stroke="currentColor" stroke-width="2"/><ellipse cx="60" cy="47" rx="4.5" ry="8"/><ellipse cx="60" cy="47" rx="4.5" ry="8" transform="rotate(72 60 60)"/><ellipse cx="60" cy="47" rx="4.5" ry="8" transform="rotate(144 60 60)"/><ellipse cx="60" cy="47" rx="4.5" ry="8" transform="rotate(216 60 60)"/><ellipse cx="60" cy="47" rx="4.5" ry="8" transform="rotate(288 60 60)"/></g>
+          </svg>
+        </div>
+        <p class="etiquette-pend"><b>Pur beurre</b><span>feuilleté sur place</span></p>
+      </div>
+    </div>
+    <div class="ouv__texte">
+      <p class="chapo entre" style="--d:.6s">Vous passez, vous goûtez, vous demandez conseil <em>à ceux qui fabriquent et choisissent.</em> Le pain se pétrit ici, les croissants se feuillettent ici.</p>
+      <div class="actions entre" style="--d:.8s">
+        <a class="btn btn--plein" href="#contact">Préparer une commande</a>
+        <a class="btn btn--trait" href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 5 1.5v3c0 1-1 2-2 2C10.5 20 4 13.5 4 5c0-1 1-2 2.5-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>06 XX XX XX XX</a>
+      </div>
+      <p class="etat-pastille entre" style="--d:1s"><span class="etat" data-h='[[420,750],[],[390,1170],[390,1170],[390,1170],[390,1170],[390,1170]]'>Du mardi au samedi, 6 h 30 – 19 h 30</span></p>
+      <ul class="garanties entre" style="--d:1.15s"><li>Levain maison</li><li>Pur beurre</li><li>Cuit sur place</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RUBAN ================= -->
+<div class="ruban-zone" aria-label="Les fournées de la journée" role="region">
+  <div class="ruban">
+    <p class="ruban__fixe" aria-live="polite"><b id="fournee-t">Les fournées</b><span id="fournee-s">de 6 h 30 à 16 h 30</span></p>
+    <div class="ruban__defile">
+      <div class="ruban__piste">
+        <ul id="fournees">
+          <li data-m="390">Sorti du four à <strong>6 h 30</strong> <em>baguettes de tradition</em></li>
+          <li data-m="420">Sorti du four à <strong>7 h 00</strong> <em>croissants, pains au chocolat</em></li>
+          <li data-m="480">Sorti du four à <strong>8 h 00</strong> <em>pains de campagne</em></li>
+          <li data-m="630">Sorti du four à <strong>10 h 30</strong> <em>éclairs et tartes du jour</em></li>
+          <li data-m="705">Sorti du four à <strong>11 h 45</strong> <em>baguettes, deuxième fournée</em></li>
+          <li data-m="990">Sorti du four à <strong>16 h 30</strong> <em>baguettes du soir</em></li>
+        </ul>
+        <ul aria-hidden="true" id="fournees-bis"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= VITRINE ================= -->
+<section class="sec" id="boutique" aria-labelledby="t-bout">
+  <div class="ent">
+    <div class="tete rv">
+      <h2 id="t-bout"><span class="cap">La boutique</span>La vitrine <i>du matin</i></h2>
+      <p>Tout ce qui est posé ici sort de notre four. Passez la souris sur un produit, ou touchez-le : il vous montre ce qu'il sait faire.</p>
+    </div>
+
+    <ul class="vitrine">
+      <!-- baguette -->
+      <li class="prod p-baguette rv">
+        <span class="tampon" aria-hidden="true">Au<br>levain</span>
+        <button class="prod__btn" type="button" aria-pressed="false" aria-label="Animer la baguette de tradition">
+          <svg class="dessin" viewBox="0 0 420 150" aria-hidden="true">
+            <defs>
+              <clipPath id="b-cg"><polygon points="0,0 212,0 204,40 218,58 200,76 214,96 206,150 0,150"/></clipPath>
+              <clipPath id="b-cd"><polygon points="212,0 420,0 420,150 206,150 214,96 200,76 218,58 204,40"/></clipPath>
+
+            </defs>
+            <ellipse class="ombre" cx="212" cy="122" rx="190" ry="10"/>
+            <g class="b-moitie b-g" clip-path="url(#b-cg)"><path class="c" d="M28 82 C26 56 58 48 120 46 L300 41 C360 39 394 50 394 70 C394 92 362 100 300 100 L120 104 C60 106 30 104 28 82Z"/><path class="l" d="M62 86 Q84 62 112 58"/><path class="l" d="M122 82 Q146 58 176 54"/><path class="l" d="M186 80 Q210 56 240 52"/><path class="l" d="M250 78 Q274 54 304 50"/><path class="l" d="M312 76 Q336 54 362 52"/><path class="l" d="M60 98 Q210 108 372 90" stroke-dasharray="3 7"/><path class="b-mie" d="M212 40 L204 40 L218 58 L200 76 L214 96 L206 104 L198 104 L206 96 L192 76 L210 58 L196 42Z"/></g>
+            <g class="b-moitie b-d" clip-path="url(#b-cd)"><path class="c" d="M28 82 C26 56 58 48 120 46 L300 41 C360 39 394 50 394 70 C394 92 362 100 300 100 L120 104 C60 106 30 104 28 82Z"/><path class="l" d="M62 86 Q84 62 112 58"/><path class="l" d="M122 82 Q146 58 176 54"/><path class="l" d="M186 80 Q210 56 240 52"/><path class="l" d="M250 78 Q274 54 304 50"/><path class="l" d="M312 76 Q336 54 362 52"/><path class="l" d="M60 98 Q210 108 372 90" stroke-dasharray="3 7"/><path class="b-mie" d="M204 40 L212 40 L226 58 L208 76 L222 96 L214 104 L206 104 L214 96 L200 76 L218 58Z"/></g>
+            <circle class="miette" style="--mx:-10px" cx="206" cy="70" r="3"/><circle class="miette" style="--mx:12px" cx="210" cy="78" r="2.4"/><circle class="miette" style="--mx:-22px" cx="204" cy="86" r="2"/><circle class="miette" style="--mx:20px" cx="212" cy="62" r="2.2"/><circle class="miette" style="--mx:2px" cx="208" cy="92" r="2.6"/>
+            <g class="vap"><path d="M190 36 q-8 -12 0 -24"/><path d="M212 30 q-8 -12 0 -24"/><path d="M234 36 q-8 -12 0 -24"/></g>
+          </svg>
+        </button>
+        <div class="prod__txt">
+          <div><h3>Baguette de tradition</h3><p>Croûte qui chante, mie crème et alvéolée. Elle se rompt à la main.</p></div>
+          <span class="astuce" aria-hidden="true">Rompre</span>
+        </div>
+      </li>
+      <!-- croissant -->
+      <li class="prod p-croissant rv" style="--d:.1s">
+        <span class="tampon" aria-hidden="true">Pur<br>beurre</span>
+        <button class="prod__btn" type="button" aria-pressed="false" aria-label="Animer le croissant">
+          <svg class="dessin" viewBox="0 0 200 150" aria-hidden="true">
+            <ellipse class="ombre" cx="100" cy="120" rx="78" ry="8"/>
+            <g class="souffle"><path d="M14 52 l-10 -6"/><path d="M186 52 l10 -6"/><path d="M100 14 v-10"/><path d="M50 24 l-6 -8"/><path d="M150 24 l6 -8"/></g>
+            <g class="croissant vit-croissant" transform="translate(0 10)"><g class="lobe l-oe"><path d="M52 60 Q34 58 27 73 Q22 89 33 99 Q46 101 58 91 Q48 77 52 60Z"/><path class="tr" d="M34 78 Q42 74 48 80"/></g>
+<g class="lobe l-oe2"><path d="M148 60 Q166 58 173 73 Q178 89 167 99 Q154 101 142 91 Q152 77 148 60Z"/><path class="tr" d="M166 78 Q158 74 152 80"/></g>
+<g class="lobe l-in"><path d="M79 44 Q60 41 50 56 Q45 76 57 91 Q70 98 81 93 Q72 70 79 44Z"/><path class="tr" d="M56 64 Q66 60 74 66"/><path class="tr" d="M56 80 Q66 76 75 82"/></g>
+<g class="lobe l-in2"><path d="M121 44 Q140 41 150 56 Q155 76 143 91 Q130 98 119 93 Q128 70 121 44Z"/><path class="tr" d="M144 64 Q134 60 126 66"/><path class="tr" d="M144 80 Q134 76 125 82"/></g>
+<g class="lobe l-c"><path d="M79 41 Q100 22 121 41 Q131 70 121 94 Q100 104 79 94 Q69 70 79 41Z"/><path class="tr" d="M86 50 Q100 43 114 50"/><path class="tr" d="M83 67 Q100 60 117 67"/><path class="tr" d="M85 84 Q100 78 115 84"/></g>
+<path class="pointe" d="M29 76 Q14 88 17 106 Q24 108 32 99"/><path class="pointe" d="M171 76 Q186 88 183 106 Q176 108 168 99"/></g>
+          </svg>
+        </button>
+        <div class="prod__txt">
+          <div><h3>Croissant</h3><p>Feuilletage au beurre, tourné à la main.</p></div>
+          <span class="astuce" aria-hidden="true">Gonfler</span>
+        </div>
+      </li>
+      <!-- campagne -->
+      <li class="prod p-campagne rv">
+        <span class="tampon" aria-hidden="true">Longue<br>pousse</span>
+        <button class="prod__btn" type="button" aria-pressed="false" aria-label="Animer le pain de campagne">
+          <svg class="dessin" viewBox="0 0 200 150" aria-hidden="true">
+            <ellipse class="ombre" cx="100" cy="128" rx="80" ry="8"/>
+            <g class="boule">
+              <path class="c" d="M24 118 C18 70 52 40 100 40 C148 40 182 70 176 118 C150 126 50 126 24 118Z"/>
+              <path class="grigne" d="M58 70 Q100 52 142 70 Q100 64 58 70Z"/>
+              <path class="grigne" d="M46 92 Q100 72 154 92 Q100 86 46 92Z"/>
+              <path class="grigne" d="M50 112 Q100 96 150 112 Q100 108 50 112Z"/>
+              <path class="l" d="M58 70 Q100 58 142 70"/><path class="l" d="M46 92 Q100 78 154 92"/><path class="l" d="M50 112 Q100 100 150 112"/>
+              <g class="farine"><circle cx="80" cy="52" r="1.4"/><circle cx="118" cy="50" r="1.2"/><circle cx="100" cy="47" r="1.5"/><circle cx="66" cy="60" r="1.1"/><circle cx="134" cy="58" r="1.3"/><circle cx="90" cy="80" r="1"/><circle cx="114" cy="82" r="1.2"/></g>
+            </g>
+            <g class="vap"><path d="M78 34 q-8 -12 0 -24"/><path d="M100 28 q-8 -12 0 -24"/><path d="M122 34 q-8 -12 0 -24"/></g>
+          </svg>
+        </button>
+        <div class="prod__txt">
+          <div><h3>Pain de campagne</h3><p>Au levain, farine de seigle. Il se garde plusieurs jours.</p></div>
+          <span class="astuce" aria-hidden="true">Grigner</span>
+        </div>
+      </li>
+      <!-- éclair -->
+      <li class="prod p-eclair rv" style="--d:.1s">
+        <span class="tampon" aria-hidden="true">Glacé<br>minute</span>
+        <button class="prod__btn" type="button" aria-pressed="false" aria-label="Animer l'éclair">
+          <svg class="dessin" viewBox="18 18 224 112" aria-hidden="true">
+            <defs><clipPath id="glace-clip"><path d="M36 70 C40 56 56 52 72 52 L190 52 C210 52 224 58 226 72 C212 76 198 70 184 76 C170 82 152 72 136 76 C120 80 102 72 86 76 C70 80 50 74 36 70Z"/></clipPath></defs>
+            <ellipse class="ombre" cx="130" cy="118" rx="104" ry="8"/>
+            <path class="c" d="M30 76 C30 56 50 48 70 48 L190 48 C212 48 230 56 230 78 C230 98 212 106 190 106 L70 106 C48 106 30 98 30 76Z"/>
+            <g clip-path="url(#glace-clip)"><rect class="glace-rect" x="30" y="44" width="200" height="40" fill="#F5D45E"/></g>
+            <path class="glace-trait" d="M36 70 C40 56 56 52 72 52 L190 52 C210 52 224 58 226 72 C212 76 198 70 184 76 C170 82 152 72 136 76 C120 80 102 72 86 76 C70 80 50 74 36 70Z"/>
+            <path class="goutte" d="M152 74 Q152 88 156 92 Q160 88 158 74Z"/>
+            <path class="goutte" d="M96 74 Q95 84 99 87 Q103 84 101 74Z"/>
+            <path class="reflet" d="M80 60 L150 58"/>
+            <path class="l" d="M50 94 Q130 102 210 94" stroke-dasharray="3 6"/>
+          </svg>
+        </button>
+        <div class="prod__txt">
+          <div><h3>Éclair</h3><p>Pâte à choux, crème pâtissière, glaçage fondant.</p></div>
+          <span class="astuce" aria-hidden="true">Glacer</span>
+        </div>
+      </li>
+      <!-- tarte -->
+      <li class="prod p-tarte rv" style="--d:.2s">
+        <span class="tampon" aria-hidden="true">De<br>saison</span>
+        <button class="prod__btn" type="button" aria-pressed="false" aria-label="Animer la tarte aux fruits">
+          <svg class="dessin" viewBox="0 0 200 170" aria-hidden="true">
+            <defs><clipPath id="coin"><path d="M100 84 L185.6 111.8 L169.9 140.6 L145 161.9Z"/></clipPath></defs>
+            <ellipse class="t-assiette" cx="100" cy="92" rx="88" ry="74"/>
+            <g id="tarte-corps"><path class="t-bord" d="M166 84 A11.5 11.5 0 0 1 162.8 104.4 A11.5 11.5 0 0 1 153.4 122.8 A11.5 11.5 0 0 1 138.8 137.4 A11.5 11.5 0 0 1 120.4 146.8 A11.5 11.5 0 0 1 100 150 A11.5 11.5 0 0 1 79.6 146.8 A11.5 11.5 0 0 1 61.2 137.4 A11.5 11.5 0 0 1 46.6 122.8 A11.5 11.5 0 0 1 37.2 104.4 A11.5 11.5 0 0 1 34 84 A11.5 11.5 0 0 1 37.2 63.6 A11.5 11.5 0 0 1 46.6 45.2 A11.5 11.5 0 0 1 61.2 30.6 A11.5 11.5 0 0 1 79.6 21.2 A11.5 11.5 0 0 1 100 18 A11.5 11.5 0 0 1 120.4 21.2 A11.5 11.5 0 0 1 138.8 30.6 A11.5 11.5 0 0 1 153.4 45.2 A11.5 11.5 0 0 1 162.8 63.6 A11.5 11.5 0 0 1 166 84Z"/><circle class="t-fond" cx="100" cy="84" r="55"/><g class="t-fruits"><g transform="translate(140.6 89.7) rotate(98) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(129.5 112.5) rotate(134) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(107.1 124.4) rotate(170) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(82 120.9) rotate(206) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(63.8 103.2) rotate(242) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(59.4 78.3) rotate(278) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(70.5 55.5) rotate(314) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(92.9 43.6) rotate(350) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(118 47.1) rotate(386) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(136.2 64.8) rotate(422) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(119.1 95) rotate(120) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 106) rotate(180) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(80.9 95) rotate(240) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(80.9 73) rotate(300) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 62) rotate(360) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(119.1 73) rotate(420) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 84) rotate(0) scale(0.8)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g></g></g>
+            <path class="t-trou" d="M100 84 L162.8 104.4 A66 66 0 0 1 133 141.2Z"/>
+            <g class="t-part"><g clip-path="url(#coin)"><g><path class="t-bord" d="M166 84 A11.5 11.5 0 0 1 162.8 104.4 A11.5 11.5 0 0 1 153.4 122.8 A11.5 11.5 0 0 1 138.8 137.4 A11.5 11.5 0 0 1 120.4 146.8 A11.5 11.5 0 0 1 100 150 A11.5 11.5 0 0 1 79.6 146.8 A11.5 11.5 0 0 1 61.2 137.4 A11.5 11.5 0 0 1 46.6 122.8 A11.5 11.5 0 0 1 37.2 104.4 A11.5 11.5 0 0 1 34 84 A11.5 11.5 0 0 1 37.2 63.6 A11.5 11.5 0 0 1 46.6 45.2 A11.5 11.5 0 0 1 61.2 30.6 A11.5 11.5 0 0 1 79.6 21.2 A11.5 11.5 0 0 1 100 18 A11.5 11.5 0 0 1 120.4 21.2 A11.5 11.5 0 0 1 138.8 30.6 A11.5 11.5 0 0 1 153.4 45.2 A11.5 11.5 0 0 1 162.8 63.6 A11.5 11.5 0 0 1 166 84Z"/><circle class="t-fond" cx="100" cy="84" r="55"/><g class="t-fruits"><g transform="translate(140.6 89.7) rotate(98) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(129.5 112.5) rotate(134) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(107.1 124.4) rotate(170) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(82 120.9) rotate(206) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(63.8 103.2) rotate(242) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(59.4 78.3) rotate(278) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(70.5 55.5) rotate(314) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(92.9 43.6) rotate(350) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(118 47.1) rotate(386) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(136.2 64.8) rotate(422) scale(1)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(119.1 95) rotate(120) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 106) rotate(180) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(80.9 95) rotate(240) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(80.9 73) rotate(300) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 62) rotate(360) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(119.1 73) rotate(420) scale(0.9)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g><g transform="translate(100 84) rotate(0) scale(0.8)"><ellipse rx="8.5" ry="6.4"/><path d="M-5 -1 Q0 -5 5 -1"/></g></g></g></g></g>
+          </svg>
+        </button>
+        <div class="prod__txt">
+          <div><h3>Tarte du moment</h3><p>Pâte sablée, fruits de la saison, nappage léger.</p></div>
+          <span class="astuce" aria-hidden="true">Servir</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- prestations -->
+    <div class="comptoir">
+      <article class="lab lab--kraft rv">
+        <span class="cap">Au comptoir</span>
+        <h3>Pains</h3>
+        <p>Les pains du quotidien et les pains spéciaux : tradition, campagne, seigle, céréales. Tranchés à la demande.</p>
+      </article>
+      <article class="lab lab--blanc rv" style="--d:.1s">
+        <span class="cap">Au comptoir</span>
+        <h3>Viennoiseries et pâtisseries</h3>
+        <span class="filet" aria-hidden="true"></span>
+        <p>Croissants, tartes, entremets, selon la saison. Les gâteaux de fête se commandent à l'avance.</p>
+      </article>
+      <article class="lab lab--beurre rv" style="--d:.2s">
+        <span class="cap">Et encore</span>
+        <h3>Le reste, de vive voix</h3>
+        <p>Un pain particulier, une pièce pour un repas, une envie précise : demandez au comptoir, on vous dira ce qui est possible.</p>
+        <svg class="rond" viewBox="0 0 100 100" aria-hidden="true"><defs><path id="cercle-r" d="M50 50 m-36 0 a36 36 0 1 1 72 0 a36 36 0 1 1 -72 0"/></defs><circle cx="50" cy="50" r="47" fill="#FBFAF7" stroke="currentColor" stroke-width="2"/><text><textPath href="#cercle-r">DEMANDEZ · ON ÉCOUTE ·</textPath></text><path d="M38 54 q12 10 24 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="41" cy="44" r="2.6" fill="currentColor"/><circle cx="59" cy="44" r="2.6" fill="currentColor"/></svg>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRÉPARER UNE COMMANDE ================= -->
+<section class="sec prep" id="commande" aria-labelledby="t-prep">
+  <div class="ent">
+    <div class="tete rv">
+      <h2 id="t-prep"><span class="cap">Sur commande</span>Préparer <i>une commande</i></h2>
+      <p>Pour un repas, un anniversaire ou simplement être sûr d'avoir votre pain : trois informations suffisent, on s'occupe du reste.</p>
+    </div>
+    <ol class="tickets">
+      <li class="ticket rv">
+        <span class="tamp" aria-hidden="true">Quoi</span>
+        <h3>Ce qu'il vous faut</h3>
+        <p>Les produits, même approximativement : on vous conseillera.</p>
+        <hr><span class="pied">Bon à retirer en boutique</span>
+      </li>
+      <li class="ticket rv" style="--d:.15s">
+        <span class="tamp" aria-hidden="true">Quand</span>
+        <h3>Pour quand</h3>
+        <p>Le jour et l'heure de retrait souhaités.</p>
+        <hr><span class="pied">Bon à retirer en boutique</span>
+      </li>
+      <li class="ticket rv" style="--d:.3s">
+        <span class="tamp" aria-hidden="true">Pour<br>qui</span>
+        <h3>Pour combien</h3>
+        <p>Le nombre de personnes, pour une commande ajustée.</p>
+        <hr><span class="pied">Bon à retirer en boutique</span>
+      </li>
+    </ol>
+    <div class="prep__cta rv">
+      <a class="btn btn--plein" href="#contact">Préparer une commande</a>
+      <p>Vous pouvez aussi la passer au comptoir, ou par téléphone au 06 XX XX XX XX.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORAIRES & ACCÈS ================= -->
+<section class="sec" id="horaires" aria-labelledby="t-hor">
+  <div class="ent">
+    <div class="tete rv">
+      <h2 id="t-hor"><span class="cap">Venir</span>Horaires <i>et accès</i></h2>
+      <p>En plein centre de Nancy, à quelques pas du tram. Le matin, on ouvre tôt : le pain est chaud dès l'ouverture.</p>
+    </div>
+    <div class="acces">
+      <div class="plaque rv">
+        <h3>Ouverture</h3>
+        <p class="etat" id="etat2" data-h='[[420,750],[],[390,1170],[390,1170],[390,1170],[390,1170],[390,1170]]'>Du mardi au samedi, de 6 h 30 à 19 h 30.</p>
+        <dl class="jours" id="jours">
+          <div data-j="1" class="ferme"><dt>Lundi</dt><dd>Fermé</dd></div>
+          <div data-j="2"><dt>Mardi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div data-j="3"><dt>Mercredi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div data-j="4"><dt>Jeudi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div data-j="5"><dt>Vendredi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div data-j="6"><dt>Samedi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div data-j="0"><dt>Dimanche</dt><dd>7 h – 12 h 30</dd></div>
+        </dl>
+        <p class="note">Les jours fériés, les horaires peuvent changer : un coup de fil avant de venir ne coûte rien.</p>
+      </div>
+      <div class="carte rv" style="--d:.15s">
+        <svg viewBox="0 0 600 380" role="img" aria-labelledby="carte-t">
+          <title id="carte-t">Plan simplifié : la boutique se trouve XX rue de l'Exemple, dans le centre de Nancy</title>
+          <rect width="600" height="380" fill="#FBFAF7"/>
+          <path class="eau" d="M520 0 C500 80 560 150 530 230 C505 300 540 340 530 380 L600 380 L600 0Z"/>
+          <path class="vague" d="M548 60 q6 -5 12 0 q6 5 12 0"/><path class="vague" d="M552 180 q6 -5 12 0 q6 5 12 0"/><path class="vague" d="M556 300 q6 -5 12 0 q6 5 12 0"/>
+          <rect class="ilot" x="40" y="30" width="150" height="90"/><rect class="ilot" x="230" y="30" width="110" height="90"/><rect class="ilot" x="380" y="30" width="110" height="140"/>
+          <rect class="ilot" x="40" y="160" width="90" height="170"/><rect class="ilot" x="170" y="200" width="170" height="130"/><rect class="ilot" x="380" y="210" width="110" height="120"/>
+          <path class="rue" stroke-width="24" d="M0 140 L520 140"/><path class="rue" stroke-width="16" d="M210 0 L210 380"/><path class="rue" stroke-width="16" d="M360 0 L360 380"/><path class="rue" stroke-width="14" d="M150 140 L150 380"/><path class="rue" stroke-width="12" d="M0 345 L520 345"/>
+          <path class="rue-b" stroke-width="3" d="M150 180 L150 380" stroke-dasharray="1 0"/>
+          <path class="tram" d="M0 140 L520 140"/>
+          <text x="20" y="128">Tram</text>
+          <text x="236" y="190" transform="rotate(-90 236 190)" style="font-size:11px">Avenue</text>
+          <text x="160" y="368">rue de l'Exemple</text>
+          <text x="476" y="368" style="font-size:11px">Meurthe ↗</text>
+          <rect x="246" y="56" width="60" height="38" fill="#DCE4F3" stroke="#1F4BA0" stroke-width="1.5"/>
+          <text x="254" y="80" style="font-size:10px">Place</text>
+          <g transform="translate(150 262)">
+            <circle class="ici-onde" r="22"/>
+            <circle r="22" fill="#F5D45E" stroke="#1F4BA0" stroke-width="3"/>
+            <path d="M-10 5 C-10 -5 -5 -9 0 -9 C5 -9 10 -5 10 5 Z" fill="#fff" stroke="#1F4BA0" stroke-width="2" stroke-linejoin="round"/>
+          </g>
+          <g transform="translate(184 238)"><rect width="150" height="40" fill="#fff" stroke="#1F4BA0" stroke-width="2"/><text x="12" y="25" style="fill:#132F68;font-size:12px">Le Fournil</text></g>
+        </svg>
+        <div class="carte__pied">
+          <address><b>XX rue de l'Exemple</b>54000 Nancy</address>
+          <a class="btn btn--trait" href="https://www.google.com/maps/search/?api=1&amp;query=XX%20rue%20de%20l%27Exemple%2054000%20Nancy" target="_blank" rel="noopener">Ouvrir l'itinéraire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec ctc" id="contact" aria-labelledby="t-ctc">
+  <div class="ent">
+    <div class="ctc__txt rv">
+      <h2 id="t-ctc">Écrire <i>au Fournil de la Craffe</i></h2>
+      <p>Une commande, une question sur un produit, un gâteau pour une date précise : remplissez le bon, on vous rappelle pour confirmer.</p>
+      <p class="ctc__tel"><small>Ou appelez directement</small>06 XX XX XX XX</p>
+      <address class="ctc__adr">XX rue de l'Exemple<br>54000 Nancy</address>
+    </div>
+    <form class="bon rv" id="form" style="--d:.15s" novalidate>
+      <div class="bon__tete"><h3>Bon de commande</h3><span>à retirer en boutique</span></div>
+      <div class="duo">
+        <p class="ch"><label for="f-nom">Votre nom</label><input id="f-nom" name="nom" type="text" autocomplete="name" required></p>
+        <p class="ch"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required></p>
+      </div>
+      <fieldset class="ch">
+        <legend>C'est pour</legend>
+        <div class="choix">
+          <input type="radio" id="f-c1" name="objet" value="Une commande" checked><label for="f-c1">Une commande</label>
+          <input type="radio" id="f-c2" name="objet" value="Une question"><label for="f-c2">Une question</label>
+          <input type="radio" id="f-c3" name="objet" value="Autre"><label for="f-c3">Autre</label>
+        </div>
+      </fieldset>
+      <div class="duo">
+        <p class="ch"><label for="f-quand">Pour quand</label><input id="f-quand" name="quand" type="text" placeholder="Samedi, vers 10 h"></p>
+        <p class="ch"><label for="f-combien">Pour combien de personnes</label><input id="f-combien" name="combien" type="text" inputmode="numeric" placeholder="Par exemple : 8"></p>
+      </div>
+      <p class="ch"><label for="f-msg">Ce qu'il vous faut</label><textarea id="f-msg" name="message" rows="3" required></textarea></p>
+      <div class="bon__pied">
+        <small>Nous vous rappelons pour confirmer la commande et l'heure de retrait.</small>
+        <button class="btn btn--plein" type="submit">Envoyer le bon</button>
+      </div>
+      <div class="merci" id="merci" role="status" aria-live="polite" tabindex="-1">
+        <span class="tamp" aria-hidden="true">Reçu</span>
+        <p>Merci ! Sur le site en ligne, votre demande arrive directement chez Le Fournil de la Craffe, qui vous rappelle pour confirmer.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="pied-page">
+  <div class="frise" aria-hidden="true"></div>
+  <div class="ent">
+    <div>
+      <span class="marque__n">Le Fournil de la Craffe</span>
+      <p>Boulangerie-pâtisserie artisanale.<br>XX rue de l'Exemple, 54000 Nancy · 06 XX XX XX XX</p>
+    </div>
+    <div>
+      <h2>La maison</h2>
+      <ul><li><a href="#boutique">La boutique</a></li><li><a href="#commande">Préparer une commande</a></li></ul>
+    </div>
+    <div>
+      <h2>Venir</h2>
+      <ul><li><a href="#horaires">Horaires et accès</a></li><li><a href="#contact">Contact</a></li></ul>
+    </div>
+    <p class="mentions">Du mardi au samedi de 6 h 30 à 19 h 30, le dimanche de 7 h à 12 h 30. Illustrations dessinées pour le site.</p>
+  </div>
+</footer>
+
+<div class="barre" id="barre">
+  <a class="btn btn--trait" href="#contact" aria-label="Appeler le 06 XX XX XX XX"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3h3l1.5 5-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 5 1.5v3c0 1-1 2-2 2C10.5 20 4 13.5 4 5c0-1 1-2 2.5-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Appeler</a>
+  <a class="btn btn--plein" href="#contact">Commander</a>
+</div>
+
+<script>
+(function(){
+  window.__craffeOK = true;
+  var d = document, H = d.documentElement;
+  var RM = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var tactile = window.matchMedia && matchMedia("(hover: none)").matches;
+
+  /* ---- entrée ---- */
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ H.classList.add("pret"); }); });
+
+  /* ---- révélations au défilement ---- */
+  var rv = d.querySelectorAll(".rv");
+  if ("IntersectionObserver" in window && !RM) {
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add("vu"); io.unobserve(e.target); } }); }, { rootMargin: "0px 0px -8% 0px" });
+    rv.forEach(function(e){ io.observe(e); });
+  } else { rv.forEach(function(e){ e.classList.add("vu"); }); }
+
+  /* ---- heures ---- */
+  function hm(m){ var h = Math.floor(m / 60), mn = m % 60; return h + " h" + (mn ? " " + (mn < 10 ? "0" : "") + mn : ""); }
+  var J = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  var now = new Date(), jour = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+
+  /* ---- ouvert maintenant ---- */
+  d.querySelectorAll(".etat[data-h]").forEach(function(el){
+    var h; try { h = JSON.parse(el.getAttribute("data-h")); } catch(e) { return; }
+    var cj = h[jour] || [], txt, ok = false;
+    if (cj.length && mins >= cj[0] && mins < cj[1]) { txt = "Ouvert, jusqu'à " + hm(cj[1]); ok = true; }
+    else if (cj.length && mins < cj[0]) { txt = "Fermé, ouvre aujourd'hui à " + hm(cj[0]); }
+    else { for (var k = 1; k <= 7; k++) { var j = (jour + k) % 7; if ((h[j] || []).length) { txt = "Fermé, ouvre " + (k === 1 ? "demain" : J[j]) + " à " + hm(h[j][0]); break; } } }
+    if (txt) { el.textContent = txt; el.classList.add(ok ? "etat--oui" : "etat--non"); }
+  });
+  var lj = d.querySelector('#jours [data-j="' + jour + '"]'); if (lj) lj.classList.add("auj");
+
+  /* ---- ruban : dernière fournée ---- */
+  var lis = d.querySelectorAll("#fournees li"), derniere = null, prochaine = null;
+  var fermeAuj = jour === 1, limite = jour === 0 ? 750 : 1170;
+  lis.forEach(function(li){
+    var m = +li.getAttribute("data-m");
+    if (fermeAuj || m >= limite) return;
+    if (m <= mins) { li.classList.add("passe"); derniere = li; } else if (!prochaine) { prochaine = li; }
+  });
+  if (derniere) { derniere.classList.remove("passe"); derniere.classList.add("derniere"); }
+  var ft = d.getElementById("fournee-t"), fs = d.getElementById("fournee-s");
+  if (fermeAuj) { ft.textContent = "Le lundi"; fs.textContent = "le four se repose"; }
+  else if (derniere) { ft.textContent = "Dernière fournée · " + derniere.querySelector("strong").textContent; fs.textContent = derniere.querySelector("em").textContent; }
+  else if (prochaine) { ft.textContent = "Première fournée · " + prochaine.querySelector("strong").textContent; fs.textContent = prochaine.querySelector("em").textContent; }
+  var bis = d.getElementById("fournees-bis"); bis.innerHTML = d.getElementById("fournees").innerHTML;
+
+  /* ---- vitrine : survol, toucher, clavier ---- */
+  var dernierPointeur = "mouse";
+  d.querySelectorAll(".prod").forEach(function(p){
+    var b = p.querySelector(".prod__btn"), minuteur;
+    function on(){ p.classList.add("on"); b.setAttribute("aria-pressed", "true"); }
+    function off(){ p.classList.remove("on"); b.setAttribute("aria-pressed", "false"); }
+    p.addEventListener("pointerenter", function(e){ if (e.pointerType === "mouse") on(); });
+    p.addEventListener("pointerleave", function(e){ if (e.pointerType === "mouse") off(); });
+    b.addEventListener("pointerdown", function(e){ dernierPointeur = e.pointerType; });
+    b.addEventListener("click", function(){
+      clearTimeout(minuteur);
+      if (dernierPointeur === "mouse" && p.classList.contains("on")) { off(); void p.offsetWidth; setTimeout(on, 30); return; }
+      if (p.classList.contains("on")) off(); else on();
+      dernierPointeur = "mouse";
+    });
+    p._demo = function(){ on(); minuteur = setTimeout(off, 1900); };
+  });
+  /* sur écran tactile, chaque produit se montre une fois en entrant dans l'écran */
+  if (tactile && !RM && "IntersectionObserver" in window) {
+    var io2 = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { setTimeout(e.target._demo, 500); io2.unobserve(e.target); } }); }, { threshold: .7 });
+    d.querySelectorAll(".prod").forEach(function(p){ io2.observe(p); });
+  }
+
+  /* ---- parallaxe légère du soleil ---- */
+  var sol = d.querySelector(".soleil");
+  if (sol && !RM) {
+    var tic = false;
+    window.addEventListener("scroll", function(){
+      if (tic) return; tic = true;
+      requestAnimationFrame(function(){ var y = Math.min(window.scrollY, 900); sol.style.setProperty("--py", (y * .18) + "px"); tic = false; });
+    }, { passive: true });
+  }
+
+  /* ---- menu mobile ---- */
+  var bg = d.querySelector(".burger"), mm = d.getElementById("menu-mob");
+  function fermer(){ bg.setAttribute("aria-expanded", "false"); bg.setAttribute("aria-label", "Ouvrir le menu"); mm.classList.remove("ouvert"); }
+  bg.addEventListener("click", function(){
+    if (bg.getAttribute("aria-expanded") === "true") fermer();
+    else { bg.setAttribute("aria-expanded", "true"); bg.setAttribute("aria-label", "Fermer le menu"); mm.classList.add("ouvert"); }
+  });
+  mm.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", fermer); });
+  d.addEventListener("keydown", function(e){ if (e.key === "Escape" && mm.classList.contains("ouvert")) { fermer(); bg.focus(); } });
+
+  /* ---- barre d'action mobile ---- */
+  var barre = d.getElementById("barre");
+  setTimeout(function(){ barre.classList.add("vis"); }, RM ? 0 : 1400);
+
+  /* ---- formulaire ---- */
+  var f = d.getElementById("form"), merci = d.getElementById("merci");
+  f.addEventListener("submit", function(e){
+    e.preventDefault();
+    var manque = Array.prototype.filter.call(f.querySelectorAll("[required]"), function(c){ return !c.value.trim(); });
+    if (manque.length) { manque[0].focus(); manque[0].setAttribute("aria-invalid", "true"); return; }
+    merci.classList.add("vis"); merci.focus();
+    f.querySelectorAll("[aria-invalid]").forEach(function(c){ c.removeAttribute("aria-invalid"); });
+  });
+})();
+</script>
+</body>
+</html>

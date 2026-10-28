@@ -1,0 +1,1063 @@
+<!doctype html>
+<!--
+  Gabarit « restauration », variante B : Le Comptoir Stanislas, le midi en terrasse (maquette).
+  Idées retenues après recherche (sites de bistrots primés, menus « journal », sélections Awwwards de réservation) :
+  1. Le menu présenté comme une gazette du jour : manchette, date du jour, « À la une », brèves,
+     petites annonces. On lit la carte comme on lit le journal en terrasse, sans prix affiché.
+  2. Une lumière de midi plutôt qu'une photo : un store rayé qui se déroule à l'ouverture,
+     des ombres de feuilles qui bougent sur la page (canvas), une grille dorée à volutes
+     inspirée des ferronneries de la place, qui ouvre sur une table de terrasse.
+  3. La demande de table en une seule barre : jour, service, couverts, et c'est parti.
+     Elle prérempli le formulaire du bas pour ne rien ressaisir.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Comptoir Stanislas — bistrot et terrasse à Nancy</title>
+<meta name="description" content="Le Comptoir Stanislas, bistrot de quartier à Nancy : cuisine de saison, terrasse aux beaux jours, midi et soir. Demandez une table en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<script>
+document.documentElement.classList.add("js");
+setTimeout(function(){ if(!window.__terrasse) document.documentElement.classList.add("secours"); },1500);
+</script>
+<style>
+:root{
+  --blanc:#FFFFFF;
+  --papier:#FCFBF5;
+  --paille:#F4D774;
+  --paille-clair:#FBEDB4;
+  --paille-fonce:#E3BD45;
+  --vert:#0F3B2B;
+  --vert-2:#185038;
+  --vert-3:#2C6A51;
+  --encre:#13241C;
+  --gris:#46564D;
+  --or:#B8892B;
+  --or-clair:#EAC45E;
+  --or-fonce:#7D5810;
+  --trait:rgba(15,59,43,.22);
+  --trait-fort:rgba(15,59,43,.8);
+  --ombre:rgba(15,59,43,.16);
+  --ok:#1E7A4C;
+  --ferme:#9B3A21;
+  --g-l:max(16px, env(safe-area-inset-left));
+  --g-r:max(16px, env(safe-area-inset-right));
+  --large:1240px;
+  --f-titre:'League Gothic','Bebas Neue','Oswald','Arial Narrow',Impact,sans-serif;
+  --f-texte:'Newsreader','Iowan Old Style','Georgia','Times New Roman',serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.06 0 0 0 0 0.23 0 0 0 0 0.17 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:84px}
+body{margin:0;background:var(--blanc);color:var(--encre);font-family:var(--f-texte);font-size:clamp(1rem,.96rem + .2vw,1.0625rem);line-height:1.6;overflow-x:clip;font-optical-sizing:auto}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-weight:400}
+p{margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{width:100%;max-width:var(--large);margin-inline:auto;padding-left:var(--g-l);padding-right:var(--g-r)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evite{position:absolute;left:12px;top:-60px;z-index:200;background:var(--vert);color:var(--blanc);padding:12px 18px;font-family:var(--f-titre);font-size:1.25rem;letter-spacing:.04em;text-decoration:none}
+.evite:focus{top:12px}
+:focus-visible{outline:3px solid var(--vert);outline-offset:3px}
+.sur-vert :focus-visible,.resa :focus-visible,.pied :focus-visible{outline-color:var(--paille)}
+
+/* ---------- Boutons ---------- */
+.btn{--fond:var(--vert);--txt:var(--blanc);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:10px 26px 8px;background:var(--fond);color:var(--txt);border:2px solid var(--fond);font-family:var(--f-titre);font-size:1.4rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;overflow:hidden;isolation:isolate;transition:color .3s}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:repeating-linear-gradient(90deg,var(--paille) 0 14px,var(--paille-clair) 14px 28px);transform:translateY(101%);transition:transform .38s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{color:var(--vert)}
+.btn:hover::before{transform:none}
+.btn svg{width:20px;height:20px;transition:transform .3s}
+.btn:hover svg{transform:translateX(4px)}
+.btn-ligne{--fond:transparent;--txt:var(--vert);border-color:var(--vert)}
+.btn-paille{--fond:var(--paille);--txt:var(--vert)}
+.btn-paille::before{background:var(--blanc)}
+
+/* ---------- En-tête ---------- */
+.tete{position:sticky;top:0;z-index:50;background:var(--blanc);border-bottom:1px solid var(--trait)}
+.tete .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:68px}
+.marque{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--vert)}
+.marque svg{width:40px;height:40px;flex:none}
+.marque b{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.75rem;line-height:.9;letter-spacing:.03em;text-transform:uppercase}
+.marque i{display:block;font-size:.85rem;color:var(--gris);line-height:1.2}
+.nav{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.nav a{font-family:var(--f-titre);font-size:1.3rem;letter-spacing:.05em;text-transform:uppercase;text-decoration:none;color:var(--vert);padding:10px 0;background:linear-gradient(var(--paille-fonce),var(--paille-fonce)) left 85%/0 3px no-repeat;transition:background-size .3s}
+.nav a:hover{background-size:100% 3px}
+.nav .btn{font-size:1.25rem;min-height:44px;padding:8px 18px 6px}
+.nav .btn:hover{background:var(--vert)}
+.burger{display:none;width:48px;height:48px;border:0;background:transparent;cursor:pointer;position:relative;color:var(--vert)}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:currentColor;transition:transform .35s,opacity .2s}
+.burger span:nth-child(1){top:17px}.burger span:nth-child(2){top:23px}.burger span:nth-child(3){top:29px}
+.menu-ouvert .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-ouvert .burger span:nth-child(2){opacity:0}
+.menu-ouvert .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(ellipse 60% 70% at 82% 18%,rgba(244,215,116,.55),transparent 70%),
+  radial-gradient(ellipse 40% 50% at 10% 90%,rgba(251,237,180,.6),transparent 70%),var(--blanc)}
+.store{position:relative;z-index:3;height:calc(clamp(44px,6vw,84px) + 30px);overflow:hidden;pointer-events:none}
+.store-toile{position:absolute;left:0;right:0;top:0;height:100%;transform-origin:top}
+.store-rouleau{position:absolute;left:0;right:0;top:0;height:10px;z-index:2;background:linear-gradient(var(--vert-3),var(--vert) 60%,#082419);box-shadow:0 2px 3px rgba(0,0,0,.2)}
+.store-tissu{position:absolute;left:0;right:0;top:0;height:calc(100% - 30px);background:
+  linear-gradient(180deg,rgba(255,255,255,.18),rgba(0,0,0,0) 40%,rgba(0,0,0,.14)),
+  repeating-linear-gradient(90deg,var(--vert) 0 44px,var(--blanc) 44px 88px)}
+.store-lambrequin{position:absolute;left:0;right:0;bottom:0;height:30px;transform-origin:top;background:
+  linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,0) 30%),
+  repeating-linear-gradient(90deg,var(--vert) 0 44px,var(--blanc) 44px 88px);
+  -webkit-mask:radial-gradient(circle at 50% 0,#000 21.5px,transparent 22.5px) 0 0/44px 30px repeat-x;
+          mask:radial-gradient(circle at 50% 0,#000 21.5px,transparent 22.5px) 0 0/44px 30px repeat-x}
+.store-tissu::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:rgba(0,0,0,.12)}
+.ombre-store{position:absolute;left:0;right:0;top:calc(clamp(44px,6vw,84px) + 18px);height:70px;z-index:1;background:linear-gradient(rgba(15,59,43,.14),transparent);pointer-events:none}
+html.js .store-toile{animation:deroule 1.35s cubic-bezier(.65,0,.25,1) .15s both}
+html.js .store-lambrequin{animation:balance 1.4s ease-out 1.35s both}
+html.js .ombre-store{animation:apparait 1s ease 1.1s both}
+@keyframes deroule{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes balance{0%{transform:rotateX(0)}25%{transform:perspective(200px) rotateX(-28deg)}55%{transform:perspective(200px) rotateX(12deg)}80%{transform:perspective(200px) rotateX(-4deg)}100%{transform:none}}
+@keyframes apparait{from{opacity:0}to{opacity:1}}
+#feuillage{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;mix-blend-mode:multiply;opacity:.95}
+.hero-grille{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,.78fr);gap:clamp(24px,4vw,64px);align-items:end;padding-top:clamp(28px,5vw,64px);padding-bottom:clamp(36px,5vw,72px)}
+.surtitre{display:flex;align-items:center;gap:12px;font-style:italic;font-size:1.15rem;color:var(--vert-2)}
+.surtitre::before{content:"";width:38px;height:2px;background:var(--vert)}
+.titre{margin-top:10px;color:var(--vert)}
+.titre .t1{display:block;font-family:var(--f-titre);font-size:clamp(5rem,3.6rem + 5.6vw,9.4rem);line-height:.84;letter-spacing:.01em;text-transform:uppercase}
+.titre .t2{display:block;font-family:var(--f-texte);font-style:italic;font-weight:400;font-size:clamp(3.3rem,2.4rem + 4.8vw,7.6rem);line-height:.95;margin-top:-.04em;letter-spacing:-.02em;color:var(--vert-2)}
+.titre .t2 em{font-style:normal;font-family:var(--f-titre);font-size:.42em;letter-spacing:.08em;vertical-align:.55em;color:var(--or-fonce);margin-left:.25em;text-transform:uppercase}
+.chapeau{margin-top:22px;max-width:34ch;font-size:clamp(1.18rem,1.05rem + .5vw,1.45rem);line-height:1.45}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.etat{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:8px 14px;background:var(--blanc);border:1px solid var(--trait);font-size:.98rem}
+.etat .point{width:10px;height:10px;border-radius:50%;background:var(--gris);flex:none}
+.etat.ouvert .point{background:var(--ok);box-shadow:0 0 0 0 rgba(30,122,76,.5);animation:pouls 2s infinite}
+.etat.ferme .point{background:var(--ferme)}
+@keyframes pouls{70%{box-shadow:0 0 0 10px rgba(30,122,76,0)}100%{box-shadow:0 0 0 0 rgba(30,122,76,0)}}
+.porte{position:relative;justify-self:end;width:min(100%,460px)}
+.porte svg{width:100%;height:auto;filter:drop-shadow(0 18px 24px rgba(125,88,16,.18))}
+.porte .legende{position:absolute;right:0;bottom:-6px;transform:translateY(100%);font-style:italic;font-size:.88rem;color:var(--gris)}
+.eclat{animation:eclat 5s ease-in-out 1.6s infinite}
+@keyframes eclat{0%,70%{transform:translateX(-140%)}100%{transform:translateX(140%)}}
+
+/* Entrée orchestrée */
+html.js .entree{opacity:0;transform:translateY(22px)}
+html.js.pret .entree{opacity:1;transform:none;transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+html.js .porte.entree{transform:translateY(30px) scale(.97)}
+html.js.pret .porte.entree{transform:none}
+
+/* ---------- Barre de réservation ---------- */
+.resa-zone{position:relative;z-index:5;margin-top:-6px}
+.resa{position:relative;display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.15fr) minmax(0,1.2fr) minmax(0,.85fr) auto;align-items:end;gap:0;background:var(--vert);color:var(--blanc);box-shadow:0 22px 40px -18px rgba(15,59,43,.55)}
+.resa::before{content:"";position:absolute;left:0;right:0;top:-8px;height:8px;background:repeating-linear-gradient(90deg,var(--paille) 0 22px,var(--vert) 22px 44px)}
+.resa-titre{padding:22px 24px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(255,255,255,.14)}
+.resa-titre h2{font-family:var(--f-titre);font-size:clamp(1.9rem,1.5rem + 1vw,2.5rem);line-height:.95;text-transform:uppercase;letter-spacing:.03em;color:var(--paille)}
+.resa-titre p{font-style:italic;font-size:.98rem;color:#E3EDE7;margin-top:6px}
+.champ-r{padding:18px 20px;border-right:1px solid rgba(255,255,255,.14);min-width:0;margin:0;border-top:0;border-bottom:0;border-left:0}
+.champ-r>label,.champ-r>legend{display:block;font-family:var(--f-titre);font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--paille);margin-bottom:8px;padding:0}
+.champ-r select{width:100%;min-height:48px;padding:8px 40px 8px 12px;background:var(--vert-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%23F4D774' stroke-width='2'/%3E%3C/svg%3E") right 10px center/20px no-repeat;border:1px solid rgba(255,255,255,.25);color:var(--blanc);-webkit-appearance:none;appearance:none;font-size:1.05rem;border-radius:0}
+.champ-r select option{color:var(--encre);background:var(--blanc)}
+.services{display:flex;gap:6px}
+.services input{position:absolute;opacity:0;pointer-events:none}
+.services label{flex:1;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:6px 10px;border:1px solid rgba(255,255,255,.25);cursor:pointer;font-size:1.02rem;transition:background .25s,color .25s}
+.services label svg{width:20px;height:20px}
+.services input:checked+label{background:var(--paille);color:var(--vert);border-color:var(--paille)}
+.services input:focus-visible+label{outline:3px solid var(--paille);outline-offset:2px}
+.compteur{display:flex;align-items:center;border:1px solid rgba(255,255,255,.25);min-height:48px}
+.compteur button{width:48px;height:48px;border:0;background:transparent;color:var(--paille);font-size:1.5rem;cursor:pointer;flex:none}
+.compteur button:hover{background:var(--vert-2)}
+.compteur input{width:100%;min-width:0;text-align:center;border:0;background:transparent;font-family:var(--f-titre);font-size:1.9rem;line-height:1;color:var(--blanc);-moz-appearance:textfield;padding:0}
+.compteur input::-webkit-inner-spin-button,.compteur input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.resa-go{padding:18px 20px}
+.resa-go .btn{width:100%;white-space:nowrap}
+.resa-note{grid-column:1/-1;padding:0 24px;max-height:0;overflow:hidden;font-style:italic;color:var(--paille-clair);transition:max-height .4s,padding .4s}
+.resa-note.vu{max-height:80px;padding:0 24px 18px}
+
+/* ---------- Bandeau défilant ---------- */
+.depeche{background:var(--paille);color:var(--vert);border-block:2px solid var(--vert);margin-top:clamp(48px,6vw,80px);overflow:hidden}
+.depeche-piste{display:flex;width:max-content;animation:defile 38s linear infinite}
+.depeche ul{display:flex;align-items:center;margin:0;padding:12px 0;list-style:none}
+.depeche li{display:flex;align-items:center;gap:22px;padding-right:22px;font-family:var(--f-titre);font-size:clamp(1.4rem,1.2rem + .6vw,1.9rem);letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.depeche li::after{content:"";width:18px;height:18px;background:radial-gradient(circle,var(--vert) 4px,transparent 4.5px),conic-gradient(from 0deg,var(--vert) 0 6deg,transparent 6deg 45deg,var(--vert) 45deg 51deg,transparent 51deg 90deg,var(--vert) 90deg 96deg,transparent 96deg 135deg,var(--vert) 135deg 141deg,transparent 141deg 180deg,var(--vert) 180deg 186deg,transparent 186deg 225deg,var(--vert) 225deg 231deg,transparent 231deg 270deg,var(--vert) 270deg 276deg,transparent 276deg 315deg,var(--vert) 315deg 321deg,transparent 321deg);border-radius:50%}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ---------- Gazette ---------- */
+.gazette{background:var(--papier) var(--grain);padding-block:clamp(56px,7vw,104px)}
+.journal{border-top:6px solid var(--vert);box-shadow:inset 0 2px 0 var(--papier),inset 0 4px 0 var(--vert)}
+.manchette{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;padding:22px 0 14px;border-bottom:1px solid var(--trait-fort)}
+.manchette small{font-style:italic;font-size:.95rem;color:var(--gris);line-height:1.35}
+.manchette small:last-child{text-align:right}
+.manchette h2{font-family:var(--f-titre);font-size:clamp(3rem,2rem + 6vw,8rem);line-height:.85;text-transform:uppercase;letter-spacing:.015em;color:var(--vert);text-align:center}
+.manchette h2 span{display:block;font-family:var(--f-texte);font-style:italic;text-transform:none;font-size:.26em;letter-spacing:0;margin-bottom:.15em;color:var(--vert-2)}
+.ligne-date{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 18px;padding:8px 0;border-bottom:3px double var(--trait-fort);font-family:var(--f-titre);font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vert)}
+.une{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:0;margin-top:28px}
+.une-article{padding-right:clamp(20px,3vw,40px);border-right:1px solid var(--trait-fort)}
+.rubrique{display:inline-block;font-family:var(--f-titre);font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;background:var(--vert);color:var(--paille);padding:4px 10px 2px}
+.une-article h3{font-family:var(--f-titre);font-size:clamp(2.6rem,1.8rem + 3.4vw,5rem);line-height:.9;text-transform:uppercase;color:var(--vert);margin-top:14px}
+.une-article .dek{font-style:italic;font-size:clamp(1.15rem,1.05rem + .4vw,1.35rem);line-height:1.4;margin-top:14px;color:var(--vert-2);max-width:52ch}
+.une-corps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:28px;margin-top:22px;align-items:start}
+.texte-col{columns:1;font-size:1.02rem;hyphens:auto;-webkit-hyphens:auto;text-align:justify}
+.texte-col p+p{margin-top:.8em;text-indent:1.2em}
+.lettrine::first-letter{float:left;font-family:var(--f-titre);font-size:4.6em;line-height:.82;padding:.06em .1em 0 0;color:var(--vert)}
+.gravure{border:1px solid var(--trait-fort);padding:10px;background:var(--blanc)}
+.gravure figcaption{font-style:italic;font-size:.88rem;color:var(--gris);margin-top:8px;border-top:1px solid var(--trait);padding-top:6px}
+.menu-midi{padding-left:clamp(20px,3vw,36px)}
+.menu-midi h3{font-family:var(--f-titre);font-size:2.4rem;line-height:.9;text-transform:uppercase;color:var(--vert);padding-bottom:10px;border-bottom:3px double var(--trait-fort)}
+.menu-midi h3 small{display:block;font-family:var(--f-texte);text-transform:none;font-style:italic;font-size:1rem;color:var(--gris);margin-top:6px;line-height:1.3}
+.cours{padding:16px 0 14px;border-bottom:1px solid var(--trait)}
+.cours h4{font-family:var(--f-titre);font-size:1.25rem;letter-spacing:.1em;text-transform:uppercase;color:var(--or-fonce)}
+.cours ul{list-style:none;margin:6px 0 0;padding:0}
+.cours li{padding:5px 0 5px 22px;position:relative;line-height:1.35}
+.cours li::before{content:"";position:absolute;left:2px;top:.62em;width:10px;height:10px;background:var(--paille-fonce);transform:rotate(45deg)}
+.cours li i{color:var(--gris)}
+.encadre{margin-top:18px;background:var(--paille);padding:16px 18px;border:2px solid var(--vert)}
+.encadre b{font-family:var(--f-titre);font-weight:400;font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vert);display:block}
+.breves{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:30px;border-top:3px double var(--trait-fort)}
+.breve{padding:18px 20px 4px;border-right:1px solid var(--trait)}
+.breve:first-child{padding-left:0}
+.breve:last-child{border-right:0;padding-right:0}
+.breve h4{font-family:var(--f-titre);font-size:1.6rem;line-height:.95;text-transform:uppercase;color:var(--vert);margin:6px 0 8px}
+.breve .kick{font-style:italic;font-size:.9rem;color:var(--or-fonce)}
+.breve p{font-size:.98rem;line-height:1.5}
+.breve.annonce{background:var(--blanc);border:1px dashed var(--vert);padding:16px 18px;margin:18px 0 0}
+.breve.annonce h4{font-size:1.35rem}
+
+/* ---------- Ferronnerie (frise) ---------- */
+.frise{height:46px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='92' height='46' viewBox='0 0 92 46'%3E%3Cg fill='none' stroke='%23D6A93F' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M0 4h92M0 42h92M46 4v38M0 4v38'/%3E%3Cpath d='M46 23c-10 0-18-6-18-12 0-5 6-7 9-3 2 3-1 6-3 4'/%3E%3Cpath d='M46 23c10 0 18-6 18-12 0-5-6-7-9-3-2 3 1 6 3 4'/%3E%3Cpath d='M46 23c-10 0-18 6-18 12 0 5 6 7 9 3 2-3-1-6-3-4'/%3E%3Cpath d='M46 23c10 0 18 6 18 12 0 5-6 7-9 3-2-3 1-6 3-4'/%3E%3Ccircle cx='46' cy='23' r='3.4' fill='%23D6A93F'/%3E%3Cpath d='M0 23c6 0 10-4 10-8M0 23c6 0 10 4 10 8M92 23c-6 0-10-4-10-8M92 23c-6 0-10 4-10 8'/%3E%3C/g%3E%3C/svg%3E") center/92px 46px repeat-x}
+
+/* ---------- La maison (vert) ---------- */
+.maison{background:var(--vert);color:var(--blanc);position:relative}
+.maison .frise{opacity:.95}
+.maison-in{padding-block:clamp(56px,7vw,100px)}
+.maison-tete{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end}
+.maison-tete h2{font-family:var(--f-titre);font-size:clamp(3.4rem,2.4rem + 5vw,7.5rem);line-height:.85;text-transform:uppercase;color:var(--paille)}
+.maison-tete h2 span{display:block;font-family:var(--f-texte);font-style:italic;text-transform:none;font-size:.36em;color:var(--blanc);line-height:1.1;margin-bottom:6px}
+.maison-tete p{font-size:1.15rem;color:#E1ECE6;max-width:44ch}
+.rubriques{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(36px,5vw,64px);border-top:2px solid var(--or-clair)}
+.rub{position:relative;padding:30px clamp(18px,2.4vw,34px) 34px;border-right:1px solid rgba(234,196,94,.4);transition:background .35s}
+.rub:first-child{padding-left:0}
+.rub:last-child{border-right:0;padding-right:0}
+.rub:hover{background:linear-gradient(180deg,rgba(244,215,116,.08),transparent)}
+.rub svg{width:64px;height:64px;color:var(--paille);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.rub:hover svg{transform:rotate(-6deg) scale(1.06)}
+.rub h3{font-family:var(--f-titre);font-size:clamp(2rem,1.7rem + 1vw,2.6rem);line-height:.95;text-transform:uppercase;color:var(--blanc);margin-top:18px}
+.rub p{margin-top:12px;color:#E1ECE6}
+.rub.vive{background:var(--paille);color:var(--vert);padding:30px clamp(18px,2.4vw,34px) 34px;margin-top:-2px}
+.rub.vive h3{color:var(--vert)}
+.rub.vive p{color:var(--vert)}
+.rub.vive svg{color:var(--vert)}
+.rub .lien{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:44px;font-family:var(--f-titre);font-size:1.3rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vert);text-decoration:none;border-bottom:2px solid var(--vert)}
+.rub .lien svg{width:18px;height:18px;color:var(--vert)}
+.mention{margin-top:22px;font-style:italic;font-size:.95rem;color:#C9DDD3}
+
+/* ---------- Avant de venir ---------- */
+.avant{padding-block:clamp(60px,8vw,112px);background:var(--blanc);position:relative;overflow:hidden}
+.avant-grille{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr);gap:clamp(28px,5vw,72px);align-items:start}
+.avant h2{font-family:var(--f-titre);font-size:clamp(3rem,2.2rem + 4vw,6rem);line-height:.86;text-transform:uppercase;color:var(--vert)}
+.avant h2 span{display:block;font-family:var(--f-texte);font-style:italic;text-transform:none;font-size:.4em;color:var(--vert-2);margin-top:8px;line-height:1.15}
+.avant-intro{margin-top:18px;max-width:36ch;font-size:1.1rem}
+.etapes{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;position:relative}
+.etapes::before{content:"";position:absolute;left:40px;right:40px;top:44px;border-top:2px dashed var(--paille-fonce);z-index:0}
+.etape{position:relative;z-index:1}
+.etape .pastille{width:88px;height:88px;border-radius:50%;background:var(--paille);border:2px solid var(--vert);display:grid;place-items:center;transition:transform .4s cubic-bezier(.2,.8,.2,1),background .3s}
+.etape:hover .pastille{transform:translateY(-6px) rotate(-4deg);background:var(--paille-clair)}
+.etape .pastille svg{width:46px;height:46px;color:var(--vert)}
+.etape h3{font-family:var(--f-titre);font-size:2rem;line-height:.95;text-transform:uppercase;color:var(--vert);margin-top:18px}
+.etape p{margin-top:8px;font-size:1.05rem;color:var(--gris)}
+.avant .btn{margin-top:30px}
+
+/* ---------- Horaires & accès ---------- */
+.horaires{background:var(--paille);position:relative;padding-block:clamp(60px,8vw,112px)}
+.horaires::before{content:"";position:absolute;inset:0;background:var(--grain);pointer-events:none}
+.hor-grille{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.horaires h2{font-family:var(--f-titre);font-size:clamp(3rem,2.2rem + 4vw,6rem);line-height:.86;text-transform:uppercase;color:var(--vert)}
+.horaires h2 span{display:block;font-family:var(--f-texte);font-style:italic;text-transform:none;font-size:.4em;color:var(--vert-2);margin-top:8px}
+.statut{display:flex;align-items:center;gap:12px;margin-top:22px;padding:14px 16px;background:var(--vert);color:var(--blanc);font-size:1.05rem}
+.statut .point{width:12px;height:12px;border-radius:50%;background:#B9C4BE;flex:none}
+.statut.ouvert .point{background:#5BE39A;animation:pouls2 2s infinite}
+.statut.ferme .point{background:#FF9A7E}
+@keyframes pouls2{0%{box-shadow:0 0 0 0 rgba(91,227,154,.6)}70%{box-shadow:0 0 0 12px rgba(91,227,154,0)}100%{box-shadow:0 0 0 0 rgba(91,227,154,0)}}
+.table-h{width:100%;border-collapse:collapse;margin-top:20px;font-size:1.05rem}
+.table-h th,.table-h td{text-align:left;padding:11px 10px;border-bottom:1px solid rgba(15,59,43,.3)}
+.table-h th{font-family:var(--f-titre);font-weight:400;font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vert);width:34%}
+.table-h td{text-align:right}
+.table-h tr.auj{background:var(--vert);color:var(--blanc)}
+.table-h tr.auj th{color:var(--paille)}
+.table-h .clos{font-style:italic;color:var(--gris)}
+.table-h tr.auj .clos{color:#D5E2DB}
+.note-h{margin-top:14px;font-style:italic;font-size:.95rem}
+.plan{background:var(--blanc);border:2px solid var(--vert);padding:12px;box-shadow:10px 10px 0 var(--vert)}
+.plan>svg{width:100%;height:auto}
+.plan-pied{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 4px 4px}
+.plan-pied address{font-style:normal;font-size:1.05rem;line-height:1.35}
+.plan-pied address b{font-family:var(--f-titre);font-weight:400;font-size:1.4rem;letter-spacing:.04em;text-transform:uppercase;color:var(--vert);display:block}
+.repere{transform-box:fill-box;transform-origin:50% 100%;animation:saute 2.6s ease-in-out infinite}
+@keyframes saute{0%,60%,100%{transform:none}75%{transform:translateY(-8px)}}
+
+/* ---------- Contact ---------- */
+.contact{padding-block:clamp(60px,8vw,112px);background:var(--blanc)}
+.contact-grille{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(28px,5vw,72px);align-items:start}
+.contact h2{font-family:var(--f-titre);font-size:clamp(3rem,2.2rem + 4vw,6rem);line-height:.86;text-transform:uppercase;color:var(--vert)}
+.contact h2 span{display:block;font-family:var(--f-texte);font-style:italic;text-transform:none;font-size:.4em;color:var(--vert-2);margin-top:8px}
+.coord{margin-top:26px;border-top:2px solid var(--vert)}
+.coord div{padding:14px 0;border-bottom:1px solid var(--trait)}
+.coord dt{font-family:var(--f-titre);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--or-fonce)}
+.coord dd{margin:2px 0 0;font-size:1.1rem}
+.coord .tel{font-family:var(--f-titre);font-size:clamp(2.2rem,1.8rem + 1.6vw,3rem);line-height:1;letter-spacing:.04em;color:var(--vert)}
+.formulaire{background:var(--papier) var(--grain);border:2px solid var(--vert);padding:clamp(20px,3vw,36px);position:relative}
+.formulaire::before{content:"";position:absolute;left:-2px;right:-2px;top:-12px;height:10px;background:repeating-linear-gradient(90deg,var(--vert) 0 22px,var(--paille) 22px 44px)}
+.formulaire h3{font-family:var(--f-titre);font-size:2.2rem;line-height:.95;text-transform:uppercase;color:var(--vert)}
+.formulaire>p{font-style:italic;color:var(--gris);margin-top:4px}
+.champs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px 18px;margin-top:22px}
+.ch{grid-column:span 3;display:flex;flex-direction:column;gap:6px;min-width:0}
+.ch.l2{grid-column:span 2}
+.ch.plein{grid-column:1/-1}
+.ch label{font-family:var(--f-titre);font-size:1.15rem;letter-spacing:.07em;text-transform:uppercase;color:var(--vert)}
+.ch input,.ch select,.ch textarea{width:100%;min-height:48px;padding:10px 12px;background:var(--blanc);border:0;border-bottom:2px solid var(--vert);border-radius:0;font-size:1.05rem;transition:background .25s,border-color .25s}
+.ch select{-webkit-appearance:none;appearance:none;background:var(--blanc) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 8l5 5 5-5' fill='none' stroke='%230F3B2B' stroke-width='2'/%3E%3C/svg%3E") right 10px center/20px no-repeat;padding-right:38px}
+.ch textarea{min-height:110px;resize:vertical}
+.ch input:focus,.ch select:focus,.ch textarea:focus{background:var(--paille-clair);outline:none;border-color:var(--or-fonce)}
+.ch input:focus-visible,.ch select:focus-visible,.ch textarea:focus-visible{outline:3px solid var(--vert);outline-offset:2px}
+.envoi{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:22px}
+.envoi small{font-style:italic;color:var(--gris);font-size:.92rem;max-width:34ch}
+.merci{display:none;margin-top:20px;padding:18px;background:var(--vert);color:var(--blanc)}
+.merci b{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.8rem;letter-spacing:.03em;text-transform:uppercase;color:var(--paille)}
+.merci.vu{display:block;animation:apparait .5s ease}
+
+/* ---------- Pied ---------- */
+.pied{background:var(--vert);color:#E1ECE6;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.pied-in{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:28px;padding-top:44px}
+.pied .nom{font-family:var(--f-titre);font-size:clamp(2.6rem,2rem + 3vw,4.6rem);line-height:.85;text-transform:uppercase;color:var(--paille)}
+.pied p{margin-top:8px}
+.pied h3{font-family:var(--f-titre);font-size:1.2rem;letter-spacing:.1em;text-transform:uppercase;color:var(--paille)}
+.pied ul{list-style:none;padding:0;margin:8px 0 0}
+.pied li a{display:inline-block;padding:6px 0;text-decoration:none;min-height:36px}
+.pied li a:hover{text-decoration:underline;text-underline-offset:4px}
+.pied-bas{margin-top:34px;padding-top:16px;border-top:1px solid rgba(234,196,94,.35);font-size:.92rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+
+/* ---------- Barre mobile ---------- */
+.barre-mobile{display:none}
+
+/* ---------- Révélations ---------- */
+html.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+html.js .rv.vu{opacity:1;transform:none}
+html.js .rv-encre{opacity:1;transform:none}
+html.js .rv-encre span{display:block;clip-path:inset(0 100% 0 0);transition:clip-path 1.2s cubic-bezier(.7,0,.2,1) .1s}
+html.js .rv-encre.vu span{clip-path:inset(0 0 0 0)}
+html.secours .rv,html.secours .entree{opacity:1!important;transform:none!important}
+html.secours .rv-encre span{clip-path:none!important}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1100px){
+  .resa{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .resa-titre{grid-column:1/-1;border-right:0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .champ-r{border-bottom:1px solid rgba(255,255,255,.14)}
+  .champ-r:nth-of-type(2n){border-right:0}
+  .resa-go{grid-column:1/-1}
+  .breves{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .breve{border-right:0;padding-left:0!important;padding-right:20px}
+}
+@media (max-width:900px){
+  .nav{display:none}
+  .burger{display:block}
+  .menu-ouvert .nav{display:flex;position:fixed;inset:68px 0 0 0;flex-direction:column;align-items:flex-start;gap:4px;padding:28px var(--g-r) 120px var(--g-l);background:var(--paille);z-index:60;animation:apparait .3s ease}
+  .menu-ouvert .nav a{font-size:2.6rem;padding:6px 0}
+  .menu-ouvert .nav .btn{font-size:1.6rem;margin-top:16px;min-height:54px}
+  .hero-grille{grid-template-columns:1fr;align-items:start}
+  .porte{justify-self:end;width:min(76%,380px);margin-top:-6px}
+  .une{grid-template-columns:1fr}
+  .une-article{padding-right:0;border-right:0}
+  .menu-midi{padding-left:0;margin-top:30px;padding-top:24px;border-top:3px double var(--trait-fort)}
+  .maison-tete,.avant-grille,.hor-grille,.contact-grille{grid-template-columns:1fr}
+  .rubriques{grid-template-columns:1fr}
+  .rub,.rub:first-child{padding-left:0;padding-right:0;border-right:0;border-bottom:1px solid rgba(234,196,94,.4)}
+  .rub{display:grid;grid-template-columns:64px 1fr;column-gap:20px}
+  .rub svg{grid-row:1/4}
+  .rub h3{margin-top:0}
+  .rub.vive{padding-left:18px;padding-right:18px;margin-inline:calc(-1 * var(--g-l)) calc(-1 * var(--g-r));padding-left:var(--g-l);padding-right:var(--g-r)}
+  .pied-in{grid-template-columns:1fr 1fr}
+  .pied-in>div:first-child{grid-column:1/-1}
+  .barre-mobile{display:grid;grid-template-columns:1fr 1.4fr;position:fixed;left:0;right:0;bottom:0;z-index:70;background:var(--vert);padding:8px var(--g-r) calc(8px + env(safe-area-inset-bottom)) var(--g-l);gap:8px;box-shadow:0 -6px 20px rgba(15,59,43,.25);transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+  .barre-mobile.vu{transform:none}
+  .barre-mobile::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:repeating-linear-gradient(90deg,var(--paille) 0 22px,var(--vert) 22px 44px)}
+  .barre-mobile a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;font-family:var(--f-titre);font-size:1.35rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--blanc);border:1.5px solid rgba(255,255,255,.4)}
+  .barre-mobile a svg{width:20px;height:20px}
+  .barre-mobile a.prim{background:var(--paille);color:var(--vert);border-color:var(--paille)}
+  body{padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+  .pied{padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+}
+@media (max-width:640px){
+  .marque b{font-size:1.5rem}
+  .marque i{font-size:.8rem}
+  .marque svg{width:36px;height:36px}
+  .store{height:calc(40px + 26px)}
+  .store-tissu{height:40px}
+  .store-lambrequin{height:26px;-webkit-mask-size:36px 26px;mask-size:36px 26px;background-size:auto,auto}
+  .store-tissu,.store-lambrequin{background-image:linear-gradient(180deg,rgba(255,255,255,.18),rgba(0,0,0,0) 40%,rgba(0,0,0,.14)),repeating-linear-gradient(90deg,var(--vert) 0 36px,var(--blanc) 36px 72px)}
+  .store-lambrequin{-webkit-mask-image:radial-gradient(circle at 50% 0,#000 17.5px,transparent 18.5px);mask-image:radial-gradient(circle at 50% 0,#000 17.5px,transparent 18.5px)}
+  .ombre-store{top:56px}
+  .titre .t1{font-size:clamp(4.6rem,24vw,6.4rem)}
+  .titre .t2{font-size:clamp(3rem,15.5vw,4.4rem)}
+  .titre .t2 em{display:block;margin:6px 0 0;font-size:1.35rem;vertical-align:0}
+  .actions .btn{flex:1 1 100%}
+  .porte{width:84%;margin-top:-30px}
+  .porte .legende{position:static;transform:none;margin-top:6px;text-align:right}
+  .resa-zone .wrap{padding-left:0;padding-right:0}
+  .resa-titre,.champ-r,.resa-go{padding-left:var(--g-l);padding-right:var(--g-r)}
+  .champ-r{padding:16px var(--g-r) 16px var(--g-l)}
+  .resa{grid-template-columns:1fr}
+  .champ-r,.champ-r:nth-of-type(2n){border-right:0}
+  .manchette{grid-template-columns:1fr;text-align:center;gap:10px}
+  .manchette small,.manchette small:last-child{text-align:center}
+  .manchette small:first-child{order:2}
+  .ligne-date{justify-content:center;text-align:center;font-size:1rem}
+  .une-corps{grid-template-columns:1fr}
+  .breves{grid-template-columns:1fr}
+  .breve{padding-right:0;border-bottom:1px solid var(--trait)}
+  .etapes{grid-template-columns:1fr;gap:0}
+  .etapes::before{left:43px;right:auto;top:30px;bottom:30px;border-top:0;border-left:2px dashed var(--paille-fonce)}
+  .etape{display:grid;grid-template-columns:88px 1fr;column-gap:18px;align-items:center;padding:12px 0}
+  .etape .pastille{grid-row:1/3}
+  .etape h3{margin-top:0;align-self:end}
+  .etape p{margin-top:2px;align-self:start}
+  .plan{box-shadow:6px 6px 0 var(--vert)}
+  .champs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ch,.ch.l2{grid-column:1/-1}
+  .ch.l2.court{grid-column:span 1}
+  .envoi .btn{width:100%}
+  .pied-in{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .depeche-piste{animation:none}
+  html.js .rv,html.js .entree{opacity:1;transform:none}
+  html.js .rv-encre span{clip-path:none}
+}
+</style>
+</head>
+<body>
+<a class="evite" href="#contenu">Aller au contenu</a>
+
+<header class="tete" id="tete">
+  <div class="wrap">
+    <a class="marque" href="#accueil" aria-label="Le Comptoir Stanislas, retour en haut">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18.5" fill="#F4D774" stroke="#0F3B2B" stroke-width="2"/><circle cx="20" cy="20" r="14" fill="none" stroke="#0F3B2B" stroke-width="1" stroke-dasharray="1.5 2.2"/><path d="M14 13.5c-3 0-4.6 2.6-4.6 6.5s1.6 6.5 4.6 6.5c1.6 0 2.7-.7 3.4-1.8M17.4 15.3c-.7-1.1-1.8-1.8-3.4-1.8" fill="none" stroke="#0F3B2B" stroke-width="2" stroke-linecap="round"/><path d="M29.4 15.2c-.6-1.1-1.7-1.7-3.1-1.7-1.9 0-3.1 1.1-3.1 2.7 0 3.6 6.6 2.3 6.6 6.2 0 1.8-1.4 3-3.6 3-1.6 0-2.9-.7-3.5-1.9" fill="none" stroke="#0F3B2B" stroke-width="2" stroke-linecap="round"/></svg>
+      <span><b>Le Comptoir Stanislas</b><i>Bistrot &amp; terrasse · Nancy</i></span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#journal">Le journal du jour</a>
+      <a href="#maison">La maison</a>
+      <a href="#avant">Avant de venir</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a class="btn" href="#reserver">Demander une table</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenu">
+<section class="hero" id="accueil" aria-labelledby="titre-site">
+  <div class="store" aria-hidden="true">
+    <div class="store-rouleau"></div>
+    <div class="store-toile"><div class="store-tissu"></div><div class="store-lambrequin"></div></div>
+  </div>
+  <div class="ombre-store" aria-hidden="true"></div>
+  <canvas id="feuillage" aria-hidden="true"></canvas>
+
+  <div class="wrap hero-grille">
+    <div>
+      <p class="surtitre entree" style="--d:.9s">Bistrot de quartier, à Nancy</p>
+      <h1 class="titre" id="titre-site">
+        <span class="t1 entree" style="--d:1s">Le Comptoir</span>
+        <span class="t2 entree" style="--d:1.12s">Stanislas<em>midi &amp; soir</em></span>
+      </h1>
+      <p class="chapeau entree" style="--d:1.25s">Une table, une carte, et quelqu'un qui vous répond directement. Le midi, la terrasse prend le soleil&nbsp;; la cuisine suit le marché.</p>
+      <div class="actions entree" style="--d:1.38s">
+        <a class="btn" href="#reserver">Demander une table <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+        <a class="btn btn-ligne" href="#journal">Lire le journal du jour</a>
+      </div>
+      <p class="etat entree" id="etat-hero" style="--d:1.5s" role="status"><span class="point" aria-hidden="true"></span><span class="etat-txt">Du mardi au samedi, midi et soir</span></p>
+    </div>
+
+    <figure class="porte entree" style="--d:1.2s" id="porte">
+      <svg viewBox="0 0 420 560" role="img" aria-labelledby="porte-t">
+        <title id="porte-t">Une grille dorée à volutes, ouverte sur une table de terrasse au soleil</title>
+        <defs>
+          <linearGradient id="or" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#7D5810"/><stop offset=".3" stop-color="#D8AA3E"/><stop offset=".5" stop-color="#FCE79A"/><stop offset=".7" stop-color="#C99632"/><stop offset="1" stop-color="#7D5810"/>
+          </linearGradient>
+          <linearGradient id="or-v" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#F7DA80"/><stop offset=".5" stop-color="#C8952F"/><stop offset="1" stop-color="#8A6214"/>
+          </linearGradient>
+          <radialGradient id="ciel" cx=".68" cy=".3" r=".75">
+            <stop offset="0" stop-color="#FFFBE6"/><stop offset=".45" stop-color="#FBEBB0"/><stop offset="1" stop-color="#F2D36A"/>
+          </radialGradient>
+          <linearGradient id="sol" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EFD07A"/><stop offset="1" stop-color="#E2B94E"/></linearGradient>
+          <linearGradient id="reflet" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+          <clipPath id="arche"><path d="M50 560V262C50 170 120 132 210 132S370 170 370 262V560Z"/></clipPath>
+          <path id="volute" d="M0 0C0-34 46-44 58-16C66 4 46 20 34 8C26 0 34-10 42-4" fill="none"/>
+          <path id="feuille" d="M0 0C6-16 22-24 40-26C30-14 20-2 0 0Z"/>
+          <g id="anneau"><circle r="9" fill="none"/></g>
+        </defs>
+
+        <!-- La scène vue à travers la grille -->
+        <g clip-path="url(#arche)">
+          <rect x="40" y="120" width="340" height="440" fill="url(#ciel)"/>
+          <circle cx="292" cy="214" r="30" fill="#FFF8D6"/>
+          <circle cx="292" cy="214" r="44" fill="none" stroke="#FFF3BF" stroke-width="10" stroke-dasharray="3 9"/>
+          <!-- façades lointaines -->
+          <path d="M40 360V318h40v-14h36v14h44v-22h52v22h40v-10h48v10h40v42z" fill="#F6E3A2"/>
+          <path d="M58 330h12v16H58zm34 0h12v16H92zm74-18h12v16h-12zm26 0h12v16h-12zm64 12h12v16h-12zm56 0h12v16h-12z" fill="#E5C565"/>
+          <!-- bacs de buis -->
+          <g fill="#2C6A51"><path d="M40 410c0-26 14-38 30-38s30 12 30 38zM320 410c0-26 14-38 30-38s30 12 30 38z"/></g>
+          <g fill="#0F3B2B"><rect x="44" y="408" width="52" height="34"/><rect x="324" y="408" width="52" height="34"/></g>
+          <!-- sol -->
+          <rect x="40" y="440" width="340" height="120" fill="url(#sol)"/>
+          <g stroke="#D3A93E" stroke-width="1.4" fill="none"><path d="M40 470h340M40 506h340M40 546h340M120 440L100 560M210 440v120M300 440l20 120"/></g>
+          <!-- ombre de la table -->
+          <ellipse cx="214" cy="532" rx="96" ry="12" fill="#0F3B2B" opacity=".16"/>
+          <!-- chaises bistrot -->
+          <g fill="none" stroke="#0F3B2B" stroke-width="3.2" stroke-linecap="round">
+            <path d="M118 446c-6-34-4-60 18-60s24 26 18 60"/>
+            <path d="M126 452c-4-22-2-44 10-44s14 22 10 44"/>
+            <path d="M110 456h52M116 458l-8 74M156 458l8 74M126 460l-4 64M146 460l4 64M112 504h48"/>
+            <path d="M302 446c6-34 4-60-18-60s-24 26-18 60"/>
+            <path d="M294 452c4-22 2-44-10-44s-14 22-10 44"/>
+            <path d="M310 456h-52M304 458l8 74M264 458l-8 74M294 460l4 64M274 460l-4 64M308 504h-48"/>
+          </g>
+          <!-- table -->
+          <ellipse cx="210" cy="446" rx="66" ry="12" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="3"/>
+          <path d="M210 458v66M184 532c8-10 44-10 52 0" fill="none" stroke="#0F3B2B" stroke-width="3.4" stroke-linecap="round"/>
+          <!-- carafe, verres, brin -->
+          <path d="M184 444v-22c0-8 6-10 6-14v-8h10v8c0 4 6 6 6 14v22z" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="2.4"/>
+          <path d="M186 444v-14h18v14z" fill="#CFE4DA"/>
+          <path d="M220 444l-3-20h14l-3 20zM240 444l-3-20h14l-3 20z" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="2.2"/>
+          <path d="M219 434h12M239 434h12" stroke="#E3BD45" stroke-width="4"/>
+          <path d="M166 444v-10h10v10z" fill="#0F3B2B"/>
+          <path d="M171 434c-2-12-10-16-14-24M171 434c2-12 8-18 14-22M171 432c0-10 0-16 2-24" fill="none" stroke="#2C6A51" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="157" cy="410" r="3" fill="#E3BD45"/><circle cx="185" cy="412" r="3" fill="#E3BD45"/><circle cx="173" cy="408" r="3" fill="#E3BD45"/>
+        </g>
+
+        <!-- Grille : barreaux -->
+        <g clip-path="url(#arche)" stroke="url(#or-v)" stroke-width="3.6">
+          <path d="M85 130v430M120 130v430M155 130v430M190 130v430M230 130v430M265 130v430M300 130v430M335 130v430"/>
+        </g>
+        <!-- traverses + anneaux -->
+        <g stroke="url(#or)" fill="none">
+          <path d="M50 300h320M50 314h320M50 486h320M50 500h320" stroke-width="3.6"/>
+          <g stroke-width="2.6">
+            <circle cx="67.5" cy="307" r="5.5"/><circle cx="102.5" cy="307" r="5.5"/><circle cx="137.5" cy="307" r="5.5"/><circle cx="172.5" cy="307" r="5.5"/><circle cx="210" cy="307" r="5.5"/><circle cx="247.5" cy="307" r="5.5"/><circle cx="282.5" cy="307" r="5.5"/><circle cx="317.5" cy="307" r="5.5"/><circle cx="352.5" cy="307" r="5.5"/>
+            <circle cx="67.5" cy="493" r="5.5"/><circle cx="102.5" cy="493" r="5.5"/><circle cx="137.5" cy="493" r="5.5"/><circle cx="172.5" cy="493" r="5.5"/><circle cx="210" cy="493" r="5.5"/><circle cx="247.5" cy="493" r="5.5"/><circle cx="282.5" cy="493" r="5.5"/><circle cx="317.5" cy="493" r="5.5"/><circle cx="352.5" cy="493" r="5.5"/>
+          </g>
+          <!-- volutes du panneau central -->
+          <g stroke-width="3" stroke-linecap="round">
+            <use href="#volute" transform="translate(210 250) scale(-.8 .8)"/><use href="#volute" transform="translate(210 250) scale(.8)"/>
+            <use href="#volute" transform="translate(210 260) scale(-.8 -.8)"/><use href="#volute" transform="translate(210 260) scale(.8 -.8)"/>
+          </g>
+        </g>
+        <!-- cadre en arc -->
+        <path d="M50 560V262C50 170 120 132 210 132S370 170 370 262V560" fill="none" stroke="url(#or)" stroke-width="8"/>
+        <path d="M62 560V264C62 182 128 146 210 146S358 182 358 264V560" fill="none" stroke="url(#or)" stroke-width="2.4"/>
+        <!-- piliers & pots à feu -->
+        <g>
+          <rect x="16" y="250" width="26" height="310" fill="url(#or-v)"/>
+          <rect x="378" y="250" width="26" height="310" fill="url(#or-v)"/>
+          <rect x="10" y="240" width="38" height="12" fill="url(#or)"/><rect x="372" y="240" width="38" height="12" fill="url(#or)"/>
+          <path d="M14 240c0-14 10-20 15-20s15 6 15 20zM376 240c0-14 10-20 15-20s15 6 15 20z" fill="url(#or)"/>
+          <path d="M29 220c-8-10-2-22 0-30 4 8 10 18 0 30zM391 220c-8-10-2-22 0-30 4 8 10 18 0 30z" fill="#E3BD45"/>
+        </g>
+        <!-- couronnement -->
+        <g stroke="url(#or)" fill="none" stroke-linecap="round" stroke-width="4">
+          <use href="#volute" transform="translate(176 96) scale(-1.25 1.25)"/>
+          <use href="#volute" transform="translate(244 96) scale(1.25)"/>
+          <use href="#volute" transform="translate(150 132) rotate(-12) scale(-.9 -.9)"/>
+          <use href="#volute" transform="translate(270 132) rotate(12) scale(.9 -.9)"/>
+        </g>
+        <g fill="url(#or)">
+          <use href="#feuille" transform="translate(168 112) rotate(200)"/>
+          <use href="#feuille" transform="translate(252 112) scale(-1 1) rotate(200)"/>
+          <use href="#feuille" transform="translate(120 148) rotate(170) scale(.8)"/>
+          <use href="#feuille" transform="translate(300 148) scale(-1 1) rotate(170) scale(.8)"/>
+        </g>
+        <circle cx="210" cy="86" r="44" fill="none" stroke="url(#or)" stroke-width="14" stroke-dasharray="2.5 6.5"/>
+        <circle cx="210" cy="86" r="31" fill="#FFFFFF" stroke="url(#or)" stroke-width="5"/>
+        <text x="210" y="98" text-anchor="middle" font-family="League Gothic, Impact, sans-serif" font-size="34" letter-spacing="1" fill="#0F3B2B">CS</text>
+        <path d="M198 40l12-22 12 22-12-6z" fill="url(#or)"/>
+        <g class="eclat" opacity=".9" style="mix-blend-mode:overlay"><rect x="-40" y="0" width="90" height="560" fill="url(#reflet)" transform="skewX(-14)"/></g>
+      </svg>
+      <figcaption class="legende">La terrasse, aux beaux jours.</figcaption>
+    </figure>
+  </div>
+
+  <div class="resa-zone" id="reserver">
+    <div class="wrap">
+      <form class="resa sur-vert entree" style="--d:1.6s" id="resa" aria-labelledby="resa-t" novalidate>
+        <div class="resa-titre">
+          <h2 id="resa-t">Demander une table</h2>
+          <p>Trois choix, et on vous confirme.</p>
+        </div>
+        <div class="champ-r">
+          <label for="r-jour">Quel jour</label>
+          <select id="r-jour" name="jour" required>
+            <option value="">Choisir un jour</option>
+          </select>
+        </div>
+        <fieldset class="champ-r">
+          <legend>Quel service</legend>
+          <div class="services">
+            <input type="radio" name="service" id="r-midi" value="midi" checked>
+            <label for="r-midi"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2"/></svg>Le midi</label>
+            <input type="radio" name="service" id="r-soir" value="soir">
+            <label for="r-soir"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Le soir</label>
+          </div>
+        </fieldset>
+        <div class="champ-r">
+          <label for="r-couverts">Couverts</label>
+          <div class="compteur">
+            <button type="button" data-pas="-1" aria-label="Un couvert de moins">−</button>
+            <input id="r-couverts" name="couverts" type="number" inputmode="numeric" min="1" max="30" value="2">
+            <button type="button" data-pas="1" aria-label="Un couvert de plus">+</button>
+          </div>
+        </div>
+        <div class="resa-go">
+          <button class="btn btn-paille" type="submit">Demander cette table <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        </div>
+        <p class="resa-note" id="resa-note" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="depeche" aria-label="En bref">
+    <div class="depeche-piste">
+      <ul><li>La terrasse aux beaux jours</li><li>L'ardoise change chaque matin</li><li>Du mardi au samedi, midi et soir</li><li>Groupes sur demande</li><li>À deux pas de la place Stanislas</li></ul>
+      <ul aria-hidden="true"><li>La terrasse aux beaux jours</li><li>L'ardoise change chaque matin</li><li>Du mardi au samedi, midi et soir</li><li>Groupes sur demande</li><li>À deux pas de la place Stanislas</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LE JOURNAL DU JOUR ============ -->
+<section class="gazette" id="journal" aria-labelledby="journal-t">
+  <div class="wrap">
+    <div class="journal">
+      <header class="manchette rv">
+        <small>Nancy, édition du midi.<br>Paraît chaque matin, avant le service.</small>
+        <h2 id="journal-t"><span>Le journal du jour</span>La Gazette du Comptoir</h2>
+        <small>Cuisine de saison.<br>La carte suit le marché.</small>
+      </header>
+      <p class="ligne-date rv" style="--d:.1s"><span id="date-jour">Édition du jour</span><span>Terrasse et salle</span><span>Les prix se lisent sur place</span></p>
+
+      <div class="une">
+        <article class="une-article">
+          <span class="rubrique rv">À la une</span>
+          <h3 class="rv rv-encre"><span>Joue de bœuf braisée au vin rouge, la vedette de la semaine</span></h3>
+          <p class="dek rv" style="--d:.15s">Cuite doucement depuis le matin, servie avec une purée de céleri. Le plat qu'on vient chercher quand l'automne s'installe.</p>
+          <div class="une-corps">
+            <div class="texte-col rv" style="--d:.2s">
+              <p class="lettrine">La carte du Comptoir est courte, et c'est voulu. Elle s'écrit le matin, à partir de ce que le marché propose, et elle change dès qu'un produit n'est plus à son meilleur.</p>
+              <p>Ce journal donne l'idée d'une semaine d'automne. Celui du jour se lit sur place, sur l'ardoise, ou se demande par téléphone avant de venir.</p>
+              <p>Une allergie, un régime particulier&nbsp;? Dites-le en réservant&nbsp;: la cuisine s'adapte.</p>
+            </div>
+            <figure class="gravure rv" style="--d:.3s">
+              <svg viewBox="0 0 320 230" role="img" aria-labelledby="grav-t">
+                <title id="grav-t">Gravure d'une cocotte fumante</title>
+                <defs>
+                  <pattern id="hach" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0v6" stroke="#0F3B2B" stroke-width="1.3"/></pattern>
+                  <pattern id="hach2" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><path d="M0 0v4" stroke="#0F3B2B" stroke-width="1"/></pattern>
+                </defs>
+                <rect width="320" height="230" fill="#FBEDB4"/>
+                <ellipse cx="160" cy="205" rx="120" ry="12" fill="url(#hach2)" opacity=".5"/>
+                <g fill="none" stroke="#0F3B2B" stroke-width="2.4" stroke-linecap="round">
+                  <path d="M160 70c-10-12 8-20-2-34M182 66c-8-12 8-18 0-30M138 66c-8-10 6-16-2-28" stroke-width="2"/>
+                </g>
+                <path d="M70 110h180v60c0 22-30 34-90 34s-90-12-90-34z" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="3"/>
+                <path d="M70 120h180v50c0 22-30 34-90 34s-90-12-90-34z" fill="url(#hach)" opacity=".55"/>
+                <path d="M200 120h50v50c0 16-16 26-50 31z" fill="url(#hach2)" opacity=".7"/>
+                <path d="M70 120c-14 0-24 6-24 14s10 12 24 12M250 120c14 0 24 6 24 14s-10 12-24 12" fill="none" stroke="#0F3B2B" stroke-width="3"/>
+                <ellipse cx="160" cy="108" rx="96" ry="14" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="3"/>
+                <path d="M72 106c4-26 44-36 88-36s84 10 88 36" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="3"/>
+                <path d="M190 78c26 4 46 14 52 26l-50 2z" fill="url(#hach2)" opacity=".6"/>
+                <path d="M146 70c0-10 6-14 14-14s14 4 14 14" fill="#F4D774" stroke="#0F3B2B" stroke-width="3"/>
+                <path d="M30 196c40-8 70-6 90 2M200 198c30-6 64-6 92 0" fill="none" stroke="#0F3B2B" stroke-width="1.5"/>
+              </svg>
+              <figcaption>La cocotte du jour. Dessin d'illustration.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <aside class="menu-midi rv" style="--d:.15s" aria-labelledby="menu-t">
+          <h3 id="menu-t">Au menu cette semaine<small>Entrée, plat, dessert : à composer comme vous voulez.</small></h3>
+          <div class="cours">
+            <h4>Pour commencer</h4>
+            <ul><li>Velouté de potimarron, noisettes torréfiées</li><li>Œuf parfait, poêlée de champignons des bois</li><li>Pâté lorrain de la maison, mâche à l'huile de noix</li></ul>
+          </div>
+          <div class="cours">
+            <h4>Le plat</h4>
+            <ul><li>Joue de bœuf braisée au vin rouge, purée de céleri</li><li>Filet de truite, beurre blanc, poireaux fondants</li><li>Risotto de petit épeautre, courge rôtie <i>(sans viande)</i></li></ul>
+          </div>
+          <div class="cours">
+            <h4>Pour finir</h4>
+            <ul><li>Tarte fine aux pommes, crème crue</li><li>Pain perdu brioché, glace à la mirabelle</li></ul>
+          </div>
+          <p class="encadre"><b>Une allergie&nbsp;?</b>Demandez au service ou précisez-le dans votre demande&nbsp;: la cuisine s'adapte.</p>
+        </aside>
+      </div>
+
+      <div class="breves">
+        <div class="breve rv">
+          <span class="kick">Bulletin de la terrasse</span>
+          <h4>Dehors dès que le soleil le permet</h4>
+          <p>Aux beaux jours, les tables sortent sur la terrasse. Par temps gris, on rentre&nbsp;: la salle vous attend.</p>
+        </div>
+        <div class="breve rv" style="--d:.08s">
+          <span class="kick">Côté marché</span>
+          <h4>Une carte courte, qui bouge</h4>
+          <p>Quand un produit n'est plus à son meilleur, il quitte la carte. Un autre prend sa place le lendemain.</p>
+        </div>
+        <div class="breve rv" style="--d:.16s">
+          <span class="kick">Le saviez-vous</span>
+          <h4>Sans viande, sur demande</h4>
+          <p>Un plat végétarien figure à la carte. Pour un autre régime, prévenez en réservant.</p>
+        </div>
+        <div class="breve annonce rv" style="--d:.24s">
+          <span class="kick">Petite annonce</span>
+          <h4>Repas de famille, réunion d'équipe&nbsp;?</h4>
+          <p>Groupes et privatisation selon la date. <a href="#contact">Écrivez au Comptoir</a>, on prévoit ensemble.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LA MAISON ============ -->
+<section class="maison sur-vert" id="maison" aria-labelledby="maison-t">
+  <div class="frise" aria-hidden="true"></div>
+  <div class="wrap maison-in">
+    <div class="maison-tete">
+      <h2 id="maison-t" class="rv"><span>Ce que fait un bistrot de quartier</span>La maison</h2>
+      <p class="rv" style="--d:.1s">Les grandes familles du métier. Pour savoir si votre envie en fait partie, le plus simple est de poser la question.</p>
+    </div>
+    <div class="rubriques">
+      <article class="rub rv">
+        <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="32" cy="34" r="17"/><circle cx="32" cy="34" r="10" stroke-dasharray="2 3"/><path d="M8 14v12c0 3 2 5 4 5v22M12 14v10M16 14v12c0 3-2 5-4 5"/><path d="M54 14c-4 0-6 6-6 14h6v25"/></svg>
+        <h3>La carte</h3>
+        <p>Les plats du moment, à découvrir sur place. Entrée, plat, dessert : une carte courte, qui change avec le marché.</p>
+      </article>
+      <article class="rub rv" style="--d:.1s">
+        <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 30h52M12 30v20M52 30v20"/><circle cx="16" cy="20" r="4"/><circle cx="32" cy="18" r="4"/><circle cx="48" cy="20" r="4"/><path d="M24 30v-4M40 30v-4"/><path d="M20 40h24" stroke-dasharray="3 4"/></svg>
+        <h3>Groupes et événements</h3>
+        <p>Repas de famille, anniversaire, réunion d'équipe, privatisation : selon la maison et la date. On en parle avant, on prévoit ensemble.</p>
+      </article>
+      <article class="rub vive rv" style="--d:.2s">
+        <svg viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14h40v26H26l-10 9v-9H8z"/><path d="M48 24h8v22h-6v7l-8-7H30v-6"/><path d="M16 23h24M16 31h16"/></svg>
+        <h3>Le reste, de vive voix</h3>
+        <p>Un régime particulier, une chaise haute, un plat que vous aimeriez revoir : demandez, on vous répond.</p>
+        <a class="lien" href="#contact">Poser la question <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+      </article>
+    </div>
+    <p class="mention rv">Aucun prix n'est affiché tant qu'il n'a pas été établi par l'établissement.</p>
+  </div>
+  <div class="frise" aria-hidden="true"></div>
+</section>
+
+<!-- ============ AVANT DE VENIR ============ -->
+<section class="avant" id="avant" aria-labelledby="avant-t">
+  <div class="wrap avant-grille">
+    <div>
+      <h2 id="avant-t" class="rv">Avant de venir<span>Trois choses à avoir en tête</span></h2>
+      <p class="avant-intro rv" style="--d:.1s">Avant d'écrire ou d'appeler, elles rendent l'échange plus rapide. Et votre table sera prête comme vous l'aimez.</p>
+      <a class="btn rv" style="--d:.2s" href="#reserver">Demander une table</a>
+    </div>
+    <ol class="etapes">
+      <li class="etape rv">
+        <span class="pastille"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="8" y="11" width="32" height="29"/><path d="M8 19h32M16 7v8M32 7v8"/><path d="M22 30l3 3 6-7"/></svg></span>
+        <h3>La date</h3>
+        <p>Le jour et l'heure qui vous conviennent.</p>
+      </li>
+      <li class="etape rv" style="--d:.12s">
+        <span class="pastille"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M10 26c-2-10-1-16 5-16s7 6 5 16M8 27h14M10 28l-2 13M20 28l2 13"/><path d="M38 26c2-10 1-16-5-16s-7 6-5 16M40 27H26M38 28l2 13M28 28l-2 13"/></svg></span>
+        <h3>Le nombre de couverts</h3>
+        <p>Combien vous serez, enfants compris.</p>
+      </li>
+      <li class="etape rv" style="--d:.24s">
+        <span class="pastille"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8h20l6 6v26H12z"/><path d="M32 8v6h6M17 22h14M17 29h14M17 36h8"/></svg></span>
+        <h3>Une précision</h3>
+        <p>Une allergie, un anniversaire, une chaise haute.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ HORAIRES & ACCÈS ============ -->
+<section class="horaires" id="horaires" aria-labelledby="hor-t">
+  <div class="wrap hor-grille">
+    <div>
+      <h2 id="hor-t" class="rv">Horaires et accès<span>Quand venir, et par où</span></h2>
+      <p class="statut rv" id="statut" role="status"><span class="point" aria-hidden="true"></span><span class="statut-txt">Du mardi au samedi, midi et soir.</span></p>
+      <table class="table-h rv" style="--d:.1s">
+        <caption class="sr">Horaires des services</caption>
+        <tbody>
+          <tr data-j="1"><th scope="row">Lundi</th><td class="clos">Fermé</td></tr>
+          <tr data-j="2"><th scope="row">Mardi</th><td>12 h – 14 h · 19 h – 22 h 30</td></tr>
+          <tr data-j="3"><th scope="row">Mercredi</th><td>12 h – 14 h · 19 h – 22 h 30</td></tr>
+          <tr data-j="4"><th scope="row">Jeudi</th><td>12 h – 14 h · 19 h – 22 h 30</td></tr>
+          <tr data-j="5"><th scope="row">Vendredi</th><td>12 h – 14 h · 19 h – 22 h 30</td></tr>
+          <tr data-j="6"><th scope="row">Samedi</th><td>12 h – 14 h · 19 h – 23 h</td></tr>
+          <tr data-j="0"><th scope="row">Dimanche</th><td class="clos">Fermé</td></tr>
+        </tbody>
+      </table>
+      <p class="note-h rv">L'état affiché se calcule à l'heure où vous lisez la page. Les jours fériés, un message avant de venir ne coûte rien.</p>
+    </div>
+    <div class="plan rv" style="--d:.15s">
+      <svg viewBox="0 0 520 380" role="img" aria-labelledby="plan-t">
+        <title id="plan-t">Plan schématique : le Comptoir Stanislas, rue de l'Exemple, près de la place Stanislas</title>
+        <rect width="520" height="380" fill="#FBEDB4"/>
+        <g fill="#EFD58A"><rect x="20" y="20" width="120" height="90"/><rect x="20" y="150" width="120" height="110"/><rect x="20" y="300" width="120" height="60"/><rect x="380" y="270" width="120" height="90"/><rect x="180" y="300" width="160" height="60"/></g>
+        <path d="M380 20h120v210H380z" fill="#CFE4DA"/>
+        <g fill="#2C6A51"><circle cx="404" cy="46" r="9"/><circle cx="436" cy="60" r="11"/><circle cx="470" cy="44" r="9"/><circle cx="410" cy="96" r="11"/><circle cx="452" cy="110" r="9"/><circle cx="480" cy="150" r="11"/><circle cx="414" cy="170" r="9"/><circle cx="448" cy="196" r="11"/></g>
+        <g stroke="#FFFFFF" stroke-width="22" fill="none" stroke-linecap="square"><path d="M0 130H520M160 0V380M360 0V380M0 280H520"/></g>
+        <g stroke="#0F3B2B" stroke-width="1" stroke-dasharray="4 5" fill="none" opacity=".35"><path d="M0 130H520M160 0V380M360 0V380M0 280H520"/></g>
+        <rect x="186" y="156" width="148" height="100" fill="#FFFFFF" stroke="#0F3B2B" stroke-width="2"/>
+        <g stroke="#D6A93F" stroke-width="2" fill="none"><path d="M186 176a20 20 0 0 0 20-20M334 176a20 20 0 0 1-20-20M186 236a20 20 0 0 1 20 20M334 236a20 20 0 0 0-20 20"/><path d="M190 172a14 14 0 0 0 14-14M330 172a14 14 0 0 1-14-14M190 240a14 14 0 0 1 14 14M330 240a14 14 0 0 0-14 14"/></g>
+        <circle cx="260" cy="206" r="7" fill="#0F3B2B"/>
+        <text x="260" y="234" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="15" fill="#0F3B2B">Place Stanislas</text>
+        <text x="440" y="246" text-anchor="middle" font-family="Newsreader, Georgia, serif" font-style="italic" font-size="14" fill="#0F3B2B">La Pépinière</text>
+        <text x="80" y="124" text-anchor="middle" font-family="League Gothic, Impact, sans-serif" font-size="16" letter-spacing="1.5" fill="#46564D">RUE DE L'EXEMPLE</text>
+        <g class="repere">
+          <path d="M80 98c-16 0-26-12-26-26 0-16 12-28 26-28s26 12 26 28c0 14-10 26-26 26z" fill="#0F3B2B"/>
+          <path d="M70 94l10 18 10-18z" fill="#0F3B2B"/>
+          <circle cx="80" cy="70" r="15" fill="#F4D774"/>
+          <text x="80" y="77" text-anchor="middle" font-family="League Gothic, Impact, sans-serif" font-size="19" fill="#0F3B2B">CS</text>
+        </g>
+        <g transform="translate(486 344)" fill="none" stroke="#0F3B2B" stroke-width="1.6"><circle r="16" fill="#FFFFFF"/><path d="M0-12l4 12h-8z" fill="#0F3B2B"/><text y="-19" text-anchor="middle" font-family="League Gothic, Impact, sans-serif" font-size="12" fill="#0F3B2B" stroke="none">N</text></g>
+      </svg>
+      <div class="plan-pied">
+        <address><b>Le Comptoir Stanislas</b>XX rue de l'Exemple<br>54000 Nancy</address>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Le%20Comptoir%20Stanislas%2C%20XX%20rue%20de%20l'Exemple%2C%2054000%20Nancy" target="_blank" rel="noopener">Ouvrir l'itinéraire <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact" aria-labelledby="contact-t">
+  <div class="wrap contact-grille">
+    <div>
+      <h2 id="contact-t" class="rv">Écrire au Comptoir<span>Une table, une question, un groupe</span></h2>
+      <dl class="coord rv" style="--d:.1s">
+        <div><dt>Par téléphone</dt><dd class="tel">06 XX XX XX XX</dd></div>
+        <div><dt>Adresse</dt><dd>XX rue de l'Exemple, 54000 Nancy</dd></div>
+        <div><dt>Services</dt><dd>Du mardi au samedi, 12 h – 14 h et 19 h – 22 h 30, jusqu'à 23 h le samedi</dd></div>
+      </dl>
+    </div>
+    <form class="formulaire rv" style="--d:.15s" id="form-contact" novalidate>
+      <h3>Votre demande</h3>
+      <p>Votre message arrive directement au Comptoir Stanislas, qui vous répond.</p>
+      <div class="champs">
+        <div class="ch"><label for="f-nom">Votre nom</label><input id="f-nom" name="nom" type="text" autocomplete="name" required></div>
+        <div class="ch"><label for="f-tel">Votre téléphone</label><input id="f-tel" name="telephone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="ch plein"><label for="f-objet">Votre demande</label>
+          <select id="f-objet" name="objet" required>
+            <option value="">Choisir…</option>
+            <option>Une demande de réservation</option>
+            <option>Un groupe ou un événement</option>
+            <option>Une question</option>
+          </select>
+        </div>
+        <div class="ch l2"><label for="f-date">Date</label><input id="f-date" name="date" type="date"></div>
+        <div class="ch l2 court"><label for="f-service">Service</label>
+          <select id="f-service" name="service"><option value="">—</option><option value="midi">Le midi</option><option value="soir">Le soir</option></select>
+        </div>
+        <div class="ch l2 court"><label for="f-couverts">Couverts</label><input id="f-couverts" name="couverts" type="number" min="1" max="30" inputmode="numeric"></div>
+        <div class="ch plein"><label for="f-precision">Une précision</label><textarea id="f-precision" name="precision" placeholder="Une allergie, un anniversaire, une chaise haute…"></textarea></div>
+      </div>
+      <div class="envoi">
+        <button class="btn" type="submit">Envoyer la demande <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+        <small>On vous rappelle pour confirmer la table.</small>
+      </div>
+      <div class="merci" id="merci" role="status" aria-live="polite" tabindex="-1"><b>Merci, c'est noté&nbsp;!</b>Sur le site en ligne, votre demande arrive directement chez Le Comptoir Stanislas, qui vous répond au plus vite.</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="pied sur-vert">
+  <div class="frise" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="pied-in">
+      <div>
+        <p class="nom">Le Comptoir<br>Stanislas</p>
+        <p>Bistrot de quartier et terrasse, à Nancy.</p>
+      </div>
+      <div>
+        <h3>Nous trouver</h3>
+        <p>XX rue de l'Exemple<br>54000 Nancy<br>06 XX XX XX XX</p>
+      </div>
+      <div>
+        <h3>Raccourcis</h3>
+        <ul><li><a href="#journal">Le journal du jour</a></li><li><a href="#horaires">Horaires et accès</a></li><li><a href="#reserver">Demander une table</a></li></ul>
+      </div>
+    </div>
+    <div class="pied-bas"><span>© <span id="annee">2026</span> Le Comptoir Stanislas</span><span>Illustrations dessinées pour la maison.</span></div>
+  </div>
+</footer>
+
+<nav class="barre-mobile" id="barre-mobile" aria-label="Actions rapides">
+  <a href="#contact"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>Appeler</a>
+  <a class="prim" href="#reserver"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2"/></svg>Demander une table</a>
+</nav>
+
+<script>
+(function(){
+  var doc=document.documentElement;
+  var reduit=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,c){return (c||document).querySelector(s)}
+  function $$(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))}
+
+  /* Entrée orchestrée */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){doc.classList.add('pret')})});
+
+  /* Révélations au défilement */
+  var rv=$$('.rv');
+  if('IntersectionObserver' in window && !reduit){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vu');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    rv.forEach(function(el){io.observe(el)});
+  } else rv.forEach(function(el){el.classList.add('vu')});
+
+  /* Menu mobile */
+  var burger=$('.burger');
+  function fermer(){document.body.classList.remove('menu-ouvert');burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Ouvrir le menu')}
+  burger.addEventListener('click',function(){var o=document.body.classList.toggle('menu-ouvert');burger.setAttribute('aria-expanded',o?'true':'false');burger.setAttribute('aria-label',o?'Fermer le menu':'Ouvrir le menu')});
+  $$('.nav a').forEach(function(a){a.addEventListener('click',fermer)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')fermer()});
+
+  /* Barre mobile : apparaît une fois le hero passé */
+  var barre=$('#barre-mobile');
+  function majBarre(){barre.classList.toggle('vu',window.scrollY>window.innerHeight*.45)}
+  window.addEventListener('scroll',majBarre,{passive:true});majBarre();
+
+  /* Dates & horaires */
+  var JOURS=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
+  var JC=['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
+  var MOIS=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+  var MC=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+  function services(j){ if(j===0||j===1) return []; return [[12*60,14*60,'midi'],[19*60,(j===6?23*60:22*60+30),'soir']]; }
+  function hhmm(m){var h=Math.floor(m/60),mi=m%60;return h+' h'+(mi?' '+(mi<10?'0':'')+mi:'')}
+  var now=new Date();
+  var dj=$('#date-jour'); if(dj){var t=JOURS[now.getDay()]+' '+now.getDate()+' '+MOIS[now.getMonth()]+' '+now.getFullYear();dj.textContent=t.charAt(0).toUpperCase()+t.slice(1)}
+  var an=$('#annee'); if(an) an.textContent=now.getFullYear();
+  var tr=$('.table-h tr[data-j="'+now.getDay()+'"]'); if(tr) tr.classList.add('auj');
+
+  function etat(){
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),s=services(j);
+    for(var i=0;i<s.length;i++){ if(m>=s[i][0]&&m<s[i][1]) return {o:true,txt:'Ouvert en ce moment · service du '+s[i][2]+' jusqu’à '+hhmm(s[i][1])}; }
+    for(i=0;i<s.length;i++){ if(m<s[i][0]) return {o:false,txt:'Fermé pour l’instant · prochain service '+(s[i][2]==='midi'?'ce midi':'ce soir')+' à '+hhmm(s[i][0])}; }
+    for(var k=1;k<8;k++){var jj=(j+k)%7,ss=services(jj); if(ss.length){return {o:false,txt:'Fermé pour l’instant · réouverture '+(k===1?'demain':JOURS[jj])+' à '+hhmm(ss[0][0])}}}
+    return {o:false,txt:'Fermé'};
+  }
+  function majEtat(){
+    var e=etat();
+    [['#etat-hero','.etat-txt'],['#statut','.statut-txt']].forEach(function(p){var el=$(p[0]);if(!el)return;el.classList.toggle('ouvert',e.o);el.classList.toggle('ferme',!e.o);$(p[1],el).textContent=e.txt});
+  }
+  majEtat(); setInterval(majEtat,60000);
+
+  /* Jours proposés dans la barre de réservation */
+  var sel=$('#r-jour');
+  function iso(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2)}
+  var premier=null;
+  for(var k=0,n=0;k<21&&n<10;k++){
+    var d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+k);
+    if(!services(d.getDay()).length) continue;
+    var lib=JC[d.getDay()]+' '+d.getDate()+' '+MC[d.getMonth()]+(k===0?' · aujourd’hui':k===1?' · demain':'');
+    var o=document.createElement('option'); o.value=iso(d); o.textContent=lib.charAt(0).toUpperCase()+lib.slice(1); sel.appendChild(o);
+    if(!premier) premier=o.value; n++;
+  }
+  if(premier) sel.value=premier;
+
+  /* Compteur de couverts */
+  var cv=$('#r-couverts');
+  $$('.compteur button').forEach(function(b){b.addEventListener('click',function(){var v=parseInt(cv.value||'2',10)+parseInt(b.getAttribute('data-pas'),10);cv.value=Math.max(1,Math.min(30,v))})});
+
+  /* Demander une table : préremplit le formulaire */
+  var note=$('#resa-note');
+  $('#resa').addEventListener('submit',function(e){
+    e.preventDefault();
+    if(!sel.value){note.textContent='Choisissez d’abord un jour.';note.classList.add('vu');sel.focus();return}
+    var svc=($('input[name=service]:checked')||{}).value||'midi';
+    $('#f-objet').value='Une demande de réservation';
+    $('#f-date').value=sel.value; $('#f-service').value=svc; $('#f-couverts').value=cv.value||2;
+    note.textContent='C’est noté : '+sel.options[sel.selectedIndex].text.toLowerCase()+', le '+svc+', '+cv.value+' couvert'+(cv.value>1?'s':'')+'. Il ne reste que votre nom et votre téléphone, plus bas.';
+    note.classList.add('vu');
+    setTimeout(function(){ $('#contact').scrollIntoView({behavior:reduit?'auto':'smooth'}); setTimeout(function(){$('#f-nom').focus({preventScroll:true})},reduit?0:700)},reduit?0:900);
+  });
+
+  /* Formulaire de contact */
+  $('#form-contact').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target,ok=true;
+    ['#f-nom','#f-tel','#f-objet'].forEach(function(s){var c=$(s);var v=c.value.trim()!=='';c.setAttribute('aria-invalid',v?'false':'true');c.style.borderBottomColor=v?'':'#9B3A21';if(!v&&ok){ok=false;c.focus()}});
+    if(!ok) return;
+    var m=$('#merci'); m.classList.add('vu'); m.focus(); f.querySelector('button[type=submit]').disabled=true;
+  });
+
+  /* Parallaxe légère de la grille */
+  var porte=$('#porte');
+  if(!reduit && porte){
+    var tick=false;
+    window.addEventListener('scroll',function(){ if(tick) return; tick=true; requestAnimationFrame(function(){var y=Math.min(window.scrollY,900);porte.style.translate='0 '+(y*-.07).toFixed(1)+'px';tick=false})},{passive:true});
+  }
+
+  /* Ombres de feuilles (canvas) */
+  var cnv=$('#feuillage'),hero=$('.hero');
+  if(cnv && cnv.getContext){
+    var ctx=cnv.getContext('2d'),W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2),sprites=[],branches=[],visible=true,t0=performance.now();
+    function rnd(a,b){return a+Math.random()*(b-a)}
+    function feuille(c,x,y,ang,L){
+      c.save();c.translate(x,y);c.rotate(ang);c.beginPath();c.moveTo(0,0);
+      c.bezierCurveTo(L*.3,-L*.32,L*.75,-L*.26,L,0);c.bezierCurveTo(L*.75,L*.26,L*.3,L*.32,0,0);c.fill();c.restore();
+    }
+    function sprite(sz){
+      var s=document.createElement('canvas');s.width=s.height=sz;var c=s.getContext('2d');
+      c.fillStyle='rgba(16,48,34,1)';c.strokeStyle='rgba(16,48,34,1)';
+      try{c.filter='blur('+(sz/90).toFixed(1)+'px)'}catch(e){}
+      var nb=Math.round(rnd(2,4));
+      for(var b=0;b<nb;b++){
+        var x=sz*.08,y=sz*rnd(.35,.65),a=rnd(-.5,.5),len=sz*rnd(.6,.85),steps=14;
+        c.lineWidth=sz/140;c.beginPath();c.moveTo(x,y);
+        var pts=[];
+        for(var i=1;i<=steps;i++){var tt=i/steps;var px=x+Math.cos(a+Math.sin(tt*2)*.4)*len*tt;var py=y+Math.sin(a+Math.sin(tt*2)*.4)*len*tt;c.lineTo(px,py);pts.push([px,py,tt])}
+        c.stroke();
+        pts.forEach(function(p,i){ if(i%1===0){var L=sz*rnd(.07,.12)*(1-p[2]*.35);feuille(c,p[0],p[1],a+(i%2?1:-1)*rnd(.6,1.1),L)} });
+      }
+      return s;
+    }
+    function init(){
+      var r=hero.getBoundingClientRect();W=r.width;H=r.height;
+      cnv.width=Math.round(W*dpr);cnv.height=Math.round(H*dpr);
+      if(!sprites.length){for(var i=0;i<5;i++) sprites.push(sprite(Math.round(rnd(320,420))))}
+      branches=[];var n=W<640?6:11;
+      for(var j=0;j<n;j++){
+        var fromLeft=j%3!==2;
+        branches.push({s:sprites[j%sprites.length],x:fromLeft?rnd(-W*.18,W*.55):rnd(W*.5,W*1.05),y:rnd(-H*.05,H*.75),sc:rnd(.75,1.35)*(W<640?.75:1),a:rnd(-.6,.9)+(fromLeft?0:Math.PI*.9),ph:rnd(0,6.28),f:rnd(.35,.7),amp:rnd(6,14),al:rnd(.07,.14)});
+      }
+    }
+    function dessiner(t){
+      ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+      var vent=Math.sin(t*.00023)*.6+Math.sin(t*.00071)*.4;
+      branches.forEach(function(b){
+        var s=b.s,k=b.sc;
+        var dx=Math.sin(t*.001*b.f+b.ph)*b.amp*(1+vent*.4),dy=Math.cos(t*.0008*b.f+b.ph)*b.amp*.45;
+        ctx.save();ctx.globalAlpha=b.al;ctx.translate(b.x+dx,b.y+dy);ctx.rotate(b.a+Math.sin(t*.0009*b.f+b.ph)*.045*(1+vent));ctx.scale(k,k);
+        ctx.drawImage(s,-s.width*.08,-s.height*.5);ctx.restore();
+      });
+    }
+    function boucle(t){ if(visible) dessiner(t-t0); if(!reduit) requestAnimationFrame(boucle) }
+    init();
+    if(reduit) dessiner(0); else requestAnimationFrame(boucle);
+    var rt,lw=window.innerWidth;window.addEventListener('resize',function(){if(window.innerWidth===lw)return;lw=window.innerWidth;clearTimeout(rt);rt=setTimeout(function(){init();if(reduit)dessiner(0)},150)});
+    if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting}).observe(hero)}
+  }
+
+  window.__terrasse=true;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,979 @@
+<!doctype html>
+<!--
+  Famille : artisanat — VARIANTE B — métier mis en avant : céramiste-potier.
+  Direction : atelier joyeux, couleurs vives d'émaux sur bleu cobalt profond et terre cuite rouge.
+  Transposable : changer la collection de l'étagère (meubles, bijoux, tirages…) et le nuancier (teintes, tissus, essences).
+
+  Inspiration (recherches : portfolios de céramistes colorés sur Framer/Awwwards, sites d'ateliers-potiers français proposant des stages) — idées retenues :
+  1. La couleur comme sujet : l'émail est le « produit » visible, on le laisse choisir au visiteur (nuancier de tessons d'essai).
+  2. Les pièces posées en rang sur une étagère qu'on parcourt latéralement, avec une étiquette manuscrite par pièce, comme en boutique d'atelier.
+  3. L'agenda des ouvertures et des stages mis en avant comme un vrai rendez-vous, avec un geste simple pour demander une place.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Terre de Meurthe — céramiste à Pont-à-Mousson</title>
+<meta name="description" content="Atelier Terre de Meurthe, céramiste-potier à Pont-à-Mousson : bols, tasses et vases en grès émaillés à l'atelier, stages de tournage et d'émaillage, commandes et réparations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cobalt:#1B2A8A;
+  --cobalt-nuit:#10185A;
+  --cobalt-vif:#2F55E0;
+  --terre:#B33A1C;
+  --terre-fonce:#86270F;
+  --soleil:#FFC21A;
+  --soleil-pale:#FFE48A;
+  --rose:#FF94B5;
+  --turquoise:#18B3A3;
+  --pomme:#9ACD3C;
+  --etain:#F6F2EA;
+  --etain-2:#ECE5D6;
+  --bois:#E7B877;
+  --bois-fonce:#B9843F;
+  --encre:#14183D;
+  --encre-2:#3D4270;
+  --blanc:#FFFFFF;
+  --lilas:#CBD2FF;
+  --ok:#7EE08A; --non:#FF9D86;
+  --ok-sombre:#1D7A3A; --non-sombre:#B3361C;
+
+  /* émail courant (piloté par le nuancier) */
+  --a-base:#2350D8; --a-pool:#0E2378; --a-hi:#6E95FF;
+  --b-base:#2350D8; --b-pool:#0E2378; --b-hi:#6E95FF;
+
+  --f-disp:'Shrikhand','Cooper Black','Bookman Old Style',Georgia,serif;
+  --f-txt:'Schibsted Grotesk','Avenir Next','Segoe UI',system-ui,sans-serif;
+
+  --hh:72px;
+  --gl:max(16px, env(safe-area-inset-left));
+  --gr:max(16px, env(safe-area-inset-right));
+  --large:1280px;
+  --rebond:cubic-bezier(.34,1.56,.64,1);
+  --doux:cubic-bezier(.2,.8,.2,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .16 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 8px);-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--cobalt);color:var(--blanc);font-family:var(--f-txt);font-size:clamp(16px,1.05vw + 11px,18.5px);line-height:1.55;-webkit-font-smoothing:antialiased}
+img,svg,canvas{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:400}
+p{margin:0}
+ul,ol{list-style:none;margin:0;padding:0}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--soleil);outline-offset:3px;border-radius:6px}
+.clair :focus-visible,.jaune :focus-visible{outline-color:var(--cobalt-vif)}
+.evit{position:absolute;left:12px;top:-100px;z-index:200;background:var(--soleil);color:var(--encre);padding:12px 18px;border-radius:999px;font-weight:700;text-decoration:none}
+.evit:focus{top:12px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--gl);padding-right:var(--gr)}
+@media (min-width:900px){.env{padding-left:max(40px,var(--gl));padding-right:max(40px,var(--gr))}}
+
+.disp{font-family:var(--f-disp);font-feature-settings:"liga","dlig","calt";letter-spacing:.005em;line-height:.98}
+.surt{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase}
+.surt::before{content:"";width:14px;height:18px;background:currentColor;border-radius:50% 50% 50% 50%/40% 40% 60% 60%;clip-path:path("M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z")}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:800;text-decoration:none;border:2.5px solid transparent;cursor:pointer;transition:transform .35s var(--rebond),box-shadow .3s,background-color .3s;white-space:nowrap}
+.btn svg{width:20px;height:20px;transition:transform .35s var(--rebond)}
+.btn:hover{transform:translateY(-3px) rotate(-1.5deg)}
+.btn:hover svg{transform:translateX(4px)}
+.btn--sol{background:var(--soleil);color:var(--encre);box-shadow:0 5px 0 var(--terre-fonce)}
+.btn--sol:hover{box-shadow:0 8px 0 var(--terre-fonce)}
+.btn--bl{border-color:currentColor;color:var(--blanc)}
+.btn--bl:hover{background:rgba(255,255,255,.1)}
+.btn--co{background:var(--cobalt);color:var(--blanc);box-shadow:0 5px 0 var(--cobalt-nuit)}
+
+/* ---------- en-tête ---------- */
+.hd{position:sticky;top:0;z-index:60;background:var(--cobalt);height:var(--hh)}
+.hd__in{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-height:44px}
+.logo svg{width:34px;height:40px;transition:transform .5s var(--rebond)}
+.logo:hover svg{transform:rotate(-12deg) scale(1.08)}
+.logo b{font-family:var(--f-disp);font-weight:400;font-size:1.32rem;line-height:1}
+.logo small{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lilas);font-weight:700;margin-top:3px}
+.nav{display:none}
+@media (min-width:1000px){
+  .nav{display:flex;align-items:center;gap:6px}
+  .nav a{position:relative;padding:10px 14px;text-decoration:none;font-weight:700;font-size:.95rem;border-radius:999px;transition:background .25s}
+  .nav a:not(.btn):hover{background:rgba(255,255,255,.1)}
+  .nav .btn{min-height:46px;margin-left:10px;padding:0 20px}
+  .burger{display:none!important}
+}
+.burger{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--soleil);border:0;cursor:pointer;color:var(--encre);position:relative;z-index:80}
+.burger span{position:absolute;width:22px;height:2.6px;background:currentColor;border-radius:2px;transition:transform .45s var(--rebond),opacity .2s}
+.burger span:nth-child(1){transform:translateY(-7px)}
+.burger span:nth-child(3){transform:translateY(7px)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
+.panneau{position:fixed;inset:0;z-index:70;background:var(--soleil);color:var(--encre);padding:calc(var(--hh) + 24px) var(--gr) calc(110px + env(safe-area-inset-bottom)) var(--gl);clip-path:circle(0 at calc(100% - 42px) 36px);visibility:hidden;transition:clip-path .65s var(--doux),visibility 0s .65s;display:flex;flex-direction:column;justify-content:space-between}
+.panneau.ouvert{clip-path:circle(160% at calc(100% - 42px) 36px);visibility:visible;transition:clip-path .65s var(--doux)}
+.panneau nav{display:flex;flex-direction:column;gap:2px}
+.panneau nav a{font-family:var(--f-disp);font-size:clamp(34px,10vw,52px);text-decoration:none;line-height:1.15;padding:6px 0;opacity:0;transform:translateY(20px) rotate(-3deg);transition:opacity .4s,transform .5s var(--rebond)}
+.panneau.ouvert nav a{opacity:1;transform:none}
+.panneau.ouvert nav a:nth-child(2){transition-delay:.05s}.panneau.ouvert nav a:nth-child(3){transition-delay:.1s}.panneau.ouvert nav a:nth-child(4){transition-delay:.15s}.panneau.ouvert nav a:nth-child(5){transition-delay:.2s}
+.panneau p{font-weight:700}
+.hd.menu{background:transparent}
+.hd.menu .logo{color:var(--encre)}
+.hd.menu .logo small{color:var(--encre-2)}
+
+/* ---------- ouverture ---------- */
+.ouv{position:relative;overflow:hidden;background:var(--cobalt) var(--grain);isolation:isolate}
+#coulures{position:absolute;left:0;top:0;width:100%;height:min(30%,300px);z-index:-1;pointer-events:none}
+.ouv__in{display:grid;gap:28px;padding-top:clamp(120px,22vw,190px);padding-bottom:clamp(56px,7vw,96px);grid-template-areas:"t" "v" "x"}
+@media (min-width:960px){
+  .ouv__in{grid-template-columns:1.05fr .95fr;grid-template-areas:"t v" "x v";column-gap:56px;row-gap:28px;padding-top:clamp(150px,15vw,210px);align-items:end}
+}
+.ouv__t{grid-area:t}
+.ouv__x{grid-area:x;display:grid;gap:22px;align-content:start}
+.ouv__v{grid-area:v}
+.pastille-metier{display:inline-flex;align-items:center;gap:8px;background:var(--blanc);color:var(--cobalt);border-radius:999px;padding:8px 14px 8px 10px;font-weight:800;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;transform:rotate(-2deg);box-shadow:0 4px 0 var(--cobalt-nuit)}
+.pastille-metier i{width:12px;height:12px;border-radius:50%;background:var(--terre)}
+h1{margin-top:18px;font-size:clamp(58px,12.6vw,148px);color:var(--blanc);text-shadow:0 3px 0 var(--cobalt-nuit),3px 0 0 var(--cobalt-nuit),-3px 0 0 var(--cobalt-nuit),0 -3px 0 var(--cobalt-nuit),5px 8px 0 var(--cobalt-nuit)}
+h1 .petit{display:block;font-size:.38em;color:var(--soleil);transform:rotate(-4deg);transform-origin:left;margin-bottom:.08em}
+h1 .w{display:inline-block}
+h1 .jaune-t{color:var(--soleil)}
+.lede{font-size:clamp(18px,1.3vw + 12px,23px);max-width:34ch;font-weight:500}
+.ouvre{color:var(--lilas);max-width:40ch}
+.actions{display:flex;flex-wrap:wrap;gap:14px}
+.etat{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:.95rem}
+.etat .pt{width:12px;height:12px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:pouls 2s infinite}
+.etat--oui{color:var(--ok)} .etat--non{color:var(--non)}
+.clair .etat--oui{color:var(--ok-sombre)} .clair .etat--non{color:var(--non-sombre)}
+@keyframes pouls{0%{box-shadow:0 0 0 0 color-mix(in srgb,currentColor 60%,transparent)}70%{box-shadow:0 0 0 10px transparent}100%{box-shadow:0 0 0 0 transparent}}
+
+/* scène de la pièce */
+.scene{position:relative;display:grid;place-items:center;aspect-ratio:1/1.02;max-width:560px;margin:0 auto;width:100%}
+.assiette{position:absolute;inset:4% 2% 10%;animation:tourne 70s linear infinite}
+.assiette svg{width:100%;height:100%}
+@keyframes tourne{to{transform:rotate(360deg)}}
+.vase-w{position:relative;width:62%;margin-top:-6%;transform-origin:50% 92%}
+.vase-w.secoue{animation:secoue .9s var(--rebond)}
+@keyframes secoue{0%{transform:scale(1)}25%{transform:scale(1.04,.96)}55%{transform:scale(.98,1.03) rotate(-1deg)}100%{transform:none}}
+#gl-b{transform:translateY(-440px)}
+#gl-b.coule{transform:none;transition:transform 1.25s cubic-bezier(.55,.05,.35,1)}
+.nuancier{position:relative;margin-top:-4px;background:var(--cobalt-nuit);border-radius:26px 26px 30px 22px;padding:16px 16px 18px;box-shadow:0 8px 0 rgba(0,0,0,.25)}
+.nuancier__h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.nuancier__h h2{font-family:var(--f-disp);font-size:1.25rem}
+.nuancier__h p{font-size:.85rem;color:var(--lilas)}
+.tessons{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.tes{width:100%;min-height:56px;padding:4px 0 0;border:0;background:none;cursor:pointer;border-radius:10px;transition:transform .4s var(--rebond)}
+.tes svg{width:100%;max-width:46px;margin:0 auto;height:auto;filter:drop-shadow(0 3px 0 rgba(0,0,0,.35));transition:transform .4s var(--rebond)}
+.tes:hover svg{transform:translateY(-5px) rotate(-6deg)}
+.tes[aria-pressed="true"] svg{transform:translateY(-8px) scale(1.08)}
+.tes[aria-pressed="true"]::after{content:"";display:block;width:8px;height:8px;margin:6px auto 0;border-radius:50%;background:var(--soleil)}
+.nuancier__n{margin-top:12px;min-height:3.1em;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.nuancier__n b{font-family:var(--f-disp);font-weight:400;font-size:1.15rem;color:var(--soleil)}
+.nuancier__n span{color:var(--blanc);font-size:.95rem}
+
+/* entrée orchestrée */
+.js .ent{opacity:0;transform:translateY(34px) rotate(2deg)}
+.pret .ent{animation:monte .9s var(--rebond) forwards;animation-delay:calc(var(--i,0) * 90ms + 150ms)}
+.js .ent-v{opacity:0;transform:scale(.6) translateY(40px)}
+.pret .ent-v{animation:pop 1.1s var(--rebond) .45s forwards}
+@keyframes monte{to{opacity:1;transform:none}}
+@keyframes pop{to{opacity:1;transform:none}}
+
+/* défilant */
+.defile-w{overflow:hidden;margin:-18px 0 -12px;padding:12px 0;position:relative;z-index:3;background:linear-gradient(var(--cobalt) 50%,var(--terre) 50%)}
+.defile{background:var(--soleil);color:var(--encre);overflow:hidden;border-block:3px solid var(--encre);transform:rotate(-1.2deg);margin:0 -20px}
+.defile__r{display:flex;width:max-content;animation:file 34s linear infinite}
+.defile ul{display:flex;align-items:center;gap:28px;padding:14px 14px;font-family:var(--f-disp);font-size:clamp(22px,2.6vw,34px);white-space:nowrap}
+.defile li{display:flex;align-items:center;gap:28px}
+.defile li svg{width:22px;height:28px}
+@keyframes file{to{transform:translateX(-50%)}}
+
+/* ---------- étagère ---------- */
+.etagere{position:relative;background:var(--terre) var(--grain);color:var(--blanc)}
+.etagere__vue{padding:clamp(64px,8vw,104px) 0 clamp(48px,6vw,80px)}
+.etagere__h{display:grid;gap:14px;margin-bottom:28px}
+@media (min-width:900px){.etagere__h{grid-template-columns:1fr auto;align-items:end}}
+.etagere h2,.sec h2{font-size:clamp(40px,6vw,84px)}
+.etagere__h p{max-width:46ch;color:#FFE9DF}
+.glisse{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.9rem}
+.glisse__b{display:flex;gap:8px}
+.glisse__b button{width:48px;height:48px;border-radius:50%;border:2.5px solid currentColor;background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .3s var(--rebond)}
+.glisse__b button:hover{background:rgba(255,255,255,.14);transform:scale(1.08)}
+.glisse__b svg{width:20px;height:20px}
+.piste{overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;padding-left:var(--gl);scroll-padding-left:var(--gl)}
+@media (min-width:900px){.piste{padding-left:max(40px,calc((100% - var(--large)) / 2 + 40px))}.jauge{margin-left:max(40px,calc((100% - var(--large)) / 2 + 40px))}}
+.piste::-webkit-scrollbar{display:none}
+.rang{display:flex;align-items:flex-end;gap:clamp(18px,3vw,52px);width:max-content;padding:20px var(--gr) 0 0;position:relative}
+.rang::after{content:"";position:absolute;left:-40px;right:0;bottom:0;height:22px;background:linear-gradient(var(--bois) 0 9px,var(--bois-fonce) 9px);border-radius:3px;box-shadow:0 14px 0 -6px rgba(0,0,0,.18)}
+.obj{scroll-snap-align:start;position:relative;display:flex;flex-direction:column;align-items:center;padding-bottom:22px;width:clamp(170px,calc(var(--h) * .9px + 40px),300px)}
+.obj__p{display:flex;align-items:flex-end;justify-content:center;height:min(calc(var(--h) * 1.15px),calc(var(--h) * (100vh - 500px) / 270));min-height:calc(var(--h) * .8px);transform-origin:50% 100%}
+.obj .pc{height:100%;width:auto;overflow:visible}
+.obj:hover .obj__p{animation:dandine .8s var(--rebond)}
+@keyframes dandine{30%{transform:rotate(-4deg)}60%{transform:rotate(3deg)}100%{transform:none}}
+.tag{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) rotate(calc((var(--i) - 3.5) * 1.1deg));background:var(--etain);color:var(--encre);padding:10px 14px 12px;border-radius:4px 4px 10px 10px;width:max-content;max-width:220px;text-align:left;box-shadow:0 5px 0 rgba(0,0,0,.2);transition:transform .45s var(--rebond)}
+.tag::before{content:"";position:absolute;top:-14px;left:50%;width:2px;height:14px;background:var(--etain)}
+.obj:hover .tag{transform:translateX(-50%) rotate(0) translateY(-4px)}
+.tag b{display:block;font-family:var(--f-disp);font-weight:400;font-size:1.1rem;line-height:1.1}
+.tag i{display:block;font-size:.86rem;color:var(--encre-2);margin-top:2px}
+.tag span{display:block;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--terre);margin-top:6px}
+.rang{margin-bottom:132px}
+.fin{scroll-snap-align:start;align-self:center;width:280px;background:var(--cobalt);border-radius:30px 26px 34px 22px;padding:26px;margin-bottom:60px;display:grid;gap:14px;transform:rotate(2deg)}
+.fin b{font-family:var(--f-disp);font-weight:400;font-size:1.5rem;line-height:1.1;color:var(--soleil)}
+.jauge{height:6px;background:rgba(255,255,255,.2);border-radius:6px;margin:0 var(--gr) 0 var(--gl);overflow:hidden;max-width:420px}
+.jauge i{display:block;height:100%;width:100%;background:var(--soleil);transform-origin:left;transform:scaleX(.12)}
+/* mode épinglé (desktop, JS) */
+.etagere.epingle .etagere__vue{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));display:flex;flex-direction:column;justify-content:center;overflow:hidden;padding:20px 0}
+.etagere.epingle .etagere__h{margin-bottom:8px}
+.etagere.epingle .piste{overflow:visible;scroll-snap-type:none}
+.etagere.epingle .rang{will-change:transform}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(72px,9vw,128px) 0;position:relative}
+.clair{background:var(--etain) var(--grain);color:var(--encre)}
+.jaune{background:var(--soleil);color:var(--encre)}
+.nuit{background:var(--cobalt-nuit);color:var(--blanc)}
+.rouge{background:var(--terre) var(--grain);color:var(--blanc)}
+.tete{display:grid;gap:14px;margin-bottom:clamp(36px,5vw,64px);max-width:760px}
+.tete p{font-size:1.06em}
+.clair .surt{color:var(--terre)}
+.jaune .surt{color:var(--terre-fonce)}
+.nuit .surt,.rouge .surt{color:var(--soleil)}
+
+/* bord ondulé entre sections */
+.onde{display:block;width:100%;height:36px;margin-top:-35px;position:relative;z-index:2}
+
+/* prestations */
+.presta{display:grid;gap:18px}
+@media (min-width:900px){.presta{grid-template-columns:repeat(12,1fr);gap:22px}.p1{grid-column:span 7}.p2{grid-column:span 5;margin-top:48px}.p3{grid-column:2 / span 10}}
+.carte{position:relative;padding:clamp(26px,3vw,40px);overflow:hidden;transition:transform .5s var(--rebond)}
+.carte:hover{transform:rotate(-.8deg) translateY(-4px)}
+.carte h3{font-family:var(--f-disp);font-size:clamp(28px,2.8vw,40px);line-height:1.05;margin-bottom:12px}
+.carte p{max-width:44ch}
+.p1{background:var(--cobalt);color:var(--blanc);border-radius:40px 34px 48px 30px;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end}
+.p1 svg.deco{position:absolute;right:-20px;top:-10px;width:min(260px,50%);opacity:.95}
+.p2{background:var(--rose);color:var(--encre);border-radius:26px 50px 30px 44px}
+.p2 svg.deco{width:110px;margin-bottom:18px}
+.p3{background:transparent;border:3px dashed var(--terre);border-radius:30px;color:var(--encre);display:grid;gap:16px}
+@media (min-width:700px){.p3{grid-template-columns:1fr auto;align-items:center}}
+.p3 h3{color:var(--terre)}
+.liste{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.liste li{border:2px solid currentColor;border-radius:999px;padding:4px 12px;font-size:.85rem;font-weight:700}
+
+/* calendrier */
+.filtres{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.filtres button{min-height:46px;padding:0 20px;border-radius:999px;border:2.5px solid var(--lilas);background:transparent;color:var(--blanc);font-weight:700;cursor:pointer;transition:background .2s,color .2s,transform .3s var(--rebond)}
+.filtres button:hover{transform:translateY(-2px)}
+.filtres button[aria-pressed="true"]{background:var(--soleil);border-color:var(--soleil);color:var(--encre)}
+.agenda{display:grid;gap:14px}
+.rdv{display:grid;grid-template-columns:auto 1fr;gap:16px 20px;align-items:center;background:rgba(255,255,255,.06);border-radius:28px;padding:16px;transition:background .3s,transform .45s var(--rebond)}
+.rdv:hover{background:rgba(255,255,255,.11);transform:translateX(6px)}
+.rdv[hidden]{display:none}
+.goutte{position:relative;width:92px;height:104px;display:grid;place-items:center;text-align:center;color:var(--encre)}
+.goutte svg{position:absolute;inset:0;width:100%;height:100%}
+.goutte span{position:relative;line-height:1;padding-top:14px}
+.goutte b{display:block;font-family:var(--f-disp);font-weight:400;font-size:2.3rem}
+.goutte small{display:block;font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;margin-top:2px}
+.rdv--stage .goutte{--gc:var(--soleil)} .rdv--ouv .goutte{--gc:var(--rose)}
+.rdv__c h3{font-family:var(--f-disp);font-size:clamp(22px,2vw,28px);line-height:1.1}
+.rdv__m{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.88rem;font-weight:700;color:var(--lilas);margin-bottom:6px}
+.rdv__m .type{color:var(--encre);background:var(--turquoise);padding:2px 10px;border-radius:999px}
+.rdv--ouv .rdv__m .type{background:var(--rose)}
+.rdv__c p{margin-top:6px;color:#E4E8FF;max-width:56ch}
+.rdv .btn{grid-column:1 / -1;justify-self:start;min-height:48px;font-size:.95rem}
+@media (min-width:860px){.rdv{grid-template-columns:auto 1fr auto;padding:18px 26px 18px 18px}.rdv .btn{grid-column:auto;justify-self:end}}
+.agenda__n{margin-top:26px;color:var(--lilas);max-width:62ch}
+
+/* préparer */
+.etapes{display:grid;gap:20px}
+@media (min-width:900px){.etapes{grid-template-columns:repeat(3,1fr);gap:28px}.etape:nth-child(2){transform:translateY(40px)}.etape:nth-child(3){transform:translateY(12px)}}
+.etape{background:var(--blanc);border-radius:30px 26px 36px 24px;padding:26px 24px 28px;box-shadow:0 7px 0 var(--encre);border:3px solid var(--encre);display:grid;gap:10px;align-content:start}
+.etape svg{width:84px;height:84px}
+.etape em{font-style:normal;font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--terre)}
+.etape h3{font-family:var(--f-disp);font-size:clamp(26px,2.4vw,34px);line-height:1.05}
+.prep__cta{margin-top:clamp(40px,6vw,72px);display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+
+/* horaires */
+.acces{display:grid;gap:28px}
+@media (min-width:960px){.acces{grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}}
+.hor{margin:18px 0 0;display:grid;gap:4px}
+.hor div{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;border-radius:14px;font-weight:600}
+.hor dt{font-weight:800}
+.hor dd{margin:0;text-align:right}
+.hor .off{color:#6D6A80}
+.hor .jour{background:var(--cobalt);color:var(--blanc)}
+.hor .jour.off{background:var(--etain-2);color:var(--encre)}
+.acces__n{margin-top:16px;font-size:.92rem;color:var(--encre-2)}
+.plan{background:var(--blanc);border:3px solid var(--encre);border-radius:34px;overflow:hidden;box-shadow:0 8px 0 var(--encre)}
+.plan svg{width:100%;height:auto}
+.plan__b{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;padding:18px 20px 20px;border-top:3px solid var(--encre)}
+.adr{font-style:normal}
+.adr b{display:block}
+.epingle{animation:saute 2.4s var(--rebond) infinite;transform-origin:470px 300px}
+@keyframes saute{0%,70%,100%{transform:none}80%{transform:translateY(-12px)}}
+
+/* contact */
+.ctc{display:grid;gap:36px}
+@media (min-width:960px){.ctc{grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start}}
+.ctc__tel{display:inline-block;font-family:var(--f-disp);font-size:clamp(34px,4.6vw,58px);text-decoration:none;color:var(--soleil);margin:18px 0 8px;line-height:1.1}
+.ctc__l{display:flex;gap:12px;margin-top:14px;align-items:flex-start}
+.ctc__l svg{width:24px;height:24px;flex:none;margin-top:2px}
+.ctc__l b{display:block}
+.form{background:var(--etain);color:var(--encre);border-radius:34px 30px 40px 28px;padding:clamp(22px,3vw,40px);display:grid;gap:16px;box-shadow:0 10px 0 var(--terre-fonce)}
+.form h3{font-family:var(--f-disp);font-size:1.6rem}
+.ch{display:grid;gap:6px}
+.ch label{font-weight:800;font-size:.92rem}
+.ch label small{font-weight:500;color:var(--encre-2)}
+.ch input,.ch select,.ch textarea{width:100%;min-height:52px;border:2.5px solid var(--encre);border-radius:16px;background:var(--blanc);padding:12px 14px;transition:box-shadow .2s,border-color .2s}
+.ch textarea{min-height:128px;resize:vertical}
+.ch input[type=file]{padding:10px;min-height:52px}
+.ch input:focus,.ch select:focus,.ch textarea:focus{outline:none;border-color:var(--cobalt-vif);box-shadow:0 0 0 4px rgba(47,85,224,.25)}
+.duo{display:grid;gap:16px}
+@media (min-width:640px){.duo{grid-template-columns:1fr 1fr}}
+.form .btn{justify-self:start}
+.fret{min-height:1.4em;font-weight:700;color:var(--ok-sombre)}
+.fret.err{color:var(--non-sombre)}
+
+/* pied */
+.pied{background:var(--cobalt-nuit);color:var(--lilas);padding:56px 0 calc(40px + env(safe-area-inset-bottom))}
+.pied__in{display:grid;gap:28px}
+@media (min-width:800px){.pied__in{grid-template-columns:1.2fr 1fr 1fr}}
+.pied .logo{color:var(--blanc)}
+.pied a{text-decoration:none}
+.pied a:hover{color:var(--blanc);text-decoration:underline}
+.pied nav{display:grid;gap:2px}
+.pied nav a{padding:8px 0;min-height:44px;display:flex;align-items:center}
+.pied__bas{margin-top:36px;padding-top:20px;border-top:1px solid rgba(203,210,255,.25);font-size:.85rem}
+
+/* barre mobile */
+.barre{position:fixed;left:0;right:0;bottom:0;z-index:55;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px var(--gr) calc(10px + env(safe-area-inset-bottom)) var(--gl);background:rgba(16,24,90,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transform:translateY(110%);transition:transform .5s var(--rebond)}
+.barre.vis{transform:none}
+.barre a{min-height:50px;font-size:1rem}
+@media (min-width:1000px){.barre{display:none}}
+@media (max-width:999px){body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}}
+
+/* révélations */
+.js .rv{opacity:0;transform:translateY(40px)}
+.js .rv.vu{opacity:1;transform:none;transition:opacity .8s var(--doux),transform .9s var(--rebond);transition-delay:calc(var(--d,0) * 110ms)}
+.js .etape.rv.vu:nth-child(2){transform:none}
+@media (min-width:900px){.js .etape.rv.vu:nth-child(2){transform:translateY(40px)}.js .etape.rv.vu:nth-child(3){transform:translateY(12px)}}
+
+/* mobile fin */
+@media (max-width:959px){
+  .scene{max-width:400px;aspect-ratio:1/.95}
+  .assiette{inset:2% 4% 12%}
+  .vase-w{width:58%}
+}
+@media (max-width:520px){
+  :root{--hh:66px}
+  .logo b{font-size:1.15rem}
+  .logo small{font-size:.66rem}
+  .nuancier{padding:14px 12px 16px}
+  .tessons{gap:5px}
+  .goutte{width:76px;height:88px}
+  .goutte b{font-size:1.9rem}
+  .rdv{padding:14px;gap:12px 14px}
+  .tag{max-width:190px}
+  .obj__p{height:calc(var(--h) * .82px);min-height:0}
+  .obj{width:calc(var(--h) * .62px + 70px)}
+  .rang{margin-bottom:140px}
+  .p1{padding-top:150px}
+  .p1 svg.deco{width:170px;right:-24px;top:-24px}
+  .etape{grid-template-columns:64px 1fr;column-gap:16px;padding:20px 18px}
+  .etape svg{width:64px;height:64px;grid-row:span 3}
+  h1{text-shadow:0 2px 0 var(--cobalt-nuit),2px 0 0 var(--cobalt-nuit),-2px 0 0 var(--cobalt-nuit),0 -2px 0 var(--cobalt-nuit),3px 5px 0 var(--cobalt-nuit)}
+  .scene{max-width:330px}
+  .pastille-metier{font-size:.72rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .js .ent,.js .ent-v,.js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="evit" href="#contenu">Aller au contenu</a>
+
+<header class="hd" id="hd">
+  <div class="env hd__in">
+    <a class="logo" href="#haut" aria-label="Atelier Terre de Meurthe, retour en haut">
+      <svg viewBox="0 0 34 40" aria-hidden="true"><path d="M11 3h12l-1 5c6 3 10 9 10 16 0 9-7 14-15 14S2 33 2 24c0-7 4-13 10-16z" fill="#FFC21A"/><path d="M11 3h12l-1 5c6 3 10 9 10 16v2c-2 0-2 6-5 6s-2-4-5-4-2 7-6 7-3-5-6-5-3 3-4 2c-1-2-1-4-1-6 0-7 4-13 10-16z" fill="#FF94B5"/><ellipse cx="17" cy="3.5" rx="6" ry="1.8" fill="#10185A"/></svg>
+      <span><b>Terre de Meurthe</b><small>céramiste · Pont-à-Mousson</small></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#atelier">L'atelier</a>
+      <a href="#stages">Stages</a>
+      <a href="#demande">Préparer votre demande</a>
+      <a href="#horaires">Horaires</a>
+      <a class="btn btn--sol" href="#contact">Parler de mon projet</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="panneau" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="panneau" id="panneau">
+  <nav aria-label="Navigation mobile">
+    <a href="#atelier">L'atelier</a>
+    <a href="#stages">Stages & ouvertures</a>
+    <a href="#demande">Préparer votre demande</a>
+    <a href="#horaires">Horaires et accès</a>
+    <a href="#contact">Parler de mon projet</a>
+  </nav>
+  <p>06 XX XX XX XX<br>XX rue de l'Exemple, 54700 Pont-à-Mousson</p>
+</div>
+
+<main id="contenu">
+<!-- ================= OUVERTURE ================= -->
+<section class="ouv" id="haut" aria-labelledby="titre">
+  <canvas id="coulures" aria-hidden="true"></canvas>
+  <div class="env ouv__in">
+    <div class="ouv__t">
+      <span class="pastille-metier ent" style="--i:0"><i></i>Céramiste-potier · Pont-à-Mousson</span>
+      <h1 id="titre" class="disp"><span class="petit ent" style="--i:1">Atelier</span><span class="w ent" style="--i:2">Terre</span> <span class="w ent" style="--i:3">de</span> <span class="w ent jaune-t" style="--i:4">Meurthe</span></h1>
+    </div>
+    <div class="ouv__v">
+      <div class="scene ent-v">
+        <div class="assiette" id="assiette" aria-hidden="true">
+          <svg viewBox="0 0 400 400">
+            <circle cx="200" cy="200" r="196" fill="#B33A1C"/>
+            <circle cx="200" cy="200" r="182" fill="none" stroke="#FFC21A" stroke-width="7"/>
+            <circle cx="200" cy="200" r="168" fill="none" stroke="#FFC21A" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+            <g fill="#FF94B5">
+              <ellipse cx="200" cy="70" rx="26" ry="54"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(30 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(60 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(90 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(120 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(150 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(180 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(210 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(240 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(270 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(300 200 200)"/><ellipse cx="200" cy="70" rx="26" ry="54" transform="rotate(330 200 200)"/>
+            </g>
+            <g fill="#FFC21A"><circle cx="200" cy="58" r="9"/><circle cx="200" cy="58" r="9" transform="rotate(30 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(60 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(90 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(120 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(150 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(180 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(210 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(240 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(270 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(300 200 200)"/><circle cx="200" cy="58" r="9" transform="rotate(330 200 200)"/></g>
+            <circle cx="200" cy="200" r="92" fill="#18B3A3"/>
+            <circle cx="200" cy="200" r="74" fill="none" stroke="#F6F2EA" stroke-width="4" stroke-dasharray="14 9"/>
+            <circle cx="200" cy="200" r="40" fill="#FFC21A"/>
+          </svg>
+        </div>
+        <div class="vase-w" id="vase"><svg class="vase" viewBox="0 0 300 380" role="img" aria-labelledby="vase-t">
+<title id="vase-t">Vase tourné en grès, recouvert de l'émail choisi dans le nuancier</title>
+<defs>
+<clipPath id="vz-c"><path d="M184.0 34.0 C183.5 36.3 180.7 42.7 181.0 48.0 C181.3 53.3 178.5 57.3 186.0 66.0 C193.5 74.7 213.3 86.0 226.0 100.0 C238.7 114.0 255.3 132.3 262.0 150.0 C268.7 167.7 268.3 187.3 266.0 206.0 C263.7 224.7 256.3 245.3 248.0 262.0 C239.7 278.7 223.7 294.7 216.0 306.0 C208.3 317.3 204.7 324.3 202.0 330.0 C199.3 335.7 200.3 336.3 200.0 340.0 C199.7 343.7 200.0 350.0 200.0 352.0 L100.0 352.0 C100.0 350.0 100.3 343.7 100.0 340.0 C99.7 336.3 100.7 335.7 98.0 330.0 C95.3 324.3 91.7 317.3 84.0 306.0 C76.3 294.7 60.3 278.7 52.0 262.0 C43.7 245.3 36.3 224.7 34.0 206.0 C31.7 187.3 31.3 167.7 38.0 150.0 C44.7 132.3 61.3 114.0 74.0 100.0 C86.7 86.0 106.5 74.7 114.0 66.0 C121.5 57.3 118.7 53.3 119.0 48.0 C119.3 42.7 116.5 36.3 116.0 34.0 Z"/></clipPath>
+<linearGradient id="vz-a" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="30" y2="330"><stop offset="0" style="stop-color:var(--a-hi)"/><stop offset=".5" style="stop-color:var(--a-base)"/><stop offset="1" style="stop-color:var(--a-pool)"/></linearGradient>
+<linearGradient id="vz-b" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="30" y2="330"><stop offset="0" style="stop-color:var(--b-hi)"/><stop offset=".5" style="stop-color:var(--b-base)"/><stop offset="1" style="stop-color:var(--b-pool)"/></linearGradient>
+<linearGradient id="vz-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset=".2" stop-color="#000" stop-opacity=".06"/><stop offset=".32" stop-color="#fff" stop-opacity=".42"/><stop offset=".42" stop-color="#fff" stop-opacity="0"/><stop offset=".78" stop-color="#000" stop-opacity=".14"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></linearGradient>
+</defs>
+<ellipse cx="150" cy="356" rx="96" ry="9" fill="#000" opacity=".28"/>
+<path d="M184.0 34.0 C183.5 36.3 180.7 42.7 181.0 48.0 C181.3 53.3 178.5 57.3 186.0 66.0 C193.5 74.7 213.3 86.0 226.0 100.0 C238.7 114.0 255.3 132.3 262.0 150.0 C268.7 167.7 268.3 187.3 266.0 206.0 C263.7 224.7 256.3 245.3 248.0 262.0 C239.7 278.7 223.7 294.7 216.0 306.0 C208.3 317.3 204.7 324.3 202.0 330.0 C199.3 335.7 200.3 336.3 200.0 340.0 C199.7 343.7 200.0 350.0 200.0 352.0 L100.0 352.0 C100.0 350.0 100.3 343.7 100.0 340.0 C99.7 336.3 100.7 335.7 98.0 330.0 C95.3 324.3 91.7 317.3 84.0 306.0 C76.3 294.7 60.3 278.7 52.0 262.0 C43.7 245.3 36.3 224.7 34.0 206.0 C31.7 187.3 31.3 167.7 38.0 150.0 C44.7 132.3 61.3 114.0 74.0 100.0 C86.7 86.0 106.5 74.7 114.0 66.0 C121.5 57.3 118.7 53.3 119.0 48.0 C119.3 42.7 116.5 36.3 116.0 34.0 Z" fill="#D9A27A"/>
+<g clip-path="url(#vz-c)">
+<g class="spk"><circle cx="241.6" cy="301.9" r="1.0" fill="#3a2214" opacity=".55"/><circle cx="106.5" cy="310.3" r="0.9" fill="#3a2214" opacity=".55"/><circle cx="75.0" cy="305.5" r="1.1" fill="#3a2214" opacity=".55"/><circle cx="151.9" cy="294.4" r="1.2" fill="#3a2214" opacity=".55"/><circle cx="197.9" cy="294.1" r="1.2" fill="#3a2214" opacity=".55"/><circle cx="44.5" cy="311.6" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="162.1" cy="295.6" r="0.9" fill="#3a2214" opacity=".55"/><circle cx="219.0" cy="341.9" r="0.7" fill="#3a2214" opacity=".55"/><circle cx="209.2" cy="318.7" r="1.4" fill="#3a2214" opacity=".55"/><circle cx="149.4" cy="305.0" r="1.6" fill="#3a2214" opacity=".55"/><circle cx="86.1" cy="296.5" r="1.0" fill="#3a2214" opacity=".55"/><circle cx="83.6" cy="348.1" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="193.2" cy="333.1" r="1.2" fill="#3a2214" opacity=".55"/><circle cx="58.4" cy="320.7" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="257.1" cy="291.5" r="1.6" fill="#3a2214" opacity=".55"/><circle cx="150.4" cy="344.3" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="74.8" cy="300.0" r="0.9" fill="#3a2214" opacity=".55"/><circle cx="48.5" cy="297.3" r="1.4" fill="#3a2214" opacity=".55"/><circle cx="85.8" cy="298.7" r="1.1" fill="#3a2214" opacity=".55"/><circle cx="118.6" cy="342.8" r="0.7" fill="#3a2214" opacity=".55"/><circle cx="112.9" cy="290.9" r="1.4" fill="#3a2214" opacity=".55"/><circle cx="90.5" cy="297.5" r="0.9" fill="#3a2214" opacity=".55"/><circle cx="157.3" cy="315.5" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="105.2" cy="337.0" r="0.8" fill="#3a2214" opacity=".55"/><circle cx="105.9" cy="297.8" r="1.5" fill="#3a2214" opacity=".55"/><circle cx="231.5" cy="297.2" r="1.3" fill="#3a2214" opacity=".55"/><circle cx="73.0" cy="332.8" r="1.6" fill="#3a2214" opacity=".55"/><circle cx="124.6" cy="304.2" r="1.0" fill="#3a2214" opacity=".55"/><circle cx="57.0" cy="331.3" r="1.0" fill="#3a2214" opacity=".55"/><circle cx="41.4" cy="300.1" r="1.5" fill="#3a2214" opacity=".55"/></g>
+<path id="gl-a" d="M30.0 -600 L30.0 292.0 Q36.0 286.8 42.0 289.8 C43.0 294.8 40.0 298.9 50.5 298.9 C60.9 298.9 57.9 294.8 58.9 289.8 Q61.0 287.0 63.2 290.0 C64.2 297.3 61.9 303.3 68.4 303.3 C74.8 303.3 72.6 297.3 73.6 290.0 Q84.2 289.7 94.9 292.7 C95.9 307.3 93.2 319.3 101.8 319.3 C110.5 319.3 107.8 307.3 108.8 292.7 Q124.4 287.1 140.1 290.1 C141.1 306.7 138.3 320.3 147.4 320.3 C156.6 320.3 153.8 306.7 154.8 290.1 Q167.4 288.8 180.0 291.8 C181.0 306.8 178.6 319.1 186.1 319.1 C193.6 319.1 191.2 306.8 192.2 291.8 Q209.5 286.6 226.7 289.6 C227.7 300.2 225.2 309.0 233.2 309.0 C241.3 309.0 238.8 300.2 239.8 289.6 Q243.6 288.7 247.5 291.7 C248.5 299.3 246.0 305.5 253.6 305.5 C261.2 305.5 258.7 299.3 259.7 291.7 Q264.9 295.0 270.0 292.0 L270.0 -600 Z" fill="url(#vz-a)"/>
+<path id="gl-b" d="M30.0 -600 L30.0 292.0 Q36.0 286.8 42.0 289.8 C43.0 294.8 40.0 298.9 50.5 298.9 C60.9 298.9 57.9 294.8 58.9 289.8 Q61.0 287.0 63.2 290.0 C64.2 297.3 61.9 303.3 68.4 303.3 C74.8 303.3 72.6 297.3 73.6 290.0 Q84.2 289.7 94.9 292.7 C95.9 307.3 93.2 319.3 101.8 319.3 C110.5 319.3 107.8 307.3 108.8 292.7 Q124.4 287.1 140.1 290.1 C141.1 306.7 138.3 320.3 147.4 320.3 C156.6 320.3 153.8 306.7 154.8 290.1 Q167.4 288.8 180.0 291.8 C181.0 306.8 178.6 319.1 186.1 319.1 C193.6 319.1 191.2 306.8 192.2 291.8 Q209.5 286.6 226.7 289.6 C227.7 300.2 225.2 309.0 233.2 309.0 C241.3 309.0 238.8 300.2 239.8 289.6 Q243.6 288.7 247.5 291.7 C248.5 299.3 246.0 305.5 253.6 305.5 C261.2 305.5 258.7 299.3 259.7 291.7 Q264.9 295.0 270.0 292.0 L270.0 -600 Z" fill="url(#vz-b)"/>
+<rect width="300" height="380" fill="url(#vz-s)"/>
+<path d="M92 120 q-14 60 4 120" stroke="#fff" stroke-opacity=".6" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M104 112 q-4 10 -3 22" stroke="#fff" stroke-opacity=".8" stroke-width="5" fill="none" stroke-linecap="round"/>
+</g>
+<ellipse cx="150" cy="34" rx="34" ry="9" style="fill:var(--a-hi)"/>
+<ellipse cx="150" cy="34.8" rx="28" ry="6" fill="#120a06" opacity=".8"/>
+</svg></div>
+      </div>
+      <div class="nuancier ent" style="--i:6">
+        <div class="nuancier__h"><h2>Nuancier d'émaux</h2><p>Touchez un tesson pour émailler la pièce.</p></div>
+        <ul class="tessons" id="tessons">
+<li><button type="button" class="tes" aria-pressed="true" data-g="#2350D8,#0E2378,#6E95FF" data-n="Bleu de cobalt" data-d="Brillant et profond, il fonce là où il s'accumule." style="--c:#2350D8;--p:#0E2378" aria-label="Émail Bleu de cobalt">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#F7B90F,#B76A06,#FFE27A" data-n="Jaune tournesol" data-d="Chaud et franc, il s'éclaircit sur les arêtes." style="--c:#F7B90F;--p:#B76A06" aria-label="Émail Jaune tournesol">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#C62A20,#5E0C10,#F0785A" data-n="Rouge de cuivre" data-d="Cuit en réduction : chaque fournée le nuance." style="--c:#C62A20;--p:#5E0C10" aria-label="Émail Rouge de cuivre">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#15A99B,#075A55,#7FE3D2" data-n="Vert de cuivre" data-d="Translucide, il laisse voir les traces du tour." style="--c:#15A99B;--p:#075A55" aria-label="Émail Vert de cuivre">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#F287A9,#B2476B,#FFD0DE" data-n="Rose satiné" data-d="Doux, piqué des points de fer du grès." style="--c:#F287A9;--p:#B2476B" aria-label="Émail Rose satiné">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#F2EDE2,#BFB39C,#FFFFFF" data-n="Blanc d'étain" data-d="Le blanc laiteux des faïences, opaque et doux." style="--c:#F2EDE2;--p:#BFB39C" aria-label="Émail Blanc d'étain">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+<li><button type="button" class="tes" aria-pressed="false" data-g="#2B1A14,#8B4A1F,#4E3326" data-n="Tenmoku" data-d="Noir brun qui vire à la rouille sur les bords." style="--c:#2B1A14;--p:#8B4A1F" aria-label="Émail Tenmoku">
+<svg viewBox="0 0 40 52" aria-hidden="true"><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v38a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4z" fill="#E8C3A0"/><path d="M4 6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v24c-3 0-3 9-6 9s-3-6-6-6-3 10-7 10-3-8-6-8-3 3-3 3z" fill="var(--c)"/><path d="M4 26c0 4 3 4 3 0M30 38c2 4 4 4 6 0" fill="var(--p)"/><circle cx="20" cy="10" r="3.2" fill="#14183D" opacity=".85"/><path d="M9 8v16" stroke="#fff" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/></svg>
+</button></li>
+        </ul>
+        <p class="nuancier__n" aria-live="polite" id="nu-n"><b>Bleu de cobalt</b><span>Brillant et profond, il fonce là où il s'accumule.</span></p>
+      </div>
+    </div>
+    <div class="ouv__x">
+      <p class="lede ent" style="--i:5">Bols, tasses, vases : des pièces en grès tournées, émaillées et cuites ici, à Pont-à-Mousson. Et des stages pour mettre les mains dans la terre.</p>
+      <p class="ouvre ent" style="--i:6">Vous montrez votre projet, vous parlez à la personne qui le réalisera.</p>
+      <div class="actions ent" style="--i:7">
+        <a class="btn btn--sol" href="#contact">Parler de mon projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--bl" href="#stages">Voir les stages</a>
+      </div>
+      <p class="etat ent" style="--i:8" data-h='[[],[],[840,1110],[600,750,840,1110],[600,750,840,1110],[600,750,840,1110],[600,1080]]'>Atelier ouvert du mardi au samedi.</p>
+    </div>
+  </div>
+</section>
+
+<div class="defile-w" aria-hidden="true"><div class="defile">
+  <div class="defile__r">
+    <ul><li>Tourné à la main<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#B33A1C"/></svg></li><li>Émaillé à l'atelier<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#1B2A8A"/></svg></li><li>Cuit au four de l'atelier<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#18B3A3"/></svg></li><li>Grès et faïence<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#FF94B5"/></svg></li><li>Stages au tour<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#B33A1C"/></svg></li></ul>
+    <ul><li>Tourné à la main<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#B33A1C"/></svg></li><li>Émaillé à l'atelier<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#1B2A8A"/></svg></li><li>Cuit au four de l'atelier<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#18B3A3"/></svg></li><li>Grès et faïence<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#FF94B5"/></svg></li><li>Stages au tour<svg viewBox="0 0 14 18"><path d="M7 0C9 6 14 9 14 13a7 7 0 0 1-14 0C0 9 5 6 7 0z" fill="#B33A1C"/></svg></li></ul>
+  </div>
+</div></div>
+
+<!-- ================= ÉTAGÈRE ================= -->
+<section class="etagere" id="atelier" aria-labelledby="t-et">
+  <div class="etagere__vue" id="vue">
+    <div class="env etagere__h">
+      <div>
+        <span class="surt">Sorties du dernier four</span>
+        <h2 id="t-et" class="disp" style="margin-top:12px">L'étagère de l'atelier</h2>
+        <p style="margin-top:12px">Des pièces de tous les jours en séries courtes, et quelques pièces uniques. Chaque émail réagit à sa façon : deux bols du même bain ne sont jamais tout à fait jumeaux.</p>
+      </div>
+      <div class="glisse">
+        <span id="glisse-t">Faites glisser l'étagère</span>
+        <div class="glisse__b">
+          <button type="button" id="et-g" aria-label="Pièces précédentes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button type="button" id="et-d" aria-label="Pièces suivantes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+    <div class="piste" id="piste" tabindex="0" aria-label="Étagère des pièces, défilement horizontal">
+      <ul class="rang" id="rang">
+<li class="obj" style="--h:140;--i:0">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 140" role="img" aria-label="Bol à café, émail jaune tournesol, bord trempé cobalt"><defs><clipPath id="bol-c"><path d="M184.0 26.0 C183.7 29.0 184.0 36.3 182.0 44.0 C180.0 51.7 176.7 63.0 172.0 72.0 C167.3 81.0 159.7 91.0 154.0 98.0 C148.3 105.0 142.0 110.7 138.0 114.0 C134.0 117.3 131.3 115.7 130.0 118.0 C128.7 120.3 130.3 125.7 130.0 128.0 C129.7 130.3 128.3 131.3 128.0 132.0 L72.0 132.0 C71.7 131.3 70.3 130.3 70.0 128.0 C69.7 125.7 71.3 120.3 70.0 118.0 C68.7 115.7 66.0 117.3 62.0 114.0 C58.0 110.7 51.7 105.0 46.0 98.0 C40.3 91.0 32.7 81.0 28.0 72.0 C23.3 63.0 20.0 51.7 18.0 44.0 C16.0 36.3 16.3 29.0 16.0 26.0 Z"/></clipPath><linearGradient id="bol-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="bol-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="26" y2="128"><stop offset="0" style="stop-color:#FFE27A"/><stop offset=".55" style="stop-color:#F7B90F"/><stop offset="1" style="stop-color:#B76A06"/></linearGradient><linearGradient id="bol-w" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="26" y2="62"><stop offset="0" style="stop-color:#6E95FF"/><stop offset=".6" style="stop-color:#2350D8"/><stop offset="1" style="stop-color:#0E2378"/></linearGradient></defs><ellipse cx="100" cy="134.0" rx="50.0" ry="5.0" fill="#000" opacity=".22"/><path d="M184.0 26.0 C183.7 29.0 184.0 36.3 182.0 44.0 C180.0 51.7 176.7 63.0 172.0 72.0 C167.3 81.0 159.7 91.0 154.0 98.0 C148.3 105.0 142.0 110.7 138.0 114.0 C134.0 117.3 131.3 115.7 130.0 118.0 C128.7 120.3 130.3 125.7 130.0 128.0 C129.7 130.3 128.3 131.3 128.0 132.0 L72.0 132.0 C71.7 131.3 70.3 130.3 70.0 128.0 C69.7 125.7 71.3 120.3 70.0 118.0 C68.7 115.7 66.0 117.3 62.0 114.0 C58.0 110.7 51.7 105.0 46.0 98.0 C40.3 91.0 32.7 81.0 28.0 72.0 C23.3 63.0 20.0 51.7 18.0 44.0 C16.0 36.3 16.3 29.0 16.0 26.0 Z" fill="#E3B48B"/><g clip-path="url(#bol-c)"><path d="M12.0 -600 L12.0 104.0 Q24.1 101.5 36.1 104.5 C37.1 110.2 34.8 114.8 41.5 114.8 C48.2 114.8 45.9 110.2 46.9 104.5 Q58.0 101.1 69.2 104.1 C70.2 113.4 68.3 121.0 72.9 121.0 C77.6 121.0 75.7 113.4 76.7 104.1 Q94.6 100.3 112.5 103.3 C113.5 109.1 111.2 113.8 117.7 113.8 C124.2 113.8 122.0 109.1 123.0 103.3 Q125.7 102.0 128.3 105.0 C129.3 113.4 126.5 120.3 135.9 120.3 C145.2 120.3 142.4 113.4 143.4 105.0 Q148.8 101.8 154.3 104.8 C155.3 116.8 152.4 126.7 162.1 126.7 C171.7 126.7 168.9 116.8 169.9 104.8 Q178.9 107.0 188.0 104.0 L188.0 -600 Z" fill="url(#bol-v)"/><path d="M12.0 -600 L12.0 46.0 Q28.3 43.7 44.6 46.7 C45.6 53.8 43.2 59.5 50.2 59.5 C57.1 59.5 54.7 53.8 55.7 46.7 Q65.0 44.2 74.3 47.2 C75.3 55.6 73.4 62.4 77.8 62.4 C82.3 62.4 80.4 55.6 81.4 47.2 Q86.6 43.3 91.9 46.3 C92.9 55.0 90.1 62.1 99.3 62.1 C108.5 62.1 105.7 55.0 106.7 46.3 Q120.6 43.4 134.5 46.4 C135.5 49.3 132.9 51.6 141.4 51.6 C149.9 51.6 147.3 49.3 148.3 46.4 Q153.2 41.4 158.1 44.4 C159.1 50.1 156.5 54.8 164.5 54.8 C172.5 54.8 170.0 50.1 171.0 44.4 Q172.9 44.2 174.8 47.2 C175.8 54.8 173.9 60.9 178.5 60.9 C183.1 60.9 181.2 54.8 182.2 47.2 Q185.1 49.0 188.0 46.0 L188.0 -600 Z" fill="url(#bol-w)"/><rect x="0" y="0" width="200" height="140" fill="url(#bol-s)"/><path d="M62.2 45.5 q-6 19.5 2 35.1" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="26.0" rx="84.0" ry="15.0" style="fill:#6E95FF"/><ellipse cx="100" cy="27.4" rx="80.0" ry="12.4" style="fill:#0E2378"/><ellipse cx="116.8" cy="30.5" rx="42.0" ry="6.8" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Bol à café</b><i>jaune tournesol, bord trempé cobalt</i><span>Tourné, série courte</span></div>
+</li>
+<li class="obj" style="--h:180;--i:1">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 180" role="img" aria-label="Tasse à anse, émail rouge de cuivre"><defs><clipPath id="tasse-c"><path d="M154.0 30.0 C154.3 35.0 155.5 48.3 156.0 60.0 C156.5 71.7 157.3 88.3 157.0 100.0 C156.7 111.7 156.0 121.7 154.0 130.0 C152.0 138.3 147.7 145.7 145.0 150.0 C142.3 154.3 139.2 153.3 138.0 156.0 C136.8 158.7 138.3 163.7 138.0 166.0 C137.7 168.3 136.3 169.3 136.0 170.0 L64.0 170.0 C63.7 169.3 62.3 168.3 62.0 166.0 C61.7 163.7 63.2 158.7 62.0 156.0 C60.8 153.3 57.7 154.3 55.0 150.0 C52.3 145.7 48.0 138.3 46.0 130.0 C44.0 121.7 43.3 111.7 43.0 100.0 C42.7 88.3 43.5 71.7 44.0 60.0 C44.5 48.3 45.7 35.0 46.0 30.0 Z"/></clipPath><linearGradient id="tasse-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="tasse-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="30" y2="156"><stop offset="0" style="stop-color:#F0785A"/><stop offset=".55" style="stop-color:#C62A20"/><stop offset="1" style="stop-color:#5E0C10"/></linearGradient></defs><ellipse cx="100" cy="172.0" rx="62.0" ry="5.0" fill="#000" opacity=".22"/><path d="M150 70 C188 70 190 128 150 130" fill="none" style="stroke:#C62A20" stroke-width="11" stroke-linecap="round"/><path d="M150 70 C188 70 190 128 150 130" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" transform="translate(-1.5 -1.5)"/><path d="M154.0 30.0 C154.3 35.0 155.5 48.3 156.0 60.0 C156.5 71.7 157.3 88.3 157.0 100.0 C156.7 111.7 156.0 121.7 154.0 130.0 C152.0 138.3 147.7 145.7 145.0 150.0 C142.3 154.3 139.2 153.3 138.0 156.0 C136.8 158.7 138.3 163.7 138.0 166.0 C137.7 168.3 136.3 169.3 136.0 170.0 L64.0 170.0 C63.7 169.3 62.3 168.3 62.0 166.0 C61.7 163.7 63.2 158.7 62.0 156.0 C60.8 153.3 57.7 154.3 55.0 150.0 C52.3 145.7 48.0 138.3 46.0 130.0 C44.0 121.7 43.3 111.7 43.0 100.0 C42.7 88.3 43.5 71.7 44.0 60.0 C44.5 48.3 45.7 35.0 46.0 30.0 Z" fill="#D98E5F"/><g clip-path="url(#tasse-c)"><path d="M39.0 -600 L39.0 132.0 Q56.7 131.1 74.5 134.1 C75.5 143.9 73.4 151.9 79.0 151.9 C84.7 151.9 82.6 143.9 83.6 134.1 Q93.8 128.5 104.0 131.5 C105.0 136.7 102.3 141.0 111.3 141.0 C120.2 141.0 117.5 136.7 118.5 131.5 Q127.5 129.8 136.5 132.8 C137.5 142.1 134.8 149.7 143.6 149.7 C152.3 149.7 149.6 142.1 150.6 132.8 Q155.8 135.0 161.0 132.0 L161.0 -600 Z" fill="url(#tasse-v)"/><rect x="0" y="0" width="200" height="180" fill="url(#tasse-s)"/><path d="M74.3 55.5 q-6 25.5 2 45.9" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="30.0" rx="54.0" ry="11.0" style="fill:#F0785A"/><ellipse cx="100" cy="31.4" rx="50.0" ry="8.4" style="fill:#5E0C10"/><ellipse cx="110.8" cy="33.3" rx="27.0" ry="5.0" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Tasse à anse</b><i>rouge de cuivre</i><span>Anse tirée à la main</span></div>
+</li>
+<li class="obj" style="--h:170;--i:2">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 170" role="img" aria-label="Gobelet, émail vert de cuivre, points d'engobe"><defs><clipPath id="gobelet-c"><path d="M147.0 24.0 C146.7 31.7 146.0 54.3 145.0 70.0 C144.0 85.7 142.3 105.0 141.0 118.0 C139.7 131.0 138.3 142.0 137.0 148.0 C135.7 154.0 133.7 151.3 133.0 154.0 C132.3 156.7 133.0 162.3 133.0 164.0 L67.0 164.0 C67.0 162.3 67.7 156.7 67.0 154.0 C66.3 151.3 64.3 154.0 63.0 148.0 C61.7 142.0 60.3 131.0 59.0 118.0 C57.7 105.0 56.0 85.7 55.0 70.0 C54.0 54.3 53.3 31.7 53.0 24.0 Z"/></clipPath><linearGradient id="gobelet-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="gobelet-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="24" y2="154"><stop offset="0" style="stop-color:#7FE3D2"/><stop offset=".55" style="stop-color:#15A99B"/><stop offset="1" style="stop-color:#075A55"/></linearGradient></defs><ellipse cx="100" cy="166.0" rx="57.5" ry="5.0" fill="#000" opacity=".22"/><path d="M147.0 24.0 C146.7 31.7 146.0 54.3 145.0 70.0 C144.0 85.7 142.3 105.0 141.0 118.0 C139.7 131.0 138.3 142.0 137.0 148.0 C135.7 154.0 133.7 151.3 133.0 154.0 C132.3 156.7 133.0 162.3 133.0 164.0 L67.0 164.0 C67.0 162.3 67.7 156.7 67.0 154.0 C66.3 151.3 64.3 154.0 63.0 148.0 C61.7 142.0 60.3 131.0 59.0 118.0 C57.7 105.0 56.0 85.7 55.0 70.0 C54.0 54.3 53.3 31.7 53.0 24.0 Z" fill="#C98A62"/><g clip-path="url(#gobelet-c)"><path d="M49.0 -600 L49.0 130.0 Q56.3 125.8 63.5 128.8 C64.5 139.5 62.6 148.2 67.5 148.2 C72.4 148.2 70.5 139.5 71.5 128.8 Q93.4 127.6 115.3 130.6 C116.3 139.9 114.2 147.5 119.9 147.5 C125.5 147.5 123.4 139.9 124.4 130.6 Q137.7 133.0 151.0 130.0 L151.0 -600 Z" fill="url(#gobelet-v)"/><circle cx="124.6" cy="95.8" r="2.8" style="fill:#FFF4D6"/><circle cx="100.8" cy="69.8" r="2.8" style="fill:#FFF4D6"/><circle cx="93.8" cy="60.8" r="2.7" style="fill:#FFF4D6"/><circle cx="101.7" cy="77.7" r="2.7" style="fill:#FFF4D6"/><circle cx="109.3" cy="50.6" r="3.1" style="fill:#FFF4D6"/><circle cx="70.2" cy="49.6" r="4.0" style="fill:#FFF4D6"/><circle cx="134.8" cy="76.3" r="3.8" style="fill:#FFF4D6"/><circle cx="117.2" cy="115.2" r="3.4" style="fill:#FFF4D6"/><circle cx="114.1" cy="74.5" r="3.3" style="fill:#FFF4D6"/><rect x="0" y="0" width="200" height="170" fill="url(#gobelet-s)"/><path d="M78.8 50.5 q-6 26.5 2 47.7" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="24.0" rx="47.0" ry="10.0" style="fill:#7FE3D2"/><ellipse cx="100" cy="25.4" rx="43.0" ry="7.4" style="fill:#075A55"/><ellipse cx="109.4" cy="27.0" rx="23.5" ry="4.5" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Gobelet</b><i>vert de cuivre, points d'engobe</i><span>Sans anse, se tient à deux mains</span></div>
+</li>
+<li class="obj" style="--h:240;--i:3">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 240" role="img" aria-label="Vase boule, émail blanc d'étain sous cobalt coulé"><defs><clipPath id="boule-c"><path d="M124.0 20.0 C123.7 22.0 121.5 27.3 122.0 32.0 C122.5 36.7 120.3 41.0 127.0 48.0 C133.7 55.0 152.5 63.0 162.0 74.0 C171.5 85.0 181.0 100.7 184.0 114.0 C187.0 127.3 184.0 141.3 180.0 154.0 C176.0 166.7 166.3 180.7 160.0 190.0 C153.7 199.3 146.0 205.3 142.0 210.0 C138.0 214.7 137.0 215.0 136.0 218.0 C135.0 221.0 136.0 226.3 136.0 228.0 L64.0 228.0 C64.0 226.3 65.0 221.0 64.0 218.0 C63.0 215.0 62.0 214.7 58.0 210.0 C54.0 205.3 46.3 199.3 40.0 190.0 C33.7 180.7 24.0 166.7 20.0 154.0 C16.0 141.3 13.0 127.3 16.0 114.0 C19.0 100.7 28.5 85.0 38.0 74.0 C47.5 63.0 66.3 55.0 73.0 48.0 C79.7 41.0 77.5 36.7 78.0 32.0 C78.5 27.3 76.3 22.0 76.0 20.0 Z"/></clipPath><linearGradient id="boule-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="boule-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="20" y2="214"><stop offset="0" style="stop-color:#FFFFFF"/><stop offset=".55" style="stop-color:#F2EDE2"/><stop offset="1" style="stop-color:#BFB39C"/></linearGradient><linearGradient id="boule-w" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="20" y2="134"><stop offset="0" style="stop-color:#6E95FF"/><stop offset=".6" style="stop-color:#2350D8"/><stop offset="1" style="stop-color:#0E2378"/></linearGradient></defs><ellipse cx="100" cy="230.0" rx="62.0" ry="5.0" fill="#000" opacity=".22"/><path d="M124.0 20.0 C123.7 22.0 121.5 27.3 122.0 32.0 C122.5 36.7 120.3 41.0 127.0 48.0 C133.7 55.0 152.5 63.0 162.0 74.0 C171.5 85.0 181.0 100.7 184.0 114.0 C187.0 127.3 184.0 141.3 180.0 154.0 C176.0 166.7 166.3 180.7 160.0 190.0 C153.7 199.3 146.0 205.3 142.0 210.0 C138.0 214.7 137.0 215.0 136.0 218.0 C135.0 221.0 136.0 226.3 136.0 228.0 L64.0 228.0 C64.0 226.3 65.0 221.0 64.0 218.0 C63.0 215.0 62.0 214.7 58.0 210.0 C54.0 205.3 46.3 199.3 40.0 190.0 C33.7 180.7 24.0 166.7 20.0 154.0 C16.0 141.3 13.0 127.3 16.0 114.0 C19.0 100.7 28.5 85.0 38.0 74.0 C47.5 63.0 66.3 55.0 73.0 48.0 C79.7 41.0 77.5 36.7 78.0 32.0 C78.5 27.3 76.3 22.0 76.0 20.0 Z" fill="#D7B08A"/><g clip-path="url(#boule-c)"><path d="M12.0 -600 L12.0 190.0 Q23.3 185.1 34.7 188.1 C35.7 196.4 33.0 203.2 41.6 203.2 C50.2 203.2 47.5 196.4 48.5 188.1 Q58.5 186.4 68.5 189.4 C69.5 194.5 67.2 198.7 73.8 198.7 C80.3 198.7 78.1 194.5 79.1 189.4 Q94.8 186.6 110.5 189.6 C111.5 199.7 109.2 207.9 116.0 207.9 C122.8 207.9 120.5 199.7 121.5 189.6 Q145.0 187.1 168.4 190.1 C169.4 193.3 167.3 195.9 173.0 195.9 C178.7 195.9 176.6 193.3 177.6 190.1 Q182.8 193.0 188.0 190.0 L188.0 -600 Z" fill="url(#boule-v)"/><path d="M12.0 -600 L12.0 118.0 Q23.6 112.7 35.2 115.7 C36.2 123.0 33.3 128.9 43.1 128.9 C53.0 128.9 50.1 123.0 51.1 115.7 Q53.2 113.3 55.4 116.3 C56.4 122.0 53.8 126.7 61.7 126.7 C69.5 126.7 67.0 122.0 68.0 116.3 Q71.9 115.6 75.7 118.6 C76.7 135.2 74.2 148.8 81.9 148.8 C89.6 148.8 87.1 135.2 88.1 118.6 Q91.1 113.1 94.0 116.1 C95.0 127.3 93.0 136.5 98.3 136.5 C103.7 136.5 101.6 127.3 102.6 116.1 Q106.9 116.1 111.3 119.1 C112.3 131.5 109.5 141.6 118.7 141.6 C128.0 141.6 125.2 131.5 126.2 119.1 Q157.1 121.0 188.0 118.0 L188.0 -600 Z" fill="url(#boule-w)"/><circle cx="46.8" cy="159.0" r="1.1" fill="#2b1a10" opacity="0.37"/><circle cx="164.2" cy="139.4" r="1.2" fill="#2b1a10" opacity="0.70"/><circle cx="182.8" cy="36.6" r="1.5" fill="#2b1a10" opacity="0.38"/><circle cx="113.2" cy="82.7" r="0.6" fill="#2b1a10" opacity="0.61"/><circle cx="102.4" cy="41.2" r="1.0" fill="#2b1a10" opacity="0.37"/><circle cx="146.5" cy="149.9" r="1.2" fill="#2b1a10" opacity="0.43"/><circle cx="57.4" cy="126.7" r="0.8" fill="#2b1a10" opacity="0.50"/><circle cx="182.2" cy="108.1" r="0.9" fill="#2b1a10" opacity="0.54"/><circle cx="175.6" cy="55.8" r="1.1" fill="#2b1a10" opacity="0.68"/><circle cx="145.4" cy="206.7" r="0.9" fill="#2b1a10" opacity="0.69"/><circle cx="92.2" cy="216.8" r="0.9" fill="#2b1a10" opacity="0.37"/><circle cx="123.8" cy="208.5" r="0.8" fill="#2b1a10" opacity="0.62"/><circle cx="110.9" cy="160.9" r="1.0" fill="#2b1a10" opacity="0.62"/><circle cx="171.3" cy="41.4" r="1.0" fill="#2b1a10" opacity="0.64"/><circle cx="145.0" cy="49.5" r="0.7" fill="#2b1a10" opacity="0.65"/><circle cx="60.0" cy="74.1" r="1.2" fill="#2b1a10" opacity="0.43"/><circle cx="110.3" cy="68.4" r="0.7" fill="#2b1a10" opacity="0.61"/><circle cx="32.1" cy="42.2" r="0.6" fill="#2b1a10" opacity="0.46"/><circle cx="39.7" cy="121.2" r="1.0" fill="#2b1a10" opacity="0.46"/><circle cx="180.6" cy="57.8" r="1.3" fill="#2b1a10" opacity="0.55"/><circle cx="63.1" cy="86.4" r="1.0" fill="#2b1a10" opacity="0.69"/><circle cx="98.8" cy="61.8" r="0.6" fill="#2b1a10" opacity="0.40"/><circle cx="84.7" cy="29.1" r="0.8" fill="#2b1a10" opacity="0.36"/><circle cx="61.0" cy="110.0" r="0.9" fill="#2b1a10" opacity="0.42"/><circle cx="39.4" cy="67.3" r="1.3" fill="#2b1a10" opacity="0.47"/><circle cx="153.0" cy="51.3" r="1.4" fill="#2b1a10" opacity="0.43"/><rect x="0" y="0" width="200" height="240" fill="url(#boule-s)"/><path d="M62.2 62.5 q-6 42.5 2 76.5" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="20.0" rx="24.0" ry="7.2" style="fill:#6E95FF"/><ellipse cx="100" cy="20.6" rx="20.0" ry="5.2" fill="#120a06" opacity=".75"/></svg></div>
+  <div class="tag"><b>Vase boule</b><i>blanc d'étain sous cobalt coulé</i><span>Pièce unique</span></div>
+</li>
+<li class="obj" style="--h:270;--i:4">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 270" role="img" aria-label="Soliflore, émail rose, grès moucheté"><defs><clipPath id="soliflore-c"><path d="M113.0 16.0 C112.7 18.3 110.5 22.3 111.0 30.0 C111.5 37.7 112.7 48.3 116.0 62.0 C119.3 75.7 125.0 93.7 131.0 112.0 C137.0 130.3 147.7 155.0 152.0 172.0 C156.3 189.0 158.2 202.7 157.0 214.0 C155.8 225.3 147.8 234.0 145.0 240.0 C142.2 246.0 140.8 247.0 140.0 250.0 C139.2 253.0 140.0 256.7 140.0 258.0 L60.0 258.0 C60.0 256.7 60.8 253.0 60.0 250.0 C59.2 247.0 57.8 246.0 55.0 240.0 C52.2 234.0 44.2 225.3 43.0 214.0 C41.8 202.7 43.7 189.0 48.0 172.0 C52.3 155.0 63.0 130.3 69.0 112.0 C75.0 93.7 80.7 75.7 84.0 62.0 C87.3 48.3 88.5 37.7 89.0 30.0 C89.5 22.3 87.3 18.3 87.0 16.0 Z"/></clipPath><linearGradient id="soliflore-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="soliflore-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="16" y2="250"><stop offset="0" style="stop-color:#FFD0DE"/><stop offset=".55" style="stop-color:#F287A9"/><stop offset="1" style="stop-color:#B2476B"/></linearGradient></defs><ellipse cx="100" cy="260.0" rx="68.0" ry="5.0" fill="#000" opacity=".22"/><path d="M113.0 16.0 C112.7 18.3 110.5 22.3 111.0 30.0 C111.5 37.7 112.7 48.3 116.0 62.0 C119.3 75.7 125.0 93.7 131.0 112.0 C137.0 130.3 147.7 155.0 152.0 172.0 C156.3 189.0 158.2 202.7 157.0 214.0 C155.8 225.3 147.8 234.0 145.0 240.0 C142.2 246.0 140.8 247.0 140.0 250.0 C139.2 253.0 140.0 256.7 140.0 258.0 L60.0 258.0 C60.0 256.7 60.8 253.0 60.0 250.0 C59.2 247.0 57.8 246.0 55.0 240.0 C52.2 234.0 44.2 225.3 43.0 214.0 C41.8 202.7 43.7 189.0 48.0 172.0 C52.3 155.0 63.0 130.3 69.0 112.0 C75.0 93.7 80.7 75.7 84.0 62.0 C87.3 48.3 88.5 37.7 89.0 30.0 C89.5 22.3 87.3 18.3 87.0 16.0 Z" fill="#D98E5F"/><g clip-path="url(#soliflore-c)"><path d="M39.0 -600 L39.0 226.0 Q48.1 222.5 57.2 225.5 C58.2 229.7 55.9 233.1 62.4 233.1 C68.9 233.1 66.6 229.7 67.6 225.5 Q71.7 224.8 75.7 227.8 C76.7 238.9 74.8 248.0 79.5 248.0 C84.2 248.0 82.3 238.9 83.3 227.8 Q99.3 222.2 115.3 225.2 C116.3 239.2 114.2 250.6 119.8 250.6 C125.4 250.6 123.3 239.2 124.3 225.2 Q142.7 229.0 161.0 226.0 L161.0 -600 Z" fill="url(#soliflore-v)"/><circle cx="129.5" cy="40.8" r="1.1" fill="#2b1a10" opacity="0.36"/><circle cx="72.5" cy="204.2" r="1.5" fill="#2b1a10" opacity="0.40"/><circle cx="102.1" cy="197.2" r="1.4" fill="#2b1a10" opacity="0.54"/><circle cx="69.3" cy="140.9" r="0.6" fill="#2b1a10" opacity="0.52"/><circle cx="123.6" cy="197.9" r="0.8" fill="#2b1a10" opacity="0.57"/><circle cx="112.6" cy="188.0" r="1.2" fill="#2b1a10" opacity="0.41"/><circle cx="144.8" cy="122.1" r="1.1" fill="#2b1a10" opacity="0.39"/><circle cx="76.2" cy="186.7" r="1.2" fill="#2b1a10" opacity="0.37"/><circle cx="121.3" cy="127.5" r="0.9" fill="#2b1a10" opacity="0.46"/><circle cx="50.4" cy="257.7" r="1.4" fill="#2b1a10" opacity="0.43"/><circle cx="137.4" cy="221.3" r="1.1" fill="#2b1a10" opacity="0.52"/><circle cx="129.7" cy="124.1" r="0.8" fill="#2b1a10" opacity="0.57"/><circle cx="142.4" cy="66.6" r="1.0" fill="#2b1a10" opacity="0.61"/><circle cx="91.0" cy="32.8" r="1.2" fill="#2b1a10" opacity="0.47"/><circle cx="64.1" cy="147.3" r="1.1" fill="#2b1a10" opacity="0.54"/><circle cx="103.8" cy="90.3" r="1.2" fill="#2b1a10" opacity="0.44"/><circle cx="155.1" cy="52.6" r="1.3" fill="#2b1a10" opacity="0.57"/><circle cx="50.7" cy="25.8" r="1.2" fill="#2b1a10" opacity="0.37"/><circle cx="125.2" cy="33.3" r="1.3" fill="#2b1a10" opacity="0.44"/><circle cx="84.2" cy="142.6" r="1.3" fill="#2b1a10" opacity="0.69"/><circle cx="132.1" cy="145.2" r="1.4" fill="#2b1a10" opacity="0.44"/><circle cx="145.0" cy="116.6" r="0.7" fill="#2b1a10" opacity="0.38"/><circle cx="146.6" cy="83.0" r="1.1" fill="#2b1a10" opacity="0.45"/><circle cx="148.5" cy="230.6" r="1.0" fill="#2b1a10" opacity="0.67"/><circle cx="117.4" cy="44.8" r="0.6" fill="#2b1a10" opacity="0.69"/><circle cx="92.9" cy="225.3" r="1.3" fill="#2b1a10" opacity="0.41"/><circle cx="57.8" cy="48.5" r="0.6" fill="#2b1a10" opacity="0.56"/><circle cx="145.1" cy="172.2" r="1.5" fill="#2b1a10" opacity="0.50"/><circle cx="94.9" cy="241.8" r="1.5" fill="#2b1a10" opacity="0.41"/><circle cx="93.5" cy="195.6" r="0.7" fill="#2b1a10" opacity="0.45"/><circle cx="87.5" cy="167.6" r="1.4" fill="#2b1a10" opacity="0.51"/><circle cx="154.6" cy="213.7" r="0.6" fill="#2b1a10" opacity="0.52"/><circle cx="122.6" cy="114.9" r="0.9" fill="#2b1a10" opacity="0.45"/><circle cx="56.0" cy="224.3" r="0.7" fill="#2b1a10" opacity="0.69"/><circle cx="89.2" cy="97.0" r="0.8" fill="#2b1a10" opacity="0.54"/><circle cx="48.4" cy="164.2" r="0.8" fill="#2b1a10" opacity="0.49"/><circle cx="98.1" cy="213.6" r="1.5" fill="#2b1a10" opacity="0.36"/><circle cx="68.3" cy="161.2" r="1.3" fill="#2b1a10" opacity="0.69"/><circle cx="64.9" cy="82.2" r="1.0" fill="#2b1a10" opacity="0.39"/><circle cx="110.9" cy="127.3" r="1.3" fill="#2b1a10" opacity="0.60"/><rect x="0" y="0" width="200" height="270" fill="url(#soliflore-s)"/><path d="M74.3 68.5 q-6 52.5 2 94.5" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="16.0" rx="13.0" ry="3.9" style="fill:#FFD0DE"/><ellipse cx="100" cy="16.6" rx="9.0" ry="2.0" fill="#120a06" opacity=".75"/></svg></div>
+  <div class="tag"><b>Soliflore</b><i>rose, grès moucheté</i><span>Pour une seule tige</span></div>
+</li>
+<li class="obj" style="--h:220;--i:5">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 220" role="img" aria-label="Pichet, émail étain, bandes de cobalt au pinceau"><defs><clipPath id="pichet-c"><path d="M144.0 28.0 C143.7 31.0 140.7 36.3 142.0 46.0 C143.3 55.7 148.3 71.3 152.0 86.0 C155.7 100.7 162.7 119.7 164.0 134.0 C165.3 148.3 162.3 162.0 160.0 172.0 C157.7 182.0 152.7 189.0 150.0 194.0 C147.3 199.0 145.0 199.3 144.0 202.0 C143.0 204.7 144.0 208.7 144.0 210.0 L56.0 210.0 C56.0 208.7 57.0 204.7 56.0 202.0 C55.0 199.3 52.7 199.0 50.0 194.0 C47.3 189.0 42.3 182.0 40.0 172.0 C37.7 162.0 34.7 148.3 36.0 134.0 C37.3 119.7 44.3 100.7 48.0 86.0 C51.7 71.3 56.7 55.7 58.0 46.0 C59.3 36.3 56.3 31.0 56.0 28.0 Z"/></clipPath><linearGradient id="pichet-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="pichet-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="28" y2="200"><stop offset="0" style="stop-color:#FFFFFF"/><stop offset=".55" style="stop-color:#F2EDE2"/><stop offset="1" style="stop-color:#BFB39C"/></linearGradient></defs><ellipse cx="100" cy="212.0" rx="74.0" ry="5.0" fill="#000" opacity=".22"/><path d="M156 52 C204 54 206 140 160 150" fill="none" style="stroke:#F2EDE2" stroke-width="11" stroke-linecap="round"/><path d="M156 52 C204 54 206 140 160 150" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" transform="translate(-1.5 -1.5)"/><path d="M62 30 L36 16 L58 44 Z" style="fill:#FFFFFF"/><path d="M144.0 28.0 C143.7 31.0 140.7 36.3 142.0 46.0 C143.3 55.7 148.3 71.3 152.0 86.0 C155.7 100.7 162.7 119.7 164.0 134.0 C165.3 148.3 162.3 162.0 160.0 172.0 C157.7 182.0 152.7 189.0 150.0 194.0 C147.3 199.0 145.0 199.3 144.0 202.0 C143.0 204.7 144.0 208.7 144.0 210.0 L56.0 210.0 C56.0 208.7 57.0 204.7 56.0 202.0 C55.0 199.3 52.7 199.0 50.0 194.0 C47.3 189.0 42.3 182.0 40.0 172.0 C37.7 162.0 34.7 148.3 36.0 134.0 C37.3 119.7 44.3 100.7 48.0 86.0 C51.7 71.3 56.7 55.7 58.0 46.0 C59.3 36.3 56.3 31.0 56.0 28.0 Z" fill="#D98E5F"/><g clip-path="url(#pichet-c)"><path d="M32.0 -600 L32.0 176.0 Q36.6 171.3 41.3 174.3 C42.3 182.4 39.9 188.9 46.9 188.9 C53.8 188.9 51.5 182.4 52.5 174.3 Q57.1 174.3 61.7 177.3 C62.7 187.0 60.8 194.9 65.6 194.9 C70.4 194.9 68.5 187.0 69.5 177.3 Q110.4 173.1 151.3 176.1 C152.3 183.4 150.0 189.3 156.5 189.3 C162.9 189.3 160.7 183.4 161.7 176.1 Q164.8 179.0 168.0 176.0 L168.0 -600 Z" fill="url(#pichet-v)"/><path d="M0 78.0 Q50 75.0 100 78.0 T200 78.0 V92.0 Q150 95.0 100 92.0 T0 92.0 Z" style="fill:#2350D8" opacity=".92"/><path d="M0 110.0 Q50 107.0 100 110.0 T200 110.0 V116.0 Q150 119.0 100 116.0 T0 116.0 Z" style="fill:#F7B90F" opacity=".92"/><path d="M0 126.0 Q50 123.0 100 126.0 T200 126.0 V140.0 Q150 143.0 100 140.0 T0 140.0 Z" style="fill:#2350D8" opacity=".92"/><rect x="0" y="0" width="200" height="220" fill="url(#pichet-s)"/><path d="M71.2 65.0 q-6 37.0 2 66.6" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="28.0" rx="44.0" ry="9.0" style="fill:#FFFFFF"/><ellipse cx="100" cy="29.4" rx="40.0" ry="6.4" style="fill:#BFB39C"/><ellipse cx="108.8" cy="30.7" rx="22.0" ry="4.0" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Pichet</b><i>étain, bandes de cobalt au pinceau</i><span>Verse sans goutter</span></div>
+</li>
+<li class="obj" style="--h:90;--i:6">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 90" role="img" aria-label="Assiette creuse, émail tenmoku, bord rouille"><defs><clipPath id="assiette-c"><path d="M198.0 22.0 C197.3 23.7 198.7 27.7 194.0 32.0 C189.3 36.3 179.0 43.3 170.0 48.0 C161.0 52.7 146.0 57.3 140.0 60.0 C134.0 62.7 135.0 62.0 134.0 64.0 C133.0 66.0 134.0 70.7 134.0 72.0 L66.0 72.0 C66.0 70.7 67.0 66.0 66.0 64.0 C65.0 62.0 66.0 62.7 60.0 60.0 C54.0 57.3 39.0 52.7 30.0 48.0 C21.0 43.3 10.7 36.3 6.0 32.0 C1.3 27.7 2.7 23.7 2.0 22.0 Z"/></clipPath><linearGradient id="assiette-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="assiette-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="22" y2="82"><stop offset="0" style="stop-color:#4E3326"/><stop offset=".55" style="stop-color:#2B1A14"/><stop offset="1" style="stop-color:#8B4A1F"/></linearGradient></defs><ellipse cx="100" cy="74.0" rx="59.0" ry="5.0" fill="#000" opacity=".22"/><path d="M198.0 22.0 C197.3 23.7 198.7 27.7 194.0 32.0 C189.3 36.3 179.0 43.3 170.0 48.0 C161.0 52.7 146.0 57.3 140.0 60.0 C134.0 62.7 135.0 62.0 134.0 64.0 C133.0 66.0 134.0 70.7 134.0 72.0 L66.0 72.0 C66.0 70.7 67.0 66.0 66.0 64.0 C65.0 62.0 66.0 62.7 60.0 60.0 C54.0 57.3 39.0 52.7 30.0 48.0 C21.0 43.3 10.7 36.3 6.0 32.0 C1.3 27.7 2.7 23.7 2.0 22.0 Z" fill="#A86A45"/><g clip-path="url(#assiette-c)"><path d="M-2.0 -600 L-2.0 58.0 Q14.1 57.0 30.2 60.0 C31.2 64.5 28.5 68.2 37.0 68.2 C45.5 68.2 42.9 64.5 43.9 60.0 Q56.3 54.1 68.7 57.1 C69.7 61.5 66.8 65.2 76.5 65.2 C86.2 65.2 83.3 61.5 84.3 57.1 Q88.2 56.5 92.0 59.5 C93.0 64.5 91.0 68.6 96.3 68.6 C101.7 68.6 99.7 64.5 100.7 59.5 Q107.1 56.6 113.5 59.6 C114.5 65.0 112.1 69.3 119.3 69.3 C126.4 69.3 124.0 65.0 125.0 59.6 Q129.1 52.7 133.1 55.7 C134.1 58.5 132.3 60.8 136.7 60.8 C141.1 60.8 139.3 58.5 140.3 55.7 Q141.9 54.3 143.5 57.3 C144.5 61.6 141.8 65.0 150.5 65.0 C159.1 65.0 156.4 61.6 157.4 57.3 Q179.7 61.0 202.0 58.0 L202.0 -600 Z" fill="url(#assiette-v)"/><rect x="0" y="0" width="200" height="90" fill="url(#assiette-s)"/><path d="M55.9 31.0 q-6 9.0 2 16.2" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="22.0" rx="98.0" ry="13.0" style="fill:#4E3326"/><ellipse cx="100" cy="23.4" rx="94.0" ry="10.4" style="fill:#8B4A1F"/><ellipse cx="119.6" cy="25.9" rx="49.0" ry="5.9" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Assiette creuse</b><i>tenmoku, bord rouille</i><span>Va au four et au lave-vaisselle</span></div>
+</li>
+<li class="obj" style="--h:160;--i:7">
+  <div class="obj__p"><svg class="pc" viewBox="0 0 200 160" role="img" aria-label="Saladier, émail vert pomme sous jaune"><defs><clipPath id="saladier-c"><path d="M196.0 24.0 C195.3 29.0 195.3 42.3 192.0 54.0 C188.7 65.7 182.7 82.3 176.0 94.0 C169.3 105.7 158.3 116.3 152.0 124.0 C145.7 131.7 140.7 136.7 138.0 140.0 C135.3 143.3 136.3 141.7 136.0 144.0 C135.7 146.3 136.0 152.3 136.0 154.0 L64.0 154.0 C64.0 152.3 64.3 146.3 64.0 144.0 C63.7 141.7 64.7 143.3 62.0 140.0 C59.3 136.7 54.3 131.7 48.0 124.0 C41.7 116.3 30.7 105.7 24.0 94.0 C17.3 82.3 11.3 65.7 8.0 54.0 C4.7 42.3 4.7 29.0 4.0 24.0 Z"/></clipPath><linearGradient id="saladier-s" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".22" stop-color="#000" stop-opacity=".05"/><stop offset=".34" stop-color="#fff" stop-opacity=".38"/><stop offset=".44" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#000" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient><linearGradient id="saladier-v" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="24" y2="144"><stop offset="0" style="stop-color:#D2F08A"/><stop offset=".55" style="stop-color:#8CC43A"/><stop offset="1" style="stop-color:#3F7A1A"/></linearGradient><linearGradient id="saladier-w" gradientUnits="userSpaceOnUse" x1="0" x2="0" y1="24" y2="66"><stop offset="0" style="stop-color:#FFE27A"/><stop offset=".6" style="stop-color:#F7B90F"/><stop offset="1" style="stop-color:#B76A06"/></linearGradient></defs><ellipse cx="100" cy="156.0" rx="62.0" ry="5.0" fill="#000" opacity=".22"/><path d="M196.0 24.0 C195.3 29.0 195.3 42.3 192.0 54.0 C188.7 65.7 182.7 82.3 176.0 94.0 C169.3 105.7 158.3 116.3 152.0 124.0 C145.7 131.7 140.7 136.7 138.0 140.0 C135.3 143.3 136.3 141.7 136.0 144.0 C135.7 146.3 136.0 152.3 136.0 154.0 L64.0 154.0 C64.0 152.3 64.3 146.3 64.0 144.0 C63.7 141.7 64.7 143.3 62.0 140.0 C59.3 136.7 54.3 131.7 48.0 124.0 C41.7 116.3 30.7 105.7 24.0 94.0 C17.3 82.3 11.3 65.7 8.0 54.0 C4.7 42.3 4.7 29.0 4.0 24.0 Z" fill="#D98E5F"/><g clip-path="url(#saladier-c)"><path d="M0.0 -600 L0.0 120.0 Q2.5 115.1 5.0 118.1 C6.0 129.3 3.2 138.5 12.6 138.5 C22.1 138.5 19.2 129.3 20.2 118.1 Q28.4 117.3 36.5 120.3 C37.5 127.1 35.1 132.7 42.2 132.7 C49.3 132.7 46.9 127.1 47.9 120.3 Q49.0 116.3 50.1 119.3 C51.1 129.8 48.3 138.4 57.8 138.4 C67.4 138.4 64.5 129.8 65.5 119.3 Q71.0 117.4 76.4 120.4 C77.4 126.8 74.7 132.0 83.6 132.0 C92.6 132.0 89.8 126.8 90.8 120.4 Q99.1 116.6 107.4 119.6 C108.4 124.8 106.0 129.0 113.3 129.0 C120.6 129.0 118.2 124.8 119.2 119.6 Q130.0 116.0 140.9 119.0 C141.9 128.0 139.9 135.4 145.1 135.4 C150.4 135.4 148.3 128.0 149.3 119.0 Q161.5 115.5 173.7 118.5 C174.7 128.2 172.5 136.1 178.6 136.1 C184.7 136.1 182.6 128.2 183.6 118.5 Q191.8 123.0 200.0 120.0 L200.0 -600 Z" fill="url(#saladier-v)"/><path d="M0.0 -600 L0.0 50.0 Q2.2 46.8 4.5 49.8 C5.5 53.3 3.6 56.1 8.1 56.1 C12.6 56.1 10.7 53.3 11.7 49.8 Q40.5 47.4 69.3 50.4 C70.3 59.3 68.4 66.6 73.2 66.6 C77.9 66.6 76.0 59.3 77.0 50.4 Q92.6 47.3 108.3 50.3 C109.3 56.1 107.4 60.9 112.0 60.9 C116.5 60.9 114.7 56.1 115.7 50.3 Q127.3 47.4 139.0 50.4 C140.0 55.1 137.9 58.9 143.3 58.9 C148.7 58.9 146.7 55.1 147.7 50.4 Q153.1 49.0 158.5 52.0 C159.5 61.7 157.7 69.7 162.1 69.7 C166.5 69.7 164.7 61.7 165.7 52.0 Q173.4 44.7 181.1 47.7 C182.1 54.2 179.9 59.6 186.0 59.6 C192.1 59.6 189.9 54.2 190.9 47.7 Q195.5 53.0 200.0 50.0 L200.0 -600 Z" fill="url(#saladier-w)"/><rect x="0" y="0" width="200" height="160" fill="url(#saladier-s)"/><path d="M56.8 48.0 q-6 24.0 2 43.2" stroke="#fff" stroke-opacity=".55" stroke-width="5" fill="none" stroke-linecap="round"/></g><ellipse cx="100" cy="24.0" rx="96.0" ry="16.0" style="fill:#FFE27A"/><ellipse cx="100" cy="25.4" rx="92.0" ry="13.4" style="fill:#B76A06"/><ellipse cx="119.2" cy="28.8" rx="48.0" ry="7.2" fill="#fff" opacity=".18"/></svg></div>
+  <div class="tag"><b>Saladier</b><i>vert pomme sous jaune</i><span>Pour la table du dimanche</span></div>
+</li>
+        <li class="fin"><b>Une pièce vous plaît ?</b><span>Les séries sont courtes et ne reviennent pas toujours. Demandez ce qui est encore à l'atelier.</span><a class="btn btn--sol" href="#contact">Demander</a></li>
+      </ul>
+    </div>
+    <div class="jauge" aria-hidden="true"><i id="jauge"></i></div>
+  </div>
+</section>
+
+<!-- ================= PRESTATIONS ================= -->
+<section class="sec clair" id="prestations" aria-labelledby="t-pr">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Ce qui se fait ici</span>
+      <h2 id="t-pr" class="disp">De la motte à la table</h2>
+      <p>Tout passe par les mêmes mains : le tour, l'émail, le four. Ce que vous achetez, ce que vous commandez, ce que vous apprenez.</p>
+    </div>
+    <div class="presta">
+      <article class="carte p1 rv">
+        <svg class="deco" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="96" fill="#2F55E0"/><path d="M40 92h120c0 34-26 58-60 58s-60-24-60-58z" fill="#FFC21A"/><path d="M40 92h120c0 10-3 18-7 26-3 0-4 10-8 10s-4-7-7-7-4 12-9 12-4-9-8-9-4 6-8 6-4-10-8-10-3 6-7 6c-6-8-8-19-8-34z" fill="#FF94B5"/><ellipse cx="100" cy="92" rx="60" ry="12" fill="#10185A"/><ellipse cx="100" cy="90" rx="52" ry="8" fill="#B33A1C"/></svg>
+        <h3>Pièces de l'atelier</h3>
+        <p>Vaisselle, objets, pièces uniques. Des bols, des tasses, des assiettes et des vases tournés ici, en grès, à voir et à prendre en main à l'atelier.</p>
+        <ul class="liste" aria-label="Exemples de pièces"><li>Vaisselle</li><li>Vases</li><li>Pièces uniques</li></ul>
+      </article>
+      <article class="carte p2 rv" style="--d:1">
+        <svg class="deco" viewBox="0 0 120 100" aria-hidden="true"><ellipse cx="60" cy="84" rx="54" ry="12" fill="#14183D"/><ellipse cx="60" cy="78" rx="54" ry="12" fill="#F6F2EA"/><path d="M38 76c-2-20 6-30 6-40h32c0 10 8 20 6 40z" fill="#B33A1C"/><ellipse cx="60" cy="36" rx="16" ry="4" fill="#86270F"/><path d="M22 40c8-6 16-2 18 6M98 40c-8-6-16-2-18 6" stroke="#14183D" stroke-width="5" fill="none" stroke-linecap="round"/></svg>
+        <h3>Cours et commandes</h3>
+        <p>Stages au tour et à l'émaillage, en petit groupe. Commandes sur mesure : un service pour une table, une couleur pour un lieu, une pièce à offrir.</p>
+      </article>
+      <article class="carte p3 rv" style="--d:2">
+        <div>
+          <h3>Le reste, de vive voix</h3>
+          <p>Une pièce ébréchée, un projet pour un restaurant, une idée encore floue : on en parle à l'atelier ou au téléphone.</p>
+        </div>
+        <a class="btn btn--co" href="#contact">Parler de mon projet</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STAGES ================= -->
+<section class="sec nuit" id="stages" aria-labelledby="t-st">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Agenda de l'atelier</span>
+      <h2 id="t-st" class="disp">Prochaines ouvertures & stages</h2>
+      <p>Des journées portes ouvertes pour voir les pièces et le four, et des stages pour apprendre les gestes. Les groupes restent petits : chacun a son tour.</p>
+    </div>
+    <div class="filtres rv" role="group" aria-label="Filtrer l'agenda">
+      <button type="button" aria-pressed="true" data-f="tout">Tout</button>
+      <button type="button" aria-pressed="false" data-f="stage">Stages</button>
+      <button type="button" aria-pressed="false" data-f="ouv">Ouvertures</button>
+    </div>
+    <ol class="agenda" id="agenda">
+      <li class="rdv rdv--ouv rv" data-t="ouv" data-q="Ouverture du samedi 7 novembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>7</b><small>nov.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Atelier ouvert</span><span>Samedi · 10 h – 17 h</span></div>
+          <h3>Samedi d'atelier ouvert</h3>
+          <p>Les pièces du dernier four, le tour en marche, et le temps de poser vos questions. Entrée libre.</p>
+        </div>
+        <a class="btn btn--bl" href="#contact" data-reserver>Prévenir de ma venue</a>
+      </li>
+      <li class="rdv rdv--stage rv" data-t="stage" data-q="Stage tournage débutants du samedi 14 novembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>14</b><small>nov.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Stage</span><span>Samedi · 9 h 30 – 16 h 30</span></div>
+          <h3>Tournage, premiers pas</h3>
+          <p>Centrer la terre, ouvrir, monter une paroi. Une journée au tour pour repartir avec ses premiers bols, cuits ensuite à l'atelier.</p>
+        </div>
+        <a class="btn btn--sol" href="#contact" data-reserver>Demander une place</a>
+      </li>
+      <li class="rdv rdv--stage rv" data-t="stage" data-q="Modelage enfants du mercredi 18 novembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>18</b><small>nov.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Stage enfants</span><span>Mercredi · 14 h – 16 h</span></div>
+          <h3>Modelage pour les enfants</h3>
+          <p>Pinces, colombins et plaques : chacun façonne une petite pièce, à récupérer émaillée après cuisson.</p>
+        </div>
+        <a class="btn btn--sol" href="#contact" data-reserver>Demander une place</a>
+      </li>
+      <li class="rdv rdv--stage rv" data-t="stage" data-q="Stage émaillage du samedi 28 novembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>28</b><small>nov.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Stage</span><span>Samedi · 9 h 30 – 16 h 30</span></div>
+          <h3>Émaillage : tremper, verser, superposer</h3>
+          <p>Le jour de la couleur. On émaille des pièces déjà cuites en biscuit, on essaie les superpositions, on comprend pourquoi l'émail coule.</p>
+        </div>
+        <a class="btn btn--sol" href="#contact" data-reserver>Demander une place</a>
+      </li>
+      <li class="rdv rdv--ouv rv" data-t="ouv" data-q="Portes ouvertes des 5 et 6 décembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>5-6</b><small>déc.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Portes ouvertes</span><span>Samedi et dimanche · 10 h – 18 h</span></div>
+          <h3>Portes ouvertes de fin d'année</h3>
+          <p>L'étagère est pleine avant les fêtes. On défourne devant vous, et on emballe ce qui part en cadeau.</p>
+        </div>
+        <a class="btn btn--bl" href="#contact" data-reserver>Prévenir de ma venue</a>
+      </li>
+      <li class="rdv rdv--stage rv" data-t="stage" data-q="Soirée tournage du mercredi 16 décembre">
+        <div class="goutte"><svg viewBox="0 0 92 104" aria-hidden="true"><path d="M46 2c18 0 42 8 42 40 0 18-4 26-6 34-2 9-6 9-8 2-2-6-6-6-8 4-3 14-9 22-14 20-6-2-4-14-8-20-3-4-7 2-10 8-3 5-8 3-9-6C16 72 4 66 4 42 4 10 28 2 46 2z" style="fill:var(--gc)"/></svg><span><b>16</b><small>déc.</small></span></div>
+        <div class="rdv__c">
+          <div class="rdv__m"><span class="type">Stage</span><span>Mercredi · 18 h – 21 h</span></div>
+          <h3>Soirée tournage</h3>
+          <p>Trois heures au tour après le travail, pour ceux qui ont déjà centré une motte et veulent reprendre la main.</p>
+        </div>
+        <a class="btn btn--sol" href="#contact" data-reserver>Demander une place</a>
+      </li>
+    </ol>
+    <p class="agenda__n rv">Inscription par message ou par téléphone. Les dates bougent parfois les semaines de cuisson : l'atelier vous prévient.</p>
+  </div>
+</section>
+
+<!-- ================= PRÉPARER ================= -->
+<section class="sec jaune" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Avant d'écrire</span>
+      <h2 id="t-prep" class="disp">Préparer votre demande</h2>
+      <p>Trois choses suffisent pour qu'on parle tout de suite du concret.</p>
+    </div>
+    <ol class="etapes">
+      <li class="etape rv">
+        <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="40" fill="#1B2A8A"/><path d="M33 18h18l-2 6c9 5 13 12 13 22 0 12-9 18-20 18S22 58 22 46c0-10 4-17 13-22z" fill="#FFC21A"/><path d="M22 46c0-10 4-17 13-22l-2-6h18l-2 6c9 5 13 12 13 22v1c-3 0-3 7-6 7s-3-5-6-5-3 8-7 8-3-6-6-6-3 4-6 3c-2-3-3-5-3-8z" fill="#FF94B5"/><ellipse cx="42" cy="18.5" rx="9" ry="2.4" fill="#10185A"/></svg>
+        <em>D'abord</em>
+        <h3>L'objet</h3>
+        <p>Ce que vous voulez créer, restaurer ou réparer.</p>
+      </li>
+      <li class="etape rv" style="--d:1">
+        <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="40" fill="#B33A1C"/><rect x="20" y="20" width="44" height="50" rx="3" fill="#F6F2EA" transform="rotate(-6 42 45)"/><rect x="25" y="25" width="34" height="30" fill="#18B3A3" transform="rotate(-6 42 45)"/><path d="M33 52c0-8 3-12 9-14 6 2 9 6 9 14z" fill="#FFC21A" transform="rotate(-6 42 45)"/><circle cx="51" cy="32" r="4" fill="#FFC21A" transform="rotate(-6 42 45)"/></svg>
+        <em>Puis</em>
+        <h3>Une photo</h3>
+        <p>De l'objet, ou d'une inspiration.</p>
+      </li>
+      <li class="etape rv" style="--d:2">
+        <svg viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="40" fill="#18B3A3"/><path d="M18 60l30-30 8 8-30 30H18z" fill="#FFC21A"/><path d="M48 30l6-6 8 8-6 6z" fill="#FF94B5"/><path d="M18 60v8h8z" fill="#14183D"/><path d="M22 24h26M22 32h16" stroke="#F6F2EA" stroke-width="4" stroke-linecap="round"/></svg>
+        <em>Enfin</em>
+        <h3>Votre idée</h3>
+        <p>Dimensions, matières, échéance : ce que vous savez déjà.</p>
+      </li>
+    </ol>
+    <div class="prep__cta rv">
+      <a class="btn btn--co" href="#contact">Parler de mon projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <span>Pas de photo ? Une description suffit.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORAIRES ================= -->
+<section class="sec clair" id="horaires" aria-labelledby="t-hor">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Passer à l'atelier</span>
+      <h2 id="t-hor" class="disp">Horaires et accès</h2>
+    </div>
+    <div class="acces">
+      <div class="rv">
+        <p class="etat" data-h='[[],[],[840,1110],[600,750,840,1110],[600,750,840,1110],[600,750,840,1110],[600,1080]]'>Du mardi au samedi.</p>
+        <dl class="hor" id="hor">
+          <div class="off"><dt>Lundi</dt><dd>fermé, jour de tournage</dd></div>
+          <div><dt>Mardi</dt><dd>14 h – 18 h 30</dd></div>
+          <div><dt>Mercredi</dt><dd>10 h – 12 h 30 · 14 h – 18 h 30</dd></div>
+          <div><dt>Jeudi</dt><dd>10 h – 12 h 30 · 14 h – 18 h 30</dd></div>
+          <div><dt>Vendredi</dt><dd>10 h – 12 h 30 · 14 h – 18 h 30</dd></div>
+          <div><dt>Samedi</dt><dd>10 h – 18 h</dd></div>
+          <div class="off"><dt>Dimanche</dt><dd>fermé</dd></div>
+        </dl>
+        <p class="acces__n">Les jours de défournement, l'atelier peut fermer plus tôt. Un message avant de venir, et vous êtes sûr de trouver la porte ouverte.</p>
+      </div>
+      <div class="plan rv" style="--d:1">
+        <svg viewBox="0 0 640 380" role="img" aria-label="Plan stylisé de Pont-à-Mousson : la Moselle, le pont, le centre-ville et l'atelier sur la rive droite.">
+          <rect width="640" height="380" fill="#F6F2EA"/>
+          <g stroke="#ECE5D6" stroke-width="18" stroke-linecap="round" fill="none"><path d="M0 84h640M0 290h640M110 0v380M530 0v380"/></g>
+          <g stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" fill="none"><path d="M0 84h640M0 290h640M110 0v380M530 0v380M0 200h640"/></g>
+          <path d="M296 0c-34 70 36 116 18 196s-60 116-40 184h76c-22-66 28-116 38-184S344 64 366 0z" fill="#2F55E0"/>
+          <path d="M316 24c-10 40 18 70 12 108M300 250c-10 40-6 70 4 110" stroke="#9FB4FF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <rect x="262" y="190" width="132" height="22" rx="4" fill="#FFC21A" stroke="#14183D" stroke-width="2.5"/>
+          <g fill="#FF94B5" stroke="#14183D" stroke-width="2.5"><rect x="140" y="112" width="80" height="62" rx="10"/><rect x="30" y="226" width="60" height="44" rx="10"/></g>
+          <g fill="#18B3A3" stroke="#14183D" stroke-width="2.5"><rect x="140" y="226" width="90" height="44" rx="10"/><rect x="560" y="110" width="60" height="60" rx="10"/></g>
+          <g fill="#ECE5D6" stroke="#14183D" stroke-width="2.5"><rect x="30" y="110" width="58" height="62" rx="10"/><rect x="420" y="112" width="80" height="60" rx="10"/><rect x="560" y="310" width="60" height="54" rx="10"/><rect x="420" y="314" width="80" height="50" rx="10"/></g>
+          <g font-family="Shrikhand, Georgia, serif" fill="#14183D">
+            <text x="292" y="150" font-size="22" fill="#FFFFFF" transform="rotate(-74 292 150)">la Moselle</text>
+            <text x="140" y="104" font-size="18">centre-ville</text>
+            <text x="300" y="235" font-size="15">le pont</text>
+          </g>
+          <g class="epingle">
+            <ellipse cx="470" cy="300" rx="18" ry="5" fill="#14183D" opacity=".3"/>
+            <path d="M470 298c-4-16-28-28-28-52a28 28 0 0 1 56 0c0 24-24 36-28 52z" fill="#B33A1C" stroke="#14183D" stroke-width="2.5"/>
+            <path d="M462 232h16l-1 4c5 3 7 7 7 12 0 6-5 10-14 10s-14-4-14-10c0-5 2-9 7-12z" fill="#FFC21A"/>
+          </g>
+          <text x="504" y="262" font-family="Shrikhand, Georgia, serif" font-size="20" fill="#B33A1C">l'atelier</text>
+        </svg>
+        <div class="plan__b">
+          <address class="adr"><b>XX rue de l'Exemple</b>54700 Pont-à-Mousson</address>
+          <a class="btn btn--co" href="https://www.google.com/maps/search/?api=1&amp;query=Pont-%C3%A0-Mousson%2054700">Ouvrir l'itinéraire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec rouge" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="rv">
+      <span class="surt">Contact</span>
+      <h2 id="t-ctc" class="disp" style="margin-top:12px">Parler de mon projet</h2>
+      <p style="margin-top:16px;max-width:40ch">Une création, une réparation, une place en stage, une simple question : écrivez ou appelez. Vous parlez à la personne qui travaille la terre.</p>
+      <a class="ctc__tel" href="#contact">06 XX XX XX XX</a>
+      <p class="ctc__l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span><b>XX rue de l'Exemple</b>54700 Pont-à-Mousson</span></p>
+      <p class="ctc__l"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Du mardi au samedi</b>Les horaires détaillés sont plus haut.</span></p>
+    </div>
+    <form class="form rv" id="dem" novalidate style="--d:1">
+      <h3>Votre demande</h3>
+      <div class="duo">
+        <div class="ch"><label for="nom">Votre nom</label><input id="nom" name="nom" autocomplete="name" required></div>
+        <div class="ch"><label for="joindre">Téléphone ou courriel</label><input id="joindre" name="joindre" autocomplete="email" required></div>
+      </div>
+      <div class="ch"><label for="objet">Votre demande concerne</label>
+        <select id="objet" name="objet">
+          <option>Une création sur mesure</option>
+          <option>Une restauration ou réparation</option>
+          <option>Une place en stage ou une visite</option>
+          <option>Une question</option>
+        </select>
+      </div>
+      <div class="ch"><label for="msg">Votre idée <small>(dimensions, couleurs, échéance…)</small></label><textarea id="msg" name="msg"></textarea></div>
+      <div class="ch"><label for="photo">Une photo <small>(facultatif)</small></label><input id="photo" name="photo" type="file" accept="image/*"></div>
+      <button class="btn btn--co" type="submit">Envoyer ma demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <div class="pied__in">
+      <div>
+        <a class="logo" href="#haut"><svg viewBox="0 0 34 40" aria-hidden="true"><path d="M11 3h12l-1 5c6 3 10 9 10 16 0 9-7 14-15 14S2 33 2 24c0-7 4-13 10-16z" fill="#FFC21A"/><path d="M11 3h12l-1 5c6 3 10 9 10 16v2c-2 0-2 6-5 6s-2-4-5-4-2 7-6 7-3-5-6-5-3 3-4 2c-1-2-1-4-1-6 0-7 4-13 10-16z" fill="#FF94B5"/><ellipse cx="17" cy="3.5" rx="6" ry="1.8" fill="#10185A"/></svg><span><b>Terre de Meurthe</b></span></a>
+        <p style="margin-top:14px;max-width:32ch">Atelier de céramique : pièces en grès, stages, commandes et réparations.</p>
+      </div>
+      <div>
+        <p><b style="color:var(--blanc)">XX rue de l'Exemple</b><br>54700 Pont-à-Mousson<br>06 XX XX XX XX</p>
+      </div>
+      <nav aria-label="Pied de page">
+        <a href="#atelier">L'étagère</a><a href="#stages">Stages & ouvertures</a><a href="#horaires">Horaires et accès</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <p class="pied__bas">© Atelier Terre de Meurthe · Pont-à-Mousson</p>
+  </div>
+</footer>
+
+<div class="barre" id="barre">
+  <a class="btn btn--sol" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  <a class="btn btn--bl" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>Écrire</a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var D=document, R=D.documentElement, W=window;
+  var calme=W.matchMedia&&W.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  R.classList.add("js");
+  function toutMontrer(){D.body.classList.add("pret");D.querySelectorAll(".rv").forEach(function(e){e.classList.add("vu");});}
+  var fini=false, secours=setTimeout(function(){if(!fini||!("IntersectionObserver" in W))toutMontrer();D.body.classList.add("pret");},1500);
+  requestAnimationFrame(function(){requestAnimationFrame(function(){D.body.classList.add("pret");});});
+
+  /* révélations */
+  if("IntersectionObserver" in W){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("vu");io.unobserve(e.target);}});},{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    D.querySelectorAll(".rv").forEach(function(e){io.observe(e);});
+  } else toutMontrer();
+
+  /* menu */
+  var bg=D.getElementById("burger"), pn=D.getElementById("panneau"), hd=D.getElementById("hd");
+  function menu(o){bg.setAttribute("aria-expanded",o);bg.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu");pn.classList.toggle("ouvert",o);hd.classList.toggle("menu",o);D.body.style.overflow=o?"hidden":"";}
+  bg.addEventListener("click",function(){menu(bg.getAttribute("aria-expanded")!=="true");});
+  pn.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){menu(false);});});
+  D.addEventListener("keydown",function(e){if(e.key==="Escape"&&pn.classList.contains("ouvert")){menu(false);bg.focus();}});
+
+  /* barre mobile : apparaît après l'ouverture */
+  var barre=D.getElementById("barre");
+  function bar(){barre.classList.toggle("vis",W.scrollY>W.innerHeight*.45);}
+  W.addEventListener("scroll",bar,{passive:true});bar();
+
+  /* ouvert maintenant */
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i;for(i=0;i+1<x.length;i+=2)r.push([x[i],x[i+1]]);return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;return b?a+" h "+(b<10?"0":"")+b:a+" h";}
+  function ecrire(el,t,c){el.innerHTML='<span class="pt" aria-hidden="true"></span>';el.appendChild(D.createTextNode(t));el.className=el.className.replace(/ ?etat--\w+/g,"")+" "+c;}
+  D.querySelectorAll(".etat[data-h]").forEach(function(el){
+    var h;try{h=JSON.parse(el.getAttribute("data-h"));}catch(e){return;}
+    if(!Array.isArray(h)||h.length!==7)return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){if(m>=cj[i][0]&&m<cj[i][1]){ecrire(el,"Atelier ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui");return;}}
+    for(k=0;k<8;k++){jj=(j+k)%7;cs=pr(h[jj]);for(i=0;i<cs.length;i++){if(k===0&&cs[i][0]<=m)continue;
+      ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non");return;}}
+  });
+  var lh=D.querySelectorAll("#hor > div");if(lh.length===7)lh[(new Date().getDay()+6)%7].classList.add("jour");
+
+  /* ---------- coulures d'émail (canvas) ---------- */
+  var cv=D.getElementById("coulures"), cx=cv.getContext&&cv.getContext("2d"), couches=[], Wc=0, Hc=0, anim=0;
+  function hex(h){return [parseInt(h.substr(1,2),16),parseInt(h.substr(3,2),16),parseInt(h.substr(5,2),16)];}
+  function rnd(a,b){return a+Math.random()*(b-a);}
+  function taille(){if(!cx)return;var r=Math.min(2,W.devicePixelRatio||1);Wc=cv.clientWidth;Hc=cv.clientHeight;cv.width=Math.round(Wc*r);cv.height=Math.round(Hc*r);cx.setTransform(r,0,0,r,0,0);}
+  function couche(g,premiere){
+    var n=Math.max(8,Math.round(Wc/(premiere?30:40))),d=[],i,x;
+    for(i=0;i<n;i++){x=(i+rnd(.1,.9))*Wc/n;if(!premiere&&Math.random()<.35)continue;
+      d.push({x:x,w:rnd(9,Wc<600?22:32),l:Hc*(premiere?rnd(.22,.95):rnd(.14,.75))*(Math.random()<.2?1:.72),r:rnd(0,700)});}
+    return {g:g,d:d,b:premiere?rnd(26,34):rnd(12,20),t:performance.now()};
+  }
+  function goutte(c,x,w,l,g){
+    var gr=cx.createLinearGradient(0,0,0,l+w);gr.addColorStop(0,g[2]);gr.addColorStop(.35,g[0]);gr.addColorStop(1,g[1]);
+    cx.fillStyle=gr;cx.beginPath();
+    var r=w*.56;cx.moveTo(x-w/2,0);cx.lineTo(x-w*.42,Math.max(0,l-r));
+    cx.arc(x,l,r,Math.PI*1.08,Math.PI*1.92,true);cx.lineTo(x+w/2,0);cx.closePath();cx.fill();
+    cx.fillStyle="rgba(255,255,255,.32)";cx.fillRect(x-w*.26,0,Math.max(2,w*.12),Math.max(0,l-r*.6));
+    cx.beginPath();cx.arc(x-r*.35,l-r*.15,r*.22,0,7);cx.fill();
+  }
+  function dessiner(now){
+    cx.clearRect(0,0,Wc,Hc);var encore=false;
+    couches.forEach(function(c,k){
+      var g=c.g, bande=c.b;
+      cx.fillStyle=g[0];cx.beginPath();cx.moveTo(0,0);cx.lineTo(Wc,0);
+      for(var x=Wc;x>=0;x-=40){cx.lineTo(x,bande+Math.sin(x*.05+k)*3);}cx.closePath();cx.fill();
+      c.d.forEach(function(d){
+        var p=calme?1:Math.min(1,Math.max(0,(now-c.t-d.r)/1700));if(p<1)encore=true;
+        var e=1-Math.pow(1-p,3);var l=bande+d.l*e;goutte(cx,d.x,d.w*(.65+.35*e),l,g);
+      });
+    });
+    if(encore)anim=requestAnimationFrame(dessiner);else anim=0;
+  }
+  function relancer(){if(!cx)return;if(anim)cancelAnimationFrame(anim);anim=requestAnimationFrame(dessiner);}
+  function couleurs(btn){return btn.getAttribute("data-g").split(",");}
+  var tes=D.querySelectorAll(".tes");
+  if(cx){taille();var c0=couche(couleurs(tes[1]),true),c1=couche(couleurs(tes[4]),false),c2=couche(couleurs(tes[3]),false);c1.t+=350;c2.t+=700;couches.push(c0,c1,c2);relancer();
+    var rw=0;W.addEventListener("resize",function(){clearTimeout(rw);rw=setTimeout(function(){var ow=Wc;taille();if(Math.abs(ow-Wc)>40){var g=couches[couches.length-1].g;couches=[couche(g,true)];couches[0].t=-1e5;}relancer();},150);});}
+
+  /* ---------- nuancier ---------- */
+  var gb=D.getElementById("gl-b"), vase=D.getElementById("vase"), nn=D.getElementById("nu-n"), occupe=false;
+  function poser(p,g){R.style.setProperty("--"+p+"-base",g[0]);R.style.setProperty("--"+p+"-pool",g[1]);R.style.setProperty("--"+p+"-hi",g[2]);}
+  tes.forEach(function(b){b.addEventListener("click",function(){
+    if(b.getAttribute("aria-pressed")==="true")return;
+    tes.forEach(function(t){t.setAttribute("aria-pressed",t===b?"true":"false");});
+    var g=couleurs(b);
+    nn.innerHTML="";var bb=D.createElement("b");bb.textContent=b.getAttribute("data-n");var sp=D.createElement("span");sp.textContent=b.getAttribute("data-d");nn.appendChild(bb);nn.appendChild(sp);
+    if(cx){couches.push(couche(g,false));if(couches.length>5)couches.shift();relancer();}
+    if(calme){poser("a",g);return;}
+    poser("b",g);gb.classList.remove("coule");void gb.getBoundingClientRect();
+    requestAnimationFrame(function(){gb.classList.add("coule");});
+    vase.classList.remove("secoue");void vase.offsetWidth;vase.classList.add("secoue");
+    clearTimeout(occupe);occupe=setTimeout(function(){poser("a",g);gb.classList.remove("coule");},1300);
+  });});
+
+  /* parallaxe légère de l'assiette */
+  var as=D.getElementById("assiette");
+  if(!calme){W.addEventListener("scroll",function(){var y=W.scrollY;if(y<W.innerHeight*1.2)as.style.translate="0 "+(y*.12)+"px";},{passive:true});}
+
+  /* ---------- étagère ---------- */
+  var et=D.getElementById("atelier"), vue=D.getElementById("vue"), piste=D.getElementById("piste"), rang=D.getElementById("rang"), jauge=D.getElementById("jauge");
+  var epingle=false, course=0;
+  function mesurer(){
+    epingle=!calme&&W.matchMedia("(min-width: 900px)").matches;
+    et.classList.toggle("epingle",epingle);
+    if(epingle){
+      rang.style.transform="";
+      course=Math.max(0,rang.scrollWidth+parseFloat(getComputedStyle(piste).paddingLeft)-piste.clientWidth+40);
+      et.style.height=(vue.offsetHeight+course)+"px";
+      D.getElementById("glisse-t").textContent="Défilez pour parcourir l'étagère";
+    }else{et.style.height="";rang.style.transform="";}
+    suivre();
+  }
+  function suivre(){
+    var p;
+    if(epingle){var top=et.getBoundingClientRect().top-parseFloat(getComputedStyle(vue).top);p=Math.min(1,Math.max(0,-top/(course||1)));rang.style.transform="translate3d("+(-p*course)+"px,0,0)";}
+    else{var m=piste.scrollWidth-piste.clientWidth;p=m>0?piste.scrollLeft/m:0;}
+    jauge.style.transform="scaleX("+Math.max(.08,p)+")";
+  }
+  W.addEventListener("scroll",function(){if(epingle)suivre();},{passive:true});
+  piste.addEventListener("scroll",suivre,{passive:true});
+  var rz=0;W.addEventListener("resize",function(){clearTimeout(rz);rz=setTimeout(mesurer,200);});
+  W.addEventListener("load",mesurer);mesurer();
+  function pas(s){
+    var w=Math.min(600,piste.clientWidth*.7)*s;
+    if(epingle){var y=W.scrollY+w;W.scrollTo({top:y,behavior:calme?"auto":"smooth"});}
+    else piste.scrollBy({left:w,behavior:calme?"auto":"smooth"});
+  }
+  D.getElementById("et-g").addEventListener("click",function(){pas(-1);});
+  D.getElementById("et-d").addEventListener("click",function(){pas(1);});
+
+  /* ---------- agenda ---------- */
+  var fb=D.querySelectorAll(".filtres button"), rdv=D.querySelectorAll(".rdv");
+  fb.forEach(function(b){b.addEventListener("click",function(){
+    var f=b.getAttribute("data-f");fb.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+    rdv.forEach(function(r){r.hidden=!(f==="tout"||r.getAttribute("data-t")===f);r.classList.add("vu");});
+  });});
+  var form=D.getElementById("dem");
+  D.querySelectorAll("[data-reserver]").forEach(function(a){a.addEventListener("click",function(){
+    var li=a.closest(".rdv");form.objet.value="Une place en stage ou une visite";
+    if(!form.msg.value.trim())form.msg.value=li.getAttribute("data-q")+" : ";
+  });});
+
+  /* ---------- formulaire ---------- */
+  form.addEventListener("submit",function(e){
+    e.preventDefault();var r=D.getElementById("ret");
+    if(!form.nom.value.trim()||!form.joindre.value.trim()){r.className="fret err";r.textContent="Indiquez au moins votre nom et un moyen de vous répondre.";(form.nom.value.trim()?form.joindre:form.nom).focus();return;}
+    r.className="fret";r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement chez Atelier Terre de Meurthe, qui vous répond au plus vite.";form.reset();
+  });
+  fini=true;
+})();
+</script>
+</body>
+</html>

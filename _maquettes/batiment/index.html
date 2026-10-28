@@ -1,0 +1,1017 @@
+<!doctype html>
+<!--
+  Maquette « bâtiment » — Berthier Toitures, couvreur-zingueur, Saint-Max (54130).
+  Idées retenues pendant la recherche d'inspiration :
+  1. Les dessins d'architecture animés dont les traits se tracent d'eux-mêmes : ici, une élévation
+     de toiture qui se construit au chargement, de la charpente au faîtage, tuile par tuile, de l'égout vers le haut
+     (l'ordre réel de pose).
+  2. Les sites d'agences d'architecture qui montrent leur grille et leurs repères : grille millimétrée,
+     cartouche de plan, cotes et repères de calepinage comme éléments graphiques.
+  3. Les bons sites d'artisans du bâtiment : téléphone et demande toujours à portée de pouce,
+     zone d'intervention explicite, étapes claires pour préparer la demande.
+  Idée signature : le « cordeau de traceur » — le fil bleu que le couvreur claque sur le support pour
+  tracer ses lignes. Chaque séparation de section est un cordeau qui vibre et laisse sa trace de craie.
+  Pour transposer à un autre métier du bâtiment : changer l'eyebrow, les deux premières planches
+  (titre, texte, dessin de détail), le vocabulaire du bandeau défilant et le dessin du hero.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Berthier Toitures — couvreur-zingueur à Saint-Max</title>
+<meta name="description" content="Berthier Toitures, couvreur-zingueur à Saint-Max (54130) : couverture, zinguerie et étanchéité. Décrivez votre besoin, vous parlez directement à la personne qui interviendra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800;900&family=Martian+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+  document.documentElement.classList.add("js");
+  setTimeout(function(){ if(!window.__pret){ document.documentElement.classList.remove("js"); } }, 1500);
+</script>
+<style>
+:root{
+  --ardoise:#1A1F24; --ardoise-2:#222930; --ardoise-3:#36414A; --ardoise-4:#56626B;
+  --nuit:#111518;
+  --zinc:#9AA4AB; --zinc-clair:#C6CDD1; --zinc-pale:#DFE4E6;
+  --calque:#E8EBEB; --calque-2:#DCE1E2; --papier:#F5F7F7;
+  --graphite:#171C20; --graphite-2:#48525A;
+  --cordeau:#2347D9; --cordeau-sombre:#1A36A8; --cordeau-vif:#7499FF;
+  --cordeau-voile:rgba(35,71,217,.12);
+  --grille:rgba(35,71,217,.065); --grille-forte:rgba(35,71,217,.12);
+  --grille-n:rgba(116,153,255,.055); --grille-n-forte:rgba(116,153,255,.11);
+  --rouge:#E5484D; --vert:#3CC47C;
+  --t1:#2B343B; --t2:#3A444C; --t3:#46515A;
+  --f-titre:'Big Shoulders Display','Arial Narrow','Roboto Condensed',Impact,sans-serif;
+  --f-texte:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'Martian Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --large:1240px;
+  --gx:max(16px, env(safe-area-inset-left));
+  --gd:max(16px, env(safe-area-inset-right));
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px;overflow-x:clip}
+body{margin:0;background:var(--calque);color:var(--graphite);font-family:var(--f-texte);font-size:clamp(16px,1.05vw + 12px,18px);line-height:1.6;overflow-x:clip}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.32;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .52 0 0 0 0 .55 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E")}
+svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:800;line-height:.95;margin:0;text-transform:uppercase;letter-spacing:.005em}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0;list-style:none}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--cordeau);outline-offset:3px}
+.nuit :focus-visible,.bmob :focus-visible,.menu :focus-visible{outline-color:var(--cordeau-vif)}
+.saut{position:absolute;left:-9999px;top:0}
+.saut:focus{left:16px;top:12px;z-index:99;background:var(--papier);color:var(--graphite);padding:12px 16px;border:2px solid var(--graphite)}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--gx);padding-right:var(--gd)}
+@media (min-width:720px){.env{padding-left:max(32px,env(safe-area-inset-left));padding-right:max(32px,env(safe-area-inset-right))}}
+
+.millimetre{background-color:var(--calque);
+  background-image:linear-gradient(var(--grille-forte) 1px,transparent 1px),linear-gradient(90deg,var(--grille-forte) 1px,transparent 1px),linear-gradient(var(--grille) 1px,transparent 1px),linear-gradient(90deg,var(--grille) 1px,transparent 1px);
+  background-size:80px 80px,80px 80px,16px 16px,16px 16px;background-position:var(--gp,0 0)}
+.nuit{background-color:var(--ardoise);color:var(--zinc-pale)}
+.nuit.millimetre{background-image:linear-gradient(var(--grille-n-forte) 1px,transparent 1px),linear-gradient(90deg,var(--grille-n-forte) 1px,transparent 1px),linear-gradient(var(--grille-n) 1px,transparent 1px),linear-gradient(90deg,var(--grille-n) 1px,transparent 1px)}
+.nuit h2,.nuit h3{color:#fff}
+
+/* boutons */
+.btn{--bg:var(--cordeau);--fg:#fff;position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;
+  background:var(--bg);color:var(--fg);border:2px solid var(--bg);font-family:var(--f-texte);font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;
+  transition:transform .25s var(--ease),box-shadow .25s var(--ease),background-color .2s}
+.btn svg{width:18px;height:18px;flex:none;transition:transform .25s var(--ease)}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:3px 3px 0 var(--graphite)}
+.btn:hover svg{transform:translateX(3px)}
+.btn:active{transform:none;box-shadow:none}
+.btn--trait{--bg:transparent;--fg:var(--graphite);border-color:var(--graphite)}
+.nuit .btn{--bg:var(--cordeau-vif);--fg:var(--ardoise)}
+.nuit .btn:hover{box-shadow:3px 3px 0 var(--zinc-pale)}
+.nuit .btn--trait{--bg:transparent;--fg:#fff;border-color:var(--zinc)}
+
+.surt{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--cordeau)}
+.surt::before{content:"";width:9px;height:9px;background:currentColor;flex:none}
+.nuit .surt{color:var(--cordeau-vif)}
+
+/* en-tête */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(232,235,235,.9);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1.5px solid var(--graphite);transition:box-shadow .3s}
+.hdr.defile{box-shadow:0 10px 30px -18px rgba(23,28,32,.5)}
+.hdr__in{display:flex;align-items:center;gap:20px;min-height:64px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-width:0;min-height:44px}
+.mq svg{width:38px;height:38px;flex:none}
+.mq__n{display:block;font-family:var(--f-titre);font-weight:800;font-size:23px;line-height:1;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.mq__v{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite-2);margin-top:4px;white-space:nowrap}
+.nav{display:none;gap:22px}
+.nav a{position:relative;white-space:nowrap;text-decoration:none;font-size:15px;font-weight:500;padding:10px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--cordeau);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr__tel{display:none;white-space:nowrap;min-height:44px;align-items:center;gap:8px;padding:0 14px;border:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:13px;font-weight:500;text-decoration:none;transition:background .2s,color .2s}
+.hdr__tel:hover{background:var(--graphite);color:var(--calque)}
+.hdr__tel svg{width:16px;height:16px}
+.burger{width:48px;height:48px;display:grid;place-items:center;background:var(--graphite);border:0;cursor:pointer;flex:none}
+.burger span{display:block;width:22px;height:2px;background:var(--calque);transition:transform .35s var(--ease)}
+.burger span+span{margin-top:-14px}
+.burger span:first-child{transform:translateY(-4px)}
+.burger span:last-child{transform:translateY(4px);width:14px;justify-self:end;margin-right:13px}
+.burger[aria-expanded="true"] span:first-child{transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:rotate(-45deg);width:22px;margin-right:13px}
+.burger{grid-template-areas:"a"}.burger span{grid-area:a;margin:0!important}
+@media (min-width:1100px){.nav{display:flex}.hdr__tel{display:inline-flex}.burger{display:none}}
+.menu{position:fixed;left:0;right:0;top:65px;bottom:0;z-index:39;padding:28px var(--gd) 120px var(--gx);overflow:auto;
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .5s var(--ease),visibility 0s .5s}
+.menu.ouvert{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .5s var(--ease),visibility 0s}
+.menu a{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--ardoise-3);font-family:var(--f-titre);font-weight:800;font-size:clamp(34px,10vw,48px);line-height:1;text-transform:uppercase;text-decoration:none;color:#fff}
+.menu a small{font-family:var(--f-mono);font-size:11px;font-weight:400;color:var(--zinc);letter-spacing:.06em}
+.menu .btn{margin-top:28px;width:100%;font-family:var(--f-texte);font-size:17px;text-transform:none;border-bottom:2px solid var(--cordeau-vif)}
+@media (min-width:1100px){.menu{display:none}}
+
+/* hero */
+.ouv{position:relative;overflow:hidden;padding:40px 0 28px}
+.ouv__in{display:grid;gap:28px;align-items:center}
+@media (min-width:960px){.ouv{padding:64px 0 40px}.ouv__in{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px}}
+.ouv h1{margin-top:18px;font-size:clamp(64px,6.6vw + 8px,112px);font-weight:900;line-height:.84;letter-spacing:-.005em}
+.ouv h1 .l{display:block}
+.ouv h1 .creux{color:transparent;-webkit-text-stroke:2px var(--graphite)}
+.ouv__t{margin-top:22px;font-size:clamp(18px,1vw + 13px,21px);line-height:1.5;max-width:28em;color:var(--graphite-2)}
+.ouv__t strong{color:var(--graphite);font-weight:600}
+.ouv__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--f-mono);font-size:12px;color:var(--graphite-2)}
+.meta>span{display:inline-flex;align-items:center;gap:8px}
+.etat{font-weight:500}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--zinc);flex:none;margin-right:8px;vertical-align:1px}
+.etat--oui .pastille{background:var(--vert);box-shadow:0 0 0 0 rgba(60,196,124,.6);animation:pouls 2.2s infinite}
+.etat--non .pastille{background:var(--rouge)}
+@keyframes pouls{70%{box-shadow:0 0 0 8px rgba(60,196,124,0)}100%{box-shadow:0 0 0 0 rgba(60,196,124,0)}}
+
+.plan{position:relative;margin:0}
+.plan__svg{width:100%;height:auto;overflow:visible}
+.plan figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:6px;font-family:var(--f-mono);font-size:11px;color:var(--graphite-2);letter-spacing:.04em}
+.reticule{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .25s}
+.reticule.on{opacity:1}
+.reticule i{position:absolute;background:var(--cordeau);opacity:.45}
+.reticule .rx{left:0;right:0;height:1px;top:var(--y)}
+.reticule .ry{top:0;bottom:0;width:1px;left:var(--x)}
+.reticule b{position:absolute;left:var(--x);top:var(--y);transform:translate(10px,10px);font:500 10px/1 var(--f-mono);background:var(--cordeau);color:#fff;padding:5px 6px;white-space:nowrap}
+.plan svg text{font-family:var(--f-mono)}
+.lbl{font-size:13px;font-weight:500;fill:var(--graphite);letter-spacing:.04em}
+.lbl-c{font-size:12px;font-weight:500;fill:var(--cordeau);letter-spacing:.05em;paint-order:stroke;stroke:var(--calque);stroke-width:7px}
+
+/* animations du hero */
+.js .ouv .entre{animation:monte .9s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes monte{from{opacity:0;transform:translateY(22px)}}
+.js .ouv h1 .creux{animation:encre 1.4s var(--ease) 3.2s forwards}
+@keyframes encre{to{color:var(--graphite)}}
+.js .h-trace{stroke-dasharray:1;stroke-dashoffset:1;animation:dessin 1.1s var(--ease) both;animation-delay:var(--d,0s)}
+@keyframes dessin{to{stroke-dashoffset:0}}
+.js .h-guide{animation:guide 1.2s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:left center}
+.js .h-guide.v{transform-origin:center top}
+@keyframes guide{from{transform:scale(0,1);opacity:0}}
+.js .h-guide.v{animation-name:guidev}
+@keyframes guidev{from{transform:scale(1,0);opacity:0}}
+.js .tuile{animation:pose .5s cubic-bezier(.3,1.4,.5,1) both;animation-delay:var(--d);transform-box:fill-box}
+@keyframes pose{from{opacity:0;transform:translateY(-16px)}}
+.js .h-pop{animation:pop .7s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:center bottom}
+@keyframes pop{from{opacity:0;transform:scale(.6,.2)}}
+.js .h-fond{animation:fond .6s ease both;animation-delay:var(--d,0s)}
+@keyframes fond{from{opacity:0}}
+.js .h-x{animation:guide .8s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:left center}
+.js .h-y{animation:guidev .9s var(--ease) both;animation-delay:var(--d,0s);transform-box:fill-box;transform-origin:center top}
+
+/* bandeau défilant */
+.bande{background:var(--graphite);color:var(--zinc-clair);overflow:hidden;border-top:1.5px solid var(--graphite);border-bottom:1.5px solid var(--graphite)}
+.bande__r{display:flex;width:max-content;animation:defile 48s linear infinite}
+.bande:hover .bande__r{animation-play-state:paused}
+.bande ul{display:flex;align-items:center}
+.bande li{display:flex;align-items:center;gap:22px;padding:14px 22px 14px 0;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.bande li::after{content:"";width:12px;height:12px;flex:none;background:linear-gradient(var(--cordeau-vif),var(--cordeau-vif)) center/12px 1.5px no-repeat,linear-gradient(var(--cordeau-vif),var(--cordeau-vif)) center/1.5px 12px no-repeat}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* cordeau */
+.cordeau{position:relative;height:40px;margin:0 auto;max-width:var(--large)}
+.cordeau .env{position:relative;height:100%}
+.cordeau svg{width:100%;height:40px;overflow:visible}
+.cordeau .fil{fill:none;stroke:var(--cordeau);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.cordeau .craie{fill:none;stroke:var(--cordeau);stroke-width:5;vector-effect:non-scaling-stroke;opacity:.0;filter:url(#craie);transition:opacity .4s}
+.cordeau.claque .craie{opacity:.55}
+.no-js .cordeau .craie,html:not(.js) .cordeau .craie{opacity:.5}
+.cordeau .pointe{position:absolute;top:50%;width:11px;height:11px;margin-top:-5.5px;border:2px solid var(--cordeau);background:var(--calque);border-radius:50%}
+.cordeau .pointe.g{left:calc(var(--gx) - 5px)}
+.cordeau .pointe.d{right:calc(var(--gd) - 5px)}
+@media (min-width:720px){.cordeau .pointe.g{left:27px}.cordeau .pointe.d{right:27px}}
+.cordeau .ecr{position:absolute;right:calc(var(--gd) + 14px);top:2px;font:500 10px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--cordeau)}
+@media (min-width:720px){.cordeau .ecr{right:48px}}
+.nuit .cordeau .pointe{background:var(--ardoise)}
+.cordeau--nuit .fil,.cordeau--nuit .craie{stroke:var(--cordeau-vif)}
+.cordeau--nuit .pointe{border-color:var(--cordeau-vif);background:var(--ardoise)}
+.cordeau--nuit .ecr{color:var(--cordeau-vif)}
+
+/* sections */
+.sec{padding:72px 0}
+@media (min-width:960px){.sec{padding:112px 0}}
+.tete{display:grid;gap:16px;margin-bottom:44px}
+@media (min-width:960px){.tete{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:48px;margin-bottom:64px}}
+.tete h2{font-size:clamp(44px,4.6vw + 12px,88px);font-weight:900;line-height:.86;margin-top:14px}
+.chapo{font-size:clamp(17px,.5vw + 15px,19px);color:var(--graphite-2);max-width:32em}
+.nuit .chapo{color:var(--zinc-clair)}
+
+/* planches (prestations) */
+.planches{display:grid;gap:22px}
+@media (min-width:900px){.planches{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}.planche--c{grid-column:1/-1}}
+.planche{--trait:var(--graphite);position:relative;background:var(--papier);border:1.5px solid var(--graphite);padding:0;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.planche:hover{--trait:var(--cordeau);transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--graphite)}
+.planche__h{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite-2)}
+.planche__h b{font-weight:600;color:var(--graphite)}
+.planche__d{padding:18px 18px 0;border-bottom:1px dashed var(--zinc)}
+.planche__d svg{width:100%;height:auto;max-height:240px;margin:0 auto}
+.planche__d text{font-family:var(--f-mono);font-size:10px;font-weight:500;fill:var(--graphite-2);letter-spacing:.06em}
+.enc{stroke:var(--trait);transition:stroke .3s}
+.planche__c{padding:22px 22px 26px}
+.planche h3{font-size:clamp(34px,2.4vw + 18px,46px);font-weight:800}
+.planche p{margin-top:10px;color:var(--graphite-2);max-width:34em}
+.planche::before,.planche::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}
+.planche::before{top:-8px;left:-8px;border-left:1.5px solid var(--cordeau);border-top:1.5px solid var(--cordeau)}
+.planche::after{bottom:-8px;right:-8px;border-right:1.5px solid var(--cordeau);border-bottom:1.5px solid var(--cordeau)}
+.planche--c{background:var(--ardoise);color:var(--zinc-pale);border-color:var(--ardoise);display:grid;gap:8px}
+.planche--c h3{color:#fff}
+.planche--c p{color:var(--zinc-clair)}
+.planche--c .planche__h{border-color:var(--ardoise-3);color:var(--zinc)}
+.planche--c .planche__h b{color:#fff}
+.planche--c:hover{box-shadow:6px 6px 0 var(--cordeau)}
+.planche--c .planche__c{display:grid;gap:20px;align-items:center}
+.planche--c .btn{justify-self:start}
+@media (min-width:900px){.planche--c .planche__c{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto;gap:36px;padding:30px 32px 34px}}
+.planche--c .planche__c>svg{width:100%;max-width:300px;height:auto}
+.planche--c text{font-family:var(--f-mono);font-size:11px;font-weight:500;fill:var(--cordeau-vif);letter-spacing:.06em}
+.pied-pl{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;font-family:var(--f-mono);font-size:12px;color:var(--graphite-2);letter-spacing:.02em}
+.pied-pl a{color:var(--cordeau);font-weight:600;min-height:44px;display:inline-flex;align-items:center}
+
+/* zone */
+.zone__g{display:grid;gap:36px;align-items:start}
+@media (min-width:960px){.zone__g{grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:56px}}
+.zone h2{font-size:clamp(42px,3.4vw + 14px,72px);font-weight:900;line-height:.86;margin-top:14px}
+.zone .chapo{margin-top:18px}
+.communes{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.communes button{min-height:44px;padding:0 14px;background:transparent;border:1px solid var(--ardoise-4);color:var(--zinc-pale);font-family:var(--f-mono);font-size:12px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.communes button:hover,.communes button[aria-pressed="true"]{background:var(--cordeau-vif);border-color:var(--cordeau-vif);color:var(--ardoise)}
+.communes button.siege{border-color:var(--cordeau-vif);color:#fff}
+.zone__n{margin-top:22px;font-family:var(--f-mono);font-size:12px;color:var(--zinc);line-height:1.7}
+.carte{position:relative;border:1px solid var(--ardoise-3);background:rgba(17,21,24,.45)}
+.carte svg{width:100%;height:auto}
+@media (max-width:600px){.carte{--ct:13.5px;margin-left:calc(-1*var(--gx) + 6px);margin-right:calc(-1*var(--gd) + 6px)}}
+.carte text{font-family:var(--f-mono)}
+.carte__h{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid var(--ardoise-3);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--zinc)}
+.c-rayon{stroke:var(--cordeau-vif);stroke-width:1;opacity:.55}
+.c-n circle{fill:var(--ardoise);stroke:var(--zinc-clair);stroke-width:1.5;transition:fill .2s,stroke .2s,r .2s}
+.c-n text{font-size:var(--ct,12px);fill:var(--zinc-clair);transition:fill .2s}
+.c-n.on circle{fill:var(--cordeau-vif);stroke:var(--cordeau-vif)}
+.c-n.on text{fill:#fff}
+.c-n.on .c-halo{opacity:1}
+.c-halo{fill:none!important;stroke:var(--cordeau-vif)!important;opacity:0;transition:opacity .2s}
+.siege-pouls{transform-box:fill-box;transform-origin:center;animation:onde 2.6s ease-out infinite}
+@keyframes onde{from{transform:scale(.4);opacity:.9}to{transform:scale(2.4);opacity:0}}
+
+/* étapes */
+.etapes{display:grid;gap:0;position:relative}
+@media (min-width:900px){.etapes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.etape{position:relative;padding:0 0 40px 34px}
+.etape::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1.5px;background:var(--cordeau);transform-origin:top;transition:transform 1s var(--ease) var(--d,0s)}
+.etape::after{content:"";position:absolute;left:1px;top:-1px;width:16px;height:1.5px;background:var(--cordeau);box-shadow:0 0 0 0 transparent}
+.etape:last-child{padding-bottom:0}
+.etape:last-child::after{box-shadow:none}
+.etapes::after{content:"";position:absolute;left:1px;bottom:-1px;width:16px;height:1.5px;background:var(--cordeau)}
+@media (min-width:900px){
+  .etape{padding:0 32px 0 0}
+  .etape::before{left:0;right:0;top:8px;bottom:auto;width:auto;height:1.5px;transform-origin:left}
+  .etape::after{left:0;top:1px;width:1.5px;height:16px}
+  .etapes::after{left:auto;right:0;top:1px;bottom:auto;width:1.5px;height:16px}
+}
+.js .etapes:not(.vu) .etape::before{transform:scaleY(0)}
+@media (min-width:900px){.js .etapes:not(.vu) .etape::before{transform:scaleX(0)}}
+.cote{display:inline-block;position:relative;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--cordeau);background:var(--calque);padding:0 8px;margin-left:-8px}
+@media (min-width:900px){.cote{margin:0 0 0 24px;transform:translateY(0)}}
+.etape__ic{width:56px;height:56px;margin:18px 0 16px;border:1.5px solid var(--graphite);display:grid;place-items:center;background:var(--papier)}
+.etape__ic svg{width:34px;height:34px}
+.etape h3{font-size:clamp(32px,1.4vw + 20px,42px);font-weight:800}
+.etape p{margin-top:8px;color:var(--graphite-2);max-width:22em}
+
+/* horaires */
+.duo{display:grid;gap:22px;align-items:start}
+@media (min-width:900px){.duo{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.pan{background:var(--papier);border:1.5px solid var(--graphite);position:relative}
+.pan__h{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border-bottom:1.5px solid var(--graphite);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite-2)}
+.pan__c{padding:24px 20px 26px}
+@media (min-width:720px){.pan__c{padding:28px 30px 30px}}
+.pan h3{font-size:clamp(32px,2vw + 20px,44px);font-weight:800}
+.pan .etat{display:block;margin-top:10px;font-family:var(--f-mono);font-size:13px}
+.hor{margin-top:20px;border-top:1px solid var(--graphite)}
+.hor>div{display:grid;grid-template-columns:5.2em minmax(0,1fr);gap:4px 14px;align-items:center;padding:11px 8px;border-bottom:1px solid var(--calque-2);position:relative}
+.hor dt{font-weight:600}
+.hor dd{font-family:var(--f-mono);font-size:clamp(11px,.3vw + 10px,12.5px);color:var(--graphite-2);text-align:right;white-space:nowrap}
+.hor .barre{grid-column:1/-1;position:relative;height:6px;background:repeating-linear-gradient(90deg,var(--calque-2) 0 1px,transparent 1px calc(100%/14));}
+.hor .barre i{position:absolute;top:0;bottom:0;background:var(--graphite-2)}
+.hor--off dd{font-style:italic}
+.hor--jour{background:var(--cordeau-voile)}
+.hor--jour::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cordeau)}
+.hor--jour .barre i{background:var(--cordeau)}
+.hor__ech{display:flex;justify-content:space-between;margin-top:8px;padding:0 8px;font-family:var(--f-mono);font-size:10px;color:var(--graphite-2)}
+.acces>svg{width:100%;height:auto;border-bottom:1.5px solid var(--graphite);background:var(--calque)}
+.acces text{font-family:var(--f-mono)}
+.adr{font-style:normal;font-size:clamp(20px,1vw + 15px,24px);line-height:1.35;margin-top:14px}
+.pan__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.pan__n{margin-top:18px;color:var(--graphite-2);font-size:15px}
+
+/* contact */
+.ctc{display:grid;gap:44px}
+@media (min-width:960px){.ctc{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:64px}}
+.ctc h2{font-size:clamp(44px,4vw + 12px,84px);font-weight:900;line-height:.86;margin-top:14px}
+.ctc__tel{display:inline-flex;align-items:center;gap:14px;margin-top:28px;font-family:var(--f-titre);font-weight:800;font-size:clamp(36px,3vw + 18px,60px);line-height:1;color:var(--cordeau-vif);text-decoration:none;min-height:44px;white-space:nowrap}
+.ctc__tel svg{width:.6em;height:.6em}
+.ctc__l{margin-top:22px;display:flex;gap:14px;color:var(--zinc-clair)}
+.ctc__l svg{flex:none;width:22px;height:22px;stroke:var(--cordeau-vif);margin-top:3px}
+.ctc__l b{display:block;color:#fff;font-weight:600}
+.ctc__dir{margin-top:30px;padding-top:20px;border-top:1px dashed var(--ardoise-4);font-family:var(--f-mono);font-size:12px;color:var(--zinc);line-height:1.8;max-width:30em}
+.bon{position:relative;background:var(--papier);color:var(--graphite);border:1.5px solid var(--graphite);box-shadow:6px 6px 0 var(--cordeau)}
+@media (min-width:720px){.bon{box-shadow:10px 10px 0 var(--cordeau)}}
+.bon__h{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;background:var(--graphite);color:var(--zinc-pale);font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.bon__c{padding:24px 20px 28px}
+@media (min-width:720px){.bon__c{padding:30px 32px 34px}}
+.bon h3{font-size:clamp(34px,2vw + 22px,48px);font-weight:800;color:var(--graphite)}
+.bon__s{color:var(--graphite-2);font-size:15px;margin-top:8px}
+.ch{display:grid;gap:0 22px}
+@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:4px;margin-top:20px}
+.f label{font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:10px 2px;border:0;border-bottom:1.5px solid var(--graphite);border-radius:0;background:transparent;color:var(--graphite);width:100%;min-height:46px;transition:border-color .2s,background .2s}
+.f select{-webkit-appearance:none;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--graphite) 50%),linear-gradient(135deg,var(--graphite) 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 9px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:28px}
+.f textarea{resize:vertical;min-height:110px;background-image:repeating-linear-gradient(transparent 0 31px,var(--calque-2) 31px 32px);line-height:32px;padding-top:0}
+.f input::placeholder,.f textarea::placeholder{color:#6B747B}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;border-bottom-color:var(--cordeau);background-color:var(--cordeau-voile)}
+.f input:focus-visible,.f select:focus-visible,.f textarea:focus-visible{box-shadow:0 2px 0 0 var(--cordeau)}
+.bon .btn{width:100%;margin-top:28px}
+.nuit .bon .btn{--bg:var(--cordeau);--fg:#fff}
+.nuit .bon .btn:hover{box-shadow:3px 3px 0 var(--graphite)}
+.fret{margin-top:16px;font-weight:600;color:var(--cordeau-sombre);min-height:1.6em}
+
+/* bon de travail (privé) */
+.perso{display:none;background:#FFF8D6;color:#2A2410;border-top:4px dashed #8A6D00}
+.perso.ouvert{display:block}
+.perso h2{color:#2A2410;font-size:40px;margin-bottom:16px}
+.perso ul{margin-top:20px;display:grid;gap:12px}
+.perso li b{display:block}
+
+/* pied */
+.pied{background:var(--nuit);color:var(--zinc);font-size:14px;padding:40px 0 calc(110px + env(safe-area-inset-bottom))}
+@media (min-width:1100px){.pied{padding-bottom:40px}}
+.cartouche{display:grid;grid-template-columns:1fr;border:1px solid var(--ardoise-3)}
+.cartouche>div{padding:14px 16px;border-bottom:1px solid var(--ardoise-3)}
+.cartouche>div:last-child{border-bottom:0}
+.cartouche small{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ardoise-4);color:#7D888F;margin-bottom:4px}
+.cartouche b{color:#fff;font-weight:600}
+.cartouche .nm{font-family:var(--f-titre);font-weight:800;font-size:28px;line-height:1;text-transform:uppercase;color:#fff}
+@media (min-width:720px){.cartouche{grid-template-columns:1.4fr 1fr 1fr 1fr}.cartouche>div{border-bottom:0;border-right:1px solid var(--ardoise-3)}.cartouche>div:last-child{border-right:0}}
+.pied__b{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:16px;font-family:var(--f-mono);font-size:11px;color:#7D888F}
+
+/* barre mobile */
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:8px;
+  padding:10px var(--gd) calc(10px + env(safe-area-inset-bottom)) var(--gx);background:rgba(17,21,24,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1.5px solid var(--cordeau-vif);
+  transition:transform .4s var(--ease)}
+.bmob.cache{transform:translateY(110%)}
+.bmob a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;font-weight:600;font-size:15.5px;text-decoration:none;white-space:nowrap}
+.bmob svg{width:18px;height:18px;flex:none}
+.bmob__t{border:1.5px solid var(--zinc);color:#fff}
+.bmob__d{background:var(--cordeau-vif);color:var(--ardoise)}
+@media (min-width:1100px){.bmob{display:none}}
+
+/* révélations */
+.js .apparait{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.js .apparait.vu{opacity:1;transform:none}
+.js .trace{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.4s var(--ease);transition-delay:var(--d,0s)}
+.js .vu .trace,.js .trace.vu{stroke-dashoffset:0}
+.js .fondu{opacity:0;transition:opacity .6s ease;transition-delay:var(--d,0s)}
+.js .vu .fondu{opacity:1}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .apparait{opacity:1;transform:none}
+  .js .trace,.js .h-trace{stroke-dasharray:none;stroke-dashoffset:0}
+  .js .fondu{opacity:1}
+  .js .ouv h1 .creux{color:var(--graphite)}
+  .js .etapes .etape::before{transform:none!important}
+  .cordeau .craie{opacity:.5}
+}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="craie" x="-2%" y="-200%" width="104%" height="500%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4 .9" numOctaves="2" seed="4" result="b"/>
+      <feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.5" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="c"/>
+      <feDisplacementMap in="c" in2="b" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="Berthier Toitures, accueil">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <rect x=".75" y=".75" width="38.5" height="38.5" fill="#171C20" stroke="#171C20" stroke-width="1.5"/>
+        <path d="M7 23 20 11l13 12" stroke="#E8EBEB" stroke-width="2.6" stroke-linejoin="miter"/>
+        <path d="M11 20v10h18V20" stroke="#E8EBEB" stroke-width="1.6"/>
+        <path d="M5 33.5h30" stroke="#7499FF" stroke-width="1.6"/>
+        <circle cx="5" cy="33.5" r="1.6" fill="#7499FF"/><circle cx="35" cy="33.5" r="1.6" fill="#7499FF"/>
+      </svg>
+      <span><span class="mq__n">Berthier Toitures</span><span class="mq__v">Couvreur-zingueur · Saint-Max</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#prestations">Interventions</a>
+      <a href="#zone">Zone d'intervention</a>
+      <a href="#demande">Préparer votre demande</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="hdr__tel" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>06 XX XX XX XX</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="menu nuit millimetre" id="menu" aria-label="Menu mobile">
+  <a href="#prestations">Interventions <small>Couverture, zinguerie</small></a>
+  <a href="#zone">Zone <small>Saint-Max et alentours</small></a>
+  <a href="#demande">Votre demande <small>En trois points</small></a>
+  <a href="#horaires">Horaires <small>Et accès</small></a>
+  <a href="#contact">Contact <small>06 XX XX XX XX</small></a>
+  <a class="btn" href="#contact">Décrire mon besoin</a>
+</nav>
+
+<main id="principal">
+
+<section class="ouv millimetre" id="ouv" aria-labelledby="titre">
+  <div class="env ouv__in">
+    <div>
+      <p class="surt entre" style="--d:.1s">Couvreur-zingueur — Saint-Max (54)</p>
+      <h1 id="titre"><span class="l entre" style="--d:.2s">Berthier</span><span class="l creux entre" style="--d:.32s">Toitures</span></h1>
+      <p class="ouv__t entre" style="--d:.5s"><strong>Couverture, zinguerie, étanchéité.</strong> Vous décrivez votre besoin, vous parlez directement à la personne qui interviendra.</p>
+      <div class="ouv__a entre" style="--d:.65s">
+        <a class="btn" href="#contact">Décrire mon besoin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        <a class="btn btn--trait" href="#contact">Appeler le 06 XX XX XX XX</a>
+      </div>
+      <p class="meta entre" style="--d:.8s">
+        <span><span class="etat" data-h='[[],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[]]'>Du lundi au vendredi</span></span>
+        <span>Saint-Max et communes voisines</span>
+      </p>
+    </div>
+
+    <figure class="plan" id="plan">
+      <svg class="plan__svg" viewBox="0 0 680 560" role="img" aria-label="Dessin d'une toiture en ardoise : pan, faîtage, cheminée, fenêtre de toit et gouttière en zinc">
+  <defs>
+    <clipPath id="pan"><path d="M80 300 L200 130 L440 130 L560 300 Z"/></clipPath>
+    <pattern id="brique" width="12" height="8" patternUnits="userSpaceOnUse"><rect width="12" height="8" fill="#D3D9DB"/><path d="M0 .5H12M0 4.5H12M3 .5V4.5M9 4.5V8" stroke="#8C979E" stroke-width=".8"/></pattern>
+    <pattern id="hach" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V7" stroke="#48525A" stroke-width="1"/></pattern>
+    <linearGradient id="vitre" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C9D6E0"/><stop offset="1" stop-color="#6F8BA6"/></linearGradient>
+  </defs>
+  <g stroke="#2347D9" stroke-width="1" stroke-dasharray="5 5" opacity=".6">
+    <line class="h-guide" style="--d:.15s" x1="10" y1="130" x2="670" y2="130"/>
+    <line class="h-guide" style="--d:.25s" x1="10" y1="300" x2="670" y2="300"/>
+    <line class="h-guide v" style="--d:.35s" x1="320" y1="40" x2="320" y2="520"/>
+    <line class="h-guide" style="--d:.45s" x1="10" y1="470" x2="670" y2="470"/>
+  </g>
+  <rect class="h-fond" style="--d:.5s" x="30" y="470" width="620" height="12" fill="url(#hach)"/>
+  <path class="h-trace" pathLength="1" style="--d:.5s" d="M30 470H650" stroke="#171C20" stroke-width="2"/>
+  <rect class="h-fond" style="--d:.8s" x="110" y="311" width="420" height="159" fill="#F5F7F7"/>
+  <rect class="h-trace" pathLength="1" style="--d:.7s" x="110" y="311" width="420" height="159" fill="none" stroke="#171C20" stroke-width="1.6"/>
+  <g fill="none" stroke="#171C20" stroke-width="1.3">
+    <rect class="h-trace" pathLength="1" style="--d:1s" x="150" y="350" width="52" height="70"/>
+    <rect class="h-trace" pathLength="1" style="--d:1.05s" x="438" y="350" width="52" height="70"/>
+    <rect class="h-trace" pathLength="1" style="--d:1.1s" x="296" y="372" width="48" height="98"/>
+    <path class="h-trace" pathLength="1" style="--d:1.3s" d="M176 350V420M150 385H202M464 350V420M438 385H490M300 376h40v90h-40z"/>
+  </g>
+  <g clip-path="url(#pan)">
+    <rect class="h-fond" style="--d:.9s" x="60" y="120" width="520" height="190" fill="#C6CDD1"/>
+    <g class="h-fond" style="--d:1s" stroke="#9AA4AB" stroke-width="2"><line x1="40" y1="296" x2="600" y2="296"/><line x1="40" y1="279" x2="600" y2="279"/><line x1="40" y1="262" x2="600" y2="262"/><line x1="40" y1="245" x2="600" y2="245"/><line x1="40" y1="228" x2="600" y2="228"/><line x1="40" y1="211" x2="600" y2="211"/><line x1="40" y1="194" x2="600" y2="194"/><line x1="40" y1="177" x2="600" y2="177"/><line x1="40" y1="160" x2="600" y2="160"/><line x1="40" y1="143" x2="600" y2="143"/><line x1="40" y1="126" x2="600" y2="126"/></g>
+    <rect class="tuile" x="176" y="111" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2450ms"/><rect class="tuile" x="200" y="111" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2459ms"/><rect class="tuile" x="224" y="111" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2468ms"/><rect class="tuile" x="248" y="111" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2477ms"/><rect class="tuile" x="272" y="111" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2486ms"/><rect class="tuile" x="296" y="111" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2495ms"/><rect class="tuile" x="320" y="111" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2504ms"/><rect class="tuile" x="344" y="111" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2513ms"/><rect class="tuile" x="368" y="111" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2522ms"/><rect class="tuile" x="392" y="111" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2531ms"/><rect class="tuile" x="416" y="111" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2540ms"/><rect class="tuile" x="440" y="111" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2549ms"/><rect class="tuile" x="164" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2320ms"/><rect class="tuile" x="188" y="128" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2329ms"/><rect class="tuile" x="212" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2338ms"/><rect class="tuile" x="236" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2347ms"/><rect class="tuile" x="260" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2356ms"/><rect class="tuile" x="284" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2365ms"/><rect class="tuile" x="308" y="128" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2374ms"/><rect class="tuile" x="332" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2383ms"/><rect class="tuile" x="356" y="128" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2392ms"/><rect class="tuile" x="380" y="128" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2401ms"/><rect class="tuile" x="404" y="128" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2410ms"/><rect class="tuile" x="428" y="128" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2419ms"/><rect class="tuile" x="452" y="128" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2428ms"/><rect class="tuile" x="152" y="145" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2190ms"/><rect class="tuile" x="176" y="145" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2199ms"/><rect class="tuile" x="200" y="145" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2208ms"/><rect class="tuile" x="224" y="145" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2217ms"/><rect class="tuile" x="248" y="145" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2226ms"/><rect class="tuile" x="272" y="145" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2235ms"/><rect class="tuile" x="296" y="145" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2244ms"/><rect class="tuile" x="320" y="145" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2253ms"/><rect class="tuile" x="344" y="145" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2262ms"/><rect class="tuile" x="368" y="145" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2271ms"/><rect class="tuile" x="392" y="145" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2280ms"/><rect class="tuile" x="416" y="145" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2289ms"/><rect class="tuile" x="440" y="145" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2298ms"/><rect class="tuile" x="464" y="145" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2307ms"/><rect class="tuile" x="140" y="162" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2060ms"/><rect class="tuile" x="164" y="162" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2069ms"/><rect class="tuile" x="188" y="162" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2078ms"/><rect class="tuile" x="212" y="162" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2087ms"/><rect class="tuile" x="236" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2096ms"/><rect class="tuile" x="260" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2105ms"/><rect class="tuile" x="284" y="162" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2114ms"/><rect class="tuile" x="308" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2123ms"/><rect class="tuile" x="332" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2132ms"/><rect class="tuile" x="356" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2141ms"/><rect class="tuile" x="380" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2150ms"/><rect class="tuile" x="404" y="162" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:2159ms"/><rect class="tuile" x="428" y="162" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2168ms"/><rect class="tuile" x="452" y="162" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2177ms"/><rect class="tuile" x="476" y="162" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2186ms"/><rect class="tuile" x="128" y="179" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1930ms"/><rect class="tuile" x="152" y="179" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1939ms"/><rect class="tuile" x="176" y="179" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1948ms"/><rect class="tuile" x="200" y="179" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1957ms"/><rect class="tuile" x="224" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1966ms"/><rect class="tuile" x="248" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1975ms"/><rect class="tuile" x="272" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1984ms"/><rect class="tuile" x="296" y="179" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1993ms"/><rect class="tuile" x="320" y="179" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2002ms"/><rect class="tuile" x="344" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2011ms"/><rect class="tuile" x="368" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2020ms"/><rect class="tuile" x="392" y="179" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2029ms"/><rect class="tuile" x="416" y="179" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:2038ms"/><rect class="tuile" x="440" y="179" width="23" height="19" rx="1.5" fill="#323C44" style="--d:2047ms"/><rect class="tuile" x="464" y="179" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:2056ms"/><rect class="tuile" x="488" y="179" width="23" height="19" rx="1.5" fill="#414B53" style="--d:2065ms"/><rect class="tuile" x="116" y="196" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1800ms"/><rect class="tuile" x="140" y="196" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1809ms"/><rect class="tuile" x="164" y="196" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1818ms"/><rect class="tuile" x="188" y="196" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1827ms"/><rect class="tuile" x="212" y="196" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1836ms"/><rect class="tuile" x="236" y="196" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1845ms"/><rect class="tuile" x="260" y="196" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1854ms"/><rect class="tuile" x="284" y="196" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1863ms"/><rect class="tuile" x="308" y="196" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1872ms"/><rect class="tuile" x="332" y="196" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1881ms"/><rect class="tuile" x="356" y="196" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1890ms"/><rect class="tuile" x="380" y="196" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1899ms"/><rect class="tuile" x="404" y="196" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1908ms"/><rect class="tuile" x="428" y="196" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1917ms"/><rect class="tuile" x="452" y="196" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1926ms"/><rect class="tuile" x="476" y="196" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1935ms"/><rect class="tuile" x="500" y="196" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1944ms"/><rect class="tuile" x="104" y="213" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1670ms"/><rect class="tuile" x="128" y="213" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1679ms"/><rect class="tuile" x="152" y="213" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1688ms"/><rect class="tuile" x="176" y="213" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1697ms"/><rect class="tuile" x="200" y="213" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1706ms"/><rect class="tuile" x="224" y="213" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1715ms"/><rect class="tuile" x="248" y="213" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1724ms"/><rect class="tuile" x="272" y="213" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1733ms"/><rect class="tuile" x="296" y="213" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1742ms"/><rect class="tuile" x="320" y="213" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1751ms"/><rect class="tuile" x="344" y="213" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1760ms"/><rect class="tuile" x="368" y="213" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1769ms"/><rect class="tuile" x="392" y="213" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1778ms"/><rect class="tuile" x="416" y="213" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1787ms"/><rect class="tuile" x="440" y="213" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1796ms"/><rect class="tuile" x="464" y="213" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1805ms"/><rect class="tuile" x="488" y="213" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1814ms"/><rect class="tuile" x="512" y="213" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1823ms"/><rect class="tuile" x="92" y="230" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1540ms"/><rect class="tuile" x="116" y="230" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1549ms"/><rect class="tuile" x="140" y="230" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1558ms"/><rect class="tuile" x="164" y="230" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1567ms"/><rect class="tuile" x="188" y="230" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1576ms"/><rect class="tuile" x="212" y="230" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1585ms"/><rect class="tuile" x="236" y="230" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1594ms"/><rect class="tuile" x="260" y="230" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1603ms"/><rect class="tuile" x="284" y="230" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1612ms"/><rect class="tuile" x="308" y="230" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1621ms"/><rect class="tuile" x="332" y="230" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1630ms"/><rect class="tuile" x="356" y="230" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1639ms"/><rect class="tuile" x="380" y="230" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1648ms"/><rect class="tuile" x="404" y="230" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1657ms"/><rect class="tuile" x="428" y="230" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1666ms"/><rect class="tuile" x="452" y="230" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1675ms"/><rect class="tuile" x="476" y="230" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1684ms"/><rect class="tuile" x="500" y="230" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1693ms"/><rect class="tuile" x="524" y="230" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1702ms"/><rect class="tuile" x="80" y="247" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1410ms"/><rect class="tuile" x="104" y="247" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1419ms"/><rect class="tuile" x="128" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1428ms"/><rect class="tuile" x="152" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1437ms"/><rect class="tuile" x="176" y="247" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1446ms"/><rect class="tuile" x="200" y="247" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1455ms"/><rect class="tuile" x="224" y="247" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1464ms"/><rect class="tuile" x="248" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1473ms"/><rect class="tuile" x="272" y="247" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1482ms"/><rect class="tuile" x="296" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1491ms"/><rect class="tuile" x="320" y="247" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1500ms"/><rect class="tuile" x="344" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1509ms"/><rect class="tuile" x="368" y="247" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1518ms"/><rect class="tuile" x="392" y="247" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1527ms"/><rect class="tuile" x="416" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1536ms"/><rect class="tuile" x="440" y="247" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1545ms"/><rect class="tuile" x="464" y="247" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1554ms"/><rect class="tuile" x="488" y="247" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1563ms"/><rect class="tuile" x="512" y="247" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1572ms"/><rect class="tuile" x="536" y="247" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1581ms"/><rect class="tuile" x="68" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1280ms"/><rect class="tuile" x="92" y="264" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1289ms"/><rect class="tuile" x="116" y="264" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1298ms"/><rect class="tuile" x="140" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1307ms"/><rect class="tuile" x="164" y="264" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1316ms"/><rect class="tuile" x="188" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1325ms"/><rect class="tuile" x="212" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1334ms"/><rect class="tuile" x="236" y="264" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1343ms"/><rect class="tuile" x="260" y="264" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1352ms"/><rect class="tuile" x="284" y="264" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1361ms"/><rect class="tuile" x="308" y="264" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1370ms"/><rect class="tuile" x="332" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1379ms"/><rect class="tuile" x="356" y="264" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1388ms"/><rect class="tuile" x="380" y="264" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1397ms"/><rect class="tuile" x="404" y="264" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1406ms"/><rect class="tuile" x="428" y="264" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1415ms"/><rect class="tuile" x="452" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1424ms"/><rect class="tuile" x="476" y="264" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1433ms"/><rect class="tuile" x="500" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1442ms"/><rect class="tuile" x="524" y="264" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1451ms"/><rect class="tuile" x="548" y="264" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1460ms"/><rect class="tuile" x="56" y="281" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1150ms"/><rect class="tuile" x="80" y="281" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1159ms"/><rect class="tuile" x="104" y="281" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1168ms"/><rect class="tuile" x="128" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1177ms"/><rect class="tuile" x="152" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1186ms"/><rect class="tuile" x="176" y="281" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1195ms"/><rect class="tuile" x="200" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1204ms"/><rect class="tuile" x="224" y="281" width="23" height="19" rx="1.5" fill="#3A444C" style="--d:1213ms"/><rect class="tuile" x="248" y="281" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1222ms"/><rect class="tuile" x="272" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1231ms"/><rect class="tuile" x="296" y="281" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1240ms"/><rect class="tuile" x="320" y="281" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1249ms"/><rect class="tuile" x="344" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1258ms"/><rect class="tuile" x="368" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1267ms"/><rect class="tuile" x="392" y="281" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1276ms"/><rect class="tuile" x="416" y="281" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1285ms"/><rect class="tuile" x="440" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1294ms"/><rect class="tuile" x="464" y="281" width="23" height="19" rx="1.5" fill="#323C44" style="--d:1303ms"/><rect class="tuile" x="488" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1312ms"/><rect class="tuile" x="512" y="281" width="23" height="19" rx="1.5" fill="#414B53" style="--d:1321ms"/><rect class="tuile" x="536" y="281" width="23" height="19" rx="1.5" fill="#2F383F" style="--d:1330ms"/><rect class="tuile" x="560" y="281" width="23" height="19" rx="1.5" fill="#2B343B" style="--d:1339ms"/>
+  </g>
+  <path class="h-trace" pathLength="1" style="--d:.8s" d="M80 300 L200 130 L440 130 L560 300 Z" fill="none" stroke="#171C20" stroke-width="1.6"/>
+  <g stroke-linecap="round">
+    <path class="h-trace" pathLength="1" style="--d:2.75s" d="M82 298 L200 130" stroke="#56626B" stroke-width="6"/>
+    <path class="h-trace" pathLength="1" style="--d:2.75s" d="M558 298 L440 130" stroke="#56626B" stroke-width="6"/>
+  </g>
+  <g class="h-pop" style="--d:2.9s"><path d="M200 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M220 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M240 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M260 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M280 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M300 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M320 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M340 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M360 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M380 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M400 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/><path d="M420 132 a10 9 0 0 1 20 0z" fill="#56626B" stroke="#171C20" stroke-width="1"/></g>
+  <g class="h-pop" style="--d:2.95s">
+    <rect x="228" y="190" width="54" height="62" fill="#9AA4AB" stroke="#171C20" stroke-width="1.2"/>
+    <rect x="234" y="196" width="42" height="50" fill="#36414A"/>
+    <rect x="238" y="200" width="34" height="42" fill="url(#vitre)"/>
+    <path d="M244 236 L266 206" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>
+  </g>
+  <g class="h-pop" style="--d:3.05s">
+    <rect x="382" y="96" width="40" height="106" fill="url(#brique)" stroke="#171C20" stroke-width="1.3"/>
+    <rect x="376" y="86" width="52" height="11" fill="#8C979E" stroke="#171C20" stroke-width="1.3"/>
+    <path d="M372 194H432V210H372Z" fill="#9AA4AB" stroke="#171C20" stroke-width="1.2"/>
+  </g>
+  <g class="h-x" style="--d:3.15s"><rect x="70" y="301" width="500" height="11" rx="5.5" fill="#9AA4AB" stroke="#171C20" stroke-width="1.2"/><path d="M76 306.5H564" stroke="#DFE4E6" stroke-width="1.2"/></g>
+  <g class="h-y" style="--d:3.3s"><path d="M542 311h12v6l-4 6v128l6 8v8h-14z" fill="#9AA4AB" stroke="#171C20" stroke-width="1.2"/></g>
+
+  <g stroke="#2347D9" stroke-width="1.2" fill="none">
+    <path class="h-trace" pathLength="1" style="--d:3.4s" d="M80 316V512M560 316V470M560 478V512" stroke-dasharray="none" stroke-opacity=".5"/>
+    <path class="h-trace" pathLength="1" style="--d:3.5s" d="M80 500H560"/>
+    <path class="h-trace" pathLength="1" style="--d:3.8s" d="M74 506l12-12M554 506l12-12"/>
+    <path class="h-trace" pathLength="1" style="--d:3.45s" d="M76 300H30M196 130H30" stroke-opacity=".5"/>
+    <path class="h-trace" pathLength="1" style="--d:3.55s" d="M42 130V300"/>
+    <path class="h-trace" pathLength="1" style="--d:3.85s" d="M36 136l12-12M36 306l12-12"/>
+  </g>
+  <g class="h-fond" style="--d:3.9s">
+    <text class="lbl-c" x="320" y="494" text-anchor="middle">LONGUEUR D'ÉGOUT</text>
+    <text class="lbl-c" transform="translate(34 215) rotate(-90)" text-anchor="middle">HAUTEUR</text>
+  </g>
+  <g class="h-fond" style="--d:4.05s" stroke="#171C20" stroke-width="1" fill="none">
+    <path d="M270 128 L252 70H230"/><path d="M432 202 L470 172H486"/><path d="M510 228 L560 214H584"/>
+    <path d="M232 214 L176 172H150"/><path d="M500 312 L560 340H572"/><path d="M554 420 H572"/>
+  </g>
+  <g class="h-fond" style="--d:4.05s" fill="#2347D9">
+    <circle cx="270" cy="128" r="3"/><circle cx="432" cy="202" r="3"/><circle cx="510" cy="228" r="3"/><circle cx="232" cy="214" r="3"/><circle cx="500" cy="312" r="3"/><circle cx="554" cy="420" r="3"/>
+  </g>
+  <g class="h-fond" style="--d:4.15s">
+    <text class="lbl" x="226" y="74" text-anchor="end">FAÎTAGE</text>
+    <text class="lbl" x="490" y="176">SOLIN</text>
+    <text class="lbl" x="588" y="218">ARÊTIER</text>
+    <text class="lbl" x="146" y="176" text-anchor="end">ABERGEMENT</text>
+    <text class="lbl" x="576" y="344">GOUTTIÈRE</text>
+    <text class="lbl" x="576" y="424">DESCENTE</text>
+  </g>
+  <g class="h-fond" style="--d:4.3s">
+    <rect x="430" y="516" width="242" height="40" fill="#F5F7F7" stroke="#171C20" stroke-width="1.2"/>
+    <path d="M572 516V556M430 536H672" stroke="#171C20" stroke-width=".8"/>
+    <text x="438" y="530" font-size="10.5" font-weight="600" fill="#171C20">BERTHIER TOITURES</text>
+    <text x="438" y="550" font-size="9.5" fill="#48525A">ÉLÉVATION · PAN</text>
+    <text x="580" y="530" font-size="9.5" fill="#48525A">ÉCH. LIBRE</text>
+    <text x="580" y="550" font-size="9.5" fill="#2347D9">INDICE A</text>
+  </g>
+</svg>
+      <div class="reticule" id="reticule" aria-hidden="true"><i class="rx"></i><i class="ry"></i><b></b></div>
+      <figcaption><span>Élévation du pan principal</span><span>Dessin indicatif</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bande" aria-hidden="true">
+  <div class="bande__r">
+    <ul><li>Faîtage</li><li>Noue</li><li>Solin</li><li>Égout</li><li>Rive</li><li>Chéneau</li><li>Closoir</li><li>Liteaunage</li><li>Abergement</li><li>Arêtier</li><li>Gouttière</li><li>Descente</li><li>Crochet</li><li>Voligeage</li><li>Écran sous-toiture</li></ul>
+    <ul><li>Faîtage</li><li>Noue</li><li>Solin</li><li>Égout</li><li>Rive</li><li>Chéneau</li><li>Closoir</li><li>Liteaunage</li><li>Abergement</li><li>Arêtier</li><li>Gouttière</li><li>Descente</li><li>Crochet</li><li>Voligeage</li><li>Écran sous-toiture</li></ul>
+  </div>
+</div>
+
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">Interventions</p>
+        <h2 id="t-presta">Ce que fait un couvreur</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">Les grandes familles du métier. Pour savoir si votre demande en fait partie, le plus simple est de poser la question.</p>
+    </div>
+
+    <ul class="planches">
+      <li class="planche apparait">
+        <div class="planche__h"><b>Détail A</b><span>Coupe de couverture</span></div>
+        <div class="planche__d">
+          <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+            <g transform="translate(18 162) rotate(-27)">
+              <rect class="enc trace" pathLength="1" x="0" y="0" width="300" height="18" stroke-width="1.5" style="--d:.1s"/>
+              <path class="enc trace" pathLength="1" d="M0 9H300" stroke-width=".6" stroke-dasharray="2 4" style="--d:.2s"/>
+              <path class="trace" pathLength="1" d="M0 -1H300" stroke="#2347D9" stroke-width="1" style="--d:.3s"/>
+              <g class="fondu" style="--d:.5s" fill="#E8EBEB">
+                <rect class="enc" x="14" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="58" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="102" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="146" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="190" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="234" y="-9" width="8" height="8" stroke-width="1.2"/><rect class="enc" x="278" y="-9" width="8" height="8" stroke-width="1.2"/>
+              </g>
+              <g stroke="#3A444C" stroke-width="3.2" stroke-linecap="round">
+                <path class="trace" pathLength="1" d="M14 -11 L96 -15" style="--d:.7s"/><path class="trace" pathLength="1" d="M58 -11 L140 -15" style="--d:.8s"/><path class="trace" pathLength="1" d="M102 -11 L184 -15" style="--d:.9s"/><path class="trace" pathLength="1" d="M146 -11 L228 -15" style="--d:1s"/><path class="trace" pathLength="1" d="M190 -11 L272 -15" style="--d:1.1s"/><path class="trace" pathLength="1" d="M234 -11 L304 -14.4" style="--d:1.2s"/>
+              </g>
+            </g>
+            <g class="fondu" style="--d:1.3s">
+              <path class="enc" d="M158 100 L188 132 H200" stroke-width="1"/><circle cx="158" cy="100" r="2.4" fill="#2347D9"/><text x="204" y="136">CHEVRON</text>
+              <path class="enc" d="M196 66 L236 92 H250" stroke-width="1"/><circle cx="196" cy="66" r="2.4" fill="#2347D9"/><text x="254" y="96">LITEAU</text>
+              <path class="enc" d="M100 100 L62 58 H54" stroke-width="1"/><circle cx="100" cy="100" r="2.4" fill="#2347D9"/><text x="50" y="62" text-anchor="end">ARDOISE</text>
+              <path d="M132 87 L112 30 H96" stroke="#2347D9" stroke-width="1"/><text x="92" y="34" text-anchor="end" style="fill:#2347D9">ÉCRAN</text>
+            </g>
+          </svg>
+        </div>
+        <div class="planche__c">
+          <h3>Couverture</h3>
+          <p>Tuiles, ardoises, zinc : une toiture posée, refaite ou réparée.</p>
+        </div>
+      </li>
+
+      <li class="planche apparait" style="--d:.12s">
+        <div class="planche__h"><b>Détail B</b><span>Coupe d'égout</span></div>
+        <div class="planche__d">
+          <svg viewBox="0 0 320 180" fill="none" aria-hidden="true">
+            <rect class="enc trace" pathLength="1" x="40" y="14" width="16" height="132" stroke-width="1.5" style="--d:.1s"/>
+            <path class="trace" pathLength="1" d="M4 22 L150 72" stroke="#3A444C" stroke-width="4.5" stroke-linecap="round" style="--d:.25s"/>
+            <path class="enc trace" pathLength="1" d="M56 64 H84 V82 A54 54 0 0 0 138 136 A54 54 0 0 0 192 82" stroke-width="1.4" style="--d:.45s"/>
+            <path class="trace" pathLength="1" d="M88 82 A50 50 0 0 0 188 82" stroke="#9AA4AB" stroke-width="5" style="--d:.6s"/>
+            <circle class="trace" pathLength="1" cx="194" cy="78" r="6" stroke="#9AA4AB" stroke-width="3" style="--d:1s"/>
+            <path class="fondu" style="--d:1.1s" d="M97 108 A46 46 0 0 0 179 108 Z" fill="rgba(35,71,217,.18)"/>
+            <path class="fondu" style="--d:1.2s" d="M150 76 q4 8 0 12 q-4 -4 0 -12z M156 92 q3 6 0 9 q-3 -3 0 -9z" fill="#2347D9"/>
+            <g class="fondu" style="--d:1.3s">
+              <path class="enc" d="M48 146 V160 H60" stroke-width="1"/><text x="64" y="164">PLANCHE DE RIVE</text>
+              <path class="enc" d="M168 128 L222 146 H232" stroke-width="1"/><circle cx="168" cy="128" r="2.4" fill="#2347D9"/><text x="236" y="150">CROCHET</text>
+              <path class="enc" d="M200 74 L232 52 H242" stroke-width="1"/><circle cx="200" cy="74" r="2.4" fill="#2347D9"/><text x="246" y="56">OURLET</text>
+              <path class="enc" d="M110 30 L130 66" stroke-width="1"/><circle cx="130" cy="66" r="2.4" fill="#2347D9"/><text x="72" y="26">ÉGOUT</text>
+            </g>
+          </svg>
+        </div>
+        <div class="planche__c">
+          <h3>Zinguerie et étanchéité</h3>
+          <p>Gouttières, faîtages, solins : ce qui fait que l'eau s'en va au bon endroit.</p>
+        </div>
+      </li>
+
+      <li class="planche planche--c apparait">
+        <div class="planche__h"><b>Détail C</b><span>À voir ensemble</span></div>
+        <div class="planche__c">
+          <div>
+            <h3>Le reste, de vive voix</h3>
+            <p>Ce qui n'entre dans aucune case se règle plus vite par un message qu'avec une liste qui promet tout.</p>
+          </div>
+          <svg viewBox="0 0 280 110" fill="none" aria-hidden="true">
+            <path class="trace" pathLength="1" d="M14 84 H214" stroke="#7499FF" stroke-width="1.4" style="--d:.2s"/>
+            <path class="trace" pathLength="1" d="M8 90 L20 78 M208 90 L220 78 M14 70 V98 M214 70 V98" stroke="#7499FF" stroke-width="1.4" style="--d:.5s"/>
+            <text class="fondu" style="--d:.9s" x="114" y="74" text-anchor="middle">À VOIR ENSEMBLE</text>
+            <g class="fondu" style="--d:.6s">
+              <path d="M214 84 L224 64 L268 20 L278 30 L234 74 Z" fill="#36414A" stroke="#C6CDD1" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M214 84 L224 64 L234 74 Z" fill="#E8EBEB"/><path d="M214 84 l3.5-7 3.5 3.5z" fill="#171C20"/>
+              <path d="M260 28 l10 10" stroke="#C6CDD1" stroke-width="1.2"/>
+            </g>
+          </svg>
+          <a class="btn" href="#contact">Décrire mon besoin <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </li>
+    </ul>
+
+    <div class="pied-pl apparait">
+      <p>Aucun prix n'est affiché tant qu'il n'a pas été établi par l'entreprise.</p>
+      <a href="#contact">Décrire mon besoin →</a>
+    </div>
+  </div>
+</section>
+
+<div class="cordeau cordeau--nuit nuit" style="background:var(--ardoise);max-width:none" aria-hidden="true"><div class="env">
+  <svg viewBox="0 0 1000 40" preserveAspectRatio="none"><path class="craie" d="M0 20 L1000 20"/><path class="fil" d="M0 20 Q500 20 1000 20"/></svg>
+  <span class="ecr">Trait de cordeau</span><span class="pointe g"></span><span class="pointe d"></span></div></div>
+
+<section class="sec nuit millimetre zone" id="zone" aria-labelledby="t-zone">
+  <div class="env zone__g">
+    <div>
+      <div class="apparait">
+        <p class="surt">Zone d'intervention</p>
+        <h2 id="t-zone">Saint-Max et les communes autour</h2>
+        <p class="chapo">La carte est un schéma, pas un plan à l'échelle. Une commune n'y figure pas&nbsp;? Posez la question, simplement.</p>
+      </div>
+      <ul class="communes apparait" style="--d:.1s" aria-label="Communes de la zone d'intervention">
+        <li><button type="button" class="siege" data-c="saint-max" aria-pressed="true">Saint-Max</button></li><li><button type="button" data-c="malzeville" aria-pressed="false">Malzéville</button></li><li><button type="button" data-c="dommartemont" aria-pressed="false">Dommartemont</button></li><li><button type="button" data-c="lay-saint-christophe" aria-pressed="false">Lay-Saint-Christophe</button></li><li><button type="button" data-c="agincourt" aria-pressed="false">Agincourt</button></li><li><button type="button" data-c="maxeville" aria-pressed="false">Maxéville</button></li><li><button type="button" data-c="laxou" aria-pressed="false">Laxou</button></li><li><button type="button" data-c="nancy" aria-pressed="false">Nancy</button></li><li><button type="button" data-c="essey-les-nancy" aria-pressed="false">Essey-lès-Nancy</button></li><li><button type="button" data-c="seichamps" aria-pressed="false">Seichamps</button></li><li><button type="button" data-c="pulnoy" aria-pressed="false">Pulnoy</button></li><li><button type="button" data-c="tomblaine" aria-pressed="false">Tomblaine</button></li><li><button type="button" data-c="saulxures-les-nancy" aria-pressed="false">Saulxures-lès-Nancy</button></li><li><button type="button" data-c="jarville-la-malgrange" aria-pressed="false">Jarville-la-Malgrange</button></li><li><button type="button" data-c="vanduvre-les-nancy" aria-pressed="false">Vandœuvre-lès-Nancy</button></li><li><button type="button" data-c="art-sur-meurthe" aria-pressed="false">Art-sur-Meurthe</button></li>
+      </ul>
+      <p class="zone__n apparait" style="--d:.2s">Touchez une commune pour la situer sur la carte.</p>
+    </div>
+    <div class="carte apparait" style="--d:.15s" id="carte">
+      <div class="carte__h"><span>Plan de situation</span><span>Sans échelle</span></div>
+      <svg viewBox="0 0 640 520" role="img" aria-label="Carte schématique : Saint-Max au centre, entourée des communes voisines de l'agglomération de Nancy, de part et d'autre de la Meurthe">
+  <defs>
+    <pattern id="bois" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.2" fill="#56626B"/><circle cx="8" cy="8" r="1" fill="#56626B"/></pattern>
+  </defs>
+  <g fill="none" stroke="#36414A" stroke-width="1">
+    <circle cx="330" cy="250" r="110" stroke-dasharray="3 6"/>
+    <circle cx="330" cy="250" r="210" stroke-dasharray="3 6"/>
+    <path d="M330 20V500M20 250H620" stroke-dasharray="2 8"/>
+  </g>
+  <path class="fondu" style="--d:.1s" d="M330 60 C380 40 450 60 470 90 C440 120 380 130 340 120 C320 100 315 75 330 60Z" fill="url(#bois)" opacity=".7"/>
+  <text class="fondu" style="--d:.2s" x="372" y="56" font-size="10" fill="#7D888F" letter-spacing="1.5">PLATEAU</text>
+  <path class="trace" pathLength="1" style="--d:.1s" d="M500 520 C440 470 380 450 340 390 S282 300 266 250 S250 150 236 0" fill="none" stroke="#2347D9" stroke-width="9" stroke-linecap="round" opacity=".55"/>
+  <path class="trace" pathLength="1" style="--d:.1s" d="M500 520 C440 470 380 450 340 390 S282 300 266 250 S250 150 236 0" fill="none" stroke="#7499FF" stroke-width="2" opacity=".8"/>
+  <text x="0" y="0" font-size="11" fill="#7499FF" letter-spacing="3" transform="translate(252 140) rotate(-84)" class="fondu" style="--d:.3s">LA MEURTHE</text>
+  <path class="c-rayon trace" pathLength="1" style="--d:0.30s" d="M330 250 L285 192"/><path class="c-rayon trace" pathLength="1" style="--d:0.36s" d="M330 250 L380 182"/><path class="c-rayon trace" pathLength="1" style="--d:0.42s" d="M330 250 L312 92"/><path class="c-rayon trace" pathLength="1" style="--d:0.48s" d="M330 250 L476 116"/><path class="c-rayon trace" pathLength="1" style="--d:0.54s" d="M330 250 L192 168"/><path class="c-rayon trace" pathLength="1" style="--d:0.60s" d="M330 250 L104 272"/><path class="c-rayon trace" pathLength="1" style="--d:0.66s" d="M330 250 L214 292"/><path class="c-rayon trace" pathLength="1" style="--d:0.72s" d="M330 250 L420 262"/><path class="c-rayon trace" pathLength="1" style="--d:0.78s" d="M330 250 L512 206"/><path class="c-rayon trace" pathLength="1" style="--d:0.84s" d="M330 250 L528 300"/><path class="c-rayon trace" pathLength="1" style="--d:0.90s" d="M330 250 L366 342"/><path class="c-rayon trace" pathLength="1" style="--d:0.96s" d="M330 250 L476 388"/><path class="c-rayon trace" pathLength="1" style="--d:1.02s" d="M330 250 L280 424"/><path class="c-rayon trace" pathLength="1" style="--d:1.08s" d="M330 250 L170 392"/><path class="c-rayon trace" pathLength="1" style="--d:1.14s" d="M330 250 L456 456"/>
+  <g class="c-n fondu" style="--d:0.50s" data-c="malzeville"><circle class="c-halo" cx="285" cy="192" r="11" stroke-width="1"/><circle cx="285" cy="192" r="5"/><text x="275" y="196" text-anchor="end">Malzéville</text></g><g class="c-n fondu" style="--d:0.56s" data-c="dommartemont"><circle class="c-halo" cx="380" cy="182" r="11" stroke-width="1"/><circle cx="380" cy="182" r="5"/><text x="390" y="178" text-anchor="start">Dommartemont</text></g><g class="c-n fondu" style="--d:0.62s" data-c="lay-saint-christophe"><circle class="c-halo" cx="312" cy="92" r="11" stroke-width="1"/><circle cx="312" cy="92" r="5"/><text x="322" y="86" text-anchor="start">Lay-Saint-Christophe</text></g><g class="c-n fondu" style="--d:0.68s" data-c="agincourt"><circle class="c-halo" cx="476" cy="116" r="11" stroke-width="1"/><circle cx="476" cy="116" r="5"/><text x="486" y="120" text-anchor="start">Agincourt</text></g><g class="c-n fondu" style="--d:0.74s" data-c="maxeville"><circle class="c-halo" cx="192" cy="168" r="11" stroke-width="1"/><circle cx="192" cy="168" r="5"/><text x="182" y="162" text-anchor="end">Maxéville</text></g><g class="c-n fondu" style="--d:0.80s" data-c="laxou"><circle class="c-halo" cx="104" cy="272" r="11" stroke-width="1"/><circle cx="104" cy="272" r="5"/><text x="102" y="294" text-anchor="start">Laxou</text></g><g class="c-n fondu" style="--d:0.86s" data-c="nancy"><circle class="c-halo" cx="214" cy="292" r="11" stroke-width="1"/><circle cx="214" cy="292" r="5"/><text x="204" y="296" text-anchor="end">Nancy</text></g><g class="c-n fondu" style="--d:0.92s" data-c="essey-les-nancy"><circle class="c-halo" cx="420" cy="262" r="11" stroke-width="1"/><circle cx="420" cy="262" r="5"/><text x="430" y="266" text-anchor="start">Essey-lès-Nancy</text></g><g class="c-n fondu" style="--d:0.98s" data-c="seichamps"><circle class="c-halo" cx="512" cy="206" r="11" stroke-width="1"/><circle cx="512" cy="206" r="5"/><text x="522" y="210" text-anchor="start">Seichamps</text></g><g class="c-n fondu" style="--d:1.04s" data-c="pulnoy"><circle class="c-halo" cx="528" cy="300" r="11" stroke-width="1"/><circle cx="528" cy="300" r="5"/><text x="538" y="304" text-anchor="start">Pulnoy</text></g><g class="c-n fondu" style="--d:1.10s" data-c="tomblaine"><circle class="c-halo" cx="366" cy="342" r="11" stroke-width="1"/><circle cx="366" cy="342" r="5"/><text x="376" y="346" text-anchor="start">Tomblaine</text></g><g class="c-n fondu" style="--d:1.16s" data-c="saulxures-les-nancy"><circle class="c-halo" cx="476" cy="388" r="11" stroke-width="1"/><circle cx="476" cy="388" r="5"/><text x="426" y="410" text-anchor="start">Saulxures-lès-Nancy</text></g><g class="c-n fondu" style="--d:1.22s" data-c="jarville-la-malgrange"><circle class="c-halo" cx="280" cy="424" r="11" stroke-width="1"/><circle cx="280" cy="424" r="5"/><text x="270" y="444" text-anchor="end">Jarville-la-Malgrange</text></g><g class="c-n fondu" style="--d:1.28s" data-c="vanduvre-les-nancy"><circle class="c-halo" cx="170" cy="392" r="11" stroke-width="1"/><circle cx="170" cy="392" r="5"/><text x="146" y="416" text-anchor="start">Vandœuvre-lès-Nancy</text></g><g class="c-n fondu" style="--d:1.34s" data-c="art-sur-meurthe"><circle class="c-halo" cx="456" cy="456" r="11" stroke-width="1"/><circle cx="456" cy="456" r="5"/><text x="466" y="460" text-anchor="start">Art-sur-Meurthe</text></g>
+  <g class="c-n on" data-c="saint-max">
+    <circle class="siege-pouls" cx="330" cy="250" r="16" fill="none" stroke="#7499FF" stroke-width="1.5"/>
+    <rect x="315" y="235" width="30" height="30" fill="#7499FF"/>
+    <path d="M321 252 L330 243 L339 252 M324 250 V258 H336 V250" fill="none" stroke="#1A1F24" stroke-width="2"/>
+    <text x="352" y="255" font-size="15" font-weight="600" fill="#fff">SAINT-MAX</text>
+  </g>
+  <g transform="translate(600 50)" fill="none" stroke="#C6CDD1" stroke-width="1.2">
+    <circle r="18" stroke="#36414A"/><path d="M0 -14 L5 4 L0 0 L-5 4Z" fill="#7499FF" stroke="none"/>
+    <text y="-22" text-anchor="middle" font-size="11" fill="#C6CDD1" stroke="none">N</text>
+  </g>
+</svg>
+    </div>
+  </div>
+</section>
+
+<div class="cordeau" style="max-width:none" aria-hidden="true"><div class="env">
+  <svg viewBox="0 0 1000 40" preserveAspectRatio="none"><path class="craie" d="M0 20 L1000 20"/><path class="fil" d="M0 20 Q500 20 1000 20"/></svg>
+  <span class="ecr">Trait de cordeau</span><span class="pointe g"></span><span class="pointe d"></span></div></div>
+
+<section class="sec millimetre" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">Avant d'appeler</p>
+        <h2 id="t-prep">Préparer votre demande</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">Trois choses à avoir en tête avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <ol class="etapes">
+      <li class="etape apparait" style="--d:0s">
+        <span class="cote">2 ou 3 phrases</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M5 9h16M5 15h12M5 21h8"/><path class="trace" pathLength="1" style="--d:.3s" d="M28 8l4 4-13 13-5 1 1-5z" stroke="#2347D9"/></svg></div>
+        <h3>Décrire</h3>
+        <p>Ce qui ne va pas, ou ce que vous voulez faire, en deux ou trois phrases.</p>
+      </li>
+      <li class="etape apparait" style="--d:.15s">
+        <span class="cote">Ensemble + détail</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M4 12h6l3-4h10l3 4h6v16H4z"/><circle class="trace" pathLength="1" style="--d:.3s" cx="18" cy="19" r="5.5" stroke="#2347D9"/></svg></div>
+        <h3>Photographier</h3>
+        <p>Une vue d'ensemble et une vue de près : elles évitent souvent un déplacement pour rien.</p>
+      </li>
+      <li class="etape apparait" style="--d:.3s">
+        <span class="cote">Commune + créneaux</span>
+        <div class="etape__ic"><svg viewBox="0 0 36 36" fill="none" stroke="#171C20" stroke-width="1.6" aria-hidden="true"><path class="trace" pathLength="1" d="M3 30l9-4 12 4 9-4V6l-9 4-12-4-9 4z"/><path class="trace" pathLength="1" style="--d:.3s" d="M18 23s5-4.5 5-8.5a5 5 0 0 0-10 0c0 4 5 8.5 5 8.5z" stroke="#2347D9" fill="#F5F7F7"/></svg></div>
+        <h3>Situer</h3>
+        <p>La commune du chantier et vos disponibilités pour une visite.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="horaires" aria-labelledby="t-hor" style="background:var(--calque-2)">
+  <div class="env">
+    <div class="tete">
+      <div class="apparait">
+        <p class="surt">Horaires et accès</p>
+        <h2 id="t-hor">Joindre l'entreprise</h2>
+      </div>
+      <p class="chapo apparait" style="--d:.12s">L'état affiché se calcule à l'heure où vous lisez la page. Sur un toit, le téléphone ne répond pas toujours : un message est toujours lu.</p>
+    </div>
+    <div class="duo">
+      <div class="pan apparait">
+        <div class="pan__h"><span>Planning de la semaine</span><span id="jour">Aujourd'hui</span></div>
+        <div class="pan__c">
+          <h3>Horaires</h3>
+          <p class="etat" id="etat2" data-h='[[],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[480,720,810,1080],[]]'>Du lundi au vendredi, de 8 h à 12 h et de 13 h 30 à 18 h.</p>
+          <dl class="hor" id="hor">
+            <div><dt>Lundi</dt><dd>8 h–12 h · 13 h 30–18 h</dd><span class="barre" aria-hidden="true"><i style="left:14.29%;width:28.57%"></i><i style="left:53.57%;width:32.14%"></i></span></div>
+            <div><dt>Mardi</dt><dd>8 h–12 h · 13 h 30–18 h</dd><span class="barre" aria-hidden="true"><i style="left:14.29%;width:28.57%"></i><i style="left:53.57%;width:32.14%"></i></span></div>
+            <div><dt>Mercredi</dt><dd>8 h–12 h · 13 h 30–18 h</dd><span class="barre" aria-hidden="true"><i style="left:14.29%;width:28.57%"></i><i style="left:53.57%;width:32.14%"></i></span></div>
+            <div><dt>Jeudi</dt><dd>8 h–12 h · 13 h 30–18 h</dd><span class="barre" aria-hidden="true"><i style="left:14.29%;width:28.57%"></i><i style="left:53.57%;width:32.14%"></i></span></div>
+            <div><dt>Vendredi</dt><dd>8 h–12 h · 13 h 30–18 h</dd><span class="barre" aria-hidden="true"><i style="left:14.29%;width:28.57%"></i><i style="left:53.57%;width:32.14%"></i></span></div>
+            <div class="hor--off"><dt>Samedi</dt><dd>Fermé</dd><span class="barre" aria-hidden="true"></span></div>
+            <div class="hor--off"><dt>Dimanche</dt><dd>Fermé</dd><span class="barre" aria-hidden="true"></span></div>
+          </dl>
+          <div class="hor__ech" aria-hidden="true"><span>6 h</span><span>13 h</span><span>20 h</span></div>
+        </div>
+      </div>
+      <div class="pan acces apparait" style="--d:.12s">
+        <div class="pan__h"><span>Plan d'accès</span><span>Saint-Max</span></div>
+        <svg class="revele" viewBox="0 0 400 230" role="img" aria-label="Plan d'accès schématique : l'entreprise se trouve rue de l'Exemple, à Saint-Max">
+  <defs><pattern id="ilot" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="#C6CDD1" stroke-width="1"/></pattern></defs>
+  <g fill="url(#ilot)" stroke="#9AA4AB" stroke-width="1">
+    <path d="M20 20H150V80H20Z"/><path d="M178 20H300L280 80H178Z"/><path d="M326 20H390V120L306 92Z"/>
+    <path d="M20 108H150V200H20Z"/><path d="M178 108H268L240 200H178Z"/><path d="M296 120L390 150V210H268Z"/>
+  </g>
+  <g fill="none" stroke="#171C20" stroke-linecap="round">
+    <path class="trace" pathLength="1" d="M0 94H400" stroke-width="1.2" style="--d:.1s"/>
+    <path class="trace" pathLength="1" d="M164 0V230" stroke-width="1.2" style="--d:.2s"/>
+    <path class="trace" pathLength="1" d="M314 0L254 230" stroke-width="1.2" style="--d:.3s"/>
+  </g>
+  <path class="trace" pathLength="1" d="M0 94H400" stroke="#2347D9" stroke-width="5" style="--d:.5s"/>
+  <text x="24" y="90" font-size="10" fill="#2347D9" font-weight="600" letter-spacing="1">RUE DE L'EXEMPLE</text>
+  <g class="fondu" style="--d:1s">
+    <circle cx="232" cy="94" r="22" fill="rgba(35,71,217,.14)"/>
+    <path d="M232 98 l-12 -12 v-14 h24 v14z" fill="#2347D9"/>
+    <path d="M224 80 l8 -7 8 7 M226 79 v6 h12 v-6" fill="none" stroke="#fff" stroke-width="1.6"/>
+    <text x="250" y="76" font-size="11" font-weight="600" fill="#171C20">XX</text>
+  </g>
+  <g transform="translate(370 194)"><circle r="14" fill="#F5F7F7" stroke="#171C20"/><path d="M0 -9 L4 3 L0 0 L-4 3Z" fill="#171C20"/><text y="-18" text-anchor="middle" font-size="9" fill="#171C20">N</text></g>
+</svg>
+        <div class="pan__c">
+          <h3>Venir à l'entreprise</h3>
+          <address class="adr">XX rue de l'Exemple<br>54130 Saint-Max</address>
+          <div class="pan__a">
+            <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Saint-Max%2054130">Ouvrir l'itinéraire <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+            <a class="btn btn--trait" href="#contact">Prévenir avant de passer</a>
+          </div>
+          <p class="pan__n">Les horaires peuvent changer les jours fériés : un message avant de venir ne coûte rien.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec nuit millimetre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="apparait">
+      <p class="surt">Contact</p>
+      <h2 id="t-ctc">Écrire à Berthier Toitures</h2>
+      <a class="ctc__tel" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>06 XX XX XX XX</a>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><b>XX rue de l'Exemple</b>54130 Saint-Max</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span><b>Du lundi au vendredi</b>de 8 h à 12 h et de 13 h 30 à 18 h</span>
+      </p>
+      <p class="ctc__dir">Vous décrivez votre besoin, vous parlez directement à la personne qui interviendra. Pas de standard, pas d'intermédiaire.</p>
+    </div>
+
+    <form class="bon apparait" style="--d:.12s" id="dem" novalidate>
+      <div class="bon__h"><span>Bon de demande</span><span>Berthier Toitures</span></div>
+      <div class="bon__c">
+        <h3>Décrire mon besoin</h3>
+        <p class="bon__s">Votre message arrive directement chez Berthier Toitures, qui vous répond.</p>
+        <div class="ch">
+          <div class="f"><label for="nom">Votre nom</label>
+            <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+          <div class="f"><label for="tel">Téléphone ou courriel</label>
+            <input id="tel" name="tel" type="text" autocomplete="tel" required placeholder="Pour vous répondre"></div>
+          <div class="f"><label for="commune">Commune du chantier</label>
+            <input id="commune" name="commune" type="text" autocomplete="address-level2" placeholder="Saint-Max, Essey…"></div>
+          <div class="f"><label for="objet">Votre demande</label>
+            <select id="objet" name="objet">
+              <option value="">Choisir…</option>
+              <option>Une demande de devis</option>
+              <option>Un dépannage</option>
+              <option>Une question</option>
+              <option>Autre</option>
+            </select></div>
+        </div>
+        <div class="f"><label for="det">Quelques mots</label>
+          <textarea id="det" name="det" rows="4" placeholder="Ce qui ne va pas, ou ce que vous voulez faire."></textarea></div>
+        <button class="btn" type="submit">Envoyer la demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+        <p class="fret" id="ret" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- BON DE TRAVAIL : pour François, jamais pour le prospect (visible avec ?notes). -->
+<section class="perso" id="a-personnaliser" aria-labelledby="t-perso">
+  <div class="env sec">
+    <h2 id="t-perso">Ce qui reste à faire confirmer</h2>
+    <p>Tout ce qui figure plus haut provient de sources publiques. Rien n'a été inventé : ni tarif, ni garantie, ni avis, ni spécialité. <strong>Cette section n'est visible que par vous.</strong></p>
+    <ul>
+      <li><b>Prestations réelles</b>Les planches décrivent le métier en général. À remplacer par ce que fait vraiment l'entreprise.</li>
+      <li><b>Zone d'intervention</b>Les communes affichées sont celles autour du siège. À faire valider.</li>
+      <li><b>Horaires</b>L'indicateur « ouvert maintenant » se calcule sur les horaires affichés.</li>
+      <li><b>Photos</b>La page n'en contient aucune. Trois ou quatre photos de chantier prises au téléphone valent mieux que n'importe quelle illustration.</li>
+      <li><b>Avis, labels, tarifs</b>À afficher seulement s'ils existent et sont vérifiables.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="env">
+    <div class="cartouche">
+      <div><small>Entreprise</small><span class="nm">Berthier Toitures</span></div>
+      <div><small>Activité</small><b>Couvreur-zingueur</b></div>
+      <div><small>Adresse</small><b>XX rue de l'Exemple</b><br>54130 Saint-Max</div>
+      <div><small>Téléphone</small><b>06 XX XX XX XX</b></div>
+    </div>
+    <div class="pied__b"><span>© 2026 Berthier Toitures, 54130 Saint-Max</span><span>Horaires relevés sur OpenStreetMap</span></div>
+  </div>
+</footer>
+
+<div class="bmob" id="bmob">
+  <a class="bmob__t" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  <a class="bmob__d" href="#contact">Décrire mon besoin</a>
+</div>
+
+<script>
+(function(){
+  var reduit = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var fin = window.matchMedia && matchMedia("(pointer: fine)").matches;
+
+  /* --- ouvert / fermé --- */
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt; el.insertAdjacentHTML("afterbegin",'<span class="pastille" aria-hidden="true"></span>'); el.className="etat "+cls;}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"Ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour"), auj=new Date().getDay();
+  if(t){ var n=J[auj]; t.textContent="Aujourd'hui : "+n; }
+  var l=document.querySelectorAll("#hor > div");
+  if(l.length>=7) l[(auj+6)%7].classList.add("hor--jour");
+
+  /* --- formulaire --- */
+  var f=document.getElementById("dem");
+  if(f) f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var r=document.getElementById("ret");
+    if(!f.nom.value.trim()||!f.tel.value.trim()){ r.textContent="Indiquez au moins votre nom et un moyen de vous répondre."; (f.nom.value.trim()?f.tel:f.nom).focus(); return; }
+    r.textContent="Merci. Sur le site en ligne, votre demande arrive directement chez Berthier Toitures.";
+    f.reset();
+  });
+
+  /* --- bon de travail --- */
+  var b=document.getElementById("a-personnaliser");
+  if(b&&(/[?&]notes(=|&|$)/.test(location.search)||location.hash==="#notes")) b.classList.add("ouvert");
+
+  /* --- menu mobile --- */
+  var bg=document.getElementById("burger"), mn=document.getElementById("menu");
+  function menu(o){ bg.setAttribute("aria-expanded",o?"true":"false"); bg.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu"); mn.classList.toggle("ouvert",o); }
+  if(bg&&mn){
+    bg.addEventListener("click",function(){ menu(bg.getAttribute("aria-expanded")!=="true"); });
+    mn.querySelectorAll("a").forEach(function(a){ a.addEventListener("click",function(){ menu(false); }); });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape") menu(false); });
+  }
+
+  /* --- carte : communes --- */
+  var noeuds={}; document.querySelectorAll("#carte .c-n").forEach(function(g){ noeuds[g.getAttribute("data-c")]=g; });
+  var puces=document.querySelectorAll(".communes button");
+  function montrer(c){
+    puces.forEach(function(p){ p.setAttribute("aria-pressed", p.getAttribute("data-c")===c ? "true":"false"); });
+    Object.keys(noeuds).forEach(function(k){ noeuds[k].classList.toggle("on",k===c); });
+  }
+  puces.forEach(function(p){
+    var c=p.getAttribute("data-c");
+    p.addEventListener("click",function(){ montrer(p.getAttribute("aria-pressed")==="true"?null:c); });
+    p.addEventListener("mouseenter",function(){ if(fin) montrer(c); });
+  });
+  Object.keys(noeuds).forEach(function(k){ noeuds[k].addEventListener("mouseenter",function(){ montrer(k); }); });
+
+  /* --- en-tête, barre mobile --- */
+  var hdr=document.getElementById("hdr"), bm=document.getElementById("bmob");
+  function surDefil(){ hdr.classList.toggle("defile", scrollY>8); }
+  addEventListener("scroll",surDefil,{passive:true}); surDefil();
+
+  /* --- cordeau claqué --- */
+  function claquer(c){
+    var fil=c.querySelector(".fil"); if(!fil) return;
+    if(reduit){ c.classList.add("claque"); return; }
+    var t0=null, tir=260;
+    function pas(ts){
+      if(t0===null) t0=ts; var t=ts-t0, y;
+      if(t<tir){ var p=t/tir; y=20-16*(1-Math.pow(1-p,3)); }
+      else { var s=(t-tir)/1000; y=20-16*Math.exp(-s*5.2)*Math.cos(s*2*Math.PI*6.5); if(!c.classList.contains("claque")&&y>20) c.classList.add("claque"); }
+      fil.setAttribute("d","M0 20 Q500 "+y.toFixed(2)+" 1000 20");
+      if(t<tir+1300) requestAnimationFrame(pas); else fil.setAttribute("d","M0 20 Q500 20 1000 20");
+    }
+    requestAnimationFrame(pas);
+  }
+
+  /* --- révélations --- */
+  var aRev=document.querySelectorAll(".apparait, .revele, .etapes"), cords=document.querySelectorAll(".cordeau");
+  if(!("IntersectionObserver" in window)||reduit){
+    aRev.forEach(function(e){e.classList.add("vu");}); cords.forEach(function(c){c.classList.add("claque");});
+  } else {
+    var io=new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add("vu"); io.unobserve(x.target);} }); },{rootMargin:"0px 0px -10% 0px"});
+    aRev.forEach(function(e){io.observe(e);});
+    var ic=new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ claquer(x.target); ic.unobserve(x.target);} }); },{rootMargin:"0px 0px -18% 0px"});
+    cords.forEach(function(c){ic.observe(c);});
+  }
+  if("IntersectionObserver" in window && bm){
+    var ib=new IntersectionObserver(function(ent){ ent.forEach(function(x){ bm.classList.toggle("cache", x.isIntersecting); }); },{threshold:.25});
+    var ct=document.getElementById("dem"); if(ct) ib.observe(ct);
+  }
+
+  /* --- réticule et parallaxe du hero --- */
+  var plan=document.getElementById("plan"), ret=document.getElementById("reticule"), ouv=document.getElementById("ouv");
+  if(fin && !reduit && plan && ret){
+    var lab=ret.querySelector("b");
+    plan.addEventListener("pointermove",function(e){
+      var r=plan.getBoundingClientRect(), x=e.clientX-r.left, y=e.clientY-r.top;
+      ret.style.setProperty("--x",x+"px"); ret.style.setProperty("--y",y+"px");
+      var vx=Math.round(x/r.width*680), vy=Math.round(y/r.width*680);
+      lab.textContent="X "+("000"+vx).slice(-4)+"  Y "+("000"+vy).slice(-4);
+      ret.classList.add("on");
+    });
+    plan.addEventListener("pointerleave",function(){ ret.classList.remove("on"); });
+  }
+  if(!reduit && ouv){
+    var svgp=plan&&plan.querySelector("svg"), tic=false;
+    addEventListener("scroll",function(){
+      if(tic) return; tic=true;
+      requestAnimationFrame(function(){
+        var y=Math.min(scrollY,900);
+        ouv.style.setProperty("--gp","0 "+(y*.35).toFixed(1)+"px");
+        if(svgp && innerWidth>=960) svgp.style.transform="translateY("+(y*.06).toFixed(1)+"px)";
+        tic=false;
+      });
+    },{passive:true});
+  }
+
+  window.__pret=true;
+})();
+</script>
+</body>
+</html>

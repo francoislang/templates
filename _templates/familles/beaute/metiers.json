@@ -1,0 +1,634 @@
+{
+ "_defaut": {
+  "titre_mot": "Beauté",
+  "marque": "",
+  "kick": "",
+  "folio": "Beauté — soins, conseils, rendez-vous",
+  "lieu": {
+   "le": "le salon",
+   "a": "au salon",
+   "de": "du salon"
+  },
+  "ruban": [
+   "Soins",
+   "Conseils",
+   "Rendez-vous",
+   "Détente",
+   "Écoute",
+   "Précision",
+   "Douceur"
+  ],
+  "presta_chapo": "On part de vous, de vos envies et de votre rythme, pas d'un modèle tout fait.",
+  "gestes": [
+   [],
+   []
+  ],
+  "icones": [
+   "etoile",
+   "feuille"
+  ],
+  "etape_ill": "etoile",
+  "esprit_titre": [
+   "Un rendez-vous,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au salon doit",
+   "vous ressembler",
+   " : calme, précis, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "L'accueil",
+    "mot": "Accueillir",
+    "texte": "Quelques minutes pour arriver, poser vos affaires et laisser la journée derrière la porte.",
+    "ill": "tasse"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Écouter",
+    "texte": "Ce que vous souhaitez, ce que vous préférez éviter, une photo d'inspiration : tout sert.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "Le diagnostic",
+    "mot": "Regarder",
+    "texte": "Avant le premier geste, on regarde ce qui est là, pour choisir ce qui vous conviendra.",
+    "ill": "oeil"
+   },
+   {
+    "etiq": "Le soin",
+    "mot": "Prendre soin",
+    "texte": "Des gestes posés, le temps qu'il faut, et des produits choisis pour vous.",
+    "ill": "etoile"
+   },
+   {
+    "etiq": "Le détail",
+    "mot": "Ajuster",
+    "texte": "Les finitions comptent autant que le reste : on prend le temps de les faire.",
+    "ill": "miroir"
+   },
+   {
+    "etiq": "La suite",
+    "mot": "Conseiller",
+    "texte": "Deux ou trois conseils simples pour prolonger le résultat chez vous.",
+    "ill": "feuille"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui s'occupera de vous. Pas de plateforme entre vous.",
+  "placeholder": "La prestation souhaitée, une envie, une sensibilité…",
+  "pictos": {
+   "ciseaux": "<circle cx=\"26\" cy=\"28\" r=\"12\"/><circle cx=\"26\" cy=\"72\" r=\"12\"/><path d=\"M35 36 86 82M35 64 86 18\"/><path d=\"M58 50c4-2 6-6 5-10\" stroke-width=\"1.2\"/>",
+   "pinceau": "<path d=\"M20 84 62 42\"/><path d=\"M58 30c8-8 18-10 22-6s2 14-6 22l-8 4-12-12z\"/><path d=\"M14 90c4 0 8-2 8-6\"/><path d=\"M66 36c2 6 4 10 8 12M60 40c3 6 6 10 10 12\" stroke-width=\"1.2\"/>",
+   "bulle": "<path d=\"M14 30c0-8 6-14 14-14h44c8 0 14 6 14 14v22c0 8-6 14-14 14H44L26 82V66c-7-1-12-7-12-14z\"/><path d=\"M32 40c6 6 14 6 20 0s14-6 18 0\" stroke-width=\"1.2\"/>",
+   "horloge": "<circle cx=\"50\" cy=\"50\" r=\"36\"/><path d=\"M50 28v22l14 11\"/>",
+   "volute": "<path d=\"M14 71c14-36 29-54 39-54s7 18-7 32-11 29 7 29 29-18 32-29\"/>",
+   "oeil": "<path d=\"M10 50c12-18 26-26 40-26s28 8 40 26c-12 18-26 26-40 26S22 68 10 50z\"/><circle cx=\"50\" cy=\"50\" r=\"13\"/><circle cx=\"50\" cy=\"50\" r=\"3.5\"/>",
+   "vague": "<path d=\"M10 38c10-8 20-8 30 0s20 8 30 0 20-8 30 0M10 54c10-8 20-8 30 0s20 8 30 0 20-8 30 0\"/><path d=\"M10 70c10-8 20-8 30 0s20 8 30 0 20-8 30 0\" stroke-width=\"1.2\"/>",
+   "goutte": "<path d=\"M50 12c12 18 22 30 22 44a22 22 0 0 1-44 0c0-14 10-26 22-44z\"/><path d=\"M39 60a11 11 0 0 0 9 11\" stroke-width=\"1.2\"/>",
+   "peigne": "<rect x=\"14\" y=\"32\" width=\"72\" height=\"12\" rx=\"3\"/><path d=\"M21 44v28M29 44v28M37 44v28M45 44v28M53 44v20M61 44v20M69 44v20M77 44v20\"/>",
+   "miroir": "<circle cx=\"50\" cy=\"38\" r=\"25\"/><path d=\"M50 63v25M41 88h18\"/><path d=\"M37 30c4-7 11-10 18-8\" stroke-width=\"1.2\"/>",
+   "tondeuse": "<path d=\"M35 22h30l5 58c0 6-4 10-10 10H40c-6 0-10-4-10-10z\"/><path d=\"M33 22v-8h34v8\"/><path d=\"M39 14V7M45 14V7M51 14V7M57 14V7M61 14V7\" stroke-width=\"1.2\"/><path d=\"M45 58h10\"/>",
+   "coupechou": "<path d=\"M16 86c-4-4-2-8 2-11l34-27 6 6-34 29c-3 3-6 5-8 3z\"/><circle cx=\"56\" cy=\"50\" r=\"2.5\"/><path d=\"M59 47 84 17c2-2 6-2 7 1l1 3-27 32\"/><path d=\"M68 52 89 26\" stroke-width=\"1.2\"/>",
+   "flacon": "<path d=\"M33 46h34c5 0 8 4 8 8v26c0 5-3 8-8 8H33c-5 0-8-3-8-8V54c0-4 3-8 8-8z\"/><path d=\"M42 46V37h16v9M44 37V12h12v25\"/><path d=\"M33 62h34\" stroke-width=\"1.2\"/>",
+   "ongles": "<path d=\"M26 81.0c-9 0 -9 -14 -9 -25c0-12 5-21 9-21s9 9 9 21c0 12 0 25 -9 25z\"/><path d=\"M50 76.0c-10 0 -10 -16 -10 -29c0-13 6-23 10-23s10 10 10 23c0 13 0 29 -10 29z\"/><path d=\"M74 81.0c-9 0 -9 -14 -9 -25c0-12 5-21 9-21s9 9 9 21c0 12 0 25 -9 25z\"/>",
+   "nuancier": "<path d=\"M50 66.0c-7 0 -7 -12 -7 -22c0-10 4-18 7-18s7 8 7 18c0 10 0 22 -7 22z\" transform=\"rotate(-48 50 46)\"/><path d=\"M50 66.0c-7 0 -7 -12 -7 -22c0-10 4-18 7-18s7 8 7 18c0 10 0 22 -7 22z\" transform=\"rotate(-24 50 46)\"/><path d=\"M50 66.0c-7 0 -7 -12 -7 -22c0-10 4-18 7-18s7 8 7 18c0 10 0 22 -7 22z\"/><path d=\"M50 66.0c-7 0 -7 -12 -7 -22c0-10 4-18 7-18s7 8 7 18c0 10 0 22 -7 22z\" transform=\"rotate(24 50 46)\"/><path d=\"M50 66.0c-7 0 -7 -12 -7 -22c0-10 4-18 7-18s7 8 7 18c0 10 0 22 -7 22z\" transform=\"rotate(48 50 46)\"/><circle cx=\"50\" cy=\"86\" r=\"5\"/>",
+   "lime": "<path d=\"M20 82 74 18c3-3 9-1 8 4L28 88c-3 3-9 0-8-6z\"/><path d=\"M36 68l7 5M46 56l7 5M56 44l7 5M66 32l7 5\" stroke-width=\"1.2\"/>",
+   "etoile": "<path d=\"M48 12c3 20 10 30 30 38-20 6-27 16-30 38-3-22-10-32-30-38 20-8 27-18 30-38z\"/><path d=\"M80 14v14M73 21h14\" stroke-width=\"1.2\"/>",
+   "pot": "<path d=\"M22 46h56v32c0 6-4 10-10 10H32c-6 0-10-4-10-10z\"/><rect x=\"18\" y=\"32\" width=\"64\" height=\"14\" rx=\"3\"/><path d=\"M36 64c7 5 21 5 28 0\" stroke-width=\"1.2\"/>",
+   "feuille": "<path d=\"M18 82C18 42 42 18 82 18c0 38-24 64-64 64z\"/><path d=\"M18 82 64 36M38 62h14M48 52V40\" stroke-width=\"1.2\"/>",
+   "mains": "<path d=\"M36 90c-8-8-12-18-12-30V46c0-4 6-4 6 0v12V24c0-4 7-4 7 0v28V18c0-4 7-4 7 0v34V21c0-4 7-4 7 0v31V31c0-4 7-4 7 0v33c0 14-8 26-22 26z\"/>",
+   "crayon": "<path d=\"M22 78 70 30l10 10-48 48H22z\"/><path d=\"M63 37l10 10M22 78l10 10\" stroke-width=\"1.2\"/>",
+   "pointilles": "<path d=\"M50 14c18 0 30 14 30 30 0 22-30 40-30 40S20 66 20 44c0-16 12-30 30-30z\" stroke-dasharray=\"3 7\"/><circle cx=\"50\" cy=\"44\" r=\"4\"/>",
+   "aiguille": "<path d=\"M18 82 70 30\"/><path d=\"M70 30l12-12\" stroke-width=\"1.2\"/><circle cx=\"58\" cy=\"70\" r=\"1.8\"/><circle cx=\"67\" cy=\"62\" r=\"1.8\"/><circle cx=\"72\" cy=\"75\" r=\"1.8\"/><circle cx=\"81\" cy=\"66\" r=\"1.8\"/><circle cx=\"64\" cy=\"82\" r=\"1.8\"/>",
+   "machine": "<g transform=\"rotate(38 50 50)\"><rect x=\"40\" y=\"6\" width=\"20\" height=\"50\" rx=\"9\"/><rect x=\"42\" y=\"56\" width=\"16\" height=\"22\" rx=\"3\"/><path d=\"M42 63h16M42 70h16\" stroke-width=\"1.2\"/><path d=\"M46 78l4 16 4-16\"/></g>",
+   "rose": "<path d=\"M50 38c-5-1-8 4-5 8s10 1 9-5-8-9-14-6-8 12-2 17 17 5 20-4 0-19-12-22-24 5-23 18 13 24 26 22 23-12 19-25\"/><path d=\"M50 76v18M50 86c-8-3-14-1-18 5 8 2 14 0 18-5z\" stroke-width=\"1.2\"/>",
+   "tasse": "<path d=\"M22 46h48v18c0 12-10 22-24 22S22 76 22 64z\"/><path d=\"M70 52h6c5 0 8 4 8 8s-3 8-8 8h-7\"/><path d=\"M38 36c-4-6 4-10 0-16M53 36c-4-6 4-10 0-16\" stroke-width=\"1.2\"/>",
+   "galets": "<ellipse cx=\"50\" cy=\"78\" rx=\"32\" ry=\"10\"/><ellipse cx=\"48\" cy=\"59\" rx=\"23\" ry=\"8\"/><ellipse cx=\"51\" cy=\"43\" rx=\"15\" ry=\"6\"/><ellipse cx=\"49\" cy=\"30\" rx=\"8\" ry=\"4.5\"/>",
+   "anneau": "<circle cx=\"50\" cy=\"50\" r=\"30\"/><circle cx=\"50\" cy=\"50\" r=\"22\" stroke-width=\"1.2\"/><path d=\"M78 16v12M72 22h12\" stroke-width=\"1.2\"/>"
+  }
+ },
+ "coiffeur": {
+  "titre_mot": "Coiffure",
+  "marque": "Maison de coiffure",
+  "kick": "Salon de coiffure",
+  "folio": "Coiffure — coupe, couleur, soins",
+  "ruban": [
+   "Coupe",
+   "Brushing",
+   "Balayage",
+   "Patine",
+   "Soin au bac",
+   "Chignon souple",
+   "Coupe enfant"
+  ],
+  "presta_chapo": "Cheveux courts, longs, raides, bouclés ou frisés : on part de votre matière, pas d'un modèle.",
+  "gestes": [
+   [
+    "Ciseaux",
+    "Rasoir",
+    "Effilage",
+    "Brushing",
+    "Chignon"
+   ],
+   [
+    "Balayage",
+    "Mèches",
+    "Patine",
+    "Gloss",
+    "Soin profond"
+   ]
+  ],
+  "icones": [
+   "ciseaux",
+   "pinceau"
+  ],
+  "etape_ill": "ciseaux",
+  "esprit_titre": [
+   "Une séance,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au salon doit",
+   "vous ressembler",
+   " : calme, précis, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "Le diagnostic",
+    "mot": "Regarder",
+    "texte": "Avant les ciseaux, on regarde la matière, l'épaisseur, les épis, la façon dont le cheveu tombe quand il sèche seul.",
+    "ill": "oeil"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Écouter",
+    "texte": "Une photo d'inspiration, un « pas trop court », une envie floue : tout sert. On reformule avant de commencer.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "Le bac",
+    "mot": "Laver",
+    "texte": "Un shampoing adapté à votre cuir chevelu, un massage lent. Le premier moment calme de la séance.",
+    "ill": "vague"
+   },
+   {
+    "etiq": "La coupe",
+    "mot": "Couper",
+    "texte": "Ciseaux, rasoir ou effileuse selon la matière. Une coupe qui tient aussi quand vous vous coiffez vous-même.",
+    "ill": "ciseaux"
+   },
+   {
+    "etiq": "La couleur",
+    "mot": "Colorer",
+    "texte": "Balayage à main levée, patine, gloss. Des nuances qui repoussent sans marquer de ligne nette.",
+    "ill": "pinceau"
+   },
+   {
+    "etiq": "Le coiffage",
+    "mot": "Finir",
+    "texte": "Brushing, ondulations, chignon souple. Et deux conseils simples pour refaire le geste chez vous.",
+    "ill": "peigne"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui vous coiffera. Pas de plateforme entre vous.",
+  "placeholder": "Coupe, couleur, une envie, une sensibilité…"
+ },
+ "barbier": {
+  "titre_mot": "Barbier",
+  "marque": "Barbier",
+  "kick": "Barbier",
+  "folio": "Barbier — coupe, barbe, rasage",
+  "ruban": [
+   "Coupe aux ciseaux",
+   "Dégradé",
+   "Contours",
+   "Taille de barbe",
+   "Rasage",
+   "Tondeuse",
+   "Finitions au rasoir"
+  ],
+  "presta_chapo": "Court, mi-long, dégradé net ou barbe fournie : on part de votre implantation, pas d'une photo de catalogue.",
+  "gestes": [
+   [
+    "Ciseaux",
+    "Tondeuse",
+    "Dégradé",
+    "Contours",
+    "Coiffage"
+   ],
+   [
+    "Taille",
+    "Contours",
+    "Rasage",
+    "Moustache",
+    "Entretien"
+   ]
+  ],
+  "icones": [
+   "tondeuse",
+   "coupechou"
+  ],
+  "etape_ill": "coupechou",
+  "esprit_titre": [
+   "Un passage,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au salon doit",
+   "vous ressembler",
+   " : net, soigné, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "L'observation",
+    "mot": "Regarder",
+    "texte": "La pousse, les épis, l'implantation de la barbe : on regarde comment tout ça vit avant d'y toucher.",
+    "ill": "oeil"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Écouter",
+    "texte": "Ce que vous voulez garder, ce qui vous gêne, la longueur qui tient avec votre rythme. On en parle d'abord.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "La coupe",
+    "mot": "Couper",
+    "texte": "Ciseaux ou tondeuse selon la zone, dégradé travaillé à la main pour une transition sans marche.",
+    "ill": "tondeuse"
+   },
+   {
+    "etiq": "La barbe",
+    "mot": "Tailler",
+    "texte": "Volume, longueur, ligne de joue : la barbe est taillée pour équilibrer le visage, pas pour suivre une mode.",
+    "ill": "peigne"
+   },
+   {
+    "etiq": "Le rasoir",
+    "mot": "Raser",
+    "texte": "Contours nets au rasoir, ou rasage complet pour ceux qui le souhaitent. Peau préparée, geste lent.",
+    "ill": "coupechou"
+   },
+   {
+    "etiq": "Le coiffage",
+    "mot": "Finir",
+    "texte": "Coiffage, conseils d'entretien, et la bonne fréquence pour revenir avant que la ligne se perde.",
+    "ill": "miroir"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui s'occupera de vous. Pas de plateforme entre vous.",
+  "placeholder": "Coupe, barbe, rasage, une envie, une sensibilité…"
+ },
+ "ongles": {
+  "titre_mot": "Ongles",
+  "marque": "Prothésiste ongulaire",
+  "kick": "Prothésiste ongulaire",
+  "folio": "Ongles — pose, entretien, mains et pieds",
+  "ruban": [
+   "Gel",
+   "Résine",
+   "Semi-permanent",
+   "Remplissage",
+   "Manucure",
+   "Beauté des pieds",
+   "French",
+   "Décors"
+  ],
+  "presta_chapo": "Ongles courts, fragiles, rongés ou longs : on part de vos ongles naturels, pas d'un catalogue.",
+  "gestes": [
+   [
+    "Gel",
+    "Résine",
+    "Semi-permanent",
+    "Remplissage",
+    "Dépose"
+   ],
+   [
+    "Manucure",
+    "Beauté des pieds",
+    "French",
+    "Décors"
+   ]
+  ],
+  "icones": [
+   "flacon",
+   "ongles"
+  ],
+  "etape_ill": "flacon",
+  "esprit_titre": [
+   "Une pose,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au salon doit",
+   "vous ressembler",
+   " : minutieux, calme, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "Le diagnostic",
+    "mot": "Regarder",
+    "texte": "L'état de l'ongle naturel, sa courbure, sa solidité : c'est ce qui décide de la technique, pas l'inverse.",
+    "ill": "oeil"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Choisir",
+    "texte": "Forme, longueur, teinte, un décor ou non : on regarde ensemble ce qui tiendra avec votre quotidien.",
+    "ill": "nuancier"
+   },
+   {
+    "etiq": "La préparation",
+    "mot": "Préparer",
+    "texte": "Repousser les cuticules, limer, matifier. Une préparation soignée, c'est une pose qui tient.",
+    "ill": "lime"
+   },
+   {
+    "etiq": "La pose",
+    "mot": "Poser",
+    "texte": "Gel, résine ou semi-permanent, couche après couche, avec le temps de séchage qu'il faut.",
+    "ill": "flacon"
+   },
+   {
+    "etiq": "Le décor",
+    "mot": "Décorer",
+    "texte": "French, effets, dessins au pinceau fin : seulement si vous en avez envie.",
+    "ill": "etoile"
+   },
+   {
+    "etiq": "La finition",
+    "mot": "Finir",
+    "texte": "Huile pour les cuticules, derniers ajustements, et des conseils pour faire durer jusqu'au prochain rendez-vous.",
+    "ill": "goutte"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui s'occupera de vos ongles. Pas de plateforme entre vous.",
+  "placeholder": "Pose, remplissage, une forme, une teinte, une sensibilité…"
+ },
+ "estheticienne": {
+  "titre_mot": "Institut de beauté",
+  "marque": "Institut de beauté",
+  "kick": "Institut de beauté",
+  "folio": "Institut — visage, corps, épilation",
+  "lieu": {
+   "le": "l'institut",
+   "a": "à l'institut",
+   "de": "de l'institut"
+  },
+  "ruban": [
+   "Soin du visage",
+   "Nettoyage de peau",
+   "Épilation",
+   "Gommage",
+   "Modelage",
+   "Sourcils",
+   "Beauté des mains"
+  ],
+  "presta_chapo": "Peau sèche, mixte, sensible ou réactive : on part de votre peau du jour, pas d'un protocole figé.",
+  "gestes": [
+   [
+    "Nettoyage",
+    "Gommage",
+    "Masque",
+    "Modelage",
+    "Hydratation"
+   ],
+   [
+    "Épilation",
+    "Gommage",
+    "Enveloppement",
+    "Modelage",
+    "Sourcils"
+   ]
+  ],
+  "icones": [
+   "pot",
+   "feuille"
+  ],
+  "etape_ill": "pot",
+  "esprit_titre": [
+   "Un soin,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé à l'institut doit",
+   "vous ressembler",
+   " : doux, attentif, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "Le diagnostic",
+    "mot": "Observer",
+    "texte": "Le grain de peau, les zones sèches ou brillantes, les rougeurs : on observe avant de choisir un soin.",
+    "ill": "oeil"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Écouter",
+    "texte": "Une réaction passée, un produit qui vous convient, une envie de détente ou d'éclat : tout compte.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "La préparation",
+    "mot": "Nettoyer",
+    "texte": "Démaquillage, nettoyage, gommage doux : une peau propre reçoit mieux le soin qui suit.",
+    "ill": "goutte"
+   },
+   {
+    "etiq": "Le soin",
+    "mot": "Soigner",
+    "texte": "Masque, sérum et crème choisis pour votre peau du jour, posés sans hâte.",
+    "ill": "pot"
+   },
+   {
+    "etiq": "Le modelage",
+    "mot": "Modeler",
+    "texte": "Des gestes lents sur le visage, la nuque, les épaules. Le moment où l'on décroche vraiment.",
+    "ill": "mains"
+   },
+   {
+    "etiq": "La suite",
+    "mot": "Conseiller",
+    "texte": "Deux ou trois gestes simples pour la maison, et le bon rythme pour revenir.",
+    "ill": "feuille"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui prendra soin de vous. Pas de plateforme entre vous.",
+  "placeholder": "Un soin, une épilation, une sensibilité de peau…"
+ },
+ "tatoueur": {
+  "titre_mot": "Tatouage",
+  "marque": "Studio de tatouage",
+  "kick": "Studio de tatouage",
+  "folio": "Tatouage — projets sur mesure, reprises",
+  "lieu": {
+   "le": "le studio",
+   "a": "au studio",
+   "de": "du studio"
+  },
+  "ruban": [
+   "Projet sur mesure",
+   "Dessin",
+   "Placement",
+   "Lignes",
+   "Ombrages",
+   "Reprise",
+   "Retouche",
+   "Cicatrisation"
+  ],
+  "presta_chapo": "Une idée précise, une référence ou juste une envie : le dessin se construit avec vous, à la bonne taille, au bon endroit.",
+  "gestes": [
+   [
+    "Dessin",
+    "Projet",
+    "Placement",
+    "Séance"
+   ],
+   [
+    "Retouche",
+    "Reprise",
+    "Conseils",
+    "Cicatrisation"
+   ]
+  ],
+  "icones": [
+   "machine",
+   "rose"
+  ],
+  "etape_ill": "crayon",
+  "esprit_titre": [
+   "Un projet,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au studio doit",
+   "vous ressembler",
+   " : posé, clair, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "L'idée",
+    "mot": "Écouter",
+    "texte": "Une référence, un souvenir, un style qui vous parle : on part de votre idée, même floue.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "Le dessin",
+    "mot": "Dessiner",
+    "texte": "Le motif est dessiné pour vous, puis ajusté jusqu'à ce qu'il vous ressemble vraiment.",
+    "ill": "crayon"
+   },
+   {
+    "etiq": "L'emplacement",
+    "mot": "Placer",
+    "texte": "Taille, orientation, mouvement du corps : le transfert se pose et se déplace jusqu'à tomber juste.",
+    "ill": "pointilles"
+   },
+   {
+    "etiq": "L'hygiène",
+    "mot": "Préparer",
+    "texte": "Poste préparé, aiguilles neuves, peau nettoyée : l'hygiène fait partie du geste.",
+    "ill": "aiguille"
+   },
+   {
+    "etiq": "La séance",
+    "mot": "Tatouer",
+    "texte": "Lignes, ombrages, couleur : la séance avance à votre rythme, avec des pauses si besoin.",
+    "ill": "machine"
+   },
+   {
+    "etiq": "Le suivi",
+    "mot": "Cicatriser",
+    "texte": "Des consignes de soin claires, et une retouche si la cicatrisation le demande.",
+    "ill": "goutte"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui dessinera votre projet. Pas de plateforme entre vous.",
+  "placeholder": "Votre idée, l'emplacement, une taille approximative, une référence…"
+ },
+ "massage": {
+  "titre_mot": "Massage bien-être",
+  "marque": "Massage bien-être",
+  "kick": "Massage bien-être",
+  "folio": "Massage bien-être — détente, séances",
+  "ruban": [
+   "Détente",
+   "Dos",
+   "Nuque et épaules",
+   "Huiles",
+   "Pieds",
+   "Relâchement",
+   "Respiration"
+  ],
+  "presta_chapo": "Une détente profonde, un dos noué, un moment pour soi : la séance s'adapte à ce que vous venez chercher, sans visée médicale.",
+  "gestes": [
+   [
+    "Détente",
+    "Dos",
+    "Nuque",
+    "Huiles",
+    "Relaxation"
+   ],
+   [
+    "Durées",
+    "Formules",
+    "Zones choisies"
+   ]
+  ],
+  "icones": [
+   "mains",
+   "galets"
+  ],
+  "etape_ill": "galets",
+  "esprit_titre": [
+   "Une séance,",
+   "en six gestes"
+  ],
+  "esprit_intro": [
+   "Le temps passé au salon doit",
+   "vous ressembler",
+   " : lent, silencieux, sans précipitation."
+  ],
+  "planches": [
+   {
+    "etiq": "L'arrivée",
+    "mot": "Accueillir",
+    "texte": "Quelques minutes pour poser vos affaires, ralentir, laisser la journée derrière la porte.",
+    "ill": "tasse"
+   },
+   {
+    "etiq": "L'échange",
+    "mot": "Écouter",
+    "texte": "Les zones tendues, celles à éviter, la pression qui vous convient : on en parle avant.",
+    "ill": "bulle"
+   },
+   {
+    "etiq": "L'installation",
+    "mot": "Installer",
+    "texte": "Une lumière douce, une température agréable, le silence : le corps se relâche plus vite.",
+    "ill": "galets"
+   },
+   {
+    "etiq": "La séance",
+    "mot": "Masser",
+    "texte": "Des gestes enveloppants, réguliers, ajustés à vos réactions. Rien de médical, tout pour la détente.",
+    "ill": "mains"
+   },
+   {
+    "etiq": "Le relâchement",
+    "mot": "Respirer",
+    "texte": "Le rythme ralentit, la respiration suit. Le moment où l'on cesse de penser à la suite.",
+    "ill": "vague"
+   },
+   {
+    "etiq": "La sortie",
+    "mot": "Revenir",
+    "texte": "Un verre d'eau, quelques minutes avant de repartir, sans rien presser.",
+    "ill": "goutte"
+   }
+  ],
+  "contact_chapo": "Un message, une réponse de la personne qui vous massera. Pas de plateforme entre vous.",
+  "placeholder": "Une durée, les zones à privilégier ou à éviter, une question…"
+ }
+}

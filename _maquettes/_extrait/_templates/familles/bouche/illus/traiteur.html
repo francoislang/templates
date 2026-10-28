@@ -1,0 +1,58 @@
+<svg viewBox="0 0 560 500" role="presentation">
+  <defs>
+    <linearGradient id="tr-email" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#14325A"/><stop offset=".35" stop-color="#2B5384"/><stop offset=".75" stop-color="#1E3D63"/><stop offset="1" stop-color="#0E2038"/>
+    </linearGradient>
+    <radialGradient id="tr-plat" cx="45%" cy="40%" r="60%">
+      <stop offset="0" stop-color="#E9A44A"/><stop offset="1" stop-color="#8A4618"/>
+    </radialGradient>
+  </defs>
+  <!-- louche en bois et laurier derrière -->
+  <g class="deco" filter="url(#trait)">
+    <path d="M430 330 L 500 90" stroke="#2A160A" stroke-width="16" stroke-linecap="round"/>
+    <path d="M430 330 L 500 90" stroke="#C99A5E" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="504" cy="76" rx="22" ry="30" transform="rotate(16 504 76)" fill="#C99A5E" stroke="#2A160A" stroke-width="3"/>
+    <path d="M70 300 C 80 240 100 190 140 150" stroke="#3A2A1E" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M86 240 c -30 -10 -44 -34 -40 -54 c 24 4 40 26 40 54z M100 206 c 6 -30 28 -44 50 -44 c -4 24 -24 40 -50 44z M118 176 c -26 -14 -34 -38 -26 -58 c 22 8 32 32 26 58z M94 270 c 10 -26 32 -36 54 -32 c -8 22 -30 34 -54 32z" fill="#6E7E48" stroke="#2E3A1C" stroke-width="1.8"/>
+  </g>
+  <g filter="url(#trait)">
+    <path d="M28 380 C 120 350 430 344 538 372 L 552 474 C 420 492 150 496 14 470 Z" fill="url(#lin-tissu)" stroke="#2A1D14" stroke-width="2"/>
+    <path d="M24 400 C 140 374 420 370 541 392" stroke="#1E3D63" stroke-width="7" fill="none"/>
+    <path d="M23 414 C 140 389 420 385 543 406" stroke="#1E3D63" stroke-width="3" fill="none"/>
+    <path d="M18 452 C 150 470 420 470 549 452" stroke="#1E3D63" stroke-width="3" fill="none"/>
+    <path d="M40 470 l-8 16 M70 474 l-6 16 M100 477 l-5 15 M480 478 l4 15 M510 475 l6 15" stroke="#9D927E" stroke-width="2"/>
+  </g>
+  <ellipse cx="280" cy="398" rx="210" ry="22" fill="url(#ombre)"/>
+  <g class="sujet">
+    <g filter="url(#trait)">
+      <!-- poignées -->
+      <path d="M86 262 h -26 c -10 0 -10 30 0 30 h 26" fill="#14325A" stroke="#0A1626" stroke-width="3"/>
+      <path d="M474 262 h 26 c 10 0 10 30 0 30 h -26" fill="#14325A" stroke="#0A1626" stroke-width="3"/>
+      <!-- corps -->
+      <path d="M90 236 C 84 348 140 392 280 392 C 420 392 476 348 470 236 Z" fill="url(#tr-email)" stroke="#0A1626" stroke-width="3"/>
+      <ellipse cx="280" cy="236" rx="190" ry="40" fill="#0E2038" stroke="#0A1626" stroke-width="3"/>
+      <ellipse cx="280" cy="240" rx="176" ry="32" fill="url(#tr-plat)"/>
+      <g fill="#C8463A" stroke="#4A120C" stroke-width="1.5"><circle cx="220" cy="236" r="9"/><circle cx="330" cy="244" r="8"/></g>
+      <g fill="#7E8C55" stroke="#2E3A1C" stroke-width="1.2"><ellipse cx="262" cy="232" rx="10" ry="4" transform="rotate(-20 262 232)"/><ellipse cx="300" cy="248" rx="9" ry="3.5" transform="rotate(14 300 248)"/></g>
+      <!-- couvercle soulevé -->
+      <g transform="rotate(-9 470 206)">
+        <path d="M96 200 C 96 160 464 160 464 200 C 464 214 96 214 96 200Z" fill="url(#tr-email)" stroke="#0A1626" stroke-width="3"/>
+        <path d="M110 198 C 110 190 450 190 450 198" stroke="#5E80AA" stroke-width="3" fill="none" opacity=".6"/>
+        <path d="M252 166 c 0 -22 56 -22 56 0 z" fill="#E9B65C" stroke="#2A160A" stroke-width="3"/>
+      </g>
+    </g>
+    <path d="M118 270 C 122 320 150 356 200 372" stroke="#8FB0D8" stroke-width="6" stroke-linecap="round" fill="none" opacity=".5"/>
+  </g>
+  <!-- vapeur -->
+  <g class="vapeur">
+    <path d="M210 200 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+    <path d="M270 196 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+    <path d="M330 196 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+  </g>
+  <g transform="translate(120 96) rotate(-8)" filter="url(#trait)">
+    <path d="M0 0 C 10 -40 30 -60 40 -80" stroke="#BDB39E" stroke-width="1.5" fill="none"/>
+    <path d="M-49 0 h98 l14 22 -14 22 h-98 z" fill="#F5F2EA" stroke="#2A1D14" stroke-width="2"/>
+    <circle cx="51" cy="22" r="4" fill="none" stroke="#2A1D14" stroke-width="1.5"/>
+    <text x="-2" y="29" text-anchor="middle" font-family="Yesteryear, cursive" font-size="17" fill="#1E3D63">sur commande</text>
+  </g>
+</svg>

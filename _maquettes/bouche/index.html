@@ -1,0 +1,958 @@
+<!doctype html>
+<!--
+  Famille « bouche » — maquette haut de gamme. Entreprise fictive : Le Fournil de la Craffe, Nancy.
+  Idées retenues (inspiration, rien de copié) :
+  1. Boulangerie Merlet (Made in Webflow) : le produit en héros, grande typographie éditoriale, peu d'éléments.
+  2. Packaging Maison Kayser (The Dieline) : retenue, marques façon tampon, un seul accent de couleur.
+  3. Sélections « meilleurs sites de boulangerie » (WebsitePlanet) : raconter la fabrication et le rythme
+     de la journée plutôt qu'aligner des photos → ici, la frise « La journée du fournil » avec l'heure réelle.
+  Direction : le fournil la nuit (seigle profond, lueur de four, or de la croûte), plaque émaillée bleue
+  des devantures françaises, toile de lin à rayures du torchon. Signature : farine qui tombe (canvas)
+  + cadran 24 h qui montre ce qui se passe au fournil à l'heure où on lit la page.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Fournil de la Craffe — boulangerie-pâtisserie à Nancy</title>
+<meta name="description" content="Boulangerie-pâtisserie artisanale à Nancy (54000). Pains, viennoiseries, pâtisseries. Préparez une commande en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Yesteryear&display=swap" rel="stylesheet">
+<script>
+  /* Masquage pour animation ajouté par JS seulement ; secours : tout réapparaît après 1,5 s si le script principal échoue */
+  document.documentElement.classList.add("js");
+  setTimeout(function(){ if(!window.__fournilOK){ document.documentElement.classList.remove("js"); } }, 1500);
+</script>
+<style>
+:root{
+  --seigle:#1F150E;      /* mie de seigle, fond du fournil */
+  --seigle-2:#2B1E15;
+  --seigle-3:#3A2A1E;
+  --croute:#C27A2C;      /* croûte dorée */
+  --croute-sombre:#6A3814;
+  --or:#E9B65C;          /* lettres dorées de l'enseigne */
+  --or-clair:#F6D9A0;
+  --lin:#D8D2C4;         /* toile de lin */
+  --lin-2:#C8C0AE;
+  --lin-clair:#E6E1D5;
+  --farine:#F5F2EA;
+  --emaille:#1E3D63;     /* plaque émaillée */
+  --emaille-2:#2B5384;
+  --emaille-clair:#CAD7E8;
+  --texte:#22170F;
+  --texte-2:#55463A;
+  --clair:#EDE4D3;
+  --clair-2:#BFAE98;
+  --vert:#4CC17A;
+  --rouge:#E7685A;
+  --gout:max(16px, env(safe-area-inset-left));
+  --goutd:max(16px, env(safe-area-inset-right));
+  --large:1240px;
+  --f-enseigne:'Alfa Slab One','Rockwell Extra Bold','Rockwell','Roboto Slab','DejaVu Serif',Georgia,serif;
+  --f-main:'Yesteryear','Brush Script MT','Segoe Script',cursive;
+  --f-texte:'Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --tissage:repeating-linear-gradient(0deg, rgba(60,40,20,.05) 0 1px, transparent 1px 3px), repeating-linear-gradient(90deg, rgba(60,40,20,.045) 0 1px, transparent 1px 4px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:80px}
+body{margin:0;background:var(--seigle);color:var(--texte);font-family:var(--f-texte);font-size:clamp(16px,1.05vw + 12px,18px);line-height:1.6;overflow-x:clip}
+svg{display:block}
+a{color:inherit}
+p,h1,h2,h3{margin:0}
+ul,ol,dl,dd{margin:0;padding:0;list-style:none}
+h2{font-family:var(--f-enseigne);font-weight:400;font-size:clamp(32px,4.6vw,58px);line-height:1.02;letter-spacing:.005em}
+h3{font-family:var(--f-enseigne);font-weight:400;line-height:1.1}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px;border-radius:4px}
+.clair-zone :focus-visible{outline-color:var(--emaille)}
+.saut{position:absolute;left:-9999px;top:8px;z-index:100;background:var(--or);color:var(--seigle);padding:12px 16px;font-weight:700}
+.saut:focus{left:var(--gout)}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--gout);padding-right:var(--goutd)}
+@media (min-width:760px){.env{padding-left:max(40px,env(safe-area-inset-left));padding-right:max(40px,env(safe-area-inset-right))}}
+.grain{position:relative;isolation:isolate}
+.grain::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.18;mix-blend-mode:overlay;pointer-events:none;z-index:-1}
+
+/* boutons */
+.btn{--fond:var(--or);--enc:var(--seigle);display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:0 24px;border-radius:6px;background:var(--fond);color:var(--enc);font-family:var(--f-texte);font-weight:700;font-size:16px;text-decoration:none;border:2px solid var(--fond);cursor:pointer;position:relative;transition:transform .2s cubic-bezier(.3,1.6,.5,1),box-shadow .2s;box-shadow:0 3px 0 var(--croute-sombre)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--croute-sombre)}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--croute-sombre)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn--ligne{--fond:transparent;--enc:var(--clair);border-color:rgba(237,228,211,.35);box-shadow:none}
+.btn--ligne:hover{border-color:var(--or);box-shadow:none}
+.btn--bleu{--fond:var(--emaille);--enc:var(--farine);box-shadow:0 3px 0 #0E2038}
+.btn--bleu:hover{box-shadow:0 5px 0 #0E2038}
+
+/* plaque émaillée */
+.plaque{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(180deg,var(--emaille-2),var(--emaille));color:var(--farine);border-radius:8px;padding:7px 16px 6px;font-family:var(--f-enseigne);letter-spacing:.14em;font-size:13px;text-transform:uppercase;box-shadow:inset 0 0 0 2px var(--farine),inset 0 0 0 4px var(--emaille),0 6px 16px rgba(0,0,0,.35)}
+.plaque i{width:6px;height:6px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#8a97a8);flex:none}
+
+/* ---------- en-tête ---------- */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(31,21,14,.86);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid rgba(233,182,92,.16);color:var(--clair)}
+.hdr__in{display:flex;align-items:center;gap:20px;min-height:68px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-width:0;min-height:44px}
+.mq svg{width:38px;height:38px;flex:none}
+.mq__n{font-family:var(--f-enseigne);font-size:18px;line-height:1;color:var(--or);white-space:nowrap}
+.mq__v{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--clair-2);margin-top:4px}
+.nav{display:none;gap:28px}
+.nav a{text-decoration:none;font-size:15.5px;color:var(--clair);position:relative;padding:10px 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--or);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr__tel{display:none;text-decoration:none;font-weight:700;color:var(--or);font-variant-numeric:tabular-nums}
+.burger{display:inline-grid;place-items:center;width:48px;height:48px;border:1px solid rgba(233,182,92,.3);border-radius:8px;background:transparent;color:var(--or);cursor:pointer;padding:0}
+.burger span{display:block;width:22px;height:2px;background:currentColor;border-radius:2px;transition:transform .35s cubic-bezier(.7,0,.2,1),opacity .2s;grid-area:1/1}
+.burger span:nth-child(1){transform:translateY(-7px)}
+.burger span:nth-child(3){transform:translateY(7px)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
+.menu-mob{position:absolute;left:0;right:0;top:100%;background:var(--seigle-2);border-bottom:1px solid rgba(233,182,92,.2);display:grid;padding:10px var(--goutd) 18px var(--gout);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .45s cubic-bezier(.7,0,.2,1),visibility 0s .45s}
+.menu-mob.ouvert{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .45s cubic-bezier(.7,0,.2,1)}
+.menu-mob a{font-family:var(--f-enseigne);font-size:26px;color:var(--clair);text-decoration:none;padding:12px 0;border-bottom:1px dashed rgba(233,182,92,.2);min-height:44px}
+.menu-mob a:last-child{border:0;color:var(--or)}
+@media (min-width:960px){.nav{display:flex}.hdr__tel{display:block}.burger,.menu-mob{display:none}}
+
+/* ---------- ouverture ---------- */
+.ouv{position:relative;overflow:hidden;color:var(--clair);background:
+  radial-gradient(60% 70% at 78% 78%,rgba(214,120,40,.42),rgba(214,120,40,0) 70%),
+  radial-gradient(40% 50% at 82% 88%,rgba(255,170,70,.30),rgba(255,170,70,0) 70%),
+  linear-gradient(180deg,#1A110B 0%,var(--seigle) 60%,#2A1A10 100%)}
+.ouv canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:2}
+.ouv__in{position:relative;z-index:1;display:grid;gap:28px;align-items:center;padding-top:clamp(28px,6vw,72px);padding-bottom:clamp(56px,8vw,110px)}
+@media (min-width:960px){.ouv__in{grid-template-columns:1.05fr 1fr;gap:40px}}
+.ouv__txt{position:relative;z-index:3}
+.h1{font-weight:400;display:flex;flex-direction:column;margin:22px 0 0;line-height:.9}
+.h1 .a,.h1 .c{font-family:var(--f-enseigne);color:var(--or);text-shadow:2px 2px 0 var(--croute-sombre),4px 4px 0 rgba(0,0,0,.35);letter-spacing:.01em}
+.h1 .a{font-size:clamp(50px,9.4vw,118px)}
+.h1 .b{font-family:var(--f-main);font-size:clamp(40px,6vw,72px);color:var(--lin);line-height:.8;margin:6px 0 2px clamp(28px,8vw,120px);transform:rotate(-6deg);transform-origin:left;width:max-content}
+.h1 .c{font-size:clamp(62px,12vw,150px)}
+.filet{display:flex;align-items:center;gap:14px;margin-top:18px;color:var(--clair-2);font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+.filet::before,.filet::after{content:"";height:1px;flex:1;max-width:64px;background:linear-gradient(90deg,transparent,var(--or))}
+.filet::after{background:linear-gradient(90deg,var(--or),transparent)}
+.ouv__t{margin-top:22px;font-size:clamp(18px,1.4vw + 12px,21px);max-width:28em;color:var(--clair)}
+.ouv__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.etat-ligne{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:8px 14px;border-radius:999px;background:rgba(237,228,211,.07);border:1px solid rgba(237,228,211,.14);font-size:15px;color:var(--clair)}
+.pastille{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--clair-2);margin-right:8px;vertical-align:1px;flex:none}
+.etat--oui .pastille{background:var(--vert);box-shadow:0 0 0 0 rgba(76,193,122,.6);animation:pouls 2s infinite}
+.etat--non .pastille{background:var(--rouge)}
+@keyframes pouls{70%{box-shadow:0 0 0 9px rgba(76,193,122,0)}100%{box-shadow:0 0 0 0 rgba(76,193,122,0)}}
+.ouv__illu{position:relative;z-index:1;max-width:600px;width:100%;margin:0 auto;order:-1}
+@media (min-width:960px){.ouv__illu{order:0}}
+.ouv__illu svg{width:100%;height:auto;overflow:visible}
+.vapeur path{fill:none;stroke:rgba(245,242,234,.55);stroke-width:3;stroke-linecap:round;stroke-dasharray:120;stroke-dashoffset:120;animation:vapeur 4.5s ease-in-out infinite}
+.vapeur path:nth-child(2){animation-delay:1.4s}.vapeur path:nth-child(3){animation-delay:2.6s}
+@keyframes vapeur{0%{stroke-dashoffset:120;opacity:0;transform:translateY(10px)}35%{opacity:1}100%{stroke-dashoffset:-120;opacity:0;transform:translateY(-26px)}}
+.bord-four{position:absolute;left:0;right:0;bottom:-1px;height:44px;z-index:3;color:var(--lin)}
+.bord-four svg{width:100%;height:100%}
+
+/* entrée orchestrée */
+.js .h1 .a,.js .h1 .c{clip-path:inset(0 100% 0 0)}
+.js .h1 .b{opacity:0}
+.js .entre{opacity:0;transform:translateY(16px)}
+.js .ouv__illu .pain{transform:scale(.9,.82);transform-origin:50% 88%;opacity:0}
+.js .ouv__illu .ble{opacity:0;transform:rotate(-8deg);transform-origin:30% 90%}
+.charge .h1 .a{animation:pinceau .9s .15s cubic-bezier(.6,0,.2,1) forwards}
+.charge .h1 .b{animation:apparait .7s .85s ease forwards}
+.charge .h1 .c{animation:pinceau 1s 1s cubic-bezier(.6,0,.2,1) forwards}
+.charge .entre{animation:monte .8s var(--d,1.3s) cubic-bezier(.2,.7,.2,1) forwards}
+.charge .ouv__illu .pain{animation:levee 1.6s .3s cubic-bezier(.25,1.3,.45,1) forwards}
+.charge .ouv__illu .ble{animation:ble 1.4s .1s ease forwards}
+@keyframes pinceau{to{clip-path:inset(0 -10% 0 0)}}
+@keyframes apparait{to{opacity:1}}
+@keyframes monte{to{opacity:1;transform:none}}
+@keyframes levee{0%{opacity:0;transform:scale(.9,.82)}25%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes ble{to{opacity:1;transform:none}}
+
+/* ---------- bandeau défilant ---------- */
+.ruban{background:var(--lin);color:var(--seigle);overflow:hidden;border-bottom:1px solid var(--lin-2);background-image:var(--tissage)}
+.ruban__piste{display:flex;width:max-content;animation:defile 38s linear infinite}
+.ruban__g{display:flex;align-items:center;gap:28px;padding:16px 14px;font-family:var(--f-enseigne);font-size:clamp(20px,2.4vw,30px);white-space:nowrap}
+.ruban__g svg{width:22px;height:22px;flex:none;color:var(--croute)}
+.ruban__g em{font-family:var(--f-main);font-style:normal;color:var(--emaille);font-size:1.15em}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ---------- boutique ---------- */
+.clair-zone{background-color:var(--lin);background-image:var(--tissage);color:var(--texte)}
+.sec{padding:clamp(64px,9vw,128px) 0}
+.tete{display:grid;gap:14px;max-width:46em;margin-bottom:clamp(32px,5vw,56px)}
+.surt{font-family:var(--f-main);font-size:clamp(26px,2.4vw,34px);color:var(--croute-sombre);line-height:1}
+.journee .surt,.ctc-sec .surt{color:var(--or)}
+.chapo{color:var(--texte-2);font-size:clamp(17px,1.2vw + 11px,19px);max-width:36em}
+.vitrine{display:grid;grid-auto-flow:column;grid-auto-columns:84%;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px var(--goutd) 22px var(--gout);margin:0 calc(-1*var(--goutd)) 0 calc(-1*var(--gout));scrollbar-width:none;overscroll-behavior-x:contain}
+.vitrine::-webkit-scrollbar{display:none}
+.vitrine>li{scroll-snap-align:start}
+@media (min-width:860px){.vitrine{grid-auto-flow:row;grid-template-columns:1.15fr 1fr .85fr;overflow:visible;padding:0;margin:0;align-items:start}
+  .vitrine>li:nth-child(2){margin-top:56px}.vitrine>li:nth-child(3){margin-top:18px}}
+.etiq{position:relative;border-radius:14px 14px 4px 4px;padding:28px 26px 30px;min-height:100%;overflow:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.etiq:hover{transform:translateY(-6px) rotate(-.4deg)}
+.etiq h3{font-size:clamp(26px,2.4vw,34px);margin:18px 0 10px}
+.etiq p{font-size:17px}
+.etiq__illu{height:150px;display:grid;place-items:center;margin:-4px -6px 0}
+.etiq__illu svg{width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.etiq:hover .etiq__illu svg{transform:scale(1.05) rotate(-2deg)}
+.etiq--pain{background:linear-gradient(170deg,var(--seigle-3),var(--seigle));color:var(--clair);box-shadow:0 22px 40px -18px rgba(31,21,14,.6)}
+.etiq--pain h3{color:var(--or)}
+.etiq--vien{background:linear-gradient(170deg,var(--emaille-2),var(--emaille));color:var(--farine);box-shadow:0 22px 40px -18px rgba(30,61,99,.6)}
+.etiq--vien h3{color:var(--farine)}
+.etiq--vien p{color:var(--emaille-clair)}
+.etiq--note{background:var(--farine);color:var(--texte);border-radius:3px;box-shadow:0 18px 30px -16px rgba(31,21,14,.45);transform:rotate(1.2deg)}
+.etiq--note:hover{transform:rotate(0) translateY(-6px)}
+.etiq--note::before{content:"";position:absolute;top:10px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(201,170,110,.55);transform:rotate(-3deg)}
+.etiq--note h3{font-family:var(--f-main);font-size:clamp(34px,3vw,42px);color:var(--emaille);margin-top:34px;line-height:1}
+.etiq--note p{color:var(--texte-2)}
+.motcles{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.motcles li{font-size:14px;padding:5px 11px;border-radius:999px;border:1px solid currentColor;opacity:.85}
+.etiq--note .lien-fleche{display:inline-flex;align-items:center;gap:8px;margin-top:18px;font-weight:700;color:var(--emaille);min-height:44px;text-decoration:none;border-bottom:2px solid var(--or)}
+.vitrine__pied{margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;color:var(--texte-2);font-size:15.5px}
+.vitrine__pied svg{width:22px;height:22px;color:var(--croute-sombre)}
+.indic-swipe{display:flex;gap:6px;justify-content:center;margin-top:4px}
+.indic-swipe i{width:8px;height:8px;border-radius:50%;background:var(--lin-2);transition:width .3s,background .3s}
+.indic-swipe i.on{width:26px;border-radius:4px;background:var(--croute-sombre)}
+@media (min-width:860px){.indic-swipe{display:none}}
+
+/* ---------- journée du fournil ---------- */
+.journee{color:var(--clair);background:
+  radial-gradient(50% 40% at 10% 20%,rgba(214,120,40,.16),transparent 70%),
+  linear-gradient(180deg,var(--seigle) 0%,#24170F 100%)}
+.journee .chapo{color:var(--clair-2)}
+.journee h2{color:var(--farine)}
+.jr{display:grid;gap:40px}
+@media (min-width:960px){.jr{grid-template-columns:minmax(320px,.9fr) 1.1fr;gap:72px;align-items:start}}
+.cadran-bloc{display:grid;justify-items:center;gap:18px}
+@media (min-width:960px){.cadran-bloc{position:sticky;top:110px}}
+.cadran{width:min(100%,380px);aspect-ratio:1}
+.cadran svg{width:100%;height:100%}
+.aiguille{transform-origin:160px 160px;transition:transform 1.8s cubic-bezier(.3,1.25,.4,1)}
+.cadran__h{font-family:var(--f-enseigne);font-size:34px;fill:var(--farine)}
+.cadran__l{font-size:11px;letter-spacing:.2em;text-transform:uppercase;fill:var(--clair-2);font-family:var(--f-texte)}
+.cadran__n{font-size:11px;fill:var(--clair-2);font-family:var(--f-texte);font-weight:700}
+.point-etape{fill:var(--seigle);stroke:var(--or);stroke-width:2.5;transition:r .4s}
+.point-etape.on{fill:var(--or)}
+.maint{max-width:22em;text-align:center;font-size:17px;color:var(--clair)}
+.maint b{color:var(--or);font-weight:700}
+.frise-wrap{position:relative}.frise{position:relative;padding-left:44px}
+.frise::before{content:"";position:absolute;left:14px;top:8px;bottom:8px;width:2px;background:repeating-linear-gradient(180deg,rgba(237,228,211,.25) 0 6px,transparent 6px 12px)}
+.frise__prog{position:absolute;left:14px;top:8px;width:2px;height:calc(100% - 16px);background:linear-gradient(180deg,var(--or),var(--croute));transform-origin:top;transform:scaleY(var(--p,0));box-shadow:0 0 12px rgba(233,182,92,.6)}
+.frise li{position:relative;padding:4px 0 34px}
+.frise li:last-child{padding-bottom:0}
+.frise li::before{content:"";position:absolute;left:-37px;top:12px;width:16px;height:16px;border-radius:50%;background:var(--seigle);border:2px solid rgba(237,228,211,.4);transition:background .4s,border-color .4s,box-shadow .4s}
+.frise li.passe::before{border-color:var(--or);background:var(--croute-sombre)}
+.frise .heure{font-family:var(--f-enseigne);font-size:clamp(28px,3vw,40px);color:var(--or);line-height:1;font-variant-numeric:tabular-nums}
+.frise h3{font-family:var(--f-texte);font-weight:700;font-size:20px;margin-top:6px;color:var(--farine)}
+.frise p{color:var(--clair-2);max-width:32em;margin-top:4px}
+.frise .badge{display:none}
+.frise li.maintenant{background:linear-gradient(90deg,rgba(233,182,92,.14),rgba(233,182,92,0));margin-left:-18px;padding-left:18px;padding-top:14px;padding-bottom:30px;border-radius:10px 0 0 10px}
+.frise li.maintenant::before{left:-19px;top:22px;background:var(--or);border-color:var(--or-clair);box-shadow:0 0 0 6px rgba(233,182,92,.22),0 0 22px rgba(233,182,92,.8)}
+.frise li.maintenant .badge{display:inline-flex;align-items:center;gap:8px;margin-left:12px;vertical-align:middle;font-family:var(--f-texte);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--or);color:var(--seigle);font-weight:700}
+.frise li.maintenant p{color:var(--clair)}
+.frise__note{margin-top:30px;font-size:14.5px;color:var(--clair-2);border-top:1px dashed rgba(237,228,211,.2);padding-top:16px}
+
+/* ---------- préparer une commande ---------- */
+.prep{position:relative}
+.prep__g{display:grid;gap:36px;align-items:start}
+@media (min-width:960px){.prep__g{grid-template-columns:.9fr 1.1fr;gap:64px}}
+.bon{position:relative;background:var(--farine);padding:34px clamp(20px,3vw,40px) 40px;box-shadow:0 24px 50px -24px rgba(31,21,14,.55);transform:rotate(-.6deg);
+  -webkit-mask:radial-gradient(circle 7px at 50% 0,transparent 98%,#000) top/22px 51% repeat-x,radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/22px 51% repeat-x;
+  mask:radial-gradient(circle 7px at 50% 0,transparent 98%,#000) top/22px 51% repeat-x,radial-gradient(circle 7px at 50% 100%,transparent 98%,#000) bottom/22px 51% repeat-x}
+.bon__t{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--texte);padding-bottom:12px;margin-bottom:6px}
+.bon__t b{font-family:var(--f-enseigne);font-weight:400;font-size:22px}
+.bon__t span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--texte-2)}
+.ligne{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;padding:20px 0;border-bottom:1px dashed #A99A86;align-items:baseline}
+.ligne:last-of-type{border-bottom:0}
+.ligne__q{font-family:var(--f-main);font-size:clamp(34px,3.2vw,44px);color:var(--emaille);line-height:.9;min-width:4.2ch}
+.ligne h3{font-family:var(--f-texte);font-weight:700;font-size:19px;display:flex;align-items:baseline;gap:8px}
+.ligne h3::after{content:"";flex:1;border-bottom:2px dotted #A99A86;transform:translateY(-4px)}
+.ligne p{grid-column:2;color:var(--texte-2)}
+.tampon{position:absolute;right:clamp(10px,3vw,28px);bottom:22px;transform:rotate(-12deg);border:3px solid var(--emaille);color:var(--emaille);border-radius:8px;padding:6px 12px;font-family:var(--f-enseigne);font-size:13px;letter-spacing:.12em;text-transform:uppercase;opacity:.75;text-align:center;line-height:1.25}
+.js .tampon{opacity:0;transform:rotate(-12deg) scale(2)}
+.js .tampon.rv.vu{opacity:.75;transform:rotate(-12deg) scale(1);transition:transform .45s cubic-bezier(.5,1.8,.5,1) .4s,opacity .2s .4s}
+@media (max-width:599px){.tampon{position:relative;right:auto;bottom:auto;display:inline-block;margin:18px 0 0 auto;float:right}}
+.prep__cote h2{color:var(--seigle)}
+.prep__cote .chapo{margin-top:16px}
+.prep__cote .btn{margin-top:28px}
+
+/* ---------- horaires & accès ---------- */
+.ha{display:grid;gap:24px}
+@media (min-width:960px){.ha{grid-template-columns:1fr 1.15fr;gap:32px}}
+.pan{background:var(--farine);border-radius:4px;padding:clamp(22px,3vw,36px);box-shadow:0 1px 0 var(--lin-2),0 18px 36px -24px rgba(31,21,14,.4)}
+.pan h3{font-size:26px;margin-bottom:14px}
+.pan .etat{font-weight:700;margin-bottom:16px;display:flex;align-items:center}
+.hor div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid #DAD3C4}
+.hor dt{font-weight:700}
+.hor dd{color:var(--texte-2);text-align:right;font-variant-numeric:tabular-nums}
+.hor .ferme dd{font-style:italic}
+.hor .auj{background:var(--emaille);color:var(--farine);margin:0 -12px;padding-left:12px;padding-right:12px;border-radius:4px;border-color:transparent}
+.hor .auj dd{color:var(--emaille-clair)}
+.plan{position:relative;padding:0;overflow:hidden;display:flex;flex-direction:column}
+.plan svg{width:100%;height:auto;background:var(--lin-clair)}
+.plan__b{padding:clamp(20px,3vw,30px);display:grid;gap:14px}
+.adr{font-style:normal;font-size:19px;line-height:1.45}
+.adr b{font-family:var(--f-enseigne);font-weight:400;font-size:22px;display:block}
+.plan__a{display:flex;flex-wrap:wrap;gap:12px}
+.plan__a .btn--ligne{--enc:var(--seigle);border-color:var(--seigle)}
+.plan__n{font-size:15px;color:var(--texte-2)}
+.epingle{transform-origin:50% 100%;animation:rebond 2.6s ease-in-out infinite}
+@keyframes rebond{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+/* ---------- contact ---------- */
+.ctc-sec{color:var(--clair);background:radial-gradient(50% 60% at 90% 10%,rgba(214,120,40,.22),transparent 70%),var(--seigle)}
+.ctc{display:grid;gap:40px}
+@media (min-width:960px){.ctc{grid-template-columns:.85fr 1.15fr;gap:72px}}
+.ctc h2{color:var(--farine)}
+.ctc__tel{display:inline-block;margin-top:22px;font-family:var(--f-enseigne);font-size:clamp(32px,4vw,48px);color:var(--or);text-decoration:none;text-shadow:2px 2px 0 var(--croute-sombre);font-variant-numeric:tabular-nums}
+.ctc__l{margin-top:22px;display:flex;gap:14px;color:var(--clair-2)}
+.ctc__l svg{flex:none;width:24px;height:24px;color:var(--or);margin-top:2px}
+.ctc__l b{display:block;color:var(--farine)}
+.form{position:relative;background:var(--farine);color:var(--texte);border-radius:4px;padding:clamp(22px,3.4vw,40px);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+.form h3{font-size:clamp(26px,2.6vw,32px);color:var(--seigle)}
+.form__s{color:var(--texte-2);font-size:15.5px;margin:8px 0 22px}
+.ch{display:grid;gap:16px}
+@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px;margin-top:16px}
+.ch .f{margin-top:0}
+.f label{font-weight:700;font-size:15px}
+.f label small{font-weight:400;color:var(--texte-2)}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;min-height:50px;padding:12px 14px;border:1.5px solid #B9AE9C;border-radius:6px;background:#FFFDF8;color:var(--texte);width:100%;transition:border-color .2s,box-shadow .2s}
+.f textarea{min-height:120px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--emaille);box-shadow:0 0 0 4px rgba(30,61,99,.15);outline:none}
+.form .btn{width:100%;margin-top:24px}
+.fret{margin-top:16px;font-weight:700;color:var(--emaille);min-height:1em}
+.fret.err{color:#A2321F}
+
+/* ---------- pied + barre mobile ---------- */
+.pied{background:#160E09;color:var(--clair-2);font-size:14.5px;padding:44px 0 calc(110px + env(safe-area-inset-bottom))}
+.pied__in{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:center}
+.pied .mq__n{font-size:22px}
+@media (min-width:960px){.pied{padding-bottom:44px}}
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1.3fr;gap:10px;padding:10px var(--goutd) calc(10px + env(safe-area-inset-bottom)) var(--gout);background:rgba(22,14,9,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid rgba(233,182,92,.2);transform:translateY(110%);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.bmob.on,html:not(.js) .bmob{transform:none}
+.bmob .btn{min-height:50px;padding:0 12px}
+@media (min-width:960px){.bmob{display:none}}
+
+/* révélations */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.js .rv.vu{opacity:1;transform:none}
+.js .etiq--note.rv.vu{transform:rotate(1.2deg)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv,.js .entre,.js .h1 .a,.js .h1 .b,.js .h1 .c,.js .ouv__illu .pain,.js .ouv__illu .ble,.js .tampon{opacity:1!important;transform:none!important;clip-path:none!important}
+  .js .tampon{transform:rotate(-12deg)!important;opacity:.75!important}
+  .ruban__piste{flex-wrap:wrap;width:auto}
+}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<!-- symboles réutilisés -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="trait" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".03" numOctaves="2" seed="4" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="4"/>
+    </filter>
+    <filter id="farineux">
+      <feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="9" result="b"/>
+      <feColorMatrix in="b" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 .96  0 0 0 -2.2 1.35" result="m"/>
+      <feComposite in="m" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <symbol id="epi" viewBox="0 0 24 24"><path d="M12 22V9M12 9c-2-1-3-3-3-5 2 1 3 3 3 5zm0 0c2-1 3-3 3-5-2 1-3 3-3 5zM12 14c-2-1-3.5-3-3.5-5 2 .8 3.5 3 3.5 5zm0 0c2-1 3.5-3 3.5-5-2 .8-3.5 3-3.5 5zM12 19c-2-1-3.5-3-3.5-5 2 .8 3.5 3 3.5 5zm0 0c2-1 3.5-3 3.5-5-2 .8-3.5 3-3.5 5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
+    <symbol id="logo" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="18.5" fill="none" stroke="#E9B65C" stroke-width="1.5"/>
+      <path d="M8 25c0-6.5 5.4-11 12-11s12 4.5 12 11c0 2.2-5 3.5-12 3.5S8 27.2 8 25z" fill="#C27A2C" stroke="#E9B65C" stroke-width="1.5"/>
+      <path d="M13 21.5c1.5-1.6 3-2.2 4.5-2.3M18.5 23c1.6-1.8 3.3-2.6 5-2.6M24 24.4c1.2-1.2 2.4-1.8 3.6-1.9" stroke="#F6D9A0" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+      <path d="M20 13.5V7m0 2.5c-1.3-.6-2-1.8-2-3 1.3.6 2 1.8 2 3zm0 0c1.3-.6 2-1.8 2-3-1.3.6-2 1.8-2 3z" stroke="#E9B65C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="Le Fournil de la Craffe, accueil">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><span class="mq__n">Le Fournil de la Craffe</span><span class="mq__v">Boulangerie · Nancy</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#boutique">La boutique</a>
+      <a href="#journee">Le fournil</a>
+      <a href="#commande">Préparer une commande</a>
+      <a href="#horaires">Horaires et accès</a>
+    </nav>
+    <a class="hdr__tel" href="#contact">06 XX XX XX XX</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu-mob" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="menu-mob" id="menu-mob" aria-label="Navigation mobile">
+    <a href="#boutique">La boutique</a>
+    <a href="#journee">La journée du fournil</a>
+    <a href="#commande">Préparer une commande</a>
+    <a href="#horaires">Horaires et accès</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="principal">
+
+<!-- ================= OUVERTURE ================= -->
+<section class="ouv grain" aria-labelledby="titre">
+  <canvas id="farine" aria-hidden="true"></canvas>
+  <div class="env ouv__in">
+    <div class="ouv__txt">
+      <span class="plaque entre" style="--d:.05s"><i></i>Boulangerie · Pâtisserie<i></i></span>
+      <h1 class="h1" id="titre">
+        <span class="a">Le Fournil</span>
+        <span class="b">de la</span>
+        <span class="c">Craffe</span>
+      </h1>
+      <p class="filet entre" style="--d:1.5s">Nancy · Ville Vieille</p>
+      <p class="ouv__t entre" style="--d:1.65s">Vous passez, vous goûtez, vous demandez conseil à ceux qui fabriquent et choisissent.</p>
+      <div class="ouv__a entre" style="--d:1.8s">
+        <a class="btn" href="#contact">Préparer une commande</a>
+        <a class="btn btn--ligne" href="#contact">Appeler le 06 XX XX XX XX</a>
+      </div>
+      <p class="etat-ligne entre" style="--d:1.95s"><span class="etat" id="etat" data-h='[[420,750],[],[390,1170],[390,1170],[390,1170],[390,1170],[390,1170]]'>Mardi au samedi, 6 h 30 – 19 h 30</span></p>
+    </div>
+
+    <div class="ouv__illu" aria-hidden="true">
+      <svg viewBox="0 0 560 500" role="presentation">
+        <defs>
+          <radialGradient id="croute" cx="46%" cy="30%" r="70%">
+            <stop offset="0" stop-color="#EAB062"/>
+            <stop offset=".45" stop-color="#C27A2C"/>
+            <stop offset=".8" stop-color="#8A4618"/>
+            <stop offset="1" stop-color="#5A2C0F"/>
+          </radialGradient>
+          <radialGradient id="farine-dessus" cx="45%" cy="18%" r="50%">
+            <stop offset="0" stop-color="#F5F2EA" stop-opacity=".95"/>
+            <stop offset=".6" stop-color="#F5F2EA" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#F5F2EA" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="lin-tissu" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#E2DCCD"/><stop offset="1" stop-color="#BDB39E"/>
+          </linearGradient>
+          <radialGradient id="ombre" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset="1" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="clip-pain"><path d="M92 352c-6-118 80-190 188-190s196 72 188 190c-3 34-80 52-188 52S95 386 92 352z"/></clipPath>
+        </defs>
+
+        <!-- épis derrière -->
+        <g class="ble" filter="url(#trait)" stroke="#E9B65C" fill="none" stroke-width="2.4" stroke-linecap="round">
+          <path d="M150 340 C 140 250 120 170 84 92"/>
+          <path d="M178 330 C 182 240 186 160 210 70"/>
+          <g fill="#D9A04A" stroke="#7A4517" stroke-width="1.4">
+            <ellipse cx="88" cy="102" rx="6" ry="13" transform="rotate(-28 88 102)"/>
+            <ellipse cx="80" cy="120" rx="6" ry="13" transform="rotate(-62 80 120)"/>
+            <ellipse cx="103" cy="122" rx="6" ry="13" transform="rotate(8 103 122)"/>
+            <ellipse cx="93" cy="141" rx="6" ry="13" transform="rotate(-58 93 141)"/>
+            <ellipse cx="114" cy="142" rx="6" ry="13" transform="rotate(10 114 142)"/>
+            <ellipse cx="104" cy="161" rx="6" ry="13" transform="rotate(-55 104 161)"/>
+            <ellipse cx="123" cy="162" rx="6" ry="13" transform="rotate(12 123 162)"/>
+            <ellipse cx="208" cy="80" rx="6" ry="13" transform="rotate(14 208 80)"/>
+            <ellipse cx="196" cy="96" rx="6" ry="13" transform="rotate(-30 196 96)"/>
+            <ellipse cx="216" cy="100" rx="6" ry="13" transform="rotate(36 216 100)"/>
+            <ellipse cx="193" cy="118" rx="6" ry="13" transform="rotate(-30 193 118)"/>
+            <ellipse cx="212" cy="122" rx="6" ry="13" transform="rotate(38 212 122)"/>
+            <ellipse cx="190" cy="140" rx="6" ry="13" transform="rotate(-28 190 140)"/>
+            <ellipse cx="208" cy="144" rx="6" ry="13" transform="rotate(40 208 144)"/>
+          </g>
+          <path d="M84 92 L70 60M88 100 L96 64M210 70 L204 34M210 70 L226 38" stroke-width="1.2" opacity=".8"/>
+        </g>
+
+        <!-- torchon de lin à rayures bleues -->
+        <g filter="url(#trait)">
+          <path d="M28 380 C 120 350 430 344 538 372 L 552 474 C 420 492 150 496 14 470 Z" fill="url(#lin-tissu)" stroke="#2A1D14" stroke-width="2"/>
+          <path d="M24 400 C 140 374 420 370 541 392" stroke="#1E3D63" stroke-width="7" fill="none"/>
+          <path d="M23 414 C 140 389 420 385 543 406" stroke="#1E3D63" stroke-width="3" fill="none"/>
+          <path d="M18 452 C 150 470 420 470 549 452" stroke="#1E3D63" stroke-width="3" fill="none"/>
+          <path d="M40 470 l-8 16 M70 474 l-6 16 M100 477 l-5 15 M480 478 l4 15 M510 475 l6 15" stroke="#9D927E" stroke-width="2"/>
+        </g>
+        <ellipse cx="280" cy="398" rx="210" ry="22" fill="url(#ombre)"/>
+
+        <!-- la boule -->
+        <g class="pain">
+          <g filter="url(#trait)">
+            <path d="M92 352c-6-118 80-190 188-190s196 72 188 190c-3 34-80 52-188 52S95 386 92 352z" fill="url(#croute)" stroke="#2A160A" stroke-width="3"/>
+          </g>
+          <g clip-path="url(#clip-pain)">
+            <ellipse cx="270" cy="210" rx="170" ry="80" fill="url(#farine-dessus)" filter="url(#farineux)"/>
+            <path d="M92 360 C 180 384 380 384 470 356 L 470 420 L 92 420Z" fill="#3E1E0A" opacity=".35"/>
+          </g>
+          <!-- grignes en carré -->
+          <g filter="url(#trait)" stroke-linecap="round" fill="none">
+            <path d="M172 232 C 230 214 330 214 392 236" stroke="#F1CB86" stroke-width="12"/>
+            <path d="M172 232 C 230 214 330 214 392 236" stroke="#5C2F12" stroke-width="2.4" transform="translate(0 -6)"/>
+            <path d="M164 306 C 230 288 330 288 400 310" stroke="#F1CB86" stroke-width="12"/>
+            <path d="M164 306 C 230 288 330 288 400 310" stroke="#5C2F12" stroke-width="2.4" transform="translate(0 -6)"/>
+            <path d="M214 196 C 200 240 198 300 208 356" stroke="#EFC57C" stroke-width="11"/>
+            <path d="M214 196 C 200 240 198 300 208 356" stroke="#5C2F12" stroke-width="2.4" transform="translate(-5 0)"/>
+            <path d="M348 198 C 362 240 364 300 354 356" stroke="#EFC57C" stroke-width="11"/>
+            <path d="M348 198 C 362 240 364 300 354 356" stroke="#5C2F12" stroke-width="2.4" transform="translate(5 0)"/>
+          </g>
+          <!-- reflets -->
+          <path d="M140 270 C 150 220 190 190 236 180" stroke="#FFE2AA" stroke-width="4" stroke-linecap="round" fill="none" opacity=".55"/>
+        </g>
+
+        <!-- vapeur -->
+        <g class="vapeur">
+          <path d="M240 150 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+          <path d="M290 146 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+          <path d="M338 154 c -14 -20 14 -36 0 -56 s 14 -36 0 -56"/>
+        </g>
+
+        <!-- étiquette suspendue -->
+        <g transform="translate(430 120) rotate(8)" filter="url(#trait)">
+          <path d="M0 0 C 10 -40 30 -60 40 -80" stroke="#BDB39E" stroke-width="1.5" fill="none"/>
+          <path d="M-34 0 h68 l14 22 -14 22 h-68 z" fill="#F5F2EA" stroke="#2A1D14" stroke-width="2"/>
+          <circle cx="36" cy="22" r="4" fill="none" stroke="#2A1D14" stroke-width="1.5"/>
+          <text x="-2" y="29" text-anchor="middle" font-family="Yesteryear, cursive" font-size="21" fill="#1E3D63">levain</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="bord-four" aria-hidden="true">
+    <svg viewBox="0 0 1440 44" preserveAspectRatio="none"><path d="M0 44 V26 C 120 10 240 34 360 22 S 600 6 720 20 S 960 36 1080 22 S 1320 8 1440 24 V44Z" fill="currentColor"/></svg>
+  </div>
+</section>
+
+<!-- ================= BANDEAU ================= -->
+<div class="ruban" aria-label="Les gestes du fournil">
+  <div class="ruban__piste">
+    <div class="ruban__g"><span>Pétrir</span><svg aria-hidden="true"><use href="#epi"/></svg><span>Pointer</span><svg aria-hidden="true"><use href="#epi"/></svg><span>Façonner</span><svg aria-hidden="true"><use href="#epi"/></svg><em>grigner</em><svg aria-hidden="true"><use href="#epi"/></svg><span>Enfourner</span><svg aria-hidden="true"><use href="#epi"/></svg><span>Défourner</span><svg aria-hidden="true"><use href="#epi"/></svg><em>recommencer</em><svg aria-hidden="true"><use href="#epi"/></svg></div>
+    <div class="ruban__g" aria-hidden="true"><span>Pétrir</span><svg><use href="#epi"/></svg><span>Pointer</span><svg><use href="#epi"/></svg><span>Façonner</span><svg><use href="#epi"/></svg><em>grigner</em><svg><use href="#epi"/></svg><span>Enfourner</span><svg><use href="#epi"/></svg><span>Défourner</span><svg><use href="#epi"/></svg><em>recommencer</em><svg><use href="#epi"/></svg></div>
+  </div>
+</div>
+
+<!-- ================= BOUTIQUE ================= -->
+<section class="sec clair-zone" id="boutique" aria-labelledby="t-bout">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">La boutique</span>
+      <h2 id="t-bout">Ce qui sort du four</h2>
+      <p class="chapo">Les grandes familles de la maison. Ce qui est sur les grilles change avec le jour et la saison : le plus simple est de passer, ou de demander.</p>
+    </div>
+    <ul class="vitrine" id="vitrine">
+      <li class="rv">
+        <article class="etiq etiq--pain">
+          <div class="etiq__illu" aria-hidden="true">
+            <svg viewBox="0 0 300 150">
+              <g filter="url(#trait)">
+                <path d="M24 98 C 20 70 60 56 150 50 S 284 56 280 84 C 278 104 240 112 150 114 S 28 120 24 98Z" fill="url(#croute)" stroke="#120A05" stroke-width="2.5"/>
+                <g stroke-linecap="round" fill="none">
+                  <path d="M58 86 C 74 70 92 66 108 66" stroke="#F1CB86" stroke-width="7"/>
+                  <path d="M112 82 C 128 66 146 62 162 62" stroke="#F1CB86" stroke-width="7"/>
+                  <path d="M166 80 C 182 64 200 60 216 60" stroke="#F1CB86" stroke-width="7"/>
+                  <path d="M220 80 C 234 68 248 66 260 66" stroke="#F1CB86" stroke-width="7"/>
+                </g>
+              </g>
+              <g filter="url(#trait)" opacity=".9">
+                <path d="M96 140 C 92 124 116 116 150 116 S 210 122 206 138Z" fill="#8A4618" stroke="#120A05" stroke-width="2"/>
+              </g>
+            </svg>
+          </div>
+          <h3>Pains</h3>
+          <p>Les pains du quotidien et les pains spéciaux.</p>
+          <ul class="motcles" aria-label="Exemples"><li>baguette</li><li>boule</li><li>bâtard</li><li>pain de seigle</li></ul>
+        </article>
+      </li>
+      <li class="rv" style="--d:.12s">
+        <article class="etiq etiq--vien">
+          <div class="etiq__illu" aria-hidden="true">
+            <svg viewBox="0 0 300 150">
+              <g filter="url(#trait)" stroke="#120A05" stroke-width="2.5" stroke-linejoin="round">
+                <path d="M40 112 C 30 96 44 78 66 80 L 92 92 Z" fill="#C27A2C"/>
+                <path d="M260 112 C 270 96 256 78 234 80 L 208 92 Z" fill="#C27A2C"/>
+                <path d="M66 80 C 80 60 104 52 120 54 L 132 104 L 92 112 Z" fill="#D58E3C"/>
+                <path d="M234 80 C 220 60 196 52 180 54 L 168 104 L 208 112 Z" fill="#D58E3C"/>
+                <path d="M120 54 C 136 36 164 36 180 54 L 168 110 L 132 110 Z" fill="#E7A957"/>
+                <path d="M92 112 C 120 124 180 124 208 112" fill="none"/>
+              </g>
+              <path d="M130 50 C 146 42 160 44 170 52" stroke="#FFE2AA" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
+              <path d="M76 84 C 86 72 100 66 112 64" stroke="#FFE2AA" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".6"/>
+            </svg>
+          </div>
+          <h3>Viennoiseries et pâtisseries</h3>
+          <p>Croissants, tartes, entremets, selon la saison.</p>
+          <ul class="motcles" aria-label="Exemples"><li>croissant</li><li>brioche</li><li>tarte de saison</li></ul>
+        </article>
+      </li>
+      <li class="rv" style="--d:.24s">
+        <article class="etiq etiq--note">
+          <h3>Le reste, de vive voix</h3>
+          <p>Ce qui n'entre dans aucune case se règle plus vite par un message qu'avec une liste qui promet tout.</p>
+          <a class="lien-fleche" href="#contact">Poser la question <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        </article>
+      </li>
+    </ul>
+    <div class="indic-swipe" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+    <p class="vitrine__pied rv"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#epi"/></svg>Aucun prix n'est affiché ici : ils sont établis par la boutique, et donnés sur place ou sur demande.</p>
+  </div>
+</section>
+
+<!-- ================= LA JOURNÉE DU FOURNIL ================= -->
+<section class="sec journee grain" id="journee" aria-labelledby="t-jr">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Pendant que la ville dort</span>
+      <h2 id="t-jr">La journée du fournil</h2>
+      <p class="chapo">Le pain se prépare la veille et se cuit avant l'aube. Voici le rythme d'une journée, et ce qui se passe à l'heure où vous lisez cette page.</p>
+    </div>
+    <div class="jr">
+      <div class="cadran-bloc rv">
+        <div class="cadran">
+          <svg viewBox="0 0 320 320" role="img" aria-labelledby="cadran-t">
+            <title id="cadran-t">Cadran des 24 heures du fournil, avec l'heure actuelle</title>
+            <circle cx="160" cy="160" r="150" fill="#2B1E15" stroke="rgba(233,182,92,.35)" stroke-width="1.5"/>
+            <circle cx="160" cy="160" r="120" fill="none" stroke="#C27A2C" stroke-width="14" opacity=".9"/>
+            <circle cx="160" cy="160" r="120" fill="none" stroke="#14325A" stroke-width="14" stroke-dasharray="298.5 455.5" transform="rotate(225 160 160)"/>
+            <g id="graduations" stroke="rgba(237,228,211,.45)" stroke-width="1.5"></g>
+            <text class="cadran__n" x="160" y="33" text-anchor="middle">0 h</text>
+            <text class="cadran__n" x="291" y="164" text-anchor="middle">6 h</text>
+            <text class="cadran__n" x="160" y="296" text-anchor="middle">12 h</text>
+            <text class="cadran__n" x="29" y="164" text-anchor="middle">18 h</text>
+            <g id="points">
+              <circle class="point-etape" data-i="0" cx="244.85" cy="75.15" r="6"/>
+              <circle class="point-etape" data-i="1" cx="263.92" cy="100" r="6"/>
+              <circle class="point-etape" data-i="2" cx="280" cy="160" r="6"/>
+              <circle class="point-etape" data-i="3" cx="278.97" cy="175.66" r="6"/>
+              <circle class="point-etape" data-i="4" cx="191.06" cy="275.91" r="6"/>
+              <circle class="point-etape" data-i="5" cx="56.08" cy="220" r="6"/>
+              <circle class="point-etape" data-i="6" cx="49.13" cy="114.08" r="6"/>
+              <circle class="point-etape" data-i="7" cx="75.15" cy="75.15" r="6"/>
+            </g>
+            <g class="aiguille" id="aiguille">
+              <path d="M160 160 L160 52" stroke="#E9B65C" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="160" cy="48" r="7" fill="#E9B65C"/>
+            </g>
+            <circle cx="160" cy="160" r="62" fill="#1F150E" stroke="rgba(233,182,92,.4)"/>
+            <text class="cadran__l" x="160" y="146" text-anchor="middle">Il est</text>
+            <text class="cadran__h" id="cadran-h" x="160" y="182" text-anchor="middle">6 h 00</text>
+          </svg>
+        </div>
+        <p class="maint" id="maint" aria-live="polite">Au fournil, chaque heure a son geste.</p>
+      </div>
+
+      <div>
+        <div class="frise-wrap"><span class="frise__prog" id="frise-prog" aria-hidden="true"></span>
+        <ol class="frise" id="frise">
+          <li data-m="180" class="rv"><span class="heure">3 h</span><span class="badge">En ce moment</span><h3>Le pétrissage</h3><p>Farine, eau, sel et levain. La pâte prend corps lentement, à la main ou au pétrin.</p></li>
+          <li data-m="240" class="rv"><span class="heure">4 h</span><span class="badge">En ce moment</span><h3>Pointage et façonnage</h3><p>La pâte repose, puis on la divise et on lui donne sa forme : boules, bâtards, baguettes.</p></li>
+          <li data-m="360" class="rv"><span class="heure">6 h</span><span class="badge">En ce moment</span><h3>La première fournée</h3><p>Un coup de lame pour la grigne, et les pains entrent dans le four.</p></li>
+          <li data-m="390" class="rv"><span class="heure">6 h 30</span><span class="badge">En ce moment</span><h3>La boutique ouvre</h3><p>Les pains sont encore tièdes, les croissants viennent de sortir.</p></li>
+          <li data-m="660" class="rv"><span class="heure">11 h</span><span class="badge">En ce moment</span><h3>La fournée du midi</h3><p>Des baguettes pour le déjeuner, qui croustillent jusqu'à la table.</p></li>
+          <li data-m="960" class="rv"><span class="heure">16 h</span><span class="badge">En ce moment</span><h3>La fournée du goûter</h3><p>Pains au chocolat, brioches, et ce que la saison permet.</p></li>
+          <li data-m="1170" class="rv"><span class="heure">19 h 30</span><span class="badge">En ce moment</span><h3>On ferme, on prépare demain</h3><p>Le levain est rafraîchi. Les commandes du lendemain sont relues.</p></li>
+          <li data-m="1260" class="rv"><span class="heure">21 h</span><span class="badge">En ce moment</span><h3>La nuit, le levain travaille</h3><p>Le fournil est calme. La fermentation, elle, ne s'arrête pas.</p></li>
+        </ol></div>
+        <p class="frise__note">Un rythme indicatif : il change selon les jours et les saisons.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRÉPARER UNE COMMANDE ================= -->
+<section class="sec clair-zone prep" id="commande" aria-labelledby="t-prep">
+  <div class="env prep__g">
+    <div class="prep__cote rv">
+      <span class="surt">Pour une fête, un repas, un bureau</span>
+      <h2 id="t-prep">Préparer une commande</h2>
+      <p class="chapo">Trois choses à avoir en tête avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile, et la commande prête à l'heure.</p>
+      <a class="btn btn--bleu" href="#contact">Préparer une commande</a>
+    </div>
+    <div class="bon rv" style="--d:.1s">
+      <div class="bon__t"><b>Bon de commande</b><span>Le Fournil de la Craffe</span></div>
+      <div class="ligne"><span class="ligne__q" aria-hidden="true">Quoi ?</span><h3>Ce qu'il vous faut</h3><p>Les produits, même approximativement : on vous conseillera.</p></div>
+      <div class="ligne"><span class="ligne__q" aria-hidden="true">Quand ?</span><h3>Pour quand</h3><p>Le jour et l'heure de retrait souhaités.</p></div>
+      <div class="ligne"><span class="ligne__q" aria-hidden="true">Combien ?</span><h3>Pour combien</h3><p>Le nombre de personnes, pour une commande ajustée.</p></div>
+      <span class="tampon rv" aria-hidden="true">À retirer<br>au fournil</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORAIRES & ACCÈS ================= -->
+<section class="sec clair-zone" id="horaires" aria-labelledby="t-hor" style="padding-top:0">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Passer au fournil</span>
+      <h2 id="t-hor">Horaires et accès</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez la page.</p>
+    </div>
+    <div class="ha">
+      <div class="pan rv">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2" data-h='[[420,750],[],[390,1170],[390,1170],[390,1170],[390,1170],[390,1170]]'>Du mardi au samedi, de 6 h 30 à 19 h 30.</p>
+        <dl class="hor" id="hor">
+          <div class="ferme"><dt>Lundi</dt><dd>Fermé</dd></div>
+          <div><dt>Mardi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div><dt>Mercredi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div><dt>Jeudi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div><dt>Vendredi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div><dt>Samedi</dt><dd>6 h 30 – 19 h 30</dd></div>
+          <div><dt>Dimanche</dt><dd>7 h – 12 h 30</dd></div>
+        </dl>
+      </div>
+      <div class="pan plan rv" style="--d:.1s">
+        <svg viewBox="0 0 600 300" role="img" aria-labelledby="plan-t">
+          <title id="plan-t">Plan stylisé du quartier de la Ville Vieille, avec l'emplacement de la boutique</title>
+          <rect width="600" height="300" fill="#E6E1D5"/>
+          <path d="M0 0h600v300H0z" fill="url(#hach)" opacity=".5"/>
+          <defs><pattern id="hach" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0v10" stroke="#D3CCBC" stroke-width="1"/></pattern></defs>
+          <!-- îlots -->
+          <g fill="#D8D2C4" stroke="#C3BAA6" stroke-width="1.5">
+            <path d="M30 30h150l-20 80H40z"/><path d="M200 26h120l-8 64H190z"/><path d="M350 24h110v70H344z"/>
+            <path d="M40 150h110l-14 110H30z"/><path d="M190 140h90l10 120H176z"/><path d="M330 130h120l12 130H340z"/>
+            <path d="M490 24h90v110h-96z"/><path d="M500 170h80v110h-86z"/>
+          </g>
+          <!-- parc -->
+          <path d="M490 24h90v110h-96z" fill="#B8C3A2" stroke="#9AA683"/>
+          <text x="532" y="84" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-size="12" fill="#3F4A2E">parc</text>
+          <!-- rues -->
+          <g fill="none" stroke="#FBF9F3" stroke-linecap="round">
+            <path d="M0 125 C 160 120 320 115 600 152" stroke-width="16"/>
+            <path d="M175 0 C 170 100 165 200 160 300" stroke-width="12"/>
+            <path d="M325 0 L 315 300" stroke-width="12"/>
+            <path d="M470 0 C 476 100 480 200 488 300" stroke-width="12"/>
+          </g>
+          <path d="M0 125 C 160 120 320 115 600 152" fill="none" stroke="#1E3D63" stroke-width="2" stroke-dasharray="2 8" stroke-linecap="round"/>
+          <text x="80" y="117" font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700" fill="#1E3D63">Grande Rue</text>
+          <!-- porte de la Craffe -->
+          <g transform="translate(232 196)" filter="url(#trait)">
+            <rect x="-30" y="-18" width="16" height="40" fill="#8E8273" stroke="#2A1D14" stroke-width="2"/>
+            <rect x="14" y="-18" width="16" height="40" fill="#8E8273" stroke="#2A1D14" stroke-width="2"/>
+            <path d="M-32 -18 l10 -18 10 18zM12 -18 l10 -18 10 18z" fill="#4A5868" stroke="#2A1D14" stroke-width="2"/>
+            <path d="M-14 22 v-22 a14 14 0 0 1 28 0 v22" fill="#A99C8A" stroke="#2A1D14" stroke-width="2"/>
+          </g>
+          <text x="232" y="244" text-anchor="middle" font-family="Yesteryear, cursive" font-size="20" fill="#2A1D14">Porte de la Craffe</text>
+          <!-- épingle -->
+          <g class="epingle">
+            <g transform="translate(392 112)">
+              <path d="M0 0 C -26 -26 -26 -60 0 -62 C 26 -60 26 -26 0 0Z" fill="#1E3D63" stroke="#0E2038" stroke-width="2"/>
+              <path d="M-12 -38 c0 -8 6 -12 12 -12 s12 4 12 12c0 2-5 3-12 3s-12-1-12-3z" fill="#E9B65C"/>
+            </g>
+          </g>
+          <ellipse cx="392" cy="114" rx="12" ry="4" fill="rgba(0,0,0,.2)"/>
+          <rect x="412" y="58" width="132" height="30" rx="4" fill="#1F150E"/>
+          <text x="478" y="78" text-anchor="middle" font-family="Alfa Slab One, serif" font-size="13" fill="#E9B65C">Le Fournil</text>
+        </svg>
+        <div class="plan__b">
+          <address class="adr"><b>Le Fournil de la Craffe</b>XX rue de l'Exemple<br>54000 Nancy</address>
+          <div class="plan__a">
+            <a class="btn btn--bleu" href="https://www.google.com/maps/search/?api=1&amp;query=Porte+de+la+Craffe+54000+Nancy">Ouvrir l'itinéraire</a>
+            <a class="btn btn--ligne" href="#contact">Prévenir avant de passer</a>
+          </div>
+          <p class="plan__n">Les horaires peuvent changer les jours fériés : un message avant de venir ne coûte rien.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec ctc-sec grain" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="rv">
+      <span class="surt">Une commande, une question</span>
+      <h2 id="t-ctc">Écrire au Fournil de la Craffe</h2>
+      <a class="ctc__tel" href="#contact">06 XX XX XX XX</a>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><b>XX rue de l'Exemple</b>54000 Nancy</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span><b>Du mardi au samedi</b>de 6 h 30 à 19 h 30, le dimanche de 7 h à 12 h 30</span>
+      </p>
+    </div>
+    <form class="form rv" id="dem" novalidate style="--d:.1s">
+      <h3>Préparer une commande</h3>
+      <p class="form__s">Votre message arrive directement au Fournil de la Craffe, qui vous répond.</p>
+      <div class="ch">
+        <div class="f"><label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+        <div class="f"><label for="tel">Votre téléphone ou courriel</label>
+          <input id="tel" name="tel" type="text" autocomplete="email" required placeholder="camille@exemple.fr"></div>
+      </div>
+      <div class="f"><label for="objet">Votre demande</label>
+        <select id="objet" name="objet">
+          <option value="">Choisir…</option>
+          <option>Une commande</option>
+          <option>Une question</option>
+          <option>Autre</option>
+        </select></div>
+      <div class="ch" style="margin-top:16px">
+        <div class="f"><label for="quand">Pour quand <small>(retrait)</small></label>
+          <input id="quand" name="quand" type="date"></div>
+        <div class="f"><label for="combien">Pour combien <small>(personnes)</small></label>
+          <input id="combien" name="combien" type="number" min="1" inputmode="numeric" placeholder="8"></div>
+      </div>
+      <div class="f"><label for="det">Ce qu'il vous faut</label>
+        <textarea id="det" name="det" rows="4" placeholder="Deux grandes boules, une tarte de saison… même approximativement."></textarea></div>
+      <button class="btn" type="submit">Envoyer la demande</button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<div class="bmob" id="bmob">
+  <a class="btn btn--ligne" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  <a class="btn" href="#contact">Préparer une commande</a>
+</div>
+
+<footer class="pied">
+  <div class="env pied__in">
+    <span class="mq__n">Le Fournil de la Craffe</span>
+    <span>XX rue de l'Exemple, 54000 Nancy · 06 XX XX XX XX</span>
+    <span>© 2026 Le Fournil de la Craffe</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduit = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var root = document.documentElement;
+  requestAnimationFrame(function(){ root.classList.add("charge"); });
+
+  /* ---- ouvert maintenant ---- */
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt; el.insertAdjacentHTML("afterbegin",'<span class="pastille" aria-hidden="true"></span>'); el.className="etat "+cls;}
+  function poser(el){
+    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
+    if(!Array.isArray(h)||h.length!==7) return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"Ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
+    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
+        ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var lignes=document.querySelectorAll("#hor > div");
+  if(lignes.length===7) lignes[(new Date().getDay()+6)%7].classList.add("auj");
+
+  /* ---- menu mobile ---- */
+  var bg=document.querySelector(".burger"), mm=document.getElementById("menu-mob");
+  function fermer(){ bg.setAttribute("aria-expanded","false"); bg.setAttribute("aria-label","Ouvrir le menu"); mm.classList.remove("ouvert"); }
+  bg.addEventListener("click",function(){
+    var o=bg.getAttribute("aria-expanded")==="true";
+    if(o){ fermer(); } else { bg.setAttribute("aria-expanded","true"); bg.setAttribute("aria-label","Fermer le menu"); mm.classList.add("ouvert"); }
+  });
+  mm.querySelectorAll("a").forEach(function(a){ a.addEventListener("click",fermer); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") fermer(); });
+
+  /* ---- barre mobile : apparaît après l'ouverture ---- */
+  var bm=document.getElementById("bmob"), ouv=document.querySelector(".ouv");
+
+  /* ---- farine qui tombe ---- */
+  var cv=document.getElementById("farine"), cx=cv.getContext && cv.getContext("2d");
+  var P=[], W=0, H=0, dpr=Math.min(window.devicePixelRatio||1,2), t0=performance.now(), actif=true, raf=null;
+  function taille(){ var r=ouv.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; cx&&cx.setTransform(dpr,0,0,dpr,0,0); }
+  function naitre(x,y,burst){
+    P.push({x:x!=null?x:Math.random()*W, y:y!=null?y:-10-Math.random()*H*(burst?.5:.05),
+      r:Math.random()*Math.random()*2.6+.5, vy:.25+Math.random()*.9, vx:(Math.random()-.5)*.3,
+      a:.25+Math.random()*.65, ph:Math.random()*6.28, f:.004+Math.random()*.01});
+  }
+  function boucle(t){
+    if(!actif){ raf=null; return; }
+    var age=(t-t0)/1000;
+    if(age<1.6){ for(var b=0;b<9;b++) naitre(null,null,true); }
+    else if(P.length<170 && Math.random()<.5) naitre();
+    cx.clearRect(0,0,W,H);
+    for(var i=P.length-1;i>=0;i--){
+      var p=P[i]; p.ph+=p.f*6; p.x+=p.vx+Math.sin(p.ph)*.35; p.y+=p.vy;
+      if(p.y>H+10||p.x<-20||p.x>W+20){ P.splice(i,1); continue; }
+      cx.globalAlpha=p.a*(p.y<0?0:1); cx.fillStyle="#F5F2EA";
+      cx.beginPath(); cx.arc(p.x,p.y,p.r,0,6.283); cx.fill();
+    }
+    raf=requestAnimationFrame(boucle);
+  }
+  if(cx && !reduit){
+    taille(); window.addEventListener("resize",taille);
+    raf=requestAnimationFrame(boucle);
+    if(matchMedia("(pointer:fine)").matches){
+      ouv.addEventListener("pointermove",function(e){ var r=ouv.getBoundingClientRect(); for(var k=0;k<2;k++) naitre(e.clientX-r.left+(Math.random()-.5)*20,e.clientY-r.top); });
+    }
+  }
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(en){
+      var vis=en[0].isIntersecting;
+      bm.classList.toggle("on",!vis || en[0].intersectionRatio<.35);
+      if(cx && !reduit){ actif=vis; if(vis && !raf) raf=requestAnimationFrame(boucle); }
+    },{threshold:[0,.35]}).observe(ouv);
+  } else { bm.classList.add("on"); }
+
+  /* ---- parallaxe légère de l'illustration ---- */
+  var illu=document.querySelector(".ouv__illu svg");
+  if(!reduit && illu){
+    var tick=false;
+    window.addEventListener("scroll",function(){
+      if(tick) return; tick=true;
+      requestAnimationFrame(function(){ var y=Math.min(window.scrollY,800); illu.style.transform="translateY("+(y*.12)+"px)"; tick=false; });
+    },{passive:true});
+  }
+
+  /* ---- vitrine mobile : indicateur ---- */
+  var vit=document.getElementById("vitrine"), pts=document.querySelectorAll(".indic-swipe i");
+  vit.addEventListener("scroll",function(){
+    var w=vit.firstElementChild.getBoundingClientRect().width+16, i=Math.round(vit.scrollLeft/w);
+    pts.forEach(function(p,k){ p.classList.toggle("on",k===i); });
+  },{passive:true});
+
+  /* ---- la journée du fournil : heure actuelle ---- */
+  var g=document.getElementById("graduations"), ns="http://www.w3.org/2000/svg";
+  for(var h=0;h<96;h++){
+    var a=h/96*2*Math.PI, l=document.createElementNS(ns,"line"), r1=h%4===0?136:141;
+    l.setAttribute("x1",160+r1*Math.sin(a)); l.setAttribute("y1",160-r1*Math.cos(a));
+    l.setAttribute("x2",160+146*Math.sin(a)); l.setAttribute("y2",160-146*Math.cos(a));
+    if(h%4!==0) l.setAttribute("opacity",".45");
+    g.appendChild(l);
+  }
+  var items=[].slice.call(document.querySelectorAll("#frise li")), pointsE=document.querySelectorAll(".point-etape");
+  function maj(){
+    var d=new Date(), m=d.getHours()*60+d.getMinutes(), cur=items.length-1;
+    for(var i=0;i<items.length;i++){ if(+items[i].getAttribute("data-m")<=m) cur=i; }
+    items.forEach(function(li,k){ li.classList.toggle("maintenant",k===cur); });
+    pointsE.forEach(function(p,k){ p.classList.toggle("on",k===cur); p.setAttribute("r",k===cur?10:6); });
+    document.getElementById("cadran-h").textContent=d.getHours()+" h "+(d.getMinutes()<10?"0":"")+d.getMinutes();
+    document.getElementById("aiguille").style.transform="rotate("+(m/1440*360)+"deg)";
+    var t=items[cur].querySelector("h3").textContent;
+    document.getElementById("maint").innerHTML="En ce moment au fournil : <b>"+t.charAt(0).toLowerCase()+t.slice(1)+"</b>.";
+  }
+  maj(); setInterval(maj,30000);
+
+  var frise=document.getElementById("frise"), prog=document.getElementById("frise-prog");
+  function progression(){
+    var r=frise.getBoundingClientRect(), c=window.innerHeight*.6;
+    var p=Math.max(0,Math.min(1,(c-r.top)/r.height));
+    prog.style.setProperty("--p",p.toFixed(3));
+    items.forEach(function(li){ var rr=li.getBoundingClientRect(); li.classList.toggle("passe",rr.top<c); });
+  }
+  if(reduit){ prog.style.setProperty("--p",1); }
+  else { window.addEventListener("scroll",function(){ requestAnimationFrame(progression); },{passive:true}); progression(); }
+
+  /* ---- révélations au scroll ---- */
+  var els=document.querySelectorAll(".rv");
+  if(!("IntersectionObserver" in window) || reduit){ els.forEach(function(e){ e.classList.add("vu"); }); }
+  else {
+    var io=new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add("vu"); io.unobserve(x.target); } }); },{rootMargin:"0px 0px -8% 0px"});
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ---- formulaire ---- */
+  var f=document.getElementById("dem");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var r=document.getElementById("ret");
+    if(!f.nom.value.trim()||!f.tel.value.trim()){ r.className="fret err"; r.textContent="Indiquez au moins votre nom et un moyen de vous répondre."; return; }
+    r.className="fret";
+    r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement chez Le Fournil de la Craffe.";
+    f.reset();
+  });
+
+  window.__fournilOK=true;
+})();
+</script>
+</body>
+</html>

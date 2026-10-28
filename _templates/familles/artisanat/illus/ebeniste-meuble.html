@@ -1,0 +1,84 @@
+<svg class="illus" viewBox="90 180 420 420" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Une commode ancienne en noyer posée sur un socle : la moitié gauche telle qu'elle est arrivée, ternie et rayée, la moitié droite cirée et lustrée. À côté, une boîte de cire et un tampon de laine.">
+  <defs>
+    <linearGradient id="eb-plateau" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#9A6A42"/><stop offset="1" stop-color="#5E3B22"/></linearGradient>
+    <linearGradient id="eb-terne" x1="0" x2="1"><stop offset="0" stop-color="#8E8274" stop-opacity=".55"/><stop offset="1" stop-color="#A89A88" stop-opacity=".35"/></linearGradient>
+    <clipPath id="eb-facade"><path d="M186 268h228v186H186z"/></clipPath>
+    <clipPath id="eb-gauche"><rect x="150" y="230" width="150" height="260"/></clipPath>
+  </defs>
+  <ellipse class="pose" cx="300" cy="484" rx="230" ry="22" fill="url(#ombre-g)"/>
+  <rect x="100" y="478" width="400" height="140" fill="url(#socle-g)"/>
+  <rect x="100" y="478" width="400" height="4" fill="#fff" opacity=".5"/>
+
+  <g data-p="1"><g class="pose" style="--d:.15s">
+    <!-- pieds -->
+    <path d="M192 452h20l-4 28h-12z M388 452h20l-4 28h-12z" fill="#3E2617"/>
+    <!-- ceinture chantournée -->
+    <path d="M182 444h236v10c-24 0-34 10-60 10H242c-26 0-36-10-60-10z" fill="url(#bois-g)" filter="url(#grain-f)"/>
+    <!-- caisse -->
+    <rect x="186" y="266" width="228" height="182" fill="url(#bois-g)" filter="url(#grain-f)"/>
+    <rect x="186" y="266" width="228" height="182" fill="url(#lumiere)" opacity=".35"/>
+    <!-- tiroirs -->
+    <g fill="none" stroke="#2B1A10" stroke-width="2">
+      <rect x="196" y="276" width="208" height="50" rx="2"/>
+      <rect x="196" y="334" width="208" height="50" rx="2"/>
+      <rect x="196" y="392" width="208" height="48" rx="2"/>
+    </g>
+    <!-- veines du noyer -->
+    <g fill="none" stroke="#2B1A10" stroke-width="1.1" opacity=".28">
+      <path d="M200 300c30-8 50 8 80 0s50-10 80 2 30 4 40 0"/>
+      <path d="M200 360c26 6 54-10 86-2s46 10 74-2 26-2 40 2"/>
+      <path d="M200 418c34-6 52 6 84 0s54-10 84 0 22 4 32 0"/>
+      <path d="M220 290c20-6 40 4 60 0M320 352c20 6 40-4 60 2M230 408c20 4 40-4 60 0"/>
+    </g>
+    <!-- plateau débordant -->
+    <path d="M172 252h256l6 10v6H166v-6z" fill="url(#eb-plateau)"/>
+    <path d="M166 268h268v4H166z" fill="#2B1A10" opacity=".55"/>
+    <path d="M178 252h244" stroke="#C9996A" stroke-width="2" opacity=".6"/>
+    <!-- poignées et entrées de serrure en laiton -->
+    <g fill="none" stroke="url(#laiton-g)" stroke-width="4" stroke-linecap="round">
+      <path d="M236 296c0 12 24 12 24 0M340 296c0 12 24 12 24 0"/>
+      <path d="M236 354c0 12 24 12 24 0M340 354c0 12 24 12 24 0"/>
+      <path d="M236 411c0 12 24 12 24 0M340 411c0 12 24 12 24 0"/>
+    </g>
+    <g fill="url(#laiton-g)">
+      <circle cx="236" cy="295" r="3.5"/><circle cx="260" cy="295" r="3.5"/><circle cx="340" cy="295" r="3.5"/><circle cx="364" cy="295" r="3.5"/>
+      <circle cx="236" cy="353" r="3.5"/><circle cx="260" cy="353" r="3.5"/><circle cx="340" cy="353" r="3.5"/><circle cx="364" cy="353" r="3.5"/>
+      <circle cx="236" cy="410" r="3.5"/><circle cx="260" cy="410" r="3.5"/><circle cx="340" cy="410" r="3.5"/><circle cx="364" cy="410" r="3.5"/>
+      <path d="M294 292c0-5 12-5 12 0v12h-12zM294 350c0-5 12-5 12 0v12h-12zM294 408c0-5 12-5 12 0v12h-12z"/>
+    </g>
+    <path d="M300 296v6M300 354v6M300 412v6" stroke="#1E140F" stroke-width="2.4" stroke-linecap="round"/>
+
+    <!-- moitié gauche : ternie, rayée, placage manquant -->
+    <g clip-path="url(#eb-gauche)">
+      <rect x="166" y="252" width="134" height="20" fill="url(#eb-terne)"/><rect x="186" y="266" width="114" height="182" fill="url(#eb-terne)"/><path d="M182 444h118v18h-58c-26 0-36-8-60-8z" fill="url(#eb-terne)"/>
+      <path d="M204 380l14 6 22-2 6 10-26 4-18-6z" fill="#C9A47A" stroke="#7A5232" stroke-width="1"/>
+      <g stroke="#E8DCCB" stroke-width="1" opacity=".55" fill="none">
+        <path d="M206 308l40-12M214 318l26-6M226 430l50-14M262 372l28-10M198 262l60-6"/>
+      </g>
+    </g>
+    <path d="M300 250v232" stroke="#1E1B18" stroke-width="1" stroke-dasharray="3 5" opacity=".35"/>
+    <!-- moitié droite : lustrée, reflet qui passe -->
+    <g clip-path="url(#eb-facade)">
+      <rect x="300" y="266" width="114" height="182" fill="#fff" opacity=".07"/>
+      <rect class="balaye" x="40" y="250" width="70" height="230" fill="url(#eclat-g)" transform="skewX(-16)" style="--course:330px"/>
+    </g>
+    <path d="M356 256h60" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+  </g></g>
+
+  <!-- boîte de cire -->
+  <g data-p="1.6"><g class="pose" style="--d:.45s" filter="url(#grain-f)">
+    <path d="M112 452h52v26c0 4-12 7-26 7s-26-3-26-7z" fill="#3D4943"/>
+    <ellipse cx="138" cy="452" rx="26" ry="6" fill="#C9A050"/>
+    <ellipse cx="138" cy="452" rx="20" ry="4" fill="#E2C27A"/>
+    <path d="M112 462c8 3 44 3 52 0v10c-8 3-44 3-52 0z" fill="#C7DDD0" opacity=".85"/>
+    <path d="M118 446c10-12 34-14 44-4" fill="none" stroke="#5E6B64" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+  </g></g>
+  <!-- tampon de laine et flacon -->
+  <g data-p="1.4"><g class="pose" style="--d:.6s" filter="url(#grain-f)">
+    <path d="M452 416h20v10c8 4 10 10 10 18v30c0 4-6 6-20 6s-20-2-20-6v-30c0-8 2-14 10-18z" fill="#6A3A20" opacity=".9" transform="translate(-14 0)"/>
+    <rect x="440" y="404" width="16" height="14" rx="2" fill="#2A2724"/>
+    <path d="M444 440v34" stroke="#C9996A" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M446 480c-14 0-22-6-20-14 2-10 14-14 26-12 10-8 26-6 32 2 8 0 14 6 12 14-2 8-12 10-22 10z" fill="#E9E3D6"/>
+    <path d="M444 468c10-4 22-4 30 2M470 462c6 2 10 6 12 10" fill="none" stroke="#B5AB98" stroke-width="2" stroke-linecap="round"/>
+  </g></g>
+</svg>

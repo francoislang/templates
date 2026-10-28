@@ -1,0 +1,1116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{% set ns = namespace(cut=0) %}
+{% set mots = N.split() %}
+{% set liaisons = ['aux', 'au', 'de', 'du', 'des', 'la', 'le', 'les', 'et', 'sur', 'en', 'à', 'chez', 'sous', 'par', "l'", "d'"] %}
+{% for w in mots %}{% if loop.index0 >= 1 and ns.cut == 0 and w|lower in liaisons %}{% set ns.cut = loop.index0 %}{% endif %}{% endfor %}
+{% if ns.cut == 0 and mots|length >= 2 %}{% set ns.cut = (mots|length + 1) // 2 %}{% endif %}
+{% set lg = N|length %}
+{% set h1c = '' if lg <= 24 else ('h1--m' if lg <= 34 else ('h1--l' if lg <= 48 else 'h1--xl')) %}
+{% set livre = prof.livre %}
+{% set al_ = prof.alentours %}
+{% set metier_txt = prof.titre_metier %}
+{# textes circulaires (logo, cachet) : la taille s'adapte pour faire le tour sans se couper #}
+{% set logo_txt = (N ~ (' · ' ~ court if court else '') ~ ' · ')|upper %}
+{% set logo_fs = [10.5, 10.5 * 28 / (logo_txt|length)]|min %}
+{% set cachet_txt = ((court ~ ' · ' if court else '') ~ (cp ~ ' · ' if cp else '') ~ metier_txt ~ ' · ')|upper %}
+{% if cachet_txt|length < 18 %}{% set cachet_txt = cachet_txt ~ cachet_txt %}{% endif %}
+{% set cachet_fs = [13, 13 * 30 / (cachet_txt|length)]|min %}
+{% set oblit_txt = (court or metier_txt)|upper %}
+{% set oblit_fs = [10, 10 * 10 / (oblit_txt|length)]|min %}
+<title>{{ N }}, {{ metier_txt }}{{ al }}</title>
+<meta name="description" content="{{ description }}">
+<!--
+  Variante B — « carnet de voyage » (famille hébergement).
+  Le carnet posé sur la table, les pages qui se tournent, la carte des alentours qui se trace au défilement.
+-->
+{{ ld_json }}
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__gat)document.documentElement.classList.remove('js');},1500);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lin:#EEE5D3; --lin-2:#E4D6BE; --lin-3:#D6C3A2; --papier:#F7F1E4; --papier-2:#FBF7EE;
+  --bois:#C9A27A; --bois-2:#A97E55; --bois-3:#7C5638; --bois-4:#5A3D27;
+  --sapin:#1F4235; --sapin-2:#2F5E4B; --sapin-3:#8FA894; --sapin-pale:#DCE4DA;
+  --rouge:#A3262A; --rouge-2:#C2463F; --rouge-pale:#F1DCD6;
+  --encre:#2A231C; --texte:#43392E; --gris:#675B4C;
+  --lac:#5F8C98; --lac-pale:#A9C4C6; --ocre:#C99A3B; --tilleul:#8EA552;
+  --ok:#2B6A45; --non:#A3262A;
+  --f-livre:"Spectral","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-main:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  --f-tampon:"Special Elite","Courier New",Courier,monospace;
+  --gout:max(16px,env(safe-area-inset-left)); --gout-d:max(16px,env(safe-area-inset-right));
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .27 0 0 0 0 .17 .3 0 0 0 -.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibres:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .03' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .44 0 0 0 0 .3 .35 0 0 0 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --veines:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .07' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .22 0 0 0 0 .1 .9 0 0 0 -.33'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
+  --vichy:repeating-linear-gradient(90deg,rgba(163,38,42,.55) 0 7px,transparent 7px 14px),repeating-linear-gradient(0deg,rgba(163,38,42,.55) 0 7px,rgba(251,247,238,.9) 7px 14px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--lin) var(--grain);color:var(--texte);font:400 clamp(1.02rem,.96rem + .3vw,1.14rem)/1.65 var(--f-livre);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-livre);color:var(--encre);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
+p{margin:0 0 1em}
+:focus-visible{outline:3px solid var(--rouge);outline-offset:3px;border-radius:2px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evit{position:fixed;left:16px;top:-80px;z-index:100;background:var(--sapin);color:#fff;padding:12px 18px;text-decoration:none;font-weight:600}
+.evit:focus{top:16px}
+.cadre{width:min(1180px,100%);margin:0 auto;padding-left:var(--gout);padding-right:var(--gout-d)}
+.main{font-family:var(--f-main);font-weight:400;letter-spacing:0;line-height:1}
+.tampon-txt{font-family:var(--f-tampon);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- boutons : étiquettes ---------- */
+.etq{--c:var(--rouge);position:relative;display:inline-flex;align-items:center;gap:.6em;min-height:48px;padding:.55em 1.3em .55em 2.1em;background:var(--c);color:#FFF8EE;text-decoration:none;font:600 1rem/1.2 var(--f-livre);letter-spacing:.01em;border:0;cursor:pointer;clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%);transition:transform .35s var(--ease),background .25s;transform-origin:0 50%}
+.etq::before{content:"";position:absolute;left:14px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--lin);box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.etq:hover{transform:rotate(-2.5deg)}
+.etq--vert{--c:var(--sapin)}
+.etq--clair{--c:var(--papier-2);color:var(--encre);box-shadow:inset 0 0 0 1px var(--bois-2)}
+.etq--clair::before{background:var(--bois)}
+.lien{display:inline-flex;align-items:center;gap:.4em;min-height:44px;color:var(--sapin);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.lien:hover{color:var(--rouge)}
+
+/* ---------- en-tête ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:40;transition:background .35s,box-shadow .35s}
+.hdr__in{display:flex;align-items:center;gap:20px;height:76px}
+.hdr.plein{background:rgba(247,241,228,.94);box-shadow:0 1px 0 var(--lin-3),0 8px 24px -16px rgba(60,40,20,.5);backdrop-filter:blur(6px)}
+.marque{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--encre);margin-right:auto;min-height:44px}
+.marque svg{width:52px;height:52px;flex:none;transition:transform .6s var(--ease)}
+.marque:hover svg{transform:rotate(-20deg)}
+.marque b{display:block;font-weight:600;font-size:1.12rem;line-height:1.1}
+.marque>span>span{display:block;font-family:var(--f-main);font-size:1.25rem;color:var(--rouge);line-height:1.1}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:var(--encre);text-decoration:none;font-size:1rem;position:relative}
+.nav a:not(.etq)::after{content:"";position:absolute;left:12px;right:12px;bottom:9px;height:2px;background:var(--rouge);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);border-radius:2px}
+.nav a:not(.etq):hover::after{transform:scaleX(1)}
+.nav .etq{margin-left:10px;padding-left:2rem}
+.burger{display:none}
+
+/* ---------- ouverture : le carnet sur la table ---------- */
+.table{position:relative;min-height:100svh;padding:110px 0 70px;background-color:var(--bois);background-image:var(--veines),repeating-linear-gradient(180deg,transparent 0 228px,rgba(90,61,39,.45) 228px 230px,rgba(255,236,200,.18) 230px 231px),radial-gradient(120% 90% at 50% 40%,rgba(255,240,215,.28),rgba(70,40,15,.35));overflow:hidden;display:flex;align-items:center}
+.accessoire{position:absolute;pointer-events:none;will-change:transform}
+.acc-crayon{left:-30px;bottom:6%;width:min(420px,40vw);transform:rotate(-14deg)}
+.acc-feuille{right:3%;top:90px;width:clamp(110px,12vw,170px)}
+.acc-tasse{right:-70px;bottom:-60px;width:300px;opacity:.55}
+.carnet{position:relative;width:min(1140px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;filter:drop-shadow(0 30px 28px rgba(50,28,10,.45)) drop-shadow(0 4px 4px rgba(50,28,10,.3));perspective:2400px}
+.carnet__p{position:relative;background:var(--papier) var(--grain);min-height:min(640px,calc(100svh - 190px))}
+.carnet__p::before{content:"";position:absolute;inset:0;background:var(--fibres);opacity:.55;pointer-events:none}
+.carnet__g{border-radius:10px 2px 2px 10px;padding:clamp(28px,4.5vw,64px) clamp(26px,4vw,58px);display:flex;flex-direction:column;justify-content:center;background-image:linear-gradient(90deg,transparent 88%,rgba(90,60,30,.16)),var(--grain)}
+.carnet__d{border-radius:2px 10px 10px 2px;padding:clamp(22px,3vw,40px);background-image:linear-gradient(90deg,rgba(90,60,30,.2),transparent 12%),var(--grain);transform-origin:left center;display:flex;flex-direction:column;justify-content:center}
+.carnet::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(180deg,rgba(90,60,30,.5) 0 10px,transparent 10px 22px);opacity:.6}
+.ruban{position:absolute;left:58%;bottom:-74px;width:26px;height:110px;background:var(--vichy);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);z-index:-1;transform-origin:top;animation:balance 6s ease-in-out infinite}
+@keyframes balance{50%{transform:rotate(4deg)}}
+.date{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:clamp(14px,2vw,26px);color:var(--gris)}
+.date .main{font-size:clamp(1.7rem,1.3rem + 1vw,2.3rem);color:var(--rouge)}
+.date .tampon-txt{font-size:.78rem}
+h1{font-size:clamp(2.7rem,1.4rem + 4.6vw,5.4rem);font-weight:500;line-height:.95;letter-spacing:-.025em}
+h1 em{display:block;font-style:italic;font-weight:400;color:var(--sapin)}
+.chapo{font-size:clamp(1.08rem,1rem + .35vw,1.25rem);max-width:30em;margin:clamp(18px,2.4vw,30px) 0 clamp(22px,3vw,34px)}
+.actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.vignette{position:relative;margin:0;transform:rotate(1.4deg)}
+.vignette svg{width:100%;height:auto;background:var(--papier-2);box-shadow:0 2px 0 var(--lin-3),0 10px 22px -12px rgba(60,40,20,.5)}
+.vignette figcaption{font-family:var(--f-main);font-size:1.7rem;color:var(--sapin);margin:10px 0 0 8px;transform:rotate(-1.5deg)}
+.scotch{position:absolute;width:118px;height:30px;background:rgba(214,196,160,.62);box-shadow:0 1px 2px rgba(0,0,0,.08);clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 25%,96% 40%,100% 55%,96% 70%,100% 85%,96% 100%,0 100%,4% 85%,0 70%,4% 55%,0 40%,4% 25%);z-index:2}
+.scotch--v{background:var(--vichy);opacity:.85}
+.vignette .scotch:nth-of-type(1){top:-12px;left:-26px;transform:rotate(-32deg)}
+.vignette .scotch:nth-of-type(2){bottom:28px;right:-30px;transform:rotate(-28deg)}
+.timbre{position:absolute;width:96px;padding:7px;background:var(--papier-2);-webkit-mask:radial-gradient(circle at 5px 5px,transparent 3.2px,#000 3.7px) -5px -5px/10px 10px,linear-gradient(#000 0 0) content-box;mask:radial-gradient(circle at 5px 5px,transparent 3.2px,#000 3.7px) -5px -5px/10px 10px,linear-gradient(#000 0 0) content-box;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+.timbre svg{width:100%;height:auto}
+.carnet .timbre{right:20px;top:18px;transform:rotate(5deg);z-index:3}
+.cachet{position:absolute;pointer-events:none;color:var(--rouge);opacity:.78;mix-blend-mode:multiply}
+.carnet .cachet{right:96px;top:62px;width:130px;transform:rotate(-14deg);z-index:4}
+
+/* entrée orchestrée */
+.js .carnet{opacity:0;transform:translateY(40px) rotate(-1.5deg)}
+.js .carnet__d{transform:rotateY(-92deg)}
+.js .entree{opacity:0;transform:translateY(14px)}
+.js .trait{stroke-dasharray:1;stroke-dashoffset:1}
+.js .lav{opacity:0;transform:scale(.97);transform-box:fill-box;transform-origin:center}
+.js .vignette .scotch,.js .carnet .timbre,.js .carnet .cachet{opacity:0}
+.go .carnet{opacity:1;transform:none;transition:opacity .7s,transform 1.1s var(--ease)}
+.go .carnet__d{transform:none;transition:transform 1.3s cubic-bezier(.3,.9,.3,1) .35s}
+.go .entree{opacity:1;transform:none;transition:opacity .8s,transform .9s var(--ease);transition-delay:calc(.6s + var(--i,0) * .12s)}
+.go .trait{stroke-dashoffset:0;transition:stroke-dashoffset 2s cubic-bezier(.5,0,.3,1) 1.2s}
+.go .lav{opacity:1;transform:none;transition:opacity 1.4s ease,transform 1.6s var(--ease);transition-delay:calc(2s + var(--i,0) * .16s)}
+.go .vignette .scotch{opacity:1;transition:opacity .4s 1.1s}
+.go .carnet .timbre{opacity:1;transition:opacity .5s 3.2s}
+.go .carnet .cachet{opacity:.78;animation:tamponne .5s cubic-bezier(.3,1.6,.5,1) 3.5s both}
+@keyframes tamponne{0%{opacity:0;transform:rotate(-14deg) scale(1.7)}60%{opacity:.85}100%{opacity:.78;transform:rotate(-14deg) scale(1)}}
+
+/* ---------- sections ---------- */
+.sec{position:relative;overflow-x:clip;padding:clamp(70px,9vw,130px) 0}
+.tete{max-width:640px;margin-bottom:clamp(34px,5vw,60px)}
+.tete .main{display:block;font-size:clamp(1.9rem,1.5rem + 1.4vw,2.8rem);color:var(--rouge);margin-bottom:4px;transform:rotate(-2deg);transform-origin:left}
+.tete h2{font-size:clamp(2.2rem,1.5rem + 2.6vw,3.7rem)}
+.tete p{margin-top:16px;font-size:1.1rem}
+.js .rv{opacity:0;transform:translateY(26px)}
+.rv.vu{opacity:1;transform:none;transition:opacity .8s,transform 1s var(--ease);transition-delay:calc(var(--i,0) * .12s)}
+
+/* prestations : étiquettes de bagage */
+.sejour{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,40px);align-items:start}
+.tag{position:relative;background:var(--papier-2) var(--grain);padding:56px 30px 30px;clip-path:polygon(22% 0,78% 0,100% 13%,100% 100%,0 100%,0 13%);transition:transform .5s var(--ease);transform:rotate(var(--r,0deg))}
+.tag:hover{transform:rotate(0deg) translateY(-6px)}
+.tag::before{content:"";position:absolute;left:50%;top:18px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--lin);box-shadow:inset 0 1px 3px rgba(0,0,0,.35),0 0 0 5px var(--lin-3)}
+.tag::after{content:"";position:absolute;inset:8px;border:1px dashed var(--lin-3);clip-path:inherit;pointer-events:none}
+.tag-wrap{position:relative;filter:drop-shadow(0 12px 14px rgba(60,40,20,.18))}
+.tag-wrap:nth-child(1){--r:-2deg}.tag-wrap:nth-child(2){--r:1.5deg;margin-top:34px}.tag-wrap:nth-child(3){--r:-1deg;margin-top:10px}
+.tag-wrap .tag{transform:rotate(var(--r))}
+.ficelle{position:absolute;left:50%;top:-34px;width:60px;height:60px;margin-left:-30px;z-index:2;pointer-events:none}
+.tag svg.ico{width:48px;height:48px;margin-bottom:14px;color:var(--sapin)}
+.tag h3{font-size:1.5rem;margin-bottom:10px}
+.tag p{margin:0}
+.tag--rouge{background-color:var(--rouge-pale)}
+.tag--vert{background-color:var(--sapin-pale)}
+
+/* ---------- chambres : le livre ---------- */
+.ch-sec{background:linear-gradient(180deg,var(--lin),var(--lin-2) 30%,var(--lin-2) 70%,var(--lin));position:relative}
+.livre{position:relative;width:min(1100px,100%);margin:0 auto}
+.livre[hidden]{display:none}
+.onglets{display:flex;gap:10px;padding-left:clamp(20px,8%,90px);position:relative;z-index:1}
+.onglet{min-height:46px;padding:10px 20px 18px;margin-bottom:-10px;border:0;cursor:pointer;font:500 1.05rem/1 var(--f-livre);color:#FFF8EE;background:var(--c);border-radius:6px 6px 0 0;transition:transform .3s var(--ease),filter .3s;transform:translateY(6px)}
+.onglet:nth-child(1){--c:#4E4A72}.onglet:nth-child(2){--c:var(--bois-3)}.onglet:nth-child(3){--c:var(--sapin-2)}
+.onglet:hover{transform:translateY(0)}
+.onglet[aria-selected="true"]{transform:translateY(-4px);filter:saturate(1.15)}
+.planche{position:relative;padding:14px;background:var(--bois-3);border-radius:12px;box-shadow:0 30px 40px -24px rgba(50,28,10,.65),inset 0 0 0 2px rgba(255,255,255,.08);background-image:var(--veines)}
+.spread{position:relative;display:grid;grid-template-columns:1fr 1fr;perspective:2600px;min-height:620px}
+.spread::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:60px;margin-left:-30px;background:linear-gradient(90deg,transparent,rgba(70,45,20,.22) 45%,rgba(70,45,20,.3) 50%,rgba(70,45,20,.22) 55%,transparent);pointer-events:none;z-index:6}
+.pg{position:relative;background:var(--papier) var(--grain);overflow:hidden}
+.pg--g{border-radius:6px 0 0 6px}.pg--d{border-radius:0 6px 6px 0}
+.feuille{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;z-index:8;pointer-events:none}
+.feuille--d{left:50%;transform-origin:left center}
+.feuille--g{left:0;transform-origin:right center}
+.feuille--m{left:0;width:100%;transform-origin:left center}
+.face{position:absolute;inset:0;background:var(--papier) var(--grain);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.face--dos{transform:rotateY(180deg)}
+.ombre{position:absolute;inset:0;pointer-events:none;opacity:0}
+.feuille--d .face--avant .ombre,.feuille--m .face--avant .ombre{background:linear-gradient(90deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--d .face--dos .ombre,.feuille--m .face--dos .ombre{background:linear-gradient(270deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--g .face--avant .ombre{background:linear-gradient(270deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--g .face--dos .ombre{background:linear-gradient(90deg,rgba(60,35,15,.35),transparent 60%)}
+.coin{position:absolute;right:0;bottom:0;width:64px;height:64px;border:0;padding:0;cursor:pointer;z-index:9;background:linear-gradient(315deg,var(--lin-2) 0 46%,var(--lin-3) 47%,var(--papier-2) 52%,transparent 53%);transition:width .3s var(--ease),height .3s var(--ease);filter:drop-shadow(-2px -2px 3px rgba(60,40,20,.2))}
+.coin:hover,.coin:focus-visible{width:92px;height:92px}
+.coin--g{left:0;right:auto;background:linear-gradient(45deg,var(--lin-2) 0 46%,var(--lin-3) 47%,var(--papier-2) 52%,transparent 53%);filter:drop-shadow(2px -2px 3px rgba(60,40,20,.2))}
+.livre__bas{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+.fleche{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border:1px solid var(--bois-2);background:var(--papier-2);color:var(--encre);font:500 1rem var(--f-livre);cursor:pointer;border-radius:999px;transition:background .25s,transform .3s var(--ease)}
+.fleche:hover{background:var(--sapin);color:#fff;border-color:var(--sapin)}
+.fleche:disabled{opacity:.4;cursor:default;background:var(--papier-2);color:var(--encre);border-color:var(--bois-2)}
+.fleche svg{width:22px;height:22px}
+.livre__ou{font-family:var(--f-main);font-size:1.8rem;color:var(--bois-4);text-align:center}
+.ch__ill{height:100%;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+.ch__ill figure{margin:0;position:relative;transform:rotate(-1.2deg)}
+.ch__ill svg{width:100%;height:auto;background:var(--papier-2);box-shadow:0 2px 0 var(--lin-3),0 12px 22px -14px rgba(60,40,20,.55)}
+.ch__ill figcaption{font-family:var(--f-main);font-size:1.6rem;color:var(--sapin);margin:12px 0 0 6px}
+.ch__ill .scotch{top:-12px;left:50%;margin-left:-59px;transform:rotate(-3deg)}
+.ch__txt{height:100%;padding:clamp(28px,3.4vw,52px) clamp(26px,3.4vw,54px);display:flex;flex-direction:column;justify-content:center}
+.ch__lbl{display:inline-block;align-self:flex-start;font-size:.78rem;padding:5px 10px;border:1.5px solid currentColor;color:var(--rouge);transform:rotate(-2deg);margin-bottom:18px}
+.ch__txt h3{font-size:clamp(2.2rem,1.7rem + 1.6vw,3.2rem)}
+.ch__txt .main{font-size:clamp(1.6rem,1.3rem + .8vw,2.1rem);color:var(--sapin);margin:6px 0 18px}
+.dl{margin:4px 0 24px;display:grid;grid-template-columns:auto 1fr;gap:0 18px;border-top:1px solid var(--lin-3)}
+.dl dt,.dl dd{margin:0;padding:9px 0;border-bottom:1px dashed var(--lin-3)}
+.dl dt{font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);padding-top:12px}
+.dl dd{color:var(--encre)}
+.ch-src{display:grid;gap:30px}
+.ch-src .ch{display:grid;grid-template-columns:1fr 1fr;background:var(--papier) var(--grain);box-shadow:0 20px 30px -20px rgba(60,40,20,.5)}
+.livre-on .ch-src{display:none}
+.ch-note{max-width:640px;margin:34px auto 0;text-align:center}
+.ch-note p{margin-bottom:14px}
+
+/* ---------- alentours : carte ---------- */
+.alen__grille{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(30px,4vw,64px);align-items:start}
+.carte{position:sticky;top:96px;background:var(--papier-2) var(--grain);padding:14px;box-shadow:0 2px 0 var(--lin-3),0 24px 34px -22px rgba(60,40,20,.55);transform:rotate(-.6deg)}
+.carte::before{content:"";position:absolute;inset:6px;border:1px solid var(--lin-3);pointer-events:none}
+.carte svg{width:100%;height:auto}
+.carte .scotch:nth-of-type(1){top:-14px;left:30px;transform:rotate(-6deg)}
+.carte .scotch:nth-of-type(2){top:-12px;right:24px;transform:rotate(8deg)}
+.carte text{font-family:var(--f-livre);fill:var(--encre)}
+.carte .t-main{font-family:var(--f-main);font-size:26px}
+.carte .t-it{font-style:italic;font-size:15px;fill:var(--gris)}
+.carte .t-lac{font-style:italic;font-size:15px;fill:#2F5A66}
+.etapes-carte .arret circle.c{fill:var(--papier-2);stroke:var(--rouge);stroke-width:2.5;transition:fill .4s,r .4s}
+.etapes-carte .arret.on circle.c{fill:var(--rouge)}
+.etapes-carte .arret .halo{fill:none;stroke:var(--rouge);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.etapes-carte .arret.on .halo{animation:halo .9s ease-out}
+@keyframes halo{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(2.4)}}
+.lieux{list-style:none;margin:0;padding:0}
+.lieu{position:relative;min-height:36vh;padding:22px 0 22px 64px;display:flex;flex-direction:column;justify-content:center;border-left:2px dashed var(--lin-3);margin-left:20px;transition:opacity .4s}
+.lieu::before{content:"";position:absolute;left:-13px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:50%;background:var(--lin);border:2.5px solid var(--bois-2);transition:background .35s,border-color .35s,transform .35s var(--ease)}
+.lieu.on::before{background:var(--rouge);border-color:var(--rouge);transform:scale(1.15)}
+.js .lieu{opacity:.55}.js .lieu.on{opacity:1}
+.lieu h3{font-size:clamp(1.45rem,1.2rem + .8vw,1.9rem);margin-bottom:6px}
+.lieu .dist{display:inline-block;font-family:var(--f-main);font-size:1.7rem;color:var(--rouge);margin-bottom:6px}
+.lieu p{margin:0;max-width:30em}
+.lieu--fin{min-height:auto;border-left-color:transparent;padding-top:30px}
+.lieu--fin::before{display:none}
+.lieu--fin p{font-style:italic;color:var(--gris)}
+
+/* ---------- avant de réserver : timbres ---------- */
+.prep{background:var(--sapin);color:#E9EFE7;background-image:radial-gradient(90% 70% at 20% 0%,rgba(255,255,255,.08),transparent),var(--grain)}
+.prep .tete h2{color:#FBF7EE}.prep .tete .main{color:#F0B9AE}.prep .tete p{color:#D7E1D6}
+.timbres{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,56px)}
+.tb{text-align:left;position:relative}
+.tb .timbre{position:relative;width:min(210px,100%);padding:12px;margin-bottom:24px;transition:transform .5s var(--ease)}
+.tb:nth-child(1) .timbre{transform:rotate(-3deg)}.tb:nth-child(2) .timbre{transform:rotate(2deg)}.tb:nth-child(3) .timbre{transform:rotate(-1deg)}
+.tb:hover .timbre{transform:rotate(0) scale(1.04)}
+.tb .timbre .in{background:var(--c);aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:space-between;padding:14px;color:#FFF8EE}
+.tb:nth-child(1){--c:var(--rouge)}.tb:nth-child(2){--c:var(--bois-3)}.tb:nth-child(3){--c:#3E6B8A}
+.tb .timbre svg{width:62%;margin:6px auto 0;color:#FFF8EE}
+.tb .timbre .val{font-family:var(--f-tampon);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+.tb h3{color:#FBF7EE;font-size:1.6rem;margin-bottom:8px}
+.tb p{color:#D7E1D6;margin:0;max-width:22em}
+.oblit{position:absolute;right:-34px;top:30px;width:120px;opacity:.7;color:#2A231C;pointer-events:none;mix-blend-mode:multiply}
+
+/* ---------- accès ---------- */
+.acces__grille{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px);align-items:start}
+.fiche{position:relative;background:var(--papier-2) var(--grain);padding:clamp(28px,3.5vw,46px);box-shadow:0 2px 0 var(--lin-3),0 22px 30px -22px rgba(60,40,20,.5);background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(95,140,152,.25) 33px 34px),var(--grain);background-position:0 18px}
+.fiche::before{content:"";position:absolute;left:clamp(16px,2.4vw,30px);top:0;bottom:0;width:1px;background:rgba(163,38,42,.35)}
+.etat{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;margin:0 0 26px}
+.etat__t{display:inline-block;font-family:var(--f-tampon);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;padding:8px 14px;border:3px double currentColor;transform:rotate(-3deg);color:var(--gris)}
+.etat--oui .etat__t{color:var(--ok)}.etat--non .etat__t{color:var(--non)}
+.etat.vu .etat__t{animation:tamp2 .55s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes tamp2{0%{opacity:0;transform:rotate(-3deg) scale(1.8)}100%{opacity:1;transform:rotate(-3deg) scale(1)}}
+.etat__d{font-size:1rem;color:var(--texte)}
+.horaires{list-style:none;margin:0 0 20px;padding:0}
+.horaires li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--lin-3);flex-wrap:wrap}
+.horaires b{font-weight:500;color:var(--encre)}
+.croquis{margin:0 0 20px;background:var(--papier-2);padding:10px;box-shadow:0 2px 0 var(--lin-3);transform:rotate(.8deg)}
+.croquis text{font-family:var(--f-livre);font-style:italic;font-size:13px;fill:var(--gris)}
+.adr{font-style:normal;font-size:1.15rem;color:var(--encre);margin-bottom:16px}
+.adr .main{display:block;font-size:2rem;color:var(--rouge);margin-bottom:4px}
+
+/* ---------- contact : carte postale ---------- */
+.ctc{background:var(--lin-2)}
+.postale{position:relative;display:grid;grid-template-columns:1.1fr 1fr;background:var(--papier-2) var(--grain);box-shadow:0 2px 0 var(--lin-3),0 34px 50px -30px rgba(60,40,20,.6);padding:clamp(24px,3.4vw,48px);gap:0}
+.postale__g{padding-right:clamp(20px,3vw,44px);border-right:1px solid var(--lin-3)}
+.postale__d{padding-left:clamp(20px,3vw,44px);padding-top:120px;position:relative}
+.postale .timbre{right:0;top:0;width:96px;transform:rotate(3deg)}
+.postale .cachet{right:70px;top:24px;width:120px;transform:rotate(-12deg);opacity:.55}
+.champ{margin-bottom:18px}
+.champ label{display:block;font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-bottom:4px}
+.champ input,.champ select,.champ textarea{width:100%;min-height:46px;border:0;border-bottom:1.5px solid var(--bois-2);background:transparent;font:400 1.08rem/1.4 var(--f-livre);color:var(--encre);padding:8px 2px;border-radius:0;transition:border-color .25s,background .25s}
+.champ select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--bois-3) 50%),linear-gradient(135deg,var(--bois-3) 50%,transparent 50%);background-position:calc(100% - 14px) 52%,calc(100% - 8px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:28px}
+.champ textarea{min-height:236px;resize:vertical;line-height:34px;background:repeating-linear-gradient(180deg,transparent 0 33px,var(--lin-3) 33px 34px);border-bottom:0;padding-top:0}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:none;border-color:var(--rouge);background-color:rgba(241,220,214,.35)}
+.champ input:focus-visible,.champ select:focus-visible,.champ textarea:focus-visible{outline:2px solid var(--rouge);outline-offset:2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.envoi{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px}
+.envoi small{color:var(--gris);font-size:.92rem}
+.merci{display:none;position:absolute;inset:0;z-index:5;background:rgba(251,247,238,.96);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.merci.vis{display:flex;animation:fondu .5s ease both}
+@keyframes fondu{from{opacity:0}}
+.merci svg{width:170px;color:var(--rouge);margin-bottom:18px;animation:tamponne2 .6s cubic-bezier(.3,1.6,.5,1) .15s both}
+@keyframes tamponne2{0%{opacity:0;transform:rotate(-10deg) scale(1.8)}100%{opacity:.85;transform:rotate(-10deg) scale(1)}}
+.merci h3{font-size:2rem;margin-bottom:10px}
+.merci p{max-width:32em}
+.cote{margin-top:22px;color:var(--gris)}
+.cote b{color:var(--encre);font-weight:600}
+
+/* ---------- pied ---------- */
+.pied{background:var(--bois-4);color:#EADFCB;padding:56px 0 calc(40px + env(safe-area-inset-bottom));background-image:var(--veines)}
+.pied__in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.pied .main{font-size:2.2rem;color:#F0C9A6;display:block;margin-bottom:8px}
+.pied a{color:#F7EEDD;display:inline-flex;min-height:44px;align-items:center}
+.pied ul{list-style:none;margin:0;padding:0}
+.pied p{margin:0 0 6px}
+.pied small{display:block;margin-top:30px;color:#CDBDA2;grid-column:1/-1;border-top:1px solid rgba(234,223,203,.2);padding-top:18px}
+
+.barre{display:none}
+.deco-feuille{position:absolute;pointer-events:none;width:110px;opacity:.9}
+
+/* ---------- tablette / mobile ---------- */
+@media (max-width:980px){
+  .nav a:not(.etq){padding:0 8px}
+  .alen__grille{grid-template-columns:1fr}
+  .carte{position:sticky;top:64px;z-index:3;transform:none;padding:8px}
+  .lieu{min-height:30vh}
+  .acces__grille{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .hdr__in{height:64px}
+  .marque svg{width:44px;height:44px}
+  .burger{display:inline-flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:48px;height:48px;border:0;background:var(--papier-2);border-radius:50%;cursor:pointer;z-index:2;box-shadow:0 0 0 1px var(--lin-3)}
+  .burger span{display:block;width:22px;height:2px;background:var(--encre);transition:transform .35s var(--ease),opacity .25s}
+  .menu-ouvert .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-ouvert .burger span:nth-child(2){opacity:0}
+  .menu-ouvert .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .nav{position:fixed;inset:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:90px var(--gout-d) 40px var(--gout);background:var(--papier) var(--grain);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .55s var(--ease),visibility 0s .55s}
+  .nav::before{content:"";position:absolute;left:var(--gout);right:var(--gout-d);top:76px;bottom:30px;background:repeating-linear-gradient(180deg,transparent 0 55px,rgba(95,140,152,.22) 55px 56px);pointer-events:none}
+  .menu-ouvert .nav{clip-path:inset(0);visibility:visible;transition:clip-path .55s var(--ease)}
+  .nav a:not(.etq){font-size:2rem;min-height:56px;padding:0}
+  .nav a:not(.etq)::after{left:0;right:0;bottom:8px}
+  .nav .etq{margin:20px 0 0;font-size:1.05rem}
+  .menu-ouvert .hdr{background:transparent;box-shadow:none}
+  body.menu-ouvert{overflow:hidden}
+  .barre{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:35;padding:10px var(--gout-d) calc(10px + env(safe-area-inset-bottom)) var(--gout);background:rgba(247,241,228,.96);backdrop-filter:blur(6px);box-shadow:0 -1px 0 var(--lin-3),0 -10px 24px -16px rgba(60,40,20,.5);transform:translateY(110%);transition:transform .45s var(--ease)}
+  .barre.vis{transform:none}
+  .barre a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:52px;text-decoration:none;border-radius:4px;font-weight:600;line-height:1.15}
+  .barre a small{font-weight:400;font-size:.82rem}
+  .barre .b1{background:var(--papier-2);color:var(--encre);box-shadow:inset 0 0 0 1px var(--bois-2)}
+  .barre .b2{background:var(--rouge);color:#FFF8EE}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .pied{margin-bottom:calc(-76px - env(safe-area-inset-bottom));padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+
+  .table{padding:84px 0 56px;min-height:auto;display:block}
+  .carnet{grid-template-columns:1fr;perspective:none}
+  .carnet::after{display:none}
+  .carnet__d{order:-1;border-radius:10px 10px 0 0;padding:26px 22px 10px;background-image:var(--grain);min-height:0}
+  .carnet__g{border-radius:0 0 10px 10px;padding:12px 22px 34px;min-height:0;background-image:var(--grain)}
+  .js .carnet__d{transform:rotateX(-80deg);transform-origin:bottom center}
+  .go .carnet__d{transform:none}
+  .carnet .timbre{width:70px;right:10px;top:8px}
+  .carnet .cachet{width:96px;right:54px;top:30px}
+  .vignette{transform:rotate(-1deg)}
+  .vignette figcaption{font-size:1.45rem}
+  .acc-crayon{width:260px;left:-60px;bottom:6px}
+  .acc-feuille{width:90px;right:-18px;top:auto;bottom:-14px}
+  .acc-tasse{display:none}
+  .ruban{display:none}
+  .date{margin-bottom:12px}
+  .chapo{margin:16px 0 22px}
+  .actions .etq{flex:1 1 100%;justify-content:center}
+  .actions .lien{margin:0 auto}
+
+  .sejour{grid-template-columns:1fr;gap:42px}
+  .tag-wrap:nth-child(n){margin-top:0}
+  .tag-wrap:nth-child(2){margin-left:18px}
+  .tag-wrap:nth-child(1),.tag-wrap:nth-child(3){margin-right:18px}
+
+  .onglets{padding-left:10px;gap:6px}
+  .onglet{padding:10px 12px 18px;font-size:.98rem;flex:1}
+  .planche{padding:8px}
+  .spread{grid-template-columns:1fr;min-height:0}
+  .spread::after{display:none}
+  .pg--g{display:none}
+  .pg--d{border-radius:6px}
+  .ch__ill{height:auto;padding:22px 20px 4px}
+  .ch__txt{height:auto;padding:16px 22px 30px}
+  .ch-src .ch{grid-template-columns:1fr}
+  .coin{width:52px;height:52px}
+  .livre__bas .fleche span{display:none}
+  .livre__bas .fleche{width:52px;height:52px;padding:0;justify-content:center}
+  .livre__ou{font-size:1.55rem}
+
+  .timbres{grid-template-columns:1fr;gap:44px}
+  .tb{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center}
+  .tb .timbre{margin:0;padding:8px}
+  .tb .timbre .in{padding:10px}
+  .tb .timbre .val{font-size:.6rem}
+  .oblit{width:90px;right:-30px;top:6px}
+
+  .postale{grid-template-columns:1fr;padding:22px 20px}
+  .postale__g{padding:0 0 10px;border-right:0;border-bottom:1px solid var(--lin-3);margin-bottom:22px;padding-top:96px}
+  .postale__d{padding:0}
+  .postale .timbre{width:78px}
+  .postale .cachet{width:96px;right:52px}
+  .duo{grid-template-columns:1fr 1fr;gap:0 14px}
+  .champ textarea{min-height:170px}
+  .envoi .etq{flex:1 1 100%;justify-content:center}
+
+  .pied__in{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .duo{grid-template-columns:1fr}
+  .tb{grid-template-columns:112px 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv,.js .entree,.js .lav,.js .carnet,.js .carnet__d{opacity:1!important;transform:none!important}
+  .js .trait{stroke-dashoffset:0!important}
+  .js .vignette .scotch,.js .carnet .timbre,.js .carnet .cachet{opacity:1}
+}
+/* ---------- gabarit générique : noms longs, horaires ---------- */
+h1{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+h1.h1--m{font-size:clamp(2.4rem,1.3rem + 3.4vw,4.5rem)}
+h1.h1--l{font-size:clamp(2.1rem,1.2rem + 2.6vw,3.7rem);line-height:1}
+h1.h1--xl{font-size:clamp(1.85rem,1.1rem + 2vw,3.1rem);line-height:1.02}
+.marque>span{min-width:0}
+.marque b{overflow-wrap:anywhere}
+.marque--long b{font-size:1rem}
+.ch__txt h3{overflow-wrap:break-word}
+.horaires li.off b{color:var(--gris);font-weight:400}
+.hor-t{font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin:0 0 6px}
+.lieu .dist{font-size:1.9rem}
+@media (max-width:860px){
+  .marque--long b{font-size:.94rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .marque--long>span>span{font-size:1.1rem}
+  .barre--seul{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<a class="evit" href="#contenu">Aller au contenu</a>
+
+<!-- Définitions partagées : filtres aquarelle, motifs, symboles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="aq" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.7" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="11" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="ga"/>
+      <feComposite in="b" in2="ga" operator="in" result="gr"/>
+      <feMorphology in="b" operator="erode" radius="1.6" result="er"/>
+      <feComposite in="b" in2="er" operator="out" result="bord"/>
+      <feMerge><feMergeNode in="gr"/><feMergeNode in="bord"/></feMerge>
+    </filter>
+    <filter id="enc" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="encreur" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 2" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="n2"/>
+      <feDisplacementMap in="t" in2="n2" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <pattern id="vichy" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#F3EADD"/><rect width="6" height="12" fill="#A3262A" opacity=".5"/><rect width="12" height="6" fill="#A3262A" opacity=".5"/>
+    </pattern>
+    <pattern id="vichy-v" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#E7EDE4"/><rect width="5" height="10" fill="#2F5E4B" opacity=".45"/><rect width="10" height="5" fill="#2F5E4B" opacity=".45"/>
+    </pattern>
+    <pattern id="rayures" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#F3EADD"/><rect width="8" height="16" fill="#A3262A" opacity=".75"/>
+    </pattern>
+    <pattern id="rayures-v" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#F3EADD"/><rect width="8" height="16" fill="#2F5E4B" opacity=".7"/>
+    </pattern>
+    <symbol id="sap" viewBox="0 0 40 80"><path d="M20 0 L30 22 L25 22 L35 42 L28 42 L40 64 L23 64 L23 80 L17 80 L17 64 L0 64 L12 42 L5 42 L15 22 L10 22 Z"/></symbol>
+    <symbol id="arb" viewBox="0 0 60 80"><path d="M27 80 L28 56 C14 58 3 48 6 36 C1 24 11 12 23 13 C27 2 44 1 48 12 C59 14 63 29 55 37 C59 49 47 59 33 56 L34 80 Z"/></symbol>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <path id="cercle-logo" d="M50 14 a36 36 0 1 1 -0.01 0" fill="none"/>
+      <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <text font-family="Special Elite, Courier New, monospace" font-size="{{ '%.1f'|format(logo_fs) }}" letter-spacing="{{ '%.2f'|format(1.6 * logo_fs / 10.5) }}" fill="currentColor"><textPath href="#cercle-logo">{{ logo_txt }}</textPath></text>
+      <path d="M36 52 L50 38 L64 52 L64 50 M40 48 L40 66 L60 66 L60 48" fill="none" stroke="#1F4235" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M46 66 L46 56 L54 56 L54 66 Z" fill="#1F4235"/>
+    </symbol>
+    <symbol id="cachet" viewBox="0 0 140 140">
+      <path id="cercle-cachet" d="M70 22 a48 48 0 1 1 -0.01 0" fill="none"/>
+      <circle cx="70" cy="70" r="62" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="70" cy="70" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+      <text font-family="Special Elite, Courier New, monospace" font-size="{{ '%.1f'|format(cachet_fs) }}" letter-spacing="{{ '%.2f'|format(2 * cachet_fs / 13) }}" fill="currentColor"><textPath href="#cercle-cachet">{{ cachet_txt }}</textPath></text>
+      {% if prof.cachet[1] %}
+      <text x="70" y="66" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="12" fill="currentColor">{{ prof.cachet[0] }}</text>
+      <text x="70" y="82" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="12" fill="currentColor">{{ prof.cachet[1] }}</text>
+      {% else %}
+      <text x="70" y="75" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="14" fill="currentColor">{{ prof.cachet[0] }}</text>
+      {% endif %}
+    </symbol>
+    <symbol id="oblit" viewBox="0 0 160 80">
+      <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text x="40" y="{{ 37 if cp else 43 }}" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="{{ '%.1f'|format(oblit_fs) }}" fill="currentColor">{{ oblit_txt }}</text>
+      {% if cp %}<text x="40" y="51" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="10" fill="currentColor">{{ cp[:2] }}</text>{% endif %}
+      <path d="M78 22 C95 14 110 30 125 22 S150 14 160 20 M78 40 C95 32 110 48 125 40 S150 32 160 38 M78 58 C95 50 110 66 125 58 S150 50 160 56" fill="none" stroke="currentColor" stroke-width="2.4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="cadre hdr__in">
+    <a class="marque{{ ' marque--long' if lg > 26 }}" href="#haut" aria-label="{{ N }}, retour en haut de page">
+      <svg viewBox="0 0 100 100" style="color:var(--rouge)" aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>{{ N }}</b><span>{{ metier_txt }}</span></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#sejourner">{{ fam.nav }}</a>
+      <a href="#chambres">{{ livre.nav }}</a>
+      <a href="#alentours">Alentours</a>
+      <a href="#acces">Accès</a>
+      <a class="etq" href="#contact">{{ fam.cta }}</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="contenu">
+<!-- ====================== OUVERTURE ====================== -->
+<section class="table" id="haut" aria-labelledby="titre">
+  <!-- accessoires posés sur la table -->
+  <svg class="accessoire acc-tasse" data-px=".12" viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="108" fill="none" stroke="#6B4528" stroke-width="9" opacity=".35" filter="url(#aq)"/><circle cx="150" cy="150" r="96" fill="none" stroke="#6B4528" stroke-width="3" opacity=".25" filter="url(#aq)"/></svg>
+  <svg class="accessoire acc-crayon" data-px="-.08" viewBox="0 0 420 40" aria-hidden="true">
+    <path d="M0 8 L330 8 L330 32 L0 32 Z" fill="#2F5E4B"/><path d="M0 8 L330 8 L330 14 L0 14 Z" fill="#3E7560"/><path d="M0 26 L330 26 L330 32 L0 32 Z" fill="#1F4235"/>
+    <path d="M330 8 L380 18 L380 22 L330 32 Z" fill="#E2C49A"/><path d="M368 15.6 L392 20 L368 24.4 Z" fill="#2A231C"/>
+    <rect x="0" y="8" width="14" height="24" fill="#C9A27A"/><text x="60" y="25" font-family="Special Elite, monospace" font-size="11" fill="#E7D9B8" letter-spacing="2">HB · CARNET</text>
+  </svg>
+  <svg class="accessoire acc-feuille" data-px=".18" viewBox="0 0 160 200" aria-hidden="true">
+    <g filter="url(#aq)">
+      <path d="M40 30 C70 10 110 20 112 60 C114 95 80 112 70 140 C55 112 20 100 18 66 C16 46 26 38 40 30 Z" fill="#9AAE5B" opacity=".85" transform="rotate(-18 70 80)"/>
+      <path d="M96 70 C120 60 150 80 146 120 C142 150 120 168 112 190 C98 168 84 150 86 120 C88 98 86 80 96 70Z" fill="#D7C27E" opacity=".75"/>
+    </g>
+    <path d="M70 140 C68 110 64 80 54 46 M112 190 C114 160 112 120 104 80" fill="none" stroke="#5E6E35" stroke-width="1.6" filter="url(#enc)"/>
+  </svg>
+
+  <div class="cadre">
+    <div class="carnet">
+      <div class="carnet__p carnet__g">
+        <p class="date entree" style="--i:0"><span class="main">{{ prof.carnet }}</span>{% if court or cp %}<span class="tampon-txt">{{ court }}{% if court and cp %} · {% endif %}{{ cp }}</span>{% endif %}</p>
+        <h1 id="titre" class="entree {{ h1c }}" style="--i:1">{% if ns.cut %}{{ mots[:ns.cut]|join(' ') }} <em>{{ mots[ns.cut:]|join(' ') }}</em>{% else %}{{ N }}{% endif %}</h1>
+        <p class="chapo entree" style="--i:2">{{ prof.chapo }} {{ prof.ouverture or fam.ouverture }}</p>
+        <div class="actions entree" style="--i:3">
+          <a class="etq" href="#contact">{{ fam.cta }}</a>
+          <a class="lien" href="#chambres">{{ livre.lien }}</a>
+        </div>
+      </div>
+      <div class="carnet__p carnet__d">
+        <div class="timbre" aria-hidden="true">
+          <svg viewBox="0 0 80 96"><rect width="80" height="96" fill="#1F4235"/><rect x="5" y="5" width="70" height="86" fill="none" stroke="#E7D9B8" stroke-width="1"/><circle cx="56" cy="24" r="7" fill="#C99A3B" opacity=".9"/><path d="M5 58 C18 44 30 42 42 50 C52 40 64 40 75 48 L75 70 L5 70 Z" fill="#5E7E6A"/><g fill="#8FA894"><use href="#arb" x="10" y="34" width="20" height="28"/><use href="#arb" x="50" y="38" width="17" height="24"/></g><path d="M30 64 L30 50 L40 41 L50 50 L50 64 Z" fill="#E7D9B8"/><path d="M28 51 L40 40 L52 51" fill="none" stroke="#A3262A" stroke-width="2.4"/><rect x="37" y="56" width="6" height="8" fill="#1F4235"/><text x="40" y="84" text-anchor="middle" font-family="Special Elite, monospace" font-size="8" fill="#E7D9B8">BIENVENUE</text></svg>
+        </div>
+        <svg class="cachet" viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+        <figure class="vignette">
+          <span class="scotch"></span><span class="scotch scotch--v"></span>
+          {{ illus }}
+        </figure>
+      </div>
+      <span class="ruban" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SÉJOURNER ====================== -->
+{% set icos = [prof.ico1, "M7 10h34v31H7zM7 19h34M16 6v8M32 6v8M15 27l4 4 8-8", "M8 10h32v20H22l-9 8v-8H8zM16 18h16M16 23h10"] %}
+<section class="sec" id="sejourner" aria-labelledby="t-sej">
+  <svg class="deco-feuille" data-px=".1" style="right:4%;top:60px" viewBox="0 0 120 150" aria-hidden="true"><path d="M30 20 C60 2 96 16 96 52 C96 84 66 98 58 124 C46 98 14 88 12 58 C10 38 18 28 30 20 Z" fill="#9AAE5B" opacity=".7" filter="url(#aq)" transform="rotate(24 54 70)"/></svg>
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">{{ fam.nav }}</span>
+      <h2 id="t-sej">{{ prof.sej_titre }}</h2>
+      <p>{{ prof.sej_texte }}</p>
+    </div>
+    <div class="sejour">
+      {% for titre, texte in m.prestations() %}
+      <div class="tag-wrap rv" style="--i:{{ loop.index0 }}">
+        <svg class="ficelle" viewBox="0 0 60 60" aria-hidden="true"><path d="{{ ['M30 34 C20 20 10 14 4 0 M30 34 C40 22 48 12 58 2', 'M30 34 C22 18 16 10 10 0 M30 34 C36 20 44 10 52 0', 'M30 34 C18 22 12 12 6 0 M30 34 C42 24 50 14 56 4'][loop.index0 % 3] }}" fill="none" stroke="#A97E55" stroke-width="1.6"/></svg>
+        <article class="tag{{ ['', ' tag--rouge', ' tag--vert'][loop.index0 % 3] }}">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="{{ icos[loop.index0 % 3] }}"/></svg>
+          <h3>{{ titre }}</h3>
+          <p>{{ prof.reste if loop.last and prof.reste else texte }}</p>
+        </article>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ====================== LE LIVRE ====================== -->
+<section class="sec ch-sec" id="chambres" aria-labelledby="t-ch">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">{{ livre.main }}</span>
+      <h2 id="t-ch">{{ livre.titre }}</h2>
+      <p>{{ livre.intro }}</p>
+    </div>
+
+    <div class="livre rv" id="livre" hidden data-unite="{{ livre.unite }}">
+      <div class="onglets" role="tablist" aria-label="{{ livre.aria }}">
+        {% for p in livre.pages %}
+        <button class="onglet" role="tab" type="button" aria-selected="{{ 'true' if loop.first else 'false' }}" aria-controls="spread" data-i="{{ loop.index0 }}">{{ p.onglet or p.nom }}</button>
+        {% endfor %}
+      </div>
+      <div class="planche">
+        <div class="spread" id="spread" role="tabpanel" aria-live="polite" tabindex="-1">
+          <div class="pg pg--g" id="pg"></div>
+          <div class="pg pg--d" id="pd"></div>
+          <button class="coin coin--g" id="coin-g" type="button" aria-label="{{ livre.unite }} précédente"></button>
+          <button class="coin" id="coin-d" type="button" aria-label="{{ livre.unite }} suivante"></button>
+        </div>
+      </div>
+      <div class="livre__bas">
+        <button class="fleche" id="prec" type="button" aria-label="{{ livre.unite }} précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Précédente</span></button>
+        <p class="livre__ou" id="ou" aria-hidden="true">{{ livre.pages[0].onglet or livre.pages[0].nom }}</p>
+        <button class="fleche" id="suiv" type="button" aria-label="{{ livre.unite }} suivante"><span>Suivante</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="ch-src" id="ch-src">
+      {% for p in livre.pages %}
+      <article class="ch" aria-labelledby="ch{{ loop.index }}">
+        <div class="ch__ill">
+          <figure>
+            <span class="scotch{{ ' scotch--v' if loop.index is even }}"></span>
+            {% include "familles/hebergement/pieces/" ~ p.dessin ~ ".html" %}
+            <figcaption>{{ p.legende }}</figcaption>
+          </figure>
+        </div>
+        <div class="ch__txt">
+          <span class="ch__lbl tampon-txt">{{ p.lbl }}</span>
+          <h3 id="ch{{ loop.index }}">{{ p.nom }}</h3>
+          <p class="main">{{ p.sous }}</p>
+          <p>{{ p.texte }}</p>
+          <dl class="dl">
+            {% for dt, dd in p.dl %}
+            <dt>{{ dt }}</dt><dd>{{ dd }}</dd>
+            {% endfor %}
+          </dl>
+          {% if livre.choix %}
+          <a class="lien" href="#contact" data-chambre="{{ p.nom }}">{{ p.lien }}</a>
+          {% else %}
+          <a class="lien" href="#contact">{{ p.lien or fam.cta }}</a>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <div class="ch-note rv">
+      <p>{{ livre.note }}</p>
+      <a class="etq etq--vert" href="#contact">{{ fam.cta }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ALENTOURS ====================== -->
+{% set arrets = [(250, 200), (200, 380), (380, 452), (560, 400), (600, 200), (470, 110)] %}
+{% set items = al_['items'][:6] %}
+<section class="sec" id="alentours" aria-labelledby="t-al">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">{{ al_.main }}</span>
+      <h2 id="t-al">Les alentours</h2>
+      <p>{{ al_.intro|replace('{autour}', ('autour de ' ~ court) if court else 'dans les environs') }}</p>
+    </div>
+    <div class="alen__grille">
+      <div class="carte" id="carte">
+        <span class="scotch"></span><span class="scotch scotch--v"></span>
+        <svg viewBox="0 0 800 560" role="img" aria-label="Croquis des alentours, sans échelle : {{ prof.carte_maison }} au centre{{ ', près de ' ~ court if court }}, et autour, les idées de sorties à demander : {{ items|map(attribute='titre')|join(', ')|lower }}.">
+          <g filter="url(#aq)">
+            <path d="M0 40 C90 20 160 70 150 140 C100 160 30 140 0 130 Z" fill="#B9C07A" opacity=".45"/>
+            <path d="M640 20 C720 10 800 40 800 40 L800 170 C740 180 670 150 650 110 C630 80 620 40 640 20 Z" fill="#B9C07A" opacity=".4"/>
+            <path d="M0 400 C70 380 120 420 160 470 C140 520 60 540 0 545 Z" fill="#8FA894" opacity=".4"/>
+            <path d="M600 470 C660 450 740 470 800 450 L800 560 L580 560 C570 520 580 490 600 470 Z" fill="#B9A27C" opacity=".4"/>
+            <path d="M300 60 C350 40 420 50 430 80 C410 100 350 100 310 92 Z" fill="#D7C27E" opacity=".45"/>
+            <path d="M640 260 C680 240 740 250 760 290 C740 320 680 320 650 300 Z" fill="#D7C27E" opacity=".4"/>
+            <path d="M420 480 C470 470 520 480 540 510 C510 530 450 530 420 515 Z" fill="#B9C07A" opacity=".4"/>
+            <path d="M330 220 C370 196 450 196 480 226 C500 260 480 320 430 334 C380 344 330 320 318 284 C310 258 312 236 330 220 Z" fill="#E6D6B8" opacity=".6"/>
+          </g>
+          <g fill="#2F5E4B" opacity=".55">
+            <use href="#arb" x="30" y="170" width="20" height="26"/><use href="#arb" x="56" y="186" width="16" height="22"/><use href="#arb" x="90" y="160" width="20" height="26"/><use href="#arb" x="40" y="250" width="16" height="22"/><use href="#arb" x="100" y="280" width="18" height="24"/>
+            <use href="#arb" x="680" y="360" width="20" height="26"/><use href="#arb" x="710" y="390" width="16" height="22"/><use href="#arb" x="740" y="350" width="18" height="24"/><use href="#arb" x="660" y="410" width="16" height="22"/>
+            <use href="#arb" x="560" y="60" width="18" height="24"/><use href="#arb" x="590" y="80" width="16" height="22"/><use href="#arb" x="250" y="480" width="18" height="24"/><use href="#arb" x="290" y="500" width="16" height="22"/>
+          </g>
+          <g fill="none" stroke="#3A2F25" stroke-width="1.2" stroke-linecap="round" filter="url(#enc)">
+            <path d="M0 330 C80 320 140 300 210 300 C270 300 300 340 340 380 C380 420 470 430 560 470 C640 500 700 520 800 520" stroke="#5F8C98" stroke-width="2.6"/>
+            <path d="M400 0 C396 80 404 160 400 230 M400 330 C398 400 392 480 396 560 M0 280 C120 284 240 276 320 270 M480 278 C600 270 700 290 800 284" stroke="#7C5638" stroke-dasharray="7 6" stroke-width="1.8" opacity=".75"/>
+            <path d="M20 60 h60 M30 74 h44 M660 70 h70 M670 84 h50 M440 492 h60 M612 280 l14 -6 M720 300 l12 -4"/>
+          </g>
+          <!-- le bourg -->
+          <g fill="#EADFCA" stroke="#3A2F25" stroke-width="1.1" stroke-linejoin="round">
+            <path d="M352 268 l10 -10 l10 10 v14 h-20z"/><path d="M372 274 l8 -8 l8 8 v10 h-16z"/><path d="M428 262 l9 -9 l9 9 v16 h-18z"/><path d="M446 272 l8 -8 l8 8 v12 h-16z"/><path d="M360 300 l9 -9 l9 9 v12 h-18z"/><path d="M430 300 l8 -8 l8 8 v12 h-16z"/>
+            <path d="M386 252 v-14 l6 -16 l6 16 v14 z" fill="#D6C3A2"/>
+          </g>
+          <!-- la maison -->
+          <g transform="translate(400 270)">
+            <path d="M-18 8 L-18 -6 L0 -20 L18 -6 L18 8 Z" fill="#EADFCA" stroke="#3A2F25" stroke-width="1.3"/>
+            <path d="M-21 -5 L0 -23 L21 -5" fill="none" stroke="#7C5638" stroke-width="3.2" stroke-linecap="round"/>
+            <rect x="-4" y="-1" width="8" height="9" fill="#A3262A"/>
+            <circle cx="26" cy="-6" r="9" fill="#8EA552" opacity=".8"/>
+          </g>
+          <!-- pictos des idées de sortie -->
+          <g fill="none" stroke="#3A2F25" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+            <g transform="translate(216 160)"><path d="M0 18 L0 4 C0 0 6 0 6 4 L6 12 L14 14 C18 15 18 20 14 20 L0 20 Z"/></g>
+            <g transform="translate(150 380)"><path d="M0 0 v22 M-4 0 v7 a4 4 0 0 0 8 0 v-7 M14 0 c6 2 6 10 0 12 v10"/></g>
+            <g transform="translate(370 470)"><path d="M0 22 h26 M2 22 v-12 M24 22 v-12 M0 10 L13 0 L26 10 Z M13 22 v-6"/></g>
+            <g transform="translate(578 418)"><path d="M0 8 h26 l-4 14 h-18 z M6 8 c0 -10 14 -10 14 0"/></g>
+            <g transform="translate(616 170)"><circle cx="5" cy="16" r="6"/><circle cx="27" cy="16" r="6"/><path d="M5 16 L12 6 L22 6 L27 16 M12 6 L16 16 L22 6 M10 3 h5"/></g>
+            <g transform="translate(486 76)"><path d="M0 12 C2 0 26 0 28 12 Z M14 12 v12 c0 4 -6 4 -6 0"/></g>
+          </g>
+          <g transform="translate(70 470)" fill="none" stroke="#3A2F25" stroke-width="1.2" opacity=".8">
+            <circle r="26"/><path d="M0 -34 L5 0 L0 34 L-5 0 Z" fill="#A3262A" fill-opacity=".7"/><path d="M-34 0 L34 0"/>
+            <text y="-40" text-anchor="middle" font-size="14" stroke="none" fill="#3A2F25">N</text>
+          </g>
+          <text class="t-main" x="424" y="246" fill="#A3262A" style="fill:#A3262A">{{ prof.carte_maison }}</text>
+          {% if court %}<text class="t-it" x="400" y="356" text-anchor="middle">{{ court }}</text>{% endif %}
+          <text class="t-it" x="790" y="548" text-anchor="end">croquis sans échelle</text>
+
+          <defs><mask id="masque-chemin" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="560"><path id="chemin-m" d="M400 270 C340 250 290 220 250 200 C200 240 170 320 200 380 C260 440 320 460 380 452 C450 444 510 430 560 400 C610 360 630 260 600 200 C570 150 520 110 470 110" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/></mask></defs>
+          <path id="chemin" d="M400 270 C340 250 290 220 250 200 C200 240 170 320 200 380 C260 440 320 460 380 452 C450 444 510 430 560 400 C610 360 630 260 600 200 C570 150 520 110 470 110" fill="none" stroke="#A3262A" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 10" mask="url(#masque-chemin)"/>
+          <g class="etapes-carte" id="arrets">
+            {% for it in items %}
+            {% set a = arrets[loop.index0] %}
+            <g class="arret" data-x="{{ a[0] }}" data-y="{{ a[1] }}"><circle class="halo" cx="{{ a[0] }}" cy="{{ a[1] }}" r="9"/><circle class="c" cx="{{ a[0] }}" cy="{{ a[1] }}" r="7"/></g>
+            {% endfor %}
+          </g>
+          <g id="marcheur" transform="translate(400 270)"><circle r="11" fill="#FBF7EE" stroke="#1F4235" stroke-width="2"/><path d="M0 -6 v6 l-4 5 M0 0 l4 5 M-4 -2 h8" fill="none" stroke="#1F4235" stroke-width="1.6" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <ol class="lieux" id="lieux">
+        {% for it in items %}
+        <li class="lieu"><span class="dist">{{ it.mot }}</span><h3>{{ it.titre }}</h3><p>{{ it.texte }}</p></li>
+        {% endfor %}
+        <li class="lieu lieu--fin"><p>{{ al_.fin }}</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== AVANT DE RÉSERVER ====================== -->
+{% set tb_val = [('Dates', 'Arrivée', 'Départ'), ('Voyageurs', 'Adultes', 'Enfants'), ('Questions', 'Accès', 'Arrivée')] %}
+{% set tb_ico = ['<rect x="8" y="12" width="48" height="44" rx="3"/><path d="M8 24h48M20 6v10M44 6v10M18 34h6M30 34h6M42 34h6M18 44h6M30 44h6"/><circle cx="45" cy="45" r="5"/>', '<circle cx="22" cy="18" r="7"/><path d="M10 46c0-9 5-15 12-15s12 6 12 15"/><circle cx="42" cy="24" r="5"/><path d="M34 48c1-7 4-11 8-11s7 4 8 11"/><path d="M50 52c2-3 6-3 8 0M51 49a1.5 1.5 0 1 0 0-.1M57 49a1.5 1.5 0 1 0 0-.1"/>', '<path d="M8 12h48v30H30l-12 10V42H8z"/><path d="M27 22a5 5 0 1 1 7 5c-2 1-2 2-2 4M32 36v.5"/>'] %}
+<section class="sec prep" id="avant" aria-labelledby="t-prep">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Avant d'écrire</span>
+      <h2 id="t-prep">{{ fam.prep_titre }}</h2>
+      <p>{{ prof.prep_intro }}</p>
+    </div>
+    <div class="timbres">
+      {% for titre, texte in fam.etapes %}
+      {% set v = tb_val[loop.index0 % 3] %}
+      <div class="tb rv" style="--i:{{ loop.index0 }}">
+        <div class="timbre" aria-hidden="true"><div class="in">
+          <span class="val"><span>{{ cp or 'Séjour' }}</span><span>{{ v[0] }}</span></span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">{{ tb_ico[loop.index0 % 3]|safe }}</svg>
+          <span class="val"><span>{{ v[1] }}</span><span>{{ v[2] }}</span></span>
+        </div></div>
+        {% if loop.index0 != 1 %}<svg class="oblit" viewBox="0 0 160 80" aria-hidden="true" filter="url(#encreur)"{{ ' style="transform:rotate(12deg)"'|safe if loop.index0 == 2 }}><use href="#oblit"/></svg>{% endif %}
+        <div><h3>{{ titre }}</h3><p>{{ texte }}</p></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ACCÈS ====================== -->
+<section class="sec" id="acces" aria-labelledby="t-acc">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Venir</span>
+      <h2 id="t-acc">Horaires et accès</h2>
+      <p>{% if sem %}{{ prof.etat.intro }}{% else %}{{ prof.etat.intro_sans }}{% endif %}</p>
+    </div>
+    <div class="acces__grille">
+      <div class="fiche rv">
+        {% if sem %}
+        <p class="etat" id="etat" aria-live="polite"><span class="etat__t">{{ prof.horaires_titre }}</span><span class="etat__d">{{ r.jours }}, {{ r.principal }}.</span></p>
+        <p class="hor-t">{{ prof.horaires_titre }}</p>
+        <ul class="horaires">
+          {% for j in semaine %}
+          <li{{ ' class="off"'|safe if not j.ouvert }}><span>{{ j.jour|capitalize }}</span><b>{{ j.texte }}</b></li>
+          {% endfor %}
+          <li><span>Formulaire</span><b>à toute heure</b></li>
+        </ul>
+        {% else %}
+        <p class="etat" id="etat" aria-live="polite"><span class="etat__t">{{ prof.etat.sur_demande }}</span><span class="etat__d">{{ prof.etat.sur_demande_d }}</span></p>
+        <ul class="horaires">
+          {% if a_tel %}<li><span>Téléphone</span><b>{{ tel }}</b></li>{% endif %}
+          <li><span>Formulaire</span><b>à toute heure</b></li>
+        </ul>
+        {% endif %}
+        <p>{{ prof.arrivees }}</p>
+      </div>
+      <div class="rv" style="--i:1">
+        <figure class="croquis">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Croquis d'accès, sans échelle : {{ prof.carte_maison }}{{ ' à ' ~ court if court }}, au bord de la route.">
+            <path d="M40 130 C70 106 150 100 200 112 C226 120 230 132 220 142 C200 154 140 152 90 150 C60 148 34 144 40 130 Z" fill="#B9C07A" opacity=".55" filter="url(#aq)"/>
+            <g fill="#2F5E4B" opacity=".55"><use href="#arb" x="70" y="104" width="22" height="30"/><use href="#arb" x="150" y="98" width="18" height="26"/><use href="#arb" x="282" y="100" width="20" height="28"/></g>
+            <g fill="none" stroke="#3A2F25" stroke-width="1.3" stroke-linecap="round" filter="url(#enc)">
+              <path d="M10 70 C80 76 160 70 230 96 C270 110 300 96 330 70"/>
+              <path d="M24 64 l-12 6 l12 6 M316 62 l14 8 l-12 8"/>
+            </g>
+            <g transform="translate(232 92)"><path d="M0 -26 C-12 -26 -18 -16 -18 -10 C-18 2 0 18 0 18 C0 18 18 2 18 -10 C18 -16 12 -26 0 -26 Z" fill="#A3262A"/><circle cy="-10" r="6" fill="#FBF7EE"/></g>
+            {% if court %}<text x="16" y="52">{{ court }}</text>{% endif %}
+            <text x="248" y="134" style="font-family:'Pinyon Script',cursive;font-size:22px;font-style:normal;fill:#A3262A">{{ prof.carte_maison }}</text>
+          </svg>
+        </figure>
+        <address class="adr"><span class="main">{{ prof.venir }}</span>XX rue de l'Exemple{% if cpc %}<br>{{ cpc }}{% endif %}</address>
+        <div class="actions">
+          <a class="etq etq--vert" href="{{ itin }}"{% if itin != '#contact' %} target="_blank" rel="noopener"{% endif %}>Ouvrir l'itinéraire</a>
+          <a class="lien" href="#contact">Poser une question</a>
+        </div>
+        <p class="cote">{{ prof.acces_note }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section class="sec ctc" id="contact" aria-labelledby="t-ctc">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">{{ prof.ecrire }}</span>
+      <h2 id="t-ctc">{{ fam.cta }}</h2>
+      <p>{{ prof.ouverture or fam.ouverture }} {% if a_tel %}Par téléphone au <b>{{ tel }}</b>, ou avec cette carte.{% else %}Avec cette carte, en quelques lignes.{% endif %}</p>
+    </div>
+    <form class="postale rv" id="form" novalidate>
+      <div class="timbre" aria-hidden="true">
+        <svg viewBox="0 0 80 96"><rect width="80" height="96" fill="#A3262A"/><rect x="5" y="5" width="70" height="86" fill="none" stroke="#F3E3CF" stroke-width="1"/><g filter="url(#aq)"><path d="M26 30 C40 18 60 26 58 46 C56 62 44 66 40 78 C34 66 20 60 20 44 C20 38 22 34 26 30Z" fill="#9AAE5B"/></g><path d="M40 78 C40 62 38 46 32 34" fill="none" stroke="#F3E3CF" stroke-width="1.2"/><text x="40" y="90" text-anchor="middle" font-family="Special Elite, monospace" font-size="8" fill="#F3E3CF">BONJOUR</text></svg>
+      </div>
+      <svg class="cachet" viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+      <div class="postale__g">
+        <div class="champ"><label for="f-objet">Votre demande</label>
+          <select id="f-objet" name="objet">{% for c in fam.choix %}<option>{{ c }}</option>{% endfor %}</select></div>
+        <div class="duo">
+          <div class="champ"><label for="f-arr">Arrivée</label><input id="f-arr" name="arrivee" type="date"></div>
+          <div class="champ"><label for="f-dep">Départ</label><input id="f-dep" name="depart" type="date"></div>
+        </div>
+        <div class="champ"><label for="f-msg">Votre message</label><textarea id="f-msg" name="message" rows="6" placeholder="{{ prof.placeholder }}"></textarea></div>
+      </div>
+      <div class="postale__d">
+        <div class="champ"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+        <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="champ"><label for="f-mail">Courriel</label><input id="f-mail" name="courriel" type="email" autocomplete="email"></div>
+        {% if livre.choix %}
+        <div class="duo">
+          <div class="champ"><label for="f-pers">Vous serez</label><input id="f-pers" name="personnes" placeholder="2 adultes, 1 enfant"></div>
+          <div class="champ"><label for="f-ch">{{ livre.champ }}</label>
+            <select id="f-ch" name="chambre"><option>Pas de préférence</option>{% for p in livre.pages %}<option>{{ p.nom }}</option>{% endfor %}</select></div>
+        </div>
+        {% else %}
+        <div class="champ"><label for="f-pers">Vous serez</label><input id="f-pers" name="personnes" placeholder="2 adultes, 1 enfant"></div>
+        {% endif %}
+        <div class="envoi">
+          <button class="etq" type="submit">Envoyer ma demande</button>
+          <small id="f-err" role="alert"></small>
+        </div>
+      </div>
+      <div class="merci" id="merci" role="status" tabindex="-1">
+        <svg viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+        <h3>Carte postée, merci.</h3>
+        <p>Sur le site en ligne, votre demande arrive directement chez {{ N }}. {{ prof.merci }}</p>
+        <button class="lien" type="button" id="encore" style="background:none;border:0;cursor:pointer;font:inherit">Écrire une autre demande</button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="cadre pied__in">
+    <div>
+      <span class="main">{{ N }}</span>
+      <p>{{ m.nom }}{{ al }}.</p>
+      <p>XX rue de l'Exemple{% if cpc %}, {{ cpc }}{% endif %}</p>
+      {% if a_tel %}<p>Téléphone : {{ tel }}</p>{% endif %}
+    </div>
+    <ul>
+      <li><a href="#sejourner">{{ fam.nav }}</a></li>
+      <li><a href="#chambres">{{ livre.nav }}</a></li>
+      <li><a href="#alentours">Alentours</a></li>
+    </ul>
+    <ul>
+      <li><a href="#avant">{{ fam.prep_titre }}</a></li>
+      <li><a href="#acces">Horaires et accès</a></li>
+      <li><a href="#contact">{{ fam.cta }}</a></li>
+    </ul>
+    <small>{{ prof.pied }} © {{ annee }} {{ N }}.</small>
+  </div>
+</footer>
+
+<nav class="barre{{ ' barre--seul' if not a_tel }}" id="barre" aria-label="Contact rapide">
+  {% if a_tel %}<a class="b1" href="#contact">Appeler<small>{{ tel }}</small></a>{% endif %}
+  <a class="b2" href="#contact">Écrire<small>{{ prof.barre }}</small></a>
+</nav>
+
+<script>
+(function(){
+  'use strict';
+  var root = document.documentElement, body = document.body;
+  var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NOM = {{ nom_js }};
+  var H = {{ (data_h if sem else 'null')|safe }};
+  var TXT = {{ prof.etat|tojson }};
+  window.__gat = true;
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- entrée ---------- */
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ body.classList.add('go'); }); });
+
+  /* ---------- en-tête, barre mobile, parallaxe ---------- */
+  var hdr = $('hdr'), barre = $('barre');
+  var acc = [].slice.call(document.querySelectorAll('[data-px]'));
+  var tic = false;
+  function defile(){
+    var y = window.scrollY, h = window.innerHeight;
+    if(hdr) hdr.classList.toggle('plein', y > 30);
+    if(barre) barre.classList.toggle('vis', y > h * 0.6);
+    if(!reduit){ acc.forEach(function(el){ var r = el.getBoundingClientRect(); if(r.bottom > -200 && r.top < h + 200){ var base = el.classList.contains('acc-crayon') ? ' rotate(-14deg)' : ''; el.style.transform = 'translate3d(0,' + (y * parseFloat(el.getAttribute('data-px'))).toFixed(1) + 'px,0)' + base; } }); }
+    carteMaj();
+    tic = false;
+  }
+  window.addEventListener('scroll', function(){ if(!tic){ tic = true; requestAnimationFrame(defile); } }, {passive:true});
+
+  /* ---------- menu ---------- */
+  var burger = $('burger');
+  function menu(o){ body.classList.toggle('menu-ouvert', o); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Fermer le menu' : 'Ouvrir le menu'); }
+  burger.addEventListener('click', function(){ menu(burger.getAttribute('aria-expanded') !== 'true'); });
+  document.querySelectorAll('#nav a').forEach(function(a){ a.addEventListener('click', function(){ menu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') menu(false); });
+
+  /* ---------- révélations ---------- */
+  var rvs = document.querySelectorAll('.rv, .etat');
+  if(!('IntersectionObserver' in window) || reduit){ rvs.forEach(function(e){ e.classList.add('vu'); }); }
+  else {
+    var io = new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('vu'); io.unobserve(x.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ---------- le livre ---------- */
+  (function(){
+    var sec = $('chambres'), livre = $('livre');
+    var arts = [].slice.call(document.querySelectorAll('#ch-src .ch'));
+    if(!sec || !livre || !arts.length) return;
+    var ills = arts.map(function(a){ return a.querySelector('.ch__ill'); });
+    var txts = arts.map(function(a){ return a.querySelector('.ch__txt'); });
+    var onglets = [].slice.call(document.querySelectorAll('.onglet'));
+    var noms = onglets.map(function(o){ return o.textContent.trim(); });
+    var unite = livre.getAttribute('data-unite') || 'Page';
+    var pg = $('pg'), pd = $('pd'), spread = $('spread');
+    var prec = $('prec'), suiv = $('suiv'), ou = $('ou');
+    var coinG = $('coin-g'), coinD = $('coin-d');
+    var mq = window.matchMedia('(max-width: 860px)');
+    var cur = 0, occupe = false;
+    livre.hidden = false; sec.classList.add('livre-on');
+
+    function poser(i){
+      pg.textContent = ''; pd.textContent = '';
+      if(mq.matches){ pd.appendChild(ills[i]); pd.appendChild(txts[i]); }
+      else { pg.appendChild(ills[i]); pd.appendChild(txts[i]); }
+    }
+    function etat(){
+      onglets.forEach(function(o, k){ o.setAttribute('aria-selected', k === cur ? 'true' : 'false'); o.tabIndex = k === cur ? 0 : -1; });
+      prec.disabled = cur === 0; suiv.disabled = cur === arts.length - 1;
+      coinG.hidden = cur === 0 || mq.matches; coinD.hidden = cur === arts.length - 1;
+      ou.textContent = noms[cur] || '';
+      spread.setAttribute('aria-label', unite + ' ' + (cur + 1) + ' sur ' + arts.length + ' : ' + (noms[cur] || ''));
+    }
+    function clone(n){ var c = n.cloneNode(true); c.querySelectorAll('[id]').forEach(function(e){ e.removeAttribute('id'); }); return c; }
+    function face(cls, nodes){ var f = document.createElement('div'); f.className = 'face ' + cls; nodes.forEach(function(n){ f.appendChild(n); }); var o = document.createElement('div'); o.className = 'ombre'; f.appendChild(o); return f; }
+    function animer(feuille, de, a, fin){
+      var dur = 950;
+      if(!feuille.animate){ fin(); return; }
+      var anim = feuille.animate([{transform:'rotateY(' + de + 'deg)'}, {transform:'rotateY(' + a + 'deg)'}], {duration:dur, easing:'cubic-bezier(.45,.05,.3,1)'});
+      feuille.querySelectorAll('.ombre').forEach(function(o){ o.animate([{opacity:0},{opacity:1},{opacity:0}], {duration:dur, easing:'ease-in-out'}); });
+      anim.onfinish = fin;
+    }
+    function aller(n){
+      if(occupe || n === cur || n < 0 || n >= arts.length) return;
+      var old = cur, avant = n > old; cur = n;
+      if(reduit){ poser(n); etat(); return; }
+      occupe = true;
+      var f = document.createElement('div');
+      f.setAttribute('aria-hidden', 'true');
+      if(mq.matches){
+        f.className = 'feuille feuille--m';
+        if(avant){
+          f.appendChild(face('face--avant', [clone(ills[old]), clone(txts[old])]));
+          f.appendChild(face('face--dos', []));
+          poser(n); spread.appendChild(f);
+          animer(f, 0, -180, function(){ f.remove(); occupe = false; });
+        } else {
+          f.appendChild(face('face--avant', [clone(ills[n]), clone(txts[n])]));
+          f.appendChild(face('face--dos', []));
+          spread.appendChild(f);
+          animer(f, -180, 0, function(){ poser(n); f.remove(); occupe = false; });
+        }
+      } else if(avant){
+        f.className = 'feuille feuille--d';
+        f.appendChild(face('face--avant', [clone(txts[old])]));
+        f.appendChild(face('face--dos', [clone(ills[n])]));
+        pd.textContent = ''; pd.appendChild(txts[n]);
+        spread.appendChild(f);
+        animer(f, 0, -180, function(){ pg.textContent = ''; pg.appendChild(ills[n]); f.remove(); occupe = false; });
+      } else {
+        f.className = 'feuille feuille--g';
+        f.appendChild(face('face--avant', [clone(ills[old])]));
+        f.appendChild(face('face--dos', [clone(txts[n])]));
+        pg.textContent = ''; pg.appendChild(ills[n]);
+        spread.appendChild(f);
+        animer(f, 0, 180, function(){ pd.textContent = ''; pd.appendChild(txts[n]); f.remove(); occupe = false; });
+      }
+      etat();
+    }
+    poser(0); etat();
+    mq.addEventListener ? mq.addEventListener('change', function(){ poser(cur); etat(); }) : mq.addListener(function(){ poser(cur); etat(); });
+    prec.addEventListener('click', function(){ aller(cur - 1); });
+    suiv.addEventListener('click', function(){ aller(cur + 1); });
+    coinG.addEventListener('click', function(){ aller(cur - 1); });
+    coinD.addEventListener('click', function(){ aller(cur + 1); });
+    onglets.forEach(function(o, k){
+      o.addEventListener('click', function(){ aller(k); });
+      o.addEventListener('keydown', function(e){
+        var t = e.key === 'ArrowRight' ? cur + 1 : e.key === 'ArrowLeft' ? cur - 1 : null;
+        if(t !== null && t >= 0 && t < arts.length){ e.preventDefault(); aller(t); onglets[t].focus(); }
+      });
+    });
+    var x0 = null;
+    spread.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    spread.addEventListener('touchend', function(e){ if(x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if(Math.abs(dx) > 50) aller(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+    var sel = $('f-ch');
+    document.querySelectorAll('[data-chambre]').forEach(function(a){ a.addEventListener('click', function(){ if(sel) sel.value = a.getAttribute('data-chambre'); }); });
+  })();
+
+  /* ---------- carte : le chemin se trace au défilement ---------- */
+  var chemin = $('chemin-m'), liste = $('lieux'), marcheur = $('marcheur');
+  var lieux = [].slice.call(document.querySelectorAll('#lieux .lieu:not(.lieu--fin)'));
+  var arrets = [].slice.call(document.querySelectorAll('#arrets .arret'));
+  var L = 0, fr = [], lastP = -1;
+  if(chemin && chemin.getTotalLength){
+    L = chemin.getTotalLength();
+    chemin.style.strokeDasharray = L; chemin.style.strokeDashoffset = L;
+    arrets.forEach(function(a){
+      var x = +a.getAttribute('data-x'), y = +a.getAttribute('data-y'), best = 0, bd = 1e9;
+      for(var l = 0; l <= L; l += 2){ var p = chemin.getPointAtLength(l), d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y); if(d < bd){ bd = d; best = l; } }
+      fr.push(best / L);
+    });
+  }
+  function carteMaj(){
+    if(!L || !liste) return;
+    var r = liste.getBoundingClientRect(), h = window.innerHeight;
+    var p = reduit ? 1 : Math.max(0, Math.min(1, (h * 0.62 - r.top) / (r.height - h * 0.25)));
+    if(Math.abs(p - lastP) < 0.001) return; lastP = p;
+    chemin.style.strokeDashoffset = (L * (1 - p)).toFixed(1);
+    var pt = chemin.getPointAtLength(L * p);
+    if(marcheur) marcheur.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ')');
+    fr.forEach(function(f, k){ var on = p >= f - 0.005; arrets[k].classList.toggle('on', on); if(lieux[k]) lieux[k].classList.toggle('on', on); });
+  }
+  defile();
+  window.addEventListener('resize', function(){ lastP = -1; carteMaj(); });
+
+  /* ---------- ouvert en ce moment ? (heure de Paris) ---------- */
+  var JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+  function maintenant(){
+    try {
+      var o = {}; new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Paris', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false}).formatToParts(new Date()).forEach(function(x){ o[x.type] = x.value; });
+      var j = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday);
+      if(j < 0) throw 0;
+      return {j:j, m:(+o.hour % 24) * 60 + (+o.minute)};
+    } catch(e){ var d = new Date(); return {j:d.getDay(), m:d.getHours() * 60 + d.getMinutes()}; }
+  }
+  function hm(x){ var h = Math.floor(x / 60) % 24, m = x % 60; return h + ' h' + (m ? ' ' + (m < 10 ? '0' : '') + m : ''); }
+  var et = $('etat');
+  if(et && H && H.length === 7){
+    var t = maintenant(), auj = H[t.j] || [], fin = null, i, k;
+    for(i = 0; i + 1 < auj.length; i += 2){ if(t.m >= auj[i] && t.m < auj[i + 1]){ fin = auj[i + 1]; break; } }
+    if(fin !== null){
+      et.classList.add('etat--oui'); et.firstElementChild.textContent = TXT.oui; et.lastElementChild.textContent = TXT.oui_d + hm(fin) + '.';
+    } else {
+      var proch = null;
+      for(i = 0; i + 1 < auj.length; i += 2){ if(auj[i] > t.m){ proch = {d:0, m:auj[i]}; break; } }
+      for(k = 1; !proch && k <= 7; k++){ var c = H[(t.j + k) % 7]; if(c && c.length) proch = {d:k, m:c[0]}; }
+      et.classList.add('etat--non'); et.firstElementChild.textContent = TXT.non;
+      et.lastElementChild.textContent = proch ? TXT.non_d + (proch.d === 0 ? 'aujourd’hui' : proch.d === 1 ? 'demain' : JOURS[(t.j + proch.d) % 7]) + ' à ' + hm(proch.m) + '. Le formulaire reste ouvert.' : 'Le formulaire reste ouvert.';
+    }
+  }
+
+  /* ---------- formulaire ---------- */
+  var form = $('form'), merci = $('merci'), err = $('f-err');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nom = $('f-nom');
+      if(!nom.value.trim()){ err.textContent = TXT.err_nom; nom.focus(); return; }
+      err.textContent = ''; merci.classList.add('vis'); merci.focus();
+    });
+    $('encore').addEventListener('click', function(){ form.reset(); merci.classList.remove('vis'); $('f-objet').focus(); });
+  }
+})();
+</script>
+</body>
+</html>

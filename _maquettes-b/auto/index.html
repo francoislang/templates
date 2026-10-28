@@ -1,0 +1,770 @@
+<!doctype html>
+<!--
+  Famille « auto » (moto, vélo, auto-école) — VARIANTE B « café-racer / garage 70 ».
+  Métier démontré : atelier moto. Transposable : remplacer la moto au trait
+  (vélo de course, ou voiture d'auto-école) et les plaques émaillées.
+
+  Idées retenues après recherche (affiches de courses moto des années 70,
+  plaques émaillées de garage, sites de préparateurs café-racer) :
+  1. L'affiche de course comme hero : bandes horizontales orange / rouille / brun,
+     slab massive à ombre portée en escalier + script de signature.
+  2. Le mur de l'atelier : prestations en plaques émaillées rivetées, écussons brodés
+     pour les gestes du métier, panneau « Ouvert / Fermé » accroché à une chaîne.
+  3. Le carnet d'entretien tamponné pour « Préparer votre demande » ; la moto
+     dessinée au trait entre dans l'écran et se gare dans le hero.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Deux Temps — atelier moto à Laxou</title>
+<meta name="description" content="Atelier Deux Temps, atelier moto à Laxou : entretien, réparation, équipement et accessoires. Vous parlez directement à la personne qui s'occupera de votre moto.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Yellowtail&family=Zilla+Slab:ital,wght@0,400;0,500;0,700;1,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<script>
+document.documentElement.className+=" js";
+setTimeout(function(){ if(!window.__dtOK) document.documentElement.classList.add("secours"); },1500);
+</script>
+<style>
+:root{
+  --papier:#E9DCBA; --papier-2:#DECDA4; --papier-3:#F2E8CF; --tache:#C9AE76;
+  --olive:#3C4024; --olive-2:#4F5530; --olive-3:#676D40;
+  --orange:#EE7A2A; --orange-2:#D9601A; --rouille:#9A3D13; --brun:#4A2A17; --brun-2:#2C1A0E;
+  --encre:#24170C; --encre-2:#5A4330;
+  --creme:#F4EAD0; --creme-2:#CFC39D;
+  --vert:#5E7A2C; --asphalte:#2F2620;
+  --large:1220px;
+  --gout:max(16px, env(safe-area-inset-left)); --gout-d:max(16px, env(safe-area-inset-right));
+  --f-slab:'Alfa Slab One','Rockwell','Roboto Slab',Georgia,serif;
+  --f-script:'Yellowtail','Brush Script MT',cursive;
+  --f-texte:'Zilla Slab','Rockwell',Georgia,serif;
+  --f-mono:'Courier Prime','Courier New',Courier,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .2 0 0 0 0 .08 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:84px}
+body{margin:0;overflow-x:clip;background:var(--papier);color:var(--encre);font-family:var(--f-texte);font-size:clamp(1.02rem,.96rem + .3vw,1.15rem);line-height:1.55;
+  background-image:radial-gradient(ellipse 60% 40% at 8% 12%,rgba(176,128,60,.18),transparent 70%),radial-gradient(ellipse 40% 30% at 92% 46%,rgba(176,128,60,.16),transparent 70%),radial-gradient(ellipse 50% 30% at 30% 88%,rgba(176,128,60,.14),transparent 70%)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;background:var(--grain);opacity:.32;mix-blend-mode:multiply}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:400}
+p{margin:0 0 .8em}
+:focus-visible{outline:3px solid var(--orange-2);outline-offset:3px;border-radius:2px}
+.evite{position:absolute;left:12px;top:-60px;z-index:200;background:var(--encre);color:var(--creme);padding:12px 16px;font-family:var(--f-mono);text-decoration:none}
+.evite:focus{top:12px}
+.conteneur{max-width:var(--large);margin:0 auto;padding-left:var(--gout);padding-right:var(--gout-d)}
+@media(min-width:760px){.conteneur{padding-left:max(32px,env(safe-area-inset-left));padding-right:max(32px,env(safe-area-inset-right))}}
+.mono{font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem}
+.script{font-family:var(--f-script)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- boutons ---------- */
+.btn{--bg:var(--brun-2);--fg:var(--creme);display:inline-flex;align-items:center;gap:.6em;min-height:52px;padding:.7em 1.4em;background:var(--bg);color:var(--fg);text-decoration:none;font-family:var(--f-slab);font-size:1.02rem;letter-spacing:.02em;border:0;border-radius:6px;cursor:pointer;position:relative;
+  box-shadow:0 0 0 2px var(--bg),inset 0 0 0 2px var(--fg),4px 4px 0 2px var(--orange-2);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:0 0 0 2px var(--bg),inset 0 0 0 2px var(--fg),7px 7px 0 2px var(--orange-2)}
+.btn:active{transform:translate(2px,2px);box-shadow:0 0 0 2px var(--bg),inset 0 0 0 2px var(--fg),1px 1px 0 2px var(--orange-2)}
+.btn svg{width:20px;height:20px}
+.btn--orange{--bg:var(--orange);--fg:var(--brun-2);box-shadow:0 0 0 2px var(--bg),inset 0 0 0 2px var(--brun-2),4px 4px 0 2px var(--brun-2)}
+.btn--orange:hover{box-shadow:0 0 0 2px var(--bg),inset 0 0 0 2px var(--brun-2),7px 7px 0 2px var(--brun-2)}
+.lien-tel{display:inline-flex;align-items:center;gap:.5em;min-height:48px;font-family:var(--f-mono);font-weight:700;letter-spacing:.06em;text-decoration:none;border-bottom:2px dashed currentColor}
+
+/* ---------- en-tête ---------- */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(233,220,186,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:3px double var(--brun)}
+.hdr__in{display:flex;align-items:center;gap:16px;min-height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-height:48px}
+.logo svg{width:52px;height:52px;flex:none;transition:transform .6s var(--ease)}
+.logo:hover svg{transform:rotate(-14deg)}
+.logo b{display:block;font-family:var(--f-slab);font-weight:400;font-size:1.22rem;line-height:1;color:var(--brun-2)}
+.logo small{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rouille);margin-top:4px}
+.nav{display:none;margin-left:auto;gap:4px}
+.nav a{font-family:var(--f-mono);font-weight:700;text-transform:uppercase;font-size:.78rem;letter-spacing:.12em;text-decoration:none;padding:14px 12px;position:relative;color:var(--brun-2)}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:3px;background:repeating-linear-gradient(90deg,var(--orange-2) 0 8px,transparent 8px 13px);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.plaque-etat{margin-left:auto;display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-weight:700;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 12px;border-radius:5px;background:var(--brun-2);color:var(--creme);box-shadow:inset 0 0 0 2px var(--brun-2),inset 0 0 0 3px var(--creme-2);min-height:36px;white-space:nowrap}
+.plaque-etat i{width:9px;height:9px;border-radius:50%;background:var(--creme-2);flex:none}
+.plaque-etat.ouvert i{background:#9BD04A;box-shadow:0 0 0 3px rgba(155,208,74,.25)}
+.plaque-etat.ferme i{background:var(--orange)}
+@media(max-width:420px){.logo b{font-size:1.02rem}.logo svg{width:44px;height:44px}.logo small{font-size:.62rem}}
+@media(min-width:980px){.nav{display:flex}.plaque-etat{margin-left:8px}}
+
+/* ---------- hero affiche ---------- */
+.hero{position:relative;overflow:hidden;padding-top:clamp(28px,5vw,56px)}
+.hero__grille{position:relative;z-index:3;display:grid;gap:18px}
+.sur{display:flex;flex-wrap:wrap;align-items:center;gap:10px;color:var(--rouille);font-weight:700}
+.sur::before{content:"";width:34px;height:3px;background:var(--rouille)}
+.titre{line-height:.86;color:var(--brun-2);position:relative}
+.titre .t1{display:block;font-family:var(--f-slab);font-size:clamp(3.4rem,1.6rem + 8.6vw,8.6rem);letter-spacing:.01em;text-transform:uppercase;
+  text-shadow:3px 3px 0 var(--papier),6px 6px 0 var(--orange),9px 9px 0 var(--papier),12px 12px 0 var(--rouille)}
+.titre .t2{display:block;font-family:var(--f-script);font-size:clamp(3.2rem,1.8rem + 6.2vw,7rem);color:var(--rouille);line-height:.9;margin:-.08em 0 0 .5em;transform:rotate(-6deg);transform-origin:left center;
+  text-shadow:2px 2px 0 var(--papier),4px 4px 0 rgba(74,42,23,.25)}
+.hero__txt{max-width:30em}
+.hero__txt p{font-size:clamp(1.08rem,1rem + .45vw,1.3rem);color:var(--encre)}
+.hero__txt p em{font-style:normal;background:linear-gradient(transparent 62%,rgba(238,122,42,.45) 62%)}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:10px}
+.hero__lieu{font-family:var(--f-mono);font-size:.8rem;color:var(--encre-2);margin-top:6px}
+
+/* scène */
+.scene{position:relative;height:clamp(250px,40vw,430px);margin-top:clamp(-40px,-3vw,0px);z-index:2}
+.bandes{position:absolute;left:0;right:0;bottom:22%;height:46%;display:grid;grid-template-rows:1fr 1fr 1fr;gap:6px;transform-origin:left;z-index:0}
+.bandes span{display:block}
+.bandes span:nth-child(1){background:var(--orange)}
+.bandes span:nth-child(2){background:var(--orange-2);background:var(--rouille)}
+.bandes span:nth-child(3){background:var(--brun)}
+.soleil{position:absolute;right:8%;bottom:30%;width:clamp(180px,28vw,380px);aspect-ratio:1;border-radius:50%;z-index:-1;
+  background:repeating-radial-gradient(circle at 50% 50%,var(--orange) 0 9px,var(--papier) 9px 13px);
+  -webkit-mask:linear-gradient(#000 60%,transparent 60%);mask:linear-gradient(#000 60%,transparent 60%);opacity:.9}
+.sol{position:absolute;left:0;right:0;bottom:0;height:22%;background:var(--papier-2);border-top:4px solid var(--brun-2);z-index:1}
+.sol::after{content:"";position:absolute;inset:8px 0 auto;height:2px;background:repeating-linear-gradient(90deg,var(--tache) 0 26px,transparent 26px 44px)}
+.velo{position:absolute;z-index:3;bottom:calc(22% - 6px);right:6%;width:min(60vw,640px);will-change:transform}
+.velo svg{width:100%;height:auto;overflow:visible}
+.velo .corps{transform-origin:50% 90%}
+.velo.arrive .corps{animation:amorti .7s var(--ease)}
+@keyframes amorti{0%{transform:rotate(0)}30%{transform:rotate(1.6deg) translateY(3px)}60%{transform:rotate(-.6deg)}100%{transform:rotate(0)}}
+.vitesse line{stroke:var(--brun);stroke-width:4;stroke-linecap:round;opacity:0}
+.velo.roule .vitesse line{opacity:.7}
+.fumee circle{fill:var(--creme);stroke:var(--brun);stroke-width:2;opacity:0}
+.velo.arrive .fumee circle{animation:fumee 1.8s ease-out forwards}
+.velo.arrive .fumee circle:nth-child(2){animation-delay:.18s}
+.velo.arrive .fumee circle:nth-child(3){animation-delay:.36s}
+@keyframes fumee{0%{opacity:0;transform:translate(0,0) scale(.4)}20%{opacity:.95}100%{opacity:0;transform:translate(-90px,-30px) scale(1.6)}}
+.fumee circle{transform-box:fill-box;transform-origin:center}
+.ecusson-hero{position:absolute;z-index:4;left:var(--gout);bottom:28%;width:clamp(96px,11vw,150px);transform:rotate(-10deg)}
+@media(min-width:900px){
+  .hero__grille{grid-template-columns:1.15fr .85fr;align-items:end}
+  .hero__txt{padding-bottom:12px}
+  .scene{margin-top:-30px}
+  .velo{width:min(52vw,660px)}
+  .ecusson-hero{left:max(32px,calc((100vw - var(--large))/2 + 32px));bottom:30%}
+}
+@media(max-width:599px){
+  .scene{height:240px;margin-top:8px}
+  .velo{right:-2%;width:94vw;bottom:calc(22% - 4px)}
+  .soleil{right:-8%;width:220px}
+  .ecusson-hero{bottom:auto;top:0;left:var(--gout);width:78px}
+  .bandes{bottom:22%;height:40%}
+}
+
+/* ---------- route qui défile ---------- */
+.route{position:relative;background:var(--asphalte);color:var(--creme);overflow:hidden;border-top:4px solid var(--brun-2);border-bottom:4px solid var(--brun-2)}
+.route::before,.route::after{content:"";position:absolute;left:0;right:0;height:4px;background:repeating-linear-gradient(90deg,var(--creme) 0 18px,var(--rouille) 18px 36px);opacity:.8}
+.route::before{top:6px}.route::after{bottom:6px}
+.route__piste{display:flex;width:max-content;align-items:center;padding:22px 0;will-change:transform}
+.route__piste span{display:inline-flex;align-items:center;gap:28px;padding-right:28px;font-family:var(--f-slab);font-size:clamp(1.05rem,.9rem + .7vw,1.5rem);white-space:nowrap;letter-spacing:.03em}
+.route__piste span::after{content:"";width:60px;height:6px;background:#E8B23A;border-radius:2px}
+.route__piste span:nth-child(3n+2){font-family:var(--f-script);font-size:clamp(1.5rem,1.2rem + 1vw,2.1rem);color:var(--orange)}
+
+/* ---------- titres de section ---------- */
+.sec{padding:clamp(64px,9vw,120px) 0;position:relative}
+.sec__tete{display:grid;gap:10px;margin-bottom:clamp(32px,5vw,56px);max-width:44em}
+.sec__tete .mono{color:var(--rouille);font-weight:700}
+.h2{font-family:var(--f-slab);font-size:clamp(2.3rem,1.5rem + 3.6vw,4.4rem);line-height:.95;text-transform:uppercase;color:var(--brun-2);text-shadow:3px 3px 0 var(--orange)}
+.h2 .script{display:block;text-transform:none;font-size:.82em;color:var(--rouille);text-shadow:none;margin:.06em 0 0 .3em;transform:rotate(-4deg);transform-origin:left}
+.sec__tete p{color:var(--encre-2);max-width:36em}
+
+/* ---------- plaques émaillées ---------- */
+.mur{display:grid;gap:clamp(22px,3vw,34px);grid-template-columns:1fr}
+@media(min-width:760px){.mur{grid-template-columns:repeat(6,1fr)}.pl--a{grid-column:1/5}.pl--b{grid-column:3/7}.pl--c{grid-column:1/5}}
+@media(min-width:1100px){.mur{grid-template-columns:repeat(12,1fr)}.pl--a{grid-column:1/8;grid-row:1}.pl--b{grid-column:6/13;grid-row:2;margin-top:-40px}.pl--c{grid-column:2/9;grid-row:3;margin-top:-24px}}
+.pl{--fond:var(--orange);--txt:var(--brun-2);--filet:var(--brun-2);position:relative;background:var(--fond);color:var(--txt);border-radius:18px;padding:clamp(28px,4vw,46px) clamp(24px,4vw,52px);
+  box-shadow:inset 0 0 0 8px var(--fond),inset 0 0 0 11px var(--filet),inset 0 2px 0 13px rgba(255,255,255,.18),0 2px 0 1px rgba(44,26,14,.35),8px 12px 0 -2px rgba(44,26,14,.22);
+  transform:rotate(var(--r,0deg));transition:transform .5s var(--ease)}
+.pl::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:radial-gradient(circle at 22px 22px,var(--creme-2) 0 4px,var(--brun) 4px 5px,transparent 6px),radial-gradient(circle at calc(100% - 22px) 22px,var(--creme-2) 0 4px,var(--brun) 4px 5px,transparent 6px),radial-gradient(circle at 22px calc(100% - 22px),var(--creme-2) 0 4px,var(--brun) 4px 5px,transparent 6px),radial-gradient(circle at calc(100% - 22px) calc(100% - 22px),var(--creme-2) 0 4px,var(--brun) 4px 5px,transparent 6px),
+  linear-gradient(115deg,transparent 30%,rgba(255,255,255,.22) 42%,transparent 54%);background-size:auto,auto,auto,auto,250% 100%;background-position:0 0,0 0,0 0,0 0,120% 0;transition:background-position .9s var(--ease)}
+.pl:hover::before{background-position:0 0,0 0,0 0,0 0,-60% 0}
+.pl:hover{transform:rotate(0deg) translateY(-4px)}
+.pl::after{content:"";position:absolute;width:46px;height:26px;background:var(--brun-2);opacity:.85;border-radius:40% 60% 50% 45%;clip-path:polygon(0 30%,30% 0,70% 20%,100% 0,90% 60%,60% 100%,20% 80%);top:var(--eclat-t,auto);bottom:var(--eclat-b,-6px);left:var(--eclat-l,auto);right:var(--eclat-r,18%)}
+.pl--a{--r:-1.2deg}
+.pl--b{--fond:var(--olive);--txt:var(--creme);--filet:var(--creme-2);--r:1deg;--eclat-t:-6px;--eclat-b:auto;--eclat-r:auto;--eclat-l:24%}
+.pl--b::after{background:var(--papier)}
+.pl--c{--fond:var(--creme);--txt:var(--brun-2);--filet:var(--rouille);--r:-.6deg}
+.pl__mono{font-family:var(--f-mono);font-weight:700;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.pl__mono svg{width:26px;height:26px}
+.pl h3{font-family:var(--f-slab);font-size:clamp(1.9rem,1.3rem + 2.4vw,3.2rem);line-height:.98;text-transform:uppercase;margin-bottom:.35em}
+.pl h3 .script{display:block;text-transform:none;font-size:.78em;color:var(--rouille)}
+.pl--b h3 .script{color:var(--orange)}
+.pl p{max-width:34em;font-size:1.06rem}
+.pl--b p{color:#EDE3C6}
+.gestes{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.gestes li{font-family:var(--f-mono);font-weight:700;font-size:.78rem;letter-spacing:.06em;padding:7px 12px;border:2px dashed currentColor;border-radius:999px}
+.pl .btn{margin-top:10px}
+
+/* écussons brodés */
+.ecussons{margin-top:clamp(56px,7vw,90px);display:grid;gap:22px}
+.ecussons h3{font-family:var(--f-script);font-size:clamp(2rem,1.6rem + 1.4vw,2.8rem);color:var(--rouille);line-height:1}
+.ecussons ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:18px}
+.ec{aspect-ratio:1;display:grid;place-items:center;text-align:center;border-radius:50%;padding:18px;position:relative;
+  background:var(--c,var(--olive));color:var(--creme);box-shadow:0 0 0 4px var(--c,var(--olive)),0 0 0 6px var(--brun-2),3px 5px 0 6px rgba(44,26,14,.25);
+  transition:transform .4s var(--ease)}
+.ec::before{content:"";position:absolute;inset:7px;border-radius:50%;border:2px dashed rgba(244,234,208,.75)}
+.ec:hover{transform:rotate(-8deg) scale(1.04)}
+.ec svg{width:34px;height:34px;margin:0 auto 6px}
+.ec b{display:block;font-family:var(--f-slab);font-weight:400;font-size:.98rem;line-height:1.05}
+.ec small{display:block;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;margin-top:4px;opacity:.9}
+.ec:nth-child(3n+2){--c:var(--rouille)}
+.ec:nth-child(3n){--c:var(--brun)}
+.ec:nth-child(2n){border-radius:22px 22px 50% 50%}
+.ec:nth-child(2n)::before{border-radius:16px 16px 50% 50%}
+@media(min-width:900px){.ecussons{grid-template-columns:240px 1fr;align-items:center}}
+
+/* ---------- carnet d'entretien ---------- */
+.carnet-sec{background:var(--papier-2);border-top:3px double var(--brun);border-bottom:3px double var(--brun)}
+.carnet{display:grid;gap:22px;align-items:stretch}
+.couv{background:var(--olive);color:var(--creme);border-radius:6px 14px 14px 6px;padding:28px 26px;position:relative;box-shadow:inset 14px 0 0 var(--olive-2),inset 16px 0 0 rgba(0,0,0,.25),6px 8px 0 rgba(44,26,14,.25);display:flex;flex-direction:column;gap:14px;padding-left:44px}
+.couv .script{font-size:clamp(2.2rem,1.8rem + 1.6vw,3.1rem);color:var(--orange);line-height:.9}
+.couv b{font-family:var(--f-slab);font-weight:400;font-size:clamp(1.4rem,1.1rem + .8vw,1.7rem);text-transform:uppercase;line-height:1}
+.couv p{color:#E6DCBE;margin:0}
+.couv .cadre{border:2px solid var(--creme-2);padding:10px 12px;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.06em}
+.couv .btn{align-self:flex-start;margin-top:auto}
+.pages{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 22px;margin:0 calc(-1 * var(--gout-d)) 0 0;scrollbar-width:thin;scrollbar-color:var(--rouille) transparent;overscroll-behavior-x:contain}
+.page{flex:0 0 min(82%,340px);scroll-snap-align:start;background:var(--papier-3);position:relative;padding:22px 22px 26px 30px;border-radius:2px 8px 8px 2px;box-shadow:2px 3px 0 var(--tache),5px 7px 0 -1px var(--papier-3),6px 8px 0 -1px var(--tache),0 14px 22px -14px rgba(44,26,14,.5);
+  background-image:linear-gradient(90deg,transparent 18px,rgba(154,61,19,.45) 18px 19px,transparent 19px),repeating-linear-gradient(transparent 0 29px,rgba(79,85,48,.22) 29px 30px);background-position:0 0,0 60px;transform:rotate(var(--r,0))}
+.page:nth-child(1){--r:-1deg}.page:nth-child(2){--r:.8deg}.page:nth-child(3){--r:-.4deg}
+.page__tete{display:flex;justify-content:space-between;gap:10px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--encre-2);border-bottom:2px solid var(--brun);padding-bottom:8px;margin-bottom:18px}
+.page h3{font-family:var(--f-slab);font-size:1.7rem;line-height:1;color:var(--brun-2);margin-bottom:10px}
+.page p{font-family:var(--f-mono);font-size:.95rem;line-height:30px;margin:0 0 12px}
+.champs{list-style:none;margin:0;padding:0;font-family:var(--f-mono);font-size:.9rem;line-height:30px}
+.champs li{display:flex;gap:8px;white-space:nowrap}
+.champs li::after{content:"";flex:1;border-bottom:2px dotted var(--encre-2);margin-bottom:9px}
+.tampon{position:absolute;right:14px;top:56px;width:112px;height:112px;color:var(--rouille);transform:rotate(-14deg);mix-blend-mode:multiply;opacity:.9;pointer-events:none}
+.page:nth-child(2) .tampon{color:var(--olive-2);transform:rotate(10deg);right:10px}
+.page:nth-child(3) .tampon{color:#3E5B8A;transform:rotate(-6deg)}
+.tampon svg{width:100%;height:100%;-webkit-mask:var(--grain);mask:var(--grain);-webkit-mask-size:140px;mask-size:140px}
+.tampon text{font-family:var(--f-mono);font-weight:700;letter-spacing:2px}
+html.js:not(.secours) .page:not(.vu) .tampon{opacity:0;transform:scale(1.9) rotate(-30deg)}
+.page.vu .tampon{transition:opacity .2s ease .35s,transform .45s cubic-bezier(.3,1.6,.5,1) .35s}
+@media(min-width:900px){
+  .carnet{grid-template-columns:280px 1fr}
+  .pages{overflow:visible;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .page{flex:none}
+}
+
+/* ---------- horaires / accès ---------- */
+.atelier{background:var(--olive);color:var(--creme);overflow:hidden}
+.atelier::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.4;mix-blend-mode:multiply;pointer-events:none}
+.atelier .h2{color:var(--creme);text-shadow:3px 3px 0 var(--brun-2)}
+.atelier .h2 .script{color:var(--orange)}
+.atelier .sec__tete .mono{color:#E8B23A}
+.atelier .sec__tete p{color:#DCD2B2}
+.acces{display:grid;gap:clamp(28px,4vw,48px);position:relative}
+.panneau-wrap{display:grid;justify-items:center;perspective:700px;padding-top:8px}
+.chaine{width:120px;height:46px}
+.panneau{width:min(300px,82vw);aspect-ratio:2.2/1;margin-top:-6px;position:relative;transform-style:preserve-3d;transform-origin:50% -20px;transition:transform 1.1s cubic-bezier(.3,1.4,.5,1)}
+.panneau__f{position:absolute;inset:0;display:grid;place-items:center;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden;font-family:var(--f-slab);font-size:clamp(2.1rem,1.6rem + 1.6vw,2.8rem);text-transform:uppercase;letter-spacing:.04em}
+.panneau__f span{display:block;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;margin-top:-6px}
+.panneau__f--o{background:var(--creme);color:var(--olive);box-shadow:inset 0 0 0 7px var(--creme),inset 0 0 0 10px var(--olive),6px 8px 0 rgba(0,0,0,.25)}
+.panneau__f--f{background:var(--orange);color:var(--brun-2);transform:rotateY(180deg);box-shadow:inset 0 0 0 7px var(--orange),inset 0 0 0 10px var(--brun-2),6px 8px 0 rgba(0,0,0,.25)}
+.panneau.est-ferme{transform:rotateY(180deg)}
+.panneau-wrap .etat-txt{margin-top:18px;font-family:var(--f-mono);font-size:.9rem;text-align:center;color:#EDE3C6;min-height:1.6em}
+.tableau{background:var(--brun-2);border-radius:10px;padding:clamp(20px,3vw,30px);box-shadow:inset 0 0 0 3px var(--brun),inset 0 0 0 5px rgba(244,234,208,.4)}
+.tableau h3{font-family:var(--f-script);font-size:2.2rem;color:var(--orange);line-height:1;margin-bottom:12px}
+.tableau table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:.95rem}
+.tableau th{text-align:left;font-weight:700;padding:10px 8px 10px 0}
+.tableau td{padding:10px 0;text-align:right;color:#E6DCBE;white-space:nowrap;font-size:.86rem}
+.tableau tr{border-bottom:1px dashed rgba(244,234,208,.25)}
+.tableau tr.ajd{background:linear-gradient(90deg,rgba(238,122,42,.22),transparent)}
+.tableau tr.ajd th::before{content:"▸ ";color:var(--orange)}
+.tableau .ferme-j td{color:#B9AE8C}
+.carte{background:var(--papier-3);color:var(--encre);border-radius:6px;padding:14px;box-shadow:6px 8px 0 rgba(0,0,0,.25)}
+.carte>svg{width:100%;height:auto;border:2px solid var(--brun)}
+.carte address{font-style:normal;margin:14px 4px 6px;font-size:1.08rem}
+.carte address b{font-family:var(--f-slab);font-weight:400;font-size:1.3rem;display:block}
+.carte .btn{margin:6px 4px 4px}
+.carte .note{font-family:var(--f-mono);font-size:.8rem;color:var(--encre-2);margin:12px 4px 0}
+@media(min-width:900px){.acces{grid-template-columns:1fr 1fr}.panneau-wrap{grid-column:1/-1}}
+@media(min-width:1180px){.acces{grid-template-columns:260px 1.15fr 1fr;align-items:start}.panneau-wrap{grid-column:auto}}
+
+/* ---------- contact ---------- */
+.contact{display:grid;gap:clamp(28px,4vw,56px)}
+.plaque-tel{background:#2E4A6B;background:var(--brun-2);color:var(--creme);border-radius:14px;padding:22px 24px;box-shadow:inset 0 0 0 6px var(--brun-2),inset 0 0 0 9px var(--orange),6px 8px 0 rgba(44,26,14,.25);margin:18px 0}
+.plaque-tel .mono{color:#E8B23A}
+.plaque-tel b{display:block;font-family:var(--f-slab);font-weight:400;font-size:clamp(1.8rem,1.4rem + 1.6vw,2.6rem);letter-spacing:.02em;margin-top:4px}
+.coord{font-family:var(--f-mono);font-size:.95rem;line-height:1.7}
+.bon{position:relative;background:var(--papier-3);padding:clamp(28px,4vw,44px) clamp(20px,4vw,40px);box-shadow:0 18px 26px -18px rgba(44,26,14,.55);
+  -webkit-mask:radial-gradient(circle 9px at 13px 0,transparent 98%,#000) 0 0/26px 100% repeat-x;mask:radial-gradient(circle 9px at 13px 0,transparent 98%,#000) 0 0/26px 100% repeat-x}
+.bon__tete{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:6px 16px;border-bottom:3px double var(--brun);padding-bottom:12px;margin-bottom:22px}
+.bon__tete h3{font-family:var(--f-slab);font-size:clamp(1.6rem,1.3rem + 1vw,2.1rem);color:var(--brun-2);text-transform:uppercase}
+.bon__tete .mono{color:var(--rouille);font-weight:700}
+.champ{display:grid;gap:4px;margin-bottom:18px}
+.champ label{font-family:var(--f-mono);font-weight:700;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--encre-2)}
+.champ input,.champ select,.champ textarea{font:inherit;font-family:var(--f-mono);font-size:1rem;color:var(--encre);background:transparent;border:0;border-bottom:2px solid var(--brun);padding:10px 2px;min-height:48px;border-radius:0;width:100%;transition:background .2s,border-color .2s}
+.champ textarea{min-height:120px;resize:vertical;background-image:repeating-linear-gradient(transparent 0 29px,rgba(79,85,48,.25) 29px 30px);line-height:30px}
+.champ select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--brun) 50%),linear-gradient(135deg,var(--brun) 50%,transparent 50%);background-position:calc(100% - 16px) 22px,calc(100% - 10px) 22px;background-size:6px 6px;background-repeat:no-repeat}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:none;border-bottom-color:var(--orange-2);background-color:rgba(238,122,42,.1)}
+.champ input:focus-visible,.champ select:focus-visible,.champ textarea:focus-visible{outline:3px solid var(--orange-2);outline-offset:2px}
+.duo{display:grid;gap:0 22px}
+@media(min-width:600px){.duo{grid-template-columns:1fr 1fr}}
+.bon__pied{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:8px}
+.bon__pied small{font-family:var(--f-mono);font-size:.8rem;color:var(--encre-2);flex:1 1 220px}
+.merci{display:none;margin-top:20px;padding:18px 20px;border:3px solid var(--olive-2);border-radius:8px;color:var(--olive);font-weight:500;position:relative}
+.merci.vu{display:block;animation:tamp .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes tamp{from{transform:scale(1.15) rotate(-2deg);opacity:0}}
+@media(min-width:900px){.contact{grid-template-columns:.8fr 1.2fr;align-items:start}}
+
+/* ---------- pied ---------- */
+.pied{background:var(--brun-2);color:var(--creme-2);padding:56px 0 calc(110px + env(safe-area-inset-bottom));position:relative;overflow:hidden}
+.pied__in{display:grid;gap:22px;align-items:center}
+.pied .script{font-size:clamp(3rem,2rem + 5vw,6rem);color:var(--orange);line-height:.9}
+.pied p{margin:0;font-family:var(--f-mono);font-size:.82rem;letter-spacing:.04em}
+.pied svg{width:120px}
+@media(min-width:900px){.pied{padding-bottom:56px}.pied__in{grid-template-columns:auto 1fr auto}}
+
+/* ---------- barre mobile ---------- */
+.barre{position:fixed;left:0;right:0;bottom:0;z-index:60;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px var(--gout-d) calc(10px + env(safe-area-inset-bottom)) var(--gout);background:rgba(44,26,14,.96);border-top:3px solid var(--orange);transform:translateY(110%);transition:transform .45s var(--ease)}
+.barre.vue{transform:none}
+.barre a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:50px;border-radius:6px;text-decoration:none;font-family:var(--f-slab);font-size:1rem}
+.barre a:first-child{color:var(--creme);box-shadow:inset 0 0 0 2px var(--creme-2)}
+.barre a:last-child{background:var(--orange);color:var(--brun-2)}
+.barre svg{width:20px;height:20px}
+@media(min-width:900px){.barre{display:none}}
+
+/* ---------- animations ---------- */
+html.js:not(.secours) .rv:not(.vu){opacity:0;transform:translateY(28px)}
+.rv{transition:opacity .8s var(--ease),transform .8s var(--ease)}
+html.js:not(.secours) .pl.rv:not(.vu){transform:translateY(40px) rotate(calc(var(--r,0deg) * 4))}
+html.js:not(.secours) .intro:not(.go) .i-a{opacity:0;transform:translateY(-100%)}
+html.js:not(.secours) .intro:not(.go) .i-b{opacity:0;transform:translateY(40px)}
+html.js:not(.secours) .intro:not(.go) .bandes{transform:scaleX(0)}
+html.js:not(.secours) .intro:not(.go) .soleil{transform:translateY(40%);opacity:0}
+.i-a,.i-b{transition:opacity .8s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.bandes{transition:transform 1.2s cubic-bezier(.7,0,.2,1) .15s}
+.soleil{transition:transform 1.4s var(--ease) .4s,opacity 1s ease .4s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  html.js .rv,html.js .i-a,html.js .i-b,html.js .bandes,html.js .soleil,html.js .tampon{opacity:1!important;transform:none!important}
+  html.js .page .tampon{transform:rotate(-12deg)!important}
+}
+</style>
+</head>
+<body>
+<a class="evite" href="#contenu">Aller au contenu</a>
+
+<header class="hdr intro" id="haut">
+  <div class="conteneur hdr__in i-a">
+    <a class="logo" href="#haut" aria-label="Atelier Deux Temps, retour en haut">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path d="M50 4 88 18v34c0 22-17 38-38 44C29 90 12 74 12 52V18z" fill="#3C4024" stroke="#2C1A0E" stroke-width="4"/>
+        <path d="M50 12 81 23v29c0 18-14 31-31 37-17-6-31-19-31-37V23z" fill="none" stroke="#EE7A2A" stroke-width="3" stroke-dasharray="5 3"/>
+        <path d="M22 40h56v14H22z" fill="#EE7A2A"/>
+        <text x="50" y="52" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="13" fill="#2C1A0E">DEUX</text>
+        <text x="50" y="78" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="20" fill="#F4EAD0">2T</text>
+        <path d="M30 30l4-6 4 6M62 30l4-6 4 6" fill="none" stroke="#F4EAD0" stroke-width="2.5"/>
+      </svg>
+      <span><b>Atelier Deux Temps</b><small>Atelier moto · Laxou</small></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#preparer">Préparer votre demande</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="plaque-etat" id="etat-hdr" role="status"><i aria-hidden="true"></i><span>Du mardi au samedi</span></span>
+  </div>
+</header>
+
+<main id="contenu">
+<section class="hero intro" aria-labelledby="titre">
+  <div class="conteneur hero__grille">
+    <div>
+      <p class="sur mono i-b" style="--d:.15s">Atelier moto · Laxou 54520</p>
+      <h1 class="titre" id="titre"><span class="t1 i-b" style="--d:.25s">Atelier</span><span class="t2 i-b" style="--d:.5s">Deux Temps</span></h1>
+    </div>
+    <div class="hero__txt">
+      <p class="i-b" style="--d:.7s">Vous expliquez ce qui se passe, <em>vous parlez directement à la personne qui s'en occupera.</em> Entretien, réparation, équipement : on regarde la moto, on cherche la cause, on vous l'explique.</p>
+      <div class="hero__cta i-b" style="--d:.9s">
+        <a class="btn btn--orange" href="#contact">Décrire mon besoin
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+        <a class="lien-tel" href="#contact"><span class="sr">Appeler le </span>06 XX XX XX XX</a>
+      </div>
+      <p class="hero__lieu i-b" style="--d:1s">XX rue de l'Exemple · 54520 Laxou</p>
+    </div>
+  </div>
+
+  <div class="scene" aria-hidden="true">
+    <div class="soleil"></div>
+    <div class="bandes"><span></span><span></span><span></span></div>
+    <div class="sol"></div>
+    <svg class="ecusson-hero" viewBox="0 0 200 200">
+      <defs><path id="cercle" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1-148 0"/></defs>
+      <circle cx="100" cy="100" r="96" fill="#2C1A0E"/>
+      <circle cx="100" cy="100" r="90" fill="#F4EAD0"/>
+      <circle cx="100" cy="100" r="58" fill="#EE7A2A" stroke="#2C1A0E" stroke-width="4"/>
+      <text font-family="Courier Prime,Courier New,monospace" font-weight="700" font-size="17" letter-spacing="3.2" fill="#2C1A0E"><textPath href="#cercle">ATELIER MOTO ★ LAXOU 54520 ★ ENTRETIEN ★</textPath></text>
+      <text x="100" y="98" text-anchor="middle" font-family="Yellowtail,cursive" font-size="34" fill="#2C1A0E">Deux</text>
+      <text x="100" y="130" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="28" fill="#F4EAD0" stroke="#2C1A0E" stroke-width="1.5">TEMPS</text>
+    </svg>
+
+    <div class="velo" id="velo">
+      <svg viewBox="0 0 660 330" role="img">
+        <g class="vitesse"><line x1="-160" y1="150" x2="-40" y2="150"/><line x1="-220" y1="200" x2="-70" y2="200"/><line x1="-130" y1="245" x2="-30" y2="245"/></g>
+        <g class="fumee"><circle cx="118" cy="232" r="12"/><circle cx="110" cy="226" r="9"/><circle cx="124" cy="238" r="7"/></g>
+        <g class="corps" fill="none" stroke="#2C1A0E" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- roue arrière -->
+          <g class="roue" id="roue-ar">
+            <circle cx="150" cy="250" r="74" stroke-width="13"/>
+            <circle cx="150" cy="250" r="62" stroke-width="3"/>
+            <g class="rayons" stroke-width="1.6"><path d="M161.3 245.9L211.0 250.0M159.2 257.7L207.3 270.9M161.3 254.1L196.7 289.2M152.1 261.8L180.5 302.8M156.0 260.4L160.6 310.1M144.0 260.4L139.4 310.1M147.9 261.8L119.5 302.8M138.7 254.1L103.3 289.2M140.8 257.7L92.7 270.9M138.7 245.9L89.0 250.0M138.0 250.0L92.7 229.1M144.0 239.6L103.3 210.8M140.8 242.3L119.5 197.2M152.1 238.2L139.4 189.9M147.9 238.2L160.6 189.9M159.2 242.3L180.5 197.2M156.0 239.6L196.7 210.8M162.0 250.0L207.3 229.1"/></g>
+            <circle cx="150" cy="250" r="12" fill="#E9DCBA" stroke-width="4"/>
+            <circle cx="150" cy="250" r="22" stroke-width="3" stroke-dasharray="4 4"/>
+          </g>
+          <!-- roue avant -->
+          <g class="roue" id="roue-av">
+            <circle cx="520" cy="250" r="74" stroke-width="13"/>
+            <circle cx="520" cy="250" r="62" stroke-width="3"/>
+            <g class="rayons" stroke-width="1.6"><path d="M531.3 245.9L581.0 250.0M529.2 257.7L577.3 270.9M531.3 254.1L566.7 289.2M522.1 261.8L550.5 302.8M526.0 260.4L530.6 310.1M514.0 260.4L509.4 310.1M517.9 261.8L489.5 302.8M508.7 254.1L473.3 289.2M510.8 257.7L462.7 270.9M508.7 245.9L459.0 250.0M508.0 250.0L462.7 229.1M514.0 239.6L473.3 210.8M510.8 242.3L489.5 197.2M522.1 238.2L509.4 189.9M517.9 238.2L530.6 189.9M529.2 242.3L550.5 197.2M526.0 239.6L566.7 210.8M532.0 250.0L577.3 229.1"/></g>
+            <circle cx="520" cy="250" r="12" fill="#E9DCBA" stroke-width="4"/>
+            <circle cx="520" cy="250" r="30" stroke-width="4"/>
+          </g>
+          <!-- garde-boue avant -->
+          <path d="M452 214a80 80 0 0 1 128 -14" stroke-width="6"/>
+          <!-- fourche -->
+          <path d="M448 104 520 250M462 98 532 244" stroke-width="7"/>
+          <path d="M448 104 520 250M462 98 532 244" stroke="#C9AE76" stroke-width="2"/>
+          <!-- bras oscillant + amortisseur -->
+          <path d="M290 238 150 250" stroke-width="9"/>
+          <path d="M196 158 214 236" stroke-width="7"/>
+          <path d="M199 172l14 4M201 182l14 4M203 192l14 4M205 202l14 4M207 212l14 4" stroke-width="3"/>
+          <!-- cadre -->
+          <path d="M452 110 200 150M452 118 360 236 290 238M290 238 250 160"/>
+          <!-- moteur -->
+          <path d="M312 268c-38 0-52-22-46-44 6-20 28-26 56-24 30 2 54 8 56 32 2 22-22 36-66 36z" fill="#4F5530"/>
+          <circle cx="320" cy="238" r="16" fill="#C9AE76"/>
+          <circle cx="320" cy="238" r="5" fill="#2C1A0E"/>
+          <path d="M330 210 344 146 384 150 370 212z" fill="#C9AE76"/>
+          <path d="M334 196h40M336 186h40M338 176h40M340 166h40M342 156h40" stroke-width="3.5"/>
+          <path d="M350 146h28v-8h-28z" fill="#2C1A0E" stroke-width="3"/>
+          <!-- carbu / filtre -->
+          <path d="M318 182h-24" stroke-width="6"/>
+          <ellipse cx="282" cy="182" rx="14" ry="12" fill="#9A3D13"/>
+          <!-- échappement mégaphone -->
+          <path d="M372 222c16 24 4 50-40 52H238l-104-34" stroke-width="8"/>
+          <path d="M238 274 124 230" stroke="#C9AE76" stroke-width="3"/>
+          <path d="M136 222l-16 28" stroke-width="7"/>
+          <!-- réservoir -->
+          <path d="M262 146c6-34 64-52 132-48 34 2 54 10 58 22l-6 22c-30 6-118 14-180 18-6-2-6-8-4-14z" fill="#EE7A2A"/>
+          <path d="M290 132c30-16 84-24 140-16" stroke="#F4EAD0" stroke-width="7"/>
+          <path d="M290 132c30-16 84-24 140-16" stroke="#9A3D13" stroke-width="2.5" transform="translate(0 9)"/>
+          <ellipse cx="350" cy="128" rx="20" ry="11" fill="#F4EAD0" stroke-width="3"/>
+          <text x="350" y="133" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="13" fill="#2C1A0E" stroke="none">2T</text>
+          <!-- selle bosse -->
+          <path d="M262 160 168 158c-20 0-30-12-26-30 6-24 28-28 40-8l10 14 76 8z" fill="#4A2A17"/>
+          <path d="M170 150c-6-10-2-22 8-22" stroke="#C9AE76" stroke-width="2.5"/>
+          <!-- plaque de course ovale -->
+          <ellipse cx="190" cy="190" rx="26" ry="20" fill="#F4EAD0" stroke-width="4"/>
+          <text x="190" y="198" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="22" fill="#9A3D13" stroke="none">54</text>
+          <!-- guidon bracelet + phare -->
+          <path d="M456 104 420 112" stroke-width="7"/>
+          <path d="M422 112h-14" stroke-width="10"/>
+          <circle cx="490" cy="124" r="26" fill="#F4EAD0" stroke-width="6"/>
+          <circle cx="490" cy="124" r="16" stroke-width="2.5"/>
+          <path d="M482 116a10 10 0 0 1 10-4" stroke="#EE7A2A" stroke-width="4"/>
+          <!-- rétro + compteur -->
+          <circle cx="450" cy="92" r="9" fill="#C9AE76" stroke-width="3.5"/>
+          <!-- repose-pied -->
+          <path d="M262 236h-26" stroke-width="6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="route" aria-hidden="true">
+  <div class="route__piste" id="piste">
+    <span>Révision</span><span>Freins</span><span>Pneus</span><span>Kit chaîne</span><span>Embrayage</span><span>Diagnostic</span><span>Remise en route</span><span>Accessoires</span>
+    <span>Révision</span><span>Freins</span><span>Pneus</span><span>Kit chaîne</span><span>Embrayage</span><span>Diagnostic</span><span>Remise en route</span><span>Accessoires</span>
+  </div>
+</div>
+
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="conteneur">
+    <header class="sec__tete rv">
+      <p class="mono">Prestations · le mur de l'atelier</p>
+      <h2 class="h2" id="t-presta">Ce qu'on fait <span class="script">à l'établi</span></h2>
+      <p>Les grandes familles du métier. Pour savoir si votre demande en fait partie, le plus simple reste de poser la question.</p>
+    </header>
+
+    <div class="mur">
+      <article class="pl pl--a rv">
+        <p class="pl__mono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>Plaque n° 1</p>
+        <h3>Entretien <span class="script">et réparation</span></h3>
+        <p>Révisions prévues au carnet du constructeur, freins, pneus, transmission. Et quand un bruit apparaît ou que la moto démarre mal, on cherche la cause avant de changer une pièce.</p>
+        <ul class="gestes" aria-label="Exemples">
+          <li>Vidange</li><li>Filtres</li><li>Purge des freins</li><li>Kit chaîne</li><li>Pneus</li><li>Embrayage</li>
+        </ul>
+      </article>
+      <article class="pl pl--b rv">
+        <p class="pl__mono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Plaque n° 2</p>
+        <h3>Équipement <span class="script">et accessoires</span></h3>
+        <p>Préparer la moto pour la saison, monter un accessoire proprement, choisir l'équipement qui vous protège vraiment. On vous conseille selon votre moto et votre façon de rouler.</p>
+        <ul class="gestes" aria-label="Exemples">
+          <li>Remise en route</li><li>Bagagerie</li><li>Éclairage</li><li>Protections</li><li>Conseils</li>
+        </ul>
+      </article>
+      <article class="pl pl--c rv">
+        <p class="pl__mono"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Plaque n° 3</p>
+        <h3>Le reste, <span class="script">de vive voix</span></h3>
+        <p>Une vieille deux-temps qui dort au garage, un projet de préparation, une question avant d'acheter d'occasion : le plus simple est d'en parler.</p>
+        <a class="btn" href="#contact">Décrire mon besoin</a>
+      </article>
+    </div>
+
+    <div class="ecussons rv">
+      <h3>Les gestes de l'atelier</h3>
+      <ul>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M16 4c-5 7-8 11-8 15a8 8 0 0 0 16 0c0-4-3-8-8-15z"/></svg><b>Vidange</b><small>huile &amp; filtre</small></div></li>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="16" cy="16" r="11"/><circle cx="16" cy="16" r="4"/><path d="M16 5v4M16 23v4M5 16h4M23 16h4"/></svg><b>Freinage</b><small>plaquettes, disques</small></div></li>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="9" cy="16" r="5"/><circle cx="23" cy="16" r="5"/><path d="M9 11h14M9 21h14"/></svg><b>Transmission</b><small>chaîne, pignons</small></div></li>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M18 3 8 18h7l-2 11 11-16h-7z"/></svg><b>Électricité</b><small>batterie, faisceau</small></div></li>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="6"/><path d="M16 4v6M16 22v6"/></svg><b>Pneus</b><small>montage, équilibrage</small></div></li>
+        <li class="ec"><div><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M10 6h12v8H10zM12 14v6h8v-6M16 20v8M8 10H5M27 10h-3"/></svg><b>Carburation</b><small>réglage, nettoyage</small></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec carnet-sec" id="preparer" aria-labelledby="t-prep">
+  <div class="conteneur">
+    <header class="sec__tete rv">
+      <p class="mono">Avant d'appeler ou d'écrire</p>
+      <h2 class="h2" id="t-prep">Préparer <span class="script">votre demande</span></h2>
+      <p>Trois choses à avoir en tête. Elles rendent le premier échange plus utile et évitent de vous rappeler pour un détail.</p>
+    </header>
+    <div class="carnet">
+      <div class="couv rv">
+        <span class="script">Carnet</span>
+        <b>d'entretien</b>
+        <p>Remplissez-le de tête, avant de nous contacter.</p>
+        <div class="cadre">Atelier Deux Temps<br>XX rue de l'Exemple<br>54520 Laxou</div>
+        <a class="btn btn--orange" href="#contact">Remplir la demande</a>
+      </div>
+      <div class="pages" tabindex="0" aria-label="Pages du carnet, à faire défiler">
+        <article class="page rv">
+          <div class="page__tete"><span>Rubrique : véhicule</span><span>p. 1 / 3</span></div>
+          <h3>Le véhicule</h3>
+          <p>Le modèle, l'année et le kilométrage approximatif.</p>
+          <ul class="champs"><li>Marque, modèle</li><li>Année</li><li>Kilométrage</li></ul>
+          <div class="tampon" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="currentColor" stroke-width="5"/><circle cx="60" cy="60" r="44" fill="none" stroke="currentColor" stroke-width="2"/><text x="60" y="56" text-anchor="middle" font-size="15" fill="currentColor">VÉHICULE</text><text x="60" y="76" text-anchor="middle" font-size="11" fill="currentColor">NOTÉ ✓</text></svg></div>
+        </article>
+        <article class="page rv">
+          <div class="page__tete"><span>Rubrique : symptôme</span><span>p. 2 / 3</span></div>
+          <h3>Le symptôme</h3>
+          <p>Ce que vous entendez, voyez ou sentez, et depuis quand.</p>
+          <ul class="champs"><li>Bruit, fuite, voyant</li><li>Depuis quand</li><li>À froid / à chaud</li></ul>
+          <div class="tampon" aria-hidden="true"><svg viewBox="0 0 120 120"><rect x="6" y="30" width="108" height="60" rx="6" fill="none" stroke="currentColor" stroke-width="5"/><rect x="13" y="37" width="94" height="46" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><text x="60" y="60" text-anchor="middle" font-size="14" fill="currentColor">SYMPTÔME</text><text x="60" y="76" text-anchor="middle" font-size="11" fill="currentColor">DÉCRIT ✓</text></svg></div>
+        </article>
+        <article class="page rv">
+          <div class="page__tete"><span>Rubrique : rendez-vous</span><span>p. 3 / 3</span></div>
+          <h3>Vos disponibilités</h3>
+          <p>Les jours où vous pouvez déposer la moto, et la reprendre.</p>
+          <ul class="champs"><li>Dépôt possible le</li><li>Reprise souhaitée</li><li>Joignable plutôt</li></ul>
+          <div class="tampon" aria-hidden="true"><svg viewBox="0 0 120 120"><path d="M60 6l14 10 17-1 6 16 14 9-5 16 5 16-14 9-6 16-17-1-14 10-14-10-17 1-6-16-14-9 5-16-5-16 14-9 6-16 17 1z" fill="none" stroke="currentColor" stroke-width="4"/><text x="60" y="58" text-anchor="middle" font-size="13" fill="currentColor">DISPOS</text><text x="60" y="76" text-anchor="middle" font-size="11" fill="currentColor">PRÊT ✓</text></svg></div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec atelier" id="horaires" aria-labelledby="t-hor">
+  <div class="conteneur">
+    <header class="sec__tete rv">
+      <p class="mono">Horaires et accès</p>
+      <h2 class="h2" id="t-hor">Ouvert <span class="script">ou fermé ?</span></h2>
+      <p>Le panneau se retourne tout seul : il se règle sur l'heure à laquelle vous lisez cette page.</p>
+    </header>
+    <div class="acces">
+      <div class="panneau-wrap rv" aria-hidden="true">
+        <svg class="chaine" viewBox="0 0 120 46"><circle cx="60" cy="6" r="5" fill="#C9AE76" stroke="#2C1A0E" stroke-width="2"/><path d="M60 10 18 44M60 10l42 34" stroke="#C9AE76" stroke-width="3" stroke-dasharray="6 3"/></svg>
+        <div class="panneau" id="panneau">
+          <div class="panneau__f panneau__f--o"><div>Ouvert<span>entrez, on est là</span></div></div>
+          <div class="panneau__f panneau__f--f"><div>Fermé<span>écrivez-nous</span></div></div>
+        </div>
+      </div>
+      <div class="tableau rv">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat-txt" id="etat" role="status" style="font-family:var(--f-mono);font-size:.9rem;margin:0 0 10px;color:#E8B23A">Du mardi au samedi.</p>
+        <table>
+          <caption class="sr">Horaires de l'atelier, jour par jour</caption>
+          <tbody>
+            <tr data-j="1" class="ferme-j"><th scope="row">Lundi</th><td>Fermé</td></tr>
+            <tr data-j="2"><th scope="row">Mardi</th><td>9 h – 12 h · 14 h – 19 h</td></tr>
+            <tr data-j="3"><th scope="row">Mercredi</th><td>9 h – 12 h · 14 h – 19 h</td></tr>
+            <tr data-j="4"><th scope="row">Jeudi</th><td>9 h – 12 h · 14 h – 19 h</td></tr>
+            <tr data-j="5"><th scope="row">Vendredi</th><td>9 h – 12 h · 14 h – 19 h</td></tr>
+            <tr data-j="6"><th scope="row">Samedi</th><td>9 h – 12 h · 14 h – 17 h</td></tr>
+            <tr data-j="0" class="ferme-j"><th scope="row">Dimanche</th><td>Fermé</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="carte rv">
+        <svg viewBox="0 0 400 260" role="img" aria-label="Plan stylisé : l'atelier à Laxou, à l'ouest de Nancy">
+          <rect width="400" height="260" fill="#F2E8CF"/>
+          <path d="M0 0h400v260H0z" fill="none" stroke="#C9AE76" stroke-width="1" stroke-dasharray="2 6"/>
+          <path d="M-10 60c60 20 90-30 150-10s80 60 130 40 90-10 140 10" fill="none" stroke="#C9AE76" stroke-width="1"/>
+          <path d="M-10 200c80-30 120 20 180 0s100-50 240-20" fill="none" stroke="#C9AE76" stroke-width="1"/>
+          <path d="M20 20c30-10 70 0 70 30s-40 40-60 30-30-50-10-60z" fill="#676D40" opacity=".55"/>
+          <path d="M300 170c40-20 90 0 90 40s-60 50-90 30-20-60 0-70z" fill="#676D40" opacity=".55"/>
+          <path d="M-10 150C80 140 150 120 220 128s120 0 190-20" fill="none" stroke="#2C1A0E" stroke-width="12"/>
+          <path d="M-10 150C80 140 150 120 220 128s120 0 190-20" fill="none" stroke="#EE7A2A" stroke-width="7"/>
+          <path d="M160 -10c10 60 0 120 20 160s10 80 0 120" fill="none" stroke="#2C1A0E" stroke-width="8"/>
+          <path d="M160 -10c10 60 0 120 20 160s10 80 0 120" fill="none" stroke="#E8B23A" stroke-width="4"/>
+          <path d="M60 230c40-30 70-60 110-80" fill="none" stroke="#4A2A17" stroke-width="3" stroke-dasharray="7 4"/>
+          <text x="40" y="118" font-family="Courier Prime,monospace" font-weight="700" font-size="14" fill="#2C1A0E">LAXOU</text>
+          <text x="318" y="92" font-family="Courier Prime,monospace" font-weight="700" font-size="13" fill="#2C1A0E">NANCY →</text>
+          <text x="196" y="40" font-family="Courier Prime,monospace" font-size="11" fill="#4A2A17">XX rue de l'Exemple</text>
+          <g transform="translate(188 132)">
+            <circle r="24" fill="#2C1A0E" opacity=".18" cx="3" cy="4"/>
+            <circle r="22" fill="#3C4024" stroke="#2C1A0E" stroke-width="3"/>
+            <circle r="16" fill="none" stroke="#EE7A2A" stroke-width="2" stroke-dasharray="4 3"/>
+            <text y="6" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="15" fill="#F4EAD0">2T</text>
+          </g>
+          <g transform="translate(360 30)" fill="none" stroke="#2C1A0E" stroke-width="2"><circle r="14"/><path d="M0-12v24M-4-6 0-12 4-6"/><text y="-18" x="-4" font-size="10" fill="#2C1A0E" stroke="none" font-family="Courier Prime,monospace">N</text></g>
+        </svg>
+        <address><b>Atelier Deux Temps</b>XX rue de l'Exemple<br>54520 Laxou</address>
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=XX%20rue%20de%20l%27Exemple%2054520%20Laxou" target="_blank" rel="noopener">Ouvrir l'itinéraire
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
+        <p class="note">Les horaires peuvent changer les jours fériés : un message avant de passer ne coûte rien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="contact" aria-labelledby="t-ctc">
+  <div class="conteneur contact">
+    <div class="rv">
+      <header class="sec__tete" style="margin-bottom:0">
+        <p class="mono">Contact</p>
+        <h2 class="h2" id="t-ctc">Écrire <span class="script">à l'atelier</span></h2>
+        <p>Votre message arrive directement à l'atelier, et c'est la personne qui s'occupera de votre moto qui vous répond.</p>
+      </header>
+      <div class="plaque-tel"><span class="mono">Téléphone de l'atelier</span><b>06 XX XX XX XX</b></div>
+      <p class="coord">XX rue de l'Exemple<br>54520 Laxou<br>Du mardi au samedi, 9 h – 12 h et 14 h – 19 h<br>Samedi jusqu'à 17 h</p>
+    </div>
+    <form class="bon rv" id="form" novalidate>
+      <div class="bon__tete"><h3>Bon de dépôt</h3><span class="mono">Décrire mon besoin</span></div>
+      <div class="duo">
+        <div class="champ"><label for="f-nom">Votre nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+        <div class="champ"><label for="f-tel">Téléphone ou courriel</label><input id="f-tel" name="contact" autocomplete="tel" required></div>
+      </div>
+      <div class="duo">
+        <div class="champ"><label for="f-moto">Le véhicule (modèle, année)</label><input id="f-moto" name="vehicule" placeholder="ex. roadster 650, 2016"></div>
+        <div class="champ"><label for="f-km">Kilométrage approximatif</label><input id="f-km" name="km" inputmode="numeric"></div>
+      </div>
+      <div class="champ"><label for="f-type">Votre demande</label>
+        <select id="f-type" name="type"><option value="">Choisir…</option><option>Entretien</option><option>Réparation</option><option>Une demande de devis</option><option>Autre</option></select></div>
+      <div class="champ"><label for="f-msg">Le symptôme et vos disponibilités</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
+      <div class="bon__pied">
+        <button class="btn btn--orange" type="submit">Envoyer à l'atelier</button>
+        <small>Aucun prix n'est donné avant d'avoir vu la moto.</small>
+      </div>
+      <p class="merci" id="merci" role="status" tabindex="-1">Merci ! Sur le site en ligne, votre demande arrive directement chez Atelier Deux Temps, qui vous rappelle.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="conteneur pied__in">
+    <svg viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M50 4 88 18v34c0 22-17 38-38 44C29 90 12 74 12 52V18z" fill="#3C4024" stroke="#F4EAD0" stroke-width="3"/>
+      <path d="M22 40h56v14H22z" fill="#EE7A2A"/>
+      <text x="50" y="52" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="13" fill="#2C1A0E">DEUX</text>
+      <text x="50" y="78" text-anchor="middle" font-family="Alfa Slab One,Georgia,serif" font-size="20" fill="#F4EAD0">2T</text>
+    </svg>
+    <span class="script">Deux Temps</span>
+    <div>
+      <p>© 2026 Atelier Deux Temps · 54520 Laxou</p>
+      <p>Atelier moto · entretien · réparation · équipement</p>
+      <p>06 XX XX XX XX</p>
+    </div>
+  </div>
+</footer>
+
+<nav class="barre" id="barre" aria-label="Actions rapides">
+  <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Appeler</a>
+  <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg>Écrire</a>
+</nav>
+
+<script>
+(function(){
+  var H=[[],[],[540,720,840,1140],[540,720,840,1140],[540,720,840,1140],[540,720,840,1140],[540,720,840,1020]];
+  var JOURS=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  var reduit=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function hm(m){var h=Math.floor(m/60),mn=m%60;return h+" h"+(mn?" "+(mn<10?"0":"")+mn:"");}
+  function etat(){
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),p=H[j],ouvert=false,fin=null;
+    for(var i=0;i<p.length;i+=2){if(m>=p[i]&&m<p[i+1]){ouvert=true;fin=p[i+1];}}
+    var txt;
+    if(ouvert){txt="Ouvert maintenant, jusqu'à "+hm(fin)+".";}
+    else{
+      var k,suiv=null;
+      for(var i=0;i<p.length;i+=2){if(m<p[i]){suiv="aujourd'hui à "+hm(p[i]);break;}}
+      if(!suiv){for(k=1;k<=7;k++){var q=H[(j+k)%7];if(q.length){suiv=(k===1?"demain":JOURS[(j+k)%7])+" à "+hm(q[0]);break;}}}
+      txt="Fermé pour le moment. Réouverture "+suiv+".";
+    }
+    var e=document.getElementById("etat");if(e)e.textContent=txt;
+    var h=document.getElementById("etat-hdr");
+    if(h){h.className="plaque-etat "+(ouvert?"ouvert":"ferme");h.lastElementChild.textContent=ouvert?"Ouvert":"Fermé";h.setAttribute("aria-label",txt);}
+    var pn=document.getElementById("panneau");if(pn)pn.classList.toggle("est-ferme",!ouvert);
+    var tr=document.querySelector('tr[data-j="'+j+'"]');if(tr)tr.classList.add("ajd");
+  }
+  etat();setInterval(etat,60000);
+
+  /* rayons générés : rotation des roues */
+  var roues=[].slice.call(document.querySelectorAll(".roue .rayons"));
+  var centres=[[150,250],[520,250]];
+  function tourne(a){roues.forEach(function(g,i){g.setAttribute("transform","rotate("+a+" "+centres[i][0]+" "+centres[i][1]+")");});}
+
+  /* entrée orchestrée */
+  var intros=document.querySelectorAll(".intro");
+  var velo=document.getElementById("velo");
+  requestAnimationFrame(function(){requestAnimationFrame(function(){[].forEach.call(intros,function(n){n.classList.add("go");});});});
+  if(velo&&!reduit){
+    var depart=-(velo.getBoundingClientRect().right+80);
+    velo.style.transform="translateX("+depart+"px)";
+    velo.classList.add("roule");
+    var t0=null,D=2600,ech=velo.getBoundingClientRect().width/660;
+    setTimeout(function(){
+      requestAnimationFrame(function pas(t){
+        if(t0===null)t0=t;var p=Math.min(1,(t-t0)/D),e=1-Math.pow(1-p,4);
+        var x=depart*(1-e);velo.style.transform="translateX("+x+"px)";
+        tourne((x-depart)/ech/74*57.2958);
+        if(p<1)requestAnimationFrame(pas);else{velo.style.transform="";velo.classList.remove("roule");velo.classList.add("arrive");}
+      });
+    },350);
+  }else if(velo){velo.classList.add("arrive");}
+
+  /* révélations */
+  var rv=document.querySelectorAll(".rv");
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add("vu");io.unobserve(en.target);}});},{rootMargin:"0px 0px -8% 0px",threshold:.12});
+    [].forEach.call(rv,function(n){io.observe(n);});
+  }else{[].forEach.call(rv,function(n){n.classList.add("vu");});}
+  window.__dtOK=true;
+
+  /* route qui défile + parallaxe */
+  var piste=document.getElementById("piste"),soleil=document.querySelector(".soleil"),barre=document.getElementById("barre");
+  var off=0,vit=0,last=window.scrollY,dernier=null;
+  function boucle(t){
+    var dt=dernier?Math.min(50,t-dernier):16;dernier=t;
+    var y=window.scrollY,dy=y-last;last=y;
+    vit+=(Math.abs(dy)*0.9-vit)*0.12;
+    off+=(0.05+vit*0.02)*dt;
+    var w=piste.scrollWidth/2;if(off>w)off-=w;
+    piste.style.transform="translateX("+(-off)+"px)";
+    if(soleil)soleil.style.transform="translateY("+(y*0.18)+"px)";
+    barre.classList.toggle("vue",y>260);
+    requestAnimationFrame(boucle);
+  }
+  if(!reduit)requestAnimationFrame(boucle);
+  else{window.addEventListener("scroll",function(){barre.classList.toggle("vue",scrollY>260);},{passive:true});barre.classList.add("vue");}
+
+  /* formulaire */
+  var f=document.getElementById("form"),merci=document.getElementById("merci");
+  f.addEventListener("submit",function(ev){ev.preventDefault();merci.classList.add("vu");merci.focus();});
+})();
+</script>
+</body>
+</html>

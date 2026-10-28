@@ -1,0 +1,868 @@
+<!doctype html>
+<!--
+  Famille « animaux » — maquette : Le Salon des Museaux, toiletteur chiens & chats, Toul (54200).
+  Idées retenues après recherche (sites de toilettage et galeries type Awwwards) :
+  1. Une mascotte illustrée à la place des photos de stock : personnages en formes simples, contour épais « autocollant ».
+  2. Un univers « salle de bain » assumé : baignoire, mousse, bulles, vagues d'eau comme séparateurs de sections.
+  3. Un parcours interactif par animal (espèce + gabarit) plutôt qu'une liste de prestations figée ; aucun prix.
+  Signature : chien dans le bain qui cligne des yeux et remue la queue + bulles en canvas qu'on éclate au doigt,
+  et des traces de pattes qui suivent le défilement.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Salon des Museaux — toiletteur chiens et chats à Toul</title>
+<meta name="description" content="Le Salon des Museaux, toiletteur pour chiens et chats à Toul (54200) : bain, séchage, démêlage, coupe, griffes et oreilles. Demandez un rendez-vous.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --encre:#1F2547; --encre-2:#2C3362; --encre-3:#3D4680;
+  --menthe:#BDEBD9; --menthe-2:#9FDFC6; --menthe-pale:#EAF8F1; --menthe-fonce:#1C7258;
+  --abricot:#F6A465; --abricot-2:#F38E45; --abricot-pale:#FFE8D4; --abricot-fonce:#A84B14;
+  --rose:#F4A3AE; --creme-snout:#FFE7CF; --blanc:#FFFFFF;
+  --fond:#F4FBF7; --texte:#1F2547; --texte-2:#474D6E; --bord:#CFE3DA;
+  --ouvert:#1F9D63; --ferme:#D2473B;
+  --f-titre:'Fredoka','Baloo 2','Trebuchet MS',system-ui,sans-serif;
+  --f-texte:'Figtree','Segoe UI',system-ui,-apple-system,sans-serif;
+  --large:1180px;
+  --g:max(16px, env(safe-area-inset-left)); --d:max(16px, env(safe-area-inset-right));
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.14 0 0 0 0 0.28 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;position:relative;overflow-x:clip;background:var(--fond);color:var(--texte);font-family:var(--f-texte);font-size:clamp(16px,1.05vw + 12px,18px);line-height:1.6}
+svg{display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:600;line-height:1.08;margin:0;color:var(--encre);letter-spacing:-.01em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--abricot-fonce);outline-offset:3px;border-radius:6px}
+.sombre :focus-visible{outline-color:var(--abricot)}
+.saut{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--blanc);color:var(--encre);padding:12px 16px;border-radius:10px;font-weight:700}
+.saut:focus{left:16px}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--g);padding-right:var(--d)}
+@media (min-width:760px){:root{--g:max(32px, env(safe-area-inset-left));--d:max(32px, env(safe-area-inset-right))}}
+.visu-masque{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* boutons */
+.btn{--b:var(--abricot);display:inline-flex;white-space:nowrap;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font-family:var(--f-titre);font-weight:600;font-size:18px;text-decoration:none;border:3px solid var(--encre);background:var(--b);color:var(--encre);cursor:pointer;box-shadow:0 5px 0 var(--encre);transition:transform .18s cubic-bezier(.3,1.6,.5,1),box-shadow .18s}
+.btn:hover{transform:translateY(-3px) rotate(-1deg);box-shadow:0 8px 0 var(--encre)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--encre)}
+.btn svg{width:22px;height:22px}
+.btn--blanc{--b:var(--blanc)}
+.btn--menthe{--b:var(--menthe)}
+
+/* en-tete */
+.hdr{position:sticky;top:0;z-index:40;transition:background .3s,box-shadow .3s;padding-top:env(safe-area-inset-top)}
+.hdr.colle{background:rgba(244,251,247,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--bord)}
+.hdr__in{display:flex;align-items:center;gap:20px;min-height:72px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-width:0;min-height:44px}
+.mq svg{flex:none;width:46px;height:46px;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.mq:hover svg{transform:rotate(-12deg) scale(1.06)}
+.mq__n{display:block;font-family:var(--f-titre);font-weight:700;font-size:20px;line-height:1;white-space:nowrap}
+.mq__v{display:block;font-size:13px;color:var(--texte-2);margin-top:3px;white-space:nowrap}
+.nav{display:none;gap:4px}
+.nav a{white-space:nowrap;position:relative;display:flex;align-items:center;min-height:44px;padding:0 14px;text-decoration:none;font-weight:600;font-size:15px;border-radius:999px;transition:background .2s}
+.nav a:hover{background:var(--menthe)}
+.hdr .btn{min-height:46px;font-size:16px;padding:0 18px;box-shadow:0 3px 0 var(--encre)}
+.hdr__rdv{display:none}
+@media (min-width:980px){.nav{display:flex}.hdr__rdv{display:inline-flex}}
+
+/* ouverture */
+.ouv{position:relative;overflow:hidden;background:var(--menthe-pale);margin-top:-72px;padding-top:72px}
+.ouv::before{content:"";position:absolute;inset:0;background-image:var(--grain);pointer-events:none}
+.ouv__fond{position:absolute;inset:0;pointer-events:none}
+.ouv__fond span{position:absolute;border-radius:50%;background:var(--menthe)}
+.ouv__fond span:nth-child(1){width:min(70vw,720px);aspect-ratio:1;right:-12%;top:-10%}
+.ouv__fond span:nth-child(2){width:180px;aspect-ratio:1;left:-60px;bottom:60px;background:var(--abricot-pale)}
+.ouv__fond span:nth-child(3){display:none;width:26px;aspect-ratio:1;left:42%;top:22%;background:var(--abricot)}
+@media (min-width:980px){.ouv__fond span:nth-child(3){display:block}}
+.ouv__in{position:relative;display:grid;gap:8px;align-items:center;padding-top:28px;padding-bottom:120px}
+@media (min-width:980px){.ouv__in{grid-template-columns:1fr 1.08fr;gap:40px;padding-top:56px;padding-bottom:150px}}
+.surt{display:inline-flex;align-items:center;gap:10px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--menthe-fonce);background:var(--blanc);border:2px solid var(--encre);border-radius:999px;padding:6px 14px 6px 8px}
+.surt svg{width:22px;height:22px}
+.ouv h1{margin-top:20px;font-size:clamp(46px,8.4vw,104px);font-weight:700;line-height:.92;letter-spacing:-.02em}
+.ouv h1 .l2{display:block;color:var(--abricot-2);-webkit-text-stroke:0;position:relative}
+.ouv h1 .l2 em{font-style:normal;display:inline-block}
+.ouv__t{margin-top:22px;font-size:clamp(18px,1.4vw + 12px,22px);max-width:28em;color:var(--texte-2)}
+.ouv__t b{color:var(--encre)}
+.ouv__a{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.art{position:relative;width:100%;max-width:640px;margin:0 auto;aspect-ratio:600/520;touch-action:pan-y}
+.art svg,.art canvas{position:absolute;inset:0;width:100%;height:100%}
+.art canvas{pointer-events:none}
+.art__aide{position:absolute;left:4%;bottom:-6px;font-size:13px;color:var(--texte-2);font-weight:600;display:flex;gap:6px;align-items:center}
+.badge{position:absolute;right:2%;top:4%;z-index:2;background:var(--blanc);border:3px solid var(--encre);border-radius:20px;padding:10px 14px;box-shadow:0 5px 0 var(--encre);transform:rotate(4deg);max-width:62%}
+@media (max-width:979px){.badge{right:auto;left:0;top:-2%;max-width:52%;padding:8px 12px;transform:rotate(-3deg);box-shadow:0 4px 0 var(--encre)}.badge .etat{font-size:15px}.art{margin-top:18px}}
+.badge small{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--texte-2);font-weight:700}
+.etat{font-weight:700;font-family:var(--f-titre);font-size:17px;line-height:1.25}
+.pastille{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:8px;vertical-align:0;background:var(--texte-2)}
+.etat--oui .pastille{background:var(--ouvert);box-shadow:0 0 0 0 rgba(31,157,99,.5);animation:pouls 2s infinite}
+.etat--non .pastille{background:var(--ferme)}
+@keyframes pouls{70%{box-shadow:0 0 0 9px rgba(31,157,99,0)}100%{box-shadow:0 0 0 0 rgba(31,157,99,0)}}
+
+/* illustration : animations */
+.yeux,.yeux-chat{transform-box:fill-box;transform-origin:50% 50%}
+.yeux{animation:cligne 4.6s infinite}
+.yeux-chat{animation:cligne-lent 7s 1.3s infinite}
+@keyframes cligne{0%,90%,100%{transform:scaleY(1)}93%{transform:scaleY(.08)}96%{transform:scaleY(1)}}
+@keyframes cligne-lent{0%,80%,100%{transform:scaleY(1)}84%,90%{transform:scaleY(.12)}}
+.queue{transform-box:fill-box;transform-origin:0% 100%;animation:remue .5s ease-in-out infinite alternate}
+@keyframes remue{from{transform:rotate(-14deg)}to{transform:rotate(12deg)}}
+.tete-chien{transform-box:fill-box;transform-origin:50% 100%;animation:penche 6s ease-in-out infinite}
+@keyframes penche{0%,60%,100%{transform:rotate(0)}70%,85%{transform:rotate(-7deg)}}
+.oreille-chat{transform-box:fill-box;transform-origin:50% 100%;animation:frisson 5s 2s infinite}
+@keyframes frisson{0%,94%,100%{transform:rotate(0)}96%{transform:rotate(-12deg)}98%{transform:rotate(6deg)}}
+.art:hover .queue{animation-duration:.22s}
+
+/* vague */
+.vague{position:absolute;left:0;right:0;bottom:-1px;height:70px;width:100%}
+.vague path{fill:var(--encre)}
+
+/* bandeau défilant */
+.defile{background:var(--encre);color:var(--menthe);overflow:hidden;padding:18px 0 22px;position:relative}
+.defile__p{display:flex;width:max-content;animation:defile 38s linear infinite}
+.defile ul{display:flex;align-items:center;gap:28px;padding-right:28px;font-family:var(--f-titre);font-weight:600;font-size:clamp(22px,3vw,34px);white-space:nowrap}
+.defile li{display:flex;align-items:center;gap:28px}
+.defile li svg{width:24px;height:24px;fill:var(--abricot);flex:none}
+@keyframes defile{to{transform:translateX(-50%)}}
+.defile:hover .defile__p{animation-play-state:paused}
+.faits{background:var(--encre);color:#DCE0F4;padding:6px 0 64px;position:relative}
+.faits__g{display:grid;gap:14px}
+@media (min-width:760px){.faits__g{grid-template-columns:repeat(3,1fr);gap:20px}}
+.fait{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:18px;border:2px dashed var(--encre-3)}
+.fait svg{flex:none;width:40px;height:40px}
+.fait b{display:block;font-family:var(--f-titre);font-weight:600;color:var(--blanc);font-size:19px;line-height:1.2}
+.fait span{font-size:15px;color:#B9BFE0}
+
+/* sections */
+.sec{position:relative;padding:clamp(72px,9vw,128px) 0}
+.tete{max-width:40em;margin-bottom:clamp(36px,5vw,60px)}
+.etiq{display:inline-block;font-family:var(--f-titre);font-weight:600;font-size:16px;color:var(--abricot-fonce);margin-bottom:10px}
+.tete h2,.h2{font-size:clamp(34px,5.2vw,62px);font-weight:700}
+.chapo{margin-top:16px;color:var(--texte-2);font-size:clamp(17px,.6vw + 14px,20px);max-width:36em}
+
+/* prestations */
+.presta{display:grid;gap:22px}
+@media (min-width:900px){.presta{grid-template-columns:1.1fr 1fr .9fr;align-items:start}}
+.pr{position:relative;padding:30px 28px 32px;border:3px solid var(--encre);transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.pr:hover{transform:translateY(-6px) rotate(-.6deg)}
+.pr h3{font-size:clamp(26px,2.6vw,34px);margin:14px 0 10px}
+.pr p{color:var(--texte-2)}
+.pr ul{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px}
+.pr ul li{font-size:14px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--blanc);border:2px solid var(--encre)}
+.pr__ill{width:96px;height:96px}
+.pr--a{background:var(--menthe);border-radius:48px 48px 48px 12px;box-shadow:8px 8px 0 var(--encre)}
+.pr--b{background:var(--abricot-pale);border-radius:12px 60px 12px 60px;box-shadow:8px 8px 0 var(--encre)}
+@media (min-width:900px){.pr--b{margin-top:56px}}
+.pr--c{background:var(--encre);color:#DCE0F4;border-radius:32px;border-style:dashed;border-color:var(--encre-3);box-shadow:none}
+.pr--c h3{color:var(--blanc)}
+.pr--c p{color:#C6CBE8}
+.pr--c a{display:inline-flex;align-items:center;gap:8px;margin-top:18px;min-height:44px;color:var(--abricot);font-weight:700;font-family:var(--f-titre);font-size:18px;text-decoration:none}
+.pr--c a:hover{text-decoration:underline;text-underline-offset:4px}
+.pied-presta{margin-top:36px;color:var(--texte-2);font-size:15px;display:flex;gap:10px;align-items:center}
+.pied-presta svg{width:24px;height:24px;flex:none}
+
+/* selon votre animal */
+.selon{background:var(--abricot-pale);overflow:hidden}
+.selon::before{content:"";position:absolute;inset:0;background-image:var(--grain);pointer-events:none}
+.sel{position:relative;display:grid;gap:28px}
+@media (min-width:960px){.sel{grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}}
+.choix{border:0;margin:0 0 22px;padding:0;min-width:0}
+.choix legend{font-family:var(--f-titre);font-weight:600;font-size:18px;margin-bottom:10px;padding:0}
+.puces{display:flex;flex-wrap:wrap;gap:10px}
+.puce{position:relative}
+.puce input{position:absolute;opacity:0;width:1px;height:1px}
+.puce label{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px 0 14px;border:3px solid var(--encre);border-radius:999px;background:var(--blanc);font-weight:700;font-size:16px;cursor:pointer;transition:background .2s,transform .2s cubic-bezier(.3,1.6,.5,1),box-shadow .2s;box-shadow:0 4px 0 var(--encre)}
+.puce label svg{width:30px;height:30px}
+.puce label:hover{transform:translateY(-2px)}
+.puce input:checked + label{background:var(--encre);color:var(--blanc);box-shadow:0 2px 0 var(--encre);transform:translateY(2px)}
+.puce input:focus-visible + label{outline:3px solid var(--abricot-fonce);outline-offset:3px}
+.puce--g label{padding:0 18px}
+.puce--g label i{display:inline-block;border-radius:50%;background:var(--abricot);border:2px solid var(--encre);font-style:normal}
+.scene{position:relative;background:var(--blanc);border:3px solid var(--encre);border-radius:36px;box-shadow:10px 10px 0 var(--encre);padding:clamp(22px,3vw,36px);min-width:0}
+.scene__ill{height:clamp(150px,22vw,210px);border-radius:24px;background:var(--menthe-pale);border:2px dashed var(--menthe-2);margin-bottom:22px;position:relative;overflow:hidden}
+.scene__ill svg{position:absolute;inset:0;width:100%;height:100%}
+.sil{transform-box:fill-box;transform-origin:50% 100%;transition:transform .55s cubic-bezier(.3,1.5,.5,1),opacity .3s}
+.cache{opacity:0;transform:scale(.6)!important}
+.touffe{transition:opacity .35s,transform .45s cubic-bezier(.3,1.5,.5,1);transform-box:fill-box;transform-origin:50% 50%}
+.touffe.off{opacity:0;transform:scale(.3)}
+.scene h3{font-size:clamp(26px,2.8vw,34px)}
+.scene__ex{font-size:15px;color:var(--menthe-fonce);font-weight:700;margin-top:6px}
+.scene__t{margin-top:14px;color:var(--texte-2)}
+.gestes{margin-top:18px;display:grid;gap:10px}
+@media (min-width:520px){.gestes{grid-template-columns:1fr 1fr}}
+.gestes li{display:flex;gap:10px;align-items:center;font-weight:600;font-size:16px}
+.gestes li svg{flex:none;width:26px;height:26px}
+.scene__n{margin-top:20px;padding-top:16px;border-top:2px dashed var(--bord);font-size:15px;color:var(--texte-2)}
+.scene__btn{margin-top:18px}
+.fondu{animation:fondu .45s ease}
+@keyframes fondu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* avant de venir */
+.avant{background:var(--fond)}
+.piste-w{position:relative}
+.piste{position:relative;display:grid;gap:26px}
+@media (min-width:900px){.piste{grid-template-columns:repeat(3,1fr);gap:34px}}
+.piste__trace{position:absolute;left:0;right:0;top:56px;height:80px;width:100%;display:none;pointer-events:none}
+@media (min-width:900px){.piste__trace{display:block}}
+.piste__trace path{fill:none;stroke:var(--menthe-2);stroke-width:4;stroke-dasharray:2 16;stroke-linecap:round}
+.et{position:relative;display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+@media (min-width:900px){.et{grid-template-columns:1fr;gap:16px}.et:nth-child(2){margin-top:44px}}
+.et__ic{position:relative;width:112px;height:112px;border-radius:50%;background:var(--blanc);border:3px solid var(--encre);display:grid;place-items:center;box-shadow:0 6px 0 var(--encre);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.et:hover .et__ic{transform:rotate(-8deg) scale(1.05)}
+.et__ic svg{width:64px;height:64px}
+.et:nth-child(1) .et__ic{background:var(--menthe)}
+.et:nth-child(2) .et__ic{background:var(--abricot-pale)}
+.et:nth-child(3) .et__ic{background:var(--abricot)}
+@media (max-width:899px){.et__ic{width:84px;height:84px}.et__ic svg{width:48px;height:48px}
+  .et:not(:last-child)::after{content:"";position:absolute;left:42px;top:96px;bottom:-22px;border-left:4px dotted var(--menthe-2)}}
+.et h3{font-size:clamp(24px,2.3vw,30px);margin-bottom:6px}
+.et p{color:var(--texte-2)}
+
+/* horaires */
+.hor-sec{background:var(--menthe);overflow:hidden}
+.hor-sec::before{content:"";position:absolute;inset:0;background-image:var(--grain);pointer-events:none}
+.duo{position:relative;display:grid;gap:24px}
+@media (min-width:900px){.duo{grid-template-columns:1fr 1.1fr}}
+.pan{background:var(--blanc);border:3px solid var(--encre);border-radius:30px;padding:clamp(22px,3vw,34px);box-shadow:8px 8px 0 var(--encre);min-width:0}
+.pan h3{font-size:28px;margin-bottom:12px}
+.pan .etat{display:block;margin-bottom:18px;font-size:19px}
+.hor{margin:0}
+.hor div{display:flex;justify-content:space-between;gap:16px;padding:10px 12px;border-bottom:2px dotted var(--bord);margin:0 -12px}
+.hor dt{font-weight:700}
+.hor dd{margin:0;color:var(--texte-2);text-align:right}
+.hor .off dd{font-style:italic}
+.hor .jour{background:var(--abricot-pale);border-radius:12px;border-bottom-color:transparent}
+.hor .jour dt::after{content:" · aujourd'hui";font-weight:600;color:var(--abricot-fonce);font-size:14px}
+.plan{border-radius:20px;overflow:hidden;border:2px solid var(--encre);margin-bottom:18px;background:#E9F6EF}
+.plan svg{width:100%;height:auto}
+.pin{transform-box:fill-box;transform-origin:50% 100%;animation:pin 2.4s ease-in-out infinite}
+@keyframes pin{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.adr{font-style:normal;font-size:20px;font-family:var(--f-titre);font-weight:600;line-height:1.3;margin-bottom:16px}
+.pan__a{display:flex;flex-wrap:wrap;gap:12px}
+.pan__n{margin-top:18px;color:var(--texte-2);font-size:15px}
+
+/* contact */
+.sombre{background:var(--encre);color:#DCE0F4}
+.sombre h2,.sombre h3{color:var(--blanc)}
+.ctc{position:relative;display:grid;gap:40px}
+@media (min-width:960px){.ctc{grid-template-columns:.9fr 1.1fr;gap:64px}}
+.ctc .chapo{color:#C6CBE8}
+.ctc__tel{display:inline-block;margin-top:26px;font-family:var(--f-titre);font-weight:700;font-size:clamp(34px,5vw,54px);color:var(--abricot);text-decoration:none;line-height:1}
+.ctc__tel:hover{color:var(--menthe)}
+.ctc__l{margin-top:22px;display:flex;gap:14px;color:#C6CBE8}
+.ctc__l svg{flex:none;width:28px;height:28px;margin-top:2px}
+.ctc__l b{display:block;color:var(--blanc);font-weight:700}
+.ctc__chat{margin-top:34px;width:180px;max-width:50%}
+.form{position:relative;background:var(--blanc);color:var(--texte);border-radius:32px;padding:clamp(22px,3.4vw,40px);border:3px solid var(--encre);box-shadow:10px 10px 0 var(--abricot);min-width:0}
+.form h3{font-size:clamp(26px,2.6vw,32px);color:var(--encre)}
+.form__s{color:var(--texte-2);font-size:15px;margin:8px 0 22px}
+.ch{display:grid;gap:16px}
+@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px;margin-top:16px;min-width:0}
+.ch .f{margin-top:0}
+.f label{font-weight:700;font-size:15px}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;min-height:50px;padding:12px 16px;border:2px solid var(--encre);border-radius:16px;background:var(--menthe-pale);color:var(--texte);width:100%;transition:background .2s,box-shadow .2s}
+.f textarea{resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:none;background:var(--blanc);box-shadow:0 0 0 4px var(--abricot)}
+.form .btn{width:100%;margin-top:24px}
+.fret{margin-top:16px;font-weight:700;color:var(--menthe-fonce);min-height:1em}
+.fret.err{color:var(--ferme)}
+
+/* pied, barre mobile */
+.pied{background:#171B36;color:#B9BFE0;font-size:14px;padding:36px 0 calc(36px + 76px + env(safe-area-inset-bottom))}
+.pied__in{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;align-items:center}
+.pied__m{display:flex;align-items:center;gap:10px;font-family:var(--f-titre);font-weight:600;font-size:18px;color:var(--blanc)}
+.pied__m svg{width:34px;height:34px}
+@media (min-width:980px){.pied{padding-bottom:36px}}
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px var(--d) calc(10px + env(safe-area-inset-bottom)) var(--g);background:rgba(244,251,247,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:2px solid var(--encre);transition:transform .35s}
+.bmob .btn{min-height:50px;font-size:17px;padding:0 12px;box-shadow:0 3px 0 var(--encre)}
+.bmob.bas{transform:translateY(110%)}
+@media (min-width:980px){.bmob{display:none}}
+
+/* traces de pattes */
+.pistes{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:30}
+.trace{position:absolute;width:26px;height:26px;margin:-13px 0 0 -13px;color:var(--encre);opacity:0;animation:trace 2.8s ease-out forwards}
+.trace svg{width:100%;height:100%;fill:currentColor}
+@keyframes trace{0%{opacity:0;transform:var(--r) scale(.4)}12%{opacity:.2;transform:var(--r) scale(1)}70%{opacity:.16}100%{opacity:0;transform:var(--r) scale(1)}}
+
+/* animations d'entrée et révélations (la classe js est posée par le script) */
+.js .ent{opacity:0;transform:translateY(24px)}
+.js.pret .ent{opacity:1;transform:none;transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--i,0) * 110ms)}
+.js .art .chien-monte{transform:translateY(90px);transition:transform 1s cubic-bezier(.3,1.5,.5,1) .5s}
+.js.pret .art .chien-monte{transform:none}
+.js .rv{opacity:0;transform:translateY(30px) scale(.98)}
+.js .rv.vu{opacity:1;transform:none;transition:opacity .7s ease,transform .7s cubic-bezier(.3,1.3,.5,1);transition-delay:calc(var(--i,0) * 90ms)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .ent,.js .rv,.js .art .chien-monte{opacity:1!important;transform:none!important}
+  .pistes{display:none}
+}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="patte" viewBox="0 0 24 24"><ellipse cx="12" cy="15.6" rx="5.2" ry="4.4"/><ellipse cx="5.6" cy="9.6" rx="2.1" ry="2.7" transform="rotate(-18 5.6 9.6)"/><ellipse cx="9.7" cy="5.6" rx="2.1" ry="2.8"/><ellipse cx="14.3" cy="5.6" rx="2.1" ry="2.8"/><ellipse cx="18.4" cy="9.6" rx="2.1" ry="2.7" transform="rotate(18 18.4 9.6)"/></symbol>
+    <symbol id="logo" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="22" fill="#BDEBD9" stroke="#1F2547" stroke-width="2.5"/>
+      <path d="M13 16c-4 0-5 9-2 12 2 2 4-2 4-6M35 16c4 0 5 9 2 12-2 2-4-2-4-6" fill="#F38E45" stroke="#1F2547" stroke-width="2.2" stroke-linejoin="round"/>
+      <rect x="14" y="12" width="20" height="21" rx="9" fill="#F6A465" stroke="#1F2547" stroke-width="2.4"/>
+      <ellipse cx="24" cy="27" rx="6" ry="4.4" fill="#FFE7CF"/>
+      <path d="M21.6 24.6q2.4-1.4 4.8 0-.6 2.2-2.4 2.4-1.8-.2-2.4-2.4z" fill="#1F2547"/>
+      <circle cx="19.5" cy="20" r="1.7" fill="#1F2547"/><circle cx="28.5" cy="20" r="1.7" fill="#1F2547"/>
+      <circle cx="33" cy="9" r="3.4" fill="#fff" stroke="#1F2547" stroke-width="1.6"/><circle cx="38" cy="13.5" r="2" fill="#fff" stroke="#1F2547" stroke-width="1.4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="env hdr__in">
+    <a class="mq" href="#principal" aria-label="Le Salon des Museaux, accueil">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><span class="mq__n">Le Salon des Museaux</span><span class="mq__v">Toiletteur chiens &amp; chats · Toul</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#selon">Selon votre animal</a>
+      <a href="#avant">Avant de venir</a>
+      <a href="#horaires">Horaires et accès</a>
+    </nav>
+    <a class="btn hdr__rdv" href="#contact">Demander un rendez-vous</a>
+  </div>
+</header>
+
+<main id="principal">
+
+<section class="ouv" aria-labelledby="titre">
+  <div class="ouv__fond" aria-hidden="true" data-para="0.12"><span></span><span></span><span></span></div>
+  <div class="env ouv__in">
+    <div>
+      <span class="surt ent" style="--i:0"><svg viewBox="0 0 24 24" aria-hidden="true" fill="#F38E45"><use href="#patte" width="24" height="24"/></svg>Toiletteur chiens &amp; chats · Toul</span>
+      <h1 id="titre" class="ent" style="--i:1">Le Salon <span class="l2">des Museaux</span></h1>
+      <p class="ouv__t ent" style="--i:2">Bain, séchage, démêlage, coupe. <b>Vous présentez votre animal, vous parlez directement à la personne qui s'en occupera.</b></p>
+      <div class="ouv__a ent" style="--i:3">
+        <a class="btn" href="#contact">Demander un rendez-vous</a>
+        <a class="btn btn--blanc" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>06 XX XX XX XX</a>
+      </div>
+    </div>
+
+    <div class="art ent" style="--i:2" id="art">
+      <div class="badge" aria-live="polite"><small id="jour">Aujourd'hui</small><span class="etat" id="etat" data-h='[[],[],[540,720,840,1110],[540,720,840,1110],[540,720,840,1110],[540,720,840,1110],[540,960]]'>du mardi au samedi</span></div>
+      <svg viewBox="0 0 600 520" role="img" aria-label="Illustration : un chien prend son bain dans une baignoire pleine de mousse, un chat le regarde.">
+        <!-- sol -->
+        <ellipse cx="300" cy="490" rx="270" ry="18" fill="#9FDFC6" opacity=".55"/>
+        <!-- chat -->
+        <g>
+          <path d="M40 470c-22-4-30-30-8-38 14-5 22 6 16 14" fill="none" stroke="#1F2547" stroke-width="12" stroke-linecap="round"/>
+          <path d="M34 470c-6-56 6-120 54-120s60 64 54 120z" fill="#1F2547"/>
+          <ellipse cx="66" cy="470" rx="16" ry="9" fill="#2C3362"/><ellipse cx="108" cy="470" rx="16" ry="9" fill="#2C3362"/>
+          <path d="M70 380q18 16 36 0" fill="none" stroke="#3D4680" stroke-width="5" stroke-linecap="round"/>
+          <g class="oreille-chat"><path d="M48 300l-6-58 44 34z" fill="#1F2547"/><path d="M54 290l-3-30 22 18z" fill="#F4A3AE"/></g>
+          <path d="M128 300l6-58-44 34z" fill="#1F2547"/><path d="M122 290l3-30-22 18z" fill="#F4A3AE"/>
+          <circle cx="88" cy="310" r="50" fill="#1F2547"/>
+          <g class="yeux-chat"><ellipse cx="70" cy="304" rx="11" ry="12" fill="#BDEBD9"/><ellipse cx="106" cy="304" rx="11" ry="12" fill="#BDEBD9"/><rect x="68" y="294" width="4" height="20" rx="2" fill="#1F2547"/><rect x="104" y="294" width="4" height="20" rx="2" fill="#1F2547"/></g>
+          <path d="M82 322h12l-6 7z" fill="#F4A3AE"/>
+          <path d="M60 326l-28-4M60 332l-26 6M116 326l28-4M116 332l26 6" stroke="#8A93C9" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+        <!-- pieds de baignoire -->
+        <path d="M168 458l-14 28h28z" fill="#1F2547"/><path d="M432 458l14 28h-28z" fill="#1F2547"/>
+        <!-- queue -->
+        <g class="queue chien-monte">
+          <path d="M458 300C484 270 500 246 504 208" fill="none" stroke="#1F2547" stroke-width="34" stroke-linecap="round"/>
+          <path d="M458 300C484 270 500 246 504 208" fill="none" stroke="#F6A465" stroke-width="22" stroke-linecap="round"/>
+          <circle cx="504" cy="204" r="16" fill="#fff" stroke="#1F2547" stroke-width="4"/>
+        </g>
+        <!-- chien -->
+        <g class="chien-monte">
+          <g class="tete-chien">
+            <rect x="255" y="236" width="90" height="70" fill="#F6A465" stroke="#1F2547" stroke-width="6"/>
+            <path d="M236 152C186 150 172 236 198 264c20 22 48-20 48-62z" fill="#F38E45" stroke="#1F2547" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M364 152c50-2 64 84 38 112-20 22-48-20-48-62z" fill="#F38E45" stroke="#1F2547" stroke-width="6" stroke-linejoin="round"/>
+            <rect x="222" y="128" width="156" height="146" rx="64" fill="#F6A465" stroke="#1F2547" stroke-width="6"/>
+            <path d="M300 132c-14 20-14 40 0 52 14-12 14-32 0-52z" fill="#FFE7CF" opacity=".8"/>
+            <ellipse cx="300" cy="238" rx="46" ry="32" fill="#FFE7CF" stroke="#1F2547" stroke-width="5"/>
+            <circle cx="250" cy="228" r="10" fill="#F4A3AE" opacity=".7"/><circle cx="350" cy="228" r="10" fill="#F4A3AE" opacity=".7"/>
+            <g class="yeux"><circle cx="266" cy="192" r="10" fill="#1F2547"/><circle cx="334" cy="192" r="10" fill="#1F2547"/><circle cx="269" cy="188" r="3.4" fill="#fff"/><circle cx="337" cy="188" r="3.4" fill="#fff"/></g>
+            <path d="M284 216q16-10 32 0-4 15-16 16-12-1-16-16z" fill="#1F2547"/>
+            <path d="M300 232v8M286 242q14 12 28 0" fill="none" stroke="#1F2547" stroke-width="4.5" stroke-linecap="round"/>
+            <path d="M293 248q7 18 14 0" fill="#F4A3AE" stroke="#1F2547" stroke-width="3.5" stroke-linejoin="round"/>
+            <!-- mousse sur la tête -->
+            <g fill="#fff" stroke="#1F2547" stroke-width="4"><circle cx="262" cy="134" r="20"/><circle cx="292" cy="118" r="24"/><circle cx="326" cy="130" r="19"/><circle cx="348" cy="112" r="10"/></g>
+            <circle cx="285" cy="110" r="5" fill="#BDEBD9"/>
+          </g>
+        </g>
+        <!-- baignoire -->
+        <path d="M112 302H488Q488 466 368 466H232Q112 466 112 302Z" fill="#fff" stroke="#1F2547" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M138 330Q140 430 232 440" fill="none" stroke="#BDEBD9" stroke-width="10" stroke-linecap="round"/>
+        <rect x="96" y="288" width="408" height="28" rx="14" fill="#9FDFC6" stroke="#1F2547" stroke-width="6"/>
+        <!-- pattes sur le rebord -->
+        <g class="chien-monte">
+          <ellipse cx="252" cy="290" rx="26" ry="16" fill="#F6A465" stroke="#1F2547" stroke-width="5"/>
+          <ellipse cx="348" cy="290" rx="26" ry="16" fill="#F6A465" stroke="#1F2547" stroke-width="5"/>
+          <path d="M244 296v-8M254 297v-9M340 296v-8M350 297v-9" stroke="#1F2547" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+        <!-- mousse sur le rebord -->
+        <g fill="#fff" stroke="#1F2547" stroke-width="4">
+          <circle cx="132" cy="284" r="18"/><circle cx="160" cy="276" r="13"/><circle cx="188" cy="286" r="15"/>
+          <circle cx="412" cy="284" r="16"/><circle cx="440" cy="272" r="20"/><circle cx="474" cy="284" r="15"/>
+        </g>
+        <!-- étoiles propreté -->
+        <g fill="#F38E45"><path d="M548 96l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/><path d="M182 70l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/></g>
+        <!-- inscription baignoire -->
+        <text x="300" y="398" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="30" fill="#1F2547">museaux</text>
+        <g fill="#F38E45" transform="translate(186 374) scale(1.2)"><use href="#patte" width="24" height="24"/></g>
+        <g fill="#F38E45" transform="translate(386 374) scale(1.2)"><use href="#patte" width="24" height="24"/></g>
+      </svg>
+      <canvas id="bulles" aria-hidden="true"></canvas>
+      <p class="art__aide" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="9" r="2"/></svg>Passez le doigt sur les bulles</p>
+    </div>
+  </div>
+  <svg class="vague" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C120 10 240 10 360 34 S600 64 720 40 960 8 1080 30 1320 66 1440 36 V70 H0Z"/></svg>
+</section>
+
+<div class="defile" aria-hidden="true">
+  <div class="defile__p">
+    <ul><li>Bain</li><li><svg><use href="#patte" width="24" height="24"/></svg>Séchage</li><li><svg><use href="#patte" width="24" height="24"/></svg>Démêlage</li><li><svg><use href="#patte" width="24" height="24"/></svg>Coupe aux ciseaux</li><li><svg><use href="#patte" width="24" height="24"/></svg>Tonte</li><li><svg><use href="#patte" width="24" height="24"/></svg>Épilation du sous-poil</li><li><svg><use href="#patte" width="24" height="24"/></svg>Griffes</li><li><svg><use href="#patte" width="24" height="24"/></svg>Oreilles</li><li><svg><use href="#patte" width="24" height="24"/></svg></li></ul>
+    <ul><li>Bain</li><li><svg><use href="#patte" width="24" height="24"/></svg>Séchage</li><li><svg><use href="#patte" width="24" height="24"/></svg>Démêlage</li><li><svg><use href="#patte" width="24" height="24"/></svg>Coupe aux ciseaux</li><li><svg><use href="#patte" width="24" height="24"/></svg>Tonte</li><li><svg><use href="#patte" width="24" height="24"/></svg>Épilation du sous-poil</li><li><svg><use href="#patte" width="24" height="24"/></svg>Griffes</li><li><svg><use href="#patte" width="24" height="24"/></svg>Oreilles</li><li><svg><use href="#patte" width="24" height="24"/></svg></li></ul>
+  </div>
+</div>
+
+<section class="faits" aria-label="En bref">
+  <div class="env faits__g">
+    <div class="fait rv"><svg viewBox="0 0 40 40" fill="none" stroke="#F6A465" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><rect x="5" y="8" width="30" height="27" rx="7"/><path d="M5 16h30M13 4v7M27 4v7"/><path d="M13 24l4 4 9-8" stroke="#BDEBD9"/></svg><div><b>Du mardi au samedi</b><span>Sur rendez-vous, fermé dimanche et lundi</span></div></div>
+    <div class="fait rv" style="--i:1"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#patte" width="24" height="24" fill="#BDEBD9" transform="scale(1.66)"/></svg><div><b>Chiens et chats</b><span>Petits, moyens et grands gabarits, poils courts ou longs</span></div></div>
+    <div class="fait rv" style="--i:2"><svg viewBox="0 0 40 40" fill="none" stroke="#F6A465" stroke-width="2.6" stroke-linejoin="round" aria-hidden="true"><path d="M20 36s11-9.5 11-18a11 11 0 0 0-22 0c0 8.5 11 18 11 18z"/><circle cx="20" cy="18" r="4" stroke="#BDEBD9"/></svg><div><b>Toul, 54200</b><span>XX rue de l'Exemple</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="env">
+    <div class="tete rv">
+      <span class="etiq">Prestations</span>
+      <h2 id="t-presta">Ce que fait un toiletteur</h2>
+      <p class="chapo">Les grandes familles du métier. Pour savoir si votre demande en fait partie, le plus simple est de poser la question.</p>
+    </div>
+    <ul class="presta">
+      <li class="pr pr--a rv">
+        <svg class="pr__ill" viewBox="0 0 96 96" aria-hidden="true">
+          <rect x="14" y="40" width="68" height="40" rx="18" fill="#fff" stroke="#1F2547" stroke-width="4"/>
+          <path d="M20 46h56" stroke="#1F2547" stroke-width="4" stroke-linecap="round"/>
+          <g fill="#fff" stroke="#1F2547" stroke-width="3.5"><circle cx="30" cy="34" r="10"/><circle cx="48" cy="28" r="13"/><circle cx="66" cy="36" r="9"/><circle cx="78" cy="16" r="6"/><circle cx="18" cy="16" r="4"/></g>
+          <path d="M22 86l-4 6M74 86l4 6" stroke="#1F2547" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <h3>Toilettage</h3>
+        <p>Bain, coupe, démêlage, adaptés à chaque pelage.</p>
+        <ul aria-label="Gestes courants"><li>Shampooing</li><li>Séchage</li><li>Ciseaux</li><li>Tonte</li></ul>
+      </li>
+      <li class="pr pr--b rv" style="--i:1">
+        <svg class="pr__ill" viewBox="0 0 96 96" aria-hidden="true">
+          <rect x="18" y="14" width="22" height="64" rx="11" fill="#F6A465" stroke="#1F2547" stroke-width="4"/>
+          <path d="M23 30h12M23 38h12M23 46h12M23 54h12M23 62h12" stroke="#1F2547" stroke-width="3" stroke-linecap="round"/>
+          <path d="M56 70c0-18 4-40 12-52 8 12 12 34 12 52" fill="#BDEBD9" stroke="#1F2547" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="62" cy="78" r="8" fill="#fff" stroke="#1F2547" stroke-width="4"/><circle cx="76" cy="78" r="8" fill="#fff" stroke="#1F2547" stroke-width="4"/>
+        </svg>
+        <h3>Soins</h3>
+        <p>Griffes, oreilles, et conseils d'entretien.</p>
+        <ul aria-label="Gestes courants"><li>Coupe des griffes</li><li>Oreilles</li><li>Brossage à la maison</li></ul>
+      </li>
+      <li class="pr pr--c rv" style="--i:2">
+        <svg class="pr__ill" viewBox="0 0 96 96" aria-hidden="true">
+          <path d="M14 22h56a10 10 0 0 1 10 10v26a10 10 0 0 1-10 10H40L24 82V68h-10A10 10 0 0 1 4 58V32a10 10 0 0 1 10-10z" fill="#2C3362" stroke="#BDEBD9" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="26" cy="45" r="4.5" fill="#F6A465"/><circle cx="42" cy="45" r="4.5" fill="#F6A465"/><circle cx="58" cy="45" r="4.5" fill="#F6A465"/>
+        </svg>
+        <h3>Le reste, de vive voix</h3>
+        <p>Ce qui n'entre dans aucune case se règle plus vite par un message qu'avec une liste qui promet tout.</p>
+        <a href="#contact">Poser la question <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </li>
+    </ul>
+    <p class="pied-presta rv"><svg viewBox="0 0 24 24" fill="#A84B14" aria-hidden="true"><use href="#patte" width="24" height="24"/></svg>Aucun prix n'est affiché tant qu'il n'a pas été établi par l'établissement : il dépend de l'animal, de son pelage et de son état.</p>
+  </div>
+</section>
+
+<section class="sec selon" id="selon" aria-labelledby="t-selon">
+  <div class="env sel">
+    <div class="rv">
+      <span class="etiq">Selon votre animal</span>
+      <h2 id="t-selon" class="h2">Un caniche n'est pas un persan</h2>
+      <p class="chapo">Choisissez l'espèce et le gabarit : la prestation habituelle s'affiche. Le toiletteur l'adaptera après avoir vu votre animal.</p>
+      <div style="margin-top:30px">
+        <fieldset class="choix">
+          <legend>Votre animal</legend>
+          <div class="puces">
+            <div class="puce"><input type="radio" name="esp" id="esp-chien" value="chien" checked><label for="esp-chien"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#logo"/></svg>Un chien</label></div>
+            <div class="puce"><input type="radio" name="esp" id="esp-chat" value="chat"><label for="esp-chat"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#FFE8D4" stroke="#1F2547" stroke-width="2.5"/><path d="M12 22l-1-12 9 7M36 22l1-12-9 7" fill="#1F2547"/><circle cx="24" cy="26" r="12" fill="#1F2547"/><ellipse cx="19.5" cy="25" rx="2.8" ry="3" fill="#BDEBD9"/><ellipse cx="28.5" cy="25" rx="2.8" ry="3" fill="#BDEBD9"/><path d="M22.5 30h3l-1.5 1.8z" fill="#F4A3AE"/></svg>Un chat</label></div>
+          </div>
+        </fieldset>
+        <fieldset class="choix">
+          <legend id="leg-gab">Son gabarit</legend>
+          <div class="puces">
+            <div class="puce puce--g"><input type="radio" name="gab" id="gab-1" value="1"><label for="gab-1"><i style="width:12px;height:12px" aria-hidden="true"></i><span id="lab-1">Petit</span></label></div>
+            <div class="puce puce--g"><input type="radio" name="gab" id="gab-2" value="2" checked><label for="gab-2"><i style="width:17px;height:17px" aria-hidden="true"></i><span id="lab-2">Moyen</span></label></div>
+            <div class="puce puce--g"><input type="radio" name="gab" id="gab-3" value="3"><label for="gab-3"><i style="width:22px;height:22px" aria-hidden="true"></i><span id="lab-3">Grand</span></label></div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="scene rv" style="--i:1" aria-live="polite">
+      <div class="scene__ill" aria-hidden="true">
+        <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet">
+          <path d="M0 186h400" stroke="#9FDFC6" stroke-width="4" stroke-dasharray="2 12" stroke-linecap="round"/>
+          <!-- toise -->
+          <g stroke="#9FDFC6" stroke-width="3" stroke-linecap="round"><path d="M40 186V30"/><path d="M40 160h10M40 134h6M40 108h10M40 82h6M40 56h10"/></g>
+          <!-- silhouette chien -->
+          <g class="sil" id="sil-chien">
+            <path d="M262 112c18-8 30-22 34-36" fill="none" stroke="#1F2547" stroke-width="14" stroke-linecap="round"/>
+            <path d="M262 112c18-8 30-22 34-36" fill="none" stroke="#F6A465" stroke-width="7" stroke-linecap="round"/>
+            <rect x="150" y="100" width="120" height="56" rx="28" fill="#F6A465" stroke="#1F2547" stroke-width="4"/>
+            <rect x="160" y="140" width="18" height="46" rx="9" fill="#F6A465" stroke="#1F2547" stroke-width="4"/>
+            <rect x="186" y="140" width="18" height="46" rx="9" fill="#F38E45" stroke="#1F2547" stroke-width="4"/>
+            <rect x="226" y="140" width="18" height="46" rx="9" fill="#F6A465" stroke="#1F2547" stroke-width="4"/>
+            <rect x="248" y="140" width="18" height="46" rx="9" fill="#F38E45" stroke="#1F2547" stroke-width="4"/>
+            <path d="M138 62c-16 0-22 30-12 42 8 8 18-6 18-20z" fill="#F38E45" stroke="#1F2547" stroke-width="4" stroke-linejoin="round"/>
+            <rect x="122" y="52" width="66" height="62" rx="28" fill="#F6A465" stroke="#1F2547" stroke-width="4"/>
+            <ellipse cx="132" cy="96" rx="20" ry="14" fill="#FFE7CF" stroke="#1F2547" stroke-width="3.5"/>
+            <path d="M118 90q7-5 13 0-2 7-6.5 7-4.5 0-6.5-7z" fill="#1F2547"/>
+            <circle cx="148" cy="76" r="5" fill="#1F2547"/>
+            <path d="M176 60c16 0 22 30 12 42-8 8-18-6-18-20z" fill="#F38E45" stroke="#1F2547" stroke-width="4" stroke-linejoin="round"/>
+          </g>
+          <!-- silhouette chat -->
+          <g class="sil cache" id="sil-chat">
+            <path d="M262 150c40 0 50-40 26-60" fill="none" stroke="#1F2547" stroke-width="12" stroke-linecap="round"/>
+            <g id="touffes" fill="#2C3362" stroke="#1F2547" stroke-width="3">
+              <path class="touffe t2 t3" d="M156 128l-14 6 10 6-12 8 14 2M262 126l14 6-10 6 12 8-14 2"/>
+              <path class="touffe t3" d="M170 164l-6 14 10-4 2 12 8-10M240 164l6 14-10-4-2 12-8-10M118 92l-16 8 14 4-10 10 16-2"/>
+              <path class="touffe t3" d="M290 92l12-10 0 12 12-4-6 12"/>
+            </g>
+            <ellipse cx="210" cy="140" rx="60" ry="40" fill="#1F2547"/>
+            <rect x="166" y="150" width="16" height="36" rx="8" fill="#1F2547"/><rect x="232" y="150" width="16" height="36" rx="8" fill="#1F2547"/>
+            <ellipse cx="174" cy="184" rx="12" ry="6" fill="#2C3362"/><ellipse cx="240" cy="184" rx="12" ry="6" fill="#2C3362"/>
+            <path d="M118 70l-4-34 28 20zM172 70l4-34-28 20z" fill="#1F2547"/>
+            <circle cx="145" cy="84" r="32" fill="#1F2547"/>
+            <ellipse cx="134" cy="82" rx="7" ry="8" fill="#BDEBD9"/><ellipse cx="156" cy="82" rx="7" ry="8" fill="#BDEBD9"/>
+            <rect x="132.5" y="75" width="3" height="14" rx="1.5" fill="#1F2547"/><rect x="154.5" y="75" width="3" height="14" rx="1.5" fill="#1F2547"/>
+            <path d="M141 94h8l-4 5z" fill="#F4A3AE"/>
+          </g>
+        </svg>
+      </div>
+      <h3 id="sc-titre">Un chien de taille moyenne</h3>
+      <p class="scene__ex" id="sc-ex">Cocker, caniche moyen, beagle, border collie…</p>
+      <p class="scene__t" id="sc-texte">Les pelages varient beaucoup : poil court, long ou frisé. Selon le cas, bain, séchage, retrait du sous-poil pendant la mue, puis une coupe d'entretien ou une coupe de race.</p>
+      <ul class="gestes" id="sc-gestes"></ul>
+      <p class="scene__n">Indicatif : chaque animal est différent. Le toiletteur confirme ce qu'il propose après avoir vu le pelage.</p>
+      <a class="btn btn--menthe scene__btn" href="#contact" id="sc-btn">Demander pour cet animal</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec avant" id="avant" aria-labelledby="t-avant">
+  <div class="env">
+    <div class="tete rv">
+      <span class="etiq">Avant de venir</span>
+      <h2 id="t-avant">Trois choses à avoir en tête</h2>
+      <p class="chapo">Avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <div class="piste-w">
+    <svg class="piste__trace" viewBox="0 0 1100 80" preserveAspectRatio="none" aria-hidden="true"><path d="M60 40 C240 -10 360 90 560 50 S900 -10 1060 60"/></svg>
+    <ol class="piste">
+      <li class="et rv">
+        <div class="et__ic"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 22h44" stroke="#1F2547" stroke-width="5" stroke-linecap="round"/><circle cx="32" cy="38" r="15" fill="#F6A465" stroke="#1F2547" stroke-width="4"/><circle cx="32" cy="23" r="3.5" fill="#fff" stroke="#1F2547" stroke-width="3"/><g transform="translate(23 29) scale(.75)" fill="#1F2547"><use href="#patte" width="24" height="24"/></g></svg></div>
+        <div><h3>Votre animal</h3><p>Espèce, race ou gabarit, âge, et son caractère.</p></div>
+      </li>
+      <li class="et rv" style="--i:1">
+        <div class="et__ic"><svg viewBox="0 0 64 64" fill="none" stroke="#1F2547" stroke-width="4" stroke-linecap="round" aria-hidden="true"><circle cx="18" cy="46" r="8" fill="#fff"/><circle cx="34" cy="50" r="8" fill="#fff"/><path d="M23 40L48 10M29 43L54 18"/><rect x="40" y="38" width="16" height="20" rx="5" fill="#F6A465"/><path d="M44 38v-6h8v6"/></svg></div>
+        <div><h3>La prestation</h3><p>Ce que vous souhaitez, même approximativement.</p></div>
+      </li>
+      <li class="et rv" style="--i:2">
+        <div class="et__ic"><svg viewBox="0 0 64 64" fill="none" stroke="#1F2547" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="14" width="44" height="40" rx="9" fill="#fff"/><path d="M10 26h44M22 8v10M42 8v10"/><circle cx="24" cy="38" r="3" fill="#1F2547"/><circle cx="40" cy="38" r="3" fill="#F38E45" stroke="none"/><circle cx="32" cy="46" r="3" fill="#1F2547"/></svg></div>
+        <div><h3>Vos disponibilités</h3><p>Deux ou trois créneaux qui vous arrangent.</p></div>
+      </li>
+    </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec hor-sec" id="horaires" aria-labelledby="t-hor">
+  <div class="env">
+    <div class="tete rv">
+      <span class="etiq" style="color:#7A3610">Horaires et accès</span>
+      <h2 id="t-hor">Quand passer au salon</h2>
+      <p class="chapo">L'état affiché se calcule à l'heure où vous lisez la page.</p>
+    </div>
+    <div class="duo">
+      <div class="pan rv">
+        <h3>Horaires d'ouverture</h3>
+        <p class="etat" id="etat2" data-h='[[],[],[540,720,840,1110],[540,720,840,1110],[540,720,840,1110],[540,720,840,1110],[540,960]]'>Du mardi au samedi, sur rendez-vous.</p>
+        <dl class="hor" id="table-h">
+          <div class="off"><dt>Lundi</dt><dd>fermé</dd></div>
+          <div><dt>Mardi</dt><dd>9 h – 12 h · 14 h – 18 h 30</dd></div>
+          <div><dt>Mercredi</dt><dd>9 h – 12 h · 14 h – 18 h 30</dd></div>
+          <div><dt>Jeudi</dt><dd>9 h – 12 h · 14 h – 18 h 30</dd></div>
+          <div><dt>Vendredi</dt><dd>9 h – 12 h · 14 h – 18 h 30</dd></div>
+          <div><dt>Samedi</dt><dd>9 h – 16 h</dd></div>
+          <div class="off"><dt>Dimanche</dt><dd>fermé</dd></div>
+        </dl>
+      </div>
+      <div class="pan rv" style="--i:1">
+        <h3>Venir au salon</h3>
+        <div class="plan">
+          <svg viewBox="0 0 520 300" role="img" aria-label="Plan stylisé du centre de Toul : la Moselle, le canal, les remparts en étoile et l'emplacement du salon.">
+            <rect width="520" height="300" fill="#E9F6EF"/>
+            <g stroke="#CFE3DA" stroke-width="2"><path d="M0 60h520M0 140h520M0 220h520M90 0v300M210 0v300M330 0v300M450 0v300"/></g>
+            <path d="M-10 270 C80 240 120 290 220 262 S400 210 530 250 V310 H-10Z" fill="#9FDFC6"/>
+            <path d="M-10 270 C80 240 120 290 220 262 S400 210 530 250" fill="none" stroke="#6CC3A2" stroke-width="3"/>
+            <text x="420" y="282" font-family="Figtree, sans-serif" font-size="14" font-weight="700" fill="#1C7258">La Moselle</text>
+            <path d="M0 34 C140 46 300 22 520 40" fill="none" stroke="#9FDFC6" stroke-width="9"/>
+            <text x="18" y="24" font-family="Figtree, sans-serif" font-size="12" font-weight="700" fill="#1C7258">Canal</text>
+            <path d="M260 66 L300 92 L350 90 L362 136 L392 168 L356 200 L344 240 L296 230 L258 252 L222 226 L176 230 L170 186 L138 158 L170 128 L176 86 L222 92 Z" fill="#fff" stroke="#1F2547" stroke-width="3" stroke-linejoin="round" stroke-dasharray="1 0"/>
+            <g stroke="#1F2547" stroke-width="5" stroke-linecap="round" opacity=".9"><path d="M150 158 H392" /><path d="M262 66 V252"/></g>
+            <g stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M150 158 H392"/><path d="M262 66 V252"/></g>
+            <g transform="translate(226 106)"><rect x="0" y="6" width="22" height="18" fill="#BDEBD9" stroke="#1F2547" stroke-width="2.5"/><path d="M2 6V-6h6v12M14 6V-6h6v12" fill="#BDEBD9" stroke="#1F2547" stroke-width="2.5"/></g>
+            <text x="190" y="146" font-family="Figtree, sans-serif" font-size="12" font-weight="700" fill="#1F2547">cathédrale</text>
+            <g transform="translate(306 168)"><g class="pin">
+              <path d="M0 0c-14-16-22-26-22-38a22 22 0 0 1 44 0c0 12-8 22-22 38z" fill="#F38E45" stroke="#1F2547" stroke-width="3.5" stroke-linejoin="round"/>
+              <g transform="translate(-10 -48) scale(.85)" fill="#1F2547"><use href="#patte" width="24" height="24"/></g>
+            </g></g>
+            <rect x="324" y="128" width="184" height="34" rx="17" fill="#1F2547"/>
+            <text x="416" y="150" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="15" font-weight="600" fill="#fff">Le Salon des Museaux</text>
+            <text x="500" y="20" text-anchor="end" font-family="Figtree, sans-serif" font-size="11" fill="#474D6E">plan indicatif</text>
+          </svg>
+        </div>
+        <address class="adr">XX rue de l'Exemple<br>54200 Toul</address>
+        <div class="pan__a">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=Toul%2054200">Ouvrir l'itinéraire</a>
+          <a class="btn btn--blanc" href="#contact">Prévenir avant de passer</a>
+        </div>
+        <p class="pan__n">Les horaires peuvent changer les jours fériés : un message avant de venir ne coûte rien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sombre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="rv">
+      <span class="etiq" style="color:var(--abricot)">Contact</span>
+      <h2 id="t-ctc" class="h2">Écrire au Salon des Museaux</h2>
+      <p class="chapo">Un message ou un appel. Vous parlez directement à la personne qui s'occupera de votre animal.</p>
+      <a class="ctc__tel" href="#contact">06 XX XX XX XX</a>
+      <p class="ctc__l"><svg viewBox="0 0 24 24" fill="none" stroke="#BDEBD9" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span><b>XX rue de l'Exemple</b>54200 Toul</span></p>
+      <p class="ctc__l"><svg viewBox="0 0 24 24" fill="none" stroke="#BDEBD9" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Du mardi au samedi</b>9 h – 12 h et 14 h – 18 h 30, le samedi 9 h – 16 h</span></p>
+      <svg class="ctc__chat" viewBox="0 0 200 120" aria-hidden="true">
+        <path d="M10 118 C30 60 170 60 190 118Z" fill="#2C3362"/>
+        <path d="M70 66l-6-38 26 22zM130 66l6-38-26 22z" fill="#3D4680"/>
+        <circle cx="100" cy="78" r="38" fill="#3D4680"/>
+        <g class="yeux-chat"><ellipse cx="86" cy="76" rx="8" ry="9" fill="#BDEBD9"/><ellipse cx="114" cy="76" rx="8" ry="9" fill="#BDEBD9"/><rect x="84.5" y="69" width="3" height="14" rx="1.5" fill="#1F2547"/><rect x="112.5" y="69" width="3" height="14" rx="1.5" fill="#1F2547"/></g>
+        <path d="M96 90h8l-4 5z" fill="#F4A3AE"/>
+        <ellipse cx="72" cy="116" rx="14" ry="8" fill="#F6A465"/><ellipse cx="128" cy="116" rx="14" ry="8" fill="#F6A465"/>
+      </svg>
+    </div>
+    <form class="form rv" id="dem" novalidate style="--i:1">
+      <h3>Demander un rendez-vous</h3>
+      <p class="form__s">Votre message arrive directement chez Le Salon des Museaux, qui vous répond.</p>
+      <div class="ch">
+        <div class="f"><label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+        <div class="f"><label for="tel">Téléphone ou courriel</label>
+          <input id="tel" name="tel" type="text" autocomplete="tel" required placeholder="06 12 34 56 78"></div>
+      </div>
+      <div class="ch" style="margin-top:16px">
+        <div class="f"><label for="animal">Votre animal</label>
+          <input id="animal" name="animal" type="text" placeholder="Chien, cocker, 6 ans, calme"></div>
+        <div class="f"><label for="objet">Votre demande</label>
+          <select id="objet" name="objet">
+            <option value="">Choisir…</option>
+            <option>Une demande de rendez-vous</option>
+            <option>Une question</option>
+            <option>Autre</option>
+          </select></div>
+      </div>
+      <div class="f"><label for="det">Quelques mots</label>
+        <textarea id="det" name="det" rows="4" placeholder="La prestation souhaitée, et deux ou trois créneaux qui vous arrangent."></textarea></div>
+      <button class="btn" type="submit">Envoyer ma demande</button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<div class="bmob" id="bmob">
+  <a class="btn" href="#contact">Appeler</a>
+  <a class="btn btn--blanc" href="#contact">Écrire</a>
+</div>
+
+<footer class="pied">
+  <div class="env pied__in">
+    <span class="pied__m"><svg aria-hidden="true"><use href="#logo"/></svg>Le Salon des Museaux</span>
+    <span>Toiletteur chiens et chats · XX rue de l'Exemple, 54200 Toul</span>
+    <span>© 2026 Le Salon des Museaux</span>
+  </div>
+</footer>
+
+<div class="pistes" id="pistes" aria-hidden="true"></div>
+
+<script>
+/* révélations : contenu visible sans JS, masqué seulement ici, secours à 1,5 s */
+(function(){
+  var d=document.documentElement, reduit=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  d.classList.add("js");
+  var els=[].slice.call(document.querySelectorAll(".rv"));
+  function tout(){els.forEach(function(e){e.classList.add("vu");});d.classList.add("pret");}
+  requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add("pret");});});
+  setTimeout(tout,1500);
+  if(reduit||!("IntersectionObserver" in window)){tout();return;}
+  var io=new IntersectionObserver(function(ent){ent.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target);}});},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(e){io.observe(e);});
+})();
+
+/* ouvert maintenant */
+(function(){
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i;if(!x)return r;for(i=0;i+1<x.length;i+=2)r.push([x[i],x[i+1]]);return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;return b?a+" h "+(b<10?"0":"")+b:a+" h";}
+  function ecrire(el,txt,cls){el.textContent=txt;el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent;el.className="etat "+cls;}
+  function poser(el){
+    var h;try{h=JSON.parse(el.getAttribute("data-h"));}catch(e){return;}
+    if(!Array.isArray(h)||h.length!==7)return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){if(m>=cj[i][0]&&m<cj[i][1]){ecrire(el,"Ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui");return;}}
+    for(k=0;k<8;k++){jj=(j+k)%7;cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){if(k===0&&cs[i][0]<=m)continue;
+        ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non");return;}}
+  }
+  document.querySelectorAll(".etat[data-h]").forEach(poser);
+  var t=document.getElementById("jour");if(t){var n=J[new Date().getDay()];t.textContent=n.charAt(0).toUpperCase()+n.slice(1);}
+  var l=document.querySelectorAll("#table-h > div");if(l.length===7)l[(new Date().getDay()+6)%7].classList.add("jour");
+})();
+
+/* en-tête collant + barre mobile masquée près du formulaire */
+(function(){
+  var h=document.getElementById("hdr"),b=document.getElementById("bmob"),c=document.getElementById("contact");
+  function maj(){h.classList.toggle("colle",scrollY>20);
+    var r=c.getBoundingClientRect();b.classList.toggle("bas",r.top<innerHeight*.6&&r.bottom>0);}
+  addEventListener("scroll",maj,{passive:true});maj();
+})();
+
+/* selon votre animal */
+(function(){
+  var V={
+    chien:{lab:["Petit","Moyen","Grand"],leg:"Son gabarit",items:{
+      1:{t:"Un petit chien",ex:"Yorkshire, bichon, shih tzu, chihuahua…",p:"Bain avec un shampooing adapté au pelage, séchage doux, démêlage, puis coupe aux ciseaux ou tonte selon l'entretien souhaité. Derrière les oreilles et sous les pattes, les nœuds se forment vite : on s'y attarde.",g:["Bain et séchage doux","Démêlage des zones à nœuds","Coupe ciseaux ou tonte","Griffes et oreilles"],a:"Petit chien"},
+      2:{t:"Un chien de taille moyenne",ex:"Cocker, caniche moyen, beagle, border collie…",p:"Les pelages varient beaucoup : poil court, long ou frisé. Selon le cas, bain, séchage, retrait du sous-poil pendant la mue, puis une coupe d'entretien ou une coupe de race.",g:["Bain et séchage","Retrait du sous-poil","Coupe d'entretien ou de race","Griffes et oreilles"],a:"Chien moyen"},
+      3:{t:"Un grand chien",ex:"Golden retriever, berger, bouvier, terre-neuve…",p:"Bain dans une baignoire à sa taille, séchage long jusqu'au cœur du poil, retrait du sous-poil pendant la mue. Pour un grand chien âgé, le rythme et les positions sont adaptés.",g:["Bain dans une grande baignoire","Séchage jusqu'à la peau","Retrait du sous-poil","Griffes et coussinets"],a:"Grand chien"}}},
+    chat:{lab:["Poil court","Mi-long","Poil long"],leg:"Son pelage",items:{
+      1:{t:"Un chat à poil court",ex:"Européen, chartreux, british shorthair…",p:"Un chat n'a pas toujours besoin d'un bain. Un brossage du sous-poil, la coupe des griffes et un contrôle des oreilles suffisent souvent. Le bain se fait seulement s'il le tolère.",g:["Brossage du sous-poil","Coupe des griffes","Contrôle des oreilles","Bain s'il le tolère"],a:"Chat à poil court"},
+      2:{t:"Un chat à poil mi-long",ex:"Sacré de Birmanie, ragdoll, sibérien…",p:"Démêlage des zones sensibles : culotte, ventre, aisselles. Bain et séchage si le chat l'accepte, sinon un soin à sec. Le salon reste calme, sans bruit inutile.",g:["Démêlage des zones sensibles","Bain ou soin à sec","Séchage au calme","Coupe des griffes"],a:"Chat à poil mi-long"},
+      3:{t:"Un chat à poil long",ex:"Persan, maine coon, angora…",p:"Démêlage minutieux et retrait des nœuds. Quand le poil est feutré, une tonte partielle ou complète est parfois la solution la plus douce. On travaille par étapes, avec des pauses.",g:["Démêlage et retrait des nœuds","Tonte partielle si feutrage","Bain et séchage au calme","Griffes et oreilles"],a:"Chat à poil long"}}}
+  };
+  var ic='<svg viewBox="0 0 24 24" aria-hidden="true" fill="#F38E45"><use href="#patte" width="24" height="24"/></svg>';
+  var tt=document.getElementById("sc-titre"),ex=document.getElementById("sc-ex"),tx=document.getElementById("sc-texte"),gs=document.getElementById("sc-gestes"),
+      sch=document.getElementById("sil-chien"),sca=document.getElementById("sil-chat"),leg=document.getElementById("leg-gab"),
+      zone=document.querySelector(".scene"),touffes=document.querySelectorAll(".touffe"),premier=true;
+  function val(n){var r=document.querySelector('input[name="'+n+'"]:checked');return r?r.value:null;}
+  function maj(){
+    var e=val("esp")||"chien",g=val("gab")||"2",d=V[e],it=d.items[g];
+    for(var i=1;i<=3;i++)document.getElementById("lab-"+i).textContent=d.lab[i-1];
+    leg.textContent=d.leg;
+    tt.textContent=it.t;ex.textContent=it.ex;tx.textContent=it.p;
+    gs.innerHTML=it.g.map(function(x){return "<li>"+ic+"<span>"+x+"</span></li>";}).join("");
+    var s=[.62,.82,1][g-1];
+    if(e==="chien"){sch.classList.remove("cache");sca.classList.add("cache");sch.style.transform="scale("+s+")";}
+    else{sca.classList.remove("cache");sch.classList.add("cache");sca.style.transform="scale(.9)";
+      touffes.forEach(function(t){t.classList.toggle("off",!t.classList.contains("t"+g));});
+      if(g==="1")touffes.forEach(function(t){t.classList.add("off");});}
+    zone.dataset.animal=it.a;
+    if(!premier){[tt,ex,tx,gs].forEach(function(n){n.classList.remove("fondu");void n.offsetWidth;n.classList.add("fondu");});}
+    premier=false;
+  }
+  document.querySelectorAll('input[name="esp"],input[name="gab"]').forEach(function(r){r.addEventListener("change",maj);});
+  document.getElementById("sc-btn").addEventListener("click",function(){
+    var a=document.getElementById("animal"),o=document.getElementById("objet");
+    if(a&&!a.value)a.value=zone.dataset.animal;if(o&&!o.value)o.selectedIndex=1;
+  });
+  maj();
+})();
+
+/* formulaire */
+(function(){
+  var f=document.getElementById("dem");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();var r=document.getElementById("ret");
+    if(!f.nom.value.trim()||!f.tel.value.trim()){r.className="fret err";r.textContent="Indiquez au moins votre nom et un moyen de vous répondre.";return;}
+    r.className="fret";r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement chez Le Salon des Museaux.";f.reset();
+  });
+})();
+
+/* bulles de bain (canvas) */
+(function(){
+  var reduit=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var cv=document.getElementById("bulles"),art=document.getElementById("art");if(!cv||!cv.getContext)return;
+  var cx=cv.getContext("2d"),W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2),B=[],P=[],souris=null,visible=true;
+  function taille(){var r=cv.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0);}
+  function nouvelle(x,y){var s=W/600;B.push({x:x!=null?x:(130+Math.random()*340)*s,y:y!=null?y:285*s,r:(5+Math.random()*13)*s,vy:-(0.35+Math.random()*0.6),ph:Math.random()*6.28,a:0,v:0});}
+  function eclate(b){for(var i=0;i<7;i++){var an=i/7*6.28;P.push({x:b.x+Math.cos(an)*b.r,y:b.y+Math.sin(an)*b.r,vx:Math.cos(an)*1.6,vy:Math.sin(an)*1.6,t:1});}}
+  function rendre(){
+    if(!visible){requestAnimationFrame(rendre);return;}
+    cx.clearRect(0,0,W,H);
+    if(B.length<26&&Math.random()<.09)nouvelle();
+    for(var i=B.length-1;i>=0;i--){var b=B[i];b.v+=.016;b.y+=b.vy;b.x+=Math.sin(b.v*3+b.ph)*.45;b.a=Math.min(1,b.a+.04);
+      var mort=b.y<-b.r;
+      if(souris&&Math.hypot(souris.x-b.x,souris.y-b.y)<b.r+10){eclate(b);mort=true;}
+      if(mort){B.splice(i,1);continue;}
+      cx.globalAlpha=b.a*Math.min(1,b.y/(H*.25));
+      cx.beginPath();cx.arc(b.x,b.y,b.r,0,6.283);cx.fillStyle="rgba(255,255,255,.55)";cx.fill();
+      cx.lineWidth=Math.max(1.5,b.r*.16);cx.strokeStyle="#1F2547";cx.stroke();
+      cx.beginPath();cx.arc(b.x-b.r*.35,b.y-b.r*.35,b.r*.22,0,6.283);cx.fillStyle="#fff";cx.fill();
+      cx.beginPath();cx.arc(b.x,b.y,b.r*.7,3.6,4.4);cx.strokeStyle="rgba(159,223,198,.95)";cx.lineWidth=Math.max(1,b.r*.12);cx.stroke();
+    }
+    cx.globalAlpha=1;
+    for(var j=P.length-1;j>=0;j--){var p=P[j];p.x+=p.vx;p.y+=p.vy;p.t-=.05;if(p.t<=0){P.splice(j,1);continue;}
+      cx.globalAlpha=p.t;cx.fillStyle="#F38E45";cx.beginPath();cx.arc(p.x,p.y,2.4,0,6.283);cx.fill();}
+    cx.globalAlpha=1;
+    requestAnimationFrame(rendre);
+  }
+  function pos(e){var r=cv.getBoundingClientRect();souris={x:e.clientX-r.left,y:e.clientY-r.top};}
+  art.addEventListener("pointermove",pos);art.addEventListener("pointerdown",function(e){pos(e);for(var i=0;i<3;i++)nouvelle(souris.x+(Math.random()-.5)*30,souris.y+10);});
+  art.addEventListener("pointerleave",function(){souris=null;});
+  addEventListener("resize",taille);taille();
+  if("IntersectionObserver" in window)new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(art);
+  if(reduit){for(var i=0;i<14;i++){nouvelle();B[i].y-=Math.random()*200*(W/600);B[i].a=1;}
+    cx.clearRect(0,0,W,H);var v=visible;visible=true;souris=null;
+    B.forEach(function(b){cx.beginPath();cx.arc(b.x,b.y,b.r,0,6.283);cx.fillStyle="rgba(255,255,255,.55)";cx.fill();cx.lineWidth=2;cx.strokeStyle="#1F2547";cx.stroke();});return;}
+  for(var k=0;k<10;k++){nouvelle();B[k].y-=Math.random()*180*(W/600);}
+  rendre();
+})();
+
+/* traces de pattes qui suivent le défilement + parallaxe douce */
+(function(){
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  var z=document.getElementById("pistes"),der=scrollY,cumul=0,pas=0,fond=document.querySelector("[data-para]");
+  var svg='<svg viewBox="0 0 24 24"><use href="#patte" width="24" height="24"/></svg>';
+  function poser(desc){
+    var W=document.documentElement.clientWidth,y=scrollY+innerHeight*(desc?.72:.28);
+    var mob=W<760,amp=mob?W*.3:W*.36,cxp=W/2+Math.sin(y/520)*amp;
+    var dx=Math.cos(y/520)*amp/520,ang=Math.atan2(desc?1:-1,dx*(desc?1:-1))*180/Math.PI-90;
+    var cote=(pas%2?1:-1)*(mob?9:13),nx=Math.cos((ang)*Math.PI/180)*cote;
+    var x=Math.max(20,Math.min(W-20,cxp+nx));
+    var el=document.createElement("span");el.className="trace";el.innerHTML=svg;
+    el.style.left=x+"px";el.style.top=y+"px";el.style.setProperty("--r","rotate("+ang+"deg)");
+    if(mob){el.style.width=el.style.height="20px";}
+    z.appendChild(el);pas++;setTimeout(function(){el.remove();},2900);
+  }
+  addEventListener("scroll",function(){
+    var y=scrollY,d=y-der;der=y;cumul+=Math.abs(d);
+    if(cumul>70){cumul=0;poser(d>0);}
+    if(fond&&y<innerHeight*1.2)fond.style.transform="translateY("+(y*parseFloat(fond.dataset.para))+"px)";
+  },{passive:true});
+})();
+</script>
+</body>
+</html>

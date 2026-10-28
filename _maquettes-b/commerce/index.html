@@ -1,0 +1,992 @@
+<!doctype html>
+<!--
+  Maquette « commerce » — variante B — Atelier Pivoine & Ronce, fleuriste à Lunéville (fictif).
+  Idées retenues après recherche (boutiques de fleurs japonaises minimalistes, sites de fleuristes primés, herbiers) :
+  1. Le blanc comme matière : fond papier presque blanc, une seule couleur vive empruntée à la fleur du mois.
+     Changer de mois recolore toute la page (signature) — la boutique vit au rythme des saisons.
+  2. Le papier découpé à la place de la photo : fleurs construites en couches SVG superposées, ombres portées douces,
+     légère parallaxe au mouvement de la souris, comme une vitrine en papier.
+  3. Une mise en page éditoriale asymétrique (rail vertical, colonnes décalées, étiquette d'herbier)
+     et un petit jeu : composer un bouquet en trois tiges, à titre indicatif.
+-->
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Pivoine &amp; Ronce — fleuriste à Lunéville</title>
+<meta name="description" content="Atelier Pivoine & Ronce, fleuriste à Lunéville : bouquets de saison composés à la demande, mariages, deuils. Vous passez ou vous écrivez, quelqu'un vous répond et vous conseille.">
+<meta name="theme-color" content="#F5F5F0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script>
+  document.documentElement.classList.add("js");
+  setTimeout(function(){ if(!window.__ok){ document.documentElement.classList.remove("js"); } }, 1500);
+</script>
+<style>
+:root{
+  --papier:#F5F5F0; --papier-2:#EDEDE6; --blanc:#FFFFFF;
+  --pw:#FFFFFF; --pw2:#F2F2EC; --pg:#E3E3DB; --pv:#C5CDC0; --pv2:#ABB6A6; --pb:#D9D1BF; --pi:#232421;
+  --encre:#1C1D1B; --texte:#3B3D39; --doux:#5F625C; --trait:#D6D7CF;
+  --a:#D7263D; --ae:#A81C2E;
+  --a2:color-mix(in srgb, var(--a) 70%, #fff);
+  --a3:color-mix(in srgb, var(--a) 42%, #fff);
+  --a4:color-mix(in srgb, var(--a) 14%, #fff);
+  --ok:#2F8A55;
+  --f-sans:'Hanken Grotesk', 'Helvetica Neue', Arial, system-ui, sans-serif;
+  --f-serif:'Instrument Serif', 'Times New Roman', Georgia, serif;
+  --g:max(16px, env(safe-area-inset-left));
+  --gd:max(16px, env(safe-area-inset-right));
+  --large:1320px;
+  --ease:cubic-bezier(.2,.75,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;overflow-x:clip;color:var(--texte);font:400 17px/1.6 var(--f-sans);
+  background:var(--papier) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .18 0 0 0 0 .15 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{color:var(--encre);margin:0;font-weight:300}
+em{font-family:var(--f-serif);font-style:italic;font-weight:400}
+p{margin:0}
+::selection{background:var(--a3);color:var(--encre)}
+:focus-visible{outline:2px solid var(--encre);outline-offset:3px;border-radius:2px}
+.evit{position:absolute;left:12px;top:-60px;z-index:100;background:var(--encre);color:var(--blanc);padding:12px 16px;text-decoration:none}
+.evit:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.in{max-width:var(--large);margin:0 auto;padding-left:var(--g);padding-right:var(--gd)}
+@media (min-width:900px){.in{padding-left:max(48px,env(safe-area-inset-left));padding-right:max(48px,env(safe-area-inset-right))}}
+
+/* petits éléments de texte */
+.sur{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--doux)}
+.sur::before{content:"";width:8px;height:8px;background:var(--a);transition:background .8s}
+h2{font-size:clamp(34px,4.6vw,66px);line-height:1.02;letter-spacing:-.025em;font-weight:200}
+h2 em,h1 em{color:var(--ae);transition:color .8s;letter-spacing:-.01em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;background:var(--encre);color:var(--blanc);text-decoration:none;font-weight:500;font-size:16px;border:0;border-radius:0;cursor:pointer;position:relative;overflow:hidden;font-family:inherit}
+.btn::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--a);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease),background .8s}
+.btn:hover::after{transform:scaleX(1)}
+.lien{white-space:nowrap;display:inline-flex;align-items:center;gap:8px;min-height:48px;color:var(--encre);text-decoration:none;font-weight:500;background:linear-gradient(var(--a),var(--a)) 0 calc(100% - 10px)/100% 1px no-repeat;transition:background-size .4s var(--ease)}
+.lien:hover{background-size:0 1px;background-position:100% calc(100% - 10px)}
+.lien svg{transition:transform .3s var(--ease)}
+.lien:hover svg{transform:translateX(4px)}
+
+/* ---------- en-tête ---------- */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:40;transition:background .3s,box-shadow .3s}
+.hdr.plie{background:color-mix(in srgb,var(--papier) 92%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--trait)}
+.hdr .in{display:flex;align-items:center;gap:24px;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--encre);min-height:44px}
+.sceau{width:34px;height:34px;flex:none}
+.sceau rect{fill:var(--a);transition:fill .8s}
+.logo__t{font-size:17px;font-weight:400;letter-spacing:-.01em;line-height:1.1}
+.logo__t em{color:var(--ae);font-size:1.15em;transition:color .8s}
+.logo__t small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--doux);font-weight:500}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;font-size:15px;color:var(--texte);position:relative}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:1px;background:var(--a);transform:scaleX(0);transition:transform .35s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr__tel{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--encre);text-decoration:none;font-weight:500;font-size:15px;color:var(--encre);transition:background .25s,color .25s}
+.hdr__tel:hover{background:var(--encre);color:var(--blanc)}
+.burger{display:none;margin-left:auto;width:48px;height:48px;border:0;background:none;cursor:pointer;position:relative;color:var(--encre)}
+.burger span,.burger span::before{position:absolute;left:12px;right:12px;height:1.5px;background:currentColor;transition:transform .35s var(--ease)}
+.burger span{top:20px}
+.burger span::before{content:"";left:0;right:0;top:7px;transform-origin:center}
+.burger[aria-expanded="true"] span{transform:translateY(3.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span::before{transform:translateY(-7px) rotate(-90deg)}
+.menu{position:fixed;inset:0;z-index:35;background:var(--papier);padding:96px var(--gd) calc(100px + env(safe-area-inset-bottom)) var(--g);display:flex;flex-direction:column;gap:6px;opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.menu.ouvert{opacity:1;visibility:visible;transition:opacity .35s}
+.menu a{font-size:36px;font-weight:200;letter-spacing:-.02em;color:var(--encre);text-decoration:none;min-height:56px;display:flex;align-items:center;border-bottom:1px solid var(--trait);transform:translateY(14px);transition:transform .5s var(--ease)}
+.menu.ouvert a{transform:none}
+.menu a em{color:var(--ae);margin-left:.25em}
+.menu p{margin-top:auto;color:var(--doux);font-size:15px}
+
+/* ---------- ouverture ---------- */
+.hero{position:relative;padding-top:72px}
+.hero .in{display:grid;grid-template-columns:40px minmax(0,5fr) minmax(0,7fr);gap:0 32px;min-height:min(100svh,940px);align-items:end}
+.rail{grid-row:1;grid-column:1;align-self:stretch;writing-mode:vertical-rl;transform:rotate(180deg);font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--doux);display:flex;align-items:center;justify-content:flex-start;gap:16px;padding:24px 0 56px}
+.rail::after{content:"";flex:1;width:1px;background:var(--trait)}
+.hero__txt{grid-column:2;grid-row:1;padding:40px 0 64px;position:relative;z-index:2}
+.hero h1{font-size:clamp(56px,7.6vw,128px);line-height:.9;letter-spacing:-.045em;font-weight:200;margin:22px 0 26px}
+.hero h1 .h1a{display:block;font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:.36em;letter-spacing:0;color:var(--doux);margin-bottom:.12em}
+.hero h1 em{font-size:1.06em}
+.hero__it{font-family:var(--f-serif);font-style:italic;font-size:clamp(24px,2.2vw,32px);line-height:1.2;color:var(--encre);max-width:20ch}
+.hero__p{margin-top:16px;max-width:38ch;color:var(--texte)}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 28px;margin-top:32px}
+.etat{display:inline-flex;align-items:center;gap:10px;margin-top:28px;min-height:44px;text-decoration:none;font-size:15px;color:var(--texte)}
+.etat .pt{width:9px;height:9px;border-radius:50%;background:var(--doux);position:relative}
+.etat.ouvert .pt{background:var(--ok)}
+.etat.ouvert .pt::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--ok);animation:onde 2.2s infinite}
+@keyframes onde{from{transform:scale(.6);opacity:1}to{transform:scale(1.8);opacity:0}}
+.etat b{font-weight:500;color:var(--encre)}
+.hero__fig{grid-column:3;grid-row:1;margin:0;align-self:stretch;position:relative;display:flex;flex-direction:column;justify-content:center;padding:8px 0 40px}
+#scene{width:100%;height:auto;max-height:calc(100svh - 120px);overflow:visible;touch-action:pan-y}
+.leg{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;justify-content:flex-end;font-size:14px;color:var(--doux);margin-top:-12px;position:relative;z-index:2}
+.leg em{font-size:26px;color:var(--ae);transition:color .8s;line-height:1}
+.leg a{display:inline-flex;align-items:center;min-height:44px;color:var(--encre);text-decoration:underline;text-decoration-color:var(--a);text-underline-offset:5px}
+
+/* classes de papier (SVG) */
+.c1{fill:var(--a)} .c2{fill:var(--a2)} .c3{fill:var(--a3)} .c4{fill:var(--a4)}
+.c1,.c2,.c3,.c4{transition:fill .8s}
+.pw{fill:var(--pw)} .pw2{fill:var(--pw2)} .pg{fill:var(--pg)} .pv{fill:var(--pv)} .pv2{fill:var(--pv2)} .pb{fill:var(--pb)} .pi{fill:var(--pi)} .pe{fill:var(--ae);transition:fill .8s}
+.st{fill:none;stroke:var(--pw);stroke-linecap:round}
+.stv{fill:none;stroke:var(--pv2);stroke-linecap:round}
+.sti{fill:none;stroke:var(--pi);stroke-linecap:round}
+.px{will-change:transform;transition:transform .9s cubic-bezier(.2,.6,.2,1)}
+.pop,.sw{transform-box:fill-box;transform-origin:50% 100%}
+.js .pop{animation:eclot 1.2s var(--ease) both;animation-delay:calc(var(--i,0) * 110ms + 250ms)}
+@keyframes eclot{from{opacity:0;transform:translateY(40px) scale(.86)}to{opacity:1;transform:none}}
+.sw{animation:berce 7s ease-in-out infinite alternate;animation-delay:calc(var(--i,0) * -1.3s)}
+@keyframes berce{from{transform:rotate(-1.4deg)}to{transform:rotate(1.4deg)}}
+.vole{animation:vole 9s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+@keyframes vole{from{transform:translate(0,0) rotate(0)}to{transform:translate(-14px,22px) rotate(40deg)}}
+#scene.change{opacity:0;transform:scale(.98);transition:opacity .3s,transform .3s}
+#scene{transition:opacity .5s,transform .5s}
+
+/* entrée du texte */
+.js .e{animation:monte 1s var(--ease) both;animation-delay:calc(var(--i,0) * 90ms + 120ms)}
+@keyframes monte{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+/* révélations */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.vu{opacity:1;transform:none}
+
+.sec{padding:clamp(80px,11vw,160px) 0}
+
+/* ---------- boutique ---------- */
+.bout .in{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px}
+.bout__tete{grid-column:1 / span 6}
+.bout__tete h2{margin-top:22px}
+.bout__intro{grid-column:8 / span 5;align-self:end;font-family:var(--f-serif);font-style:italic;font-size:clamp(22px,2vw,28px);line-height:1.3;color:var(--encre)}
+.presta{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:48px 32px;margin-top:clamp(56px,7vw,100px);list-style:none;padding:0}
+.presta li{border-top:1px solid var(--encre);padding-top:22px;display:grid;grid-template-columns:96px 1fr;gap:20px;align-items:start}
+.presta li:nth-child(1){grid-column:1 / span 5}
+.presta li:nth-child(2){grid-column:7 / span 5;margin-top:120px}
+.presta li:nth-child(3){grid-column:3 / span 6;border-top-style:dashed}
+.presta svg{width:96px;height:96px;overflow:visible}
+.presta h3{font-size:clamp(24px,2.2vw,30px);letter-spacing:-.02em;font-weight:300}
+.presta p{margin-top:10px;max-width:40ch}
+.presta li:nth-child(3) h3 em{color:var(--ae);transition:color .8s}
+
+/* ---------- herbier ---------- */
+.saison{background:var(--blanc);position:relative}
+.saison::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;background:var(--trait)}
+.saison .tete{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px;align-items:end}
+.saison .tete > div{grid-column:1 / span 7}
+.saison .tete h2{margin-top:22px}
+.saison .tete p.int{grid-column:9 / span 4;color:var(--texte)}
+.herb{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:32px;margin-top:clamp(48px,6vw,80px)}
+.mois{display:flex;flex-direction:column;border-top:1px solid var(--trait)}
+.mois button{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-height:46px;padding:8px 4px 8px 0;border:0;border-bottom:1px solid var(--trait);background:none;font:inherit;font-size:15px;color:var(--doux);cursor:pointer;text-align:left;position:relative;transition:color .25s,padding .35s var(--ease)}
+.mois button em{font-size:19px;color:var(--texte)}
+.mois button:hover{color:var(--encre);padding-left:8px}
+.mois button[aria-selected="true"]{color:var(--encre);padding-left:18px}
+.mois button[aria-selected="true"]::before{content:"";position:absolute;left:0;top:50%;width:8px;height:8px;margin-top:-4px;background:var(--a);transition:background .8s}
+.mois button[aria-selected="true"] em{color:var(--ae)}
+.mois button .auj{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ae)}
+.planche{position:relative;background:var(--papier);padding:clamp(20px,3vw,40px);display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:24px 40px;align-items:end;min-height:560px;box-shadow:0 1px 0 var(--trait) inset,0 0 0 1px var(--trait) inset}
+.planche__art{position:relative;align-self:stretch}
+#specimen{width:100%;height:100%;max-height:560px;overflow:visible}
+.etiq{background:var(--blanc);padding:24px 26px;box-shadow:0 1px 2px rgba(40,36,30,.08),0 10px 30px -12px rgba(40,36,30,.18);font-size:15px;transform:rotate(.6deg)}
+.etiq__fam{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--doux);border-bottom:1px solid var(--encre);padding-bottom:10px;display:flex;justify-content:space-between;gap:12px}
+.etiq h3{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:clamp(44px,4.6vw,64px);line-height:1;color:var(--ae);margin:18px 0 6px;transition:color .8s}
+.etiq dl{margin:16px 0 0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px}
+.etiq dt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--doux);padding-top:4px}
+.etiq dd{margin:0;color:var(--texte)}
+.planche.change .etiq,.planche.change #specimen{opacity:0;transform:translateY(10px)}
+.planche .etiq,#specimen{transition:opacity .35s,transform .35s}
+.note{margin-top:22px;font-size:14px;color:var(--doux);max-width:60ch}
+
+/* ---------- composeur ---------- */
+.comp .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px 64px;align-items:start}
+.comp__txt h2{margin-top:22px}
+.comp__txt p:not(.sur){margin-top:20px;max-width:42ch}
+.tiges{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:36px;padding:0;list-style:none}
+.tige{width:100%;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px 10px;min-height:118px;background:var(--blanc);border:1px solid var(--trait);cursor:pointer;font:inherit;font-size:13px;color:var(--texte);position:relative;transition:border-color .25s,transform .3s var(--ease),box-shadow .3s}
+.tige svg{width:100%;height:76px;overflow:visible}
+.tige:hover{transform:translateY(-3px);box-shadow:0 12px 24px -16px rgba(40,36,30,.4)}
+.tige[aria-pressed="true"]{border-color:var(--encre);box-shadow:inset 0 -3px 0 var(--a)}
+.tige .rang{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:var(--encre);color:var(--blanc);font-size:11px;font-weight:600;display:none;align-items:center;justify-content:center}
+.tige[aria-pressed="true"] .rang{display:flex}
+.scene2{position:relative;background:var(--blanc);box-shadow:0 0 0 1px var(--trait) inset;padding:20px 20px 28px}
+#bouquet{width:100%;height:auto;max-height:620px;overflow:visible}
+.grow{transform-box:fill-box;transform-origin:50% 100%;animation:pousse 1s var(--ease) both;animation-delay:var(--d,0ms)}
+@keyframes pousse{from{transform:scale(.2,0);opacity:0}60%{opacity:1}to{transform:none;opacity:1}}
+.compo__res{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 24px;border-top:1px solid var(--trait);padding-top:20px;margin-top:4px}
+.compo__res p{font-size:16px;max-width:44ch}
+.compo__res p strong{font-weight:500;color:var(--encre)}
+.compo__res small{display:block;font-size:13px;color:var(--doux);margin-top:6px}
+.vider{background:none;border:0;font:inherit;font-size:14px;color:var(--doux);text-decoration:underline;text-underline-offset:4px;cursor:pointer;min-height:44px;padding:0 4px}
+
+/* ---------- avant de passer ---------- */
+.prep{border-top:1px solid var(--trait)}
+.prep .in{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:0 32px}
+.prep__tete{grid-column:1 / span 4;position:sticky;top:110px;align-self:start}
+.prep__tete h2{margin-top:22px}
+.prep__tete p{margin-top:18px;color:var(--texte)}
+.etapes{grid-column:6 / span 7;list-style:none;margin:0;padding:0}
+.etapes li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 28px;padding:34px 0;border-bottom:1px solid var(--trait)}
+.etapes li:first-child{padding-top:0}
+.etapes li:nth-child(2){margin-left:8%}
+.etapes li:nth-child(3){margin-left:16%}
+.etapes svg{width:64px;height:64px;grid-row:span 2;overflow:visible}
+.etapes h3{font-family:var(--f-serif);font-style:italic;font-weight:400;font-size:clamp(30px,3vw,42px);line-height:1.05}
+.etapes p{max-width:46ch}
+
+/* ---------- horaires ---------- */
+.hor{background:var(--blanc)}
+.hor .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 64px;align-items:start}
+.hor h2{margin-top:22px}
+.ouv{margin-top:28px;display:flex;align-items:center;gap:14px;font-size:clamp(22px,2vw,28px);font-weight:300;color:var(--encre)}
+.ouv .pt{width:12px;height:12px;border-radius:50%;background:var(--doux);flex:none;position:relative}
+.ouv.ouvert .pt{background:var(--ok)}
+.ouv.ouvert .pt::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--ok);animation:onde 2.2s infinite}
+.ouv em{color:var(--encre)}
+.sem{width:100%;border-collapse:collapse;margin-top:28px;font-size:16px}
+.sem th,.sem td{text-align:left;padding:12px 0;border-bottom:1px solid var(--trait);font-weight:400}
+.sem th{text-transform:capitalize;color:var(--texte);width:38%}
+.sem td{color:var(--encre)}
+.sem .ferm td{color:var(--doux)}
+.sem tr.auj th,.sem tr.auj td{font-weight:600;color:var(--encre)}
+.sem tr.auj th::after{content:"aujourd'hui";margin-left:10px;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ae);vertical-align:2px}
+.plan{position:relative;background:var(--papier);box-shadow:0 0 0 1px var(--trait) inset}
+.plan > svg{width:100%;height:auto}
+.plan text{font-family:var(--f-serif);font-style:italic;fill:var(--doux);font-size:15px}
+.plan .lbl{font-family:var(--f-sans);font-style:normal;font-size:12px;letter-spacing:.14em;text-transform:uppercase;fill:var(--encre)}
+.plan .pulse{transform-box:fill-box;transform-origin:center;animation:pl 2.4s infinite}
+@keyframes pl{from{transform:scale(.4);opacity:.8}to{transform:scale(2.2);opacity:0}}
+.acces{display:grid;grid-template-columns:1fr auto;gap:16px 24px;align-items:center;padding:22px 24px;border-top:1px solid var(--trait);background:var(--blanc)}
+.acces address{font-style:normal;color:var(--encre)}
+.acces p{grid-column:1 / -1;font-size:14px;color:var(--doux)}
+
+/* ---------- contact ---------- */
+.ctc .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px 80px}
+.ctc h2{margin-top:22px}
+.ctc__tel{display:block;margin-top:34px;font-size:clamp(34px,4vw,54px);font-weight:200;letter-spacing:-.02em;color:var(--encre)}
+.ctc__info{margin-top:22px;display:grid;gap:14px;color:var(--texte)}
+.ctc__info span{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--doux)}
+form{background:var(--blanc);padding:clamp(22px,3.4vw,44px);box-shadow:0 0 0 1px var(--trait) inset;position:relative}
+.f__tete{font-family:var(--f-serif);font-style:italic;font-size:28px;color:var(--encre)}
+.f__sous{font-size:14px;color:var(--doux);margin-top:4px}
+.chs{display:grid;grid-template-columns:1fr 1fr;gap:4px 28px;margin-top:20px}
+.ch{display:flex;flex-direction:column;padding-top:14px}
+.ch.l{grid-column:1 / -1}
+.ch label{font-size:13px;color:var(--doux);letter-spacing:.02em}
+.ch input,.ch select,.ch textarea{font:inherit;font-size:17px;color:var(--encre);background:transparent;border:0;border-bottom:1px solid var(--encre);border-radius:0;padding:10px 0;min-height:48px;width:100%;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+.ch select{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231C1D1B' stroke-width='1.4'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:24px}
+.ch textarea{min-height:110px;resize:vertical}
+.ch input:focus,.ch select:focus,.ch textarea:focus{outline:none;border-bottom-color:var(--a);box-shadow:0 2px 0 var(--a)}
+.f__pied{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-top:30px}
+.f__pied p{font-size:13px;color:var(--doux);max-width:36ch}
+.merci{display:none;padding:26px 0 6px}
+.merci p:first-child{font-family:var(--f-serif);font-style:italic;font-size:30px;color:var(--ae);line-height:1.15}
+.merci p+p{margin-top:12px}
+form.envoye .chs,form.envoye .f__pied{display:none}
+form.envoye .merci{display:block}
+
+/* ---------- pied ---------- */
+.pied{border-top:1px solid var(--trait);padding:56px 0 40px}
+.pied__mot{font-size:clamp(48px,12vw,190px);font-weight:200;letter-spacing:-.05em;line-height:.85;color:var(--encre)}
+.pied__mot em{color:var(--ae);transition:color .8s}
+.pied__b{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;margin-top:36px;font-size:14px;color:var(--doux)}
+.pied__b a{text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.pied__b a:hover{color:var(--encre)}
+
+.barre{display:none}
+
+/* ---------- tablette / mobile ---------- */
+@media (max-width:1060px){
+  .nav,.hdr__tel{display:none}
+  .burger{display:block}
+}
+@media (max-width:900px){
+  body{font-size:16px;padding-bottom:calc(70px + env(safe-area-inset-bottom))}
+  .hdr .in{height:62px}
+  .hero{padding-top:62px}
+  .hero .in{grid-template-columns:minmax(0,1fr);min-height:0;gap:0}
+  .rail{display:none}
+  .hero__fig{grid-column:1;grid-row:1;padding:0;margin:0 calc(-1 * var(--gd)) 0 calc(-1 * var(--g))}
+  #scene{max-height:none;margin-top:-8px}
+  .leg{justify-content:flex-start;padding:0 var(--gd) 0 var(--g);margin-top:4px}
+  .hero__txt{grid-column:1;grid-row:2;padding:18px 0 40px}
+  .hero h1{font-size:clamp(50px,15.5vw,84px);margin:16px 0 18px}
+  .hero__cta .btn{flex:1 1 auto}
+  .bout .in,.presta,.saison .tete,.prep .in{grid-template-columns:minmax(0,1fr)}
+  .bout__tete,.bout__intro,.presta,.presta li,.saison .tete > div,.saison .tete p.int,.prep__tete,.etapes{grid-column:1 !important}
+  .bout__intro{margin-top:22px}
+  .presta{gap:40px}
+  .presta li{grid-template-columns:72px 1fr;gap:16px}
+  .presta li:nth-child(2){margin-top:0;margin-left:10%}
+  .presta li:nth-child(3){margin-left:4%;margin-right:6%}
+  .presta svg{width:72px;height:72px}
+  .saison .tete p.int{margin-top:18px}
+  .herb{grid-template-columns:minmax(0,1fr);gap:18px}
+  .mois{flex-direction:row;overflow-x:auto;border-top:0;gap:8px;padding-bottom:6px;scroll-snap-type:x mandatory;margin:0 calc(-1 * var(--gd)) 0 calc(-1 * var(--g));padding-left:var(--g);padding-right:var(--gd);scrollbar-width:none}
+  .mois::-webkit-scrollbar{display:none}
+  .mois button{flex:none;flex-direction:column;align-items:flex-start;gap:0;border:1px solid var(--trait);padding:8px 14px;min-height:56px;scroll-snap-align:start;line-height:1.25;background:var(--papier)}
+  .mois button:hover{padding-left:14px}
+  .mois button[aria-selected="true"]{padding-left:14px;border-color:var(--encre);background:var(--blanc);box-shadow:inset 0 -3px 0 var(--a)}
+  .mois button[aria-selected="true"]::before{display:none}
+  .mois button .auj{display:none}
+  .planche{grid-template-columns:minmax(0,1fr);min-height:0;padding:16px 16px 22px}
+  #specimen{height:auto;max-height:none}
+  .etiq{margin-top:-30px;position:relative;transform:rotate(-.8deg)}
+  .comp .in,.hor .in,.ctc .in{grid-template-columns:minmax(0,1fr)}
+  .scene2{grid-row:2;padding:12px 12px 18px;margin:0 calc(-1 * var(--gd)) 0 calc(-1 * var(--g))}
+  .comp__txt{display:contents}
+  .comp__txt > div{grid-row:1}
+  .tiges{grid-row:3;margin-top:0;gap:8px}
+  .tige{min-height:104px;font-size:12px}
+  .tige svg{height:64px}
+  .prep__tete{position:static}
+  .etapes{margin-top:36px}
+  .etapes li{grid-template-columns:52px minmax(0,1fr);gap:4px 18px;padding:26px 0}
+  .etapes svg{width:48px;height:48px}
+  .etapes li:nth-child(2){margin-left:6%}
+  .etapes li:nth-child(3){margin-left:12%}
+  .plan{margin:0 calc(-1 * var(--gd)) 0 calc(-1 * var(--g))}
+  .acces{grid-template-columns:minmax(0,1fr)}
+  .chs{grid-template-columns:minmax(0,1fr)}
+  form{margin:0 calc(-1 * var(--gd)) 0 calc(-1 * var(--g));padding:26px var(--gd) 30px var(--g)}
+  .f__pied .btn{width:100%}
+  .barre{display:grid;grid-template-columns:1.3fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--encre);padding:0 var(--gd) env(safe-area-inset-bottom) var(--g);gap:1px}
+  .barre a{display:flex;align-items:center;justify-content:center;gap:10px;min-height:62px;color:var(--blanc);text-decoration:none;font-size:15px;font-weight:500}
+  .barre a + a{box-shadow:-1px 0 0 rgba(255,255,255,.18)}
+  .barre a small{font-weight:400;opacity:.75;font-size:12px;display:block}
+  .barre svg{flex:none}
+  .barre i{width:8px;height:8px;background:var(--a);display:block;transition:background .8s}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="evit" href="#principal">Aller au contenu</a>
+
+<!-- ombres de papier partagées -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="om" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="2" dy="5" stdDeviation="5" flood-color="#2A2620" flood-opacity=".17"/>
+    </filter>
+    <filter id="om2" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="1" dy="2.5" stdDeviation="2.4" flood-color="#2A2620" flood-opacity=".2"/>
+    </filter>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="in">
+    <a class="logo" href="#haut" aria-label="Atelier Pivoine et Ronce, retour en haut de page">
+      <svg class="sceau" viewBox="0 0 34 34" aria-hidden="true"><rect width="34" height="34"/><g transform="translate(17 17)" fill="#fff"><path d="M0 0C3-1 3.4-6.5 0-8C-3.4-6.5-3-1 0 0Z"/><path d="M0 0C3-1 3.4-6.5 0-8C-3.4-6.5-3-1 0 0Z" transform="rotate(72)"/><path d="M0 0C3-1 3.4-6.5 0-8C-3.4-6.5-3-1 0 0Z" transform="rotate(144)"/><path d="M0 0C3-1 3.4-6.5 0-8C-3.4-6.5-3-1 0 0Z" transform="rotate(216)"/><path d="M0 0C3-1 3.4-6.5 0-8C-3.4-6.5-3-1 0 0Z" transform="rotate(288)"/></g></svg>
+      <span class="logo__t">Pivoine <em>&amp;</em> Ronce<small>Fleuriste · Lunéville</small></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#boutique">La boutique</a>
+      <a href="#saison">De saison</a>
+      <a href="#composer">Composer</a>
+      <a href="#horaires">Horaires et accès</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="hdr__tel" href="#contact">06 XX XX XX XX</a>
+    <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu" aria-label="Ouvrir le menu"><span></span></button>
+  </div>
+</header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <a href="#boutique">La boutique</a>
+  <a href="#saison">De <em>saison</em></a>
+  <a href="#composer">Composer</a>
+  <a href="#horaires">Horaires et accès</a>
+  <a href="#contact">Contact</a>
+  <p>06 XX XX XX XX<br>XX rue de l'Exemple, 54300 Lunéville</p>
+</div>
+
+<main id="principal">
+
+<!-- ================= OUVERTURE ================= -->
+<section class="hero" id="haut" aria-labelledby="titre">
+  <div class="in">
+    <p class="rail" aria-hidden="true">Atelier fleuriste — Lunéville, Meurthe-et-Moselle</p>
+    <div class="hero__txt">
+      <p class="sur e" style="--i:0">Fleuriste à Lunéville</p>
+      <h1 id="titre" class="e" style="--i:1"><span class="h1a">Atelier</span>Pivoine <em>&amp;</em> Ronce</h1>
+      <p class="hero__it e" style="--i:2">Des bouquets de saison, composés à la demande.</p>
+      <p class="hero__p e" style="--i:3">Vous passez ou vous écrivez, quelqu'un vous répond et vous conseille.</p>
+      <div class="hero__cta e" style="--i:4">
+        <a class="btn" href="#contact">Poser une question</a>
+        <a class="lien" href="#composer">Composer un bouquet <svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h16M12 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+      </div>
+      <a class="etat e" style="--i:5" href="#horaires" id="etat"><span class="pt" aria-hidden="true"></span><span class="etat__t">Du mardi au samedi, et le dimanche matin</span></a>
+    </div>
+    <figure class="hero__fig">
+      <svg id="scene" viewBox="200 40 690 830" role="img" aria-labelledby="scene-t">
+        <title id="scene-t">Composition de fleurs en papier découpé : la fleur du mois</title>
+        <g id="scene-g"></g>
+      </svg>
+      <figcaption class="leg e" style="--i:6"><span>Fleur <span class="js-de">d'octobre</span></span><em class="js-fleur">Dahlia</em><a href="#saison">Changer de mois</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= BOUTIQUE ================= -->
+<section class="sec bout" id="boutique" aria-labelledby="t-bout">
+  <div class="in">
+    <div class="bout__tete rv">
+      <p class="sur">La boutique</p>
+      <h2 id="t-bout">Ce que fait <em>un fleuriste</em>, ici.</h2>
+    </div>
+    <p class="bout__intro rv" style="--d:.1s">Pas de catalogue figé. On compose avec ce qui arrive, selon la saison et selon vous.</p>
+    <ul class="presta">
+      <li class="rv"><svg viewBox="-60 -60 120 120" aria-hidden="true" data-glyph="bouquet"></svg>
+        <div><h3>Bouquets</h3><p>Composés à la demande, selon la saison. Vous dites pour qui et pour quelle occasion, on choisit les tiges avec vous.</p></div></li>
+      <li class="rv" style="--d:.12s"><svg viewBox="-60 -60 120 120" aria-hidden="true" data-glyph="couronne"></svg>
+        <div><h3>Événements</h3><p>Mariages, deuils, décorations de table ou de salle : sur commande, en prenant le temps d'en parler avant.</p></div></li>
+      <li class="rv" style="--d:.2s"><svg viewBox="-60 -60 120 120" aria-hidden="true" data-glyph="voix"></svg>
+        <div><h3>Le reste, <em>de vive voix</em></h3><p>Une plante à rempoter, une idée encore floue, une livraison à organiser : ça se règle plus vite par un message ou au comptoir.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= HERBIER ================= -->
+<section class="sec saison" id="saison" aria-labelledby="t-sai">
+  <div class="in">
+    <div class="tete">
+      <div class="rv">
+        <p class="sur">De saison</p>
+        <h2 id="t-sai">L'herbier <em>du mois</em></h2>
+      </div>
+      <p class="int rv" style="--d:.1s">Chaque mois, une fleur donne sa couleur à la boutique, et à cette page. Choisissez un mois pour voir ce qui pousse en France à ce moment-là.</p>
+    </div>
+    <div class="herb rv">
+      <div class="mois" role="tablist" aria-label="Choisir un mois" id="mois"></div>
+      <div class="planche" role="tabpanel" id="planche" aria-labelledby="tab-9" tabindex="0">
+        <div class="planche__art"><svg id="specimen" viewBox="0 0 440 520" aria-hidden="true"></svg></div>
+        <div class="etiq" aria-live="polite">
+          <p class="etiq__fam"><span>Herbier de l'atelier</span><span class="js-m">Octobre</span></p>
+          <h3 class="js-f">Dahlia</h3>
+          <p class="js-t">Il tient jusqu'aux premières gelées. Des têtes pleines, serrées comme une rosace.</p>
+          <dl>
+            <dt>Couleur</dt><dd class="js-c">Rouge cerise, et toute la gamme du rose au bordeaux.</dd>
+            <dt>Aussi</dt><dd class="js-a">Chrysanthème, cosmos, baies d'églantier, feuillages roux.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+    <p class="note rv">Le calendrier donne les grandes lignes. En boutique, la sélection suit les arrivages et la météo : elle change d'une semaine à l'autre.</p>
+  </div>
+</section>
+
+<!-- ================= COMPOSEUR ================= -->
+<section class="sec comp" id="composer" aria-labelledby="t-comp">
+  <div class="in">
+    <div class="comp__txt">
+      <div class="rv">
+        <p class="sur">Pour se faire une idée</p>
+        <h2 id="t-comp">Composez <em>en trois tiges</em></h2>
+        <p>Choisissez trois tiges, le bouquet s'assemble. C'est un jeu pour vous donner des idées : en boutique, on compose avec les arrivages du matin.</p>
+      </div>
+      <ul class="tiges rv" id="tiges" aria-label="Tiges disponibles"></ul>
+    </div>
+    <div class="scene2 rv" style="--d:.1s">
+      <svg id="bouquet" viewBox="0 0 420 520" role="img" aria-labelledby="bq-t"><title id="bq-t">Votre bouquet en papier</title><g id="bq-g"></g></svg>
+      <div class="compo__res">
+        <p id="bq-txt" aria-live="polite">Choisissez trois tiges.</p>
+        <div style="display:flex;gap:8px 18px;align-items:center;flex-wrap:wrap">
+          <button class="vider" type="button" id="vider">Recommencer</button>
+          <a class="btn" href="#contact" id="demander">Demander ce bouquet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AVANT DE PASSER ================= -->
+<section class="sec prep" id="preparer" aria-labelledby="t-prep">
+  <div class="in">
+    <div class="prep__tete rv">
+      <p class="sur">Avant de passer</p>
+      <h2 id="t-prep">Trois choses <em>à avoir en tête</em></h2>
+      <p>Avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <ol class="etapes">
+      <li class="rv"><svg viewBox="-32 -32 64 64" aria-hidden="true" data-glyph="loupe"></svg><h3>Ce que vous cherchez</h3><p>Un article, une référence, ou simplement une idée. « Quelque chose de blanc, pas trop haut » suffit.</p></li>
+      <li class="rv"><svg viewBox="-32 -32 64 64" aria-hidden="true" data-glyph="photo"></svg><h3>Une photo</h3><p>Elle vaut souvent mieux qu'une longue description : une teinte, un bouquet vu ailleurs, la table à décorer.</p></li>
+      <li class="rv"><svg viewBox="-32 -32 64 64" aria-hidden="true" data-glyph="date"></svg><h3>Pour quand</h3><p>Si c'est pour une date précise, dites-le. Certaines fleurs se commandent quelques jours avant.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= HORAIRES ================= -->
+<section class="sec hor" id="horaires" aria-labelledby="t-hor">
+  <div class="in">
+    <div class="rv">
+      <p class="sur">Horaires et accès</p>
+      <h2 id="t-hor">Passer <em>à la boutique</em></h2>
+      <p class="ouv" id="ouv"><span class="pt" aria-hidden="true"></span><span class="ouv__t">Du mardi au samedi, et le dimanche matin</span></p>
+      <table class="sem">
+        <caption class="sr">Horaires d'ouverture de la semaine</caption>
+        <tbody>
+          <tr data-j="1" class="ferm"><th scope="row">lundi</th><td>fermé</td></tr>
+          <tr data-j="2"><th scope="row">mardi</th><td>9 h – 12 h 30, 14 h – 19 h</td></tr>
+          <tr data-j="3"><th scope="row">mercredi</th><td>9 h – 12 h 30, 14 h – 19 h</td></tr>
+          <tr data-j="4"><th scope="row">jeudi</th><td>9 h – 12 h 30, 14 h – 19 h</td></tr>
+          <tr data-j="5"><th scope="row">vendredi</th><td>9 h – 12 h 30, 14 h – 19 h</td></tr>
+          <tr data-j="6"><th scope="row">samedi</th><td>9 h – 12 h 30, 14 h – 19 h</td></tr>
+          <tr data-j="0"><th scope="row">dimanche</th><td>9 h – 13 h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="plan rv" style="--d:.1s">
+      <svg viewBox="0 0 640 430" role="img" aria-labelledby="plan-t">
+        <title id="plan-t">Plan simplifié : la boutique se trouve en centre-ville, entre le château et la Vezouze.</title>
+        <g fill="none" stroke="#D6D7CF" stroke-width="1.2">
+          <path d="M0 120H640M0 250H640M0 345H640M120 0V430M260 0V430M410 0V430M530 0V430M0 40L640 200"/>
+        </g>
+        <path d="M-10 395C90 360 160 410 260 380S430 330 520 365 620 400 660 380" fill="none" stroke="#E3E3DB" stroke-width="22" stroke-linecap="round"/>
+        <text x="455" y="408">la Vezouze</text>
+        <g filter="url(#om2)" class="pw">
+          <rect x="140" y="140" width="100" height="90"/><rect x="280" y="140" width="110" height="38"/><rect x="430" y="140" width="80" height="90"/>
+          <rect x="140" y="268" width="100" height="58"/><rect x="430" y="268" width="80" height="58"/><rect x="545" y="268" width="80" height="58"/><rect x="20" y="140" width="84" height="90"/>
+        </g>
+        <g filter="url(#om2)">
+          <path class="pw" d="M282 30h106v70h-28V64h-50v36h-28z"/>
+        </g>
+        <text x="300" y="20">Château</text>
+        <g fill="#C5CDC0" opacity=".9">
+          <circle cx="40" cy="30" r="9"/><circle cx="62" cy="48" r="7"/><circle cx="30" cy="62" r="8"/><circle cx="80" cy="22" r="6"/><circle cx="92" cy="60" r="8"/><circle cx="54" cy="84" r="6"/>
+        </g>
+        <text x="16" y="112">Parc des Bosquets</text>
+        <g transform="translate(335 214)">
+          <circle r="16" class="c3 pulse"/>
+          <circle r="9" class="c1"/>
+          <circle r="3" fill="#fff"/>
+        </g>
+        <text class="lbl" x="356" y="250">XX rue de l'Exemple</text>
+      </svg>
+      <div class="acces">
+        <address>Atelier Pivoine &amp; Ronce<br>XX rue de l'Exemple, 54300 Lunéville</address>
+        <a class="lien" href="https://www.google.com/maps/search/?api=1&amp;query=Lun%C3%A9ville%2054300" target="_blank" rel="noopener">Ouvrir l'itinéraire <svg width="18" height="10" viewBox="0 0 18 10" aria-hidden="true"><path d="M0 5h16M12 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></a>
+        <p>Les horaires peuvent changer les jours fériés et autour des grandes fêtes : un message avant de venir ne coûte rien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec ctc" id="contact" aria-labelledby="t-ctc">
+  <div class="in">
+    <div class="rv">
+      <p class="sur">Contact</p>
+      <h2 id="t-ctc">Écrire <em>à l'atelier</em></h2>
+      <p class="ctc__tel">06 XX XX XX XX</p>
+      <div class="ctc__info">
+        <p><span>Adresse</span>XX rue de l'Exemple, 54300 Lunéville</p>
+        <p><span>Horaires</span>Du mardi au samedi, 9 h – 12 h 30 et 14 h – 19 h. Le dimanche, 9 h – 13 h.</p>
+      </div>
+    </div>
+    <form id="form" class="rv" style="--d:.1s" novalidate>
+      <p class="f__tete">Poser une question</p>
+      <p class="f__sous">Votre message arrive directement chez Atelier Pivoine &amp; Ronce, qui vous répond.</p>
+      <div class="chs">
+        <div class="ch"><label for="f-nom">Votre nom</label><input id="f-nom" name="nom" type="text" autocomplete="name" required></div>
+        <div class="ch"><label for="f-contact">Téléphone ou courriel</label><input id="f-contact" name="contact" type="text" autocomplete="email" required></div>
+        <div class="ch"><label for="f-type">Votre demande</label>
+          <select id="f-type" name="type"><option value="">Choisir…</option><option>Une question</option><option>Une commande ou une réservation</option><option>Autre</option></select></div>
+        <div class="ch"><label for="f-occ">L'occasion (facultatif)</label>
+          <select id="f-occ" name="occasion"><option>Aucune en particulier</option><option>Mariage</option><option>Deuil</option><option>Anniversaire</option><option>Simple envie</option></select></div>
+        <div class="ch l"><label for="f-date">Pour quand (facultatif)</label><input id="f-date" name="date" type="text" placeholder="Samedi matin, le 14…"></div>
+        <div class="ch l"><label for="f-msg">Quelques mots</label><textarea id="f-msg" name="message" rows="4"></textarea></div>
+      </div>
+      <div class="f__pied">
+        <button class="btn" type="submit">Envoyer ma demande</button>
+        <p>Une photo aide beaucoup : vous pourrez l'envoyer en réponse.</p>
+      </div>
+      <div class="merci" role="status" tabindex="-1" id="merci">
+        <p>Merci, c'est noté.</p>
+        <p>Sur le site en ligne, votre demande arrive directement chez Atelier Pivoine &amp; Ronce, qui vous répond.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer class="pied">
+  <div class="in">
+    <p class="pied__mot" aria-hidden="true">Pivoine <em>&amp;</em> Ronce</p>
+    <div class="pied__b">
+      <span>Atelier Pivoine &amp; Ronce · fleuriste · XX rue de l'Exemple, 54300 Lunéville · 06 XX XX XX XX</span>
+      <a href="#haut">Revenir en haut</a>
+    </div>
+  </div>
+</footer>
+
+<nav class="barre" aria-label="Actions rapides">
+  <a href="#contact"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>Appeler<small>06 XX XX XX XX</small></span></a>
+  <a href="#contact"><i aria-hidden="true"></i>Écrire</a>
+</nav>
+
+<script>
+(function(){
+  "use strict";
+  window.__ok = true;
+  var root = document.documentElement;
+  var reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var $ = function(s, c){ return (c || document).querySelector(s); };
+  var $$ = function(s, c){ return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+  var F = function(n){ return Math.round(n * 100) / 100; };
+
+  /* ---------- générateur de fleurs en papier ---------- */
+  var P = {
+    pointe:"M0 0C.55-.25.5-.7 0-1C-.5-.7-.55-.25 0 0Z",
+    rond:"M0 0C.62-.15.64-.84.26-.98Q0-1.05-.26-.98C-.64-.84-.62-.15 0 0Z",
+    frange:"M0 0C.5-.3.56-.74.48-.95L.3-.86.17-1 0-.88-.17-1-.3-.86-.48-.95C-.56-.74-.5-.3 0 0Z",
+    coeur:"M0 0C.62-.2.64-.86.38-.98C.2-1.05.08-.97 0-.88C-.08-.97-.2-1.05-.38-.98C-.64-.86-.62-.2 0 0Z"
+  };
+  function graine(s){ return function(){ s |= 0; s = s + 0x6D2B79F5 | 0; var t = Math.imul(s ^ s >>> 15, 1 | s); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+  var FORMES = {
+    dahlia:{r:[[16,1,.34,"pointe","c1",0],[14,.8,.34,"pointe","c2",12],[12,.6,.32,"pointe","c1",4],[10,.42,.3,"pointe","c3",18],[8,.25,.3,"pointe","c2",0]],c:[.09,"c4"]},
+    hellebore:{r:[[5,1,1,"rond","c1",0],[5,.62,.78,"rond","c2",36]],c:[.2,"c4"],d:[12,.27,"c1"]},
+    pivoine:{r:[[9,1,.85,"rond","c3",0],[8,.86,.8,"rond","c2",20],[8,.7,.78,"rond","c1",5],[7,.52,.72,"rond","c2",30],[6,.35,.7,"rond","c3",10]],c:[.13,"c1"]},
+    bleuet:{r:[[11,1,.46,"frange","c1",0],[9,.64,.44,"frange","c2",15]],c:[.2,"pe"],d:[10,.15,"c3"]},
+    zinnia:{r:[[14,1,.42,"rond","c1",0],[12,.76,.42,"rond","c2",14],[10,.52,.42,"rond","c1",3]],c:[.2,"c4"],d:[14,.2,"c1"]},
+    tournesol:{r:[[22,1,.24,"pointe","c1",0],[20,.86,.26,"pointe","c2",8]],c:[.46,"pi"],d:[18,.36,"pg"]},
+    cosmos:{r:[[8,1,.64,"coeur","c1",0]],c:[.17,"c4"],d:[10,.12,"c1"]},
+    chrysantheme:{r:[[30,1,.14,"pointe","c1",0],[26,.82,.15,"pointe","c2",6],[22,.62,.16,"pointe","c1",3],[16,.42,.18,"pointe","c3",9],[10,.22,.2,"pointe","c2",0]]},
+    amaryllis:{r:[[6,1,.52,"pointe","c1",0],[6,.62,.38,"pointe","c2",30]],c:[.1,"c4"],e:6},
+    anemone:{r:[[6,1,.82,"rond","pw",0],[6,.72,.72,"rond","pw2",30]],c:[.27,"pi"],d:[14,.33,"pi"]},
+    rose:{r:[[7,1,.85,"rond","c3",0],[6,.78,.8,"rond","c4",25],[5,.56,.75,"rond","c3",8],[4,.36,.75,"rond","c4",40]],c:[.12,"c3"]},
+    douce:{r:[[9,1,.85,"rond","pw",0],[8,.84,.8,"rond","c4",20],[7,.66,.78,"rond","pw2",5],[6,.48,.72,"rond","c4",30],[5,.3,.7,"rond","c3",10]],c:[.1,"c3"]},
+    fleurette:{r:[[5,1,.9,"rond","pw",0]],c:[.25,"c3"]}
+  };
+  function radial(f, R){
+    var s = "";
+    f.r.forEach(function(g){
+      s += '<g filter="url(#om)">';
+      for (var i = 0; i < g[0]; i++){
+        s += '<path class="' + g[4] + '" d="' + P[g[3]] + '" transform="rotate(' + F(g[5] + i * 360 / g[0]) + ') scale(' + F(g[2] * R) + ' ' + F(g[1] * R) + ')"/>';
+      }
+      s += "</g>";
+    });
+    if (f.e){
+      s += '<g filter="url(#om2)">';
+      for (var k = 0; k < f.e; k++){ var a = (k * 360 / f.e + 15) * Math.PI / 180, x = Math.sin(a) * R * .38, y = -Math.cos(a) * R * .38;
+        s += '<path class="sti" stroke-width="1.4" d="M0 0L' + F(x) + " " + F(y) + '"/><circle class="pi" cx="' + F(x) + '" cy="' + F(y) + '" r="' + F(R * .03 + 1) + '"/>'; }
+      s += "</g>";
+    }
+    if (f.c) s += '<circle class="' + f.c[1] + '" r="' + F(f.c[0] * R) + '" filter="url(#om2)"/>';
+    if (f.d){
+      s += '<g>';
+      for (var j = 0; j < f.d[0]; j++){ var b = j * 2 * Math.PI / f.d[0];
+        s += '<circle class="' + f.d[2] + '" cx="' + F(Math.sin(b) * R * f.d[1]) + '" cy="' + F(Math.cos(b) * R * f.d[1]) + '" r="' + F(R * .028 + .8) + '"/>'; }
+      s += "</g>";
+    }
+    return s;
+  }
+  function tulipe(R){
+    return '<g transform="scale(' + F(R) + ')">' +
+      '<g filter="url(#om)"><path class="c3" d="M0 .55C-.55 .5-.62-.2-.34-.78L0-.46.34-.78C.62-.2.55 .5 0 .55Z"/></g>' +
+      '<g filter="url(#om)"><path class="c1" d="M.06 .6C-.56 .54-.64-.15-.4-.72C-.06-.52.22-.1.06 .6Z"/></g>' +
+      '<g filter="url(#om)"><path class="c2" d="M-.06 .6C.56 .54.64-.15.4-.72C.06-.52-.22-.1-.06 .6Z"/></g></g>';
+  }
+  function amas(type, R, seed){
+    var rnd = graine(seed || 7), s = "", n = type === "mimosa" ? 26 : 22, pts = [];
+    for (var i = 0; i < n; i++){
+      var t = rnd(), a = rnd() * Math.PI * 2, d = Math.sqrt(rnd());
+      var x, y;
+      if (type === "lilas"){ y = -R * 1.1 * t + R * .45; var w = R * .62 * (1 - t * .75); x = (rnd() * 2 - 1) * w; }
+      else { x = Math.cos(a) * d * R * .9; y = Math.sin(a) * d * R * .75; }
+      pts.push([x, y, rnd()]);
+    }
+    pts.sort(function(p, q){ return p[1] - q[1]; });
+    pts.forEach(function(p, k){
+      var cl = ["c1","c2","c3"][Math.floor(p[2] * 3)];
+      if (type === "mimosa"){
+        s += '<circle class="' + cl + '" cx="' + F(p[0]) + '" cy="' + F(p[1]) + '" r="' + F(R * (.14 + p[2] * .06)) + '" filter="url(#om2)"/>';
+      } else if (type === "lilas"){
+        s += '<g transform="translate(' + F(p[0]) + " " + F(p[1]) + ') rotate(' + F(p[2] * 90) + ')" filter="url(#om2)">' + petales(4, R * .17, R * .13, "rond", cl) + '<circle class="c4" r="' + F(R * .03) + '"/></g>';
+      } else {
+        s += '<g transform="translate(' + F(p[0]) + " " + F(p[1]) + ') rotate(' + F(p[2] * 72) + ')" filter="url(#om2)">' + petales(5, R * .2, R * .18, "rond", k % 3 ? "c3" : "c4") + '<circle class="c1" r="' + F(R * .045) + '"/></g>';
+      }
+    });
+    return s;
+  }
+  function petales(n, L, W, sh, cl){ var s = ""; for (var i = 0; i < n; i++) s += '<path class="' + cl + '" d="' + P[sh] + '" transform="rotate(' + F(i * 360 / n) + ') scale(' + F(W) + " " + F(L) + ')"/>'; return s; }
+  function tete(forme, R, seed){
+    if (forme === "tulipe") return tulipe(R * .95);
+    if (forme === "mimosa" || forme === "lilas" || forme === "cerisier") return amas(forme, R, seed);
+    return radial(FORMES[forme], R);
+  }
+  function feuille(x, y, len, w, rot, c1, c2){
+    return '<g transform="translate(' + F(x) + " " + F(y) + ') rotate(' + F(rot) + ')" filter="url(#om2)"><path class="' + c1 + '" d="M0 0C' + F(w) + " " + F(-len * .3) + " " + F(w * .7) + " " + F(-len * .8) + " 0 " + F(-len) + 'Z"/><path class="' + c2 + '" d="M0 0C' + F(-w) + " " + F(-len * .3) + " " + F(-w * .7) + " " + F(-len * .8) + " 0 " + F(-len) + 'Z"/></g>';
+  }
+
+  /* ---------- données des mois ---------- */
+  var MOIS = [
+    ["janvier","Hellébore","hellebore","#A3367A","#8A2563","Elle fleurit en plein froid, tête penchée. On l'appelle aussi rose de Noël.","Prune et vieux rose, parfois vert pâle.","Anémone, renoncule, branches de saule, premiers mimosas."],
+    ["février","Mimosa","mimosa","#E2A400","#7A5800","Le jaune arrive avant le printemps. Il embaume la boutique dès qu'on ouvre la porte.","Jaune soleil, en petits pompons.","Anémone, renoncule, jacinthe, narcisse."],
+    ["mars","Tulipe","tulipe","#E8452C","#B3301A","Les bulbes prennent le relais. Elle continue de grandir dans le vase : on la coupe court.","Vermillon, et toutes les teintes franches.","Narcisse, jacinthe, muscari, renoncule."],
+    ["avril","Lilas","lilas","#9A66D6","#6A3DAE","Une ou deux semaines de grâce et un parfum qui remplit la pièce. On en profite.","Mauve, du plus pâle au plus soutenu.","Branches de cerisier, tulipe, renoncule, premier muguet."],
+    ["mai","Pivoine","pivoine","#E2407A","#A81F50","Le mois de la pivoine. On la prend en bouton serré : elle s'ouvre en deux jours.","Rose vif, corail, blanc crème.","Muguet, iris, alchémille, rose de jardin."],
+    ["juin","Bleuet","bleuet","#2D6FD9","#1E52AA","Les jardins débordent. Le bleuet donne aux bouquets champêtres leur bleu franc.","Bleu vif, rare chez les fleurs.","Rose de jardin, pois de senteur, camomille, graminées."],
+    ["juillet","Zinnia","zinnia","#EE6A1C","#A8460A","Plein été. Une fleur solide, qui supporte la chaleur et tient bien en vase.","Orange vif, corail, fuchsia.","Tournesol, lavande, agapanthe, gypsophile."],
+    ["août","Tournesol","tournesol","#EBAA00","#7A5800","Le soleil en tige. Une seule suffit à remplir un grand vase.","Jaune d'or, cœur brun.","Dahlia, zinnia, glaïeul, amarante."],
+    ["septembre","Cosmos","cosmos","#D93C98","#A3246F","Léger, presque transparent. La lumière baisse, les couleurs se réchauffent.","Fuchsia, rose tendre, blanc.","Dahlia, aster, rudbeckia, hortensia qui sèche."],
+    ["octobre","Dahlia","dahlia","#D7263D","#A81C2E","Il tient jusqu'aux premières gelées. Des têtes pleines, serrées comme une rosace.","Rouge cerise, et toute la gamme du rose au bordeaux.","Chrysanthème, cosmos, baies d'églantier, feuillages roux."],
+    ["novembre","Chrysanthème","chrysantheme","#CC6A1E","#9A4A0C","On le réserve souvent à la Toussaint. Il mérite mieux : il tient longtemps en vase.","Cuivre, ambre, rouille.","Branches et baies, fleurs séchées, eucalyptus, hellébore."],
+    ["décembre","Amaryllis","amaryllis","#B3122E","#960F26","Rouge ou blanche, la fleur des fêtes. Une seule tige habille une table.","Rouge profond, blanc pur.","Houx, branches de sapin, hellébore, anémone."]
+  ];
+  var cur = new Date().getMonth();
+  function de(m){ return /^[aeiouyéèh]/i.test(m) ? "d'" + m : "de " + m; }
+  function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  /* ---------- scène d'ouverture ---------- */
+  var sceneG = $("#scene-g"), scene = $("#scene");
+  function couche(d, i, inner, cls){
+    return '<g class="px" data-d="' + d + '"><g class="pop" style="--i:' + i + '"><g class="' + (cls || "") + '" style="--i:' + i + '">' + inner + "</g></g></g>";
+  }
+  function composer(){
+    var f = MOIS[cur][2], s = "";
+    s += couche(.12, 0, '<rect class="pw" x="250" y="70" width="520" height="700" transform="rotate(-4 510 420)" filter="url(#om)"/><rect class="pw2" x="300" y="128" width="420" height="590" transform="rotate(-4 510 420)" opacity=".6"/>');
+    s += couche(.25, 1, '<circle class="c4" cx="540" cy="350" r="250"/><circle cx="540" cy="350" r="268" fill="none" class="c3" style="fill:none;stroke:var(--a3)" stroke-width="1" stroke-dasharray="2 7"/>');
+    s += couche(.5, 2, '<g filter="url(#om)"><path class="st" stroke-width="9" d="M420 880Q450 620 480 330"/><path class="st" stroke-width="7" d="M560 880Q620 700 700 520"/><path class="st" stroke-width="6" d="M360 880Q330 760 300 640"/></g>');
+    s += couche(.65, 3, feuille(452, 640, 150, 46, -38, "pw", "pg") + feuille(462, 560, 120, 38, 42, "pw", "pg") + feuille(610, 760, 130, 40, 50, "pw", "pg") + feuille(338, 800, 110, 34, -30, "pw", "pg"), "sw");
+    s += couche(.85, 4, '<g transform="translate(300 630) rotate(-10)">' + tete(f, 74, 3) + "</g>", "sw");
+    s += couche(1, 5, '<g transform="translate(480 320) rotate(8)">' + tete(f, 172, 11) + "</g>", "sw");
+    s += couche(1.25, 6, '<g transform="translate(705 515) rotate(-14)">' + tete(f, 98, 5) + "</g>", "sw");
+    s += couche(1.6, 7, '<g class="vole"><path class="c2" d="' + P.rond + '" transform="translate(760 210) rotate(30) scale(26 40)" filter="url(#om2)"/></g><g class="vole" style="animation-delay:-3s"><path class="c3" d="' + P.rond + '" transform="translate(230 300) rotate(-50) scale(20 32)" filter="url(#om2)"/></g><g class="vole" style="animation-delay:-6s"><path class="pw" d="' + P.rond + '" transform="translate(820 690) rotate(110) scale(22 34)" filter="url(#om2)"/></g>');
+    sceneG.innerHTML = s;
+    $("#scene-t").textContent = "Composition de fleurs en papier découpé : " + MOIS[cur][1].toLowerCase() + ", la fleur " + de(MOIS[cur][0]);
+  }
+
+  /* parallaxe souris */
+  if (!reduit && window.matchMedia("(hover: hover) and (pointer: fine)").matches){
+    var tx = 0, ty = 0, raf = 0;
+    window.addEventListener("pointermove", function(e){
+      tx = (e.clientX / innerWidth - .5); ty = (e.clientY / innerHeight - .5);
+      if (!raf) raf = requestAnimationFrame(function(){
+        raf = 0;
+        $$(".px", scene).forEach(function(g){ var d = +g.getAttribute("data-d"); g.style.transform = "translate(" + F(-tx * 34 * d) + "px," + F(-ty * 26 * d) + "px)"; });
+      });
+    }, {passive:true});
+  }
+
+  /* ---------- herbier ---------- */
+  var moisList = $("#mois"), planche = $("#planche"), aujourdhui = new Date().getMonth();
+  MOIS.forEach(function(m, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.setAttribute("role", "tab"); b.id = "tab-" + i; b.setAttribute("aria-controls", "planche");
+    b.innerHTML = "<span>" + cap(m[0]) + (i === aujourdhui ? ' <span class="auj">ce mois-ci</span>' : "") + "</span><em>" + m[1] + "</em>";
+    b.addEventListener("click", function(){ choisir(i, true); });
+    moisList.appendChild(b);
+  });
+  moisList.addEventListener("keydown", function(e){
+    var k = e.key, n = null;
+    if (k === "ArrowDown" || k === "ArrowRight") n = (cur + 1) % 12;
+    else if (k === "ArrowUp" || k === "ArrowLeft") n = (cur + 11) % 12;
+    else if (k === "Home") n = 0; else if (k === "End") n = 11;
+    if (n !== null){ e.preventDefault(); choisir(n, true); $("#tab-" + n).focus(); }
+  });
+  function specimen(){
+    var f = MOIS[cur][2];
+    var s = '<g transform="rotate(-7 220 260)">' +
+      '<path class="st" stroke-width="6" filter="url(#om2)" d="M210 500Q200 380 222 190"/>' +
+      feuille(206, 420, 110, 34, -40, "pw", "pg") + feuille(212, 360, 90, 28, 36, "pw", "pg") +
+      '<g transform="translate(222 175)">' + tete(f, 118, 21) + "</g>" +
+      '<rect x="168" y="440" width="86" height="22" fill="#E9E4D6" opacity=".85" transform="rotate(-12 211 451)"/>' +
+      '<rect x="150" y="330" width="70" height="20" fill="#E9E4D6" opacity=".8" transform="rotate(18 185 340)"/></g>';
+    $("#specimen").innerHTML = s;
+  }
+
+  /* ---------- glyphes ---------- */
+  function glyphes(){
+    var G = {
+      bouquet: '<g transform="translate(0 50)"><path class="st" stroke-width="3" filter="url(#om2)" d="M0 0L-16-58M0 0L0-66M0 0L18-54"/>' +
+        '<g transform="translate(-16 -62)">' + radial(FORMES.cosmos, 18) + '</g><g transform="translate(18 -58)">' + radial(FORMES.anemone, 16) + '</g><g transform="translate(0 -72)">' + tete(MOIS[cur][2], 24, 2) + "</g>" +
+        '<path class="pw" filter="url(#om2)" d="M-22-30L22-30 6 6-6 6Z"/><path class="pg" d="M0-30L22-30 6 6 0 6Z"/></g>',
+      couronne: (function(){ var s = ""; for (var i = 0; i < 12; i++) s += feuille(Math.sin(i * Math.PI / 6) * 34, -Math.cos(i * Math.PI / 6) * 34, 26, 10, i * 30 + 70, i % 2 ? "pv" : "pw", "pv2"); return s + '<g transform="translate(26 30)">' + radial(FORMES.rose, 16) + '</g><g transform="translate(-30 28)">' + radial(FORMES.anemone, 13) + "</g>"; })(),
+      voix: '<g filter="url(#om)"><path class="pw" d="M-44-34H40V20H-6L-26 40-22 20H-44Z"/></g><circle class="c1" cx="-18" cy="-7" r="5"/><circle class="c2" cx="0" cy="-7" r="5"/><circle class="c3" cx="18" cy="-7" r="5"/>',
+      loupe: '<g filter="url(#om2)"><circle class="pw" cx="-4" cy="-4" r="20"/></g><circle class="c4" cx="-4" cy="-4" r="13"/><g filter="url(#om2)"><path class="pi" d="M10 12l14 14-4 4-14-14z"/></g>',
+      photo: '<g filter="url(#om2)" transform="rotate(-6)"><rect class="pw" x="-26" y="-24" width="52" height="54"/></g><g transform="rotate(-6)"><rect class="c4" x="-20" y="-18" width="40" height="34"/><g transform="translate(4 0)">' + radial(FORMES.cosmos, 11) + "</g></g>",
+      date: '<g filter="url(#om2)"><rect class="pw" x="-26" y="-22" width="52" height="50"/></g><rect class="c1" x="-26" y="-22" width="52" height="12"/><path class="sti" stroke-width="2" d="M-14-28v10M14-28v10"/><g class="pg"><rect x="-17" y="-2" width="8" height="8"/><rect x="-4" y="-2" width="8" height="8"/><rect x="9" y="-2" width="8" height="8"/><rect x="-17" y="12" width="8" height="8"/></g><rect class="c1" x="-4" y="12" width="8" height="8"/>'
+    };
+    $$("[data-glyph]").forEach(function(s){ s.innerHTML = G[s.getAttribute("data-glyph")] || ""; });
+  }
+
+  /* ---------- composeur de bouquet ---------- */
+  var TIGES = {
+    mois:{n:function(){ return MOIS[cur][1]; }},
+    pivoine:{n:"Pivoine"},
+    rose:{n:"Rose"},
+    anemone:{n:"Anémone"},
+    eucalyptus:{n:"Eucalyptus"},
+    graminee:{n:"Graminée"},
+    gypso:{n:"Gypsophile"},
+    ronce:{n:"Ronce"}
+  };
+  var ORDRE = ["mois","pivoine","rose","anemone","eucalyptus","graminee","gypso","ronce"];
+  function nomT(k){ var n = TIGES[k].n; return typeof n === "function" ? n() : n; }
+  function art(k, h){
+    var tige = function(c, w, b){ return '<path class="' + (c || "st") + '" stroke-width="' + (w || 5) + '" filter="url(#om2)" d="M0 0Q' + (b || 6) + " " + F(-h / 2) + " 0 " + -h + '"/>'; };
+    switch (k){
+      case "mois": return tige() + feuille(2, -h * .38, 70, 22, -35, "pw", "pg") + '<g transform="translate(0 ' + -h + ') rotate(6)">' + tete(MOIS[cur][2], 56, 4) + "</g>";
+      case "pivoine": return tige() + feuille(2, -h * .45, 64, 24, 40, "pv", "pv2") + '<g transform="translate(0 ' + -h + ')">' + radial(FORMES.douce, 52) + "</g>";
+      case "rose": return tige("st", 4) + feuille(2, -h * .5, 46, 18, -40, "pv", "pv2") + feuille(2, -h * .62, 40, 16, 40, "pv", "pv2") + '<g transform="translate(0 ' + -h + ') rotate(20)">' + radial(FORMES.rose, 40) + "</g>";
+      case "anemone": return tige("stv", 3, 10) + '<g transform="translate(0 ' + -h + ')">' + radial(FORMES.anemone, 42) + "</g>";
+      case "eucalyptus":
+        var s = tige("stv", 3, 14);
+        for (var i = 1; i < 9; i++){ var y = -h * i / 9, sd = i % 2 ? 1 : -1, r = 15 - i * .9;
+          s += '<g filter="url(#om2)"><circle class="' + (i % 3 ? "pv" : "pv2") + '" cx="' + F(sd * r * 1.1 + 8 * i / 9) + '" cy="' + F(y) + '" r="' + F(r) + '"/></g>'; }
+        return s;
+      case "graminee":
+        var g = "";
+        [[-10, 1], [0, 1.08], [12, .94]].forEach(function(p){
+          var hh = h * p[1], ang = p[0];
+          g += '<g transform="rotate(' + ang + ')"><path class="stv" stroke-width="1.6" d="M0 0Q4 ' + F(-hh / 2) + " 0 " + F(-hh) + '"/><g filter="url(#om2)">';
+          for (var j = 0; j < 7; j++){ var yy = -hh + j * 11; g += '<path class="pb" d="' + P.pointe + '" transform="translate(0 ' + F(yy + 10) + ') rotate(' + (j % 2 ? 28 : -28) + ') scale(5 14)"/>'; }
+          g += "</g></g>";
+        });
+        return g;
+      case "gypso":
+        var t = '<g class="stv" stroke-width="1.5" fill="none"><path d="M0 0Q4 ' + F(-h / 2) + " 0 " + -h + '"/>', pts = [], rnd = graine(42);
+        for (var b = 0; b < 7; b++){ var sy = -h * (.45 + b * .07), ex = (rnd() * 2 - 1) * 62, ey = -h - 10 + rnd() * 50;
+          t += '<path d="M0 ' + F(sy) + "Q" + F(ex * .4) + " " + F((sy + ey) / 2) + " " + F(ex) + " " + F(ey) + '"/>'; pts.push([ex, ey]); }
+        t += '</g><g filter="url(#om2)">';
+        pts.concat([[0, -h]]).forEach(function(p){ for (var q = 0; q < 6; q++){ t += '<circle class="pw" cx="' + F(p[0] + (rnd() * 2 - 1) * 14) + '" cy="' + F(p[1] + (rnd() * 2 - 1) * 12) + '" r="' + F(3 + rnd() * 2.4) + '"/>'; } });
+        return t + "</g>";
+      case "ronce":
+        var r2 = '<path class="sti" stroke-width="3" d="M0 0Q-14 ' + F(-h / 2) + " 6 " + -h + '"/><g class="pi">';
+        for (var e = 1; e < 8; e++){ var ty2 = -h * e / 8, txx = -10 * Math.sin(Math.PI * e / 8) + 6 * e / 8; r2 += '<path d="M' + F(txx) + " " + F(ty2) + "l" + (e % 2 ? 6 : -6) + ' -2 -1 5z"/>'; }
+        r2 += "</g>" + feuille(-6, -h * .42, 54, 20, -50, "pv", "pv2") + feuille(-4, -h * .62, 46, 18, 46, "pv", "pv2");
+        var rr = graine(9);
+        [[6, -h, 1], [-26, -h * .78, .8], [26, -h * .86, .75]].forEach(function(c){
+          r2 += '<g transform="translate(' + F(c[0]) + " " + F(c[1]) + ') scale(' + c[2] + ')" filter="url(#om2)">';
+          for (var u = 0; u < 11; u++){ var aa = rr() * Math.PI * 2, dd = Math.sqrt(rr()) * 10; r2 += '<circle class="pi" cx="' + F(Math.cos(aa) * dd) + '" cy="' + F(Math.sin(aa) * dd * 1.2) + '" r="4.4"/>'; }
+          r2 += "</g>";
+        });
+        r2 += '<g transform="translate(-34 ' + F(-h * .58) + ')">' + radial(FORMES.fleurette, 16) + "</g>";
+        return r2;
+    }
+    return "";
+  }
+  var choix = ["mois","eucalyptus","ronce"], nouveaux = {};
+  var ul = $("#tiges");
+  ORDRE.forEach(function(k){
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.type = "button"; b.className = "tige"; b.setAttribute("data-k", k); b.setAttribute("aria-pressed", "false");
+    b.innerHTML = '<span class="rang" aria-hidden="true"></span><svg viewBox="-60 -232 120 236" aria-hidden="true"></svg><span class="tn"></span>';
+    b.addEventListener("click", function(){
+      var i = choix.indexOf(k);
+      if (i > -1) choix.splice(i, 1);
+      else { if (choix.length >= 3) choix.shift(); choix.push(k); nouveaux[k] = 1; }
+      bouquet();
+    });
+    li.appendChild(b); ul.appendChild(li);
+  });
+  function apercus(){
+    $$(".tige").forEach(function(b){ var k = b.getAttribute("data-k"); $("svg", b).innerHTML = art(k, 168); $(".tn", b).textContent = nomT(k); });
+  }
+  var POS = [[-17, 300], [3, 350], [21, 285]];
+  function bouquet(){
+    var s = '<ellipse cx="210" cy="500" rx="120" ry="10" fill="#2A2620" opacity=".06"/>';
+    if (!choix.length) s += '<g class="stv" stroke-dasharray="3 7" stroke-width="1.4"><path d="M210 420L120 140M210 420L210 100M210 420L300 150"/></g>';
+    choix.forEach(function(k, i){
+      var p = POS[i];
+      s += '<g transform="translate(210 420) rotate(' + p[0] + ')"><g class="' + (nouveaux[k] ? "grow" : "") + '" style="--d:' + (i * 90) + 'ms">' + art(k, p[1]) + "</g></g>";
+    });
+    s += '<g filter="url(#om)"><path class="pw" d="M120 360L300 360 236 500 184 500Z"/></g><path class="pg" d="M210 360L300 360 236 500 210 500Z"/><path class="pw2" d="M120 360L170 360 196 500 184 500Z" opacity=".8"/>';
+    s += '<g filter="url(#om2)"><path class="c1" d="M176 430h68l-4 14h-60z"/><path class="c1" d="M210 437q-26-22-30 2 12 6 30-2zM210 437q26-22 30 2-12 6-30-2z"/><path class="c2" d="M206 440l-14 34 8-2 6 8 4-36zM214 440l14 34-8-2-6 8-4-36z"/></g>';
+    $("#bq-g").innerHTML = s;
+    nouveaux = {};
+    $$(".tige").forEach(function(b){ var k = b.getAttribute("data-k"), i = choix.indexOf(k); b.setAttribute("aria-pressed", i > -1 ? "true" : "false"); $(".rang", b).textContent = i > -1 ? i + 1 : ""; });
+    var noms = choix.map(nomT), txt = $("#bq-txt");
+    if (!noms.length) txt.innerHTML = "Choisissez trois tiges, dans l'ordre que vous voulez.";
+    else if (noms.length < 3) txt.innerHTML = "<strong>" + noms.join(", ") + "</strong> — encore " + (3 - noms.length) + (3 - noms.length > 1 ? " tiges" : " tige") + " à choisir.";
+    else txt.innerHTML = "Votre bouquet : <strong>" + noms[0] + ", " + noms[1] + " et " + noms[2].toLowerCase() + "</strong>.<small>Indicatif : en boutique, on l'ajuste à ce qui est arrivé le matin.</small>";
+    if (noms.length === 3) txt.querySelector("strong").textContent = noms[0] + ", " + noms[1].toLowerCase() + " et " + noms[2].toLowerCase();
+  }
+  $("#vider").addEventListener("click", function(){ choix = []; bouquet(); });
+  $("#demander").addEventListener("click", function(){
+    var noms = choix.map(nomT);
+    if (noms.length){ $("#f-msg").value = "Bonjour, j'aimerais un bouquet dans cet esprit : " + noms.join(", ").toLowerCase() + "."; $("#f-type").value = "Une commande ou une réservation"; }
+  });
+
+  /* ---------- appliquer un mois ---------- */
+  var premier = true;
+  function choisir(i, anim){
+    cur = i;
+    var m = MOIS[i];
+    root.style.setProperty("--a", m[3]); root.style.setProperty("--ae", m[4]);
+    $$(".js-de").forEach(function(e){ e.textContent = de(m[0]); });
+    $$(".js-fleur").forEach(function(e){ e.textContent = m[1]; });
+    $$("#mois button").forEach(function(b, k){ b.setAttribute("aria-selected", k === i ? "true" : "false"); b.tabIndex = k === i ? 0 : -1; });
+    planche.setAttribute("aria-labelledby", "tab-" + i);
+    var maj = function(){
+      $(".js-m").textContent = cap(m[0]); $(".js-f").textContent = m[1]; $(".js-t").textContent = m[5]; $(".js-c").textContent = m[6]; $(".js-a").textContent = m[7];
+      specimen();
+    };
+    if (anim && !reduit){
+      planche.classList.add("change"); scene.classList.add("change");
+      setTimeout(function(){ maj(); composer(); glyphes(); apercus(); nouveaux = {mois:1}; bouquet(); planche.classList.remove("change"); scene.classList.remove("change"); }, 320);
+    } else { maj(); composer(); glyphes(); apercus(); if (premier) nouveaux = {mois:1, eucalyptus:1, ronce:1}; bouquet(); }
+    premier = false;
+  }
+  choisir(cur, false);
+
+  /* ---------- ouvert maintenant ---------- */
+  var H = {0:[[540,780]],1:[],2:[[540,750],[840,1140]],3:[[540,750],[840,1140]],4:[[540,750],[840,1140]],5:[[540,750],[840,1140]],6:[[540,750],[840,1140]]};
+  var JOURS = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function hh(m){ var h = Math.floor(m / 60), r = m % 60; return h + " h" + (r ? " " + (r < 10 ? "0" + r : r) : ""); }
+  function etat(){
+    var d = new Date(), j = d.getDay(), m = d.getHours() * 60 + d.getMinutes(), ouvert = false, txt = "";
+    H[j].forEach(function(p){ if (m >= p[0] && m < p[1]){ ouvert = true; txt = "Ouvert, jusqu'à " + hh(p[1]); } });
+    if (!ouvert){
+      var plus = H[j].filter(function(p){ return p[0] > m; })[0];
+      if (plus) txt = "Fermé, ouvre à " + hh(plus[0]);
+      else for (var k = 1; k < 8; k++){ var jj = (j + k) % 7; if (H[jj].length){ txt = "Fermé, ouvre " + (k === 1 ? "demain" : JOURS[jj]) + " à " + hh(H[jj][0][0]); break; } }
+    }
+    [$("#etat"), $("#ouv")].forEach(function(el){ el.classList.toggle("ouvert", ouvert); });
+    $(".etat__t").innerHTML = "<b>" + txt.split(",")[0] + "</b>," + txt.split(",").slice(1).join(",");
+    $(".ouv__t").textContent = txt;
+    $$(".sem tr").forEach(function(tr){ tr.classList.toggle("auj", +tr.getAttribute("data-j") === j); });
+  }
+  etat(); setInterval(etat, 60000);
+
+  /* ---------- en-tête, menu ---------- */
+  var hdr = $("#hdr");
+  var onScroll = function(){ hdr.classList.toggle("plie", scrollY > 20); };
+  onScroll(); addEventListener("scroll", onScroll, {passive:true});
+  var burger = $("#burger"), menu = $("#menu");
+  function fermer(){ menu.classList.remove("ouvert"); burger.setAttribute("aria-expanded", "false"); burger.setAttribute("aria-label", "Ouvrir le menu"); document.body.style.overflow = ""; }
+  burger.addEventListener("click", function(){
+    var o = !menu.classList.contains("ouvert");
+    menu.classList.toggle("ouvert", o); burger.setAttribute("aria-expanded", o ? "true" : "false"); burger.setAttribute("aria-label", o ? "Fermer le menu" : "Ouvrir le menu");
+    document.body.style.overflow = o ? "hidden" : "";
+    if (o) $$("a", menu).forEach(function(a, i){ a.style.transitionDelay = (i * 50) + "ms"; });
+  });
+  $$("a", menu).forEach(function(a){ a.addEventListener("click", fermer); });
+  addEventListener("keydown", function(e){ if (e.key === "Escape" && menu.classList.contains("ouvert")){ fermer(); burger.focus(); } });
+
+  /* ---------- révélations ---------- */
+  var rv = $$(".rv");
+  if ("IntersectionObserver" in window && !reduit){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("vu"); io.unobserve(e.target); } }); }, {rootMargin:"0px 0px -8% 0px", threshold:.08});
+    rv.forEach(function(el){ io.observe(el); });
+  } else rv.forEach(function(el){ el.classList.add("vu"); });
+
+  /* ---------- formulaire ---------- */
+  $("#form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var nom = $("#f-nom"), ct = $("#f-contact");
+    if (!nom.value.trim()){ nom.focus(); return; }
+    if (!ct.value.trim()){ ct.focus(); return; }
+    this.classList.add("envoye");
+    $("#merci").focus();
+  });
+})();
+</script>
+</body>
+</html>

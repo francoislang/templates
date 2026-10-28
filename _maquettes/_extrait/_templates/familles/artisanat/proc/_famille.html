@@ -1,0 +1,13 @@
+{% set nE = prof.etapes|length %}
+        <svg class="atelier-svg proc-gen" id="atelier-svg" data-etape="1" viewBox="0 0 400 470" preserveAspectRatio="xMidYMin meet">
+          <defs><linearGradient id="arc-g" x1="0" x2="1" y1="1" y2="0"><stop offset="0" stop-color="#9CC1AD"/><stop offset=".7" stop-color="#E39A3B"/><stop offset="1" stop-color="#F6D27A"/></linearGradient></defs>
+          <circle class="rayons" cx="200" cy="200" r="118"/>
+          <circle class="piste" cx="200" cy="200" r="150"/>
+          <circle class="arc" cx="200" cy="200" r="150" pathLength="1" stroke-dasharray="1 1" stroke-dashoffset="{{ 1 - 1 / nE }}" transform="rotate(-90 200 200)"/>
+{% for e in prof.etapes %}
+          <g class="tick{% if loop.first %} ici{% endif %}" transform="rotate({{ (loop.index0 * 360 / nE - 90)|round(2) }} 200 200)"><circle cx="350" cy="200" r="11"/></g>
+{% endfor %}
+          <g transform="translate(176 92) scale(2)"><path class="ico" d="{{ fam.icone }}"/></g>
+          <text class="num" x="200" y="246" text-anchor="middle">01</text>
+          <text class="sur" x="200" y="284" text-anchor="middle">sur {{ "%02d"|format(nE) }}</text>
+        </svg>

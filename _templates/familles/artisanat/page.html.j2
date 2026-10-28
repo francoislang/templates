@@ -1,0 +1,1073 @@
+<!doctype html>
+{#
+  Famille artisanat — gabarit tiré de la maquette « Atelier Terre de Meurthe » (céramiste).
+  Contrat : ../CONTRAT.md. Textes du métier : metiers.json (prof.*).
+  Illustration du hero : illus/<cle>.html (canvas[data-tour] pour le pot modelable, sinon SVG .illus sur socle).
+  Natures mortes de la galerie : oeuvres/<cle>-a.html, -b.html. Visuel du processus : proc/<cle>.html, sinon proc/_famille.html.
+#}
+{% set D = "familles/artisanat/" %}
+{# ---- titre du hero : premier mot en italique, reste en lignes équilibrées ---- #}
+{% set mots = N.split() %}
+{% set ns = namespace(em=[], reste=[], lignes=[], cur="", lw=0) %}
+{% if mots|length >= 2 and mots[0]|length <= 13 %}
+  {% if mots[0]|length <= 3 and mots|length >= 3 %}
+    {% set ns.em = mots[:2] %}{% set ns.reste = mots[2:] %}
+  {% else %}
+    {% set ns.em = mots[:1] %}{% set ns.reste = mots[1:] %}
+  {% endif %}
+{% else %}
+  {% set ns.reste = mots %}
+{% endif %}
+{% for w in mots %}{% if w|length > ns.lw %}{% set ns.lw = w|length %}{% endif %}{% endfor %}
+{% set n = N|length %}
+{% if n <= 24 and ns.lw <= 8 %}{% set tcls, L = "t-l", 9 %}
+{% elif n <= 36 and ns.lw <= 11 %}{% set tcls, L = "t-m", 12 %}
+{% elif n <= 52 and ns.lw <= 15 %}{% set tcls, L = "t-s", 16 %}
+{% else %}{% set tcls, L = "t-xs", 20 %}{% endif %}
+{% for w in ns.reste %}
+  {% if ns.cur and (ns.cur|length + 1 + w|length) > L %}
+    {% set ns.lignes = ns.lignes + [ns.cur] %}{% set ns.cur = w %}
+  {% else %}
+    {% set ns.cur = (ns.cur ~ " " ~ w) if ns.cur else w %}
+  {% endif %}
+{% endfor %}
+{% if ns.cur %}{% set ns.lignes = ns.lignes + [ns.cur] %}{% endif %}
+{# ---- nom de l'en-tête : sans « Atelier » initial quand le nom est long d'au moins trois mots ---- #}
+{% if mots|length >= 3 and mots[1][:1].isupper() and mots[0]|lower in ["atelier", "l'atelier", "studio", "galerie", "maison"] %}
+  {% set nom_court = mots[1:]|join(" ") %}
+{% else %}
+  {% set nom_court = N %}
+{% endif %}
+{% set metier_court = prof.metier_court or m.nom|lower %}
+{% set surtitre = prof.surtitre or m.nom %}
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ N }} — {{ metier_court }}{% if commune %} à {{ commune }}{% endif %}</title>
+<meta name="description" content="{{ description }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+{{ ld_json }}
+<style>
+:root{
+  /* matières */
+  --fond:#E2E4DD;          /* cendre de grès */
+  --fond-2:#D3D8CF;        /* engobe gris-vert */
+  --papier:#EEF0EA;        /* biscuit pâle */
+  --nuit:#1B2420;          /* réduction, céladon très sombre */
+  --nuit-2:#25302B;
+  --encre:#1E1B18;
+  --texte:#2A2724;
+  --texte-2:#4A4640;
+  --celadon:#9CC1AD;
+  --celadon-clair:#C7DDD0;
+  --celadon-fonce:#2E5C4C;
+  --argile:#7B6656;
+  --argile-clair:#B59A85;
+  --biscuit:#D9BBA2;
+  --fer:#8E3F1F;           /* rouge de fer, avec parcimonie */
+  --four:#E39A3B;          /* lueur du four */
+  --trait:#B8BDB3;
+  --trait-sombre:#3C4A43;
+  --blanc:#FBFBF8;
+  --ok:#2F8A57; --non:#B5452F;
+
+  --f-titre:'Bricolage Grotesque','Avenir Next Condensed','Arial Narrow',system-ui,sans-serif;
+  --f-texte:'Alegreya Sans','Gill Sans','Trebuchet MS',system-ui,sans-serif;
+  --f-cartel:'Instrument Serif',Georgia,'Times New Roman',serif;
+
+  --large:1240px;
+  --gx:max(16px, env(safe-area-inset-left));
+  --gx-d:max(16px, env(safe-area-inset-right));
+  --galet:18px 26px 20px 28px / 24px 18px 26px 20px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .17 0 0 0 0 .14 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  --chamotte:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='turbulence' baseFrequency='.018 .05' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .2 0 0 0 0 .18 0 0 0 .22 -.04'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23c)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;overflow-x:clip;scroll-padding-top:84px}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--f-texte);font-size:clamp(17px,1.05vw + 12px,19px);line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;background-image:var(--grain);opacity:.32;mix-blend-mode:multiply}
+svg{display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-titre);font-weight:640;line-height:1.02;margin:0;color:var(--encre);letter-spacing:-.02em;font-variation-settings:"wdth" 82}
+p{margin:0}
+ul,ol,dl,dd{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--celadon-fonce);outline-offset:3px;border-radius:4px}
+.sombre :focus-visible{outline-color:var(--celadon)}
+.saut{position:absolute;left:-9999px;top:8px;z-index:99;background:var(--blanc);color:var(--encre);padding:12px 16px;font-weight:700}
+.saut:focus{left:16px}
+.env{max-width:var(--large);margin:0 auto;padding-left:var(--gx);padding-right:var(--gx-d)}
+@media (min-width:760px){.env{padding-left:max(40px,env(safe-area-inset-left));padding-right:max(40px,env(safe-area-inset-right))}}
+.cartel{font-family:var(--f-cartel);font-style:italic;font-size:1.05em;color:var(--texte-2);line-height:1.35}
+.surt{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--celadon-fonce)}
+.surt::before{content:"";width:28px;height:2px;background:currentColor;border-radius:2px}
+.sombre .surt{color:var(--celadon)}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* boutons : galets */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:var(--galet);font-family:var(--f-texte);font-weight:700;font-size:17px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .35s var(--ease),background-color .3s,color .3s,border-radius .5s var(--ease)}
+.btn svg{width:20px;height:20px;flex:none;transition:transform .35s var(--ease)}
+.btn:hover{transform:translateY(-2px);border-radius:26px 18px 28px 20px / 18px 26px 20px 24px}
+.btn:hover svg{transform:translateX(3px)}
+.btn--p{background:var(--celadon-fonce);color:var(--blanc)}
+.btn--p:hover{background:#244A3D}
+.btn--o{border-color:var(--encre);color:var(--encre);background:transparent}
+.btn--o:hover{background:var(--encre);color:var(--fond)}
+.btn--c{background:var(--celadon);color:var(--nuit)}
+.btn--c:hover{background:var(--celadon-clair)}
+.btn--f{border-color:var(--trait-sombre);color:var(--blanc)}
+.btn--f:hover{border-color:var(--celadon);color:var(--celadon-clair)}
+
+/* ---------- en-tête ---------- */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(226,228,221,.82);-webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);border-bottom:1px solid transparent;transition:border-color .3s,background-color .3s}
+.hdr.defile{border-bottom-color:var(--trait);background:rgba(226,228,221,.94)}
+.hdr__in{display:flex;align-items:center;gap:20px;min-height:72px;transition:min-height .3s}
+.hdr.defile .hdr__in{min-height:62px}
+.mq{display:flex;align-items:center;gap:12px;text-decoration:none;margin-right:auto;min-width:0;min-height:44px}
+.mq svg{width:34px;height:38px;flex:none}
+.mq__n{display:block;font-family:var(--f-titre);font-weight:700;font-size:19px;line-height:1;letter-spacing:-.01em;font-variation-settings:"wdth" 80;white-space:nowrap}
+.mq__v{display:block;font-family:var(--f-cartel);font-style:italic;font-size:15px;color:var(--texte-2);line-height:1.2;margin-top:2px}
+.nav{display:none;align-items:center;gap:6px}
+.nav a{position:relative;display:inline-flex;align-items:center;min-height:44px;padding:0 12px;text-decoration:none;font-weight:500;font-size:16px}
+.nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:8px;height:2px;border-radius:2px;background:var(--celadon-fonce);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr .btn{display:none;min-height:46px;padding:0 20px;font-size:16px}
+@media (min-width:1020px){.nav{display:flex}.hdr .btn{display:inline-flex}.burger{display:none!important}}
+.burger{display:inline-grid;place-items:center;width:48px;height:48px;border:0;background:var(--encre);color:var(--fond);border-radius:var(--galet);cursor:pointer;padding:0}
+.burger span{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;transition:transform .4s var(--ease),opacity .3s;grid-area:1/1}
+.burger span:nth-child(1){transform:translateY(-6px)}
+.burger span:nth-child(3){transform:translateY(6px)}
+.burger[aria-expanded="true"] span:nth-child(1){transform:rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0;transform:scaleX(.2)}
+.burger[aria-expanded="true"] span:nth-child(3){transform:rotate(-45deg)}
+.panneau{position:fixed;inset:0;z-index:35;background:var(--nuit);color:var(--blanc);padding:110px var(--gx-d) calc(120px + env(safe-area-inset-bottom)) var(--gx);display:flex;flex-direction:column;justify-content:space-between;clip-path:circle(0% at calc(100% - 40px) 36px);transition:clip-path .7s var(--ease);visibility:hidden}
+.panneau.ouvert{clip-path:circle(150% at calc(100% - 40px) 36px);visibility:visible}
+.panneau nav{display:flex;flex-direction:column;gap:4px}
+.panneau nav a{font-family:var(--f-titre);font-size:clamp(34px,10vw,48px);font-weight:600;font-variation-settings:"wdth" 78;text-decoration:none;line-height:1.15;min-height:48px;display:flex;align-items:center;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .6s var(--ease),color .2s}
+.panneau nav a:hover{color:var(--celadon)}
+.panneau.ouvert nav a{opacity:1;transform:none}
+.panneau.ouvert nav a:nth-child(2){transition-delay:.06s}.panneau.ouvert nav a:nth-child(3){transition-delay:.12s}.panneau.ouvert nav a:nth-child(4){transition-delay:.18s}.panneau.ouvert nav a:nth-child(5){transition-delay:.24s}
+.panneau p{color:var(--celadon-clair);font-family:var(--f-cartel);font-style:italic;font-size:20px}
+.hdr.menu{background:transparent;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}
+.hdr.menu .mq{color:var(--blanc)}.hdr.menu .mq__v{color:var(--celadon-clair)}
+.hdr.menu .burger{background:var(--celadon);color:var(--nuit)}
+
+/* ---------- ouverture ---------- */
+.ouv{position:relative;padding:clamp(28px,5vw,64px) 0 clamp(48px,7vw,96px)}
+.ouv__in{display:grid;gap:clamp(24px,4vw,48px);align-items:center}
+@media (min-width:960px){.ouv__in{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+@media (max-width:959px){
+  .ouv__in{gap:0}.ouv__txt{display:contents}
+  .ouv__in .surt{order:1;justify-self:start}.ouv h1{order:2}.ouv .scene{order:3;margin:22px 0 8px!important}
+  .ouv__acc{order:4}.ouv__t{order:5}.ouv__a{order:6}.etat-l{order:7}
+  #tour{height:clamp(360px,52vh,460px)}
+}
+.ouv h1{font-size:clamp(52px,9.4vw,124px);font-weight:700;line-height:.9;letter-spacing:-.035em;font-variation-settings:"wdth" 76;margin-top:18px}
+.ouv h1 .l{display:block}
+.ouv h1 em{font-family:var(--f-cartel);font-style:italic;font-weight:400;letter-spacing:-.01em;color:var(--celadon-fonce);font-size:.86em}
+.ouv h1 .mot{display:inline-block}
+.ouv__acc{margin-top:22px;font-size:clamp(19px,1.4vw + 12px,23px);max-width:28em;line-height:1.45}
+.ouv__t{margin-top:12px;color:var(--texte-2);max-width:30em}
+.ouv__a{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.etat-l{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:28px;padding-top:18px;border-top:1px solid var(--trait);font-size:16px;color:var(--texte-2)}
+.etat{font-weight:700;color:var(--texte)}
+.pastille{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px;background:var(--trait)}
+.etat--oui .pastille{background:var(--ok);box-shadow:0 0 0 0 rgba(47,138,87,.5);animation:pouls 2.4s infinite}
+.etat--non .pastille{background:var(--non)}
+@keyframes pouls{70%{box-shadow:0 0 0 9px rgba(47,138,87,0)}100%{box-shadow:0 0 0 0 rgba(47,138,87,0)}}
+
+/* scène du tour */
+.scene{position:relative;min-width:0}
+.niche{position:relative;border-radius:999px 999px 28px 28px;background:radial-gradient(120% 70% at 50% 18%,#EEF0EA 0%,var(--fond-2) 60%,#C5CBC1 100%);overflow:hidden;isolation:isolate}
+.niche::before{content:"";position:absolute;inset:0;background-image:var(--chamotte);opacity:.6;z-index:-1}
+.niche::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(transparent,rgba(30,27,24,.08));pointer-events:none}
+#tour{display:block;width:100%;height:clamp(400px,64vh,620px);touch-action:pan-y;cursor:grab;-webkit-user-select:none;user-select:none}
+#tour.prise{cursor:grabbing}
+.indice{position:absolute;left:50%;top:clamp(54px,11%,80px);transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:8px 16px 8px 10px;background:rgba(238,240,234,.85);border-radius:999px;font-size:15px;font-weight:500;white-space:nowrap;pointer-events:none;transition:opacity .6s,transform .6s var(--ease);box-shadow:0 6px 18px rgba(30,27,24,.08)}
+.indice svg{width:26px;height:26px;animation:glisse 2.2s var(--ease) infinite}
+@keyframes glisse{0%,100%{transform:translateX(-4px)}50%{transform:translateX(5px)}}
+.indice.cache{opacity:0;transform:translate(-50%,-8px)}
+.cartel-tour{display:grid;gap:12px;margin-top:16px;padding:16px 4px 0;border-top:1px solid var(--trait)}
+@media (min-width:600px){.cartel-tour{grid-template-columns:1fr auto;align-items:end}}
+.cartel-tour .cartel b{font-family:var(--f-texte);font-style:normal;font-weight:700;color:var(--encre);font-size:15px;letter-spacing:.06em;text-transform:uppercase;display:block;margin-bottom:2px}
+.regl{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.regl__g{display:flex;gap:6px;align-items:center}
+.regl__t{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--texte-2);font-weight:700;margin-right:2px}
+.pas{width:44px;height:44px;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0;position:relative;transition:transform .3s var(--ease),border-color .2s}
+.pas::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--c);box-shadow:inset -4px -5px 8px rgba(0,0,0,.25),inset 3px 3px 6px rgba(255,255,255,.35)}
+.pas{background:transparent}
+.pas:hover{transform:translateY(-2px)}
+.pas[aria-pressed="true"]{border-color:var(--encre)}
+.forme{min-height:44px;padding:0 12px;border:1.5px solid var(--trait);background:transparent;border-radius:var(--galet);font:inherit;font-size:15px;font-weight:500;cursor:pointer;color:var(--texte);transition:background-color .2s,border-color .2s}
+.forme:hover{border-color:var(--encre)}
+.forme[aria-pressed="true"]{background:var(--encre);color:var(--fond);border-color:var(--encre)}
+
+/* bandeau de vocabulaire */
+.bande{background:var(--nuit);color:var(--celadon-clair);overflow:hidden;padding:18px 0;border-block:1px solid var(--trait-sombre)}
+.bande__p{display:flex;width:max-content;animation:defile 48s linear infinite}
+.bande ul{display:flex;align-items:center;gap:0;flex:none}
+.bande li{display:flex;align-items:center;font-family:var(--f-cartel);font-style:italic;font-size:clamp(22px,2.4vw,30px);white-space:nowrap;padding-right:28px}
+.bande li::after{content:"";width:9px;height:9px;margin-left:28px;border-radius:50% 40% 55% 45%;background:var(--celadon);opacity:.7}
+@keyframes defile{to{transform:translateX(-50%)}}
+.bande:hover .bande__p{animation-play-state:paused}
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(72px,10vw,140px) 0;position:relative}
+.tete{max-width:46em;margin-bottom:clamp(36px,5vw,64px)}
+.tete h2,.ctc h2{font-size:clamp(38px,6vw,76px);margin-top:14px}
+.chapo{margin-top:18px;color:var(--texte-2);font-size:1.08em;max-width:34em}
+
+/* galerie des prestations */
+.galerie{display:grid;gap:clamp(40px,6vw,72px) clamp(24px,4vw,56px)}
+@media (min-width:860px){
+  .galerie{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .oeuvre--a{grid-column:1/8}
+  .oeuvre--b{grid-column:8/13;margin-top:clamp(80px,12vw,180px)}
+  .oeuvre--c{grid-column:1/13}
+}
+.oeuvre__v{position:relative;background:var(--papier);border-radius:4px;overflow:hidden;isolation:isolate}
+.oeuvre__v::before{content:"";position:absolute;inset:0;background-image:var(--chamotte);opacity:.5;z-index:-1}
+.oeuvre__v svg{width:100%;height:auto;transition:transform 1.2s var(--ease)}
+.oeuvre:hover .oeuvre__v svg{transform:scale(1.03) translateY(-4px)}
+.oeuvre__l{display:grid;gap:6px;margin-top:18px;padding-left:16px;border-left:2px solid var(--celadon-fonce)}
+.oeuvre h3{font-size:clamp(28px,3vw,38px)}
+.oeuvre p{color:var(--texte-2);max-width:30em}
+.oeuvre--c{display:grid;gap:24px;background:var(--celadon-fonce);color:var(--celadon-clair);padding:clamp(28px,5vw,56px);border-radius:4px;position:relative;overflow:hidden;isolation:isolate}
+.oeuvre--c::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.5;mix-blend-mode:soft-light;z-index:-1}
+@media (min-width:860px){.oeuvre--c{grid-template-columns:auto 1fr auto;align-items:center;gap:40px}}
+.oeuvre--c h3{color:var(--blanc)}
+.oeuvre--c p{color:var(--celadon-clair)}
+.oeuvre--c svg.bulle{width:86px;height:86px}
+.oeuvre--c .btn--c:hover{background:var(--blanc)}
+.note{margin-top:28px;font-size:15px;color:var(--texte-2)}
+
+/* ---------- du tour au four ---------- */
+.four{background:var(--nuit);color:#D5DED8}
+.four::before{content:"";position:absolute;inset:0;background-image:var(--grain);opacity:.35;mix-blend-mode:screen;pointer-events:none}
+.four h2,.four h3{color:var(--blanc)}
+.four .chapo{color:#BFCBC4}
+.proc{display:grid;position:relative}
+@media (min-width:900px){.proc{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px}}
+.proc__vis{position:sticky;top:62px;z-index:2;height:clamp(300px,44vh,380px);margin:0 calc(-1*var(--gx-d)) 0 calc(-1*var(--gx));padding:10px var(--gx-d) 0 var(--gx);background:var(--nuit)}
+.proc__vis::after{content:"";position:absolute;left:0;right:0;top:100%;height:48px;background:linear-gradient(var(--nuit),rgba(27,36,32,0));pointer-events:none}
+@media (min-width:900px){.proc__vis::after{display:none}}
+@media (min-width:900px){.proc__vis{top:12vh;height:76vh;margin:0;padding:0;background:none}}
+.atelier-svg{width:100%;height:100%;max-height:100%}
+.proc__lect{position:absolute;left:var(--gx);right:var(--gx-d);bottom:22px;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;pointer-events:none}
+@media (min-width:900px){.proc__lect{left:0;right:0;bottom:0}}
+.temp{font-family:var(--f-titre);font-variation-settings:"wdth" 75;font-weight:700;font-size:clamp(34px,5vw,64px);line-height:1;color:var(--blanc);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.temp small{display:block;font-family:var(--f-cartel);font-style:italic;font-weight:400;font-size:16px;letter-spacing:0;color:var(--celadon);margin-bottom:4px}
+.etat-terre{text-align:right;font-family:var(--f-cartel);font-style:italic;font-size:clamp(18px,2vw,24px);color:var(--celadon-clair)}
+.jauge{position:absolute;left:var(--gx);right:var(--gx-d);bottom:8px;height:4px;border-radius:4px;background:var(--trait-sombre);overflow:hidden}
+@media (min-width:900px){.jauge{left:0;right:0;bottom:-16px}}
+.jauge i{position:absolute;inset:0;transform-origin:left;transform:scaleX(.015);background:linear-gradient(90deg,var(--celadon),var(--four) 70%,#F6D27A);transition:transform 1s var(--ease)}
+.etapes-p li{min-height:clamp(260px,52vh,520px);display:flex;flex-direction:column;justify-content:center;padding:28px 0;opacity:.38;transition:opacity .5s}
+.etapes-p li.actif{opacity:1}
+.etapes-p .tag{display:inline-flex;align-self:flex-start;gap:8px;align-items:center;font-size:14px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--celadon);margin-bottom:12px}
+.etapes-p .tag i{width:22px;height:2px;background:currentColor;display:block}
+.etapes-p h3{font-size:clamp(40px,5.6vw,72px);font-weight:700;font-variation-settings:"wdth" 76;margin-bottom:14px}
+.etapes-p p{max-width:28em;color:#C9D4CE}
+@media (max-width:899px){.etapes-p li{min-height:58vh;justify-content:flex-start;padding-top:24px}}
+.no-js .etapes-p li,.reduit .etapes-p li{opacity:1}
+
+/* états du dessin d'atelier, pilotés par data-etape */
+.atelier-svg *{transition:opacity .8s var(--ease),fill .9s var(--ease),transform 1s var(--ease)}
+.atelier-svg .corps{fill:#6E5A4B}
+.atelier-svg .g-tour,.atelier-svg .stries,.atelier-svg .copeaux,.atelier-svg .outil,.atelier-svg .planche,.atelier-svg .air,.atelier-svg .fournaise,.atelier-svg .email-cru,.atelier-svg .eclat,.atelier-svg .seau,.atelier-svg .pied{opacity:0}
+.atelier-svg .pot{transform-box:fill-box;transform-origin:50% 50%}
+[data-etape="1"] .g-tour,[data-etape="1"] .stries{opacity:1}
+[data-etape="2"] .g-tour,[data-etape="2"] .copeaux,[data-etape="2"] .outil,[data-etape="2"] .pied{opacity:1}
+[data-etape="2"] .pot{transform:rotate(180deg)}
+[data-etape="2"] .corps{fill:#857060}
+[data-etape="3"] .planche,[data-etape="3"] .air,[data-etape="3"] .pied{opacity:1}
+[data-etape="3"] .corps{fill:#BFAE9C}
+[data-etape="4"] .fournaise{opacity:.55}
+[data-etape="4"] .corps{fill:#DDB79B}
+[data-etape="4"] .pied,[data-etape="5"] .pied{opacity:.6}
+[data-etape="5"] .corps{fill:#DDB79B}
+[data-etape="5"] .email-cru,[data-etape="5"] .seau{opacity:1}
+[data-etape="6"] .fournaise{opacity:1}
+[data-etape="6"] .corps{fill:#8DB49E}
+[data-etape="6"] .eclat{opacity:1}
+.email-cru rect{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);transition:transform 1.4s var(--ease) .2s}
+[data-etape="5"] .email-cru rect{transform:scaleY(1)}
+.g-tour .rayons{animation:tourne 1.4s linear infinite;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes tourne{to{stroke-dashoffset:-60}}
+.g-tour .rayons{animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-40}}
+.air path{animation:souffle 3s ease-in-out infinite}
+.air path:nth-child(2){animation-delay:.8s}.air path:nth-child(3){animation-delay:1.6s}
+@keyframes souffle{0%{transform:translateX(-14px);opacity:0}40%{opacity:1}100%{transform:translateX(18px);opacity:0}}
+.fournaise .flamme{animation:vacille 1.8s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes vacille{0%{opacity:.75;transform:scaleY(.96)}100%{opacity:1;transform:scaleY(1.04)}}
+.copeaux path{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset 1.6s var(--ease) .3s}
+[data-etape="2"] .copeaux path{stroke-dashoffset:0}
+
+/* ---------- préparer ---------- */
+.prep{background:var(--fond-2);overflow:hidden}
+.prep::before{content:"";position:absolute;inset:0;background-image:var(--chamotte);opacity:.55;pointer-events:none}
+.prep .env{position:relative}
+.trois-w{position:relative}
+.trois{position:relative;display:grid;gap:44px}
+@media (min-width:860px){.trois{grid-template-columns:repeat(3,minmax(0,1fr));gap:40px}}
+.colombin{position:absolute;pointer-events:none;color:var(--argile-clair)}
+.colombin--h{display:none;left:6%;right:6%;top:46px;height:40px;width:88%}
+.colombin--v{left:42px;top:40px;bottom:40px;width:24px;height:calc(100% - 80px)}
+@media (min-width:860px){.colombin--h{display:block}.colombin--v{display:none}}
+.colombin path{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease)}
+.colombin.vu path,.no-js .colombin path,.reduit .colombin path{stroke-dashoffset:0}
+.trois li{position:relative;display:grid;grid-template-columns:88px 1fr;gap:20px;align-items:start}
+@media (min-width:860px){.trois li{grid-template-columns:1fr;gap:22px}}
+.cachet{width:88px;height:88px;border-radius:52% 48% 50% 50% / 50% 52% 48% 50%;background:var(--papier);display:grid;place-items:center;box-shadow:inset 0 -6px 0 rgba(30,27,24,.06),0 10px 24px rgba(30,27,24,.08);transition:transform .6s var(--ease)}
+.cachet svg{width:46px;height:46px}
+.trois li:hover .cachet{transform:rotate(-8deg) scale(1.05)}
+.trois h3{font-size:clamp(28px,2.6vw,34px);margin-bottom:8px}
+.trois p{color:var(--texte-2)}
+
+/* ---------- horaires & accès ---------- */
+.acces{display:grid;gap:clamp(32px,5vw,64px)}
+@media (min-width:900px){.acces{grid-template-columns:minmax(0,5fr) minmax(0,6fr)}}
+.hor{margin-top:20px}
+.hor div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--trait)}
+.hor dt{font-weight:700}
+.hor dd{text-align:right;color:var(--texte-2);font-variant-numeric:tabular-nums}
+.hor .off dd{font-family:var(--f-cartel);font-style:italic;font-size:1.05em}
+.hor .jour{background:var(--papier);margin:0 -12px;padding-left:12px;padding-right:12px;border-radius:6px;border-bottom-color:transparent}
+.hor .jour dt::after{content:" · aujourd'hui";font-weight:400;color:var(--celadon-fonce);font-family:var(--f-cartel);font-style:italic}
+.acces h3{font-size:clamp(30px,3vw,40px)}
+.acces__n{margin-top:18px;font-size:16px;color:var(--texte-2)}
+.plan{background:var(--papier);border-radius:4px;overflow:hidden;position:relative}
+.plan svg{width:100%;height:auto}
+.plan .epingle{animation:pose 2.8s var(--ease) infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes pose{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.plan__b{display:grid;gap:14px;padding:22px clamp(18px,3vw,28px) 26px}
+
+.adr{font-style:normal;font-size:1.1em;line-height:1.4}
+.adr b{font-family:var(--f-titre);font-weight:650;font-size:1.25em;font-variation-settings:"wdth" 80;display:block}
+.plan__a{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- contact ---------- */
+.sombre{background:var(--nuit);color:#D5DED8}
+.sombre h2,.sombre h3{color:var(--blanc)}
+.ctc{display:grid;gap:clamp(40px,5vw,72px)}
+@media (min-width:960px){.ctc{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.ctc__t{margin-top:18px;color:#BFCBC4;max-width:28em}
+.ctc__tel{display:inline-block;margin-top:28px;font-family:var(--f-titre);font-weight:700;font-variation-settings:"wdth" 76;font-size:clamp(36px,5vw,56px);color:var(--celadon);text-decoration:none;letter-spacing:-.01em;line-height:1.1}
+.ctc__tel:hover{color:var(--celadon-clair)}
+.ctc__l{margin-top:22px;display:flex;gap:14px;color:#BFCBC4}
+.ctc__l svg{flex:none;width:24px;height:24px;margin-top:3px;color:var(--celadon)}
+.ctc__l b{display:block;color:var(--blanc)}
+.form{background:var(--papier);color:var(--texte);border-radius:6px;padding:clamp(22px,4vw,44px);position:relative;isolation:isolate;overflow:hidden}
+.form::before{content:"";position:absolute;inset:0;background-image:var(--chamotte);opacity:.45;z-index:-1;pointer-events:none}
+.form h3{font-size:clamp(30px,3vw,40px);color:var(--encre)}
+.form__s{color:var(--texte-2);font-size:16px;margin:8px 0 26px}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-weight:700;font-size:16px;padding:0;margin-bottom:10px}
+.choix{display:grid;gap:10px}
+@media (min-width:600px){.choix{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.choix input{position:absolute;opacity:0;width:1px;height:1px}
+.choix label{display:flex;flex-direction:column;gap:8px;min-height:44px;height:100%;padding:14px 14px 14px;border:1.5px solid var(--trait);border-radius:var(--galet);cursor:pointer;font-weight:500;line-height:1.25;background:var(--blanc);transition:border-color .2s,background-color .2s,transform .3s var(--ease)}
+.choix label svg{width:30px;height:30px;color:var(--celadon-fonce);transition:transform .5s var(--ease)}
+.choix label:hover{border-color:var(--encre);transform:translateY(-2px)}
+.choix input:checked+label{border-color:var(--celadon-fonce);background:var(--celadon-clair);box-shadow:inset 0 0 0 1px var(--celadon-fonce)}
+.choix input:checked+label svg{transform:rotate(-10deg) scale(1.1)}
+.choix input:focus-visible+label{outline:3px solid var(--celadon-fonce);outline-offset:3px}
+.ch{display:grid;gap:16px;margin-top:22px}
+@media (min-width:600px){.ch--2{grid-template-columns:1fr 1fr}}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.f label{font-weight:700;font-size:16px}
+.f label span{font-weight:400;color:var(--texte-2);font-family:var(--f-cartel);font-style:italic}
+.f input,.f textarea{font:inherit;font-size:17px;padding:12px 14px;min-height:50px;border:1.5px solid var(--trait);border-radius:10px;background:var(--blanc);color:var(--texte);width:100%;transition:border-color .2s,box-shadow .2s}
+.f input[type=file]{padding:10px;font-size:15px}
+.f input:focus,.f textarea:focus{border-color:var(--celadon-fonce);outline:none;box-shadow:0 0 0 3px rgba(46,92,76,.18)}
+.f textarea{resize:vertical;min-height:120px}
+.envoi{width:100%;margin-top:24px}
+.fret{margin-top:16px;font-weight:700;color:var(--celadon-fonce);min-height:1.6em}
+.fret.err{color:var(--non)}
+
+/* ---------- pied & barre mobile ---------- */
+.pied{background:#141A17;color:#A9B6AF;font-size:15px;padding:44px 0 calc(110px + env(safe-area-inset-bottom))}
+@media (min-width:1020px){.pied{padding-bottom:44px}}
+.pied__in{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-end}
+.pied__m{font-family:var(--f-titre);font-weight:700;font-size:clamp(30px,5vw,48px);color:var(--fond);font-variation-settings:"wdth" 76;line-height:1;letter-spacing:-.02em}
+.pied a{text-decoration-color:var(--trait-sombre);text-underline-offset:4px}
+.bmob{position:fixed;left:0;right:0;bottom:0;z-index:45;display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px var(--gx-d) calc(10px + env(safe-area-inset-bottom)) var(--gx);background:rgba(27,36,32,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--trait-sombre);transform:translateY(110%);transition:transform .5s var(--ease)}
+.bmob.la{transform:none}
+.bmob .btn{min-height:50px;padding:0 12px;font-size:16px}
+.bmob .btn svg{width:18px;height:18px}
+@media (min-width:1020px){.bmob{display:none}}
+
+/* ---------- révélations ---------- */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .rv.vu{opacity:1;transform:none}
+.js .rv[data-d="1"]{transition-delay:.1s}.js .rv[data-d="2"]{transition-delay:.2s}.js .rv[data-d="3"]{transition-delay:.3s}
+.js .entree{opacity:0;transform:translateY(.4em);transition:opacity .9s var(--ease),transform 1.1s var(--ease)}
+.js .pret .entree{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .js .rv,.js .entree{opacity:1;transform:none}
+}
+
+/* ---------- gabarit générique : titres longs, en-tête, illustrations ---------- */
+.ouv h1{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+.ouv h1.t-m{font-size:clamp(44px,6.4vw,86px);line-height:.92}
+.ouv h1.t-s{font-size:clamp(38px,4.7vw,62px);line-height:.96;letter-spacing:-.03em}
+.ouv h1.t-xs{font-size:clamp(32px,3.7vw,48px);line-height:1;letter-spacing:-.025em}
+.mq>span{min-width:0}
+.mq__v{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav a{white-space:nowrap}
+@media (min-width:1020px){.mq--long{max-width:290px}}
+.mq--long .mq__n{white-space:normal;font-size:16px;line-height:1.05;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pied__m{overflow-wrap:break-word;max-width:100%}
+.pied__in>*{min-width:0}
+.hor .hor--off dd{font-family:var(--f-cartel);font-style:italic;font-size:1.05em}
+.etat--neutre .pastille{background:var(--celadon-fonce);opacity:.55}
+
+.niche .illus{display:block;width:100%;height:clamp(400px,64vh,620px)}
+@media (max-width:959px){.niche .illus{height:clamp(360px,52vh,460px)}}
+.js .illus .pose{opacity:0}
+.js .pret .illus .pose{animation:poser 1.3s var(--ease) var(--d,0s) both}
+@keyframes poser{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.reduit .illus .pose{opacity:1!important}
+.illus [data-p]{transition:translate .9s var(--ease)}
+.illus .oscille{transform-box:fill-box;transform-origin:var(--o,50% 0%);animation:oscille 3.8s ease-in-out infinite alternate}
+@keyframes oscille{from{rotate:-3deg}to{rotate:4deg}}
+.illus .lueur{animation:lueur 3.2s ease-in-out infinite;animation-delay:var(--d2,0s)}
+@keyframes lueur{0%,100%{opacity:.12}50%{opacity:1}}
+.illus .balaye{animation:balaye 7s var(--ease) infinite;animation-delay:var(--d2,1.6s)}
+@keyframes balaye{0%{translate:0 0}45%,100%{translate:var(--course,560px) 0}}
+.illus .eclair{opacity:0;animation:eclair 8s ease-out 2.6s infinite}
+@keyframes eclair{0%,91%{opacity:0}92%{opacity:.8}100%{opacity:0}}
+.illus .respire{transform-box:fill-box;transform-origin:50% 100%;animation:respire 4.5s ease-in-out infinite alternate}
+@keyframes respire{from{scale:1 1}to{scale:1 1.025}}
+
+/* processus sans le four : cadran d'étapes */
+.proc-gen .piste{fill:none;stroke:var(--trait-sombre);stroke-width:22}
+.proc-gen .arc{fill:none;stroke:url(#arc-g);stroke-width:22;stroke-linecap:round;transition:stroke-dashoffset 1.1s var(--ease)}
+.proc-gen .tick circle{fill:var(--nuit);stroke:var(--trait-sombre);stroke-width:3;transition:fill .6s,stroke .6s,r .6s}
+.proc-gen .tick.fait circle{fill:var(--celadon);stroke:var(--celadon-clair)}
+.proc-gen .tick.ici circle{fill:var(--four);stroke:#F6D27A}
+.proc-gen .num{font-family:var(--f-titre);font-weight:700;font-variation-settings:"wdth" 76;font-size:132px;letter-spacing:-.03em;fill:var(--blanc)}
+.proc-gen .sur{font-family:var(--f-cartel);font-style:italic;font-size:24px;fill:var(--celadon)}
+.proc-gen .rayons{fill:none;stroke:#3C4A43;stroke-width:2;stroke-dasharray:4 12;animation:dash 4s linear infinite}
+.proc-gen .ico{fill:none;stroke:var(--celadon);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+.temp--mot{font-size:clamp(30px,3.8vw,54px)}
+#temp-v{transition:opacity .35s}
+#temp-v.bascule{opacity:0}
+</style>
+</head>
+<body>
+<a class="saut" href="#principal">Aller au contenu</a>
+
+<!-- dégradés partagés par les illustrations -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="lumiere" x1="0" x2="1">
+      <stop offset="0" stop-color="#000" stop-opacity=".38"/>
+      <stop offset=".28" stop-color="#fff" stop-opacity=".18"/>
+      <stop offset=".4" stop-color="#fff" stop-opacity=".32"/>
+      <stop offset=".62" stop-color="#000" stop-opacity=".05"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".45"/>
+    </linearGradient>
+    <linearGradient id="celadon-g" x1="0" x2="1"><stop offset="0" stop-color="#5E8A76"/><stop offset=".35" stop-color="#A9CBB8"/><stop offset=".5" stop-color="#C9E0D2"/><stop offset="1" stop-color="#4C7563"/></linearGradient>
+    <linearGradient id="tenmoku-g" x1="0" x2="1"><stop offset="0" stop-color="#2A1C14"/><stop offset=".38" stop-color="#6A3A20"/><stop offset=".48" stop-color="#9A5A30"/><stop offset="1" stop-color="#1E140F"/></linearGradient>
+    <linearGradient id="gres-g" x1="0" x2="1"><stop offset="0" stop-color="#8F7D6C"/><stop offset=".4" stop-color="#CDBBA6"/><stop offset="1" stop-color="#7A6858"/></linearGradient>
+    <linearGradient id="engobe-g" x1="0" x2="1"><stop offset="0" stop-color="#BDB6A8"/><stop offset=".4" stop-color="#F1EEE6"/><stop offset="1" stop-color="#A9A294"/></linearGradient>
+    <linearGradient id="socle-g" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#CED3CA"/><stop offset="1" stop-color="#B9BFB5"/></linearGradient>
+    <linearGradient id="bois-g" x1="0" x2="1"><stop offset="0" stop-color="#5A3820"/><stop offset=".35" stop-color="#93603A"/><stop offset=".5" stop-color="#A9744A"/><stop offset="1" stop-color="#4A2E1A"/></linearGradient>
+    <linearGradient id="hetre-g" x1="0" x2="1"><stop offset="0" stop-color="#9C7650"/><stop offset=".4" stop-color="#D3B38A"/><stop offset="1" stop-color="#8A6644"/></linearGradient>
+    <linearGradient id="laiton-g" x1="0" x2="1"><stop offset="0" stop-color="#8A6A2E"/><stop offset=".45" stop-color="#E2C27A"/><stop offset="1" stop-color="#7A5A22"/></linearGradient>
+    <linearGradient id="noir-g" x1="0" x2="1"><stop offset="0" stop-color="#151413"/><stop offset=".4" stop-color="#3A3835"/><stop offset="1" stop-color="#111"/></linearGradient>
+    <radialGradient id="ombre-g"><stop offset="0" stop-color="#1E1B18" stop-opacity=".35"/><stop offset="1" stop-color="#1E1B18" stop-opacity="0"/></radialGradient>
+    <radialGradient id="four-g" cx=".5" cy=".75" r=".7"><stop offset="0" stop-color="#FFE3A3"/><stop offset=".35" stop-color="#F0A23C"/><stop offset=".75" stop-color="#9C3A16"/><stop offset="1" stop-color="#3A140A"/></radialGradient>
+    <linearGradient id="eclat-g" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <filter id="grain-f" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .35 0" result="g"/><feComposite in="g" in2="SourceGraphic" operator="in" result="gg"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="gg"/></feMerge></filter>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="env hdr__in">
+    <a class="mq{% if nom_court|length > 22 %} mq--long{% endif %}" href="#principal" aria-label="{{ N }}, accueil">
+      <svg viewBox="0 0 34 38" aria-hidden="true">{{ prof.logo|safe }}</svg>
+      <span><span class="mq__n">{{ nom_court }}</span><span class="mq__v">{{ metier_court }}{% if court %} · {{ court }}{% endif %}</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#atelier">{{ fam.nav }}</a>
+      <a href="#processus">{{ prof.proc_titre }}</a>
+      <a href="#demande">{{ fam.prep_titre }}</a>
+      <a href="#horaires">Horaires et accès</a>
+    </nav>
+    <a class="btn btn--p" href="#contact">{{ fam.cta }}</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="panneau" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="panneau" id="panneau" aria-label="Menu">
+  <nav aria-label="Navigation mobile">
+    <a href="#atelier">{{ fam.nav }}</a>
+    <a href="#processus">{{ prof.proc_titre }}</a>
+    <a href="#demande">{{ fam.prep_titre }}</a>
+    <a href="#horaires">Horaires et accès</a>
+    <a href="#contact">{{ fam.cta }}</a>
+  </nav>
+  <p>{{ prof.panneau }}{% if al %},{{ al }}{% endif %}.</p>
+</div>
+
+<main id="principal">
+
+<!-- ================= OUVERTURE ================= -->
+<section class="ouv" aria-labelledby="titre">
+  <div class="env ouv__in" id="ouv">
+    <div class="ouv__txt">
+      <span class="surt entree">{{ surtitre }}{% if court %} · {{ court }}{% endif %}</span>
+      <h1 id="titre" class="{{ tcls }}">{% if ns.em %}<span class="l entree"><em>{{ ns.em|join(" ") }}</em></span>{% endif %}{% for l in ns.lignes %}<span class="l entree">{{ l }}</span>{% endfor %}</h1>
+      <p class="ouv__acc entree">{{ prof.accroche }}</p>
+      <p class="ouv__t entree">{{ fam.ouverture }}</p>
+      <div class="ouv__a entree">
+        <a class="btn btn--p" href="#contact">{{ fam.cta }} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--o" href="#processus">{{ prof.proc_titre }}</a>
+      </div>
+{% if sem %}
+      <p class="etat-l entree"><span id="jour">Aujourd'hui</span> <span class="etat" id="etat" data-h='{{ data_h }}'>{{ r.jours|lower }}</span></p>
+{% else %}
+      <p class="etat-l entree"><span class="etat etat--neutre"><span class="pastille" aria-hidden="true"></span>Horaires sur demande</span></p>
+{% endif %}
+    </div>
+
+    <figure class="scene entree" style="margin:0">
+      <div class="niche">
+{{ illus }}
+      </div>
+      <figcaption class="cartel-tour">
+        <p class="cartel"><b>{{ prof.cartel_titre }}</b>{{ prof.cartel }}</p>
+{% if prof.tour %}
+        <div class="regl">
+          <div class="regl__g" role="group" aria-label="Forme">
+{% for f in prof.tour.formes %}
+            <button class="forme" type="button" data-forme="{{ loop.index0 }}" aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ f }}</button>
+{% endfor %}
+          </div>
+          <div class="regl__g" role="group" aria-label="Matière">
+{% for mt in prof.tour.matieres %}
+            <button class="pas" type="button" data-mat="{{ loop.index0 }}" aria-pressed="{{ 'true' if loop.first else 'false' }}" aria-label="{{ mt[0] }}" style="--c:{{ mt[1] }}"></button>
+{% endfor %}
+          </div>
+        </div>
+{% endif %}
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<div class="bande" aria-hidden="true">
+  <div class="bande__p">
+{% for _ in range(2) %}
+    <ul>{% for b in prof.bande %}<li>{{ b }}</li>{% endfor %}</ul>
+{% endfor %}
+  </div>
+</div>
+
+<!-- ================= L'ATELIER / PRESTATIONS ================= -->
+{% set P = m.prestations() %}
+<section class="sec" id="atelier" aria-labelledby="t-atelier">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">{{ fam.nav }}</span>
+      <h2 id="t-atelier">{{ prof.galerie_titre }}</h2>
+      <p class="chapo">{{ prof.galerie_chapo }}</p>
+    </div>
+
+    <div class="galerie">
+{% for k in [0, 1] %}
+      <article class="oeuvre oeuvre--{{ 'a' if k == 0 else 'b' }} rv"{% if k == 1 %} data-d="1"{% endif %}>
+        <div class="oeuvre__v">
+{% set s = "a" if k == 0 else "b" %}
+{% include [D ~ "oeuvres/" ~ m.cle ~ "-" ~ s ~ ".html"] + ([D ~ "oeuvres/" ~ prof.illus ~ "-" ~ s ~ ".html"] if prof.illus else []) + [D ~ "oeuvres/_famille-" ~ s ~ ".html"] %}
+        </div>
+        <div class="oeuvre__l">
+          <h3>{{ P[k][0] }}</h3>
+          <p>{{ P[k][1] }}{% if prof.presta_suite[k] %} {{ prof.presta_suite[k] }}{% endif %}</p>
+{% if prof.cartels[k] %}
+          <p class="cartel">{{ prof.cartels[k] }}</p>
+{% endif %}
+        </div>
+      </article>
+{% endfor %}
+
+      <article class="oeuvre oeuvre--c rv">
+        <svg class="bulle" viewBox="0 0 86 86" aria-hidden="true"><path d="M43 8c21 0 36 13 36 31S64 70 43 70c-4 0-8-.4-12-1.4L14 78l4-15C11 57 7 49 7 39 7 21 22 8 43 8z" fill="none" stroke="#C7DDD0" stroke-width="2.5" stroke-linejoin="round"/><path d="M27 40c5-6 10-6 16 0s11 6 16 0" fill="none" stroke="#9CC1AD" stroke-width="3" stroke-linecap="round"/><circle cx="43" cy="52" r="2.4" fill="#9CC1AD"/></svg>
+        <div>
+          <h3>{{ P[2][0] }}</h3>
+          <p>{{ prof.reste or P[2][1] }}</p>
+        </div>
+        <a class="btn btn--c" href="#contact">{{ fam.cta }}</a>
+      </article>
+    </div>
+    <p class="note rv">Aucun prix n'est affiché tant qu'il n'a pas été établi par {{ lieu }}.</p>
+  </div>
+</section>
+
+<!-- ================= PROCESSUS DU MÉTIER ================= -->
+{% set E = prof.etapes %}
+<section class="sec four" id="processus" aria-labelledby="t-four">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">{{ prof.proc_surt }}</span>
+      <h2 id="t-four">{{ prof.proc_titre }}</h2>
+      <p class="chapo">{{ prof.proc_chapo }}</p>
+    </div>
+
+    <div class="proc">
+      <div class="proc__vis" aria-hidden="true">
+{% include [D ~ "proc/" ~ m.cle ~ ".html", D ~ "proc/_famille.html"] %}
+        <div class="proc__lect">
+{% if prof.proc_unite %}
+          <p class="temp" id="temp"><small id="temp-l">{{ E[0].l }}</small><span id="temp-v">{{ E[0].t }}</span>&#8239;{{ prof.proc_unite }}</p>
+{% else %}
+          <p class="temp temp--mot" id="temp"><small id="temp-l">{{ E[0].l }}</small><span id="temp-v">{{ E[0].v }}</span></p>
+{% endif %}
+          <p class="etat-terre" id="etat-terre">{{ E[0].e }}</p>
+        </div>
+        <div class="jauge"><i id="jauge"></i></div>
+      </div>
+
+      <ol class="etapes-p" id="etapes">
+{% for e in E %}
+        <li{% if e.t is defined %} data-t="{{ e.t }}"{% endif %} data-v="{{ e.v or e.titre }}" data-l="{{ e.l }}" data-e="{{ e.e }}">
+          <span class="tag"><i></i>{{ e.tag }}</span>
+          <h3>{{ e.titre }}</h3>
+          <p>{{ e.texte }}</p>
+        </li>
+{% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRÉPARER VOTRE DEMANDE ================= -->
+<section class="sec prep" id="demande" aria-labelledby="t-prep">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Avant d'écrire</span>
+      <h2 id="t-prep">{{ fam.prep_titre }}</h2>
+      <p class="chapo">Trois choses à avoir en tête avant d'écrire ou d'appeler. Elles rendent le premier échange beaucoup plus utile.</p>
+    </div>
+    <div class="trois-w">
+      <svg class="colombin colombin--h rv-trait" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M0 20c60-18 120 18 180 0s120-18 180 0 120 18 180 0 120-18 180 0 120 18 180 0 60-10 100 0" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/></svg>
+      <svg class="colombin colombin--v rv-trait" viewBox="0 0 24 1000" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M12 0c-10 60 10 120 0 180s-10 120 0 180 10 120 0 180-10 120 0 180 10 120 0 180 -6 60 0 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round"/></svg>
+    <ol class="trois">
+{% set icos = [prof.ico_objet, '<path d="M6 16h8l3-5h14l3 5h8v22H6z"/><circle cx="24" cy="26" r="7.5"/><path d="M36 21h2"/>', '<path d="M8 38 38 8l4 4-30 30H8z"/><path d="M14 32l3 3M19 27l2 2M24 22l3 3M29 17l2 2M34 12l3 3"/>'] %}
+{% for t, x in fam.etapes %}
+      <li class="rv"{% if not loop.first %} data-d="{{ loop.index0 }}"{% endif %}>
+        <span class="cachet"><svg viewBox="0 0 48 48" fill="none" stroke="#2E5C4C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icos[loop.index0 % 3]|safe }}</svg></span>
+        <div><h3>{{ t }}</h3><p>{{ x }}</p></div>
+      </li>
+{% endfor %}
+    </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HORAIRES & ACCÈS ================= -->
+<section class="sec" id="horaires" aria-labelledby="t-hor">
+  <div class="env">
+    <div class="tete rv">
+      <span class="surt">Passer {{ a_lieu_etab }}</span>
+      <h2 id="t-hor">Horaires et accès</h2>
+      <p class="chapo">{% if sem %}L'état affiché se calcule à l'heure où vous lisez la page.{% else %}Les horaires se donnent sur demande : un message, et on vous dit quand passer.{% endif %}</p>
+    </div>
+    <div class="acces">
+      <div class="rv">
+        <h3>Horaires d'ouverture</h3>
+{% if sem %}
+        <p class="etat" id="etat2" style="margin-top:12px" data-h='{{ data_h }}'>{{ r.jours }}.</p>
+        <dl class="hor" id="hor">{{ table_html }}</dl>
+{% else %}
+        <p class="etat etat--neutre" style="margin-top:12px"><span class="pastille" aria-hidden="true"></span>Horaires sur demande</p>
+{% endif %}
+        <p class="acces__n">{{ prof.horaires_note }}</p>
+      </div>
+
+      <div class="plan rv" data-d="1">
+        <svg viewBox="0 0 640 400" role="img" aria-label="Plan stylisé{% if commune %} de {{ commune }}{% endif %} : l'emplacement de {{ lieu }}, à titre indicatif.">
+          <rect width="640" height="400" fill="#E6E8E1"/>
+          <g stroke="#D2D6CC" stroke-width="14" stroke-linecap="round" fill="none">
+            <path d="M0 90h640M0 300h640M120 0v400M520 0v400M200 160h120"/>
+          </g>
+          <g stroke="#FBFBF8" stroke-width="7" stroke-linecap="round" fill="none">
+            <path d="M0 90h640M0 300h640M120 0v400M520 0v400M330 0v400"/>
+            <path d="M0 210h640" stroke-width="10"/>
+          </g>
+          <rect x="250" y="112" width="60" height="78" rx="14" fill="#B9D3C4"/>
+          <g fill="#9CC1AD"><circle cx="268" cy="132" r="8"/><circle cx="292" cy="146" r="9"/><circle cx="272" cy="168" r="8"/></g>
+          <g fill="#CFC9BD">
+            <rect x="150" y="120" width="70" height="60" rx="3"/><rect x="150" y="240" width="80" height="40" rx="3"/>
+            <rect x="30" y="120" width="60" height="70" rx="3"/><rect x="420" y="120" width="80" height="60" rx="3"/>
+            <rect x="420" y="240" width="70" height="40" rx="3"/><rect x="560" y="120" width="60" height="60" rx="3"/>
+            <rect x="30" y="240" width="60" height="40" rx="3"/><rect x="560" y="320" width="60" height="60" rx="3"/>
+            <rect x="350" y="120" width="50" height="60" rx="3"/><rect x="250" y="240" width="60" height="40" rx="3"/>
+          </g>
+          <g font-family="Instrument Serif, Georgia, serif" font-style="italic" fill="#3F4A44">
+            <text x="150" y="112" font-size="18">centre</text>
+          </g>
+          <g class="epingle">
+            <ellipse cx="470" cy="302" rx="16" ry="5" fill="#1E1B18" opacity=".25"/>
+            <path d="M470 300c-4-16-26-28-26-50a26 26 0 0 1 52 0c0 22-22 34-26 50z" fill="#2E5C4C"/>
+            <circle cx="470" cy="250" r="9" fill="#C7DDD0"/>
+          </g>
+          <text x="500" y="268" font-family="Bricolage Grotesque, Arial Narrow, sans-serif" font-weight="700" font-size="18" fill="#1E1B18">{{ lieu }}</text>
+        </svg>
+        <div class="plan__b">
+          <address class="adr"><b>XX rue de l'Exemple</b>{{ cpc }}</address>
+          <div class="plan__a">
+            <a class="btn btn--p" href="{{ itin }}">Ouvrir l'itinéraire</a>
+            <a class="btn btn--o" href="#contact">Prévenir avant de passer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="sec sombre" id="contact" aria-labelledby="t-ctc">
+  <div class="env ctc">
+    <div class="rv">
+      <span class="surt">Contact</span>
+      <h2 id="t-ctc">{{ fam.cta }}</h2>
+      <p class="ctc__t">{{ prof.contact_texte }}</p>
+{% if a_tel %}
+      <a class="ctc__tel" href="#contact">{{ tel }}</a>
+{% endif %}
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        <span><b>XX rue de l'Exemple</b>{{ cpc }}</span>
+      </p>
+      <p class="ctc__l">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+{% if sem %}
+        <span><b>{{ r.jours }}</b>{{ r.fermes }}</span>
+{% else %}
+        <span><b>Horaires sur demande</b>un message, et on vous dit quand passer</span>
+{% endif %}
+      </p>
+    </div>
+
+    <form class="form rv" data-d="1" id="dem" novalidate>
+      <h3>Votre demande</h3>
+      <p class="form__s">Votre message arrive directement {{ a_lieu_etab }}, qui vous répond.</p>
+      <fieldset>
+        <legend>C'est pour…</legend>
+        <div class="choix">
+{% set icos_c = ['<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' ~ prof.ico_objet ~ '</svg>', '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 26l8-8M17 6l9 9-6 6-9-9z"/><path d="M20 9l3 3"/></svg>', '<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4c7 0 12 4.5 12 10.5S23 25 16 25c-1.4 0-2.7-.2-4-.5L6 28l1.5-5C5.3 21 4 18 4 14.5 4 8.5 9 4 16 4z"/><path d="M13 12a3 3 0 1 1 4 2.8c-1 .4-1 1-1 2"/><path d="M16 20.5v.1"/></svg>'] %}
+{% for c in fam.choix %}
+          <input type="radio" name="type" id="type-{{ loop.index }}" value="{{ c }}"{% if loop.first %} checked{% endif %}>
+          <label for="type-{{ loop.index }}">{{ icos_c[loop.index0 % 3]|safe }}{{ c }}</label>
+{% endfor %}
+        </div>
+      </fieldset>
+      <div class="ch ch--2">
+        <div class="f"><label for="nom">Votre nom</label>
+          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
+        <div class="f"><label for="joindre">Téléphone ou courriel</label>
+          <input id="joindre" name="joindre" type="text" autocomplete="email" required placeholder="Pour vous répondre"></div>
+      </div>
+      <div class="ch">
+        <div class="f"><label for="objet">{{ fam.etapes[0][0] }}</label>
+          <input id="objet" name="objet" type="text" placeholder="{{ prof.ph_objet }}"></div>
+        <div class="f"><label for="det">Votre idée <span>dimensions, matières, échéance</span></label>
+          <textarea id="det" name="det" rows="4" placeholder="Ce que vous savez déjà, et pour quand."></textarea></div>
+        <div class="f"><label for="photo">Une photo <span>facultatif</span></label>
+          <input id="photo" name="photo" type="file" accept="image/*"></div>
+      </div>
+      <button class="btn btn--p envoi" type="submit">Envoyer ma demande <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<div class="bmob" id="bmob">
+{% if a_tel %}
+  <a class="btn btn--c" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>Appeler</a>
+{% else %}
+  <a class="btn btn--c" href="#horaires"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Venir</a>
+{% endif %}
+  <a class="btn btn--f" href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.5-4.5L16 5l3 3L8.5 18.5z"/><path d="M14 7l3 3"/></svg>Écrire</a>
+</div>
+
+<footer class="pied">
+  <div class="env pied__in">
+    <div>
+      <p class="pied__m">{{ nom_court }}</p>
+      <p style="margin-top:10px">{{ prof.pied }} · XX rue de l'Exemple{% if cpc %}, {{ cpc }}{% endif %}</p>
+    </div>
+    <p>© {{ annee }} {{ N }} · <a href="#principal">Haut de page</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var D=document, R=D.documentElement, NOM={{ nom_js }};
+  var reduit=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  R.classList.add("js"); if(reduit) R.classList.add("reduit");
+  function toutMontrer(){D.querySelectorAll(".rv,.rv-trait").forEach(function(e){e.classList.add("vu");});var o=D.getElementById("ouv");if(o)o.classList.add("pret");}
+  /* filet de sécurité : si quelque chose casse, tout s'affiche */
+  window.addEventListener("error",toutMontrer);
+  var secours=setTimeout(function(){ if(!window.__revOk) toutMontrer(); else D.getElementById("ouv").classList.add("pret"); },1500);
+
+  try{
+  /* --- entrée orchestrée --- */
+  var ent=D.querySelectorAll("#ouv .entree");
+  ent.forEach(function(e,i){e.style.transitionDelay=(0.08+i*0.09)+"s";});
+  requestAnimationFrame(function(){requestAnimationFrame(function(){D.getElementById("ouv").classList.add("pret");});});
+
+  /* --- révélations --- */
+  var rv=D.querySelectorAll(".rv,.rv-trait");
+  if(!("IntersectionObserver" in window)||reduit){toutMontrer();}
+  else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vu");io.unobserve(x.target);}});},{rootMargin:"0px 0px -10% 0px"});
+    rv.forEach(function(e){io.observe(e);});
+  }
+  window.__revOk=true;
+
+  /* --- en-tête, barre mobile --- */
+  var hdr=D.getElementById("hdr"), bm=D.getElementById("bmob");
+  function surDefil(){var y=scrollY;hdr.classList.toggle("defile",y>20);bm.classList.toggle("la",y>380);}
+  addEventListener("scroll",surDefil,{passive:true});surDefil();
+
+  /* --- burger --- */
+  var bg=D.querySelector(".burger"), pn=D.getElementById("panneau");
+  function menu(o){bg.setAttribute("aria-expanded",o);bg.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu");pn.classList.toggle("ouvert",o);hdr.classList.toggle("menu",o);D.body.style.overflow=o?"hidden":"";}
+  bg.addEventListener("click",function(){menu(bg.getAttribute("aria-expanded")!=="true");});
+  pn.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){menu(false);});});
+  D.addEventListener("keydown",function(e){if(e.key==="Escape"&&pn.classList.contains("ouvert")){menu(false);bg.focus();}});
+
+  /* --- ouvert maintenant (data-h : dimanche d'abord, null = fermé) --- */
+  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+  function pr(x){var r=[],i;if(!x)return r;for(i=0;i+1<x.length;i+=2)r.push([x[i],x[i+1]]);return r;}
+  function hm(v){var a=Math.floor(v/60),b=v%60;return b?a+" h "+(b<10?"0":"")+b:a+" h";}
+  function ecrire(el,txt,cls){el.innerHTML='<span class="pastille" aria-hidden="true"></span>';el.appendChild(D.createTextNode(txt));el.className="etat "+cls;}
+  function poser(el){
+    var h;try{h=JSON.parse(el.getAttribute("data-h"));}catch(e){return;}
+    if(!Array.isArray(h)||h.length!==7)return;
+    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
+    for(i=0;i<cj.length;i++){if(m>=cj[i][0]&&m<cj[i][1]){ecrire(el,"Ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui");return;}}
+    for(k=0;k<8;k++){jj=(j+k)%7;cs=pr(h[jj]);
+      for(i=0;i<cs.length;i++){if(k===0&&cs[i][0]<=m)continue;
+        ecrire(el,"Fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non");return;}}
+  }
+  D.querySelectorAll(".etat[data-h]").forEach(poser);
+  var tj=D.getElementById("jour"),nj=J[new Date().getDay()];
+  if(tj)tj.textContent=nj.charAt(0).toUpperCase()+nj.slice(1)+" :";
+  var lh=D.querySelectorAll("#hor > div");
+  if(lh.length===7)lh[(new Date().getDay()+6)%7].classList.add("jour");
+
+  /* --- formulaire --- */
+  var f=D.getElementById("dem");
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var r=D.getElementById("ret");
+    if(!f.nom.value.trim()||!f.joindre.value.trim()){r.className="fret err";r.textContent="Indiquez au moins votre nom et un moyen de vous répondre.";(f.nom.value.trim()?f.joindre:f.nom).focus();return;}
+    r.className="fret";
+    r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement chez "+NOM+", qui vous répond au plus vite.";
+    f.reset();
+  });
+
+  /* --- processus : étape active au défilement (four du céramiste ou cadran générique) --- */
+  var svgA=D.getElementById("atelier-svg"), etapes=D.querySelectorAll("#etapes li"),
+      tv=D.getElementById("temp-v"), tl=D.getElementById("temp-l"), et=D.getElementById("etat-terre"), jg=D.getElementById("jauge"),
+      arc=svgA&&svgA.querySelector(".arc"), num=svgA&&svgA.querySelector(".num"), ticks=svgA?svgA.querySelectorAll(".tick"):[];
+  var nE=etapes.length, actuel=-1, tAff=20, tAnim=null, tMot=null;
+  function fmt(n){n=Math.round(n);return n>=1000?Math.floor(n/1000)+" "+String(n%1000).padStart(3,"0"):String(n);}
+  function versTemp(c){
+    if(tAnim)cancelAnimationFrame(tAnim);
+    if(reduit){tAff=c;tv.textContent=fmt(c);return;}
+    var a=tAff,t0=performance.now(),du=1100;
+    (function pas(t){var p=Math.min(1,(t-t0)/du),e=1-Math.pow(1-p,3);tAff=a+(c-a)*e;tv.textContent=fmt(tAff);if(p<1)tAnim=requestAnimationFrame(pas);})(t0);
+  }
+  function versMot(txt){
+    if(tv.textContent===txt)return;
+    if(reduit){tv.textContent=txt;return;}
+    clearTimeout(tMot);tv.classList.add("bascule");
+    tMot=setTimeout(function(){tv.textContent=txt;tv.classList.remove("bascule");},300);
+  }
+  function activer(i){
+    if(i===actuel||!etapes[i])return;actuel=i;
+    etapes.forEach(function(li,k){li.classList.toggle("actif",k===i);});
+    var li=etapes[i],t=li.getAttribute("data-t"),part=(i+1)/nE;
+    if(svgA)svgA.setAttribute("data-etape",i+1);
+    if(tl)tl.textContent=li.getAttribute("data-l");
+    if(et)et.textContent=li.getAttribute("data-e");
+    if(tv){ if(t!==null){versTemp(+t);part=+t/1300;} else versMot(li.getAttribute("data-v")||""); }
+    if(jg)jg.style.transform="scaleX("+Math.max(.015,Math.min(1,part))+")";
+    if(arc)arc.style.strokeDashoffset=String(1-(i+1)/nE);
+    if(num)num.textContent=(i+1<10?"0":"")+(i+1);
+    for(var k=0;k<ticks.length;k++){ticks[k].classList.toggle("fait",k<i);ticks[k].classList.toggle("ici",k===i);}
+  }
+  function quelleEtape(){
+    if(!nE)return;
+    var ref=innerHeight*(innerWidth<900?0.68:0.5),best=0,bd=1e9;
+    etapes.forEach(function(li,k){var b=li.getBoundingClientRect(),c=innerWidth<900?b.top+80:b.top+b.height/2,d=Math.abs(c-ref);if(d<bd){bd=d;best=k;}});
+    activer(best);
+  }
+  var tic=false;
+  addEventListener("scroll",function(){if(!tic){tic=true;requestAnimationFrame(function(){tic=false;quelleEtape();});}},{passive:true});
+  addEventListener("resize",quelleEtape);quelleEtape();
+
+  /* --- illustration SVG : léger relief au pointeur (calques [data-p]) --- */
+  var sc=D.querySelector(".scene"), cal=sc?sc.querySelectorAll("[data-p]"):[];
+  if(cal.length&&!reduit&&matchMedia("(hover:hover)").matches){
+    sc.addEventListener("pointermove",function(e){var b=sc.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;
+      cal.forEach(function(c){var p=+c.getAttribute("data-p")||0;c.style.translate=(x*p*22).toFixed(1)+"px "+(y*p*12).toFixed(1)+"px";});});
+    sc.addEventListener("pointerleave",function(){cal.forEach(function(c){c.style.translate="0px 0px";});});
+  }
+
+  /* ================= le tour du potier (canvas[data-tour], céramiste seulement) ================= */
+  var cv=D.querySelector("canvas[data-tour]");
+  if(cv&&cv.getContext){
+  var cx2=cv.getContext("2d");
+  var N=48,r=new Float32Array(N),cible=new Float32Array(N),dpr=Math.min(2,window.devicePixelRatio||1),W=0,H=0;
+  function g(u,m,s){var x=(u-m)/s;return Math.exp(-x*x);}
+  var formes=[
+    function(u){return .10+.27*g(u,.33,.25)+.02+.06*g(u,1,.07);},   /* bouteille */
+    function(u){return .15+.29*Math.pow(u,.7);},                     /* jatte */
+    function(u){return .13+.25*g(u,.58,.3)+.07*g(u,1,.06);}          /* jarre */
+  ];
+  var matieres=[
+    {c:[123,102,86],sh:.30,tr:1,lab:"terre"},
+    {c:[221,183,155],sh:.06,tr:.5,lab:"biscuit"},
+    {c:[141,180,158],sh:.55,tr:.25,lab:"celadon"}
+  ];
+  var mat=0,col=[123,102,86],brill=.3,stri=1;
+  function poserForme(k){for(var i=0;i<N;i++)cible[i]=Math.max(.06,Math.min(.46,formes[k](i/(N-1))));}
+  poserForme(0);
+  for(var i=0;i<N;i++)r[i]=cible[i];
+  /* grains de chamotte : hauteur, angle, taille */
+  var grains=[];for(i=0;i<170;i++)grains.push([Math.random()*.96+.02,Math.random()*6.283,Math.random()*1.4+.5,Math.random()<.2]);
+  function taille(){var b=cv.getBoundingClientRect();W=b.width;H=b.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);}
+  taille();addEventListener("resize",taille);
+
+  var ang=0,t0=performance.now(),debut=t0,prise=false,px=-1,py=-1,modeleA=-1e9,auto=0,autoT=t0;
+  var geo={cx:0,base:0,h:0,s:0};
+  function rayon(u){u=Math.max(0,Math.min(1,u))*(N-1);var a=Math.floor(u),b=Math.min(N-1,a+1),t=u-a;return r[a]*(1-t)+r[b]*t;}
+
+  function dessiner(t){
+    var dt=Math.min(.05,(t-t0)/1000);t0=t;
+    var e=reduit?1:Math.min(1,(t-debut)/1700),ee=1-Math.pow(1-e,3);
+    if(!reduit)ang+=dt*(prise?3.2:2.2);
+    var m=matieres[mat];for(var k=0;k<3;k++)col[k]+=(m.c[k]-col[k])*Math.min(1,dt*4);
+    brill+=(m.sh-brill)*Math.min(1,dt*4);stri+=(m.tr-stri)*Math.min(1,dt*4);
+    if(!reduit&&!prise&&t-modeleA>9000&&t-autoT>6500){autoT=t;auto=(auto+1)%3;poserForme(auto);majBoutons();}
+    if(!prise){for(i=0;i<N;i++)r[i]+=(cible[i]-r[i])*Math.min(1,dt*2.2);}
+
+    var c=cx2;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+    var S=Math.min(H*.6,W*.95),cx=W/2,base=H*.8,hp=S*(.28+.72*ee),tilt=.17;
+    geo.cx=cx;geo.base=base;geo.h=hp;geo.s=S;
+    var mott=1-ee;
+    function R(u){return S*(rayon(u)*(1-mott)+(.36-.2*u)*mott);}
+
+    var rw=Math.min(W*.46,S*.62),th=12;
+    c.fillStyle="rgba(30,27,24,.16)";c.beginPath();c.ellipse(cx,base+th+16,rw*1.18,rw*1.18*tilt,0,0,6.283);c.fill();
+    c.fillStyle="#3D4943";c.beginPath();c.ellipse(cx,base+th+8,rw*1.08,rw*1.08*tilt,0,0,6.283);c.fill();
+    c.fillStyle="#2A332F";c.beginPath();c.ellipse(cx,base+th+5,rw*.98,rw*.98*tilt,0,0,6.283);c.fill();
+    c.fillStyle="#4A4C49";c.beginPath();c.ellipse(cx,base+th,rw,rw*tilt,0,0,Math.PI);c.lineTo(cx-rw,base);c.ellipse(cx,base,rw,rw*tilt,0,Math.PI,0,true);c.closePath();c.fill();
+    var gg=c.createLinearGradient(cx-rw,0,cx+rw,0);gg.addColorStop(0,"#6E716C");gg.addColorStop(.4,"#A9ABA4");gg.addColorStop(1,"#5F625D");
+    c.fillStyle=gg;c.beginPath();c.ellipse(cx,base,rw,rw*tilt,0,0,6.283);c.fill();
+    c.strokeStyle="rgba(40,40,38,.35)";c.lineWidth=1;
+    [.82,.62,.42].forEach(function(f){c.beginPath();c.ellipse(cx,base,rw*f,rw*f*tilt,0,0,6.283);c.stroke();});
+    c.strokeStyle="rgba(255,255,255,.55)";c.lineWidth=2;
+    for(k=0;k<6;k++){var a=ang+k*1.047;c.beginPath();c.ellipse(cx,base,rw*.9,rw*.9*tilt,0,a,a+.22);c.stroke();}
+    var r0=R(0);
+    c.fillStyle="rgba("+(col[0]|0)+","+(col[1]|0)+","+(col[2]|0)+","+(.35*stri)+")";c.beginPath();c.ellipse(cx,base,r0*1.25,r0*1.25*tilt,0,0,6.283);c.fill();
+    c.fillStyle="rgba(20,18,16,.35)";c.beginPath();c.ellipse(cx+4,base+2,r0*1.05,r0*1.05*tilt,0,0,6.283);c.fill();
+
+    var top=base-hp,rt=R(1),pas=36,ys=[],rs=[];
+    for(i=0;i<=pas;i++){var u=i/pas;ys.push(base-u*hp);rs.push(R(u));}
+    c.beginPath();c.moveTo(cx-rs[0],ys[0]);
+    for(i=1;i<=pas;i++)c.lineTo(cx-rs[i],ys[i]);
+    c.ellipse(cx,top,rt,rt*tilt,0,Math.PI,2*Math.PI);
+    for(i=pas;i>=0;i--)c.lineTo(cx+rs[i],ys[i]);
+    c.ellipse(cx,base,rs[0],rs[0]*tilt,0,0,Math.PI);
+    c.closePath();
+    c.save();c.clip();
+    var C=function(f,a){return "rgba("+Math.min(255,col[0]*f|0)+","+Math.min(255,col[1]*f|0)+","+Math.min(255,col[2]*f|0)+","+(a==null?1:a)+")";};
+    var lg=c.createLinearGradient(-1,0,1,0);
+    lg.addColorStop(0,C(.42));lg.addColorStop(.18,C(.85));lg.addColorStop(.3,C(1.08+brill*.5));lg.addColorStop(.36,C(1.12+brill*1.1));lg.addColorStop(.44,C(1.04));lg.addColorStop(.75,C(.72));lg.addColorStop(.93,C(.5));lg.addColorStop(1,C(.62));
+    c.fillStyle=lg;
+    var y0=top-rt*tilt-2,y1=base+rs[0]*tilt+2,st=2;
+    for(var y=y0;y<y1;y+=st){
+      var uu=(base-y)/hp,rr=R(uu),rr2=R(uu+.02),pente=(rr2-rr)/(hp*.02);
+      c.setTransform(dpr*rr,0,0,dpr,dpr*cx,dpr*y);c.fillRect(-1,0,2,st+.6);
+      c.setTransform(dpr,0,0,dpr,0,0);
+      if(pente>0){c.fillStyle="rgba(20,14,10,"+Math.min(.42,pente*.32)+")";c.fillRect(cx-rr,y,rr*2,st+.6);c.fillStyle=lg;}
+      else if(pente<0){c.fillStyle="rgba(255,250,240,"+Math.min(.14,-pente*.1)+")";c.fillRect(cx-rr,y,rr*2,st+.6);c.fillStyle=lg;}
+    }
+    c.setTransform(dpr,0,0,dpr,0,0);
+    c.lineWidth=1.3;
+    for(k=1;k<16;k++){var uk=k/16,yk=base-uk*hp,rk=R(uk);
+      c.strokeStyle="rgba(30,22,16,"+(.28*stri)+")";c.beginPath();c.ellipse(cx,yk,rk,rk*tilt,0,.15,Math.PI-.15);c.stroke();
+      c.strokeStyle="rgba(255,250,240,"+(.12*stri)+")";c.beginPath();c.ellipse(cx,yk+1.6,rk,rk*tilt,0,.25,Math.PI*.6);c.stroke();}
+    c.lineWidth=2.2;
+    for(var sp=0;sp<3;sp++){
+      for(var q=0;q<40;q++){var ua=.05+q*.022,th1=ang+sp*2.1+ua*5,za=Math.cos(th1);
+        if(za<=0.05)continue;var ra=R(ua);
+        var xa=cx+ra*Math.sin(th1),ya=base-ua*hp+ra*tilt*za;
+        var ub=ua+.022,th2=ang+sp*2.1+ub*5,rb=R(ub),xb=cx+rb*Math.sin(th2),yb=base-ub*hp+rb*tilt*Math.cos(th2);
+        c.strokeStyle="rgba(25,18,12,"+(za*.28*stri)+")";c.beginPath();c.moveTo(xa,ya);c.lineTo(xb,yb);c.stroke();}
+    }
+    for(k=0;k<grains.length;k++){var gr=grains[k],tg=gr[1]+ang,z=Math.cos(tg);if(z<.08)continue;
+      var rg=R(gr[0]),xg=cx+rg*Math.sin(tg)*.985,yg=base-gr[0]*hp+rg*tilt*z;
+      c.fillStyle=gr[3]?"rgba(255,245,230,"+(z*.55*Math.max(.25,stri))+")":"rgba(25,16,10,"+(z*.5*Math.max(.3,stri))+")";
+      c.beginPath();c.arc(xg,yg,gr[2]*(.6+.4*z),0,6.283);c.fill();}
+    if(brill>.2){c.fillStyle="rgba(255,255,255,"+((brill-.2)*1.1)+")";
+      for(y=y0;y<y1;y+=st){var ur=(base-y)/hp,rx=R(ur);c.fillRect(cx-rx*.42,y,rx*.07,st+.6);}}
+    c.restore();
+
+    var ep=Math.max(4,rt*.12);
+    var gi=c.createLinearGradient(0,top-rt*tilt,0,top+rt*tilt);gi.addColorStop(0,C(.62));gi.addColorStop(.55,C(.28));gi.addColorStop(1,C(.16));
+    c.fillStyle=gi;c.beginPath();c.ellipse(cx,top,Math.max(1,rt-ep),Math.max(1,(rt-ep)*tilt),0,0,6.283);c.fill();
+    c.strokeStyle=C(1.25,.9);c.lineWidth=2;c.beginPath();c.ellipse(cx,top,rt-ep/2,(rt-ep/2)*tilt,0,0,Math.PI);c.stroke();
+    c.strokeStyle=C(.55,.8);c.lineWidth=1.2;c.beginPath();c.ellipse(cx,top,rt,rt*tilt,0,Math.PI,2*Math.PI);c.stroke();
+
+    if(px>=0&&!reduit){
+      var on=py>top-10&&py<base+6;
+      c.strokeStyle=on?"rgba(46,92,76,.9)":"rgba(30,27,24,.35)";c.lineWidth=2;
+      c.beginPath();c.arc(px,py,prise?13:18,0,6.283);c.stroke();
+      if(prise){c.fillStyle="rgba(46,92,76,.25)";c.fill();}
+    }
+    requestAnimationFrame(dessiner);
+  }
+  requestAnimationFrame(dessiner);
+
+  var indice=D.getElementById("indice");
+  function pos(e){var b=cv.getBoundingClientRect();px=e.clientX-b.left;py=e.clientY-b.top;}
+  function modeler(){
+    var u=(geo.base-py)/geo.h;if(u<-.05||u>1.05)return;
+    var R0=Math.abs(px-geo.cx)/geo.s;R0=Math.max(.06,Math.min(.46,R0));
+    for(var i=0;i<N;i++){var w=g(i/(N-1),u,.11);if(i===0)w*=.5;r[i]+=(R0-r[i])*w*.32;}
+    for(i=1;i<N-1;i++)r[i]=r[i]*.8+(r[i-1]+r[i+1])*.1;
+    for(i=0;i<N;i++)cible[i]=r[i];
+    modeleA=performance.now();
+  }
+  cv.addEventListener("pointerdown",function(e){prise=true;cv.classList.add("prise");pos(e);try{cv.setPointerCapture(e.pointerId);}catch(_){}modeler();if(indice)indice.classList.add("cache");D.querySelectorAll(".forme").forEach(function(b){b.setAttribute("aria-pressed","false");});});
+  cv.addEventListener("pointermove",function(e){pos(e);if(prise)modeler();});
+  function lacher(){prise=false;cv.classList.remove("prise");}
+  cv.addEventListener("pointerup",lacher);cv.addEventListener("pointercancel",function(){lacher();px=-1;});
+  cv.addEventListener("pointerleave",function(){if(!prise)px=-1;});
+
+  function majBoutons(){D.querySelectorAll(".forme").forEach(function(b){b.setAttribute("aria-pressed",String(+b.getAttribute("data-forme")===auto));});}
+  D.querySelectorAll(".forme").forEach(function(b){b.addEventListener("click",function(){auto=+b.getAttribute("data-forme");poserForme(auto);majBoutons();modeleA=performance.now();});});
+  D.querySelectorAll(".pas").forEach(function(b){b.addEventListener("click",function(){mat=+b.getAttribute("data-mat");D.querySelectorAll(".pas").forEach(function(x){x.setAttribute("aria-pressed",String(x===b));});});});
+  }
+
+  }catch(err){ toutMontrer(); if(window.console)console.error(err); }
+})();
+</script>
+</body>
+</html>
