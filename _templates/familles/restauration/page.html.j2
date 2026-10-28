@@ -18,8 +18,10 @@
 {% endif %}
 {% if ns.k %}{% set l1 = mots[:ns.k]|join(" ") %}{% set l2 = mots[ns.k:]|join(" ") %}{% else %}{% set l1 = N %}{% set l2 = "" %}{% endif %}
 {% set eff = [l1|length, (l2|length * 0.62)|round(0, 'ceil')|int]|max %}
-{% set plus_long = ([0] + (mots|map('length')|list))|max %}
-{% set t_cl = "t-xxl" if (eff > 24 or plus_long > 16) else ("t-xl" if (eff > 17 or plus_long > 13) else ("t-l" if eff > 12 else "")) %}
+{% set l1_long = ([0] + (l1.split()|map('length')|list))|max %}
+{% set l2_long = (([0] + (l2.split()|map('length')|list))|max * 0.62)|round(0, 'ceil')|int %}
+{% set plus_long = [l1_long, l2_long]|max %}
+{% set t_cl = "t-xxl" if (eff > 24 or plus_long > 15) else ("t-xl" if (eff > 17 or plus_long > 12) else ("t-l" if (eff > 12 or plus_long > 9) else "")) %}
 {# ---- monogramme ---- #}
 {% set ini = namespace(s="") %}
 {% for w in mots %}{% set w2 = w.replace("L'","").replace("l'","").replace("D'","").replace("d'","") %}{% if w|lower not in petits and w2 and w2[0].isalnum() and ini.s|length < 2 %}{% set ini.s = ini.s ~ w2[0]|upper %}{% endif %}{% endfor %}
@@ -137,7 +139,7 @@ button{font:inherit}
 .ouv__in>*{min-width:0}
 .ouv__in{position:relative;display:grid;gap:var(--s6);padding-top:clamp(40px,7vw,96px);padding-bottom:clamp(40px,6vw,88px)}
 @media (min-width:980px){.ouv__in{grid-template-columns:1.15fr .85fr;align-items:center;min-height:calc(100vh - 68px);gap:var(--s7)}}
-.ouv h1{margin-top:var(--s4);font-size:clamp(46px,8.4vw,112px);line-height:.95;color:var(--craie);overflow-wrap:break-word;hyphens:auto}
+.ouv h1{margin-top:var(--s4);font-size:clamp(46px,8.4vw,112px);line-height:.95;color:var(--craie);overflow-wrap:break-word;hyphens:manual}
 .ouv h1.t-l{font-size:clamp(40px,6.6vw,90px)}
 .ouv h1.t-xl{font-size:clamp(34px,5.2vw,72px);line-height:1}
 .ouv h1.t-xxl{font-size:clamp(28px,3.3vw,48px);line-height:1.04}

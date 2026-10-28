@@ -1,167 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atypique détour — chambres d&#39;hôtes dans les Hautes-Alpes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atypique détour, chambres d&#39;hôtes dans les Hautes-Alpes</title>
 <meta name="description" content="Atypique détour, chambres d&#39;hôtes dans les Hautes-Alpes. Les chambres et réserver.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --encre:#101A2E; --encre-2:#182642; --cuivre:#E67E3D; --cuivre-sombre:#9C4712;
-  --txt-accent:#1A1002; --brume:#AEB6C4; --brume-clair:#DCE1E8; --bord-fantome:#3A4A66;
-  --creme:#F3F4F2; --creme-2:#E8EAE7; --blanc:#FFFFFF; --bord:#D3D6D1;
-  --texte:#22262B; --texte-2:#555B62;
-  --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --s8:64px; --s9:96px;
-  --large:1120px; --r:10px;
-  --f-titre:'Fraunces',Georgia,'Times New Roman',serif;
-  --f-texte:'Work Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
-}
-:root{
-  --encre:#143398;         /* outremer : bandeau, ouverture, contact */
-  --encre-2:#1C43BC;       /* le meme bleu, un cran plus vif : bandeau de faits */
-  --cuivre:#FFC42E;        /* jaune de securite, sur les fonds bleus */
-  --cuivre-sombre:#7A5409; /* le meme jaune, cuit au brou, sur les fonds clairs */
-  --txt-accent:#20180A;    /* texte sur l'aplat jaune */
-  --brume:#A9BAE2;         /* texte secondaire sur le bleu */
-  --brume-clair:#D5DFF6;   /* texte courant sur le bleu */
-  --bord-fantome:#7A91D7;  /* filet discret sur l'aplat */
-  --creme:#F2F4F7;         /* le papier : gris froid, aucune trace de beige */
-  --creme-2:#E5E8EE;       /* seconde teinte claire : section horaires */
-  --blanc:#FFFFFF;         /* cartes */
-  --bord:#D4D9E2;          /* filets sur fond clair */
-  --texte:#2B3240;         /* texte courant sur fond clair */
-  --texte-2:#535B6A;       /* texte discret sur fond clair */
-}
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
-body{margin:0;font-family:var(--f-texte);font-size:17px;line-height:1.6;color:var(--texte);background:var(--creme);overflow-x:hidden}
-svg{display:block}
-a{color:inherit}
-h1,h2,h3{font-family:var(--f-titre);font-weight:700;line-height:1.12;margin:0;color:var(--encre)}
-p{margin:0}
-ul,ol,dl,dd{margin:0;padding:0;list-style:none}
-:focus-visible{outline:3px solid var(--cuivre-sombre);outline-offset:3px}
-.sombre :focus-visible{outline-color:var(--cuivre)}
-.saut{position:absolute;left:-9999px}.saut:focus{left:var(--s4);top:var(--s4);z-index:99;background:var(--blanc);padding:var(--s3) var(--s4)}
-.env{max-width:var(--large);margin:0 auto;padding:0 var(--s4)}
-@media (min-width:720px){.env{padding:0 var(--s6)}}
-.sombre{background:var(--encre);color:var(--brume-clair)}
-.sombre h1,.sombre h2,.sombre h3{color:var(--blanc)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:48px;padding:0 var(--s5);border-radius:999px;font-weight:600;text-decoration:none;border:2px solid transparent;font-size:16px;cursor:pointer;font-family:inherit;transition:transform .15s}
-.btn:hover{transform:translateY(-2px)}
-.btn--c{background:var(--cuivre);color:var(--txt-accent)}
-.btn--f{border-color:var(--bord-fantome);color:var(--blanc);background:transparent}
-.btn--o{border-color:var(--encre);color:var(--encre);background:transparent}
-/* en-tete */
-.hdr{position:sticky;top:0;z-index:20;background:var(--encre);color:var(--blanc);border-bottom:1px solid var(--bord-fantome)}
-.hdr__in{display:flex;align-items:center;gap:var(--s4);min-height:64px}
-.mq{display:flex;align-items:center;gap:var(--s3);text-decoration:none;margin-right:auto;min-width:0}
-.mq svg{flex:none;width:30px;height:30px;stroke:var(--cuivre)}
-.mq__n{display:block;font-family:var(--f-titre);font-weight:700;font-size:18px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:56vw}
-.mq__v{display:block;font-size:13px;color:var(--brume)}
-.nav{display:none;gap:var(--s5)}
-.nav a{text-decoration:none;font-size:15px;color:var(--brume-clair)}
-.nav a:hover{color:var(--cuivre)}
-.hdr__tel{display:none;text-decoration:none;font-weight:700;color:var(--cuivre)}
-@media (min-width:900px){.nav{display:flex}.hdr__tel{display:block}}
-/* ouverture */
-.ouv{padding:var(--s8) 0 var(--s8)}
-.ouv__in{display:grid;gap:var(--s7);align-items:center}
-@media (min-width:900px){.ouv__in{grid-template-columns:1.25fr 1fr}.ouv{padding:var(--s9) 0}}
-.surt{display:inline-block;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--cuivre);font-weight:600;margin-bottom:var(--s4)}
-.ouv h1{font-size:clamp(34px,7vw,60px);overflow-wrap:anywhere}
-.ouv__t{margin-top:var(--s5);font-size:19px;max-width:34em;color:var(--brume-clair)}
-.ouv__a{display:flex;flex-wrap:wrap;gap:var(--s3);margin-top:var(--s6)}
-.fiche{background:var(--encre-2);border:1px solid var(--bord-fantome);border-radius:var(--r);padding:var(--s6);transform:rotate(-1.2deg);box-shadow:0 18px 40px rgba(0,0,0,.25)}
-.fiche svg{width:48px;height:48px;stroke:var(--cuivre);margin-bottom:var(--s4)}
-.fiche dl div{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s3) 0;border-top:1px dashed var(--bord-fantome)}
-.fiche dt{color:var(--brume)}
-.fiche dd{color:var(--blanc);font-weight:600;text-align:right;min-width:0}
-.fiche dl div{flex-wrap:wrap}
-.etat{font-weight:600}
-.pastille{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px;vertical-align:1px;background:var(--brume)}
-.etat--oui .pastille{background:#3FBF6F}
-.etat--non .pastille{background:#E0574A}
-/* faits */
-.faits{background:var(--encre-2);color:var(--brume-clair);border-top:1px solid var(--bord-fantome)}
-.faits__g{display:grid;gap:var(--s4);padding-top:var(--s5);padding-bottom:var(--s5)}
-@media (min-width:720px){.faits__g{grid-template-columns:repeat(3,1fr)}}
-.faits b{display:block;color:var(--blanc);font-size:17px}
-.faits span{font-size:15px;color:var(--brume)}
-/* sections */
-.sec{padding:var(--s8) 0}
-@media (min-width:900px){.sec{padding:var(--s9) 0}}
-.tete{max-width:44em;margin-bottom:var(--s7)}
-.tete h2{font-size:clamp(28px,4.5vw,42px)}
-.chapo{margin-top:var(--s4);color:var(--texte-2);font-size:18px}
-.cartes{display:grid;gap:var(--s5)}
-@media (min-width:820px){.cartes{grid-template-columns:repeat(3,1fr)}}
-.carte{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:var(--s6);transition:transform .2s,box-shadow .2s}
-.carte:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.08)}
-.carte i{display:block;font-style:normal;font-family:var(--f-titre);font-size:15px;color:var(--cuivre-sombre);font-weight:700;margin-bottom:var(--s3)}
-.carte h3{font-size:22px;margin-bottom:var(--s3)}
-.carte p{color:var(--texte-2)}
-.pied-cartes{margin-top:var(--s6);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;color:var(--texte-2);font-size:15px}
-.pied-cartes a{color:var(--cuivre-sombre);font-weight:600}
-.prep{background:var(--creme-2)}
-.etapes{display:grid;gap:var(--s5);counter-reset:e}
-@media (min-width:820px){.etapes{grid-template-columns:repeat(3,1fr)}}
-.etapes li{counter-increment:e;padding-top:var(--s5);border-top:3px solid var(--encre)}
-.etapes li::before{content:counter(e,decimal-leading-zero);display:block;font-family:var(--f-titre);font-size:30px;color:var(--cuivre-sombre);margin-bottom:var(--s2)}
-.etapes h3{font-size:21px;margin-bottom:var(--s2)}
-.etapes p{color:var(--texte-2)}
-.duo{display:grid;gap:var(--s5)}
-@media (min-width:820px){.duo{grid-template-columns:1fr 1fr}}
-.pan{background:var(--blanc);border:1px solid var(--bord);border-radius:var(--r);padding:var(--s6)}
-.pan h3{font-size:22px;margin-bottom:var(--s4)}
-.hor div{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s2) 0;border-bottom:1px solid var(--bord)}
-.hor dt{font-weight:600}.hor dd{color:var(--texte-2);text-align:right}
-.hor--off dd{color:var(--texte-2);font-style:italic}
-.hor--jour{background:var(--creme);margin:0 calc(-1*var(--s3));padding-left:var(--s3)!important;padding-right:var(--s3)!important;border-radius:6px}
-.adr{font-style:normal;font-size:19px;margin-bottom:var(--s5)}
-.pan__a{display:flex;flex-wrap:wrap;gap:var(--s3)}
-.pan__n{margin-top:var(--s5);color:var(--texte-2);font-size:15px}
-.pan .etat{margin-bottom:var(--s4)}
-/* contact */
-.ctc{display:grid;gap:var(--s7)}
-@media (min-width:900px){.ctc{grid-template-columns:1fr 1.1fr}}
-.ctc h2{font-size:clamp(28px,4.5vw,42px)}
-.ctc__tel{display:inline-block;margin-top:var(--s5);font-family:var(--f-titre);font-size:clamp(30px,6vw,44px);color:var(--cuivre);text-decoration:none;font-weight:700}
-.ctc__l{margin-top:var(--s5);display:flex;gap:var(--s3);color:var(--brume-clair)}
-.ctc__l svg{flex:none;width:22px;height:22px;stroke:var(--cuivre);margin-top:3px}
-.ctc__l b{display:block;color:var(--blanc)}
-.form{background:var(--blanc);color:var(--texte);border-radius:var(--r);padding:var(--s6)}
-.form h3{font-size:24px;color:var(--encre)}
-.form__s{color:var(--texte-2);font-size:15px;margin:var(--s2) 0 var(--s5)}
-.ch{display:grid;gap:var(--s4)}
-@media (min-width:600px){.ch{grid-template-columns:1fr 1fr}}
-.f{display:flex;flex-direction:column;gap:6px;margin-top:var(--s4)}
-.ch .f{margin-top:0}
-.f label{font-weight:600;font-size:15px}
-.f input,.f select,.f textarea{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--bord);border-radius:8px;background:var(--creme);color:var(--texte);width:100%}
-.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--cuivre-sombre);outline:none}
-.fret{margin-top:var(--s4);font-weight:600;color:var(--cuivre-sombre)}
-/* bon de travail : jamais visible du prospect sans ?notes */
-.perso{display:none;background:#FFF8D6;color:#2A2410;border-top:4px dashed #8A6D00}
-.perso.ouvert{display:block}
-.perso h2{color:#2A2410;font-size:28px;margin-bottom:var(--s4)}
-.perso ul{margin-top:var(--s5);display:grid;gap:var(--s3)}
-.perso li b{display:block}
-.perso__url{margin-top:var(--s3);font-size:15px}
-/* pied, barre mobile */
-.pied{background:var(--encre);color:var(--brume);font-size:14px;padding:var(--s6) 0 calc(var(--s6) + 72px)}
-.pied__in{display:flex;flex-wrap:wrap;gap:var(--s3) var(--s6);justify-content:space-between}
-@media (min-width:900px){.pied{padding-bottom:var(--s6)}}
-.bmob{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);padding:var(--s2) var(--s3);background:var(--encre);border-top:1px solid var(--bord-fantome)}
-.bmob .btn{min-height:46px;padding:0 var(--s3);font-size:15px}
-@media (min-width:900px){.bmob{display:none}}
-.apparait{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
-.apparait.vu{opacity:1;transform:none}
-</style>
+<!--
+  Variante B — « carnet de voyage » (famille hébergement).
+  Le carnet posé sur la table, les pages qui se tournent, la carte des alentours qui se trace au défilement.
+-->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -194,217 +41,1241 @@ ul,ol,dl,dd{margin:0;padding:0;list-style:none}
   ]
 }
 </script>
+<script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__gat)document.documentElement.classList.remove('js');},1500);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lin:#EEE5D3; --lin-2:#E4D6BE; --lin-3:#D6C3A2; --papier:#F7F1E4; --papier-2:#FBF7EE;
+  --bois:#C9A27A; --bois-2:#A97E55; --bois-3:#7C5638; --bois-4:#5A3D27;
+  --sapin:#1F4235; --sapin-2:#2F5E4B; --sapin-3:#8FA894; --sapin-pale:#DCE4DA;
+  --rouge:#A3262A; --rouge-2:#C2463F; --rouge-pale:#F1DCD6;
+  --encre:#2A231C; --texte:#43392E; --gris:#675B4C;
+  --lac:#5F8C98; --lac-pale:#A9C4C6; --ocre:#C99A3B; --tilleul:#8EA552;
+  --ok:#2B6A45; --non:#A3262A;
+  --f-livre:"Spectral","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --f-main:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+  --f-tampon:"Special Elite","Courier New",Courier,monospace;
+  --gout:max(16px,env(safe-area-inset-left)); --gout-d:max(16px,env(safe-area-inset-right));
+  --ease:cubic-bezier(.22,.8,.24,1);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .27 0 0 0 0 .17 .3 0 0 0 -.07'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --fibres:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .03' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .44 0 0 0 0 .3 .35 0 0 0 -.12'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --veines:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='600'%3E%3Cfilter id='w'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.004 .07' numOctaves='3' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .22 0 0 0 0 .1 .9 0 0 0 -.33'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23w)'/%3E%3C/svg%3E");
+  --vichy:repeating-linear-gradient(90deg,rgba(163,38,42,.55) 0 7px,transparent 7px 14px),repeating-linear-gradient(0deg,rgba(163,38,42,.55) 0 7px,rgba(251,247,238,.9) 7px 14px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;background:var(--lin) var(--grain);color:var(--texte);font:400 clamp(1.02rem,.96rem + .3vw,1.14rem)/1.65 var(--f-livre);-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-livre);color:var(--encre);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
+p{margin:0 0 1em}
+:focus-visible{outline:3px solid var(--rouge);outline-offset:3px;border-radius:2px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.evit{position:fixed;left:16px;top:-80px;z-index:100;background:var(--sapin);color:#fff;padding:12px 18px;text-decoration:none;font-weight:600}
+.evit:focus{top:16px}
+.cadre{width:min(1180px,100%);margin:0 auto;padding-left:var(--gout);padding-right:var(--gout-d)}
+.main{font-family:var(--f-main);font-weight:400;letter-spacing:0;line-height:1}
+.tampon-txt{font-family:var(--f-tampon);letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- boutons : étiquettes ---------- */
+.etq{--c:var(--rouge);position:relative;display:inline-flex;align-items:center;gap:.6em;min-height:48px;padding:.55em 1.3em .55em 2.1em;background:var(--c);color:#FFF8EE;text-decoration:none;font:600 1rem/1.2 var(--f-livre);letter-spacing:.01em;border:0;cursor:pointer;clip-path:polygon(16px 0,100% 0,100% 100%,16px 100%,0 50%);transition:transform .35s var(--ease),background .25s;transform-origin:0 50%}
+.etq::before{content:"";position:absolute;left:14px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;background:var(--lin);box-shadow:inset 0 1px 2px rgba(0,0,0,.35)}
+.etq:hover{transform:rotate(-2.5deg)}
+.etq--vert{--c:var(--sapin)}
+.etq--clair{--c:var(--papier-2);color:var(--encre);box-shadow:inset 0 0 0 1px var(--bois-2)}
+.etq--clair::before{background:var(--bois)}
+.lien{display:inline-flex;align-items:center;gap:.4em;min-height:44px;color:var(--sapin);font-weight:600;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.lien:hover{color:var(--rouge)}
+
+/* ---------- en-tête ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:40;transition:background .35s,box-shadow .35s}
+.hdr__in{display:flex;align-items:center;gap:20px;height:76px}
+.hdr.plein{background:rgba(247,241,228,.94);box-shadow:0 1px 0 var(--lin-3),0 8px 24px -16px rgba(60,40,20,.5);backdrop-filter:blur(6px)}
+.marque{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--encre);margin-right:auto;min-height:44px}
+.marque svg{width:52px;height:52px;flex:none;transition:transform .6s var(--ease)}
+.marque:hover svg{transform:rotate(-20deg)}
+.marque b{display:block;font-weight:600;font-size:1.12rem;line-height:1.1}
+.marque>span>span{display:block;font-family:var(--f-main);font-size:1.25rem;color:var(--rouge);line-height:1.1}
+.nav{display:flex;align-items:center;gap:6px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;color:var(--encre);text-decoration:none;font-size:1rem;position:relative}
+.nav a:not(.etq)::after{content:"";position:absolute;left:12px;right:12px;bottom:9px;height:2px;background:var(--rouge);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease);border-radius:2px}
+.nav a:not(.etq):hover::after{transform:scaleX(1)}
+.nav .etq{margin-left:10px;padding-left:2rem}
+.burger{display:none}
+
+/* ---------- ouverture : le carnet sur la table ---------- */
+.table{position:relative;min-height:100svh;padding:110px 0 70px;background-color:var(--bois);background-image:var(--veines),repeating-linear-gradient(180deg,transparent 0 228px,rgba(90,61,39,.45) 228px 230px,rgba(255,236,200,.18) 230px 231px),radial-gradient(120% 90% at 50% 40%,rgba(255,240,215,.28),rgba(70,40,15,.35));overflow:hidden;display:flex;align-items:center}
+.accessoire{position:absolute;pointer-events:none;will-change:transform}
+.acc-crayon{left:-30px;bottom:6%;width:min(420px,40vw);transform:rotate(-14deg)}
+.acc-feuille{right:3%;top:90px;width:clamp(110px,12vw,170px)}
+.acc-tasse{right:-70px;bottom:-60px;width:300px;opacity:.55}
+.carnet{position:relative;width:min(1140px,100%);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;filter:drop-shadow(0 30px 28px rgba(50,28,10,.45)) drop-shadow(0 4px 4px rgba(50,28,10,.3));perspective:2400px}
+.carnet__p{position:relative;background:var(--papier) var(--grain);min-height:min(640px,calc(100svh - 190px))}
+.carnet__p::before{content:"";position:absolute;inset:0;background:var(--fibres);opacity:.55;pointer-events:none}
+.carnet__g{border-radius:10px 2px 2px 10px;padding:clamp(28px,4.5vw,64px) clamp(26px,4vw,58px);display:flex;flex-direction:column;justify-content:center;background-image:linear-gradient(90deg,transparent 88%,rgba(90,60,30,.16)),var(--grain)}
+.carnet__d{border-radius:2px 10px 10px 2px;padding:clamp(22px,3vw,40px);background-image:linear-gradient(90deg,rgba(90,60,30,.2),transparent 12%),var(--grain);transform-origin:left center;display:flex;flex-direction:column;justify-content:center}
+.carnet::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:repeating-linear-gradient(180deg,rgba(90,60,30,.5) 0 10px,transparent 10px 22px);opacity:.6}
+.ruban{position:absolute;left:58%;bottom:-74px;width:26px;height:110px;background:var(--vichy);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);z-index:-1;transform-origin:top;animation:balance 6s ease-in-out infinite}
+@keyframes balance{50%{transform:rotate(4deg)}}
+.date{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:clamp(14px,2vw,26px);color:var(--gris)}
+.date .main{font-size:clamp(1.7rem,1.3rem + 1vw,2.3rem);color:var(--rouge)}
+.date .tampon-txt{font-size:.78rem}
+h1{font-size:clamp(2.7rem,1.4rem + 4.6vw,5.4rem);font-weight:500;line-height:.95;letter-spacing:-.025em}
+h1 em{display:block;font-style:italic;font-weight:400;color:var(--sapin)}
+.chapo{font-size:clamp(1.08rem,1rem + .35vw,1.25rem);max-width:30em;margin:clamp(18px,2.4vw,30px) 0 clamp(22px,3vw,34px)}
+.actions{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.vignette{position:relative;margin:0;transform:rotate(1.4deg)}
+.vignette svg{width:100%;height:auto;background:var(--papier-2);box-shadow:0 2px 0 var(--lin-3),0 10px 22px -12px rgba(60,40,20,.5)}
+.vignette figcaption{font-family:var(--f-main);font-size:1.7rem;color:var(--sapin);margin:10px 0 0 8px;transform:rotate(-1.5deg)}
+.scotch{position:absolute;width:118px;height:30px;background:rgba(214,196,160,.62);box-shadow:0 1px 2px rgba(0,0,0,.08);clip-path:polygon(0 8%,4% 0,8% 10%,12% 0,100% 0,96% 12%,100% 25%,96% 40%,100% 55%,96% 70%,100% 85%,96% 100%,0 100%,4% 85%,0 70%,4% 55%,0 40%,4% 25%);z-index:2}
+.scotch--v{background:var(--vichy);opacity:.85}
+.vignette .scotch:nth-of-type(1){top:-12px;left:-26px;transform:rotate(-32deg)}
+.vignette .scotch:nth-of-type(2){bottom:28px;right:-30px;transform:rotate(-28deg)}
+.timbre{position:absolute;width:96px;padding:7px;background:var(--papier-2);-webkit-mask:radial-gradient(circle at 5px 5px,transparent 3.2px,#000 3.7px) -5px -5px/10px 10px,linear-gradient(#000 0 0) content-box;mask:radial-gradient(circle at 5px 5px,transparent 3.2px,#000 3.7px) -5px -5px/10px 10px,linear-gradient(#000 0 0) content-box;filter:drop-shadow(0 1px 1px rgba(0,0,0,.2))}
+.timbre svg{width:100%;height:auto}
+.carnet .timbre{right:20px;top:18px;transform:rotate(5deg);z-index:3}
+.cachet{position:absolute;pointer-events:none;color:var(--rouge);opacity:.78;mix-blend-mode:multiply}
+.carnet .cachet{right:96px;top:62px;width:130px;transform:rotate(-14deg);z-index:4}
+
+/* entrée orchestrée */
+.js .carnet{opacity:0;transform:translateY(40px) rotate(-1.5deg)}
+.js .carnet__d{transform:rotateY(-92deg)}
+.js .entree{opacity:0;transform:translateY(14px)}
+.js .trait{stroke-dasharray:1;stroke-dashoffset:1}
+.js .lav{opacity:0;transform:scale(.97);transform-box:fill-box;transform-origin:center}
+.js .vignette .scotch,.js .carnet .timbre,.js .carnet .cachet{opacity:0}
+.go .carnet{opacity:1;transform:none;transition:opacity .7s,transform 1.1s var(--ease)}
+.go .carnet__d{transform:none;transition:transform 1.3s cubic-bezier(.3,.9,.3,1) .35s}
+.go .entree{opacity:1;transform:none;transition:opacity .8s,transform .9s var(--ease);transition-delay:calc(.6s + var(--i,0) * .12s)}
+.go .trait{stroke-dashoffset:0;transition:stroke-dashoffset 2s cubic-bezier(.5,0,.3,1) 1.2s}
+.go .lav{opacity:1;transform:none;transition:opacity 1.4s ease,transform 1.6s var(--ease);transition-delay:calc(2s + var(--i,0) * .16s)}
+.go .vignette .scotch{opacity:1;transition:opacity .4s 1.1s}
+.go .carnet .timbre{opacity:1;transition:opacity .5s 3.2s}
+.go .carnet .cachet{opacity:.78;animation:tamponne .5s cubic-bezier(.3,1.6,.5,1) 3.5s both}
+@keyframes tamponne{0%{opacity:0;transform:rotate(-14deg) scale(1.7)}60%{opacity:.85}100%{opacity:.78;transform:rotate(-14deg) scale(1)}}
+
+/* ---------- sections ---------- */
+.sec{position:relative;overflow-x:clip;padding:clamp(70px,9vw,130px) 0}
+.tete{max-width:640px;margin-bottom:clamp(34px,5vw,60px)}
+.tete .main{display:block;font-size:clamp(1.9rem,1.5rem + 1.4vw,2.8rem);color:var(--rouge);margin-bottom:4px;transform:rotate(-2deg);transform-origin:left}
+.tete h2{font-size:clamp(2.2rem,1.5rem + 2.6vw,3.7rem)}
+.tete p{margin-top:16px;font-size:1.1rem}
+.js .rv{opacity:0;transform:translateY(26px)}
+.rv.vu{opacity:1;transform:none;transition:opacity .8s,transform 1s var(--ease);transition-delay:calc(var(--i,0) * .12s)}
+
+/* prestations : étiquettes de bagage */
+.sejour{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,40px);align-items:start}
+.tag{position:relative;background:var(--papier-2) var(--grain);padding:56px 30px 30px;clip-path:polygon(22% 0,78% 0,100% 13%,100% 100%,0 100%,0 13%);transition:transform .5s var(--ease);transform:rotate(var(--r,0deg))}
+.tag:hover{transform:rotate(0deg) translateY(-6px)}
+.tag::before{content:"";position:absolute;left:50%;top:18px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--lin);box-shadow:inset 0 1px 3px rgba(0,0,0,.35),0 0 0 5px var(--lin-3)}
+.tag::after{content:"";position:absolute;inset:8px;border:1px dashed var(--lin-3);clip-path:inherit;pointer-events:none}
+.tag-wrap{position:relative;filter:drop-shadow(0 12px 14px rgba(60,40,20,.18))}
+.tag-wrap:nth-child(1){--r:-2deg}.tag-wrap:nth-child(2){--r:1.5deg;margin-top:34px}.tag-wrap:nth-child(3){--r:-1deg;margin-top:10px}
+.tag-wrap .tag{transform:rotate(var(--r))}
+.ficelle{position:absolute;left:50%;top:-34px;width:60px;height:60px;margin-left:-30px;z-index:2;pointer-events:none}
+.tag svg.ico{width:48px;height:48px;margin-bottom:14px;color:var(--sapin)}
+.tag h3{font-size:1.5rem;margin-bottom:10px}
+.tag p{margin:0}
+.tag--rouge{background-color:var(--rouge-pale)}
+.tag--vert{background-color:var(--sapin-pale)}
+
+/* ---------- chambres : le livre ---------- */
+.ch-sec{background:linear-gradient(180deg,var(--lin),var(--lin-2) 30%,var(--lin-2) 70%,var(--lin));position:relative}
+.livre{position:relative;width:min(1100px,100%);margin:0 auto}
+.livre[hidden]{display:none}
+.onglets{display:flex;gap:10px;padding-left:clamp(20px,8%,90px);position:relative;z-index:1}
+.onglet{min-height:46px;padding:10px 20px 18px;margin-bottom:-10px;border:0;cursor:pointer;font:500 1.05rem/1 var(--f-livre);color:#FFF8EE;background:var(--c);border-radius:6px 6px 0 0;transition:transform .3s var(--ease),filter .3s;transform:translateY(6px)}
+.onglet:nth-child(1){--c:#4E4A72}.onglet:nth-child(2){--c:var(--bois-3)}.onglet:nth-child(3){--c:var(--sapin-2)}
+.onglet:hover{transform:translateY(0)}
+.onglet[aria-selected="true"]{transform:translateY(-4px);filter:saturate(1.15)}
+.planche{position:relative;padding:14px;background:var(--bois-3);border-radius:12px;box-shadow:0 30px 40px -24px rgba(50,28,10,.65),inset 0 0 0 2px rgba(255,255,255,.08);background-image:var(--veines)}
+.spread{position:relative;display:grid;grid-template-columns:1fr 1fr;perspective:2600px;min-height:620px}
+.spread::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:60px;margin-left:-30px;background:linear-gradient(90deg,transparent,rgba(70,45,20,.22) 45%,rgba(70,45,20,.3) 50%,rgba(70,45,20,.22) 55%,transparent);pointer-events:none;z-index:6}
+.pg{position:relative;background:var(--papier) var(--grain);overflow:hidden}
+.pg--g{border-radius:6px 0 0 6px}.pg--d{border-radius:0 6px 6px 0}
+.feuille{position:absolute;top:0;bottom:0;width:50%;transform-style:preserve-3d;z-index:8;pointer-events:none}
+.feuille--d{left:50%;transform-origin:left center}
+.feuille--g{left:0;transform-origin:right center}
+.feuille--m{left:0;width:100%;transform-origin:left center}
+.face{position:absolute;inset:0;background:var(--papier) var(--grain);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.face--dos{transform:rotateY(180deg)}
+.ombre{position:absolute;inset:0;pointer-events:none;opacity:0}
+.feuille--d .face--avant .ombre,.feuille--m .face--avant .ombre{background:linear-gradient(90deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--d .face--dos .ombre,.feuille--m .face--dos .ombre{background:linear-gradient(270deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--g .face--avant .ombre{background:linear-gradient(270deg,rgba(60,35,15,.35),transparent 60%)}
+.feuille--g .face--dos .ombre{background:linear-gradient(90deg,rgba(60,35,15,.35),transparent 60%)}
+.coin{position:absolute;right:0;bottom:0;width:64px;height:64px;border:0;padding:0;cursor:pointer;z-index:9;background:linear-gradient(315deg,var(--lin-2) 0 46%,var(--lin-3) 47%,var(--papier-2) 52%,transparent 53%);transition:width .3s var(--ease),height .3s var(--ease);filter:drop-shadow(-2px -2px 3px rgba(60,40,20,.2))}
+.coin:hover,.coin:focus-visible{width:92px;height:92px}
+.coin--g{left:0;right:auto;background:linear-gradient(45deg,var(--lin-2) 0 46%,var(--lin-3) 47%,var(--papier-2) 52%,transparent 53%);filter:drop-shadow(2px -2px 3px rgba(60,40,20,.2))}
+.livre__bas{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+.fleche{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 18px;border:1px solid var(--bois-2);background:var(--papier-2);color:var(--encre);font:500 1rem var(--f-livre);cursor:pointer;border-radius:999px;transition:background .25s,transform .3s var(--ease)}
+.fleche:hover{background:var(--sapin);color:#fff;border-color:var(--sapin)}
+.fleche:disabled{opacity:.4;cursor:default;background:var(--papier-2);color:var(--encre);border-color:var(--bois-2)}
+.fleche svg{width:22px;height:22px}
+.livre__ou{font-family:var(--f-main);font-size:1.8rem;color:var(--bois-4);text-align:center}
+.ch__ill{height:100%;padding:clamp(22px,3vw,40px);display:flex;flex-direction:column;justify-content:center}
+.ch__ill figure{margin:0;position:relative;transform:rotate(-1.2deg)}
+.ch__ill svg{width:100%;height:auto;background:var(--papier-2);box-shadow:0 2px 0 var(--lin-3),0 12px 22px -14px rgba(60,40,20,.55)}
+.ch__ill figcaption{font-family:var(--f-main);font-size:1.6rem;color:var(--sapin);margin:12px 0 0 6px}
+.ch__ill .scotch{top:-12px;left:50%;margin-left:-59px;transform:rotate(-3deg)}
+.ch__txt{height:100%;padding:clamp(28px,3.4vw,52px) clamp(26px,3.4vw,54px);display:flex;flex-direction:column;justify-content:center}
+.ch__lbl{display:inline-block;align-self:flex-start;font-size:.78rem;padding:5px 10px;border:1.5px solid currentColor;color:var(--rouge);transform:rotate(-2deg);margin-bottom:18px}
+.ch__txt h3{font-size:clamp(2.2rem,1.7rem + 1.6vw,3.2rem)}
+.ch__txt .main{font-size:clamp(1.6rem,1.3rem + .8vw,2.1rem);color:var(--sapin);margin:6px 0 18px}
+.dl{margin:4px 0 24px;display:grid;grid-template-columns:auto 1fr;gap:0 18px;border-top:1px solid var(--lin-3)}
+.dl dt,.dl dd{margin:0;padding:9px 0;border-bottom:1px dashed var(--lin-3)}
+.dl dt{font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);padding-top:12px}
+.dl dd{color:var(--encre)}
+.ch-src{display:grid;gap:30px}
+.ch-src .ch{display:grid;grid-template-columns:1fr 1fr;background:var(--papier) var(--grain);box-shadow:0 20px 30px -20px rgba(60,40,20,.5)}
+.livre-on .ch-src{display:none}
+.ch-note{max-width:640px;margin:34px auto 0;text-align:center}
+.ch-note p{margin-bottom:14px}
+
+/* ---------- alentours : carte ---------- */
+.alen__grille{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(30px,4vw,64px);align-items:start}
+.carte{position:sticky;top:96px;background:var(--papier-2) var(--grain);padding:14px;box-shadow:0 2px 0 var(--lin-3),0 24px 34px -22px rgba(60,40,20,.55);transform:rotate(-.6deg)}
+.carte::before{content:"";position:absolute;inset:6px;border:1px solid var(--lin-3);pointer-events:none}
+.carte svg{width:100%;height:auto}
+.carte .scotch:nth-of-type(1){top:-14px;left:30px;transform:rotate(-6deg)}
+.carte .scotch:nth-of-type(2){top:-12px;right:24px;transform:rotate(8deg)}
+.carte text{font-family:var(--f-livre);fill:var(--encre)}
+.carte .t-main{font-family:var(--f-main);font-size:26px}
+.carte .t-it{font-style:italic;font-size:15px;fill:var(--gris)}
+.carte .t-lac{font-style:italic;font-size:15px;fill:#2F5A66}
+.etapes-carte .arret circle.c{fill:var(--papier-2);stroke:var(--rouge);stroke-width:2.5;transition:fill .4s,r .4s}
+.etapes-carte .arret.on circle.c{fill:var(--rouge)}
+.etapes-carte .arret .halo{fill:none;stroke:var(--rouge);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.etapes-carte .arret.on .halo{animation:halo .9s ease-out}
+@keyframes halo{0%{opacity:.8;transform:scale(.6)}100%{opacity:0;transform:scale(2.4)}}
+.lieux{list-style:none;margin:0;padding:0}
+.lieu{position:relative;min-height:36vh;padding:22px 0 22px 64px;display:flex;flex-direction:column;justify-content:center;border-left:2px dashed var(--lin-3);margin-left:20px;transition:opacity .4s}
+.lieu::before{content:"";position:absolute;left:-13px;top:50%;width:24px;height:24px;margin-top:-12px;border-radius:50%;background:var(--lin);border:2.5px solid var(--bois-2);transition:background .35s,border-color .35s,transform .35s var(--ease)}
+.lieu.on::before{background:var(--rouge);border-color:var(--rouge);transform:scale(1.15)}
+.js .lieu{opacity:.55}.js .lieu.on{opacity:1}
+.lieu h3{font-size:clamp(1.45rem,1.2rem + .8vw,1.9rem);margin-bottom:6px}
+.lieu .dist{display:inline-block;font-family:var(--f-main);font-size:1.7rem;color:var(--rouge);margin-bottom:6px}
+.lieu p{margin:0;max-width:30em}
+.lieu--fin{min-height:auto;border-left-color:transparent;padding-top:30px}
+.lieu--fin::before{display:none}
+.lieu--fin p{font-style:italic;color:var(--gris)}
+
+/* ---------- avant de réserver : timbres ---------- */
+.prep{background:var(--sapin);color:#E9EFE7;background-image:radial-gradient(90% 70% at 20% 0%,rgba(255,255,255,.08),transparent),var(--grain)}
+.prep .tete h2{color:#FBF7EE}.prep .tete .main{color:#F0B9AE}.prep .tete p{color:#D7E1D6}
+.timbres{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,56px)}
+.tb{text-align:left;position:relative}
+.tb .timbre{position:relative;width:min(210px,100%);padding:12px;margin-bottom:24px;transition:transform .5s var(--ease)}
+.tb:nth-child(1) .timbre{transform:rotate(-3deg)}.tb:nth-child(2) .timbre{transform:rotate(2deg)}.tb:nth-child(3) .timbre{transform:rotate(-1deg)}
+.tb:hover .timbre{transform:rotate(0) scale(1.04)}
+.tb .timbre .in{background:var(--c);aspect-ratio:4/5;display:flex;flex-direction:column;justify-content:space-between;padding:14px;color:#FFF8EE}
+.tb:nth-child(1){--c:var(--rouge)}.tb:nth-child(2){--c:var(--bois-3)}.tb:nth-child(3){--c:#3E6B8A}
+.tb .timbre svg{width:62%;margin:6px auto 0;color:#FFF8EE}
+.tb .timbre .val{font-family:var(--f-tampon);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between}
+.tb h3{color:#FBF7EE;font-size:1.6rem;margin-bottom:8px}
+.tb p{color:#D7E1D6;margin:0;max-width:22em}
+.oblit{position:absolute;right:-34px;top:30px;width:120px;opacity:.7;color:#2A231C;pointer-events:none;mix-blend-mode:multiply}
+
+/* ---------- accès ---------- */
+.acces__grille{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,4vw,64px);align-items:start}
+.fiche{position:relative;background:var(--papier-2) var(--grain);padding:clamp(28px,3.5vw,46px);box-shadow:0 2px 0 var(--lin-3),0 22px 30px -22px rgba(60,40,20,.5);background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(95,140,152,.25) 33px 34px),var(--grain);background-position:0 18px}
+.fiche::before{content:"";position:absolute;left:clamp(16px,2.4vw,30px);top:0;bottom:0;width:1px;background:rgba(163,38,42,.35)}
+.etat{display:inline-flex;flex-direction:column;align-items:flex-start;gap:6px;margin:0 0 26px}
+.etat__t{display:inline-block;font-family:var(--f-tampon);text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem;padding:8px 14px;border:3px double currentColor;transform:rotate(-3deg);color:var(--gris)}
+.etat--oui .etat__t{color:var(--ok)}.etat--non .etat__t{color:var(--non)}
+.etat.vu .etat__t{animation:tamp2 .55s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes tamp2{0%{opacity:0;transform:rotate(-3deg) scale(1.8)}100%{opacity:1;transform:rotate(-3deg) scale(1)}}
+.etat__d{font-size:1rem;color:var(--texte)}
+.horaires{list-style:none;margin:0 0 20px;padding:0}
+.horaires li{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-bottom:1px dashed var(--lin-3);flex-wrap:wrap}
+.horaires b{font-weight:500;color:var(--encre)}
+.croquis{margin:0 0 20px;background:var(--papier-2);padding:10px;box-shadow:0 2px 0 var(--lin-3);transform:rotate(.8deg)}
+.croquis text{font-family:var(--f-livre);font-style:italic;font-size:13px;fill:var(--gris)}
+.adr{font-style:normal;font-size:1.15rem;color:var(--encre);margin-bottom:16px}
+.adr .main{display:block;font-size:2rem;color:var(--rouge);margin-bottom:4px}
+
+/* ---------- contact : carte postale ---------- */
+.ctc{background:var(--lin-2)}
+.postale{position:relative;display:grid;grid-template-columns:1.1fr 1fr;background:var(--papier-2) var(--grain);box-shadow:0 2px 0 var(--lin-3),0 34px 50px -30px rgba(60,40,20,.6);padding:clamp(24px,3.4vw,48px);gap:0}
+.postale__g{padding-right:clamp(20px,3vw,44px);border-right:1px solid var(--lin-3)}
+.postale__d{padding-left:clamp(20px,3vw,44px);padding-top:120px;position:relative}
+.postale .timbre{right:0;top:0;width:96px;transform:rotate(3deg)}
+.postale .cachet{right:70px;top:24px;width:120px;transform:rotate(-12deg);opacity:.55}
+.champ{margin-bottom:18px}
+.champ label{display:block;font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin-bottom:4px}
+.champ input,.champ select,.champ textarea{width:100%;min-height:46px;border:0;border-bottom:1.5px solid var(--bois-2);background:transparent;font:400 1.08rem/1.4 var(--f-livre);color:var(--encre);padding:8px 2px;border-radius:0;transition:border-color .25s,background .25s}
+.champ select{appearance:none;-webkit-appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--bois-3) 50%),linear-gradient(135deg,var(--bois-3) 50%,transparent 50%);background-position:calc(100% - 14px) 52%,calc(100% - 8px) 52%;background-size:6px 6px;background-repeat:no-repeat;padding-right:28px}
+.champ textarea{min-height:236px;resize:vertical;line-height:34px;background:repeating-linear-gradient(180deg,transparent 0 33px,var(--lin-3) 33px 34px);border-bottom:0;padding-top:0}
+.champ input:focus,.champ select:focus,.champ textarea:focus{outline:none;border-color:var(--rouge);background-color:rgba(241,220,214,.35)}
+.champ input:focus-visible,.champ select:focus-visible,.champ textarea:focus-visible{outline:2px solid var(--rouge);outline-offset:2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.envoi{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:8px}
+.envoi small{color:var(--gris);font-size:.92rem}
+.merci{display:none;position:absolute;inset:0;z-index:5;background:rgba(251,247,238,.96);flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.merci.vis{display:flex;animation:fondu .5s ease both}
+@keyframes fondu{from{opacity:0}}
+.merci svg{width:170px;color:var(--rouge);margin-bottom:18px;animation:tamponne2 .6s cubic-bezier(.3,1.6,.5,1) .15s both}
+@keyframes tamponne2{0%{opacity:0;transform:rotate(-10deg) scale(1.8)}100%{opacity:.85;transform:rotate(-10deg) scale(1)}}
+.merci h3{font-size:2rem;margin-bottom:10px}
+.merci p{max-width:32em}
+.cote{margin-top:22px;color:var(--gris)}
+.cote b{color:var(--encre);font-weight:600}
+
+/* ---------- pied ---------- */
+.pied{background:var(--bois-4);color:#EADFCB;padding:56px 0 calc(40px + env(safe-area-inset-bottom));background-image:var(--veines)}
+.pied__in{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+.pied .main{font-size:2.2rem;color:#F0C9A6;display:block;margin-bottom:8px}
+.pied a{color:#F7EEDD;display:inline-flex;min-height:44px;align-items:center}
+.pied ul{list-style:none;margin:0;padding:0}
+.pied p{margin:0 0 6px}
+.pied small{display:block;margin-top:30px;color:#CDBDA2;grid-column:1/-1;border-top:1px solid rgba(234,223,203,.2);padding-top:18px}
+
+.barre{display:none}
+.deco-feuille{position:absolute;pointer-events:none;width:110px;opacity:.9}
+
+/* ---------- tablette / mobile ---------- */
+@media (max-width:980px){
+  .nav a:not(.etq){padding:0 8px}
+  .alen__grille{grid-template-columns:1fr}
+  .carte{position:sticky;top:64px;z-index:3;transform:none;padding:8px}
+  .lieu{min-height:30vh}
+  .acces__grille{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .hdr__in{height:64px}
+  .marque svg{width:44px;height:44px}
+  .burger{display:inline-flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;width:48px;height:48px;border:0;background:var(--papier-2);border-radius:50%;cursor:pointer;z-index:2;box-shadow:0 0 0 1px var(--lin-3)}
+  .burger span{display:block;width:22px;height:2px;background:var(--encre);transition:transform .35s var(--ease),opacity .25s}
+  .menu-ouvert .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-ouvert .burger span:nth-child(2){opacity:0}
+  .menu-ouvert .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .nav{position:fixed;inset:0;flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:90px var(--gout-d) 40px var(--gout);background:var(--papier) var(--grain);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .55s var(--ease),visibility 0s .55s}
+  .nav::before{content:"";position:absolute;left:var(--gout);right:var(--gout-d);top:76px;bottom:30px;background:repeating-linear-gradient(180deg,transparent 0 55px,rgba(95,140,152,.22) 55px 56px);pointer-events:none}
+  .menu-ouvert .nav{clip-path:inset(0);visibility:visible;transition:clip-path .55s var(--ease)}
+  .nav a:not(.etq){font-size:2rem;min-height:56px;padding:0}
+  .nav a:not(.etq)::after{left:0;right:0;bottom:8px}
+  .nav .etq{margin:20px 0 0;font-size:1.05rem}
+  .menu-ouvert .hdr{background:transparent;box-shadow:none}
+  body.menu-ouvert{overflow:hidden}
+  .barre{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:35;padding:10px var(--gout-d) calc(10px + env(safe-area-inset-bottom)) var(--gout);background:rgba(247,241,228,.96);backdrop-filter:blur(6px);box-shadow:0 -1px 0 var(--lin-3),0 -10px 24px -16px rgba(60,40,20,.5);transform:translateY(110%);transition:transform .45s var(--ease)}
+  .barre.vis{transform:none}
+  .barre a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:52px;text-decoration:none;border-radius:4px;font-weight:600;line-height:1.15}
+  .barre a small{font-weight:400;font-size:.82rem}
+  .barre .b1{background:var(--papier-2);color:var(--encre);box-shadow:inset 0 0 0 1px var(--bois-2)}
+  .barre .b2{background:var(--rouge);color:#FFF8EE}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .pied{margin-bottom:calc(-76px - env(safe-area-inset-bottom));padding-bottom:calc(110px + env(safe-area-inset-bottom))}
+
+  .table{padding:84px 0 56px;min-height:auto;display:block}
+  .carnet{grid-template-columns:1fr;perspective:none}
+  .carnet::after{display:none}
+  .carnet__d{order:-1;border-radius:10px 10px 0 0;padding:26px 22px 10px;background-image:var(--grain);min-height:0}
+  .carnet__g{border-radius:0 0 10px 10px;padding:12px 22px 34px;min-height:0;background-image:var(--grain)}
+  .js .carnet__d{transform:rotateX(-80deg);transform-origin:bottom center}
+  .go .carnet__d{transform:none}
+  .carnet .timbre{width:70px;right:10px;top:8px}
+  .carnet .cachet{width:96px;right:54px;top:30px}
+  .vignette{transform:rotate(-1deg)}
+  .vignette figcaption{font-size:1.45rem}
+  .acc-crayon{width:260px;left:-60px;bottom:6px}
+  .acc-feuille{width:90px;right:-18px;top:auto;bottom:-14px}
+  .acc-tasse{display:none}
+  .ruban{display:none}
+  .date{margin-bottom:12px}
+  .chapo{margin:16px 0 22px}
+  .actions .etq{flex:1 1 100%;justify-content:center}
+  .actions .lien{margin:0 auto}
+
+  .sejour{grid-template-columns:1fr;gap:42px}
+  .tag-wrap:nth-child(n){margin-top:0}
+  .tag-wrap:nth-child(2){margin-left:18px}
+  .tag-wrap:nth-child(1),.tag-wrap:nth-child(3){margin-right:18px}
+
+  .onglets{padding-left:10px;gap:6px}
+  .onglet{padding:10px 12px 18px;font-size:.98rem;flex:1}
+  .planche{padding:8px}
+  .spread{grid-template-columns:1fr;min-height:0}
+  .spread::after{display:none}
+  .pg--g{display:none}
+  .pg--d{border-radius:6px}
+  .ch__ill{height:auto;padding:22px 20px 4px}
+  .ch__txt{height:auto;padding:16px 22px 30px}
+  .ch-src .ch{grid-template-columns:1fr}
+  .coin{width:52px;height:52px}
+  .livre__bas .fleche span{display:none}
+  .livre__bas .fleche{width:52px;height:52px;padding:0;justify-content:center}
+  .livre__ou{font-size:1.55rem}
+
+  .timbres{grid-template-columns:1fr;gap:44px}
+  .tb{display:grid;grid-template-columns:132px 1fr;gap:20px;align-items:center}
+  .tb .timbre{margin:0;padding:8px}
+  .tb .timbre .in{padding:10px}
+  .tb .timbre .val{font-size:.6rem}
+  .oblit{width:90px;right:-30px;top:6px}
+
+  .postale{grid-template-columns:1fr;padding:22px 20px}
+  .postale__g{padding:0 0 10px;border-right:0;border-bottom:1px solid var(--lin-3);margin-bottom:22px;padding-top:96px}
+  .postale__d{padding:0}
+  .postale .timbre{width:78px}
+  .postale .cachet{width:96px;right:52px}
+  .duo{grid-template-columns:1fr 1fr;gap:0 14px}
+  .champ textarea{min-height:170px}
+  .envoi .etq{flex:1 1 100%;justify-content:center}
+
+  .pied__in{grid-template-columns:1fr}
+}
+@media (max-width:420px){
+  .duo{grid-template-columns:1fr}
+  .tb{grid-template-columns:112px 1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .rv,.js .entree,.js .lav,.js .carnet,.js .carnet__d{opacity:1!important;transform:none!important}
+  .js .trait{stroke-dashoffset:0!important}
+  .js .vignette .scotch,.js .carnet .timbre,.js .carnet .cachet{opacity:1}
+}
+/* ---------- gabarit générique : noms longs, horaires ---------- */
+h1{overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+h1.h1--m{font-size:clamp(2.4rem,1.3rem + 3.4vw,4.5rem)}
+h1.h1--l{font-size:clamp(2.1rem,1.2rem + 2.6vw,3.7rem);line-height:1}
+h1.h1--xl{font-size:clamp(1.85rem,1.1rem + 2vw,3.1rem);line-height:1.02}
+.marque>span{min-width:0}
+.marque b{overflow-wrap:anywhere}
+.marque--long b{font-size:1rem}
+.ch__txt h3{overflow-wrap:break-word}
+.horaires li.off b{color:var(--gris);font-weight:400}
+.hor-t{font-family:var(--f-tampon);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);margin:0 0 6px}
+.lieu .dist{font-size:1.9rem}
+@media (max-width:860px){
+  .marque--long b{font-size:.94rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .marque--long>span>span{font-size:1.1rem}
+  .barre--seul{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
-<a class="saut" href="#principal">Aller au contenu</a>
+<a class="evit" href="#contenu">Aller au contenu</a>
 
-<header class="hdr">
-  <div class="env hdr__in">
-    <a class="mq" href="#principal" aria-label="Atypique détour, accueil">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V8m0 6h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M7 11.5a1.5 1.5 0 1 0 0-.01"/></svg>
-      <span><span class="mq__n">Atypique détour</span><span class="mq__v">Chambres d&#39;hôtes dans les Hautes-Alpes</span></span>
+<!-- Définitions partagées : filtres aquarelle, motifs, symboles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="aq" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="3" seed="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feGaussianBlur in="d" stdDeviation="0.7" result="b"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="2" seed="11" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.35" result="ga"/>
+      <feComposite in="b" in2="ga" operator="in" result="gr"/>
+      <feMorphology in="b" operator="erode" radius="1.6" result="er"/>
+      <feComposite in="b" in2="er" operator="out" result="bord"/>
+      <feMerge><feMergeNode in="gr"/><feMergeNode in="bord"/></feMerge>
+    </filter>
+    <filter id="enc" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="2" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="encreur" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="5" result="n"/>
+      <feColorMatrix in="n" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 2" result="m"/>
+      <feComposite in="SourceGraphic" in2="m" operator="in" result="t"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="7" result="n2"/>
+      <feDisplacementMap in="t" in2="n2" scale="2.5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <pattern id="vichy" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#F3EADD"/><rect width="6" height="12" fill="#A3262A" opacity=".5"/><rect width="12" height="6" fill="#A3262A" opacity=".5"/>
+    </pattern>
+    <pattern id="vichy-v" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="#E7EDE4"/><rect width="5" height="10" fill="#2F5E4B" opacity=".45"/><rect width="10" height="5" fill="#2F5E4B" opacity=".45"/>
+    </pattern>
+    <pattern id="rayures" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#F3EADD"/><rect width="8" height="16" fill="#A3262A" opacity=".75"/>
+    </pattern>
+    <pattern id="rayures-v" width="16" height="16" patternUnits="userSpaceOnUse">
+      <rect width="16" height="16" fill="#F3EADD"/><rect width="8" height="16" fill="#2F5E4B" opacity=".7"/>
+    </pattern>
+    <symbol id="sap" viewBox="0 0 40 80"><path d="M20 0 L30 22 L25 22 L35 42 L28 42 L40 64 L23 64 L23 80 L17 80 L17 64 L0 64 L12 42 L5 42 L15 22 L10 22 Z"/></symbol>
+    <symbol id="arb" viewBox="0 0 60 80"><path d="M27 80 L28 56 C14 58 3 48 6 36 C1 24 11 12 23 13 C27 2 44 1 48 12 C59 14 63 29 55 37 C59 49 47 59 33 56 L34 80 Z"/></symbol>
+    <symbol id="logo" viewBox="0 0 100 100">
+      <path id="cercle-logo" d="M50 14 a36 36 0 1 1 -0.01 0" fill="none"/>
+      <circle cx="50" cy="50" r="47" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <text font-family="Special Elite, Courier New, monospace" font-size="8.9" letter-spacing="1.36" fill="currentColor"><textPath href="#cercle-logo">ATYPIQUE DÉTOUR · HAUTES-ALPES · </textPath></text>
+      <path d="M36 52 L50 38 L64 52 L64 50 M40 48 L40 66 L60 66 L60 48" fill="none" stroke="#1F4235" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M46 66 L46 56 L54 56 L54 66 Z" fill="#1F4235"/>
+    </symbol>
+    <symbol id="cachet" viewBox="0 0 140 140">
+      <path id="cercle-cachet" d="M70 22 a48 48 0 1 1 -0.01 0" fill="none"/>
+      <circle cx="70" cy="70" r="62" fill="none" stroke="currentColor" stroke-width="3"/>
+      <circle cx="70" cy="70" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
+      <text font-family="Special Elite, Courier New, monospace" font-size="11.5" letter-spacing="1.76" fill="currentColor"><textPath href="#cercle-cachet">HAUTES-ALPES · CHAMBRES D&#39;HÔTES · </textPath></text>
+      <text x="70" y="66" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="12" fill="currentColor">CHAMBRES</text>
+      <text x="70" y="82" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="12" fill="currentColor">D&#39;HÔTES</text>
+    </symbol>
+    <symbol id="oblit" viewBox="0 0 160 80">
+      <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-width="2.4"/>
+      <text x="40" y="43" text-anchor="middle" font-family="Special Elite, Courier New, monospace" font-size="8.3" fill="currentColor">HAUTES-ALPES</text>
+      <path d="M78 22 C95 14 110 30 125 22 S150 14 160 20 M78 40 C95 32 110 48 125 40 S150 32 160 38 M78 58 C95 50 110 66 125 58 S150 50 160 56" fill="none" stroke="currentColor" stroke-width="2.4"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="cadre hdr__in">
+    <a class="marque" href="#haut" aria-label="Atypique détour, retour en haut de page">
+      <svg viewBox="0 0 100 100" style="color:var(--rouge)" aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>Atypique détour</b><span>chambres d&#39;hôtes</span></span>
     </a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="#prestations">Séjourner</a>
-      <a href="#demande">Avant de réserver</a>
-      <a href="#horaires">Horaires et accès</a>
-      <a href="#contact">Contact</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#sejourner">Séjourner</a>
+      <a href="#chambres">Les chambres</a>
+      <a href="#alentours">Alentours</a>
+      <a href="#acces">Accès</a>
+      <a class="etq" href="#contact">Demander une disponibilité</a>
     </nav>
-<a class="hdr__tel" href="#contact">06 XX XX XX XX</a>  </div>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  </div>
 </header>
 
-<main id="principal">
+<main id="contenu">
+<!-- ====================== OUVERTURE ====================== -->
+<section class="table" id="haut" aria-labelledby="titre">
+  <!-- accessoires posés sur la table -->
+  <svg class="accessoire acc-tasse" data-px=".12" viewBox="0 0 300 300" aria-hidden="true"><circle cx="150" cy="150" r="108" fill="none" stroke="#6B4528" stroke-width="9" opacity=".35" filter="url(#aq)"/><circle cx="150" cy="150" r="96" fill="none" stroke="#6B4528" stroke-width="3" opacity=".25" filter="url(#aq)"/></svg>
+  <svg class="accessoire acc-crayon" data-px="-.08" viewBox="0 0 420 40" aria-hidden="true">
+    <path d="M0 8 L330 8 L330 32 L0 32 Z" fill="#2F5E4B"/><path d="M0 8 L330 8 L330 14 L0 14 Z" fill="#3E7560"/><path d="M0 26 L330 26 L330 32 L0 32 Z" fill="#1F4235"/>
+    <path d="M330 8 L380 18 L380 22 L330 32 Z" fill="#E2C49A"/><path d="M368 15.6 L392 20 L368 24.4 Z" fill="#2A231C"/>
+    <rect x="0" y="8" width="14" height="24" fill="#C9A27A"/><text x="60" y="25" font-family="Special Elite, monospace" font-size="11" fill="#E7D9B8" letter-spacing="2">HB · CARNET</text>
+  </svg>
+  <svg class="accessoire acc-feuille" data-px=".18" viewBox="0 0 160 200" aria-hidden="true">
+    <g filter="url(#aq)">
+      <path d="M40 30 C70 10 110 20 112 60 C114 95 80 112 70 140 C55 112 20 100 18 66 C16 46 26 38 40 30 Z" fill="#9AAE5B" opacity=".85" transform="rotate(-18 70 80)"/>
+      <path d="M96 70 C120 60 150 80 146 120 C142 150 120 168 112 190 C98 168 84 150 86 120 C88 98 86 80 96 70Z" fill="#D7C27E" opacity=".75"/>
+    </g>
+    <path d="M70 140 C68 110 64 80 54 46 M112 190 C114 160 112 120 104 80" fill="none" stroke="#5E6E35" stroke-width="1.6" filter="url(#enc)"/>
+  </svg>
 
-<section class="ouv sombre" aria-labelledby="titre">
-  <div class="env ouv__in">
-    <div>
-      <span class="surt">Chambres d&#39;hôtes dans les Hautes-Alpes</span>
-      <h1 id="titre">Atypique détour</h1>
-      <p class="ouv__t">Vous demandez vos dates, vous échangez directement avec vos hôtes.</p>
-      <div class="ouv__a">
-        <a class="btn btn--c" href="#contact">Demander une disponibilité</a>
-<a class="btn btn--f" href="#contact">Appeler le 06 XX XX XX XX</a>      </div>
-    </div>
-    <div class="fiche" aria-label="En un coup d'œil">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V8m0 6h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5M7 11.5a1.5 1.5 0 1 0 0-.01"/></svg>
-      <dl>
-        <div><dt>Activité</dt><dd>Chambres d&#39;hôtes</dd></div>
-<div><dt>Où</dt><dd>Hautes-Alpes</dd></div>        <div><dt><span id="jour">Aujourd'hui</span></dt><dd><span class="etat">sur demande</span></dd></div>
-        <div><dt>Contact</dt><dd>06 XX XX XX XX</dd></div>
-      </dl>
-    </div>
-  </div>
-</section>
-
-<section class="faits" aria-label="En bref">
-  <div class="env faits__g">
-    <div><b>Sur demande</b><span>Horaires non publiés : un message avant de passer</span></div>
-    <div><b>Un interlocuteur direct</b><span>Vous parlez directement à l&#39;établissement, pas à un standard</span></div>
-    <div><b>Hautes-Alpes</b><span>Chambres d&#39;hôtes</span></div>
-  </div>
-</section>
-
-<section class="sec" id="prestations" aria-labelledby="t-presta">
-  <div class="env">
-    <div class="tete apparait">
-      <h2 id="t-presta">Ce que fait des chambres d&#39;hôtes</h2>
-      <p class="chapo">Les grandes familles du métier. Pour savoir si votre demande en fait
-        partie, le plus simple est de poser la question.</p>
-    </div>
-    <ul class="cartes">
-      <li class="carte apparait"><i>01</i><h3>Les chambres</h3><p>Des chambres chez l&#39;habitant, petit-déjeuner selon la maison.</p></li>
-      <li class="carte apparait"><i>02</i><h3>Réserver</h3><p>Disponibilités et tarifs donnés directement par vos hôtes.</p></li>
-      <li class="carte apparait"><i>03</i><h3>Le reste, de vive voix</h3><p>Ce qui n&#39;entre dans aucune case se règle plus vite par un message qu&#39;avec une liste qui promet tout.</p></li>
-    </ul>
-    <div class="pied-cartes">
-      <p>Aucun prix n'est affiché tant qu'il n'a pas été établi par l&#39;établissement.</p>
-      <a href="#contact">Demander une disponibilité</a>
-    </div>
-  </div>
-</section>
-
-<section class="sec prep" id="demande" aria-labelledby="t-prep">
-  <div class="env">
-    <div class="tete apparait">
-      <h2 id="t-prep">Avant de réserver</h2>
-      <p class="chapo">Trois choses à avoir en tête avant d'écrire ou d'appeler.
-        Elles rendent le premier échange beaucoup plus utile.</p>
-    </div>
-    <ol class="etapes">
-<li class="apparait"><h3>Les dates</h3><p>Arrivée et départ, avec un peu de souplesse si possible.</p></li>
-<li class="apparait"><h3>Combien vous serez</h3><p>Adultes, enfants, et animaux s&#39;il y en a.</p></li>
-<li class="apparait"><h3>Vos questions</h3><p>Accès, arrivée tardive, équipement : demandez avant de réserver.</p></li>
-    </ol>
-  </div>
-</section>
-
-<section class="sec" id="horaires" aria-labelledby="t-hor">
-  <div class="env">
-    <div class="tete apparait">
-      <h2 id="t-hor">Horaires et accès</h2>
-      <p class="chapo">Un message avant de venir évite le déplacement pour rien.</p>
-    </div>
-    <div class="duo">
-      <div class="pan apparait">
-        <h3>Venir à l&#39;établissement</h3>
-        <address class="adr">XX rue de l'Exemple<br>Hautes-Alpes</address>
-        <div class="pan__a">
-          <a class="btn btn--c" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hautes-Alpes">Ouvrir l'itinéraire</a>
-          <a class="btn btn--o" href="#contact">Prévenir avant de passer</a>
+  <div class="cadre">
+    <div class="carnet">
+      <div class="carnet__p carnet__g">
+        <p class="date entree" style="--i:0"><span class="main">Carnet de séjour</span><span class="tampon-txt">Hautes-Alpes</span></p>
+        <h1 id="titre" class="entree " style="--i:1">Atypique <em>détour</em></h1>
+        <p class="chapo entree" style="--i:2">Des chambres d&#39;hôtes chez l&#39;habitant, avec le petit-déjeuner selon la maison. Vous demandez vos dates, vous échangez directement avec vos hôtes.</p>
+        <div class="actions entree" style="--i:3">
+          <a class="etq" href="#contact">Demander une disponibilité</a>
+          <a class="lien" href="#chambres">Feuilleter les chambres</a>
         </div>
-        <p class="pan__n">Les horaires ne sont pas publiés : demandez avant de vous déplacer.</p>
+      </div>
+      <div class="carnet__p carnet__d">
+        <div class="timbre" aria-hidden="true">
+          <svg viewBox="0 0 80 96"><rect width="80" height="96" fill="#1F4235"/><rect x="5" y="5" width="70" height="86" fill="none" stroke="#E7D9B8" stroke-width="1"/><circle cx="56" cy="24" r="7" fill="#C99A3B" opacity=".9"/><path d="M5 58 C18 44 30 42 42 50 C52 40 64 40 75 48 L75 70 L5 70 Z" fill="#5E7E6A"/><g fill="#8FA894"><use href="#arb" x="10" y="34" width="20" height="28"/><use href="#arb" x="50" y="38" width="17" height="24"/></g><path d="M30 64 L30 50 L40 41 L50 50 L50 64 Z" fill="#E7D9B8"/><path d="M28 51 L40 40 L52 51" fill="none" stroke="#A3262A" stroke-width="2.4"/><rect x="37" y="56" width="6" height="8" fill="#1F4235"/><text x="40" y="84" text-anchor="middle" font-family="Special Elite, monospace" font-size="8" fill="#E7D9B8">BIENVENUE</text></svg>
+        </div>
+        <svg class="cachet" viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+        <figure class="vignette">
+          <span class="scotch"></span><span class="scotch scotch--v"></span>
+          <svg viewBox="0 0 520 420" role="img" aria-label="Aquarelle : la maison aux volets rouges, son grand arbre, l'étang et les arbres derrière.">
+  <g filter="url(#aq)">
+    <path class="lav" style="--i:0" d="M10 30 C120 6 300 26 510 14 L505 175 C380 150 200 172 15 165 Z" fill="#A9C4C6" opacity=".5"/>
+    <path class="lav" style="--i:1" d="M0 178 C60 130 110 118 170 140 C230 96 300 92 360 128 C420 108 470 118 520 150 L520 236 L0 238 Z" fill="#7F9C95" opacity=".55"/>
+    <path class="lav" style="--i:2" d="M230 224 C330 214 440 216 520 222 L520 248 C430 252 330 250 230 242 Z" fill="#5F8C98" opacity=".75"/>
+    <g class="lav" style="--i:2" fill="#2F5E4B" opacity=".7">
+      <use href="#sap" x="0" y="150" width="34" height="68"/><use href="#sap" x="26" y="160" width="30" height="60"/><use href="#sap" x="50" y="146" width="36" height="72"/><use href="#sap" x="200" y="168" width="28" height="56"/><use href="#sap" x="222" y="160" width="30" height="62"/><use href="#sap" x="244" y="170" width="26" height="52"/><use href="#sap" x="400" y="150" width="34" height="68"/><use href="#sap" x="380" y="166" width="28" height="56"/>
+    </g>
+    <path class="lav" style="--i:3" d="M0 252 C120 236 300 246 520 240 L520 420 L0 420 Z" fill="#B9C07A" opacity=".55"/>
+    <path class="lav" style="--i:3" d="M0 330 C140 318 260 340 520 322 L520 420 L0 420 Z" fill="#8EA552" opacity=".4"/>
+    <g class="lav" style="--i:4">
+      <path d="M95 345 L95 272 L150 205 L205 272 L205 345 Z" fill="#E6D6B8" opacity=".85"/>
+      <path d="M205 272 L398 265 L398 345 L205 345 Z" fill="#EADFCA" opacity=".9"/>
+      <path d="M150 205 L362 196 L414 268 L205 276 Z" fill="#6E5A4C" opacity=".85"/>
+      <path d="M86 278 L150 199 L158 206 L96 284 Z" fill="#5A4638" opacity=".9"/>
+      <path d="M122 239 L150 205 L178 239 Z" fill="#B58A5E" opacity=".9"/>
+      <path d="M335 345 L335 300 Q362 278 389 300 L389 345 Z" fill="#9A7048" opacity=".9"/>
+      <rect x="300" y="174" width="15" height="26" fill="#8B7563" opacity=".9"/>
+      <g fill="#A3262A" opacity=".85"><rect x="222" y="287" width="10" height="30"/><rect x="256" y="287" width="10" height="30"/><rect x="280" y="287" width="10" height="30"/><rect x="314" y="287" width="10" height="30"/><rect x="127" y="280" width="10" height="32"/><rect x="163" y="280" width="10" height="32"/></g>
+      <g fill="#5F8C98" opacity=".6"><rect x="232" y="288" width="24" height="28"/><rect x="290" y="288" width="24" height="28"/><rect x="137" y="281" width="26" height="30"/><rect x="144" y="219" width="12" height="13"/></g>
+      <path d="M362 345 C360 372 330 392 296 420 L352 420 C366 396 376 370 376 345 Z" fill="#D9C29A" opacity=".7"/>
+    </g>
+    <g class="lav" style="--i:5">
+      <path d="M452 345 L455 255 L462 255 L464 345 Z" fill="#6B4E36" opacity=".9"/>
+      <g fill="#8EA552" opacity=".6"><circle cx="430" cy="205" r="40"/><circle cx="470" cy="182" r="42"/><circle cx="484" cy="222" r="38"/><circle cx="446" cy="236" r="34"/><circle cx="456" cy="160" r="30"/></g>
+      <g fill="#5E7E3E" opacity=".45"><circle cx="474" cy="214" r="24"/><circle cx="436" cy="190" r="18"/></g>
+    </g>
+    <g class="lav" style="--i:6" fill="#1F4235" opacity=".85">
+      <use href="#sap" x="-14" y="200" width="72" height="150"/><use href="#sap" x="40" y="250" width="48" height="104"/>
+    </g>
+  </g>
+  <g fill="none" stroke="#3A2F25" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" filter="url(#enc)">
+    <path class="trait" pathLength="1" d="M95 345 L95 272 L150 205 L205 272 L205 345 M205 276 L414 268 M150 205 L362 196 L414 268 M205 345 L398 345 L398 268"/>
+    <path class="trait" pathLength="1" d="M122 239 L178 239 M136 239 L136 222 M150 239 L150 207 M164 239 L164 222"/>
+    <path class="trait" pathLength="1" d="M190 220 L380 213 M178 236 L392 229 M192 252 L404 246"/>
+    <path class="trait" pathLength="1" d="M232 288 h24 v28 h-24 z M290 288 h24 v28 h-24 z M137 281 h26 v30 h-26 z M244 288 v28 M302 288 v28 M150 281 v30"/>
+    <path class="trait" pathLength="1" d="M335 345 L335 300 Q362 278 389 300 L389 345 M362 288 L362 345 M348 293 L348 345 M376 293 L376 345"/>
+    <path class="trait" pathLength="1" d="M300 200 L300 174 L315 174 L315 199"/>
+    <path class="trait" pathLength="1" d="M458 345 C457 300 456 280 457 258 M457 280 C445 270 438 260 432 246 M458 272 C470 262 478 252 482 240"/>
+    <path class="trait" pathLength="1" d="M300 108 l8 6 l8 -6 M330 96 l6 5 l6 -5 M120 360 l3 -10 M128 362 l2 -12 M430 372 l3 -10 M438 374 l2 -11"/>
+  </g>
+</svg>
+<figcaption>la maison, côté jardin</figcaption>
+
+        </figure>
+      </div>
+      <span class="ruban" aria-hidden="true"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== SÉJOURNER ====================== -->
+<section class="sec" id="sejourner" aria-labelledby="t-sej">
+  <svg class="deco-feuille" data-px=".1" style="right:4%;top:60px" viewBox="0 0 120 150" aria-hidden="true"><path d="M30 20 C60 2 96 16 96 52 C96 84 66 98 58 124 C46 98 14 88 12 58 C10 38 18 28 30 20 Z" fill="#9AAE5B" opacity=".7" filter="url(#aq)" transform="rotate(24 54 70)"/></svg>
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Séjourner</span>
+      <h2 id="t-sej">Chez l&#39;habitant, au calme</h2>
+      <p>Une maison habitée, des hôtes qui répondent eux-mêmes. Pas de plateforme entre vous.</p>
+    </div>
+    <div class="sejour">
+      <div class="tag-wrap rv" style="--i:0">
+        <svg class="ficelle" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 34 C20 20 10 14 4 0 M30 34 C40 22 48 12 58 2" fill="none" stroke="#A97E55" stroke-width="1.6"/></svg>
+        <article class="tag">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 38V14M5 30h38v8M43 30v-5a6 6 0 0 0-6-6H21v11M13 20a3.5 3.5 0 1 0 0 7a3.5 3.5 0 1 0 0-7"/></svg>
+          <h3>Les chambres</h3>
+          <p>Des chambres chez l&#39;habitant, petit-déjeuner selon la maison.</p>
+        </article>
+      </div>
+      <div class="tag-wrap rv" style="--i:1">
+        <svg class="ficelle" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 34 C22 18 16 10 10 0 M30 34 C36 20 44 10 52 0" fill="none" stroke="#A97E55" stroke-width="1.6"/></svg>
+        <article class="tag tag--rouge">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10h34v31H7zM7 19h34M16 6v8M32 6v8M15 27l4 4 8-8"/></svg>
+          <h3>Réserver</h3>
+          <p>Disponibilités et tarifs donnés directement par vos hôtes.</p>
+        </article>
+      </div>
+      <div class="tag-wrap rv" style="--i:2">
+        <svg class="ficelle" viewBox="0 0 60 60" aria-hidden="true"><path d="M30 34 C18 22 12 12 6 0 M30 34 C42 24 50 14 56 4" fill="none" stroke="#A97E55" stroke-width="1.6"/></svg>
+        <article class="tag tag--vert">
+          <svg class="ico" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h32v20H22l-9 8v-8H8zM16 18h16M16 23h10"/></svg>
+          <h3>Le reste, de vive voix</h3>
+          <p>Arrivée tardive, lit d&#39;appoint, chien du voyage : posez la question.</p>
+        </article>
       </div>
     </div>
   </div>
 </section>
 
-<section class="sec sombre" id="contact" aria-labelledby="t-ctc">
-  <div class="env ctc">
-    <div>
-      <h2 id="t-ctc">Écrire à Atypique détour</h2>
-<a class="ctc__tel" href="#contact">06 XX XX XX XX</a>      <p class="ctc__l">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
-        <span><b>XX rue de l'Exemple</b>Hautes-Alpes</span>
-      </p>
-      <p class="ctc__l">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-        <span><b>Sur demande</b>horaires donnés par message</span>
-      </p>
+<!-- ====================== LE LIVRE ====================== -->
+<section class="sec ch-sec" id="chambres" aria-labelledby="t-ch">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Feuilletez</span>
+      <h2 id="t-ch">Les chambres</h2>
+      <p>Une page par chambre, comme dans un carnet. Les pages ci-dessous sont des exemples de présentation : chacune se remplace par une vraie chambre, avec ses lits, sa salle d&#39;eau et sa vue.</p>
     </div>
-    <form class="form" id="dem" novalidate>
-      <h3>Demander une disponibilité</h3>
-      <p class="form__s">Votre message arrive directement chez Atypique détour, qui vous répond.</p>
-      <div class="ch">
-        <div class="f"><label for="nom">Votre nom</label>
-          <input id="nom" name="nom" type="text" autocomplete="name" required placeholder="Camille Renard"></div>
-        <div class="f"><label for="tel">Votre téléphone ou courriel</label>
-          <input id="tel" name="tel" type="text" autocomplete="email" required placeholder="camille@exemple.fr"></div>
+
+    <div class="livre rv" id="livre" hidden data-unite="Chambre">
+      <div class="onglets" role="tablist" aria-label="Choisir une chambre">
+        <button class="onglet" role="tab" type="button" aria-selected="true" aria-controls="spread" data-i="0">Sous les toits</button>
+        <button class="onglet" role="tab" type="button" aria-selected="false" aria-controls="spread" data-i="1">La familiale</button>
+        <button class="onglet" role="tab" type="button" aria-selected="false" aria-controls="spread" data-i="2">Côté jardin</button>
       </div>
-      <div class="f"><label for="objet">Votre demande</label>
-        <select id="objet" name="objet">
-          <option value="">Choisir…</option>
-<option>Une demande de disponibilité</option><option>Une question</option><option>Autre</option>        </select></div>
-      <div class="f"><label for="det">Quelques mots</label>
-        <textarea id="det" name="det" rows="4" placeholder="Ce que vous souhaitez, et pour quand."></textarea></div>
-      <button class="btn btn--c" type="submit" style="width:100%;margin-top:var(--s5)">Envoyer</button>
-      <p class="fret" id="ret" role="status" aria-live="polite"></p>
+      <div class="planche">
+        <div class="spread" id="spread" role="tabpanel" aria-live="polite" tabindex="-1">
+          <div class="pg pg--g" id="pg"></div>
+          <div class="pg pg--d" id="pd"></div>
+          <button class="coin coin--g" id="coin-g" type="button" aria-label="Chambre précédente"></button>
+          <button class="coin" id="coin-d" type="button" aria-label="Chambre suivante"></button>
+        </div>
+      </div>
+      <div class="livre__bas">
+        <button class="fleche" id="prec" type="button" aria-label="Chambre précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg><span>Précédente</span></button>
+        <p class="livre__ou" id="ou" aria-hidden="true">Sous les toits</p>
+        <button class="fleche" id="suiv" type="button" aria-label="Chambre suivante"><span>Suivante</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="ch-src" id="ch-src">
+      <article class="ch" aria-labelledby="ch1">
+        <div class="ch__ill">
+          <figure>
+            <span class="scotch"></span>
+<svg viewBox="0 0 400 440" role="img" aria-label="Aquarelle d&#39;une chambre sous la charpente : lit double, lucarne ouverte sur la campagne.">
+  <g filter="url(#aq)">
+    <path d="M0 0 L400 0 L338 118 L62 118 Z" fill="#CDB08A" opacity=".55"/>
+    <path d="M0 0 L62 118 L62 330 L0 440 Z" fill="#D9C29A" opacity=".6"/>
+    <path d="M400 0 L338 118 L338 330 L400 440 Z" fill="#D9C29A" opacity=".6"/>
+    <path d="M62 118 L338 118 L338 330 L62 330 Z" fill="#EBDDC3" opacity=".75"/>
+    <path d="M0 440 L62 330 L338 330 L400 440 Z" fill="#B58A5E" opacity=".55"/>
+    <rect x="160" y="146" width="80" height="94" fill="#A9C4C6" opacity=".85"/>
+    <path d="M160 206 C185 190 205 198 240 186 L240 240 L160 240 Z" fill="#7F9C95" opacity=".9"/>
+    <g fill="#5E7E3E" opacity=".75"><use href="#arb" x="164" y="204" width="20" height="30"/><use href="#arb" x="208" y="200" width="24" height="34"/></g>
+    <rect x="108" y="246" width="184" height="62" fill="#9A7048" opacity=".85"/>
+    <path d="M92 300 L308 300 L340 392 L60 392 Z" fill="#F4ECDD" opacity=".95"/>
+    <path d="M74 344 L326 344 L340 392 L60 392 Z" fill="url(#vichy)" opacity=".9"/>
+    <ellipse cx="160" cy="300" rx="44" ry="13" fill="#FBF7EE"/><ellipse cx="240" cy="300" rx="44" ry="13" fill="#FBF7EE"/>
+    <rect x="318" y="300" width="20" height="40" fill="#7C5638" opacity=".8"/>
+    <path d="M323 300 L333 300 L331 284 L325 284 Z" fill="#C9A27A"/>
+    <g fill="#4E4A72" opacity=".9"><circle cx="322" cy="270" r="3.4"/><circle cx="330" cy="264" r="3.2"/><circle cx="335" cy="273" r="3"/><circle cx="326" cy="258" r="3"/></g>
+    <path d="M110 400 C160 392 250 392 300 404 L300 430 L100 430 Z" fill="#C99A3B" opacity=".35"/>
+  </g>
+  <g fill="none" stroke="#3A2F25" stroke-width="1.2" stroke-linecap="round" filter="url(#enc)">
+    <path d="M0 0 L62 118 L62 330 L0 440 M400 0 L338 118 L338 330 L400 440 M62 118 L338 118 M62 330 L338 330"/>
+    <path d="M18 34 L80 118 M34 0 L90 118 M382 34 L320 118 M366 0 L310 118 M14 120 L52 140 M386 120 L348 140"/>
+    <path d="M160 146 h80 v94 h-80 z M200 146 v94 M160 192 h80"/>
+    <path d="M108 300 L108 246 L292 246 L292 300 M92 300 L60 392 L340 392 L308 300"/>
+    <path d="M326 282 C326 272 324 266 326 258 M329 282 C330 274 332 268 330 264"/>
+  </g>
+</svg>            <figcaption>sous la lucarne, au réveil</figcaption>
+          </figure>
+        </div>
+        <div class="ch__txt">
+          <span class="ch__lbl tampon-txt">Exemple · sous la charpente</span>
+          <h3 id="ch1">Sous les toits</h3>
+          <p class="main">la chambre du dernier étage</p>
+          <p>Au dernier étage, sous les poutres. Le matin, le jour entre par la lucarne et l&#39;on voit la campagne.</p>
+          <dl class="dl">
+            <dt>Couchage</dt><dd>Un lit double</dd>
+            <dt>Salle d&#39;eau</dt><dd>Privative</dd>
+            <dt>Vue</dt><dd>Côté levant</dd>
+            <dt>Pour</dt><dd>Deux personnes</dd>
+          </dl>
+          <a class="lien" href="#contact" data-chambre="Sous les toits">Demander cette chambre</a>
+        </div>
+      </article>
+      <article class="ch" aria-labelledby="ch2">
+        <div class="ch__ill">
+          <figure>
+            <span class="scotch scotch--v"></span>
+<svg viewBox="0 0 400 440" role="img" aria-label="Aquarelle d&#39;une chambre familiale : grand lit sous une mezzanine, échelle en bois.">
+  <g filter="url(#aq)">
+    <path d="M0 0 L40 56 L40 360 L0 440 Z" fill="#D9C29A" opacity=".6"/>
+    <path d="M400 0 L360 56 L360 360 L400 440 Z" fill="#D9C29A" opacity=".6"/>
+    <path d="M0 0 L400 0 L360 56 L40 56 Z" fill="#B58A5E" opacity=".5"/>
+    <path d="M40 56 L360 56 L360 360 L40 360 Z" fill="#EBDDC3" opacity=".75"/>
+    <path d="M0 440 L40 360 L360 360 L400 440 Z" fill="#B58A5E" opacity=".55"/>
+    <rect x="0" y="40" width="400" height="18" fill="#7C5638" opacity=".85"/>
+    <rect x="40" y="168" width="232" height="16" fill="#7C5638" opacity=".9"/>
+    <rect x="60" y="146" width="84" height="22" fill="#F4ECDD"/><rect x="154" y="146" width="84" height="22" fill="#F4ECDD"/>
+    <rect x="96" y="148" width="48" height="20" fill="url(#vichy-v)"/><rect x="190" y="148" width="48" height="20" fill="url(#vichy-v)"/>
+    <circle cx="318" cy="120" r="24" fill="#8EA552" opacity=".8"/>
+    <rect x="60" y="292" width="170" height="40" fill="#9A7048" opacity=".85"/>
+    <path d="M56 322 L234 322 L250 392 L40 392 Z" fill="#F4ECDD" opacity=".95"/>
+    <path d="M46 356 L244 356 L250 392 L40 392 Z" fill="url(#vichy)" opacity=".9"/>
+    <g fill="#C99A3B" opacity=".55"><path d="M290 340 C300 330 316 334 324 344 L320 360 L292 360 Z"/></g>
+  </g>
+  <g fill="none" stroke="#3A2F25" stroke-width="1.2" stroke-linecap="round" filter="url(#enc)">
+    <path d="M0 0 L40 56 L40 360 L0 440 M400 0 L360 56 L360 360 L400 440 M40 360 L360 360 M0 40 L400 40 M0 58 L400 58"/>
+    <path d="M40 168 L272 168 L272 184 L40 184 M40 138 L272 138 M70 138 v30 M100 138 v30 M130 138 v30 M160 138 v30 M190 138 v30 M220 138 v30 M250 138 v30"/>
+    <path d="M252 184 L292 360 M276 184 L316 360 M258 212 L282 212 M264 240 L288 240 M270 268 L294 268 M276 296 L300 296 M282 324 L306 324"/>
+    <circle cx="318" cy="120" r="24"/><path d="M294 120 h48 M318 96 v48"/>
+    <path d="M60 322 L60 292 L230 292 L230 322 M56 322 L40 392 L250 392 L234 322"/>
+    <path d="M296 350 l-4 -10 M304 348 l0 -12 M312 349 l4 -11"/>
+  </g>
+</svg>            <figcaption>la mezzanine des enfants</figcaption>
+          </figure>
+        </div>
+        <div class="ch__txt">
+          <span class="ch__lbl tampon-txt">Exemple · chambre familiale</span>
+          <h3 id="ch2">La familiale</h3>
+          <p class="main">un grand lit et une mezzanine</p>
+          <p>Une grande pièce pour une famille : les parents en bas, les enfants en mezzanine, sous les poutres.</p>
+          <dl class="dl">
+            <dt>Couchage</dt><dd>Un lit double, deux lits simples en mezzanine</dd>
+            <dt>Salle d&#39;eau</dt><dd>Privative, avec baignoire</dd>
+            <dt>Pour</dt><dd>Une famille, jusqu&#39;à quatre personnes</dd>
+          </dl>
+          <a class="lien" href="#contact" data-chambre="La familiale">Demander la familiale</a>
+        </div>
+      </article>
+      <article class="ch" aria-labelledby="ch3">
+        <div class="ch__ill">
+          <figure>
+            <span class="scotch"></span>
+<svg viewBox="0 0 400 440" role="img" aria-label="Aquarelle d&#39;une chambre de plain-pied : deux lits simples face à une porte-fenêtre ouverte sur le jardin.">
+  <g filter="url(#aq)">
+    <path d="M0 0 L40 56 L40 340 L0 440 Z" fill="#D9C29A" opacity=".55"/>
+    <path d="M400 0 L360 56 L360 340 L400 440 Z" fill="#D9C29A" opacity=".55"/>
+    <path d="M0 0 L400 0 L360 56 L40 56 Z" fill="#E3D2B2" opacity=".55"/>
+    <path d="M40 56 L360 56 L360 340 L40 340 Z" fill="#EEE3CE" opacity=".8"/>
+    <path d="M0 440 L40 340 L360 340 L400 440 Z" fill="#C9A27A" opacity=".5"/>
+    <rect x="140" y="92" width="120" height="236" fill="#A9C4C6" opacity=".85"/>
+    <path d="M140 200 C170 186 220 192 260 184 L260 226 L140 226 Z" fill="#7F9C95"/>
+    <rect x="140" y="222" width="120" height="18" fill="#B9C07A"/>
+    <path d="M140 240 L260 240 L260 328 L140 328 Z" fill="#9DB06A" opacity=".85"/>
+    <g fill="#3F6A45" opacity=".75"><use href="#arb" x="142" y="172" width="30" height="48"/><use href="#arb" x="226" y="166" width="32" height="54"/></g>
+    <path d="M112 84 C122 160 108 260 124 336 L144 336 C134 250 146 160 140 84 Z" fill="url(#vichy)" opacity=".9"/>
+    <path d="M288 84 C278 160 292 260 276 336 L256 336 C266 250 254 160 260 84 Z" fill="url(#vichy)" opacity=".9"/>
+    <path d="M44 330 L132 330 L120 418 L22 418 Z" fill="#F4ECDD"/><path d="M36 372 L127 372 L120 418 L22 418 Z" fill="url(#vichy-v)" opacity=".9"/>
+    <path d="M268 330 L356 330 L378 418 L280 418 Z" fill="#F4ECDD"/><path d="M273 372 L364 372 L378 418 L280 418 Z" fill="url(#vichy-v)" opacity=".9"/>
+    <ellipse cx="200" cy="396" rx="60" ry="22" fill="#C99A3B" opacity=".45"/>
+  </g>
+  <g fill="none" stroke="#3A2F25" stroke-width="1.2" stroke-linecap="round" filter="url(#enc)">
+    <path d="M0 0 L40 56 L40 340 L0 440 M400 0 L360 56 L360 340 L400 440 M40 56 L360 56 M40 340 L140 340 M260 340 L360 340"/>
+    <path d="M140 328 L140 92 L260 92 L260 328 M200 92 L200 328 M140 160 h120 M140 240 h120 M126 82 L274 82"/>
+    <path d="M44 330 L132 330 L120 418 L22 418 Z M268 330 L356 330 L378 418 L280 418 Z"/>
+    <path d="M160 300 l3 -10 M170 304 l2 -12 M226 302 l3 -11 M236 300 l2 -10"/>
+  </g>
+</svg>            <figcaption>la porte-fenêtre, côté jardin</figcaption>
+          </figure>
+        </div>
+        <div class="ch__txt">
+          <span class="ch__lbl tampon-txt">Exemple · de plain-pied</span>
+          <h3 id="ch3">Côté jardin</h3>
+          <p class="main">de plain-pied sur le jardin</p>
+          <p>Au rez-de-jardin, avec une porte-fenêtre qui donne sur l&#39;herbe. La plus simple d&#39;accès, sans une marche.</p>
+          <dl class="dl">
+            <dt>Couchage</dt><dd>Deux lits simples, que l&#39;on peut rapprocher</dd>
+            <dt>Salle d&#39;eau</dt><dd>Privative, accès sans marche</dd>
+            <dt>Pour</dt><dd>Deux personnes, animaux à voir avec vos hôtes</dd>
+          </dl>
+          <a class="lien" href="#contact" data-chambre="Côté jardin">Demander cette chambre</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="ch-note rv">
+      <p>Les tarifs dépendent des dates et de la chambre. Vos hôtes vous les donnent avec la disponibilité, sans intermédiaire.</p>
+      <a class="etq etq--vert" href="#contact">Demander une disponibilité</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ALENTOURS ====================== -->
+<section class="sec" id="alentours" aria-labelledby="t-al">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">En chemin</span>
+      <h2 id="t-al">Les alentours</h2>
+      <p>Ce qu&#39;il y a à faire autour de Hautes-Alpes, ceux qui y vivent le savent mieux qu&#39;un guide. Pas de liste toute faite ici : voici ce que vous pouvez demander à vos hôtes en préparant le séjour.</p>
+    </div>
+    <div class="alen__grille">
+      <div class="carte" id="carte">
+        <span class="scotch"></span><span class="scotch scotch--v"></span>
+        <svg viewBox="0 0 800 560" role="img" aria-label="Croquis des alentours, sans échelle : la maison au centre, près de Hautes-Alpes, et autour, les idées de sorties à demander : les balades au départ, où bien manger, ce qui se visite, marchés et producteurs, les routes tranquilles, les jours de pluie.">
+          <g filter="url(#aq)">
+            <path d="M0 40 C90 20 160 70 150 140 C100 160 30 140 0 130 Z" fill="#B9C07A" opacity=".45"/>
+            <path d="M640 20 C720 10 800 40 800 40 L800 170 C740 180 670 150 650 110 C630 80 620 40 640 20 Z" fill="#B9C07A" opacity=".4"/>
+            <path d="M0 400 C70 380 120 420 160 470 C140 520 60 540 0 545 Z" fill="#8FA894" opacity=".4"/>
+            <path d="M600 470 C660 450 740 470 800 450 L800 560 L580 560 C570 520 580 490 600 470 Z" fill="#B9A27C" opacity=".4"/>
+            <path d="M300 60 C350 40 420 50 430 80 C410 100 350 100 310 92 Z" fill="#D7C27E" opacity=".45"/>
+            <path d="M640 260 C680 240 740 250 760 290 C740 320 680 320 650 300 Z" fill="#D7C27E" opacity=".4"/>
+            <path d="M420 480 C470 470 520 480 540 510 C510 530 450 530 420 515 Z" fill="#B9C07A" opacity=".4"/>
+            <path d="M330 220 C370 196 450 196 480 226 C500 260 480 320 430 334 C380 344 330 320 318 284 C310 258 312 236 330 220 Z" fill="#E6D6B8" opacity=".6"/>
+          </g>
+          <g fill="#2F5E4B" opacity=".55">
+            <use href="#arb" x="30" y="170" width="20" height="26"/><use href="#arb" x="56" y="186" width="16" height="22"/><use href="#arb" x="90" y="160" width="20" height="26"/><use href="#arb" x="40" y="250" width="16" height="22"/><use href="#arb" x="100" y="280" width="18" height="24"/>
+            <use href="#arb" x="680" y="360" width="20" height="26"/><use href="#arb" x="710" y="390" width="16" height="22"/><use href="#arb" x="740" y="350" width="18" height="24"/><use href="#arb" x="660" y="410" width="16" height="22"/>
+            <use href="#arb" x="560" y="60" width="18" height="24"/><use href="#arb" x="590" y="80" width="16" height="22"/><use href="#arb" x="250" y="480" width="18" height="24"/><use href="#arb" x="290" y="500" width="16" height="22"/>
+          </g>
+          <g fill="none" stroke="#3A2F25" stroke-width="1.2" stroke-linecap="round" filter="url(#enc)">
+            <path d="M0 330 C80 320 140 300 210 300 C270 300 300 340 340 380 C380 420 470 430 560 470 C640 500 700 520 800 520" stroke="#5F8C98" stroke-width="2.6"/>
+            <path d="M400 0 C396 80 404 160 400 230 M400 330 C398 400 392 480 396 560 M0 280 C120 284 240 276 320 270 M480 278 C600 270 700 290 800 284" stroke="#7C5638" stroke-dasharray="7 6" stroke-width="1.8" opacity=".75"/>
+            <path d="M20 60 h60 M30 74 h44 M660 70 h70 M670 84 h50 M440 492 h60 M612 280 l14 -6 M720 300 l12 -4"/>
+          </g>
+          <!-- le bourg -->
+          <g fill="#EADFCA" stroke="#3A2F25" stroke-width="1.1" stroke-linejoin="round">
+            <path d="M352 268 l10 -10 l10 10 v14 h-20z"/><path d="M372 274 l8 -8 l8 8 v10 h-16z"/><path d="M428 262 l9 -9 l9 9 v16 h-18z"/><path d="M446 272 l8 -8 l8 8 v12 h-16z"/><path d="M360 300 l9 -9 l9 9 v12 h-18z"/><path d="M430 300 l8 -8 l8 8 v12 h-16z"/>
+            <path d="M386 252 v-14 l6 -16 l6 16 v14 z" fill="#D6C3A2"/>
+          </g>
+          <!-- la maison -->
+          <g transform="translate(400 270)">
+            <path d="M-18 8 L-18 -6 L0 -20 L18 -6 L18 8 Z" fill="#EADFCA" stroke="#3A2F25" stroke-width="1.3"/>
+            <path d="M-21 -5 L0 -23 L21 -5" fill="none" stroke="#7C5638" stroke-width="3.2" stroke-linecap="round"/>
+            <rect x="-4" y="-1" width="8" height="9" fill="#A3262A"/>
+            <circle cx="26" cy="-6" r="9" fill="#8EA552" opacity=".8"/>
+          </g>
+          <!-- pictos des idées de sortie -->
+          <g fill="none" stroke="#3A2F25" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity=".85">
+            <g transform="translate(216 160)"><path d="M0 18 L0 4 C0 0 6 0 6 4 L6 12 L14 14 C18 15 18 20 14 20 L0 20 Z"/></g>
+            <g transform="translate(150 380)"><path d="M0 0 v22 M-4 0 v7 a4 4 0 0 0 8 0 v-7 M14 0 c6 2 6 10 0 12 v10"/></g>
+            <g transform="translate(370 470)"><path d="M0 22 h26 M2 22 v-12 M24 22 v-12 M0 10 L13 0 L26 10 Z M13 22 v-6"/></g>
+            <g transform="translate(578 418)"><path d="M0 8 h26 l-4 14 h-18 z M6 8 c0 -10 14 -10 14 0"/></g>
+            <g transform="translate(616 170)"><circle cx="5" cy="16" r="6"/><circle cx="27" cy="16" r="6"/><path d="M5 16 L12 6 L22 6 L27 16 M12 6 L16 16 L22 6 M10 3 h5"/></g>
+            <g transform="translate(486 76)"><path d="M0 12 C2 0 26 0 28 12 Z M14 12 v12 c0 4 -6 4 -6 0"/></g>
+          </g>
+          <g transform="translate(70 470)" fill="none" stroke="#3A2F25" stroke-width="1.2" opacity=".8">
+            <circle r="26"/><path d="M0 -34 L5 0 L0 34 L-5 0 Z" fill="#A3262A" fill-opacity=".7"/><path d="M-34 0 L34 0"/>
+            <text y="-40" text-anchor="middle" font-size="14" stroke="none" fill="#3A2F25">N</text>
+          </g>
+          <text class="t-main" x="424" y="246" fill="#A3262A" style="fill:#A3262A">la maison</text>
+<text class="t-it" x="400" y="356" text-anchor="middle">Hautes-Alpes</text>          <text class="t-it" x="790" y="548" text-anchor="end">croquis sans échelle</text>
+
+          <defs><mask id="masque-chemin" maskUnits="userSpaceOnUse" x="0" y="0" width="800" height="560"><path id="chemin-m" d="M400 270 C340 250 290 220 250 200 C200 240 170 320 200 380 C260 440 320 460 380 452 C450 444 510 430 560 400 C610 360 630 260 600 200 C570 150 520 110 470 110" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"/></mask></defs>
+          <path id="chemin" d="M400 270 C340 250 290 220 250 200 C200 240 170 320 200 380 C260 440 320 460 380 452 C450 444 510 430 560 400 C610 360 630 260 600 200 C570 150 520 110 470 110" fill="none" stroke="#A3262A" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="0.1 10" mask="url(#masque-chemin)"/>
+          <g class="etapes-carte" id="arrets">
+            <g class="arret" data-x="250" data-y="200"><circle class="halo" cx="250" cy="200" r="9"/><circle class="c" cx="250" cy="200" r="7"/></g>
+            <g class="arret" data-x="200" data-y="380"><circle class="halo" cx="200" cy="380" r="9"/><circle class="c" cx="200" cy="380" r="7"/></g>
+            <g class="arret" data-x="380" data-y="452"><circle class="halo" cx="380" cy="452" r="9"/><circle class="c" cx="380" cy="452" r="7"/></g>
+            <g class="arret" data-x="560" data-y="400"><circle class="halo" cx="560" cy="400" r="9"/><circle class="c" cx="560" cy="400" r="7"/></g>
+            <g class="arret" data-x="600" data-y="200"><circle class="halo" cx="600" cy="200" r="9"/><circle class="c" cx="600" cy="200" r="7"/></g>
+            <g class="arret" data-x="470" data-y="110"><circle class="halo" cx="470" cy="110" r="9"/><circle class="c" cx="470" cy="110" r="7"/></g>
+          </g>
+          <g id="marcheur" transform="translate(400 270)"><circle r="11" fill="#FBF7EE" stroke="#1F4235" stroke-width="2"/><path d="M0 -6 v6 l-4 5 M0 0 l4 5 M-4 -2 h8" fill="none" stroke="#1F4235" stroke-width="1.6" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <ol class="lieux" id="lieux">
+        <li class="lieu"><span class="dist">à pied</span><h3>Les balades au départ</h3><p>La boucle la plus proche, celle qui prend la journée, l&#39;état des chemins après la pluie : vos hôtes connaissent le coin.</p></li>
+        <li class="lieu"><span class="dist">à table</span><h3>Où bien manger</h3><p>Le restaurant du coin, la table pour un soir de fête, le jour de fermeture à éviter : demandez, on vous le dira.</p></li>
+        <li class="lieu"><span class="dist">à voir</span><h3>Ce qui se visite</h3><p>Un village, un point de vue, une visite pour l&#39;après-midi : ce qui vaut vraiment le détour, sans brochure.</p></li>
+        <li class="lieu"><span class="dist">au marché</span><h3>Marchés et producteurs</h3><p>Le jour du marché, la ferme où acheter le fromage ou les œufs : ce genre d&#39;adresse se transmet de vive voix.</p></li>
+        <li class="lieu"><span class="dist">à vélo</span><h3>Les routes tranquilles</h3><p>Les petites routes où rouler sans croiser de camions, et où louer un vélo si vous n&#39;avez pas le vôtre.</p></li>
+        <li class="lieu"><span class="dist">s&#39;il pleut</span><h3>Les jours de pluie</h3><p>Un musée, une piscine, un atelier qui se visite : il y a toujours une idée pour les jours gris.</p></li>
+        <li class="lieu lieu--fin"><p>Cartes, horaires, bonnes adresses : vos hôtes ont souvent l&#39;info à jour. Demandez-leur, c&#39;est le meilleur guide.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== AVANT DE RÉSERVER ====================== -->
+<section class="sec prep" id="avant" aria-labelledby="t-prep">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Avant d'écrire</span>
+      <h2 id="t-prep">Avant de réserver</h2>
+      <p>Trois choses à préparer. Vos hôtes peuvent ainsi vous répondre du premier coup.</p>
+    </div>
+    <div class="timbres">
+      <div class="tb rv" style="--i:0">
+        <div class="timbre" aria-hidden="true"><div class="in">
+          <span class="val"><span>Séjour</span><span>Dates</span></span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="48" height="44" rx="3"/><path d="M8 24h48M20 6v10M44 6v10M18 34h6M30 34h6M42 34h6M18 44h6M30 44h6"/><circle cx="45" cy="45" r="5"/></svg>
+          <span class="val"><span>Arrivée</span><span>Départ</span></span>
+        </div></div>
+<svg class="oblit" viewBox="0 0 160 80" aria-hidden="true" filter="url(#encreur)"><use href="#oblit"/></svg>        <div><h3>Les dates</h3><p>Arrivée et départ, avec un peu de souplesse si possible.</p></div>
+      </div>
+      <div class="tb rv" style="--i:1">
+        <div class="timbre" aria-hidden="true"><div class="in">
+          <span class="val"><span>Séjour</span><span>Voyageurs</span></span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="18" r="7"/><path d="M10 46c0-9 5-15 12-15s12 6 12 15"/><circle cx="42" cy="24" r="5"/><path d="M34 48c1-7 4-11 8-11s7 4 8 11"/><path d="M50 52c2-3 6-3 8 0M51 49a1.5 1.5 0 1 0 0-.1M57 49a1.5 1.5 0 1 0 0-.1"/></svg>
+          <span class="val"><span>Adultes</span><span>Enfants</span></span>
+        </div></div>
+        <div><h3>Combien vous serez</h3><p>Adultes, enfants, et animaux s&#39;il y en a.</p></div>
+      </div>
+      <div class="tb rv" style="--i:2">
+        <div class="timbre" aria-hidden="true"><div class="in">
+          <span class="val"><span>Séjour</span><span>Questions</span></span>
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h48v30H30l-12 10V42H8z"/><path d="M27 22a5 5 0 1 1 7 5c-2 1-2 2-2 4M32 36v.5"/></svg>
+          <span class="val"><span>Accès</span><span>Arrivée</span></span>
+        </div></div>
+<svg class="oblit" viewBox="0 0 160 80" aria-hidden="true" filter="url(#encreur)" style="transform:rotate(12deg)"><use href="#oblit"/></svg>        <div><h3>Vos questions</h3><p>Accès, arrivée tardive, équipement : demandez avant de réserver.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== ACCÈS ====================== -->
+<section class="sec" id="acces" aria-labelledby="t-acc">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Venir</span>
+      <h2 id="t-acc">Horaires et accès</h2>
+      <p>Pas d&#39;horaires fixes affichés ici : écrivez quand vous voulez, la réponse vient dès que possible.</p>
+    </div>
+    <div class="acces__grille">
+      <div class="fiche rv">
+        <p class="etat" id="etat" aria-live="polite"><span class="etat__t">Horaires sur demande</span><span class="etat__d">Écrivez ou appelez : on vous répond dès que possible.</span></p>
+        <ul class="horaires">
+<li><span>Téléphone</span><b>06 XX XX XX XX</b></li>          <li><span>Formulaire</span><b>à toute heure</b></li>
+        </ul>
+        <p>Heures d&#39;arrivée et de départ : à convenir avec vos hôtes au moment de réserver.</p>
+      </div>
+      <div class="rv" style="--i:1">
+        <figure class="croquis">
+          <svg viewBox="0 0 340 190" role="img" aria-label="Croquis d'accès, sans échelle : la maison à Hautes-Alpes, au bord de la route.">
+            <path d="M40 130 C70 106 150 100 200 112 C226 120 230 132 220 142 C200 154 140 152 90 150 C60 148 34 144 40 130 Z" fill="#B9C07A" opacity=".55" filter="url(#aq)"/>
+            <g fill="#2F5E4B" opacity=".55"><use href="#arb" x="70" y="104" width="22" height="30"/><use href="#arb" x="150" y="98" width="18" height="26"/><use href="#arb" x="282" y="100" width="20" height="28"/></g>
+            <g fill="none" stroke="#3A2F25" stroke-width="1.3" stroke-linecap="round" filter="url(#enc)">
+              <path d="M10 70 C80 76 160 70 230 96 C270 110 300 96 330 70"/>
+              <path d="M24 64 l-12 6 l12 6 M316 62 l14 8 l-12 8"/>
+            </g>
+            <g transform="translate(232 92)"><path d="M0 -26 C-12 -26 -18 -16 -18 -10 C-18 2 0 18 0 18 C0 18 18 2 18 -10 C18 -16 12 -26 0 -26 Z" fill="#A3262A"/><circle cy="-10" r="6" fill="#FBF7EE"/></g>
+<text x="16" y="52">Hautes-Alpes</text>            <text x="248" y="134" style="font-family:'Pinyon Script',cursive;font-size:22px;font-style:normal;fill:#A3262A">la maison</text>
+          </svg>
+        </figure>
+        <address class="adr"><span class="main">Venir à la maison</span>XX rue de l'Exemple<br>Hautes-Alpes</address>
+        <div class="actions">
+          <a class="etq etq--vert" href="https://www.google.com/maps/dir/?api=1&amp;destination=Hautes-Alpes" target="_blank" rel="noopener">Ouvrir l'itinéraire</a>
+          <a class="lien" href="#contact">Poser une question</a>
+        </div>
+        <p class="cote">Sans voiture, demandez à vos hôtes la meilleure façon de venir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section class="sec ctc" id="contact" aria-labelledby="t-ctc">
+  <div class="cadre">
+    <div class="tete rv">
+      <span class="main">Écrire à vos hôtes</span>
+      <h2 id="t-ctc">Demander une disponibilité</h2>
+      <p>Vous demandez vos dates, vous échangez directement avec vos hôtes. Par téléphone au <b>06 XX XX XX XX</b>, ou avec cette carte.</p>
+    </div>
+    <form class="postale rv" id="form" novalidate>
+      <div class="timbre" aria-hidden="true">
+        <svg viewBox="0 0 80 96"><rect width="80" height="96" fill="#A3262A"/><rect x="5" y="5" width="70" height="86" fill="none" stroke="#F3E3CF" stroke-width="1"/><g filter="url(#aq)"><path d="M26 30 C40 18 60 26 58 46 C56 62 44 66 40 78 C34 66 20 60 20 44 C20 38 22 34 26 30Z" fill="#9AAE5B"/></g><path d="M40 78 C40 62 38 46 32 34" fill="none" stroke="#F3E3CF" stroke-width="1.2"/><text x="40" y="90" text-anchor="middle" font-family="Special Elite, monospace" font-size="8" fill="#F3E3CF">BONJOUR</text></svg>
+      </div>
+      <svg class="cachet" viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+      <div class="postale__g">
+        <div class="champ"><label for="f-objet">Votre demande</label>
+          <select id="f-objet" name="objet"><option>Une demande de disponibilité</option><option>Une question</option><option>Autre</option></select></div>
+        <div class="duo">
+          <div class="champ"><label for="f-arr">Arrivée</label><input id="f-arr" name="arrivee" type="date"></div>
+          <div class="champ"><label for="f-dep">Départ</label><input id="f-dep" name="depart" type="date"></div>
+        </div>
+        <div class="champ"><label for="f-msg">Votre message</label><textarea id="f-msg" name="message" rows="6" placeholder="Bonjour, nous aimerions venir…"></textarea></div>
+      </div>
+      <div class="postale__d">
+        <div class="champ"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+        <div class="champ"><label for="f-tel">Téléphone</label><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="champ"><label for="f-mail">Courriel</label><input id="f-mail" name="courriel" type="email" autocomplete="email"></div>
+        <div class="duo">
+          <div class="champ"><label for="f-pers">Vous serez</label><input id="f-pers" name="personnes" placeholder="2 adultes, 1 enfant"></div>
+          <div class="champ"><label for="f-ch">Chambre</label>
+            <select id="f-ch" name="chambre"><option>Pas de préférence</option><option>Sous les toits</option><option>La familiale</option><option>Côté jardin</option></select></div>
+        </div>
+        <div class="envoi">
+          <button class="etq" type="submit">Envoyer ma demande</button>
+          <small id="f-err" role="alert"></small>
+        </div>
+      </div>
+      <div class="merci" id="merci" role="status" tabindex="-1">
+        <svg viewBox="0 0 140 140" aria-hidden="true" filter="url(#encreur)"><use href="#cachet"/></svg>
+        <h3>Carte postée, merci.</h3>
+        <p>Sur le site en ligne, votre demande arrive directement chez Atypique détour. Vos hôtes vous répondent avec la disponibilité et le tarif.</p>
+        <button class="lien" type="button" id="encore" style="background:none;border:0;cursor:pointer;font:inherit">Écrire une autre demande</button>
+      </div>
     </form>
-  </div>
-</section>
-
-<!-- BON DE TRAVAIL : pour Francois, jamais pour le prospect. -->
-<section class="perso" id="a-personnaliser" aria-labelledby="t-perso">
-  <div class="env sec">
-    <h2 id="t-perso">Ce qui reste à faire confirmer</h2>
-    <p>Tout ce qui figure plus haut provient de sources publiques. Rien n'a été
-      inventé : ni tarif, ni garantie, ni avis, ni spécialité.
-      <strong>Cette section n'est visible que par vous.</strong></p>
-    <p class="perso__url">Pour la rouvrir : ajoutez <b>?notes</b> à la fin de l'adresse.</p>
-    <ul>
-      <li><b>Prestations réelles</b>Les trois familles décrivent le métier en général. À remplacer par ce que fait vraiment Atypique détour.</li>
-      <li><b>Horaires</b>Aucun horaire public : à demander.</li>
-      <li><b>Photos</b>La page n'en contient aucune. Trois ou quatre photos prises au téléphone valent mieux que n'importe quelle illustration.</li>
-      <li><b>Coordonnées</b>Téléphone et adresse sont masqués sur la démo ; le formulaire sera relié à la vraie boîte mail.</li>
-      <li><b>Avis, labels, tarifs</b>À afficher seulement s'ils existent et sont vérifiables.</li>
-    </ul>
   </div>
 </section>
 </main>
 
-<div class="bmob">
-  <a class="btn btn--c" href="#contact">Appeler</a>
-  <a class="btn btn--f" href="#horaires">Horaires</a>
-</div>
-
 <footer class="pied">
-  <div class="env pied__in">
-    <span>© 2026 Atypique détour, Hautes-Alpes</span>
-    <span>Informations relevées sur des sources publiques</span>
+  <div class="cadre pied__in">
+    <div>
+      <span class="main">Atypique détour</span>
+      <p>Chambres d&#39;hôtes dans les Hautes-Alpes.</p>
+      <p>XX rue de l'Exemple, Hautes-Alpes</p>
+<p>Téléphone : 06 XX XX XX XX</p>    </div>
+    <ul>
+      <li><a href="#sejourner">Séjourner</a></li>
+      <li><a href="#chambres">Les chambres</a></li>
+      <li><a href="#alentours">Alentours</a></li>
+    </ul>
+    <ul>
+      <li><a href="#avant">Avant de réserver</a></li>
+      <li><a href="#acces">Horaires et accès</a></li>
+      <li><a href="#contact">Demander une disponibilité</a></li>
+    </ul>
+    <small>Illustrations dessinées pour le site. Vous réservez en direct avec vos hôtes. © 2026 Atypique détour.</small>
   </div>
 </footer>
 
+<nav class="barre" id="barre" aria-label="Contact rapide">
+<a class="b1" href="#contact">Appeler<small>06 XX XX XX XX</small></a>  <a class="b2" href="#contact">Écrire<small>une disponibilité</small></a>
+</nav>
+
 <script>
 (function(){
-  var J=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
-  function pr(x){var r=[],i; if(!x) return r; for(i=0;i+1<x.length;i+=2) r.push([x[i],x[i+1]]); return r;}
-  function hm(v){var a=Math.floor(v/60),b=v%60; return b? a+" h "+(b<10?"0":"")+b : a+" h";}
-  function ecrire(el,txt,cls){el.textContent=txt;
-    el.innerHTML='<span class="pastille" aria-hidden="true"></span>'+el.textContent; el.className="etat "+cls;}
-  function poser(el){
-    var h; try{ h=JSON.parse(el.getAttribute("data-h")); }catch(e){ return; }
-    if(!Array.isArray(h)||h.length!==7) return;
-    var d=new Date(),j=d.getDay(),m=d.getHours()*60+d.getMinutes(),i,k,jj,cs,cj=pr(h[j]);
-    for(i=0;i<cj.length;i++){ if(m>=cj[i][0]&&m<cj[i][1]){ ecrire(el,"ouvert, jusqu'à "+hm(cj[i][1]),"etat--oui"); return; } }
-    for(k=0;k<8;k++){ jj=(j+k)%7; cs=pr(h[jj]);
-      for(i=0;i<cs.length;i++){ if(k===0&&cs[i][0]<=m) continue;
-        ecrire(el,"fermé, ouvre "+(k===0?"à ":(k===1?"demain à ":J[jj]+" à "))+hm(cs[i][0]),"etat--non"); return; } }
+  'use strict';
+  var root = document.documentElement, body = document.body;
+  var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NOM = "Atypique détour";
+  var H = null;
+  var TXT = {"err_nom": "Indiquez votre nom, pour que vos h\u00f4tes sachent \u00e0 qui r\u00e9pondre.", "intro": "L\u0027indication ci-dessous se calcule \u00e0 l\u0027heure fran\u00e7aise, au moment o\u00f9 vous lisez la page.", "intro_sans": "Pas d\u0027horaires fixes affich\u00e9s ici : \u00e9crivez quand vous voulez, la r\u00e9ponse vient d\u00e8s que possible.", "non": "Hors des heures d\u2019appel", "non_d": "On d\u00e9croche de nouveau ", "oui": "On d\u00e9croche", "oui_d": "Vos h\u00f4tes r\u00e9pondent en ce moment, jusqu\u2019\u00e0 ", "sur_demande": "Horaires sur demande", "sur_demande_d": "\u00c9crivez ou appelez : on vous r\u00e9pond d\u00e8s que possible."};
+  window.__gat = true;
+  function $(id){ return document.getElementById(id); }
+
+  /* ---------- entrée ---------- */
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ body.classList.add('go'); }); });
+
+  /* ---------- en-tête, barre mobile, parallaxe ---------- */
+  var hdr = $('hdr'), barre = $('barre');
+  var acc = [].slice.call(document.querySelectorAll('[data-px]'));
+  var tic = false;
+  function defile(){
+    var y = window.scrollY, h = window.innerHeight;
+    if(hdr) hdr.classList.toggle('plein', y > 30);
+    if(barre) barre.classList.toggle('vis', y > h * 0.6);
+    if(!reduit){ acc.forEach(function(el){ var r = el.getBoundingClientRect(); if(r.bottom > -200 && r.top < h + 200){ var base = el.classList.contains('acc-crayon') ? ' rotate(-14deg)' : ''; el.style.transform = 'translate3d(0,' + (y * parseFloat(el.getAttribute('data-px'))).toFixed(1) + 'px,0)' + base; } }); }
+    carteMaj();
+    tic = false;
   }
-  document.querySelectorAll(".etat[data-h]").forEach(poser);
-  var t=document.getElementById("jour");
-  if(t){ var n=J[new Date().getDay()]; t.textContent=n.charAt(0).toUpperCase()+n.slice(1); }
-  var l=document.querySelectorAll(".hor > div"), j2=new Date().getDay();
-  if(l.length>=7) l[(j2+6)%7].classList.add("hor--jour");
-})();
-(function(){
-  var f=document.getElementById("dem"); if(!f) return;
-  f.addEventListener("submit",function(e){
-    e.preventDefault();
-    var r=document.getElementById("ret");
-    if(!f.nom.value.trim()||!f.tel.value.trim()){ r.textContent="Indiquez au moins votre nom et un moyen de vous répondre."; return; }
-    r.textContent="Merci ! Sur le site en ligne, votre demande arrive directement dans la boîte de réception de "+"Atypique détour"+".";
-    f.reset();
-  });
-})();
-(function(){
-  var b=document.getElementById("a-personnaliser");
-  if(b&&(/[?&]notes(=|&|$)/.test(location.search)||location.hash==="#notes")) b.classList.add("ouvert");
-})();
-(function(){
-  var els=document.querySelectorAll(".apparait");
-  if(!("IntersectionObserver" in window)||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){
-    els.forEach(function(e){e.classList.add("vu");}); return; }
-  var io=new IntersectionObserver(function(ent){ent.forEach(function(x){ if(x.isIntersecting){x.target.classList.add("vu"); io.unobserve(x.target);} });},{rootMargin:"0px 0px -8% 0px"});
-  els.forEach(function(e){io.observe(e);});
+  window.addEventListener('scroll', function(){ if(!tic){ tic = true; requestAnimationFrame(defile); } }, {passive:true});
+
+  /* ---------- menu ---------- */
+  var burger = $('burger');
+  function menu(o){ body.classList.toggle('menu-ouvert', o); burger.setAttribute('aria-expanded', o); burger.setAttribute('aria-label', o ? 'Fermer le menu' : 'Ouvrir le menu'); }
+  burger.addEventListener('click', function(){ menu(burger.getAttribute('aria-expanded') !== 'true'); });
+  document.querySelectorAll('#nav a').forEach(function(a){ a.addEventListener('click', function(){ menu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') menu(false); });
+
+  /* ---------- révélations ---------- */
+  var rvs = document.querySelectorAll('.rv, .etat');
+  if(!('IntersectionObserver' in window) || reduit){ rvs.forEach(function(e){ e.classList.add('vu'); }); }
+  else {
+    var io = new IntersectionObserver(function(ent){ ent.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add('vu'); io.unobserve(x.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ---------- le livre ---------- */
+  (function(){
+    var sec = $('chambres'), livre = $('livre');
+    var arts = [].slice.call(document.querySelectorAll('#ch-src .ch'));
+    if(!sec || !livre || !arts.length) return;
+    var ills = arts.map(function(a){ return a.querySelector('.ch__ill'); });
+    var txts = arts.map(function(a){ return a.querySelector('.ch__txt'); });
+    var onglets = [].slice.call(document.querySelectorAll('.onglet'));
+    var noms = onglets.map(function(o){ return o.textContent.trim(); });
+    var unite = livre.getAttribute('data-unite') || 'Page';
+    var pg = $('pg'), pd = $('pd'), spread = $('spread');
+    var prec = $('prec'), suiv = $('suiv'), ou = $('ou');
+    var coinG = $('coin-g'), coinD = $('coin-d');
+    var mq = window.matchMedia('(max-width: 860px)');
+    var cur = 0, occupe = false;
+    livre.hidden = false; sec.classList.add('livre-on');
+
+    function poser(i){
+      pg.textContent = ''; pd.textContent = '';
+      if(mq.matches){ pd.appendChild(ills[i]); pd.appendChild(txts[i]); }
+      else { pg.appendChild(ills[i]); pd.appendChild(txts[i]); }
+    }
+    function etat(){
+      onglets.forEach(function(o, k){ o.setAttribute('aria-selected', k === cur ? 'true' : 'false'); o.tabIndex = k === cur ? 0 : -1; });
+      prec.disabled = cur === 0; suiv.disabled = cur === arts.length - 1;
+      coinG.hidden = cur === 0 || mq.matches; coinD.hidden = cur === arts.length - 1;
+      ou.textContent = noms[cur] || '';
+      spread.setAttribute('aria-label', unite + ' ' + (cur + 1) + ' sur ' + arts.length + ' : ' + (noms[cur] || ''));
+    }
+    function clone(n){ var c = n.cloneNode(true); c.querySelectorAll('[id]').forEach(function(e){ e.removeAttribute('id'); }); return c; }
+    function face(cls, nodes){ var f = document.createElement('div'); f.className = 'face ' + cls; nodes.forEach(function(n){ f.appendChild(n); }); var o = document.createElement('div'); o.className = 'ombre'; f.appendChild(o); return f; }
+    function animer(feuille, de, a, fin){
+      var dur = 950;
+      if(!feuille.animate){ fin(); return; }
+      var anim = feuille.animate([{transform:'rotateY(' + de + 'deg)'}, {transform:'rotateY(' + a + 'deg)'}], {duration:dur, easing:'cubic-bezier(.45,.05,.3,1)'});
+      feuille.querySelectorAll('.ombre').forEach(function(o){ o.animate([{opacity:0},{opacity:1},{opacity:0}], {duration:dur, easing:'ease-in-out'}); });
+      anim.onfinish = fin;
+    }
+    function aller(n){
+      if(occupe || n === cur || n < 0 || n >= arts.length) return;
+      var old = cur, avant = n > old; cur = n;
+      if(reduit){ poser(n); etat(); return; }
+      occupe = true;
+      var f = document.createElement('div');
+      f.setAttribute('aria-hidden', 'true');
+      if(mq.matches){
+        f.className = 'feuille feuille--m';
+        if(avant){
+          f.appendChild(face('face--avant', [clone(ills[old]), clone(txts[old])]));
+          f.appendChild(face('face--dos', []));
+          poser(n); spread.appendChild(f);
+          animer(f, 0, -180, function(){ f.remove(); occupe = false; });
+        } else {
+          f.appendChild(face('face--avant', [clone(ills[n]), clone(txts[n])]));
+          f.appendChild(face('face--dos', []));
+          spread.appendChild(f);
+          animer(f, -180, 0, function(){ poser(n); f.remove(); occupe = false; });
+        }
+      } else if(avant){
+        f.className = 'feuille feuille--d';
+        f.appendChild(face('face--avant', [clone(txts[old])]));
+        f.appendChild(face('face--dos', [clone(ills[n])]));
+        pd.textContent = ''; pd.appendChild(txts[n]);
+        spread.appendChild(f);
+        animer(f, 0, -180, function(){ pg.textContent = ''; pg.appendChild(ills[n]); f.remove(); occupe = false; });
+      } else {
+        f.className = 'feuille feuille--g';
+        f.appendChild(face('face--avant', [clone(ills[old])]));
+        f.appendChild(face('face--dos', [clone(txts[n])]));
+        pg.textContent = ''; pg.appendChild(ills[n]);
+        spread.appendChild(f);
+        animer(f, 0, 180, function(){ pd.textContent = ''; pd.appendChild(txts[n]); f.remove(); occupe = false; });
+      }
+      etat();
+    }
+    poser(0); etat();
+    mq.addEventListener ? mq.addEventListener('change', function(){ poser(cur); etat(); }) : mq.addListener(function(){ poser(cur); etat(); });
+    prec.addEventListener('click', function(){ aller(cur - 1); });
+    suiv.addEventListener('click', function(){ aller(cur + 1); });
+    coinG.addEventListener('click', function(){ aller(cur - 1); });
+    coinD.addEventListener('click', function(){ aller(cur + 1); });
+    onglets.forEach(function(o, k){
+      o.addEventListener('click', function(){ aller(k); });
+      o.addEventListener('keydown', function(e){
+        var t = e.key === 'ArrowRight' ? cur + 1 : e.key === 'ArrowLeft' ? cur - 1 : null;
+        if(t !== null && t >= 0 && t < arts.length){ e.preventDefault(); aller(t); onglets[t].focus(); }
+      });
+    });
+    var x0 = null;
+    spread.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+    spread.addEventListener('touchend', function(e){ if(x0 === null) return; var dx = e.changedTouches[0].clientX - x0; if(Math.abs(dx) > 50) aller(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+    var sel = $('f-ch');
+    document.querySelectorAll('[data-chambre]').forEach(function(a){ a.addEventListener('click', function(){ if(sel) sel.value = a.getAttribute('data-chambre'); }); });
+  })();
+
+  /* ---------- carte : le chemin se trace au défilement ---------- */
+  var chemin = $('chemin-m'), liste = $('lieux'), marcheur = $('marcheur');
+  var lieux = [].slice.call(document.querySelectorAll('#lieux .lieu:not(.lieu--fin)'));
+  var arrets = [].slice.call(document.querySelectorAll('#arrets .arret'));
+  var L = 0, fr = [], lastP = -1;
+  if(chemin && chemin.getTotalLength){
+    L = chemin.getTotalLength();
+    chemin.style.strokeDasharray = L; chemin.style.strokeDashoffset = L;
+    arrets.forEach(function(a){
+      var x = +a.getAttribute('data-x'), y = +a.getAttribute('data-y'), best = 0, bd = 1e9;
+      for(var l = 0; l <= L; l += 2){ var p = chemin.getPointAtLength(l), d = (p.x - x) * (p.x - x) + (p.y - y) * (p.y - y); if(d < bd){ bd = d; best = l; } }
+      fr.push(best / L);
+    });
+  }
+  function carteMaj(){
+    if(!L || !liste) return;
+    var r = liste.getBoundingClientRect(), h = window.innerHeight;
+    var p = reduit ? 1 : Math.max(0, Math.min(1, (h * 0.62 - r.top) / (r.height - h * 0.25)));
+    if(Math.abs(p - lastP) < 0.001) return; lastP = p;
+    chemin.style.strokeDashoffset = (L * (1 - p)).toFixed(1);
+    var pt = chemin.getPointAtLength(L * p);
+    if(marcheur) marcheur.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ')');
+    fr.forEach(function(f, k){ var on = p >= f - 0.005; arrets[k].classList.toggle('on', on); if(lieux[k]) lieux[k].classList.toggle('on', on); });
+  }
+  defile();
+  window.addEventListener('resize', function(){ lastP = -1; carteMaj(); });
+
+  /* ---------- ouvert en ce moment ? (heure de Paris) ---------- */
+  var JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+  function maintenant(){
+    try {
+      var o = {}; new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/Paris', weekday:'short', hour:'2-digit', minute:'2-digit', hour12:false}).formatToParts(new Date()).forEach(function(x){ o[x.type] = x.value; });
+      var j = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(o.weekday);
+      if(j < 0) throw 0;
+      return {j:j, m:(+o.hour % 24) * 60 + (+o.minute)};
+    } catch(e){ var d = new Date(); return {j:d.getDay(), m:d.getHours() * 60 + d.getMinutes()}; }
+  }
+  function hm(x){ var h = Math.floor(x / 60) % 24, m = x % 60; return h + ' h' + (m ? ' ' + (m < 10 ? '0' : '') + m : ''); }
+  var et = $('etat');
+  if(et && H && H.length === 7){
+    var t = maintenant(), auj = H[t.j] || [], fin = null, i, k;
+    for(i = 0; i + 1 < auj.length; i += 2){ if(t.m >= auj[i] && t.m < auj[i + 1]){ fin = auj[i + 1]; break; } }
+    if(fin !== null){
+      et.classList.add('etat--oui'); et.firstElementChild.textContent = TXT.oui; et.lastElementChild.textContent = TXT.oui_d + hm(fin) + '.';
+    } else {
+      var proch = null;
+      for(i = 0; i + 1 < auj.length; i += 2){ if(auj[i] > t.m){ proch = {d:0, m:auj[i]}; break; } }
+      for(k = 1; !proch && k <= 7; k++){ var c = H[(t.j + k) % 7]; if(c && c.length) proch = {d:k, m:c[0]}; }
+      et.classList.add('etat--non'); et.firstElementChild.textContent = TXT.non;
+      et.lastElementChild.textContent = proch ? TXT.non_d + (proch.d === 0 ? 'aujourd’hui' : proch.d === 1 ? 'demain' : JOURS[(t.j + proch.d) % 7]) + ' à ' + hm(proch.m) + '. Le formulaire reste ouvert.' : 'Le formulaire reste ouvert.';
+    }
+  }
+
+  /* ---------- formulaire ---------- */
+  var form = $('form'), merci = $('merci'), err = $('f-err');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var nom = $('f-nom');
+      if(!nom.value.trim()){ err.textContent = TXT.err_nom; nom.focus(); return; }
+      err.textContent = ''; merci.classList.add('vis'); merci.focus();
+    });
+    $('encore').addEventListener('click', function(){ form.reset(); merci.classList.remove('vis'); $('f-objet').focus(); });
+  }
 })();
 </script>
 </body>
