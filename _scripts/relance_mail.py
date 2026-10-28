@@ -49,25 +49,20 @@ SUJETS = {"garage": "votre garage", "menuisier": "votre menuiserie",
 
 
 def corps_relance(p: dict) -> str:
-    sujet = SUJETS.get(p.get("metier") or "", "votre activité")
-    lignes = [
-        "Bonjour,",
-        "",
-        "Je me permets de revenir vers vous au sujet du site de démonstration "
-        f"que j'ai préparé pour {sujet} la semaine dernière.",
-    ]
+    """Relance unique a J+7, dans le meme fil (version validee le 28/10/2026)."""
+    nom = (p.get("nom") or "").strip()
+    lignes = ["Bonjour,", "",
+              f"Le site préparé pour {nom} est toujours en ligne :"
+              if nom else "Le site que je vous ai préparé est toujours en ligne :"]
     if p.get("site_genere"):
-        lignes += ["", "Il est toujours en ligne ici :", p["site_genere"]]
-    lignes += [
-        "",
-        "Si le projet vous intéresse, je peux l'adapter à vos photos et à vos "
-        "prestations ; sinon, un simple « non merci » me suffit et je ne vous "
-        "relancerai plus.",
-        "",
-        "Bonne journée,",
-        "",
-        *envoi_mail.signature(),
-    ]
+        lignes.append(p["site_genere"])
+    lignes += ["",
+               "Un « oui », un « plus tard » ou un « non merci » me suffit. "
+               "Sans réponse, je ne vous écrirai plus.",
+               "",
+               "Bonne journée,",
+               "",
+               *envoi_mail.signature()]
     return "\n".join(lignes)
 
 

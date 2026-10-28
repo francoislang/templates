@@ -50,6 +50,7 @@ import controle_design     # noqa: E402
 import anonymiser          # noqa: E402
 import crm                 # noqa: E402
 import envoi_mail          # noqa: E402
+import metiers as catalogue  # noqa: E402
 import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
 import telegram            # noqa: E402
 import variantes           # noqa: E402
@@ -157,6 +158,18 @@ METIERS: dict[str, dict] = {
 }
 
 
+# Le catalogue multi-metiers (metiers.py) : plombiers, coiffeurs,
+# boulangeries, gites... Leur site sort du gabarit generique
+# (_templates/artisan.html.j2) sans appel au modele, sauf IA_METIERS=1.
+for _cle, _conf in catalogue.pour_pipeline().items():
+    METIERS.setdefault(_cle, _conf)
+IA_METIERS = os.environ.get("IA_METIERS", "").strip() in ("1", "oui", "true")
+
+# « --metier tous » : rotation sur ces metiers-la (nautique n'a pas de gabarit).
+ROTATION = ["garage", "menuisier", *catalogue.PAR_CLE]
+METIERS_PAR_TOUR = int(os.environ.get("METIERS_PAR_TOUR") or 5)
+
+
 # --------------------------------------------------------------------------
 # verrou propre a ce circuit
 # --------------------------------------------------------------------------
@@ -242,8 +255,7 @@ def _filtre(avec_site: bool) -> str:
     return f"""
       metier = ?
   AND {_FILTRE_TOUS if avec_site else _FILTRE_SANS_SITE}
-  {"AND COALESCE(email,'') <> ''" if MAIL_SEUL else ""}
-  AND COALESCE(telephone,'') <> ''
+  {"AND COALESCE(email,'') <> ''" if MAIL_SEUL else "AND COALESCE(telephone,'') <> ''"}
   AND COALESCE(nom,'') <> ''
   AND traite_at IS NULL
 """
@@ -263,7 +275,7 @@ def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
     """
     cur = conn.execute(
         f"SELECT * FROM prospects WHERE {_filtre(avec_site)} "
-        "  AND telephone NOT IN (SELECT telephone FROM prospects "
+        "  AND COALESCE(telephone,'') NOT IN (SELECT telephone FROM prospects "
         "      WHERE traite_at IS NOT NULL AND COALESCE(telephone,'') <> '') "
         # CAST explicite : si une colonne arrive en TEXT (import CSV, autre
         # collecteur), « 8 » passerait avant « 49 » en tri alphabetique et on
@@ -282,14 +294,19 @@ def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
     def _cle_tel(t: str) -> str:
         return re.sub(r"\D", "", t or "")
 
+    # En mode courriel, un prospect sans telephone est valable : la cle de
+    # dedoublonnage devient alors l'adresse.
     vus = set(tel_crm or ())
     lot = []
     for r in cur:
         d = dict(r)
         t = _cle_tel(d.get("telephone"))
-        if not t or t in vus:
+        m = (d.get("email") or "").strip().lower()
+        if t and t in vus or (m and m in vus):
             continue
-        vus.add(t)
+        if not t and not (MAIL_SEUL and m):
+            continue
+        vus.update(x for x in (t, m) if x)
         lot.append(d)
         if len(lot) >= limit:
             break
@@ -298,7 +315,7 @@ def a_traiter(conn, metier: str, limit: int, tel_crm: set[str] | None = None,
 
 def compter(conn, metier: str, avec_site: bool = False) -> int:
     return conn.execute(
-        f"SELECT COUNT(DISTINCT telephone) FROM prospects "
+        f"SELECT COUNT(DISTINCT COALESCE(NULLIF(telephone,''), lower(email))) FROM prospects "
         f"WHERE {_filtre(avec_site)}", (metier,)).fetchone()[0]
 
 
@@ -468,7 +485,10 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
     conf = METIERS[metier]
     nom = (p.get("nom") or "").strip()
     slug = pl.slugify(nom)
-    v = {"nom": IDENTITE_FIXE} if IDENTITE_FIXE else variantes.pour(slug)
+    if conf.get("generique"):
+        v = {"nom": catalogue.PAR_CLE[metier].palette(slug)}
+    else:
+        v = {"nom": IDENTITE_FIXE} if IDENTITE_FIXE else variantes.pour(slug)
     cible = REPO_ROOT / slug / "index.html"
     if cible.exists() and not force:
         return f"{PAGES}/{slug}/", "", v
@@ -493,10 +513,16 @@ def generer_site(p: dict, metier: str, force=False) -> tuple[str | None, str, di
                        capture_output=True)
         return f"{PAGES}/{slug}/", "", v
 
+    if conf.get("generique") and not IA_METIERS:
+        return _repli("gabarit generique du catalogue")
     if SANS_IA or _IA_EN_PANNE:
         return _repli("IA desactivee" if SANS_IA else "IA en panne sur ce lot")
 
-    gabarit = charger_gabarit(metier)
+    if conf.get("generique"):
+        import gabarit_generique
+        gabarit = gabarit_generique.remplir(anonymiser.fiche_publique(p), metier, slug)
+    else:
+        gabarit = charger_gabarit(metier)
     if not gabarit.strip():
         return _repli("aucun gabarit lisible pour le modele")
 
@@ -564,8 +590,7 @@ REGLES ABSOLUES :
 - Reproduis TOUTES les sections du gabarit, dans le meme ordre.
 - Garde le bloc « bon de travail » de fin de page et sa mecanique d'affichage
   par ?notes : il n'est pas destine au prospect.
-- Adapte le vocabulaire au metier. Aucun mot lie aux animaux, aux chiots, aux
-  portees ou aux races.
+- Adapte le vocabulaire au metier.{'' if conf.get('animaux') else ' Aucun mot lie aux animaux, aux chiots, aux portees ou aux races.'}
 - Telephone cliquable (tel:), formulaire de devis, JSON-LD, meta SEO avec la
   commune, mobile d'abord, contrastes au minimum 4,5:1.
 - NE CHANGE PAS les couleurs ni la police du gabarit : une identite visuelle
@@ -591,7 +616,7 @@ REGLES ABSOLUES :
 
     fuite = re.findall(r"\b(chiot\w*|chien\w*|port[ée]e\w*|[ée]levage\w*|LOF)\b",
                        html, re.IGNORECASE)
-    if len(fuite) > 2:
+    if len(fuite) > 2 and not conf.get("animaux"):
         return _repli(f"vocabulaire canin residuel ({len(fuite)} occurrences)")
 
     if not IDENTITE_FIXE:
@@ -650,9 +675,9 @@ def objet_mail(p: dict) -> str:
     """La ligne d'objet, quand le canal est le courriel."""
     ville = (p.get("commune") or "").strip()
     nom = (p.get("nom") or "").strip()
-    if p.get("site_statut") == "propre":
-        return f"Une autre version du site de {nom}, pour comparaison"
-    return f"Un site pour {nom}" + (f", a {ville}" if ville else "")
+    if p.get("site_statut") == "propre" and p.get("site_web"):
+        return f"Une autre version du site de {nom}"
+    return f"Le site préparé pour {nom}"
 
 
 def _origine_adresse(p: dict) -> str:
@@ -678,6 +703,45 @@ def pitch_sms(p: dict, demo_url: str | None) -> str:
             "repondez STOP et je n'insiste pas.")
 
 
+def _constat(p: dict) -> str:
+    """La phrase qui dit pourquoi on ecrit a CE prospect (faits constates)."""
+    nom = (p.get("nom") or "").strip()
+    avis = p.get("avis")
+    note = f"{p['note']:.1f}".replace(".", ",") if p.get("note") else ""
+    if p.get("site_statut") == "propre" and p.get("site_web"):
+        return (f"{nom} a déjà un site. J'en ai imaginé une version plus "
+                "récente, pour comparer :")
+    if avis and note and int(avis) >= 10:
+        return (f"{nom} a {avis} avis Google ({note}/5), mais pas encore de site "
+                "pour les mettre en avant. Voici une démo préparée avec les "
+                "informations publiques de votre activité :")
+    if (p.get("facebook") or "").strip():
+        return (f"{nom} a une page Facebook, mais pas encore de site pour être "
+                "trouvé sur Google. Voici une démo préparée avec les "
+                "informations publiques de votre activité :")
+    return (f"Je n'ai pas trouvé de site pour {nom}. Voici une démo préparée "
+            "avec les informations publiques de votre activité :")
+
+
+def pitch_mail(p: dict, metier: str, demo_url: str | None) -> str:
+    """Le courriel (version validee le 28/10/2026) : qui je suis, le constat,
+    la demo, ce que je propose, une reponse en un mot. Pas de prix, pas de
+    mention STOP ; la signature Kerr est ajoutee par envoi_mail."""
+    parties = ["Bonjour,", "",
+               "Je suis François Lang, développeur web près de Nancy.", "",
+               _constat(p)]
+    if demo_url:
+        parties.append(demo_url)
+    parties += ["",
+                "Si elle vous plaît, je la finalise avec vos photos et vos "
+                "textes, et je m'occupe de la mise en ligne.",
+                "",
+                "Ça vous intéresse ? Répondez « oui » et dites-moi quand vous "
+                "appeler. Un « non merci » suffit, et je ne vous écris plus.",
+                "", *envoi_mail.signature()]
+    return "\n".join(parties)
+
+
 def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     """Le message a envoyer au garagiste, pret a copier-coller.
 
@@ -686,6 +750,8 @@ def pitch(p: dict, metier: str, demo_url: str | None) -> str:
     arguments sont personnalises avec les faits reellement constates sur ce
     garage — jamais avec des generalites, et jamais avec un fait invente.
     """
+    if canal(p)[0] == "mail":
+        return pitch_mail(p, metier, demo_url)
     nom = (p.get("nom") or "").strip()
     ville = (p.get("commune") or "").strip()
     dept = (p.get("departement") or "").strip()
@@ -1150,10 +1216,48 @@ def ecrire(conn, metier: str, a_ecrire: list[tuple[dict, str]],
                       + ", ".join(morceaux))
 
 
+def ordre_rotation(conn, avec_site: bool) -> list[str]:
+    """Les metiers qui ont des prospects, le moins recemment servi d'abord.
+
+    Un metier jamais servi passe avant tous les autres ; a egalite, celui qui
+    a le plus gros vivier. Ainsi chaque jour touche des metiers differents,
+    et on apprend vite lesquels repondent.
+    """
+    dernier = dict(conn.execute(
+        "SELECT metier, MAX(traite_at) FROM prospects WHERE traite_at IS NOT NULL "
+        "GROUP BY 1").fetchall())
+    candidats = [(m, compter(conn, m, avec_site)) for m in ROTATION if m in METIERS]
+    candidats = [(m, n) for m, n in candidats if n > 0]
+    candidats.sort(key=lambda mn: (dernier.get(mn[0]) or "", -mn[1]))
+    return [m for m, _ in candidats]
+
+
+def rotation(nombre: int, dry_run: bool, avec_site: bool, refaire: bool,
+             essai: bool) -> None:
+    """Repartit `nombre` prospects sur METIERS_PAR_TOUR metiers."""
+    conn = ouvrir()
+    ordre = ordre_rotation(conn, avec_site)
+    conn.close()
+    if not ordre:
+        print("Aucun prospect dans aucun metier. Lance collecte_multi.py.")
+        return
+    k = max(1, min(METIERS_PAR_TOUR, len(ordre), nombre))
+    parts = [nombre // k + (1 if i < nombre % k else 0) for i in range(k)]
+    print(f"Rotation : {', '.join(f'{m} ({n})' for m, n in zip(ordre, parts))}")
+    for m, n in zip(ordre, parts):
+        if n <= 0:
+            continue
+        print(f"\n########## {m} ##########")
+        run(m, n, dry_run, avec_site, refaire, essai)
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
-    p.add_argument("--metier", default="garage", choices=sorted(METIERS))
+    p.add_argument("--metier", default="garage", choices=["tous", *sorted(METIERS)],
+                   help="« tous » : rotation sur garage, menuisier et les "
+                        f"{len(catalogue.CATALOGUE)} metiers de metiers.py "
+                        "(METIERS_PAR_TOUR metiers par passage)")
     p.add_argument("--nombre", type=int, default=PAR_DEFAUT)
     p.add_argument("--dry-run", action="store_true",
                    help="affiche les messages Telegram sans rien generer ni envoyer")
@@ -1198,16 +1302,25 @@ def main() -> None:
 
     if args.reste:
         conn = ouvrir()
-        for m in sorted(METIERS):
-            print(f"  {m:10} : {compter(conn, m):5} sans site  |  "
-                  f"{compter(conn, m, True):5} en incluant les refontes")
+        total = 0
+        for m in sorted(METIERS, key=lambda x: -compter(conn, x, True)):
+            a, b = compter(conn, m), compter(conn, m, True)
+            total += b
+            if b:
+                print(f"  {m:18} : {a:5} sans site  |  {b:5} en incluant les refontes")
+        print(f"  {'TOTAL':18}   {total:5} prospects joignables "
+              f"({'courriel' if MAIL_SEUL else 'tous canaux'})")
         conn.close()
         return
 
     try:
         with verrou(args.attendre):
-            run(args.metier, args.nombre, args.dry_run, args.avec_site,
-                args.refaire, args.essai)
+            if args.metier == "tous":
+                rotation(args.nombre, args.dry_run, args.avec_site,
+                         args.refaire, args.essai)
+            else:
+                run(args.metier, args.nombre, args.dry_run, args.avec_site,
+                    args.refaire, args.essai)
     except DejaEnCours as e:
         print(f"Une autre execution tourne deja ({e}). Abandon.")
         sys.exit(75)
