@@ -227,7 +227,7 @@ def _dossier_brouillons(imap: imaplib.IMAP4_SSL) -> str:
 
 def deposer_brouillon(m: EmailMessage) -> None:
     try:
-        with imaplib.IMAP4_SSL(IMAP_HOTE) as imap:
+        with imaplib.IMAP4_SSL(IMAP_HOTE, timeout=60) as imap:
             imap.login(ADRESSE, MOT_DE_PASSE)
             dossier = _dossier_brouillons(imap)
             typ, rep = imap.append(dossier, "(\\Draft)",
@@ -285,7 +285,7 @@ def dossier_special(imap: imaplib.IMAP4_SSL, drapeau: str, defaut: str) -> str:
 
 
 def connexion_imap() -> imaplib.IMAP4_SSL:
-    imap = imaplib.IMAP4_SSL(IMAP_HOTE)
+    imap = imaplib.IMAP4_SSL(IMAP_HOTE, timeout=60)
     imap.login(ADRESSE, MOT_DE_PASSE)
     return imap
 
@@ -310,7 +310,7 @@ def main() -> None:
         sys.exit("Renseigne MAIL_ADRESSE et MAIL_MOT_DE_PASSE dans le .env.")
 
     if a.verifier:
-        with imaplib.IMAP4_SSL(IMAP_HOTE) as imap:
+        with imaplib.IMAP4_SSL(IMAP_HOTE, timeout=60) as imap:
             imap.login(ADRESSE, MOT_DE_PASSE)
             print(f"IMAP ok, brouillons : {_dossier_brouillons(imap)}")
         with smtplib.SMTP(SMTP_HOTE, SMTP_PORT, timeout=30) as s:

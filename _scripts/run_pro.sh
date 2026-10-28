@@ -3,6 +3,8 @@
 # Appele par launchd. Independant de run_daily.sh : autre verrou, autre horaire.
 #
 # Le marche se choisit par la variable METIER_PRO du .env (defaut : garage).
+# METIER_PRO=tous : rotation sur garage, menuisier et tout le catalogue de
+# _scripts/metiers.py (METIERS_PAR_TOUR metiers par jour, defaut 5).
 
 set -u
 REPO="$HOME/Local/Perso/templates"
@@ -85,6 +87,18 @@ OPT=""
 [ "${AVEC:-1}" != "0" ] && OPT="--avec-site"
 echo "avec-site=${AVEC:-1}"
 
+# Avant la generation : on va chercher des adresses de courriel sur les
+# sites des prospects multi-metiers qui n'en ont pas encore (page contact,
+# mentions legales). FOUILLE_MAILS_PRO=0 dans .env pour couper, ou un
+# nombre de sites par passage (defaut 150).
+FOUILLE="$(grep -E '^FOUILLE_MAILS_PRO=' .env 2>/dev/null | cut -d= -f2- | tr -d '"'"'"' ' || true)"
+FOUILLE="${FOUILLE:-150}"
+if [ "$FOUILLE" != "0" ]; then
+    echo "--- fouille des courriels sur $FOUILLE site(s) ---"
+    "$PY" -u _scripts/mails_sites.py --metier multi --nombre "$FOUILLE" 2>&1 | tail -4 \
+        || echo "AVERTISSEMENT: mails_sites a echoue, on continue"
+fi
+
 code=0
 IFS=',' read -r -a MARCHES <<< "$METIER"
 for entree in "${MARCHES[@]}"; do
@@ -94,7 +108,7 @@ for entree in "${MARCHES[@]}"; do
     [ -z "$m" ] && continue
     echo ""
     echo "--- marche $m : $n site(s) ---"
-    "$PY" _scripts/pipeline_pro.py --metier "$m" --nombre "$n" $OPT --attendre 600
+    "$PY" -u _scripts/pipeline_pro.py --metier "$m" --nombre "$n" $OPT --attendre 600
     c=$?
     [ "$c" -ne 0 ] && code=$c
 done

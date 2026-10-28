@@ -1252,6 +1252,15 @@ def rotation(nombre: int, dry_run: bool, avec_site: bool, refaire: bool,
 
 
 def main() -> None:
+    # Garde-fou : un appel reseau fige (IMAP, API...) bloquait tout le circuit
+    # pendant des jours, et launchd ne relance pas tant que le precedent tourne.
+    # Au-dela de DUREE_MAX_PRO secondes (defaut 2 h), le processus s'arrete ;
+    # le verrou flock est libere par le noyau.
+    import signal
+    try:
+        signal.alarm(int(os.environ.get("DUREE_MAX_PRO") or 7200))
+    except (AttributeError, ValueError):
+        pass
     p = argparse.ArgumentParser(description=__doc__,
                                 formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--metier", default="garage", choices=["tous", *sorted(METIERS)],
