@@ -354,7 +354,7 @@ html:not(.js) .meche,html.pret .meche{animation:trace 3.2s .3s var(--ease) forwa
 @keyframes trace{to{stroke-dashoffset:0}}
 
 /* ---------- tablette / mobile ---------- */
-@media (max-width:980px){
+@media (max-width:1279px){
   .nav{position:fixed;inset:0;z-index:-1;flex-direction:column;align-items:flex-start;justify-content:center;gap:0;padding:100px var(--gd) 120px var(--g);background:var(--rose);clip-path:circle(0 at calc(100% - 40px) 40px);transition:clip-path .7s var(--ease);visibility:hidden}
   .ouvert .nav{clip-path:circle(150% at calc(100% - 40px) 40px);visibility:visible}
   .nav a:not(.btn){font-family:var(--didone);font-size:clamp(40px,11vw,64px);line-height:1.1;padding:4px 0;min-height:56px}
@@ -428,6 +428,8 @@ html:not(.js) .meche,html.pret .meche{animation:trace 3.2s .3s var(--ease) forwa
   .meche{stroke-dashoffset:0}
   .ruban__pis{animation:none}
 }
+
+header nav a,header .nav a,header .menu a,header .btn,header [class*=tel],header [class*=cta]{white-space:nowrap}
 </style>
 </head>
 <body>

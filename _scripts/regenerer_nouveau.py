@@ -10,7 +10,7 @@ Aucune operation git : relire, puis commiter et pousser soi-meme.
     python3 _scripts/regenerer_nouveau.py              liste, n'ecrit rien
     python3 _scripts/regenerer_nouveau.py --apercu     ecrit dans _data/tmp_apercu/regen/
     python3 _scripts/regenerer_nouveau.py --appliquer  remplace <slug>/index.html
-    ... --slug le-bel --slug le-crin-blanc             limiter a certains sites
+    ... --slug le-bel --slug le-crin-blanc             sites precis (meme hors « Nouveau »)
 """
 from __future__ import annotations
 
@@ -61,14 +61,19 @@ def main() -> int:
     a.add_argument("--slug", action="append", default=[])
     x = a.parse_args()
 
-    nums = numeros_nouveau()
     c = sqlite3.connect(f"file:{DB}?mode=ro", uri=True)
     c.row_factory = sqlite3.Row
-    lignes = [r for r in c.execute(
-        "SELECT * FROM prospects WHERE COALESCE(crm_issue,'') <> '' "
-        "AND COALESCE(site_genere,'') <> ''")
-        if int(str(r["crm_issue"]).rstrip("/").rsplit("/", 1)[-1] or 0) in nums]
-    print(f"{len(nums)} annonce(s) « Nouveau » dans le CRM, {len(lignes)} retrouvee(s) dans prospection.db")
+    tous = list(c.execute("SELECT * FROM prospects WHERE COALESCE(site_genere,'') <> ''"))
+    if x.slug:
+        # --slug vise un site precis, quel que soit son statut dans le CRM
+        lignes = [r for r in tous
+                  if r["site_genere"].rstrip("/").rsplit("/", 1)[-1] in x.slug]
+        print(f"{len(lignes)} site(s) demande(s) retrouve(s) dans prospection.db")
+    else:
+        nums = numeros_nouveau()
+        lignes = [r for r in tous if (r["crm_issue"] or "") and
+                  int(str(r["crm_issue"]).rstrip("/").rsplit("/", 1)[-1] or 0) in nums]
+        print(f"{len(nums)} annonce(s) « Nouveau » dans le CRM, {len(lignes)} retrouvee(s) dans prospection.db")
 
     faits = 0
     for r in lignes:

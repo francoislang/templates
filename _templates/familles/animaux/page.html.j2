@@ -137,7 +137,7 @@ p{margin:0}
 .burger i:nth-child(1){top:19px}.burger i:nth-child(2){top:27px}
 .menu-open .burger i:nth-child(1){transform:translateY(4px) rotate(45deg)}
 .menu-open .burger i:nth-child(2){transform:translateY(-4px) rotate(-45deg)}
-@media (max-width:1020px){
+@media (max-width:1279px){
   .burger{display:block}
   .nav{position:fixed;inset:78px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;background:var(--lin);padding:12px var(--gxr) 28px var(--gx);border-bottom:1px solid var(--trait);clip-path:inset(0 0 100% 0);transition:clip-path .55s var(--ease);visibility:hidden}
   .menu-open .nav{clip-path:inset(0 0 0 0);visibility:visible}
@@ -425,6 +425,8 @@ footer small{font-size:.85rem}
   .js .arch{clip-path:none}
   .js .hero-art .panel{transform:none}
 }
+
+header nav a,header .nav a,header .menu a,header .btn,header [class*=tel],header [class*=cta]{white-space:nowrap}
 </style>
 </head>
 <body>

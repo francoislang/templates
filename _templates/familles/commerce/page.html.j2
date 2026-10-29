@@ -117,13 +117,13 @@ button{font:inherit;color:inherit}
 .mq svg{flex:none;width:38px;height:38px}
 .mq__n{display:block;font-family:var(--f-titre);font-size:20px;line-height:1.05;white-space:nowrap}
 .mq__n em{font-style:normal;color:var(--pivoine-clair)}
-.mq__v{display:block;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--clair-2)}
+.mq__v{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--clair-2)}
 .nav{display:none;gap:4px}
-.nav a{position:relative;text-decoration:none;font-size:15px;padding:10px 12px;color:var(--clair);border-radius:999px;transition:background-color .25s}
+.nav a{white-space:nowrap;position:relative;text-decoration:none;font-size:15px;padding:10px 12px;color:var(--clair);border-radius:999px;transition:background-color .25s}
 .nav a:hover{background:rgba(244,236,241,.08)}
 .nav a::after{content:"";position:absolute;left:50%;bottom:4px;width:5px;height:5px;border-radius:50%;background:var(--safran);transform:translateX(-50%) scale(0);transition:transform .3s var(--ease)}
 .nav a:hover::after{transform:translateX(-50%) scale(1)}
-.hdr__tel{display:none;text-decoration:none;font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px;border:1.5px solid rgba(242,179,61,.6);color:var(--safran)}
+.hdr__tel{white-space:nowrap;display:none;text-decoration:none;font-weight:600;font-size:15px;padding:10px 18px;border-radius:999px;border:1.5px solid rgba(242,179,61,.6);color:var(--safran)}
 .hdr__tel:hover{background:var(--safran);color:var(--ronce)}
 .burger{display:inline-grid;place-items:center;width:48px;height:48px;border:1.5px solid rgba(244,236,241,.3);border-radius:50%;background:rgba(33,20,42,.4);cursor:pointer;padding:0}
 .burger span{position:relative;display:block;width:20px;height:1.8px;background:var(--clair);transition:background-color .2s}
@@ -132,7 +132,8 @@ button{font:inherit;color:inherit}
 .burger[aria-expanded="true"] span{background:transparent}
 .burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
 .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
-@media (min-width:1000px){.nav{display:flex}.hdr__tel{display:inline-block}.burger{display:none}}
+@media (min-width:1200px){.nav{display:flex}.burger{display:none}}
+@media (min-width:1320px){.hdr__tel{display:inline-block}}
 .menu{position:fixed;inset:0;z-index:35;background:var(--ronce);color:var(--clair);padding:calc(96px + env(safe-area-inset-top)) var(--gd) calc(110px + env(safe-area-inset-bottom)) var(--g);display:flex;flex-direction:column;justify-content:space-between;clip-path:circle(0% at calc(100% - 40px) 40px);visibility:hidden;transition:clip-path .7s var(--ease),visibility 0s .7s;overflow-y:auto}
 .menu.ouvert{clip-path:circle(150% at calc(100% - 40px) 40px);visibility:visible;transition:clip-path .7s var(--ease)}
 .menu::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.25;pointer-events:none}
@@ -483,6 +484,8 @@ html.js.pret .ouv__il .il-pousse{transform:none;transition:transform 1.6s var(--
 @media (max-width:719px){.pied__mq{font-size:clamp(30px,calc((100vw - 32px) / (var(--pl,15) * .46)),120px)}}
 .ctc h2{overflow-wrap:anywhere}
 
+
+header nav a,header .nav a,header .menu a,header .btn,header [class*=tel],header [class*=cta]{white-space:nowrap}
 </style>
 </head>
 <body>

@@ -133,7 +133,7 @@ h3{font-family:var(--f-enseigne);font-weight:400;line-height:1.1}
 .menu-mob.ouvert{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .45s cubic-bezier(.7,0,.2,1)}
 .menu-mob a{font-family:var(--f-enseigne);font-size:26px;color:var(--clair);text-decoration:none;padding:12px 0;border-bottom:1px dashed rgba(233,182,92,.2);min-height:44px}
 .menu-mob a:last-child{border:0;color:var(--or)}
-@media (min-width:960px){.nav{display:flex}.hdr__tel{display:block}.burger,.menu-mob{display:none}}
+@media (min-width:1280px){.nav{display:flex}.hdr__tel{display:block}.burger,.menu-mob{display:none}}
 
 /* ---------- ouverture ---------- */
 .ouv{position:relative;overflow:hidden;color:var(--clair);background:
@@ -367,6 +367,8 @@ h3{font-family:var(--f-enseigne);font-weight:400;line-height:1.1}
   .js .tampon{transform:rotate(-12deg)!important;opacity:.75!important}
   .ruban__piste{flex-wrap:wrap;width:auto}
 }
+
+header nav a,header .nav a,header .menu a,header .btn,header [class*=tel],header [class*=cta]{white-space:nowrap}
 </style>
 </head>
 <body>
