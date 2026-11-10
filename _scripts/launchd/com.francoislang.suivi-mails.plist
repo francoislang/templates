@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.francoislang.suivi-mails</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>-lc</string>
+        <string>"$HOME/Local/Perso/templates/_scripts/run_suivi.sh"</string>
+    </array>
+
+    <!-- Tous les jours a 11h30 (apres l'envoi de 9h30) et a 18h00.
+         Si le Mac dort a l'heure dite, launchd lance le passage au reveil. -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>30</integer></dict>
+        <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>0</integer></dict>
+    </array>
+
+    <key>RunAtLoad</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/suivi-mails.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/suivi-mails.err</string>
+</dict>
+</plist>
