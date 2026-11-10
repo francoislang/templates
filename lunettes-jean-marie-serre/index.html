@@ -229,6 +229,7 @@ html.js .rv.vu{opacity:1;transform:none}
 .occs .chapo{color:#E2CCD6}
 .occ{display:grid;gap:12px;position:relative}
 @media (min-width:900px){.occ{display:flex;gap:16px;align-items:stretch;min-height:560px}}
+.occ.mesure,.occ.mesure *{transition:none!important}
 .occ__c{--fond:var(--lilas-pale);--txt:var(--encre);--trait-c:var(--pivoine-f);background:var(--fond);color:var(--txt);position:relative;border-radius:200px 200px 18px 18px;overflow:hidden;transition:flex-grow .8s var(--ease),border-radius .6s var(--ease),box-shadow .5s}
 @media (max-width:899px){.occ__c{border-radius:18px}}
 @media (min-width:900px){.occ__c{flex:1 1 0;min-width:0;display:flex;flex-direction:column}.occ__c.on{flex-grow:2.3}}
@@ -1068,6 +1069,25 @@ header nav a,header .nav a,header .menu a,header .btn,header [class*=tel],header
     b.addEventListener("click",function(){ ouvrir(c,true); });
     if(!RM) c.addEventListener("mouseenter",function(){ if(wide.matches) ouvrir(c,false); });
   });
+  /* hauteur figée sur la plus grande carte ouverte : rien ne saute en dessous au survol */
+  var occBox=doc.querySelector(".occ");
+  function figer(){
+    if(!occBox) return;
+    occBox.style.height="";
+    if(!wide.matches) return;
+    var cur=occ.filter(function(x){return x.classList.contains("on");})[0], max=0;
+    occBox.classList.add("mesure");
+    occ.forEach(function(c){ occ.forEach(function(x){ x.classList.toggle("on",x===c); }); max=Math.max(max,occBox.offsetHeight); });
+    occ.forEach(function(x){ x.classList.toggle("on",x===cur); });
+    void occBox.offsetHeight; occBox.classList.remove("mesure");
+    occBox.style.height=Math.ceil(max)+"px";
+  }
+  if(occ.length){
+    figer();
+    if(doc.fonts&&doc.fonts.ready) doc.fonts.ready.then(figer);
+    window.addEventListener("load",figer);
+    var tFig; window.addEventListener("resize",function(){ clearTimeout(tFig); tFig=setTimeout(figer,150); });
+  }
   doc.querySelectorAll("[data-occ]").forEach(function(a){
     a.addEventListener("click",function(){
       var f=doc.getElementById("dem"); if(!f) return;
