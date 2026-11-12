@@ -355,6 +355,21 @@ def upload_to_cloudinary(image_url: str, public_id: str, race: str = "") -> str 
         return None
 
 
+def upload_fichier(chemin, public_id: str) -> str | None:
+    """Envoie un fichier local (PNG, JPG) sur Cloudinary sous `public_id`.
+    Renvoie l'URL de base (sans transformation), ou None."""
+    import base64
+    import mimetypes
+    from pathlib import Path
+    chemin = Path(chemin)
+    if not chemin.is_file():
+        return None
+    mime = mimetypes.guess_type(chemin.name)[0] or "image/png"
+    data_uri = f"data:{mime};base64," + base64.b64encode(chemin.read_bytes()).decode()
+    url = upload_to_cloudinary(data_uri, public_id)
+    return url.replace("/image/upload/q_auto/f_auto/", "/image/upload/") if url else None
+
+
 def get_photos_for_race(race: str, count: int = 15, force_refresh: bool = False) -> list[str]:
     """
     Recupere les photos pour une race.

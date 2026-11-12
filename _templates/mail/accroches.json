@@ -1,0 +1,3984 @@
+[
+ {
+  "cle": "eleveur",
+  "nom": "Éleveur canin ou félin",
+  "famille": "Animaux",
+  "prospects": 9657,
+  "repartition": "majorité sans site",
+  "angle": "Une famille cherche un éleveur sérieux : elle veut voir les parents, les portées et s'inscrire sur la liste d'attente ; l'éleveur garde le choix.",
+  "sans": {
+   "objet": "Prochaine portée : liste d'attente en ligne",
+   "titre": [
+    "La prochaine portée ? ",
+    "Votre liste d'attente, en ligne."
+   ],
+   "intro": "Voici **votre site, à votre nom** : une page pour vos reproducteurs, vos portées, et votre liste d'attente.",
+   "avantage": [
+    "La liste d'attente, en ligne",
+    "Les familles s'inscrivent pour la prochaine portée, vous choisissez à qui répondre."
+   ]
+  },
+  "avec": {
+   "objet": "Vos portées : une autre version de votre site",
+   "titre": [
+    "Une nouvelle version, ",
+    "portée par portée."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque portée avec ses parents, et la liste d'attente en ligne.",
+   "avantage": [
+    "Le sérieux qui se voit",
+    "Parents, santé, lieu de vie : les familles voient comment vous élevez."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "garage",
+  "nom": "Garage automobile (mécanique, carrosserie)",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 2463,
+  "repartition": "336/635",
+  "angle": "Sans site : le moment de la panne (voyant allumé, on cherche au bord de la route) et la peur de la facture. Avec site : le garagiste a les mains dans le moteur, les rendez-vous arrivent par écrit.",
+  "sans": {
+   "objet": "Voyant allumé : c'est vous qu'on appelle ?",
+   "titre": [
+    "Voyant allumé : ",
+    "c'est vous qu'on appelle ?"
+   ],
+   "intro": "Voici **le site de votre garage** : entretien, réparation, horaires et numéro, lisibles du bord de la route.",
+   "avantage": [
+    "Des prix qui rassurent",
+    "Vidange, freins, pneus : vos forfaits « à partir de » affichés avant l'appel."
+   ]
+  },
+  "avec": {
+   "objet": "Rendez-vous demandés pendant que vous réparez",
+   "titre": [
+    "Pendant que vous réparez, ",
+    "les demandes arrivent par écrit."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : prestation, immatriculation, créneau souhaité, tout arrive par écrit.",
+   "avantage": [
+    "Vos marques et vos forfaits",
+    "Marques suivies, forfaits « à partir de » : le client sait avant d'appeler."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Pneus hiver : rendez-vous demandé en ligne ?",
+   "titre": [
+    "Pneus hiver : ",
+    "le rendez-vous se demande en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "restaurant",
+  "nom": "Restaurant",
+  "famille": "Restauration",
+  "prospects": 1157,
+  "repartition": "238/842",
+  "angle": "On choisit un restaurant carte en main, puis on réserve : montrer la carte, offrir une page Réserver et une page Groupes (les plus gros tickets).",
+  "sans": {
+   "objet": "Votre carte, lue avant même de réserver",
+   "titre": [
+    "Votre carte, ",
+    "lue avant même de réserver."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : votre carte, vos horaires, et une page pour vos groupes.",
+   "avantage": [
+    "Les groupes, sans coup de fil",
+    "Date, couverts, occasion : la demande de groupe arrive complète, même en plein service."
+   ]
+  },
+  "avec": {
+   "objet": "Vos repas de groupe ont leur page ?",
+   "titre": [
+    "Anniversaires, repas d'affaires : ",
+    "une page Groupes."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la carte d'abord, puis une page Groupes avec sa demande.",
+   "avantage": [
+    "Votre carte, toujours à jour",
+    "Un plat change : vous m'écrivez, la carte en ligne suit."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Repas de fin d'année : une page Groupes ?",
+   "titre": [
+    "Repas de fin d'année : ",
+    "vos groupes savent où demander."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "hotel",
+  "nom": "Hôtel indépendant",
+  "famille": "Hébergement",
+  "prospects": 716,
+  "repartition": "35/524",
+  "angle": "L'hôtelier connaît la commission prélevée sur chaque réservation venue d'une plateforme : on lui montre le bouton Réserver en direct, partout.",
+  "sans": {
+   "objet": "Votre hôtel, réservable en direct",
+   "titre": [
+    "Votre hôtel, ",
+    "réservable en direct."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos chambres, vos horaires d'accueil, et une page Réserver en direct.",
+   "avantage": [
+    "Réservé chez vous",
+    "Une réservation prise sur votre site : aucune commission à reverser."
+   ]
+  },
+  "avec": {
+   "objet": "Votre hôtel, version « Réserver en direct »",
+   "titre": [
+    "Réserver en direct, ",
+    "dès la page d'accueil."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos chambres, et Réserver en direct visible dès l'accueil.",
+   "avantage": [
+    "Le direct, mis en avant",
+    "Une réservation prise sur votre site : aucune commission de plateforme à reverser."
+   ]
+  },
+  "saison": null,
+  "source": "Booking.com, page partenaires « Comprendre notre commission », consultée le 08/11/2026 : « Vous payez un pourcentage défini sur le montant de chaque réservation que vous recevez via notre plateforme. » — https://partner.booking.com/fr/aide/commission-factures-et-taxes/commission/comprendre-notre-commission",
+  "option_horaires": null
+ },
+ {
+  "cle": "camping",
+  "nom": "Camping",
+  "famille": "Hébergement",
+  "prospects": 622,
+  "repartition": "24/564",
+  "angle": "Une famille choisit son camping sur les photos des emplacements, des locations et de la vie sur place, puis réserve ; le direct évite la commission.",
+  "sans": {
+   "objet": "Vos emplacements, réservables en direct",
+   "titre": [
+    "Vos emplacements, ",
+    "réservables en direct."
+   ],
+   "intro": "Voici **votre site, à votre nom** : emplacements et locations, la vie sur place, et une demande de séjour.",
+   "avantage": [
+    "Réservé en direct",
+    "Un séjour réservé sur votre site : aucune commission à reverser."
+   ]
+  },
+  "avec": {
+   "objet": "Votre camping, comme le voit une famille",
+   "titre": [
+    "Votre camping, ",
+    "comme le voit une famille."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : emplacements, locations, vie sur place, et la demande de séjour.",
+   "avantage": [
+    "Le direct, mis en avant",
+    "Un séjour réservé sur votre site : aucune commission de plateforme à reverser."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12,
+    1,
+    2
+   ],
+   "objet": "Votre été, à découvrir dès cet hiver",
+   "titre": [
+    "Votre été, ",
+    "à découvrir dès cet hiver."
+   ]
+  },
+  "source": "Booking.com, page partenaires « Comprendre notre commission », consultée le 08/11/2026 : « Vous payez un pourcentage défini sur le montant de chaque réservation que vous recevez via notre plateforme. » — https://partner.booking.com/fr/aide/commission-factures-et-taxes/commission/comprendre-notre-commission",
+  "option_horaires": null
+ },
+ {
+  "cle": "menuisier",
+  "nom": "Menuisier, ébéniste, agenceur",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 582,
+  "repartition": "146/422",
+  "angle": "Le sur-mesure se vend sur photos : l'artisan est fier de ses pièces, le client veut un exemple qui lui ressemble ; « il ne manque que vos photos » rend le site presque à lui.",
+  "sans": {
+   "objet": "Votre atelier a son site, déjà prêt",
+   "titre": [
+    "Le sur-mesure ",
+    "se choisit en photos."
+   ],
+   "intro": "Voici **le site de votre atelier**, déjà prêt : il ne manque plus que vos réalisations en photos.",
+   "avantage": [
+    "Vos réalisations, par pièce",
+    "Escaliers, cuisines, dressings, portes : chaque client trouve vite l'exemple qui lui ressemble."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site, du croquis à la pose",
+   "titre": [
+    "Chaque pièce sur mesure, ",
+    "du croquis à la pose."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, comme un carnet d'atelier : il ne manque que vos photos.",
+   "avantage": [
+    "Le projet, avant le devis",
+    "Le client décrit la pièce, ses mesures et ses idées : vous chiffrez sur du concret."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "immobilier",
+  "nom": "Agence immobilière indépendante",
+  "famille": "Services",
+  "prospects": 405,
+  "repartition": "17/164",
+  "angle": "Le vendeur qui compare les agences avant de confier son bien : estimation et biens vendus, c'est là que se gagne le mandat.",
+  "sans": {
+   "objet": "Une page « Estimer mon bien » à votre nom",
+   "titre": [
+    "Vos biens et vos estimations, ",
+    "à votre nom."
+   ],
+   "intro": "Voici votre site d'agence, avec vos biens en vitrine et une page « Estimer mon bien » pour les vendeurs.",
+   "avantage": [
+    "L'estimation demandée en ligne",
+    "Le vendeur laisse son adresse et son numéro, vous le rappelez."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site d'agence, version vendeurs",
+   "titre": [
+    "Une nouvelle version, ",
+    "pensée pour les vendeurs."
+   ],
+   "intro": "Voici une autre version de votre site, centrée sur ceux qui veulent vendre : estimation, biens vendus, équipe.",
+   "avantage": [
+    "Biens vendus, bien en vue",
+    "Les propriétaires voient ce que vous avez déjà vendu dans leur quartier."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "vetements",
+  "nom": "Boutique de vêtements",
+  "famille": "Commerce",
+  "prospects": 301,
+  "repartition": "48/87",
+  "angle": "La cliente veut voir la collection avant de se déplacer, souvent le soir : une vitrine qui reste ouverte, fidèle à votre sélection.",
+  "sans": {
+   "objet": "Votre vitrine, même rideau baissé ?",
+   "titre": [
+    "Votre vitrine, ",
+    "même rideau baissé."
+   ],
+   "intro": "Voici **votre site, à votre nom** : une vitrine pour votre collection, ouverte le soir comme le dimanche.",
+   "avantage": [
+    "Vos marques, listées",
+    "Les marques que vous proposez, listées pour ceux qui les cherchent en ville."
+   ]
+  },
+  "avec": {
+   "objet": "Vos marques, listées pour qui les cherche ?",
+   "titre": [
+    "Vos marques, ",
+    "listées pour ceux qui les cherchent."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une page pour vos marques, une autre pour la collection.",
+   "avantage": [
+    "Collection à jour",
+    "À chaque arrivage, vos nouvelles photos en ligne : les retouches sont comprises."
+   ]
+  },
+  "saison": {
+   "mois": [
+    3,
+    4,
+    9,
+    10
+   ],
+   "objet": "Nouvelle collection : ça se voit en ligne ?",
+   "titre": [
+    "Nouvelle collection : ",
+    "ça doit se voir."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "chambres-hotes",
+  "nom": "Chambres d'hôtes",
+  "famille": "Hébergement",
+  "prospects": 293,
+  "repartition": "26/263",
+  "angle": "On choisit une chambre d'hôtes sur les photos de la chambre ; le levier propre au métier : la réservation en direct, sans commission.",
+  "sans": {
+   "objet": "Vos chambres d'hôtes, réservables en direct",
+   "titre": [
+    "Vos chambres, ",
+    "réservables en direct."
+   ],
+   "intro": "Voici **votre site, à votre nom** : une page Réserver sans intermédiaire, il ne manque que vos photos.",
+   "avantage": [
+    "En direct, sans commission",
+    "Une réservation reçue sur votre site : aucune commission à reverser."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version, chambre par chambre",
+   "titre": [
+    "Vos chambres, ",
+    "une par une, en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos chambres, et les demandes de réservation en direct.",
+   "avantage": [
+    "Réservé chez vous",
+    "Une réservation reçue sur votre site : aucune commission de plateforme à reverser."
+   ]
+  },
+  "saison": {
+   "mois": [
+    2,
+    3,
+    4
+   ],
+   "objet": "Les ponts de mai, réservables en direct ?",
+   "titre": [
+    "Les ponts de mai, ",
+    "réservables en direct ?"
+   ]
+  },
+  "source": "Booking.com, page partenaires « Comprendre notre commission », consultée le 08/11/2026 : « Vous payez un pourcentage défini sur le montant de chaque réservation que vous recevez via notre plateforme. » — https://partner.booking.com/fr/aide/commission-factures-et-taxes/commission/comprendre-notre-commission",
+  "option_horaires": null
+ },
+ {
+  "cle": "opticien",
+  "nom": "Opticien indépendant",
+  "famille": "Commerce",
+  "prospects": 278,
+  "repartition": "15/45",
+  "angle": "Fierté d'indépendant : on choisit son opticien pour ses montures, ses marques et son conseil, ce qu'une simple fiche ne montre pas.",
+  "sans": {
+   "objet": "Opticien indépendant : ça se voit ?",
+   "titre": [
+    "Opticien indépendant : ",
+    "ça doit se voir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : lunettes, lentilles, et la place pour vos montures et vos marques.",
+   "avantage": [
+    "Rendez-vous en ligne",
+    "Lunettes, lentilles, ajustage : la demande de rendez-vous arrive directement chez vous."
+   ]
+  },
+  "avec": {
+   "objet": "Vos montures, comme dans votre vitrine",
+   "titre": [
+    "Vos montures, ",
+    "comme dans votre vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : votre conseil d'indépendant en avant, et la place pour vos montures.",
+   "avantage": [
+    "Vos créateurs en vitrine",
+    "Les marques que vous avez choisies, visibles avant de pousser la porte."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "gite",
+  "nom": "Gîte, location de vacances",
+  "famille": "Hébergement",
+  "prospects": 248,
+  "repartition": "34/195",
+  "angle": "Le locataire veut voir le logement pièce par pièce et les environs avant d'écrire ; réserver en direct évite la commission.",
+  "sans": {
+   "objet": "Votre gîte, réservable en direct",
+   "titre": [
+    "Votre gîte, ",
+    "réservable en direct."
+   ],
+   "intro": "Voici **votre site, à votre nom** : le logement, les environs, et une page Réserver en direct.",
+   "avantage": [
+    "Réservé en direct",
+    "Une location reçue sur votre site : aucune commission à reverser."
+   ]
+  },
+  "avec": {
+   "objet": "Votre gîte : une page Réserver en direct ?",
+   "titre": [
+    "Votre gîte, ",
+    "et une page Réserver en direct."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : le logement, les environs, et les demandes de réservation en direct.",
+   "avantage": [
+    "En direct, sans commission",
+    "Une location réservée sur votre site : aucune commission de plateforme à reverser."
+   ]
+  },
+  "saison": {
+   "mois": [
+    12,
+    1,
+    2,
+    3
+   ],
+   "objet": "Vos semaines d'été, réservables dès cet hiver",
+   "titre": [
+    "Vos semaines d'été, ",
+    "réservables dès cet hiver."
+   ]
+  },
+  "source": "Booking.com, page partenaires « Comprendre notre commission », consultée le 08/11/2026 : « Vous payez un pourcentage défini sur le montant de chaque réservation que vous recevez via notre plateforme. » — https://partner.booking.com/fr/aide/commission-factures-et-taxes/commission/comprendre-notre-commission ; Airbnb, « Simplification des frais de service sur Airbnb », 2026 (frais unique de 15,5 % payé par l'hôte pour les hôtes passés à ce modèle) — https://www.airbnb.fr/resources/hosting-homes/a/simplifying-service-fees-on-airbnb-771",
+  "option_horaires": null
+ },
+ {
+  "cle": "cafe",
+  "nom": "Café, bar",
+  "famille": "Restauration",
+  "prospects": 234,
+  "repartition": "104/119",
+  "angle": "Un café-bar se choisit sur l'ambiance et ce qui s'y passe : horaires, matchs, concerts, soirées ; « Les rendez-vous » sont son meilleur argument.",
+  "sans": {
+   "objet": "Vos soirées et rendez-vous, au même endroit",
+   "titre": [
+    "Vos rendez-vous de la semaine, ",
+    "annoncés au même endroit."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : le comptoir, l'ambiance, vos rendez-vous de la semaine.",
+   "avantage": [
+    "Votre agenda, partagé",
+    "Matchs, concerts, soirées : une page à jour, facile à partager."
+   ]
+  },
+  "avec": {
+   "objet": "Matchs, concerts : votre agenda à partager ?",
+   "titre": [
+    "Matchs, concerts, soirées : ",
+    "une page qui se partage."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'agenda de vos soirées en tête, puis vos horaires.",
+   "avantage": [
+    "Privatisations",
+    "Anniversaires, pots de départ : une demande de privatisation claire, date comprise."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "ferme",
+  "nom": "Producteur en vente directe",
+  "famille": "Bouche",
+  "prospects": 179,
+  "repartition": "68/107",
+  "angle": "Pour un producteur, la vraie question du client est « où et quand acheter » : jours de vente, marchés, dépôts, au même endroit.",
+  "sans": {
+   "objet": "Vos jours de vente, faciles à trouver ?",
+   "titre": [
+    "Où et quand vous acheter : ",
+    "tout sur une page."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos produits, vos jours de vente, vos marchés.",
+   "avantage": [
+    "Marchés et points de vente",
+    "Ferme, marchés, magasins partenaires : chaque lieu avec ses jours et horaires."
+   ]
+  },
+  "avec": {
+   "objet": "Ferme, marchés, dépôts : vos jours de vente ?",
+   "titre": [
+    "Ferme, marchés, dépôts : ",
+    "chaque lieu avec ses jours."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos produits de saison, vos jours de vente, vos marchés.",
+   "avantage": [
+    "Vos produits, mois par mois",
+    "Le calendrier de vos produits : ce qu'on trouve chez vous, mois par mois."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "caviste",
+  "nom": "Caviste",
+  "famille": "Bouche",
+  "prospects": 170,
+  "repartition": "14/93",
+  "angle": "Le caviste vend son conseil et sa sélection : montrer ses vignerons et ses dégustations donne envie de passer ; fin d'année = coffrets.",
+  "sans": {
+   "objet": "Votre cave, à parcourir avant de passer",
+   "titre": [
+    "Votre sélection, ",
+    "à parcourir avant de passer."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos vignerons, vos coups de cœur, vos dégustations.",
+   "avantage": [
+    "Vos dégustations à l'agenda",
+    "Soirées, ateliers, nouveaux arrivages : annoncés sur une page à vous."
+   ]
+  },
+  "avec": {
+   "objet": "Vos vignerons, sur une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "où vos vignerons ont leur page."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque vigneron a sa page, chaque dégustation sa date.",
+   "avantage": [
+    "Vos dégustations à l'agenda",
+    "Soirées, ateliers, nouveaux arrivages : annoncés sur une page à vous."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos coffrets de fin d'année, en vitrine ?",
+   "titre": [
+    "Champagne et coffrets, ",
+    "réservés avant les fêtes."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "boulangerie",
+  "nom": "Boulangerie",
+  "famille": "Bouche",
+  "prospects": 165,
+  "repartition": "52/67",
+  "angle": "Le client décide chez lui avant de sortir : on montre la vitrine et les horaires (jour de repos, congés), pas la commande en ligne.",
+  "sans": {
+   "objet": "Votre vitrine de boulanger, en ligne",
+   "titre": [
+    "Votre vitrine, ",
+    "visible depuis chez vos clients."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos pains, vos pâtisseries, vos horaires.",
+   "avantage": [
+    "Vos fermetures annoncées",
+    "Jour de repos et congés annuels affichés avant que l'on se déplace."
+   ]
+  },
+  "avec": {
+   "objet": "Un gâteau pour dimanche, commandé en ligne ?",
+   "titre": [
+    "Un gâteau pour dimanche ? ",
+    "Il se commande en ligne."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos pains, vos spécialités, vos gâteaux sur commande.",
+   "avantage": [
+    "Vos fermetures annoncées",
+    "Jour de repos et congés annuels affichés avant que l'on se déplace."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos bûches, réservées avant le réveillon ?",
+   "titre": [
+    "Vos bûches de Noël, ",
+    "réservées avant le réveillon."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "velo",
+  "nom": "Magasin de vélos",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 135,
+  "repartition": "27/100",
+  "angle": "Vélo crevé ou à réviser : le cycliste veut un prix et un créneau d'atelier ; à l'achat, voir les marques avant de passer.",
+  "sans": {
+   "objet": "Révision vélo : l'atelier demandé en ligne ?",
+   "titre": [
+    "Révision, crevaison, freins : ",
+    "l'atelier se demande en ligne."
+   ],
+   "intro": "Voici **votre site, à votre nom** : réparation, vente et conseil, et la demande de rendez-vous atelier.",
+   "avantage": [
+    "Vos tarifs, sans appeler",
+    "Révision, crevaison, freins : vos prix affichés, le client sait avant de passer."
+   ]
+  },
+  "avec": {
+   "objet": "Un vélo à réparer : l'atelier dès l'accueil",
+   "titre": [
+    "Un vélo à réparer ? ",
+    "L'atelier passe en premier."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'atelier et sa demande de rendez-vous, puis vos marques.",
+   "avantage": [
+    "Vos marques, bien rangées",
+    "Vélos électriques, ville, enfants : chacun trouve son rayon avant de passer."
+   ]
+  },
+  "saison": {
+   "mois": [
+    3,
+    4,
+    5
+   ],
+   "objet": "Révision de printemps : réservable en ligne ?",
+   "titre": [
+    "La révision de printemps, ",
+    "réservable en ligne ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "coiffeur",
+  "nom": "Coiffeur",
+  "famille": "Beauté",
+  "prospects": 131,
+  "repartition": "44/59",
+  "angle": "Le client veut voir le travail, le prix et un créneau : réalisations en photos, tarifs et bouton Rendez-vous ensemble.",
+  "sans": {
+   "objet": "Ciseaux en main, le téléphone qui sonne ?",
+   "titre": [
+    "Ciseaux en main ? ",
+    "Les rendez-vous arrivent par écrit."
+   ],
+   "intro": "Voici **le site de votre salon** : prestations, horaires, et la demande de rendez-vous par écrit.",
+   "avantage": [
+    "Vos réalisations en photos",
+    "Coupes, couleurs, balayages : on voit votre travail avant de prendre rendez-vous."
+   ]
+  },
+  "avec": {
+   "objet": "Votre salon, une autre version en photos",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos réalisations en vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos coupes et couleurs, puis le rendez-vous.",
+   "avantage": [
+    "Le rendez-vous, en un geste",
+    "Le bouton mène à votre agenda en ligne ou à votre numéro."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Décembre : rendez-vous demandés en ligne ?",
+   "titre": [
+    "Décembre au salon : ",
+    "les rendez-vous se demandent en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "cadeaux",
+  "nom": "Boutique déco et cadeaux",
+  "famille": "Commerce",
+  "prospects": 110,
+  "repartition": "17/60",
+  "angle": "Une boutique déco se choisit à l'ambiance et dépanne pour une idée cadeau : montrer l'univers et classer les idées par occasion.",
+  "sans": {
+   "objet": "Votre boutique, comme si on y entrait",
+   "titre": [
+    "Votre boutique, ",
+    "comme si on y entrait."
+   ],
+   "intro": "Voici **votre site, à votre nom** : objets et décoration, et une page Pour offrir classée par occasion.",
+   "avantage": [
+    "Une idée par occasion",
+    "Anniversaire, crémaillère, naissance : vos idées cadeaux classées par occasion."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, comme si on y entrait",
+   "titre": [
+    "Une nouvelle version, ",
+    "comme si on entrait chez vous."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos idées cadeaux par occasion, il ne manque que vos photos.",
+   "avantage": [
+    "Les nouveautés d'abord",
+    "Vos derniers arrivages en photos : vos habitués savent quand repasser."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Noël : une page « Pour offrir » à votre nom",
+   "titre": [
+    "Pour Noël, ",
+    "une page Pour offrir à votre nom."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "quincaillerie",
+  "nom": "Quincaillerie",
+  "famille": "Commerce",
+  "prospects": 105,
+  "repartition": "4/41",
+  "angle": "On pousse la porte d'une quincaillerie pour la pièce introuvable et le conseil : la fierté du « on a tout » et les services doivent se voir avant le déplacement.",
+  "sans": {
+   "objet": "La pièce introuvable, c'est chez vous ?",
+   "titre": [
+    "La pièce introuvable ? ",
+    "C'est chez vous."
+   ],
+   "intro": "Voici votre site, à votre nom : vos rayons, vos services et vos horaires, pour qui cherche la bonne pièce et le bon conseil.",
+   "avantage": [
+    "Vos services en clair",
+    "Chaque service que vous proposez a sa ligne : on sait avant de se déplacer."
+   ]
+  },
+  "avec": {
+   "objet": "Vos rayons et services : une autre version",
+   "titre": [
+    "Vos services, ",
+    "lisibles avant de se déplacer."
+   ],
+   "intro": "J'ai préparé une nouvelle version de votre site, à votre nom : vos rayons et vos services présentés, avec vos horaires bien en vue.",
+   "avantage": [
+    "Le conseil en avant",
+    "Votre conseil de quincaillier, mis en avant dès la page d'accueil."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "librairie",
+  "nom": "Librairie",
+  "famille": "Commerce",
+  "prospects": 104,
+  "repartition": "26/71",
+  "angle": "Le lecteur vient pour le conseil et le livre qu'on lui commande : les coups de cœur et le retrait en boutique, c'est ce qui fait choisir sa librairie.",
+  "sans": {
+   "objet": "Vos coups de cœur de libraire, en ligne ?",
+   "titre": [
+    "Vos coups de cœur, ",
+    "à feuilleter en ligne."
+   ],
+   "intro": "Voici votre site, à votre nom : vos coups de cœur en vitrine, et une page Commandes pour réserver un livre.",
+   "avantage": [
+    "Retiré chez vous",
+    "Un livre absent du rayon se demande en ligne et se retire en boutique."
+   ]
+  },
+  "avec": {
+   "objet": "Vos coups de cœur en page d'accueil ?",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos coups de cœur en tête."
+   ],
+   "intro": "J'ai préparé une nouvelle version de votre site, à votre nom : vos coups de cœur dès l'accueil, et les commandes à retirer en boutique.",
+   "avantage": [
+    "Le conseil du libraire",
+    "Vos petits mots sur les livres, comme sur vos tables, lisibles en ligne."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Un livre à offrir : vos coups de cœur",
+   "titre": [
+    "Un livre à offrir ? ",
+    "Vos coups de cœur répondent."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "estheticienne",
+  "nom": "Institut de beauté",
+  "famille": "Beauté",
+  "prospects": 103,
+  "repartition": "23/65",
+  "angle": "Avant de réserver un soin, on veut la carte, la durée, le prix et l'ambiance du lieu ; à Noël, le bon cadeau.",
+  "sans": {
+   "objet": "Votre carte des soins, à votre nom",
+   "titre": [
+    "Soins, épilation, ambiance : ",
+    "à découvrir avant de venir."
+   ],
+   "intro": "Voici **le site de votre institut** : soins du visage, épilation, soins du corps, et la demande de rendez-vous.",
+   "avantage": [
+    "Une ambiance qui rassure",
+    "Photos des cabines et de l'accueil : on découvre le lieu avant de venir."
+   ]
+  },
+  "avec": {
+   "objet": "Votre carte des soins, une autre version",
+   "titre": [
+    "Votre carte des soins, ",
+    "en nouvelle version."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : votre carte des soins, puis la demande de rendez-vous.",
+   "avantage": [
+    "Le bon cadeau, mis en avant",
+    "Une page pour offrir un soin : pratique à Noël et pour la fête des mères."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Vos bons cadeaux de Noël, bien en vue ?",
+   "titre": [
+    "Noël à l'institut : ",
+    "le bon cadeau, bien en vue."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "nautique",
+  "nom": "Chantier naval, réparation de bateaux",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 88,
+  "repartition": "8/73",
+  "angle": "On confie son bateau à un chantier qu'on a vu, souvent de loin : photos des travaux et devis à distance rassurent le plaisancier.",
+  "sans": {
+   "objet": "Hivernage, entretien : votre site est prêt",
+   "titre": [
+    "Confier son bateau, ",
+    "c'est d'abord voir le chantier."
+   ],
+   "intro": "Voici **le site de votre chantier** : entretien, hivernage, réparation, et la place pour vos travaux en photos.",
+   "avantage": [
+    "Le devis à distance",
+    "Propriétaire loin de son port : il décrit son bateau et demande son devis en ligne."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, côté ponton",
+   "titre": [
+    "Vos chantiers, ",
+    "du carénage à la remise à l'eau."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos travaux, et le devis demandé à distance.",
+   "avantage": [
+    "L'hivernage en clair",
+    "À terre ou à flot, ce qui est compris : le plaisancier sait tout avant d'appeler."
+   ]
+  },
+  "saison": {
+   "mois": [
+    8,
+    9,
+    10
+   ],
+   "objet": "Hivernage : la demande se fait en ligne ?",
+   "titre": [
+    "L'hivernage ",
+    "se demande en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "salle-sport",
+  "nom": "Salle de sport",
+  "famille": "Loisirs",
+  "prospects": 87,
+  "repartition": "4/27",
+  "angle": "Avant de s'inscrire, on veut voir la salle, les formules et les horaires ; janvier est le moment où l'on cherche.",
+  "sans": {
+   "objet": "Votre salle, vue avant la première séance",
+   "titre": [
+    "Votre salle, ",
+    "visitée avant la première séance."
+   ],
+   "intro": "Voici **votre site, à votre nom** : entraînement, accompagnement, horaires, et la place pour la salle en photos.",
+   "avantage": [
+    "La visite avant la visite",
+    "Plateau, cours, vestiaires en photos : on vient en sachant à quoi s'attendre."
+   ]
+  },
+  "avec": {
+   "objet": "Votre salle de sport, une autre version",
+   "titre": [
+    "Votre salle, ",
+    "comme si on y était."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : formules, accompagnement, il ne manque que la salle en photos.",
+   "avantage": [
+    "Les formules côte à côte",
+    "Chacun compare vos formules et choisit la sienne avant de passer."
+   ]
+  },
+  "saison": {
+   "mois": [
+    12,
+    1
+   ],
+   "objet": "Bonnes résolutions : votre salle en ligne",
+   "titre": [
+    "Bonnes résolutions : ",
+    "votre salle, vue avant de venir."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "chocolatier",
+  "nom": "Chocolatier",
+  "famille": "Bouche",
+  "prospects": 85,
+  "repartition": "4/20",
+  "angle": "Le chocolat s'offre : le client choisit son cadeau chez lui puis vient le chercher ; Noël et Pâques sont les grands rendez-vous.",
+  "sans": {
+   "objet": "Une vitrine en ligne pour vos chocolats",
+   "titre": [
+    "Vos coffrets, ",
+    "choisis avant de pousser la porte."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos coffrets, vos ballotins, vos créations du moment.",
+   "avantage": [
+    "Les fêtes, préparées d'avance",
+    "Une page Commandes à ouvrir avant Pâques et Noël, à refermer après."
+   ]
+  },
+  "avec": {
+   "objet": "Votre chocolaterie, en nouvelle version",
+   "titre": [
+    "Votre site, ",
+    "avec vos coffrets en vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos coffrets, et une page pour les commander d'avance.",
+   "avantage": [
+    "Les fêtes, préparées d'avance",
+    "Une page Commandes à ouvrir avant Pâques et Noël, à refermer après."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos coffrets de Noël, réservables en ligne ?",
+   "titre": [
+    "Vos coffrets de Noël, ",
+    "réservables en ligne ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "bijouterie",
+  "nom": "Bijouterie",
+  "famille": "Commerce",
+  "prospects": 79,
+  "repartition": "10/38",
+  "angle": "Un bijou s'achète en confiance et pour un grand moment (alliances, cadeau, transformation) : montrer l'atelier derrière les pièces rassure.",
+  "sans": {
+   "objet": "Vos créations et votre atelier, en ligne",
+   "titre": [
+    "Vos bijoux, ",
+    "et l'atelier derrière."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos bijoux, et la page Atelier pour les alliances et le sur-mesure.",
+   "avantage": [
+    "Alliances et sur-mesure",
+    "Les couples découvrent votre travail d'atelier avant de prendre rendez-vous."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, vos bijoux en grand",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos bijoux en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos bijoux, l'atelier raconté, il ne manque que vos photos.",
+   "avantage": [
+    "L'atelier raconté",
+    "Transformation, mise à taille, sur-mesure : ce qui se fait chez vous se voit."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Noël : votre vitrine, ouverte même le soir",
+   "titre": [
+    "Un bijou pour Noël ? ",
+    "Votre vitrine, même le soir."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "pizzeria",
+  "nom": "Pizzeria",
+  "famille": "Restauration",
+  "prospects": 72,
+  "repartition": "16/53",
+  "angle": "La pizza se décide vite, souvent le soir : carte, prix et numéro doivent tomber sous le pouce ; on vend l'appel, pas la commande en ligne.",
+  "sans": {
+   "objet": "Votre carte des pizzas, à portée de main",
+   "titre": [
+    "Vendredi soir : ",
+    "la carte, les prix, votre numéro."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : votre carte, vos horaires, un bouton pour appeler.",
+   "avantage": [
+    "Commander par téléphone",
+    "Sur mobile, un seul geste pour appeler et passer commande."
+   ]
+  },
+  "avec": {
+   "objet": "Carte des pizzas : lisible au téléphone ?",
+   "titre": [
+    "Carte, horaires, numéro : ",
+    "d'un seul coup de pouce."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la carte sur téléphone, vos horaires, l'appel en un geste.",
+   "avantage": [
+    "Commander par téléphone",
+    "Sur mobile, un seul geste pour appeler et passer commande."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "fleuriste",
+  "nom": "Fleuriste",
+  "famille": "Commerce",
+  "prospects": 71,
+  "repartition": "20/45",
+  "angle": "Un bouquet se choisit avec les yeux et se commande souvent de loin (anniversaire, naissance, deuil, mariage) : on montre ses créations.",
+  "sans": {
+   "objet": "Vos bouquets, à voir avant de commander",
+   "titre": [
+    "Vos bouquets, ",
+    "à voir avant de commander."
+   ],
+   "intro": "Voici **votre site, à votre nom**. Regardez la page Bouquets : il ne manque que vos créations.",
+   "avantage": [
+    "Commander de loin",
+    "Anniversaire, naissance, deuil : on vous passe commande, même à distance."
+   ]
+  },
+  "avec": {
+   "objet": "Vos bouquets en premier : une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos bouquets en premier."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos bouquets d'abord, et les mariages sur une page à part.",
+   "avantage": [
+    "Mariages et événements",
+    "Une page pour vos réalisations, pour les couples qui préparent leur mariage."
+   ]
+  },
+  "saison": {
+   "mois": [
+    1,
+    2
+   ],
+   "objet": "Saint-Valentin : vos bouquets à réserver ?",
+   "titre": [
+    "Saint-Valentin : ",
+    "vos bouquets réservables en ligne ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "informatique",
+  "nom": "Dépannage informatique",
+  "famille": "Services",
+  "prospects": 70,
+  "repartition": "5/55",
+  "angle": "Panne = inquiétude : le client veut un numéro, un tarif clair et un visage de confiance à qui confier ses données.",
+  "sans": {
+   "objet": "Ordinateur en panne : votre numéro en grand",
+   "titre": [
+    "Ordinateur en panne ? ",
+    "Votre numéro, en grand."
+   ],
+   "intro": "Voici **votre site, à votre nom** : dépannage, installation et conseil, et votre numéro dès l'accueil.",
+   "avantage": [
+    "Un visage, pas une hotline",
+    "Votre photo et votre parcours : on sait à qui l'on confie son ordinateur."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site, version « mon PC est en panne »",
+   "titre": [
+    "Une nouvelle version, ",
+    "pensée pour l'urgence."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : le client décrit sa panne en deux lignes, ou vous appelle.",
+   "avantage": [
+    "Des mots simples",
+    "Pas de jargon : chaque service est expliqué comme vous le diriez de vive voix."
+   ]
+  },
+  "saison": {
+   "mois": [
+    12,
+    1
+   ],
+   "objet": "Un PC sous le sapin ? Vous l'installez.",
+   "titre": [
+    "Un ordinateur sous le sapin ? ",
+    "Vous l'installez."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "cuisiniste",
+  "nom": "Cuisiniste",
+  "famille": "Bâtiment",
+  "prospects": 69,
+  "repartition": "2/21",
+  "angle": "Un projet long et coûteux : le client veut voir des cuisines posées chez de vrais clients et arriver au rendez-vous avec ses mesures.",
+  "sans": {
+   "objet": "Vos cuisines posées, en vraies photos",
+   "titre": [
+    "Une cuisine se choisit ",
+    "chez de vrais clients."
+   ],
+   "intro": "Voici **votre site, à votre nom** : conception, pose, et la place pour vos cuisines installées.",
+   "avantage": [
+    "Un premier rendez-vous utile",
+    "Le client décrit sa pièce, ses mesures et ses envies : le rendez-vous avance vite."
+   ]
+  },
+  "avec": {
+   "objet": "Vos cuisines posées, en grand format",
+   "titre": [
+    "Vos cuisines, ",
+    "telles qu'elles vivent chez vos clients."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une page par cuisine posée, il ne manque que vos photos.",
+   "avantage": [
+    "La pose, expliquée",
+    "Vos poseurs, vos délais, votre suivi après la pose : présentés simplement."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "boucherie",
+  "nom": "Boucherie",
+  "famille": "Bouche",
+  "prospects": 67,
+  "repartition": "31/36",
+  "angle": "Le boucher se choisit sur la confiance : origine de la viande, préparations maison, avis ; horaires si connus. Pas la commande en ligne au quotidien.",
+  "sans": {
+   "objet": "D'où vient votre viande : ça se voit ?",
+   "titre": [
+    "L'origine de votre viande, ",
+    "bien en vue."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos viandes, leur origine, vos préparations maison.",
+   "avantage": [
+    "Vos avis, bien en vue",
+    "47 % des Français prêtent attention aux avis en ligne sur les commerces alimentaires de proximité."
+   ]
+  },
+  "avec": {
+   "objet": "L'origine de votre viande, mise en avant",
+   "titre": [
+    "Une nouvelle version, ",
+    "où l'origine passe en premier."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'origine des viandes, vos préparations, vos commandes de fête.",
+   "avantage": [
+    "Barbecues et fêtes",
+    "Colis, rôtis et plateaux à réserver d'avance, par téléphone ou en ligne."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos volailles de fête, réservées d'avance ?",
+   "titre": [
+    "Chapons et rôtis de fête, ",
+    "réservés d'avance."
+   ]
+  },
+  "source": "CSA pour la CGAD, « Les Français et les commerces de proximité », 2024 — https://csa.eu/wp-content/uploads/2024/09/Les-Francais-et-les-commerces-de-proximite.VD_.pdf (slide 37) ; communiqué CGAD : https://ghr.fr/IMG/pdf/cp_enquete_csa.cgad2024.26_09_2024.pdf",
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "epicerie-fine",
+  "nom": "Épicerie fine",
+  "famille": "Bouche",
+  "prospects": 55,
+  "repartition": "15/34",
+  "angle": "L'épicerie fine se visite pour offrir : idées cadeaux, producteurs, paniers garnis ; en fin d'année, les entreprises cherchent des paniers.",
+  "sans": {
+   "objet": "Une idée cadeau ? Votre épicerie répond",
+   "titre": [
+    "Une idée cadeau gourmande ? ",
+    "Votre épicerie a la réponse."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos produits, vos producteurs, vos paniers à offrir.",
+   "avantage": [
+    "Paniers à offrir",
+    "Formats et budgets présentés : le client choisit, vous préparez."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version de votre épicerie fine",
+   "titre": [
+    "Une nouvelle version, ",
+    "où chaque produit raconte son origine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos producteurs, vos trouvailles, vos paniers à offrir.",
+   "avantage": [
+    "Paniers à offrir",
+    "Formats et budgets présentés : le client choisit, vous préparez."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Paniers garnis de fin d'année : en vitrine ?",
+   "titre": [
+    "Vos paniers de fêtes, ",
+    "prêts pour les commandes d'entreprise."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "auto-ecole",
+  "nom": "Auto-école",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 54,
+  "repartition": "9/37",
+  "angle": "Ce sont souvent les parents qui comparent : forfaits, étapes, financements et inscription doivent se lire d'un coup d'œil.",
+  "sans": {
+   "objet": "Vos forfaits permis, lisibles en ligne",
+   "titre": [
+    "Vos forfaits permis, ",
+    "clairs dès l'accueil."
+   ],
+   "intro": "Voici le site de votre auto-école : forfaits, financements possibles et inscription, expliqués pour les élèves et les parents.",
+   "avantage": [
+    "Pensé pour les parents",
+    "Étapes du permis, prix, horaires du bureau : les parents ont leurs réponses."
+   ]
+  },
+  "avec": {
+   "objet": "Votre auto-école, version parents",
+   "titre": [
+    "Une nouvelle version, ",
+    "pensée pour les parents."
+   ],
+   "intro": "Voici une autre version de votre site : étapes, forfaits, inscription, expliqués pour les élèves et leurs parents.",
+   "avantage": [
+    "Du code à la conduite",
+    "Chaque étape du permis expliquée, avec ce qu'elle coûte chez vous."
+   ]
+  },
+  "saison": {
+   "mois": [
+    8,
+    9
+   ],
+   "objet": "Rentrée : vos inscriptions permis en ligne ?",
+   "titre": [
+    "À la rentrée, ",
+    "on s'inscrit en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "jardinerie",
+  "nom": "Jardinerie, pépinière",
+  "famille": "Commerce",
+  "prospects": 53,
+  "repartition": "5/19",
+  "angle": "Le jardinier vient au rythme des saisons et du conseil : montrer ce qui vient d'arriver et quoi planter maintenant donne une raison de faire le trajet.",
+  "sans": {
+   "objet": "Ce qui pousse chez vous, visible en ligne",
+   "titre": [
+    "Ce qui pousse chez vous, ",
+    "visible avant de venir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : végétaux, conseils de saison, et la place pour vos arrivages.",
+   "avantage": [
+    "Le conseil de saison",
+    "Quoi planter, quand et où : vos conseils, saison après saison."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, au rythme des saisons",
+   "titre": [
+    "Une nouvelle version, ",
+    "au rythme des saisons."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos conseils de saison, et la place pour vos arrivages.",
+   "avantage": [
+    "Arrivages de saison",
+    "Vos clients voient ce qui vient d'arriver avant de faire le trajet."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Noël : vos plantes à offrir, en vitrine ?",
+   "titre": [
+    "Pour Noël, ",
+    "vos plantes à offrir en vitrine."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "depot-vente",
+  "nom": "Dépôt-vente",
+  "famille": "Commerce",
+  "prospects": 43,
+  "repartition": "10/12",
+  "angle": "Deux publics : les acheteurs qui guettent les arrivages, et les déposants qui demandent toujours comment ça marche ; le site répond aux deux.",
+  "sans": {
+   "objet": "Comment déposer chez vous ? C'est expliqué",
+   "titre": [
+    "Comment déposer chez vous ? ",
+    "C'est expliqué."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos arrivages pour les acheteurs, la page Dépôt pour les vendeurs.",
+   "avantage": [
+    "Le dépôt expliqué",
+    "Ce que vous acceptez et comment ça se passe, écrit noir sur blanc."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, avec vos arrivages",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos arrivages en vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos arrivages, et le dépôt expliqué pas à pas.",
+   "avantage": [
+    "Les arrivages en photos",
+    "Vos habitués voient les nouveautés avant de passer."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "moto",
+  "nom": "Atelier moto",
+  "famille": "Auto & circuits dédiés",
+  "prospects": 42,
+  "repartition": "3/16",
+  "angle": "Entre motards, la confiance passe par l'atelier qu'on voit ; au printemps, tout le monde veut sa révision avant la saison.",
+  "sans": {
+   "objet": "Votre atelier moto a son site, déjà prêt",
+   "titre": [
+    "Révision, entretien, équipement : ",
+    "votre atelier en vitrine."
+   ],
+   "intro": "Voici votre site, à votre nom : vos prestations d'atelier, les motos que vous entretenez, votre équipement.",
+   "avantage": [
+    "L'atelier en photos",
+    "Atelier, outils, équipe : on voit à qui l'on confie sa moto."
+   ]
+  },
+  "avec": {
+   "objet": "Votre atelier moto, une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "faite pour les motards."
+   ],
+   "intro": "Voici une autre version de votre site : entretien, réparation, équipement et la demande de rendez-vous atelier.",
+   "avantage": [
+    "Rendez-vous atelier en ligne",
+    "Le motard décrit sa moto et son besoin, vous rappelez pour fixer la date."
+   ]
+  },
+  "saison": {
+   "mois": [
+    2,
+    3,
+    4
+   ],
+   "objet": "Sortie d'hiver : la révision moto en ligne ?",
+   "titre": [
+    "Sortie d'hiver : ",
+    "la révision, réservable en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "telephone",
+  "nom": "Réparation de téléphones",
+  "famille": "Services",
+  "prospects": 41,
+  "repartition": "2/2",
+  "angle": "Écran cassé, batterie à plat : le client cherche son modèle et le prix tout de suite, puis veut être rassuré sur la garantie.",
+  "sans": {
+   "objet": "Écran cassé : vos tarifs en ligne ?",
+   "titre": [
+    "Écran cassé ? ",
+    "Vos tarifs, modèle par modèle."
+   ],
+   "intro": "Voici **votre site, à votre nom** : réparations, accessoires, horaires, et votre numéro en un geste.",
+   "avantage": [
+    "Accessoires en vitrine",
+    "Coques, verres trempés, chargeurs : on sait ce qu'on trouvera en passant."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site de réparation, une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "le prix avant de venir."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos tarifs par modèle, la garantie, vos horaires.",
+   "avantage": [
+    "La garantie, noir sur blanc",
+    "Pièces, garantie, délai : tout est écrit avant le dépôt de l'appareil."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "patisserie",
+  "nom": "Pâtisserie",
+  "famille": "Bouche",
+  "prospects": 37,
+  "repartition": "4/33",
+  "angle": "Le gâteau se choisit avec les yeux : on vend la vitrine en photo et une commande claire (parts, délai), pas un catalogue.",
+  "sans": {
+   "objet": "Vos pâtisseries, en vitrine sur votre site",
+   "titre": [
+    "Vos pâtisseries, ",
+    "aussi belles en ligne qu'en vitrine."
+   ],
+   "intro": "Voici une **maquette de site à votre nom**, pensée comme votre vitrine : il ne manque que vos photos.",
+   "avantage": [
+    "Commandes claires",
+    "Parfums, nombre de parts et délai de commande, réunis sur une page."
+   ]
+  },
+  "avec": {
+   "objet": "Vos entremets, à choisir en photo ?",
+   "titre": [
+    "Vos entremets, ",
+    "choisis en photo, commandés d'avance."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une page Commandes claire, et la place pour vos entremets.",
+   "avantage": [
+    "Pièces montées et grands jours",
+    "Mariages, baptêmes : vos pièces de fête présentées, avec la marche à suivre."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos bûches de fête, à choisir d'avance ?",
+   "titre": [
+    "Votre collection de bûches, ",
+    "à découvrir en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "fromagerie",
+  "nom": "Fromagerie",
+  "famille": "Bouche",
+  "prospects": 35,
+  "repartition": "9/24",
+  "angle": "On va chez le fromager pour un repas : plateaux sur commande, conseil, fromages du moment ; les fêtes sont son grand rendez-vous.",
+  "sans": {
+   "objet": "Vos plateaux de fromages, en photo ?",
+   "titre": [
+    "Un plateau pour dix ? ",
+    "Votre fromagerie a la réponse."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos fromages du moment, vos plateaux, vos horaires.",
+   "avantage": [
+    "Plateaux sur commande",
+    "Nombre de convives, budget, jour de retrait : tout est clair avant d'appeler."
+   ]
+  },
+  "avec": {
+   "objet": "Vos plateaux, sur une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "avec vos plateaux en vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : fromages du moment, plateaux sur commande, conseils d'accord.",
+   "avantage": [
+    "Le conseil du fromager",
+    "Vos accords et vos fromages de saison, présentés comme au comptoir."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos plateaux des fêtes, réservés d'avance ?",
+   "titre": [
+    "Les plateaux du réveillon, ",
+    "réservés d'avance."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "equitation",
+  "nom": "Centre équestre",
+  "famille": "Loisirs",
+  "prospects": 35,
+  "repartition": "8/26",
+  "angle": "Parents et cavaliers cherchent le cours de leur niveau ; un propriétaire choisit une pension sur les installations : deux publics, tout se montre.",
+  "sans": {
+   "objet": "Cours, balades, pension : votre site est prêt",
+   "titre": [
+    "Cours, balades, pension : ",
+    "votre centre en ligne."
+   ],
+   "intro": "Voici **votre site, à votre nom** : cours par niveau, balades, pension, et la place pour vos installations.",
+   "avantage": [
+    "Les installations en photos",
+    "Les propriétaires découvrent la pension et ses installations avant même d'appeler."
+   ]
+  },
+  "avec": {
+   "objet": "Votre centre équestre, une autre version",
+   "titre": [
+    "Votre centre, ",
+    "côté parents et cavaliers."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : cours, balades, pension, il ne manque que vos photos.",
+   "avantage": [
+    "Le bon cours, vite trouvé",
+    "Débutant, galop, enfant ou adulte : chacun voit le cours fait pour lui."
+   ]
+  },
+  "saison": {
+   "mois": [
+    6,
+    8,
+    9
+   ],
+   "objet": "Les inscriptions de septembre, en ligne ?",
+   "titre": [
+    "La rentrée à cheval, ",
+    "inscriptions en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "pompes-funebres",
+  "nom": "Pompes funèbres",
+  "famille": "Services",
+  "prospects": 35,
+  "repartition": "2/27",
+  "angle": "Sobriété : une famille éprouvée cherche un numéro, des démarches claires et les avis de décès ; aucune promesse, aucune urgence.",
+  "sans": {
+   "objet": "Un site sobre, à votre nom",
+   "titre": [
+    "Un site sobre, ",
+    "pour accompagner les familles."
+   ],
+   "intro": "Voici un **site à votre nom**, simple et respectueux : votre numéro, vos services, les démarches expliquées.",
+   "avantage": [
+    "Votre numéro, sans chercher",
+    "Il figure en haut de chaque page, pour les familles qui vous cherchent."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version de votre site",
+   "titre": [
+    "Une nouvelle version, ",
+    "pensée pour les familles."
+   ],
+   "intro": "Voici une autre version de votre site, sobre et claire : les démarches expliquées simplement, votre numéro toujours visible.",
+   "avantage": [
+    "Les avis de décès, en ligne",
+    "Une page où les proches retrouvent l'avis et l'heure de la cérémonie."
+   ]
+  },
+  "saison": {
+   "mois": [
+    9,
+    10
+   ],
+   "objet": "À l'approche de la Toussaint",
+   "titre": [
+    "À l'approche de la Toussaint, ",
+    "l'entretien des sépultures."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "chaussures",
+  "nom": "Magasin de chaussures",
+  "famille": "Commerce",
+  "prospects": 33,
+  "repartition": "12/13",
+  "angle": "Une chaussure s'achète à la marque et au conseil d'essayage : montrer modèles et marques fait venir ceux qui cherchent confort ou modèle précis.",
+  "sans": {
+   "objet": "Vos modèles et vos marques, visibles en ligne",
+   "titre": [
+    "Vos modèles, ",
+    "visibles avant l'essayage."
+   ],
+   "intro": "Voici **votre site, à votre nom** : la place pour vos modèles, et votre conseil d'essayage en avant.",
+   "avantage": [
+    "Vos marques listées",
+    "Les marques que vous proposez, listées pour ceux qui les cherchent en ville."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, vos modèles en grand",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos modèles en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos modèles, et vos marques bien en vue.",
+   "avantage": [
+    "Le conseil en avant",
+    "Pointure, confort, essayage : votre conseil a sa propre page."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "jouets",
+  "nom": "Magasin de jouets",
+  "famille": "Commerce",
+  "prospects": 33,
+  "repartition": "6/18",
+  "angle": "Le jouet s'achète pour offrir, souvent par des parents ou grands-parents qui ne savent pas quoi prendre : des idées par âge les guident jusqu'à vous.",
+  "sans": {
+   "objet": "Vos idées cadeaux par âge, déjà en ligne",
+   "titre": [
+    "Vos idées cadeaux par âge, ",
+    "déjà en ligne."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos jeux et jouets, et une page Pour offrir classée par âge.",
+   "avantage": [
+    "Des idées par âge",
+    "Les grands-parents qui ne savent pas quoi offrir trouvent vos conseils avant de venir."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, pensée pour offrir",
+   "titre": [
+    "Une nouvelle version, ",
+    "pensée pour ceux qui offrent."
+   ],
+   "intro": "J'ai préparé une nouvelle version de votre site, à votre nom : vos jeux et jouets classés par âge, pour ceux qui cherchent un cadeau.",
+   "avantage": [
+    "Le conseil du magasin",
+    "Vos sélections expliquées par âge, comme vous le feriez en boutique."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11,
+    12
+   ],
+   "objet": "La liste au Père Noël commence chez vous ?",
+   "titre": [
+    "La liste au Père Noël ",
+    "commence chez vous ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "piscine",
+  "nom": "Pisciniste",
+  "famille": "Bâtiment",
+  "prospects": 26,
+  "repartition": "0/20",
+  "angle": "Une piscine se rêve en photos avant de se chiffrer ; l'entretien et le dépannage ramènent le client chaque saison.",
+  "sans": {
+   "objet": "Vos bassins, en photos dès l'accueil",
+   "titre": [
+    "Une piscine, ",
+    "ça se rêve en photos."
+   ],
+   "intro": "Voici **votre site, à votre nom** : construction, rénovation, entretien, et la place pour vos bassins.",
+   "avantage": [
+    "Du projet au plongeon",
+    "Étude, terrassement, mise en eau : les étapes d'un chantier expliquées simplement."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, côté bassin",
+   "titre": [
+    "Vos plus beaux bassins, ",
+    "en plein écran."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, pensée pour vos bassins : il ne manque que vos photos.",
+   "avantage": [
+    "Entretien et dépannage",
+    "Eau verte, pompe en panne : le client décrit le souci, vous savez quoi apporter."
+   ]
+  },
+  "saison": {
+   "mois": [
+    3,
+    4,
+    5
+   ],
+   "objet": "Remise en route : demande en ligne ?",
+   "titre": [
+    "Remise en route : ",
+    "la demande se fait en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "traiteur",
+  "nom": "Traiteur",
+  "famille": "Bouche",
+  "prospects": 26,
+  "repartition": "6/19",
+  "angle": "Le client d'un traiteur prépare un événement : il veut voir des menus, se faire une idée, puis demander un devis sans se perdre.",
+  "sans": {
+   "objet": "Mariage, baptême : vos menus en ligne ?",
+   "titre": [
+    "Vos menus de réception, ",
+    "présentés avant le devis."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos menus, vos formules, une demande de devis.",
+   "avantage": [
+    "Des demandes complètes",
+    "Date, nombre d'invités, lieu : tout arrive d'un coup, sans aller-retour."
+   ]
+  },
+  "avec": {
+   "objet": "Vos menus traiteur, en nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "avec un devis en quelques questions."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos menus par occasion, et une demande de devis guidée.",
+   "avantage": [
+    "Des demandes complètes",
+    "Date, nombre d'invités, lieu : tout arrive d'un coup, sans aller-retour."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos menus de fêtes, à commander d'avance ?",
+   "titre": [
+    "Vos menus de fêtes, ",
+    "choisis tranquillement, commandés d'avance."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "photographe",
+  "nom": "Photographe",
+  "famille": "Artisanat",
+  "prospects": 26,
+  "repartition": "3/23",
+  "angle": "Deux moments : choisir un photographe pour une séance (on juge le style sur photos) et la photo d'identité pressée (adresse et horaires tout de suite).",
+  "sans": {
+   "objet": "Vos séances photo, à voir avant de réserver",
+   "titre": [
+    "Votre regard, ",
+    "à voir avant la séance."
+   ],
+   "intro": "Voici **votre site, à votre nom** : la place pour vos séances, et l'identité pour qui est pressé.",
+   "avantage": [
+    "Identité, sans détour",
+    "Photo pour un passeport ou un permis : vos horaires et l'adresse, tout de suite."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, vos images en grand",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos images en plein écran."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une galerie par séance, il ne manque que vos images.",
+   "avantage": [
+    "Une galerie par séance",
+    "Naissance, famille, couple : chacun voit votre travail dans son cas."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Une séance photo à offrir pour Noël ?",
+   "titre": [
+    "Noël approche : ",
+    "une séance photo à offrir ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "imprimerie",
+  "nom": "Imprimerie",
+  "famille": "Services",
+  "prospects": 26,
+  "repartition": "2/19",
+  "angle": "Le client a une échéance et un fichier : il veut voir des exemples proches de son besoin et envoyer une demande de devis complète.",
+  "sans": {
+   "objet": "Flyers, cartes, enseignes : devis en ligne",
+   "titre": [
+    "Flyers, cartes, enseignes : ",
+    "le devis en ligne."
+   ],
+   "intro": "Voici **le site de votre imprimerie** : impression, signalétique, la place pour vos réalisations, et la demande de devis.",
+   "avantage": [
+    "Des devis complets",
+    "Format, quantité, papier, date : tout arrive en une seule demande."
+   ]
+  },
+  "avec": {
+   "objet": "Votre imprimerie, une autre version du site",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos réalisations en grand."
+   ],
+   "intro": "Voici une autre version de votre site : vos réalisations classées par usage et une demande de devis complète.",
+   "avantage": [
+    "Par usage, pas par machine",
+    "Commerce, association, mariage : chacun trouve vite l'exemple qui lui ressemble."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Cartes de vœux : le devis en ligne ?",
+   "titre": [
+    "Cartes de vœux et calendriers : ",
+    "le devis en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "tatoueur",
+  "nom": "Tatoueur",
+  "famille": "Beauté",
+  "prospects": 25,
+  "repartition": "14/11",
+  "angle": "Un tatoueur se choisit sur son book : curiosité honnête (« il ne manque que vos photos ») et demandes de projet déjà triées.",
+  "sans": {
+   "objet": "Votre book de tatouage, sur un site à vous",
+   "titre": [
+    "Votre book, ",
+    "sur un site à vous."
+   ],
+   "intro": "Voici **votre site, à votre nom** : tatouage, reprises et conseils. Il ne manque que vos photos.",
+   "avantage": [
+    "Les demandes déjà triées",
+    "Emplacement, taille, style : la demande arrive précise, vous répondez au calme."
+   ]
+  },
+  "avec": {
+   "objet": "Votre book, dans une nouvelle version",
+   "titre": [
+    "Votre book d'abord, ",
+    "le projet ensuite."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : un book classé par style, puis la demande de projet.",
+   "avantage": [
+    "Pour un premier tatouage",
+    "Studio, hygiène, soins après la séance : tout est expliqué avant le rendez-vous."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "confiserie",
+  "nom": "Confiserie",
+  "famille": "Bouche",
+  "prospects": 24,
+  "repartition": "1/20",
+  "angle": "Une spécialité qu'on rapporte de voyage : le client de passage veut la retrouver une fois rentré, et l'offrir.",
+  "sans": {
+   "objet": "Vos clients de passage vous retrouvent ?",
+   "titre": [
+    "Rentrés chez eux, ",
+    "vos clients savent comment recommander."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos spécialités, la boutique, et comment en recommander.",
+   "avantage": [
+    "Pour offrir, même de loin",
+    "Vos boîtes cadeaux et la façon de les commander, même à distance."
+   ]
+  },
+  "avec": {
+   "objet": "Vos spécialités, sur une nouvelle version",
+   "titre": [
+    "Vos spécialités, ",
+    "racontées dans une nouvelle version."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos spécialités, votre savoir-faire, vos boîtes à offrir.",
+   "avantage": [
+    "Pour offrir, même de loin",
+    "Vos boîtes cadeaux et la façon de les commander, même à distance."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Noël : vos boîtes à offrir, en vitrine ?",
+   "titre": [
+    "Pour Noël, ",
+    "vos boîtes à offrir en vitrine."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "danse",
+  "nom": "École de danse",
+  "famille": "Loisirs",
+  "prospects": 24,
+  "repartition": "3/20",
+  "angle": "Les parents choisissent selon l'âge, le style et le créneau, souvent le soir quand le professeur est en cours ; le spectacle donne envie.",
+  "sans": {
+   "objet": "Vos cours de danse, par âge et par style",
+   "titre": [
+    "Vos cours, ",
+    "par âge et par style."
+   ],
+   "intro": "Voici **votre site, à votre nom** : cours, stages et spectacles, et la place pour votre planning.",
+   "avantage": [
+    "Le bon créneau, vite trouvé",
+    "Âge, style, jour : chacun trouve son cours, enfant ou adulte."
+   ]
+  },
+  "avec": {
+   "objet": "Votre école de danse, une autre version",
+   "titre": [
+    "Votre école, ",
+    "de la scène au planning."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : cours, stages, spectacles, et la demande d'inscription.",
+   "avantage": [
+    "Inscrire sans appeler",
+    "Les parents trouvent le cours puis demandent l'inscription, même pendant vos cours."
+   ]
+  },
+  "saison": {
+   "mois": [
+    6,
+    8,
+    9
+   ],
+   "objet": "Les inscriptions de la rentrée, en ligne ?",
+   "titre": [
+    "La rentrée, ",
+    "inscriptions en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "pressing",
+  "nom": "Pressing",
+  "famille": "Services",
+  "prospects": 24,
+  "repartition": "4/11",
+  "angle": "On choisit un pressing sur trois questions : combien pour cette pièce, quels horaires, font-ils les retouches.",
+  "sans": {
+   "objet": "Chemise, costume, couette : vos prix en ligne",
+   "titre": [
+    "Chemise, costume, couette : ",
+    "les prix sous les yeux."
+   ],
+   "intro": "Voici **le site de votre pressing** : nettoyage, repassage, retouches, vos horaires, et la place pour vos tarifs.",
+   "avantage": [
+    "Les retouches aussi",
+    "Ourlets, fermetures, ajustements : vos clients savent qu'ils peuvent vous les confier."
+   ]
+  },
+  "avec": {
+   "objet": "Votre pressing, une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "les tarifs sous les yeux."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos tarifs article par article, horaires, retouches.",
+   "avantage": [
+    "Les grosses pièces aussi",
+    "Couettes, rideaux, tenues de cérémonie : on sait que vous vous en occupez."
+   ]
+  },
+  "saison": {
+   "mois": [
+    4,
+    5,
+    6
+   ],
+   "objet": "Saison des mariages : vos tarifs en ligne ?",
+   "titre": [
+    "Saison des mariages : ",
+    "vos tarifs costume et robe."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "chauffagiste",
+  "nom": "Chauffagiste",
+  "famille": "Bâtiment",
+  "prospects": 23,
+  "repartition": "4/16",
+  "angle": "La panne et l'entretien reviennent chaque année : le site capte la demande d'entretien hors des heures d'atelier et montre les installations pour les gros devis.",
+  "sans": {
+   "objet": "Chauffage, entretien : votre site est prêt",
+   "titre": [
+    "Chaudière en panne : ",
+    "votre numéro, tout de suite."
+   ],
+   "intro": "Voici **votre site, à votre nom** : chauffage, entretien et dépannage, et un formulaire pour la visite annuelle.",
+   "avantage": [
+    "L'entretien qui revient",
+    "Vos clients demandent leur entretien en ligne, même un dimanche soir."
+   ]
+  },
+  "avec": {
+   "objet": "Vos installations de chauffage, en photos",
+   "titre": [
+    "Avant de signer un devis, ",
+    "on regarde vos chantiers."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'entretien demandé en ligne, et une place pour vos installations.",
+   "avantage": [
+    "Vos labels en vue",
+    "RGE, Qualibat, assurance : ce qui rassure s'affiche dès l'accueil."
+   ]
+  },
+  "saison": {
+   "mois": [
+    9,
+    10,
+    11
+   ],
+   "objet": "Avant l'hiver, l'entretien demandé en ligne ?",
+   "titre": [
+    "Avant l'hiver, ",
+    "l'entretien se demande en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "brasserie",
+  "nom": "Brasserie artisanale",
+  "famille": "Bouche",
+  "prospects": 23,
+  "repartition": "3/20",
+  "angle": "Une brasserie artisanale vit de sa gamme, de ses visites et de ses points de vente : le client veut savoir où boire et acheter ses bières.",
+  "sans": {
+   "objet": "Où boire vos bières ? Voici votre site",
+   "titre": [
+    "Où boire vos bières ? ",
+    "La réponse, sur votre site."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos bières, vos visites, vos points de vente.",
+   "avantage": [
+    "Vos points de vente",
+    "Bars, caves et épiceries qui servent vos bières, réunis sur une page."
+   ]
+  },
+  "avec": {
+   "objet": "Vos bières, sur une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "brassée autour de vos bières."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la gamme, les visites, les points de vente.",
+   "avantage": [
+    "Visites et privatisations",
+    "Créneaux de visite et demandes de groupe, sur une page claire."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Bière de Noël et coffrets : déjà annoncés ?",
+   "titre": [
+    "Bière de Noël, coffrets : ",
+    "annoncés avant les fêtes."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "musique",
+  "nom": "École de musique",
+  "famille": "Loisirs",
+  "prospects": 23,
+  "repartition": "4/18",
+  "angle": "Les familles se demandent quel instrument, dès quel âge, à quel prix ; la pratique collective montre l'ambiance de l'école.",
+  "sans": {
+   "objet": "Vos cours d'instrument, présentés un par un",
+   "titre": [
+    "Vos instruments, ",
+    "un par un, en ligne."
+   ],
+   "intro": "Voici votre site, à votre nom : les instruments enseignés, dès quel âge, la pratique collective et une demande d'inscription.",
+   "avantage": [
+    "Âge, tarif, horaires",
+    "Les réponses aux questions des parents, sur la page de chaque instrument."
+   ]
+  },
+  "avec": {
+   "objet": "Votre école de musique, une autre version",
+   "titre": [
+    "Votre école, ",
+    "instrument par instrument."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : les cours d'instrument, la pratique collective, la demande d'inscription.",
+   "avantage": [
+    "Inscrire sans appeler",
+    "Les parents demandent l'inscription en ligne, même quand vous êtes en cours."
+   ]
+  },
+  "saison": {
+   "mois": [
+    6,
+    8,
+    9
+   ],
+   "objet": "La rentrée musicale, inscriptions en ligne ?",
+   "titre": [
+    "La rentrée musicale, ",
+    "inscriptions en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "animalerie",
+  "nom": "Animalerie",
+  "famille": "Animaux",
+  "prospects": 22,
+  "repartition": "5/15",
+  "angle": "Le client veut savoir avant de se déplacer si vous avez sa marque et s'il sera bien conseillé : rayons et conseils en vitrine.",
+  "sans": {
+   "objet": "Votre animalerie, ses rayons, à votre nom",
+   "titre": [
+    "Vos rayons et vos conseils, ",
+    "visibles avant de venir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : alimentation, accessoires, conseil, vos horaires, et la place pour vos rayons.",
+   "avantage": [
+    "Les marques en vitrine",
+    "Le client voit que vous avez ses croquettes avant de se déplacer."
+   ]
+  },
+  "avec": {
+   "objet": "Votre animalerie, une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "rayon par rayon."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une place pour vos rayons, vos marques et vos conseils.",
+   "avantage": [
+    "Le conseil d'un spécialiste",
+    "Aquarium, rongeur, oiseau : vos conseils montrent ce qu'on ne trouve qu'en magasin."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "encadreur",
+  "nom": "Encadreur, galerie",
+  "famille": "Artisanat",
+  "prospects": 22,
+  "repartition": "3/19",
+  "angle": "On confie à l'encadreur un souvenir ou une œuvre : voir ses réalisations lève l'hésitation, et la galerie se visite aussi entre deux passages.",
+  "sans": {
+   "objet": "Vos encadrements, à voir avant de venir",
+   "titre": [
+    "Vos encadrements, ",
+    "à voir avant d'apporter l'œuvre."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos encadrements et vos œuvres, pour qui hésite à confier un souvenir.",
+   "avantage": [
+    "Tout s'encadre",
+    "Affiche, diplôme, broderie, objet : vos réalisations montrent ce qui est possible."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, vos cadres en grand",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos cadres et vos œuvres."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'encadrement et la galerie, il ne manque que vos photos.",
+   "avantage": [
+    "La galerie en ligne",
+    "Les œuvres et les artistes que vous exposez, visibles entre les visites."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Encadrer pour Noël : jusqu'à quand ?",
+   "titre": [
+    "Encadrer pour Noël ? ",
+    "Votre date limite, en première page."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "plombier",
+  "nom": "Plombier",
+  "famille": "Bâtiment",
+  "prospects": 21,
+  "repartition": "3/18",
+  "angle": "Le moment de la fuite : le client cherche, téléphone en main, un numéro joignable et proche ; on montre que le site sert ce moment-là.",
+  "sans": {
+   "objet": "Fuite d'eau : c'est vous qu'on appelle ?",
+   "titre": [
+    "Fuite d'eau : ",
+    "on vous appelle d'un geste."
+   ],
+   "intro": "Voici **votre site, à votre nom** : dépannage, installation, zone d'intervention et numéro, lisibles depuis un téléphone.",
+   "avantage": [
+    "La demande bien préparée",
+    "Ce qui fuit, où, quand passer : vous savez quoi apporter."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site, pensé pour le jour de la fuite",
+   "titre": [
+    "Votre site, ",
+    "pensé pour le jour de la fuite."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : le dépannage d'abord, vos installations ensuite.",
+   "avantage": [
+    "Vos chantiers en photos",
+    "Salle de bains, chauffe-eau, réseau neuf : chaque chantier terminé rassure le suivant."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "primeur",
+  "nom": "Primeur",
+  "famille": "Bouche",
+  "prospects": 19,
+  "repartition": "8/11",
+  "angle": "Le primeur vend la saison et la provenance : l'étal du moment, ses producteurs, ses horaires ; corbeilles sur commande en plus.",
+  "sans": {
+   "objet": "Votre étal de saison, aussi en ligne",
+   "titre": [
+    "Votre étal, ",
+    "au rythme des saisons."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos fruits de saison, vos producteurs, votre épicerie.",
+   "avantage": [
+    "Vos avis, bien en vue",
+    "47 % des Français prêtent attention aux avis en ligne sur les commerces alimentaires de proximité."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version, au rythme des saisons",
+   "titre": [
+    "Une nouvelle version, ",
+    "au rythme de votre étal."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : fruits de saison, provenance, corbeilles sur commande.",
+   "avantage": [
+    "Corbeilles et paniers",
+    "Corbeilles de fruits pour offrir ou pour le bureau, à commander d'avance."
+   ]
+  },
+  "saison": null,
+  "source": "CSA pour la CGAD, « Les Français et les commerces de proximité », 2024 — https://csa.eu/wp-content/uploads/2024/09/Les-Francais-et-les-commerces-de-proximite.VD_.pdf (slide 37) ; communiqué CGAD : https://ghr.fr/IMG/pdf/cp_enquete_csa.cgad2024.26_09_2024.pdf",
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "massage",
+  "nom": "Masseur bien-être",
+  "famille": "Beauté",
+  "prospects": 17,
+  "repartition": "1/16",
+  "angle": "Massage bien-être (jamais thérapeutique) : on veut un cadre clair, durée et prix, le lieu en photos ; à Noël, on offre.",
+  "sans": {
+   "objet": "Massages bien-être : votre site, déjà prêt",
+   "titre": [
+    "Chaque massage, ",
+    "sa durée, son prix."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos massages décrits, la demande de rendez-vous, la place pour le lieu.",
+   "avantage": [
+    "Offrir un massage",
+    "Une page bon cadeau, pratique pour Noël, les anniversaires et la fête des mères."
+   ]
+  },
+  "avec": {
+   "objet": "Vos massages, dans une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "calme comme vos séances."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : massages, formules, demande de rendez-vous, et la place pour le lieu.",
+   "avantage": [
+    "Un cadre clair",
+    "Déroulé de la séance, tenue, durée : chacun sait à quoi s'attendre en venant."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Un massage sous le sapin ?",
+   "titre": [
+    "Pour Noël, ",
+    "vos bons cadeaux bien en vue."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "escape-game",
+  "nom": "Escape game",
+  "famille": "Loisirs",
+  "prospects": 16,
+  "repartition": "0/15",
+  "angle": "Les groupes choisissent une salle sur son thème et sa difficulté, puis un créneau ; l'immersion peut commencer dès le site.",
+  "sans": {
+   "objet": "Vos salles d'escape game, à votre nom",
+   "titre": [
+    "Chaque salle, ",
+    "son ambiance, sa réservation."
+   ],
+   "intro": "Voici votre site, à votre nom : chaque salle avec son thème, sa difficulté, le nombre de joueurs, et la réservation.",
+   "avantage": [
+    "Le bon niveau, sans surprise",
+    "Difficulté, durée, nombre de joueurs : chaque équipe choisit la salle qui lui va."
+   ]
+  },
+  "avec": {
+   "objet": "Le jeu commence sur votre site ?",
+   "titre": [
+    "Et si le jeu ",
+    "commençait dès la page d'accueil ?"
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque salle comme une bande-annonce, puis une page Groupes.",
+   "avantage": [
+    "Les groupes s'y retrouvent",
+    "Anniversaires, sorties d'équipe : une page dédiée aux groupes et aux entreprises."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Fin d'année : vos salles pour les équipes ?",
+   "titre": [
+    "Fin d'année : ",
+    "une page pour les sorties d'équipe."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "couture",
+  "nom": "Couturière, retoucheur",
+  "famille": "Artisanat",
+  "prospects": 16,
+  "repartition": "8/8",
+  "angle": "On cherche une couturière avec un vêtement à ajuster, souvent avant une cérémonie : savoir ce que vous faites et voir votre sur-mesure rassure.",
+  "sans": {
+   "objet": "De l'ourlet au sur-mesure, tout en ligne",
+   "titre": [
+    "De l'ourlet au sur-mesure, ",
+    "tout est expliqué."
+   ],
+   "intro": "Voici votre site, à votre nom : vos retouches et votre sur-mesure expliqués simplement, pour qui a un vêtement à ajuster.",
+   "avantage": [
+    "Avant une cérémonie",
+    "Robes et costumes à ajuster avant le grand jour : votre page Sur mesure répond."
+   ]
+  },
+  "avec": {
+   "objet": "Retouches, sur-mesure : une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "l'atelier en photos."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : retouches et sur-mesure expliqués, et la place pour l'atelier.",
+   "avantage": [
+    "Le sur-mesure montré",
+    "Vos créations en photos : on voit ce que vos mains savent faire."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "electricien",
+  "nom": "Électricien",
+  "famille": "Bâtiment",
+  "prospects": 15,
+  "repartition": "3/12",
+  "angle": "Double face : l'urgence (plus de courant) pour être appelé, et la qualité invisible d'un tableau bien fait, que seules des photos peuvent prouver.",
+  "sans": {
+   "objet": "Plus de courant : c'est vous qu'on appelle ?",
+   "titre": [
+    "Plus de courant : ",
+    "votre numéro reste allumé."
+   ],
+   "intro": "Voici **votre site, à votre nom** : dépannage, installation, rénovation, et votre numéro toujours en vue.",
+   "avantage": [
+    "Vos tableaux, avant/après",
+    "Un tableau refait, ça se montre : vos avant/après rassurent avant le devis."
+   ]
+  },
+  "avec": {
+   "objet": "Un travail propre, ça se montre aussi",
+   "titre": [
+    "Un tableau bien fait, ",
+    "ça se montre."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : dépannage, tableaux, rénovation, et la place pour vos chantiers en photos.",
+   "avantage": [
+    "Le dépannage en un geste",
+    "Sur téléphone, le bouton Appeler reste visible sur chaque page."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "vigneron",
+  "nom": "Domaine viticole",
+  "famille": "Bouche",
+  "prospects": 15,
+  "repartition": "3/12",
+  "angle": "Le domaine vend au caveau puis après la visite : horaires de dégustation, et un moyen simple de recommander une fois rentré.",
+  "sans": {
+   "objet": "Votre caveau, facile à trouver et à visiter",
+   "titre": [
+    "Une dégustation au caveau ? ",
+    "Vos visiteurs savent quand venir."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos cuvées, le domaine, les horaires du caveau.",
+   "avantage": [
+    "Recommander après la visite",
+    "Rentrés chez eux, vos visiteurs retrouvent vos cuvées et savent comment commander."
+   ]
+  },
+  "avec": {
+   "objet": "Votre domaine, en nouvelle version",
+   "titre": [
+    "Votre domaine, ",
+    "raconté dans une nouvelle version."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : le domaine, les cuvées, et une page Caveau claire.",
+   "avantage": [
+    "Recommander après la visite",
+    "Rentrés chez eux, vos visiteurs retrouvent vos cuvées et savent comment commander."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos cartons des fêtes, commandés d'avance ?",
+   "titre": [
+    "Les vins des fêtes, ",
+    "commandés directement au domaine."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "antiquaire",
+  "nom": "Antiquaire, brocante",
+  "famille": "Commerce",
+  "prospects": 15,
+  "repartition": "5/10",
+  "angle": "Deux publics : l'acheteur qui veut voir les pièces avant de faire la route, et la famille qui vide une maison et cherche qui estime.",
+  "sans": {
+   "objet": "Estimation et achat : une page à votre nom",
+   "titre": [
+    "Une maison à vider ? ",
+    "Votre page Estimation est prête."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos pièces pour les acheteurs, une page Estimation pour les familles.",
+   "avantage": [
+    "Acheteurs et vendeurs",
+    "Une page pour ceux qui achètent, une autre pour ceux qui vendent."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, vos pièces en grand",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos pièces en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos pièces pour les acheteurs, une page Estimation pour les vendeurs.",
+   "avantage": [
+    "Vos pièces en détail",
+    "Grandes photos, dimensions, époque : l'acheteur sait avant de faire la route."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "ceramiste",
+  "nom": "Céramiste, potier",
+  "famille": "Artisanat",
+  "prospects": 15,
+  "repartition": "2/13",
+  "angle": "Pièces uniques, cours et commandes : les mains et l'atelier comptent autant que l'objet ; on montre l'atelier et on ouvre la porte aux cours.",
+  "sans": {
+   "objet": "Vos pièces et vos cours, déjà en ligne",
+   "titre": [
+    "Vos pièces, ",
+    "et les mains qui les façonnent."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos pièces, et la page Cours et commandes pour demander une place.",
+   "avantage": [
+    "Cours et stages",
+    "Les curieux voient vos cours et demandent une place directement."
+   ]
+  },
+  "avec": {
+   "objet": "Vos cours et vos pièces : une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "l'atelier et vos pièces."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : vos cours mis en avant, et la place pour vos pièces.",
+   "avantage": [
+    "Commandes sur mesure",
+    "Une série de bols, un service de table : la demande arrive directement chez vous."
+   ]
+  },
+  "saison": {
+   "mois": [
+    11,
+    12
+   ],
+   "objet": "Un cours de poterie à offrir pour Noël ?",
+   "titre": [
+    "Noël approche : ",
+    "vos cours à offrir, en ligne ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "architecte",
+  "nom": "Architecte",
+  "famille": "Services",
+  "prospects": 15,
+  "repartition": "3/11",
+  "angle": "Un architecte se choisit sur ses projets et sa démarche : grandes images, peu de texte, étapes d'une mission claires.",
+  "sans": {
+   "objet": "Vos projets, sur un site à votre nom",
+   "titre": [
+    "Vos projets, ",
+    "en grand et à votre nom."
+   ],
+   "intro": "Voici **votre site, à votre nom** : votre démarche, les étapes d'une mission, et la place pour vos projets.",
+   "avantage": [
+    "Les étapes, expliquées",
+    "De la première visite au chantier : le particulier comprend ce qu'il vous confie."
+   ]
+  },
+  "avec": {
+   "objet": "Vos projets, dans une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "où vos projets respirent."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : des pleines pages pour vos projets, la démarche en quelques étapes.",
+   "avantage": [
+    "Avant, après",
+    "Pour la rénovation, le même lieu avant et après : le projet se comprend seul."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "metallier",
+  "nom": "Métallier, ferronnier",
+  "famille": "Bâtiment",
+  "prospects": 14,
+  "repartition": "0/14",
+  "angle": "Chaque pièce est unique : le client choisit sur exemples et arrive avec une idée en photo ; le site sert de catalogue de savoir-faire.",
+  "sans": {
+   "objet": "Portails, garde-corps : vos pièces en vitrine",
+   "titre": [
+    "Chaque pièce est unique, ",
+    "votre site aussi."
+   ],
+   "intro": "Voici **votre site, à votre nom** : métallerie, ferronnerie, soudure, et la place pour vos pièces sur mesure.",
+   "avantage": [
+    "Du croquis à la pose",
+    "Le client décrit son idée et ses mesures : vous chiffrez sur une base claire."
+   ]
+  },
+  "avec": {
+   "objet": "Vos portails et escaliers, en grand format",
+   "titre": [
+    "Votre savoir-faire, ",
+    "pièce par pièce."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque pièce sur mesure aura sa photo et son histoire.",
+   "avantage": [
+    "Particuliers et pros",
+    "Portail pour une maison, rampe pour un commerce : chacun trouve l'exemple qui lui parle."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "torrefacteur",
+  "nom": "Torréfacteur",
+  "famille": "Bouche",
+  "prospects": 14,
+  "repartition": "1/13",
+  "angle": "On choisit un café comme un vin : origines, torréfaction, mouture pour sa machine ; les pros du coin cherchent aussi un torréfacteur.",
+  "sans": {
+   "objet": "Vos origines de café, présentées une à une",
+   "titre": [
+    "Vos origines, ",
+    "présentées une à une."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos origines, vos torréfactions, la mouture pour chaque machine.",
+   "avantage": [
+    "Une page pour les pros",
+    "Cafés, restaurants et bureaux qui cherchent un torréfacteur près de chez eux."
+   ]
+  },
+  "avec": {
+   "objet": "Vos cafés, sur une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "où chaque origine a sa fiche."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque café a sa fiche, avec la mouture conseillée.",
+   "avantage": [
+    "Une page pour les pros",
+    "Cafés, restaurants et bureaux qui cherchent un torréfacteur près de chez eux."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Vos coffrets de café, prêts pour Noël ?",
+   "titre": [
+    "Vos coffrets de Noël, ",
+    "pour les amateurs de café."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "glacier",
+  "nom": "Glacier",
+  "famille": "Bouche",
+  "prospects": 14,
+  "repartition": "3/8",
+  "angle": "La glace est saisonnière et se décide sur l'envie : est-ce ouvert, quels parfums ; la réouverture de printemps est le moment clé.",
+  "sans": {
+   "objet": "Vos parfums du moment, visibles en ligne ?",
+   "titre": [
+    "Vos parfums, ",
+    "goûtés des yeux avant de venir."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos parfums, vos coupes, vos horaires de saison.",
+   "avantage": [
+    "Ouvert ou fermé, c'est clair",
+    "Dates de saison et horaires d'été annoncés au même endroit."
+   ]
+  },
+  "avec": {
+   "objet": "Vos parfums, sur une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "avec vos parfums en vitrine."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la carte des parfums, les coupes, les dates d'ouverture.",
+   "avantage": [
+    "Ouvert ou fermé, c'est clair",
+    "Dates de saison et horaires d'été annoncés au même endroit."
+   ]
+  },
+  "saison": {
+   "mois": [
+    2,
+    3,
+    4
+   ],
+   "objet": "La saison reprend : vos clients le savent ?",
+   "titre": [
+    "La saison reprend : ",
+    "vos clients doivent le savoir."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "creperie",
+  "nom": "Crêperie",
+  "famille": "Restauration",
+  "prospects": 14,
+  "repartition": "5/9",
+  "angle": "On choisit une crêperie en famille ou en vacances, carte en main : galettes, horaires, sur place ou à emporter ; la Chandeleur est son jour.",
+  "sans": {
+   "objet": "Vos galettes, à découvrir avant de venir",
+   "titre": [
+    "Votre carte des galettes, ",
+    "lue avant de venir."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : votre carte, vos horaires, sur place ou à emporter.",
+   "avantage": [
+    "Sur place ou à emporter",
+    "Carte, horaires, numéro : tout se lit sur téléphone, en famille comme en vacances."
+   ]
+  },
+  "avec": {
+   "objet": "Votre crêperie, en nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "avec votre carte en vedette."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : galettes et crêpes, sur place ou à emporter, vos horaires.",
+   "avantage": [
+    "Sur place ou à emporter",
+    "Carte, horaires, numéro : tout se lit sur téléphone, en famille comme en vacances."
+   ]
+  },
+  "saison": {
+   "mois": [
+    1
+   ],
+   "objet": "Chandeleur : vos crêpes, déjà annoncées ?",
+   "titre": [
+    "La Chandeleur approche : ",
+    "vos crêpes à emporter, annoncées."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "musique-shop",
+  "nom": "Magasin de musique",
+  "famille": "Commerce",
+  "prospects": 14,
+  "repartition": "1/13",
+  "angle": "On confie un instrument à quelqu'un dont on a vu le travail : l'atelier et le conseil au premier instrument font la différence.",
+  "sans": {
+   "objet": "Vos instruments et votre atelier, en ligne",
+   "titre": [
+    "Vos instruments, ",
+    "et l'atelier qui les règle."
+   ],
+   "intro": "Voici **votre site, à votre nom** : vos instruments, et la page Atelier pour un réglage ou une réparation.",
+   "avantage": [
+    "Premier instrument",
+    "Les parents d'un débutant trouvent votre conseil avant de venir essayer."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, l'atelier en vedette",
+   "titre": [
+    "Une nouvelle version, ",
+    "l'atelier en vedette."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'atelier en vedette, votre conseil, il ne manque que vos photos.",
+   "avantage": [
+    "L'atelier expliqué",
+    "Réglages, réparations, entretien : les musiciens savent ce qu'ils peuvent vous confier."
+   ]
+  },
+  "saison": {
+   "mois": [
+    8,
+    9
+   ],
+   "objet": "Rentrée : le premier instrument, chez vous ?",
+   "titre": [
+    "Rentrée musicale : ",
+    "le premier instrument, chez vous ?"
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "poissonnerie",
+  "nom": "Poissonnerie",
+  "famille": "Bouche",
+  "prospects": 12,
+  "repartition": "2/10",
+  "angle": "Le poisson s'achète sur la fraîcheur et la confiance : arrivages, jours d'ouverture, plateaux sur commande ; le réveillon change tout.",
+  "sans": {
+   "objet": "Un plateau pour samedi, ça se commande où ?",
+   "titre": [
+    "Un plateau pour samedi ? ",
+    "Voici où le commander."
+   ],
+   "intro": "Voici une **maquette de site à votre nom** : vos arrivages, vos plateaux, vos jours d'ouverture.",
+   "avantage": [
+    "Plateaux sur commande",
+    "Composition, nombre de personnes, jour de retrait : la demande arrive complète."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version pour votre poissonnerie",
+   "titre": [
+    "Une nouvelle version, ",
+    "fraîche comme votre étal."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'étal du moment, les plateaux sur commande, vos horaires.",
+   "avantage": [
+    "Plateaux sur commande",
+    "Composition, nombre de personnes, jour de retrait : la demande arrive complète."
+   ]
+  },
+  "saison": {
+   "mois": [
+    10,
+    11
+   ],
+   "objet": "Huîtres et plateaux du réveillon : réservés ?",
+   "titre": [
+    "Huîtres et plateaux du réveillon, ",
+    "réservés d'avance."
+   ]
+  },
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "nettoyage",
+  "nom": "Entreprise de nettoyage",
+  "famille": "Services",
+  "prospects": 12,
+  "repartition": "1/8",
+  "angle": "Gestionnaires et syndics confient leurs locaux : ils veulent savoir qui entre chez eux et obtenir un devis sans relancer.",
+  "sans": {
+   "objet": "Bureaux, copropriétés : le devis en ligne",
+   "titre": [
+    "Bureaux, copropriétés, fins de chantier : ",
+    "le devis en ligne."
+   ],
+   "intro": "Voici le site de votre entreprise : vos prestations, les lieux que vous entretenez et une demande de devis.",
+   "avantage": [
+    "Une équipe qui rassure",
+    "Assurance, matériel, méthode : le gestionnaire sait qui entre dans ses locaux."
+   ]
+  },
+  "avec": {
+   "objet": "Nettoyage : une autre version de votre site",
+   "titre": [
+    "Une nouvelle version, ",
+    "le devis dès l'accueil."
+   ],
+   "intro": "Voici une autre version de votre site : entretien régulier, remise en état, et le devis dès l'accueil.",
+   "avantage": [
+    "Avant, après",
+    "Photos de remises en état : le résultat parle mieux qu'une longue description."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "serrurier",
+  "nom": "Serrurier",
+  "famille": "Bâtiment",
+  "prospects": 11,
+  "repartition": "0/10",
+  "angle": "Sur le palier, le client craint l'arnaque : prouver qu'on est un vrai serrurier d'ici (adresse, visage, tarifs) compte plus que tout.",
+  "sans": {
+   "objet": "Un serrurier d'ici, ça doit se voir",
+   "titre": [
+    "Un serrurier d'ici, ",
+    "ça doit se voir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : adresse, numéro et prestations, de quoi rassurer sur le palier.",
+   "avantage": [
+    "Un artisan identifiable",
+    "Votre adresse réelle, votre visage, vos avis : ce qui distingue un serrurier d'ici."
+   ]
+  },
+  "avec": {
+   "objet": "Porte claquée : votre numéro en un geste ?",
+   "titre": [
+    "Porte claquée : ",
+    "votre numéro en un geste."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, pensée pour qui vous cherche depuis son palier.",
+   "avantage": [
+    "La sécurisation aussi",
+    "Serrures, portes blindées, contrôle d'accès : vos chantiers de sécurisation ont aussi leur page."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "macon",
+  "nom": "Maçon",
+  "famille": "Bâtiment",
+  "prospects": 10,
+  "repartition": "4/5",
+  "angle": "Gros budget, peur du chantier raté : on confie sa maison à qui montre ses chantiers étape par étape et ses garanties.",
+  "sans": {
+   "objet": "Vos chantiers, montrés avant le devis",
+   "titre": [
+    "On confie sa maison ",
+    "à qui montre ses chantiers."
+   ],
+   "intro": "Voici **votre site, à votre nom** : gros œuvre, rénovation, extension, et la place pour vos chantiers.",
+   "avantage": [
+    "Les garanties en clair",
+    "Assurance décennale, qualifications : ce qui rassure se lit avant la demande de devis."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site, chantier par chantier",
+   "titre": [
+    "Du terrassement à la finition, ",
+    "chantier par chantier."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : chaque chantier aura sa page, il ne manque que vos photos.",
+   "avantage": [
+    "Votre secteur en clair",
+    "Les communes où vous intervenez sont listées : on sait tout de suite si vous venez."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "yoga",
+  "nom": "Studio de yoga",
+  "famille": "Loisirs",
+  "prospects": 10,
+  "repartition": "1/8",
+  "angle": "Le débutant hésite à pousser la porte : il veut voir le lieu, comprendre les styles et le planning avant son premier cours.",
+  "sans": {
+   "objet": "Votre studio de yoga, à votre nom en ligne",
+   "titre": [
+    "Vos cours de yoga, ",
+    "visibles avant de venir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : cours, ateliers, et la place pour le lieu et votre planning.",
+   "avantage": [
+    "Le planning de la semaine",
+    "Jour, heure, niveau : chacun trouve son cours sans vous écrire."
+   ]
+  },
+  "avec": {
+   "objet": "Votre studio de yoga, une autre version",
+   "titre": [
+    "Votre studio, ",
+    "avant même le premier cours."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : cours, ateliers, et la place pour l'ambiance du lieu.",
+   "avantage": [
+    "Rassurant pour les débutants",
+    "Le lieu, le niveau, quoi apporter : tout est dit avant le premier cours."
+   ]
+  },
+  "saison": {
+   "mois": [
+    8,
+    9
+   ],
+   "objet": "La rentrée : une version de votre planning",
+   "titre": [
+    "La rentrée, ",
+    "planning et inscriptions en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "couvreur",
+  "nom": "Couvreur",
+  "famille": "Bâtiment",
+  "prospects": 9,
+  "repartition": "1/5",
+  "angle": "Personne ne voit son propre toit : seules les photos vues d'en haut prouvent le travail, et un artisan identifiable se distingue du démarcheur de passage.",
+  "sans": {
+   "objet": "Vos toitures, vues d'en haut",
+   "titre": [
+    "Un toit refait, ",
+    "ça se voit d'en haut."
+   ],
+   "intro": "Voici **votre site, à votre nom**, avec une place pour vos chantiers avant/après, vus d'en haut.",
+   "avantage": [
+    "Un vrai couvreur local",
+    "Votre adresse, votre visage et vos chantiers : ce que le démarcheur de passage n'a pas."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, vue du toit",
+   "titre": [
+    "Vos toitures, ",
+    "vues comme personne ne les voit."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, avec une place pour vos chantiers avant/après dès l'accueil.",
+   "avantage": [
+    "Fuite ou tempête",
+    "Le client décrit le dégât et sa commune : vous jugez l'urgence avant de monter."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "paysagiste",
+  "nom": "Paysagiste",
+  "famille": "Bâtiment",
+  "prospects": 9,
+  "repartition": "0/7",
+  "angle": "Un jardin transformé est la meilleure publicité : l'avant/après fait rêver pour la création, les formules rassurent pour l'entretien.",
+  "sans": {
+   "objet": "Vos jardins, avant et après",
+   "titre": [
+    "Un jardin transformé, ",
+    "ça se montre en photos."
+   ],
+   "intro": "Voici **votre site, à votre nom** : création, entretien, et la place pour vos jardins avant/après.",
+   "avantage": [
+    "L'entretien à l'année",
+    "Tonte, taille, ramassage des feuilles : vos formules d'entretien expliquées, demande en ligne."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, côté jardin",
+   "titre": [
+    "Vos jardins, ",
+    "en plein écran."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, pensée pour vos jardins avant/après : il ne manque que vos photos.",
+   "avantage": [
+    "Le terrain, décrit d'avance",
+    "Surface, accès, envies : le client décrit son terrain, vous préparez la visite."
+   ]
+  },
+  "saison": {
+   "mois": [
+    2,
+    3
+   ],
+   "objet": "Avant le printemps, vos jardins en vitrine ?",
+   "titre": [
+    "Avant le printemps, ",
+    "vos jardins en vitrine."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "isolation",
+  "nom": "Isolation",
+  "famille": "Bâtiment",
+  "prospects": 9,
+  "repartition": "2/7",
+  "angle": "Secteur miné par le démarchage douteux : le client veut un artisan qu'il peut vérifier (adresse, qualifications, vrais chantiers).",
+  "sans": {
+   "objet": "Isolation : un artisan qu'on peut vérifier",
+   "titre": [
+    "Un artisan qu'on peut vérifier, ",
+    "ça rassure."
+   ],
+   "intro": "Voici **votre site, à votre nom**, prêt à recevoir ce qu'on vérifie avant de signer : chantiers, qualifications.",
+   "avantage": [
+    "Vos chantiers détaillés",
+    "Combles, murs, planchers : vos chantiers montrés avant et après, matériaux nommés."
+   ]
+  },
+  "avec": {
+   "objet": "Vos labels et vos chantiers, dès l'accueil",
+   "titre": [
+    "Vos labels et vos chantiers, ",
+    "dès l'accueil."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, prête pour ce qu'on vérifie avant de signer : chantiers, qualifications.",
+   "avantage": [
+    "Une visite bien préparée",
+    "Le client décrit sa maison et sa surface : vous préparez une visite utile."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "tapissier",
+  "nom": "Tapissier",
+  "famille": "Artisanat",
+  "prospects": 9,
+  "repartition": "3/6",
+  "angle": "Le travail du tapissier se juge en avant-après, souvent sur un fauteuil de famille : la preuve en photos fait la décision.",
+  "sans": {
+   "objet": "Avant, après : vos fauteuils en ligne",
+   "titre": [
+    "Avant, après : ",
+    "vos fauteuils en photos."
+   ],
+   "intro": "Voici **votre site, à votre nom** : la place pour vos avant-après, pour qui hésite à refaire un fauteuil.",
+   "avantage": [
+    "Le fauteuil de famille",
+    "Ceux qui ont hérité d'un siège voient ce que vous pouvez en faire."
+   ]
+  },
+  "avec": {
+   "objet": "Le fauteuil de famille, avant et après",
+   "titre": [
+    "Une nouvelle version, ",
+    "en avant-après."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : réfection et tissus, il ne manque que vos avant-après.",
+   "avantage": [
+    "Tissus et conseil",
+    "Vos tissus présentés, pour choisir avant de vous apporter le siège."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "demenageur",
+  "nom": "Déménageur",
+  "famille": "Services",
+  "prospects": 8,
+  "repartition": "0/7",
+  "angle": "Déménager stresse : le client veut un devis juste (volume, date, accès) et comprendre comment ses affaires seront protégées.",
+  "sans": {
+   "objet": "Volume, date, étage : le devis en ligne",
+   "titre": [
+    "Volume, date, étage : ",
+    "le devis en ligne."
+   ],
+   "intro": "Voici le site de votre entreprise : vos formules, le garde-meubles et une demande de devis détaillée.",
+   "avantage": [
+    "Le jour J, expliqué",
+    "Emballage, protection, assurance : chaque étape est expliquée avant le jour J."
+   ]
+  },
+  "avec": {
+   "objet": "Déménagement : une autre version du site",
+   "titre": [
+    "Une nouvelle version, ",
+    "le devis en quelques questions."
+   ],
+   "intro": "Voici une autre version de votre site : volume, date, étages et accès sont demandés, pour un devis juste.",
+   "avantage": [
+    "Le garde-meubles aussi",
+    "Stockage entre deux logements : une page dédiée, avec vos conditions."
+   ]
+  },
+  "saison": {
+   "mois": [
+    4,
+    5,
+    6
+   ],
+   "objet": "Déménagements d'été : les devis en ligne ?",
+   "titre": [
+    "Déménagements d'été : ",
+    "les devis en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "ongles",
+  "nom": "Prothésiste ongulaire",
+  "famille": "Beauté",
+  "prospects": 8,
+  "repartition": "4/4",
+  "angle": "Une pose d'ongles se choisit sur photo : galerie par style, prix et durée de chaque prestation, puis le créneau.",
+  "sans": {
+   "objet": "Vos créations d'ongles, sur un site à vous",
+   "titre": [
+    "Vos créations, ",
+    "sur un site à vous."
+   ],
+   "intro": "Voici **votre site, à votre nom** : pose, entretien, mains et pieds, et la place pour vos créations.",
+   "avantage": [
+    "Pose ou remplissage ?",
+    "Chaque prestation expliquée : la cliente réserve le bon créneau, sans hésiter."
+   ]
+  },
+  "avec": {
+   "objet": "Vos créations d'ongles, une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos créations en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : une galerie par style à remplir, puis la demande de rendez-vous.",
+   "avantage": [
+    "Mains et pieds",
+    "Beauté des mains, des pieds, nail art : toute votre carte, bien rangée."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "peintre",
+  "nom": "Peintre en bâtiment",
+  "famille": "Bâtiment",
+  "prospects": 7,
+  "repartition": "0/7",
+  "angle": "Le métier le plus visuel : l'avant/après fait le travail, et la propreté du chantier rassure autant que le résultat.",
+  "sans": {
+   "objet": "Avant, après : vos chantiers de peinture",
+   "titre": [
+    "Un mur repeint, ",
+    "ça se montre en avant/après."
+   ],
+   "intro": "Voici **votre site, à votre nom** : intérieurs, façades, revêtements, et la place pour vos avant/après.",
+   "avantage": [
+    "Un chantier propre",
+    "Bâches, protections, nettoyage : vos photos montrent aussi comment vous laissez les lieux."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, en avant/après",
+   "titre": [
+    "Vos chantiers ",
+    "en avant/après, dès l'accueil."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, construite pour vos avant/après : il ne manque que vos photos.",
+   "avantage": [
+    "Teintes et finitions",
+    "Mat, satiné, enduit décoratif : vos finitions expliquées simplement, photos à l'appui."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "toiletteur",
+  "nom": "Toiletteur",
+  "famille": "Animaux",
+  "prospects": 7,
+  "repartition": "2/5",
+  "angle": "Le maître confie son animal à quelqu'un qu'il ne connaît pas : les avant/après et le salon en photos le rassurent.",
+  "sans": {
+   "objet": "Vos avant/après de toilettage, à votre nom",
+   "titre": [
+    "Avant, après : ",
+    "votre travail se voit."
+   ],
+   "intro": "Voici **votre site, à votre nom** : toilettage, soins, demande de rendez-vous, et la place pour vos avant/après.",
+   "avantage": [
+    "Un salon qui rassure",
+    "Les maîtres voient le salon et votre façon de faire avant de confier leur animal."
+   ]
+  },
+  "avec": {
+   "objet": "Votre salon de toilettage, une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "avant, après, en grand."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos avant/après, puis la demande de rendez-vous.",
+   "avantage": [
+    "Les tarifs sans appeler",
+    "Petit, moyen ou grand chien, chat : chacun connaît son tarif avant de réserver."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "horloger",
+  "nom": "Horloger",
+  "famille": "Commerce",
+  "prospects": 6,
+  "repartition": "1/1",
+  "angle": "On cherche un horloger une montre arrêtée ou une montre de famille à la main : on veut voir l'atelier avant de la confier.",
+  "sans": {
+   "objet": "Une montre à réparer : votre atelier en ligne",
+   "titre": [
+    "Une montre de famille à réparer ? ",
+    "C'est chez vous."
+   ],
+   "intro": "Voici votre site, à votre nom : la page Réparation montre votre atelier à ceux qui hésitent à confier leur montre.",
+   "avantage": [
+    "Vos montres en vitrine",
+    "Les modèles de la boutique en photos, pour ceux qui cherchent un cadeau."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, l'atelier en premier",
+   "titre": [
+    "Une nouvelle version, ",
+    "l'atelier au premier plan."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : l'atelier et les réparations au premier plan, puis vos montres.",
+   "avantage": [
+    "Confier sa montre",
+    "Ceux qui hésitent voient votre atelier avant de vous laisser une montre de famille."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "carreleur",
+  "nom": "Carreleur",
+  "famille": "Bâtiment",
+  "prospects": 4,
+  "repartition": "1/3",
+  "angle": "Une belle pose se juge aux détails (joints, coupes, pentes) : le gros plan parle au client et flatte la fierté du carreleur.",
+  "sans": {
+   "objet": "Douche, terrasse : vos poses en photos",
+   "titre": [
+    "Une belle pose ",
+    "se juge aux joints."
+   ],
+   "intro": "Voici **votre site, à votre nom** : carrelage, pièces d'eau, et la place pour vos poses en gros plan.",
+   "avantage": [
+    "Des pièces d'eau sûres",
+    "Étanchéité, pente, finitions : vos photos montrent ce qu'on ne voit plus après."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, en gros plan",
+   "titre": [
+    "Vos salles de bains, ",
+    "vues de près."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, pensée pour vos gros plans : il ne manque que vos photos.",
+   "avantage": [
+    "Le projet avant le devis",
+    "Le client décrit sa pièce et ses mesures : vous chiffrez sans déplacement inutile."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "cordonnier",
+  "nom": "Cordonnier",
+  "famille": "Commerce",
+  "prospects": 4,
+  "repartition": "1/3",
+  "angle": "On cherche un cordonnier l'objet cassé à la main : il faut voir tout de suite ce que vous réparez et quand vous êtes ouvert.",
+  "sans": {
+   "objet": "Vos réparations et petits services, en ligne",
+   "titre": [
+    "Talons, ressemelage, petits services : ",
+    "tout est listé."
+   ],
+   "intro": "Voici votre site, à votre nom : tout ce que vous réparez sur une page, avec vos horaires, pour qui arrive la chaussure à la main.",
+   "avantage": [
+    "Tout est listé",
+    "Ce que vous réparez est écrit : on sait avant de se déplacer."
+   ]
+  },
+  "avec": {
+   "objet": "Vos réparations listées : une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "chaque réparation listée."
+   ],
+   "intro": "J'ai préparé une nouvelle version de votre site, à votre nom : chaque réparation et chaque petit service sur une page claire, avec vos horaires.",
+   "avantage": [
+    "Réparer plutôt que jeter",
+    "Vos avant-après montrent qu'une paire usée a encore de belles années."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": {
+   "objet": "{horaires} : ça se voit ?",
+   "titre": [
+    "{horaires} : ",
+    "ça doit se voir."
+   ]
+  }
+ },
+ {
+  "cle": "barbier",
+  "nom": "Barbier",
+  "famille": "Beauté",
+  "prospects": 4,
+  "repartition": "3/1",
+  "angle": "Chez le barbier on vient pour la coupe, la barbe et l'ambiance : photos du travail et du salon, tarifs, rendez-vous.",
+  "sans": {
+   "objet": "Coupe et barbe : votre site, déjà prêt",
+   "titre": [
+    "La coupe, la barbe, ",
+    "et l'ambiance en plus."
+   ],
+   "intro": "Voici **le site de votre salon** : coupe, barbe, la demande de rendez-vous, et la place pour l'ambiance.",
+   "avantage": [
+    "Vos coupes en photos",
+    "Le client montre la photo au fauteuil : il l'a trouvée chez vous."
+   ]
+  },
+  "avec": {
+   "objet": "Votre salon, une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "taillée sur mesure."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos coupes, puis la demande de rendez-vous.",
+   "avantage": [
+    "L'ambiance du salon",
+    "Fauteuils, déco, équipe : on sait où l'on met les pieds."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "educateur-canin",
+  "nom": "Éducateur canin",
+  "famille": "Animaux",
+  "prospects": 3,
+  "repartition": "0/3",
+  "angle": "Le maître d'un chiot ou d'un chien difficile cherche quelqu'un qui comprend son problème et une méthode expliquée simplement.",
+  "sans": {
+   "objet": "Votre méthode d'éducation, expliquée en ligne",
+   "titre": [
+    "Votre méthode, ",
+    "expliquée avant le premier cours."
+   ],
+   "intro": "Voici votre site, à votre nom : votre façon de travailler, les cours pour chiots et chiens adultes, le comportement et les tarifs.",
+   "avantage": [
+    "Chaque situation a sa page",
+    "Chiot, tirage en laisse, aboiements : chaque maître reconnaît la sienne."
+   ]
+  },
+  "avec": {
+   "objet": "Une nouvelle version, côté maîtres",
+   "titre": [
+    "Une nouvelle version, ",
+    "du chiot au chien adulte."
+   ],
+   "intro": "Voici une **nouvelle version** de votre site : une page par situation, du chiot au chien réactif, et votre méthode expliquée simplement.",
+   "avantage": [
+    "Votre méthode, expliquée",
+    "Les maîtres comprennent votre façon de travailler avant le premier cours."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "geometre",
+  "nom": "Géomètre-expert",
+  "famille": "Services",
+  "prospects": 3,
+  "repartition": "0/3",
+  "angle": "Le particulier ne sait pas qu'il a besoin d'un géomètre : vente, limite contestée, division doivent être expliquées simplement.",
+  "sans": {
+   "objet": "Bornage, division : votre site, à votre nom",
+   "titre": [
+    "Bornage, division, plans : ",
+    "expliqués simplement."
+   ],
+   "intro": "Voici votre site, à votre nom : vos missions expliquées à ceux qui vendent ou divisent un terrain.",
+   "avantage": [
+    "Quand faire appel à vous",
+    "Vente, limite contestée, division : chaque situation a sa page claire."
+   ]
+  },
+  "avec": {
+   "objet": "Votre cabinet, une nouvelle version",
+   "titre": [
+    "Une nouvelle version, ",
+    "lisible par les particuliers."
+   ],
+   "intro": "Voici une autre version de votre site : bornage, division et topographie expliqués sans termes techniques, avec un contact.",
+   "avantage": [
+    "Pour les notaires aussi",
+    "Une entrée pro : délais, zones d'intervention et documents à fournir."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "vitrier",
+  "nom": "Vitrier, miroitier",
+  "famille": "Bâtiment",
+  "prospects": 2,
+  "repartition": "0/2",
+  "angle": "Deux clients opposés : l'urgence (vitre cassée) à servir vite, et la verrière rêvée qui se choisit en photos.",
+  "sans": {
+   "objet": "Vitre cassée ce soir : qui appelle-t-on ?",
+   "titre": [
+    "De la vitre cassée ",
+    "à la verrière sur mesure."
+   ],
+   "intro": "Voici **votre site, à votre nom** : le dépannage pour l'urgence, vos verrières et vitrines pour donner envie.",
+   "avantage": [
+    "La bonne mesure, d'avance",
+    "Le client indique le vitrage et les mesures : vous venez avec le bon verre."
+   ]
+  },
+  "avec": {
+   "objet": "Vos verrières, en grand sur votre site",
+   "titre": [
+    "Une verrière, ",
+    "ça se choisit en photos."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : la place pour vos verrières et vos vitrines, dès l'accueil.",
+   "avantage": [
+    "L'urgence en un geste",
+    "Vitre brisée : le bouton Appeler reste visible en haut de chaque page."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "plaquiste",
+  "nom": "Plaquiste, plâtrier",
+  "famille": "Bâtiment",
+  "prospects": 1,
+  "repartition": "0/1",
+  "angle": "Un travail qui disparaît sous la peinture : montrer l'ossature et les finitions, c'est montrer ce qui distingue un bon plâtrier.",
+  "sans": {
+   "objet": "Un travail qui disparaît sous la peinture",
+   "titre": [
+    "Avant la peinture, ",
+    "montrez ce qu'il y a dessous."
+   ],
+   "intro": "Voici **votre site, à votre nom** : cloisons, doublages, plâtrerie, et la place pour vos chantiers avant peinture.",
+   "avantage": [
+    "Des finitions qui se voient",
+    "Joints, angles, plafonds : les détails qui distinguent un vrai plâtrier, en gros plan."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, côté coulisses",
+   "titre": [
+    "Votre travail, ",
+    "avant que la peinture le cache."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : de l'ossature à la finition, il ne manque que vos photos.",
+   "avantage": [
+    "Le chantier expliqué",
+    "Comment se passe un chantier, de la visite au dernier ponçage, expliqué simplement."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "ramoneur",
+  "nom": "Ramoneur",
+  "famille": "Bâtiment",
+  "prospects": 1,
+  "repartition": "0/1",
+  "angle": "Métier de saison et de rendez-vous : le site prend les demandes et explique le certificat, sans que le téléphone sonne sur le toit.",
+  "sans": {
+   "objet": "Ramonage : rendez-vous demandé en ligne ?",
+   "titre": [
+    "Le ramonage, ",
+    "demandé en ligne, même le soir."
+   ],
+   "intro": "Voici **votre site, à votre nom** : ramonage, entretien du conduit, et une demande de rendez-vous simple.",
+   "avantage": [
+    "Le certificat en clair",
+    "Ce que contient votre certificat et quand le demander, expliqué simplement."
+   ]
+  },
+  "avec": {
+   "objet": "Votre site, prêt pour la saison des ramonages",
+   "titre": [
+    "Avant la saison, ",
+    "vos créneaux demandés en ligne."
+   ],
+   "intro": "Voici une **nouvelle version de votre site** : le ramonage se demande en ligne, appareil précisé.",
+   "avantage": [
+    "Poêle, insert, chaudière",
+    "Chaque appareil a sa page : le client sait tout de suite que vous le traitez."
+   ]
+  },
+  "saison": {
+   "mois": [
+    9,
+    10,
+    11
+   ],
+   "objet": "Avant l'hiver, le ramonage demandé en ligne ?",
+   "titre": [
+    "Avant l'hiver, ",
+    "le ramonage demandé en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "tailleur-pierre",
+  "nom": "Tailleur de pierre",
+  "famille": "Bâtiment",
+  "prospects": 1,
+  "repartition": "0/1",
+  "angle": "Savoir-faire rare et lent : montrer l'atelier et les restaurations, pour le patrimoine comme pour le particulier.",
+  "sans": {
+   "objet": "Un savoir-faire rare, à montrer en photos",
+   "titre": [
+    "Votre pierre taillée, ",
+    "en pleine lumière."
+   ],
+   "intro": "Voici **votre site, à votre nom** : taille, restauration, pierre sur mesure, et la place pour l'atelier.",
+   "avantage": [
+    "Patrimoine et particuliers",
+    "Une façade classée ou une cheminée de maison : chaque client voit l'exemple qui le concerne."
+   ]
+  },
+  "avec": {
+   "objet": "Une version de votre site, côté atelier",
+   "titre": [
+    "Le geste du tailleur, ",
+    "de la carrière au chantier."
+   ],
+   "intro": "Voici une **nouvelle version de votre site**, comme un carnet de chantier : il ne manque que vos photos.",
+   "avantage": [
+    "Pierre sur mesure",
+    "Encadrements, dallages, cheminées : le client décrit son projet et ses cotes."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "ebeniste-meuble",
+  "nom": "Restaurateur de meubles",
+  "famille": "Artisanat",
+  "prospects": 1,
+  "repartition": "0/1",
+  "angle": "Le restaurateur de meubles se juge en avant-après, sur des meubles chargés de souvenirs : on montre ce qu'il sait sauver.",
+  "sans": {
+   "objet": "Vos restaurations, en avant-après",
+   "titre": [
+    "Vos restaurations, ",
+    "en avant-après."
+   ],
+   "intro": "Voici votre site, à votre nom : vos restaurations en avant-après, pour qui hésite à confier un meuble de famille.",
+   "avantage": [
+    "Le meuble de famille",
+    "Commode, buffet, chaise : on voit ce que vous savez sauver."
+   ]
+  },
+  "avec": {
+   "objet": "Une autre version, en avant-après",
+   "titre": [
+    "Une nouvelle version, ",
+    "vos meubles en avant-après."
+   ],
+   "intro": "J'ai préparé une nouvelle version de votre site, à votre nom : chaque restauration en avant-après, et vos finitions expliquées.",
+   "avantage": [
+    "Finitions expliquées",
+    "Vernis, cire, patine : vos clients comprennent ce que vous proposez."
+   ]
+  },
+  "saison": null,
+  "source": null,
+  "option_horaires": null
+ },
+ {
+  "cle": "pension-animaux",
+  "nom": "Pension pour animaux",
+  "famille": "Animaux",
+  "prospects": 0,
+  "repartition": "0/0",
+  "angle": "Avant de partir, le maître veut voir où son animal vivra et comment se passe une journée ; l'été se réserve tôt.",
+  "sans": {
+   "objet": "Votre pension, visitée avant les vacances",
+   "titre": [
+    "Votre pension, ",
+    "visitée avant le départ."
+   ],
+   "intro": "Voici votre site, à votre nom : les espaces en photos, une journée type, les tarifs et la réservation des séjours.",
+   "avantage": [
+    "Une journée type, racontée",
+    "Sorties, repas, repos : chaque maître sait comment se passera le séjour."
+   ]
+  },
+  "avec": {
+   "objet": "Votre pension pour animaux, une autre version",
+   "titre": [
+    "Une nouvelle version, ",
+    "à visiter avant de partir."
+   ],
+   "intro": "Voici une **nouvelle version** de votre site : vos espaces en grandes photos, une journée type, et la demande de séjour en direct.",
+   "avantage": [
+    "Avant le séjour, tout est dit",
+    "Carnet de vaccination, affaires à apporter : les maîtres arrivent préparés."
+   ]
+  },
+  "saison": {
+   "mois": [
+    3,
+    4,
+    5,
+    6
+   ],
+   "objet": "Cet été, vos séjours réservables en ligne",
+   "titre": [
+    "Les séjours de cet été, ",
+    "réservables en ligne."
+   ]
+  },
+  "source": null,
+  "option_horaires": null
+ }
+]
