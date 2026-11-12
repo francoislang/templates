@@ -189,7 +189,7 @@ def adresse_valide(a: str) -> bool:
 
 
 def construire(dest: str, objet: str, corps: str,
-               entetes: dict | None = None) -> EmailMessage:
+               entetes: dict | None = None, html: str | None = None) -> EmailMessage:
     if not ADRESSE:
         raise ErreurMail("MAIL_ADRESSE absente du .env")
     m = EmailMessage()
@@ -204,7 +204,10 @@ def construire(dest: str, objet: str, corps: str,
         if v:
             m[k] = v
     m.set_content(corps, charset="utf-8")
-    if SIGNATURE_HTML:
+    if html:
+        # mail Kerr : HTML complet fourni par mail_kerr.py
+        m.add_alternative(html, subtype="html", charset="utf-8")
+    elif SIGNATURE_HTML:
         h = corps_html(corps)
         if h:
             # multipart/alternative : la version texte reste lisible partout
@@ -250,7 +253,7 @@ def envoyer_smtp(m: EmailMessage) -> None:
 
 
 def expedier(dest: str, objet: str, corps: str, mode: str | None = None,
-             entetes: dict | None = None) -> tuple[str, str]:
+             entetes: dict | None = None, html: str | None = None) -> tuple[str, str]:
     """Depose ou envoie. Renvoie (statut, Message-ID), statut valant
     'brouillon' ou 'envoye'. Leve ErreurMail."""
     mode = (mode or MODE).lower()
@@ -262,7 +265,7 @@ def expedier(dest: str, objet: str, corps: str, mode: str | None = None,
         raise ErreurMail(f"adresse invalide : {dest!r}")
     if dest.strip().lower() in desinscrits():
         raise ErreurMail(f"{dest} est dans desinscrits.txt")
-    m = construire(dest, objet, corps, entetes)
+    m = construire(dest, objet, corps, entetes, html)
     if mode == "envoi":
         envoyer_smtp(m)
         return "envoye", m["Message-ID"]
