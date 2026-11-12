@@ -74,6 +74,15 @@ class TestPlafond(unittest.TestCase):
             self.assertEqual(plafond.place_premiers(c), 3)
             self.assertEqual(plafond.place_relances(c), 5)
 
+    def test_retard_de_relances_ne_bloque_pas(self):
+        c = base()
+        vieux = (datetime.now(timezone.utc) - timedelta(days=9)).isoformat()
+        for _ in range(42):
+            ajout(c, vieux)
+        with mock.patch.dict(os.environ, {"MAILS_PAR_JOUR": "5"}):
+            self.assertEqual(plafond.place_premiers(c), 2)
+            self.assertEqual(plafond.place_relances(c), 5)
+
 
 if __name__ == "__main__":
     unittest.main()

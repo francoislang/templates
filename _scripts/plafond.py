@@ -108,8 +108,10 @@ def place_relances(conn) -> int:
 
 
 def place_premiers(conn) -> int:
-    """Les relances passent d'abord : on leur reserve leur place."""
-    return max(0, place_relances(conn) - relances_prevues(conn))
+    """Les relances dues gardent leur place, dans la limite de la moitie du
+    plafond : un retard de relances ne bloque pas les nouveaux prospects."""
+    reserve = min(relances_prevues(conn), -(-plafond_du_jour(conn) // 2))
+    return max(0, place_relances(conn) - reserve)
 
 
 if __name__ == "__main__":
