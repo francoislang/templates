@@ -107,3 +107,6 @@ _data/deja_contactes.txt
 _data/desinscrits.txt
 _data/tmp_apercu/
 _data/essai_mail.html
+
+# Specs et plans de travail (privés)
+docs/superpowers/
