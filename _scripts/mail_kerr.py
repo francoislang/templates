@@ -227,9 +227,10 @@ FONCE = ' class="ti" style="color:#17191E;"'
 
 def _commun(p: dict, demo_url: str, capture_url: str | None) -> dict:
     nom = nom_propre(p.get("nom") or "") or "votre entreprise"
+    img = assets()
     return dict(nom=nom, demo_url=demo_url, demo_affiche=affiche(demo_url),
-                capture_url=capture_url or "", origine=origine_adresse(p),
-                lien_rdv=lien_rdv(), img=assets())
+                capture_url=capture_url or img["bandeau"],  # secours : brouillon a completer
+                origine=origine_adresse(p), lien_rdv=lien_rdv(), img=img)
 
 
 def _signature_texte() -> list[str]:

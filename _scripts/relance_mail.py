@@ -33,7 +33,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import capture     # noqa: E402
 import envoi_mail  # noqa: E402
+import mail_kerr   # noqa: E402
+import plafond     # noqa: E402
 import telegram    # noqa: E402
 
 REPO_ROOT = Path(__file__).parent.parent
@@ -49,21 +52,31 @@ SUJETS = {"garage": "votre garage", "menuisier": "votre menuiserie",
 
 
 def corps_relance(p: dict) -> str:
-    """Relance unique a J+7, dans le meme fil (version validee le 28/10/2026)."""
-    nom = (p.get("nom") or "").strip()
-    lignes = ["Bonjour,", "",
-              f"Le site préparé pour {nom} est toujours en ligne :"
-              if nom else "Le site que je vous ai préparé est toujours en ligne :"]
-    if p.get("site_genere"):
-        lignes.append(p["site_genere"])
-    lignes += ["",
-               "Un « oui », un « plus tard » ou un « non merci » me suffit. "
-               "Sans réponse, je ne vous écrirai plus.",
-               "",
-               "Bonne journée,",
-               "",
-               *envoi_mail.signature()]
-    return "\n".join(lignes)
+    """Version texte de la relance Kerr (utilisee aussi par essai_pitch.py)."""
+    return relance_kerr(p, None).texte
+
+
+def relance_kerr(p: dict, cap: str | None):
+    """La relance Kerr (HTML + texte) d'un prospect, avec sa capture si on l'a."""
+    return mail_kerr.relance(p, p.get("metier") or "", p.get("site_genere") or "", cap,
+                             objet=p.get("mail_objet") or "")
+
+
+def capture_de(conn, p: dict) -> str | None:
+    """La capture deja faite au premier courriel, sinon on la fait maintenant."""
+    if p.get("capture_url"):
+        return p["capture_url"]
+    url = (p.get("site_genere") or "").strip()
+    if not url:
+        return None
+    cap = capture.capturer(url, url.rstrip("/").rsplit("/", 1)[-1])
+    if cap:
+        cols = {r[1] for r in conn.execute("PRAGMA table_info(prospects)")}
+        if "capture_url" not in cols:
+            conn.execute("ALTER TABLE prospects ADD COLUMN capture_url TEXT")
+        conn.execute("UPDATE prospects SET capture_url=? WHERE cle=?", (cap, p["cle"]))
+        conn.commit()
+    return cap
 
 
 def _imap_date(iso: str) -> str:
@@ -168,18 +181,25 @@ def main() -> None:
                     print(f"  {nom} : premier courriel encore en brouillon — on attend")
                     bilan["attente"] += 1
                 continue
-            if relances_du_jour(conn) >= envoi_mail.PAR_JOUR:
-                print("  plafond quotidien atteint, la suite demain"); break
+            if plafond.place_relances(conn) <= 0:
+                print("  plafond quotidien atteint (premiers courriels + relances), la suite demain"); break
             mid = _message_id(imap, partis[0]) or p.get("mail_message_id") or ""
             objet = p.get("mail_objet") or "Votre site"
             if a.apercu:
                 print(f"  {nom} <{dest}> : relance « Re: {objet} »")
                 bilan["relance"] += 1
                 continue
+            cap = capture_de(conn, p)
+            mode = None
+            if not cap:
+                print(f"  {nom} : pas de capture — relance laissee en brouillon")
+                telegram.send(f"\u26A0\uFE0F Relance {nom} : capture impossible, laissee en brouillon dans Gmail.")
+                mode = "brouillon"
             try:
+                m = relance_kerr(p, cap)
                 statut, _ = envoi_mail.expedier(
-                    dest, f"Re: {objet}", corps_relance(p),
-                    entetes={"In-Reply-To": mid, "References": mid})
+                    dest, m.objet, m.texte, mode,
+                    entetes={"In-Reply-To": mid, "References": mid}, html=m.html)
             except Exception as e:
                 print(f"  /!\\ {nom} : {e}"); bilan["erreur"] += 1
                 noter(conn, p["cle"], f"erreur: {e}"[:200])

@@ -49,7 +49,10 @@ sys.path.insert(0, str(Path(__file__).parent))
 import controle_design     # noqa: E402
 import anonymiser          # noqa: E402
 import crm                 # noqa: E402
+import capture             # noqa: E402
 import envoi_mail          # noqa: E402
+import mail_kerr           # noqa: E402
+import plafond             # noqa: E402
 import metiers as catalogue  # noqa: E402
 import pipeline as pl      # noqa: E402  (helpers reutilises, jamais modifies)
 import telegram            # noqa: E402
@@ -230,7 +233,8 @@ def ouvrir() -> sqlite3.Connection:
                      "mail_envoye_at": "TEXT", "mail_statut": "TEXT",
                      "mail_message_id": "TEXT", "mail_objet": "TEXT",
                      "mail_relance_at": "TEXT",
-                     "mail_relance_statut": "TEXT"}.items():
+                     "mail_relance_statut": "TEXT",
+                     "capture_url": "TEXT"}.items():
         if col not in deja:
             conn.execute(f"ALTER TABLE prospects ADD COLUMN {col} {typ}")
     conn.commit()
@@ -672,23 +676,13 @@ def canal(p: dict) -> tuple[str, str]:
 
 
 def objet_mail(p: dict) -> str:
-    """La ligne d'objet, quand le canal est le courriel."""
-    ville = (p.get("commune") or "").strip()
-    nom = (p.get("nom") or "").strip()
-    if p.get("site_statut") == "propre" and p.get("site_web"):
-        return f"Une autre version du site de {nom}"
-    return f"Le site préparé pour {nom}"
+    """La ligne d'objet du mail Kerr (accroche du metier)."""
+    return mail_kerr.accroche(p, p.get("metier") or "")["objet"]
 
 
 def _origine_adresse(p: dict) -> str:
-    """D'ou vient l'adresse : la CNIL demande de le dire."""
-    src = (p.get("mail_source") or "").strip()
-    if p.get("mail_cherche_at") and (src == "accueil" or src.startswith("/")):
-        site = (p.get("site_web") or "").strip()
-        return ("Votre adresse est affichée sur votre site"
-                + (f" ({site})." if site else "."))
-    return ("Votre adresse figure dans les données publiques d'OpenStreetMap, "
-            "où elle est renseignée pour votre établissement.")
+    """D'ou vient l'adresse : la CNIL demande de le dire (voir mail_kerr)."""
+    return mail_kerr.origine_adresse(p)
 
 
 def pitch_sms(p: dict, demo_url: str | None) -> str:
@@ -703,43 +697,10 @@ def pitch_sms(p: dict, demo_url: str | None) -> str:
             "repondez STOP et je n'insiste pas.")
 
 
-def _constat(p: dict) -> str:
-    """La phrase qui dit pourquoi on ecrit a CE prospect (faits constates)."""
-    nom = (p.get("nom") or "").strip()
-    avis = p.get("avis")
-    note = f"{p['note']:.1f}".replace(".", ",") if p.get("note") else ""
-    if p.get("site_statut") == "propre" and p.get("site_web"):
-        return (f"{nom} a déjà un site. J'en ai imaginé une version plus "
-                "récente, pour comparer :")
-    if avis and note and int(avis) >= 10:
-        return (f"{nom} a {avis} avis Google ({note}/5), mais pas encore de site "
-                "pour les mettre en avant. Voici une démo préparée avec les "
-                "informations publiques de votre activité :")
-    if (p.get("facebook") or "").strip():
-        return (f"{nom} a une page Facebook, mais pas encore de site pour être "
-                "trouvé sur Google. Voici une démo préparée avec les "
-                "informations publiques de votre activité :")
-    return (f"Je n'ai pas trouvé de site pour {nom}. Voici une démo préparée "
-            "avec les informations publiques de votre activité :")
-
-
 def pitch_mail(p: dict, metier: str, demo_url: str | None) -> str:
-    """Le courriel (version validee le 28/10/2026) : qui je suis, le constat,
-    la demo, ce que je propose, une reponse en un mot. Pas de prix, pas de
-    mention STOP ; la signature Kerr est ajoutee par envoi_mail."""
-    parties = ["Bonjour,", "",
-               "Je suis François Lang, développeur web près de Nancy.", "",
-               _constat(p)]
-    if demo_url:
-        parties.append(demo_url)
-    parties += ["",
-                "Si elle vous plaît, je la finalise avec vos photos et vos "
-                "textes, et je m'occupe de la mise en ligne.",
-                "",
-                "Ça vous intéresse ? Répondez « oui » et dites-moi quand vous "
-                "appeler. Un « non merci » suffit, et je ne vous écris plus.",
-                "", *envoi_mail.signature()]
-    return "\n".join(parties)
+    """Version texte du mail Kerr (Telegram, CRM, apercu --dry-run).
+    Le courriel reel, HTML + texte, est fabrique dans ecrire()."""
+    return mail_kerr.premier(p, metier, demo_url or "", None).texte
 
 
 def pitch(p: dict, metier: str, demo_url: str | None) -> str:
@@ -972,9 +933,10 @@ def run(metier: str, nombre: int, dry_run: bool, avec_site: bool = False,
             print(msg)
             telegram.send(msg)
             return
-        place = envoi_mail.PAR_JOUR - mails_du_jour(conn)
+        place = plafond.place_premiers(conn)
         if place <= 0:
-            print(f"Plafond de {envoi_mail.PAR_JOUR} courriels/jour deja atteint.")
+            print(f"Plafond de {plafond.plafond_du_jour(conn)} courriels/jour "
+                  "(relances comprises) deja atteint.")
             return
         nombre = min(nombre, place)
 
@@ -1170,9 +1132,9 @@ def ecrire(conn, metier: str, a_ecrire: list[tuple[dict, str]],
     for p, url in a_ecrire:
         nom = p.get("nom") or ""
         dest = (p.get("email") or "").strip()
-        if mails_du_jour(conn) >= envoi_mail.PAR_JOUR:
-            print(f"   plafond de {envoi_mail.PAR_JOUR}/jour atteint — {nom} "
-                  "reste sur Telegram")
+        if plafond.place_premiers(conn) <= 0:
+            print(f"   plafond de {plafond.plafond_du_jour(conn)}/jour atteint — {nom} "
+                  "attendra demain")
             noter_mail(conn, p["cle"], "plafond")
             bilan["ignore"] += 1
             continue
@@ -1183,20 +1145,27 @@ def ecrire(conn, metier: str, a_ecrire: list[tuple[dict, str]],
             noter_mail(conn, p["cle"], "deja_contacte")
             bilan["ignore"] += 1
             continue
-        if envoi_mail.MODE == "envoi" and url and not _en_ligne(url):
-            print(f"   {url} toujours hors ligne — {nom} passe en brouillon")
+        mode = None
+        en_ligne = bool(url) and _en_ligne(url)
+        cap = capture.capturer(url, url.rstrip("/").rsplit("/", 1)[-1]) if en_ligne else None
+        if not cap:
+            # jamais de mail Kerr sans sa capture : brouillon, a completer a la main
+            raison = "demo hors ligne" if not en_ligne else "capture impossible"
+            print(f"   {raison} — {nom} passe en brouillon")
+            telegram.send(f"\u26A0\uFE0F Courriel {nom} : {raison}, laisse en brouillon dans Gmail.")
             mode = "brouillon"
-        else:
-            mode = None
         try:
-            statut, mid = envoi_mail.expedier(dest, objet_mail(p),
-                                              pitch(p, metier, url), mode)
+            m = mail_kerr.premier(p, metier, url or "", cap)
+            statut, mid = envoi_mail.expedier(dest, m.objet, m.texte, mode, html=m.html)
         except Exception as e:
             print(f"   /!\\ courriel {nom} : {e}")
             noter_mail(conn, p["cle"], f"erreur: {e}"[:200])
             bilan["erreur"] += 1
             continue
-        noter_mail(conn, p["cle"], statut, mid, objet_mail(p))
+        noter_mail(conn, p["cle"], statut, mid, m.objet)
+        if cap:
+            conn.execute("UPDATE prospects SET capture_url=? WHERE cle=?", (cap, p["cle"]))
+            conn.commit()
         mails_vus.add(dest.lower())
         tels_vus.add(_tel(p.get("telephone")))
         bilan[statut] += 1
