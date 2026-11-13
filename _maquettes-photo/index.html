@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquettes photographes — comparaison</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#16171b;color:#eee}
+  header{padding:18px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #2a2c33}
+  h1{font-size:17px;margin:0 16px 0 0}
+  button{background:#24262d;color:#ddd;border:1px solid #33363f;border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit}
+  button.on{background:#c4682c;border-color:#c4682c;color:#fff}
+  .vue{margin-left:auto;display:flex;gap:8px}
+  main{display:flex;gap:24px;padding:24px;justify-content:center;align-items:flex-start}
+  .cadre{background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px #0008;transition:width .3s}
+  iframe{border:0;display:block;width:100%;height:calc(100vh - 150px)}
+  .desktop{width:min(1280px,100%)}
+  .mobile{width:390px}
+  .info{max-width:300px;font-size:14px;color:#aaa}
+  .info h2{color:#fff;font-size:18px;margin:0 0 6px}
+  a{color:#e69a63}
+  @media (max-width:900px){.info{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Maquettes photographes</h1>
+  <div id="choix"></div>
+  <div class="vue">
+    <button data-v="desktop" class="on">Ordinateur</button>
+    <button data-v="mobile">Mobile</button>
+  </div>
+</header>
+<main>
+  <div class="cadre desktop" id="cadre"><iframe id="f" title="maquette"></iframe></div>
+  <div class="info" id="info"></div>
+</main>
+<script>
+const M=[
+ {d:"editorial",n:"1. Éditorial épuré",p:"Noémie Varenne",t:"Grandes photos plein écran en fondu, index des séries avec aperçu qui suit la souris, tailles S/M/L, nom géant fixe derrière les photos, curseur « Voir / Préc. / Suiv. »."},
+ {d:"cinema",n:"2. Cinéma sombre",p:"Mathis Orvane",t:"Ouverture en bandes letterbox, titres lettre par lettre, grain de film, halo qui suit la souris, galerie horizontale pilotée par le défilement avec compteur 03 / 18."},
+ {d:"mosaique",n:"3. Mosaïque vivante",p:"Noé Castagné",t:"Mur de photos incliné qui défile, grille masonry qui se recompose en filtrant, inclinaison 3D au survol, vignette qui s'agrandit en plein écran."},
+ {d:"chaleureux",n:"4. Chaleureux portrait & mariage",p:"Maëlle Doré",t:"Photos dévoilées par masque en arche, timeline d'un mariage 9h → minuit, forfaits (prix d'exemple), FAQ, formulaire en 3 étapes."}
+];
+const f=document.getElementById('f'),info=document.getElementById('info'),choix=document.getElementById('choix');
+function voir(i){const m=M[i];f.src=m.d+'/index.html';
+ info.innerHTML=`<h2>${m.n}</h2><p><b>${m.p}</b> (fictif)</p><p>${m.t}</p><p><a href="${m.d}/index.html" target="_blank">Ouvrir en plein écran ↗</a></p>`;
+ [...choix.children].forEach((b,j)=>b.classList.toggle('on',j==i));history.replaceState(null,'','#'+m.d);}
+M.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m.n;b.onclick=()=>voir(i);choix.append(b);});
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{document.getElementById('cadre').className='cadre '+b.dataset.v;
+ document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x==b));});
+voir(Math.max(0,M.findIndex(m=>'#'+m.d==location.hash)));
+</script>
+</body>
+</html>
