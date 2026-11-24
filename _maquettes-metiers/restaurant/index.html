@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquettes restaurant — comparaison</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#16171b;color:#eee}
+  header{padding:18px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #2a2c33}
+  h1{font-size:17px;margin:0 16px 0 0}
+  button{background:#24262d;color:#ddd;border:1px solid #33363f;border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit}
+  button.on{background:#c4682c;border-color:#c4682c;color:#fff}
+  .vue{margin-left:auto;display:flex;gap:8px}
+  main{display:flex;gap:24px;padding:24px;justify-content:center;align-items:flex-start}
+  .cadre{background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px #0008;transition:width .3s}
+  iframe{border:0;display:block;width:100%;height:calc(100vh - 150px)}
+  .desktop{width:min(1280px,100%)}
+  .mobile{width:390px}
+  .info{max-width:300px;font-size:14px;color:#aaa}
+  .info h2{color:#fff;font-size:18px;margin:0 0 6px}
+  a{color:#e69a63}
+  @media (max-width:900px){.info{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Maquettes restaurant</h1>
+  <div id="choix"></div>
+  <div class="vue">
+    <button data-v="desktop" class="on">Ordinateur</button>
+    <button data-v="mobile">Mobile</button>
+  </div>
+</header>
+<main>
+  <div class="cadre desktop" id="cadre"><iframe id="f" title="maquette"></iframe></div>
+  <div class="info" id="info"></div>
+</main>
+<script>
+const M=[
+ {d:"nord",n:"A. Lumière du Nord",p:"Orée",t:"Silence et lumière rasante : compteur 000→100 puis rideau, photos en fondu enchaîné lent, défilement fluide, manifeste ligne par ligne, saisons en galerie horizontale, réservation en phrase à compléter (« Une table pour [2] le [vendredi] à [20h] »)."},
+ {d:"magazine",n:"B. Magazine",p:"Ombelle",t:"Une de revue gastronomique : titre de couverture plein largeur lettre par lettre, bandeau géant qui accélère avec le défilement, carte où la photo du plat flotte sous la souris, réservation en pastilles."},
+ {d:"clair-obscur",n:"C. Clair-obscur",p:"La Veillée",t:"Salle tamisée noir et cuivre : la salle s'éclaire à l'ouverture, plats qui grandissent jusqu'au plein écran au défilement, onglets Midi / Soir / Vins en rideau, bouton magnétique et panneau de réservation."},
+ {d:"marche",n:"D. Marché",p:"Sorbier",t:"Lin et plein jour : traînée de photos qui suit la souris derrière le titre, producteurs en cartes à glisser, ardoise du jour en grande typographie datée, réservation en 3 mots (jour, heure, couverts)."},
+ {d:"nuit-doree",n:"E. Nuit dorée (style Qissa)",p:"Sylve",t:"Langage d'animation de Qissa sur vert sapin et laiton : hero photo + grand titre centré + pilule dorée, en-tête qui se condense, menu plein écran 00–06, ciel étoilé et constellation en canvas, slider centré infini, cartes en 3D, bandes parallax, compteurs."},
+ {d:"plein-jour",n:"F. Plein jour (style Qissa)",p:"La Glaneuse",t:"Version claire crème et terracotta : particules de farine dorées, carte des producteurs dont les lignes se tracent au défilement, menu plein écran qui s'ouvre en cercle, slider infini, cartes en 3D, bandes parallax."},
+ {d:"immersif",n:"G. Immersif (WebGL)",p:"Cendrine",t:"Niveau Site of the Year : préchargeur 0→100 et rideaux, photo du hero en shader (distorsion liquide à la souris, décalage RVB, grain), récit épinglé avec fondus par bruit, galerie horizontale qui s'incline avec la vitesse, carte où la photo suit la souris en se déformant, réservation qui s'ouvre en cercle."},
+ {d:"recit",n:"H. Le récit d'un service (GSAP)",p:"Ombelle (soir)",t:"Une soirée de 17 h à minuit comme un court-métrage : iris d'ouverture, horloge et couleurs qui suivent l'heure, 5 chapitres épinglés où une photo passe en plein écran, carte en générique de film, réservation où chaque choix s'envole vers le ticket."}
+];
+const f=document.getElementById('f'),info=document.getElementById('info'),choix=document.getElementById('choix');
+function voir(i){const m=M[i];f.src=m.d+'/index.html';
+ info.innerHTML=`<h2>${m.n}</h2><p><b>${m.p}</b> (fictif)</p><p>${m.t}</p><p><a href="${m.d}/index.html" target="_blank">Ouvrir en plein écran ↗</a></p>`;
+ [...choix.children].forEach((b,j)=>b.classList.toggle('on',j==i));history.replaceState(null,'','#'+m.d);}
+M.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m.n;b.onclick=()=>voir(i);choix.append(b);});
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{document.getElementById('cadre').className='cadre '+b.dataset.v;
+ document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x==b));});
+voir(Math.max(0,M.findIndex(m=>'#'+m.d==location.hash)));
+</script>
+</body>
+</html>

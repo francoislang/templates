@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Ravelli — Mécanique multimarque à Saint-Clair-sur-Ardière</title>
+<meta name="description" content="Garage automobile indépendant multimarque : entretien, freins, pneus, climatisation, distribution, pré-contrôle technique. Devis gratuit avant travaux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* === GABARIT : couleurs === */
+  --c-fond:#0E0F12;
+  --c-panneau:#1C1F26;
+  --c-accent:#FF4D1A;
+  --c-texte:#F2F2F2;
+  --c-doux:#9BA1AD;
+  --c-ligne:#2A2E37;
+  --c-ok:#3DDC84;
+  /* === GABARIT : typo === */
+  --f-titre:"Rajdhani",system-ui,sans-serif;
+  --f-texte:"Inter",system-ui,sans-serif;
+  --r:14px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --barre:44px;
+  --entete:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--c-fond);color:var(--c-texte);font:400 16px/1.6 var(--f-texte);overflow-x:hidden}
+body.intro-on{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--c-accent);outline-offset:3px}
+[hidden]{display:none!important}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--f-titre);line-height:1.05;margin:0;letter-spacing:.01em}
+h2{font-size:clamp(2.1rem,5vw,3.6rem);text-transform:uppercase}
+.kicker{font:600 .8rem/1 var(--f-titre);letter-spacing:.28em;text-transform:uppercase;color:var(--c-accent);display:flex;align-items:center;gap:.7em;margin-bottom:14px}
+.kicker::before{content:"";width:28px;height:2px;background:currentColor}
+.lead{color:var(--c-doux);max-width:60ch;font-size:1.05rem}
+section{position:relative;padding:clamp(72px,10vw,130px) 0;overflow-x:clip}
+.tag-ex{display:inline-block;font:600 .68rem/1 var(--f-texte);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border:1px dashed var(--c-doux);color:var(--c-doux);border-radius:6px}
+
+/* ---------- Photos ---------- */
+.ph{position:relative;background:var(--c-panneau) linear-gradient(135deg,#1C1F26,#262a33);overflow:hidden;aspect-ratio:var(--ar,4/3)}
+.ph img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--ease),transform .8s var(--ease)}
+.ph img.ok{opacity:1}
+
+/* ---------- Boutons ---------- */
+.btn{--b:var(--c-accent);position:relative;display:inline-flex;align-items:center;gap:.6em;padding:14px 22px;border-radius:999px;border:2px solid var(--b);background:var(--b);color:#fff;font:700 1rem/1 var(--f-titre);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;overflow:hidden;isolation:isolate;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s var(--ease);z-index:-1}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px var(--c-accent)}
+.btn:hover::after{transform:translateX(120%)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn.ghost{background:transparent;--b:var(--c-ligne);color:var(--c-texte)}
+.btn.ghost:hover{--b:var(--c-texte);box-shadow:none}
+.btn[disabled]{opacity:.4;pointer-events:none}
+.btn svg{width:18px;height:18px;flex:none}
+
+/* ---------- Barre haute ---------- */
+.topbar{position:fixed;inset:0 0 auto;z-index:60;height:var(--barre);background:#000;border-bottom:1px solid var(--c-ligne);font-size:.85rem}
+.topbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topbar a{text-decoration:none;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.statut{display:flex;align-items:center;gap:8px;color:var(--c-doux);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.statut i{width:8px;height:8px;border-radius:50%;background:var(--c-doux);flex:none}
+.statut.ouvert i{background:var(--c-ok);box-shadow:0 0 0 0 var(--c-ok);animation:pouls 2s infinite}
+@keyframes pouls{70%{box-shadow:0 0 0 8px transparent}}
+.topbar .rdv-mini{background:var(--c-accent);color:#fff;padding:6px 12px;border-radius:999px;font-family:var(--f-titre);letter-spacing:.1em;text-transform:uppercase}
+header.nav{position:fixed;top:var(--barre);inset-inline:0;z-index:55;height:var(--entete);transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+header.nav.solide{background:rgba(14,15,18,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--c-ligne)}
+header.nav .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.35rem/1 var(--f-titre);letter-spacing:.06em;text-transform:uppercase}
+.logo svg{width:34px;height:34px}
+.logo small{display:block;font:500 .62rem/1.2 var(--f-texte);letter-spacing:.2em;color:var(--c-doux)}
+nav.menu{display:flex;gap:26px}
+nav.menu a{text-decoration:none;font:600 .95rem/1 var(--f-titre);letter-spacing:.14em;text-transform:uppercase;color:var(--c-doux);position:relative;padding:6px 0;transition:color .2s}
+nav.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--c-accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+nav.menu a:hover{color:var(--c-texte)}
+nav.menu a:hover::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:10px;right:10px;height:2px;background:var(--c-texte);transition:transform .3s var(--ease),opacity .2s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ---------- Mini compte-tours fixe ---------- */
+.mini-ct{position:fixed;right:20px;bottom:20px;z-index:57;width:104px;height:104px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#22262f,#0b0c0f);border:2px solid var(--c-ligne);box-shadow:0 12px 30px -10px #000;display:grid;place-items:center;text-decoration:none;transition:transform .3s var(--ease)}
+.mini-ct:hover{transform:scale(1.06)}
+.mini-ct svg{position:absolute;inset:0;width:100%;height:100%}
+.mini-ct .lect{position:relative;top:22px;font:700 1rem/1 var(--f-titre);letter-spacing:.05em}
+.mini-ct .lect small{display:block;font-size:.5rem;color:var(--c-doux);letter-spacing:.15em;text-align:center}
+
+/* ---------- Intro ---------- */
+.intro{position:fixed;inset:0;z-index:100;background:var(--c-fond);display:grid;place-items:center;transition:opacity .6s var(--ease),visibility .6s}
+.intro.fin{opacity:0;visibility:hidden}
+.intro .cadran{width:min(70vmin,420px);aspect-ratio:1}
+.intro .contact{position:absolute;bottom:8vh;left:0;right:0;text-align:center;font:600 .8rem/1 var(--f-titre);letter-spacing:.35em;color:var(--c-doux);text-transform:uppercase}
+.intro .passer{position:absolute;top:20px;right:20px;background:none;border:1px solid var(--c-ligne);color:var(--c-doux);border-radius:999px;padding:8px 14px;cursor:pointer;font-size:.8rem}
+.intro .cadran.flash{animation:flash .5s}
+@keyframes flash{50%{filter:drop-shadow(0 0 30px var(--c-accent))}}
+
+/* ---------- Cadran (commun) ---------- */
+.cadran text{font-family:var(--f-titre);font-weight:700;fill:var(--c-texte)}
+.cadran .aiguille{transform-origin:200px 200px;transition:transform .12s linear}
+.cadran .rouge{stroke:var(--c-accent)}
+
+/* ---------- Hero ---------- */
+.hero{min-height:100svh;padding:calc(var(--barre) + var(--entete) + 40px) 0 60px;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:-10% 0 0;z-index:-2}
+.hero-bg .ph{position:absolute;inset:0;aspect-ratio:auto;height:100%}
+.hero-bg img{filter:grayscale(.4) contrast(1.1) brightness(.55)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--c-fond) 10%,rgba(14,15,18,.75) 50%,rgba(14,15,18,.3)),linear-gradient(0deg,var(--c-fond),transparent 40%)}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(3.4rem,10vw,8.4rem);text-transform:uppercase;line-height:.88;letter-spacing:-.005em}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l > span{display:inline-block;transform:translateY(110%);transition:transform 1s var(--ease)}
+.hero h1 .accent{color:var(--c-accent)}
+.go .hero h1 .l > span{transform:none}
+.go .hero h1 .l:nth-child(2) > span{transition-delay:.1s}
+.hero .ville{margin:18px 0 8px;font:600 clamp(1.1rem,2.4vw,1.6rem)/1.2 var(--f-titre);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.hero .ville svg{width:22px;color:var(--c-accent)}
+.hero p.lead{margin:0 0 28px}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .fade{opacity:0;transform:translateY(20px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.go .hero .fade{opacity:1;transform:none}
+.go .hero .fade.d1{transition-delay:.35s}.go .hero .fade.d2{transition-delay:.5s}.go .hero .fade.d3{transition-delay:.65s}.go .hero .fade.d4{transition-delay:.8s}
+.dash{background:linear-gradient(180deg,rgba(28,31,38,.85),rgba(14,15,18,.9));border:1px solid var(--c-ligne);border-radius:28px;padding:22px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dash .cadran{width:100%;max-width:360px;margin:0 auto;display:block}
+.dash-ligne{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--c-ligne);padding-top:14px;margin-top:6px;font-size:.85rem;color:var(--c-doux)}
+.dash-ligne strong{color:var(--c-texte)}
+.defile{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font:600 .7rem/1 var(--f-titre);letter-spacing:.3em;color:var(--c-doux);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.defile::after{content:"";width:2px;height:36px;background:linear-gradient(var(--c-accent),transparent);animation:descend 1.6s infinite}
+@keyframes descend{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- Compteur kilométrique ---------- */
+.odo{display:inline-flex;gap:2px;font:700 1em/1 var(--f-titre);vertical-align:bottom}
+.odo .d{position:relative;display:inline-block;width:.68em;height:1.15em;overflow:hidden;background:#07080a;border-radius:3px;box-shadow:inset 0 6px 6px -4px rgba(255,255,255,.08),inset 0 -6px 6px -4px rgba(0,0,0,.8)}
+.odo .d > span{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;transition:transform 1.6s var(--ease)}
+.odo .d > span b{height:1.15em;display:grid;place-items:center;font-weight:700}
+.odo .s{display:inline-grid;place-items:center;width:.32em}
+.odo.rouge .d:last-child{background:var(--c-accent)}
+
+/* ---------- Bandeau défilant ---------- */
+.ruban{border-block:1px solid var(--c-ligne);background:var(--c-panneau);padding:16px 0;overflow:hidden;white-space:nowrap}
+.ruban .piste{display:inline-flex;gap:46px;animation:ruban 40s linear infinite;font:600 1.15rem/1 var(--f-titre);letter-spacing:.2em;text-transform:uppercase}
+.ruban .piste span::after{content:"/";color:var(--c-accent);margin-left:46px}
+@keyframes ruban{to{transform:translateX(-50%)}}
+
+/* ---------- Prestations ---------- */
+.tete{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:48px}
+.taux{background:var(--c-panneau);border:1px solid var(--c-ligne);border-left:4px solid var(--c-accent);border-radius:var(--r);padding:16px 20px;font-size:.9rem}
+.taux .odo{font-size:1.7rem;margin-top:6px}
+.grille{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.carte{position:relative;background:var(--c-panneau);border:1px solid var(--c-ligne);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:transform .35s var(--ease),border-color .35s,box-shadow .35s;transform-style:preserve-3d}
+.carte:hover{border-color:rgba(255,77,26,.6);box-shadow:0 24px 50px -24px rgba(255,77,26,.45)}
+.carte .ph{--ar:16/9}
+.carte:hover .ph img{transform:scale(1.06)}
+.carte .corps{padding:20px 20px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+.carte h3{font-size:1.6rem;text-transform:uppercase}
+.carte p{margin:0;color:var(--c-doux);font-size:.93rem}
+.carte .prix{margin-top:auto;padding-top:14px;border-top:1px dashed var(--c-ligne);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.carte .prix .px{font-size:.82rem;color:var(--c-doux);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap}
+.carte .prix .odo{font-size:1.65rem;color:var(--c-texte)}
+.carte .num{position:absolute;top:12px;left:12px;z-index:2;font:700 .8rem/1 var(--f-titre);letter-spacing:.15em;background:rgba(0,0,0,.7);padding:6px 9px;border-radius:6px}
+.mention{margin-top:26px;font-size:.82rem;color:var(--c-doux);display:flex;gap:10px;align-items:flex-start}
+.mention svg{flex:none;width:18px;color:var(--c-accent);margin-top:2px}
+
+/* ---------- Section épinglée ---------- */
+.pin{padding:0;height:360vh}
+.pin-in{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden}
+.pin-in .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.etape-num{font-size:clamp(6rem,18vw,13rem);color:var(--c-accent);line-height:1}
+.etape-num .odo .d{background:transparent;box-shadow:none;width:.56em}
+.etapes{position:relative;min-height:290px}
+.etape{position:absolute;inset:0;opacity:0;transform:translateY(30px);transition:opacity .5s var(--ease),transform .5s var(--ease);pointer-events:none}
+.etape.on{opacity:1;transform:none;pointer-events:auto}
+.etape h3{font-size:clamp(2rem,4.5vw,3.2rem);text-transform:uppercase;margin-bottom:14px}
+.etape p{color:var(--c-doux);max-width:52ch;font-size:1.05rem}
+.etape ul{padding:0;margin:14px 0 0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.etape li{border:1px solid var(--c-ligne);border-radius:999px;padding:6px 12px;font-size:.85rem}
+.regime{margin-top:34px;height:10px;border-radius:5px;background:var(--c-panneau);overflow:hidden;position:relative}
+.regime i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#3a3f4a,var(--c-texte) 60%,var(--c-accent) 85%)}
+.regime-l{display:flex;justify-content:space-between;font:600 .75rem/1 var(--f-titre);letter-spacing:.15em;color:var(--c-doux);margin-top:8px;text-transform:uppercase}
+
+/* ---------- RDV ---------- */
+.rdv{background:radial-gradient(1200px 500px at 80% 0%,rgba(255,77,26,.12),transparent 60%)}
+.rdv .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}
+.wrap > *,.form,.vol{min-width:0}
+.rdv-info ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:12px}
+.rdv-info li{display:flex;gap:12px;align-items:flex-start;color:var(--c-doux)}
+.rdv-info li svg{flex:none;width:20px;color:var(--c-accent);margin-top:3px}
+.form{background:var(--c-panneau);border:1px solid var(--c-ligne);border-radius:22px;padding:clamp(20px,3vw,34px);position:relative}
+.demo-note{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--c-doux);background:#14161b;border:1px dashed var(--c-ligne);border-radius:10px;padding:8px 12px;margin-bottom:20px}
+.pas{display:flex;gap:6px;margin-bottom:26px;list-style:none;padding:0}
+.pas li{flex:1;display:flex;flex-direction:column;gap:8px;font:600 .78rem/1.1 var(--f-titre);letter-spacing:.12em;text-transform:uppercase;color:var(--c-doux)}
+.pas li::before{content:"";height:4px;border-radius:2px;background:var(--c-ligne);transition:background .4s}
+.pas li.fait::before,.pas li.actif::before{background:var(--c-accent)}
+.pas li.actif{color:var(--c-texte)}
+.vol{display:none;animation:entre .45s var(--ease)}
+.vol.on{display:block}
+@keyframes entre{from{opacity:0;transform:translateX(24px)}}
+.champ{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.champ label,.leg{font-weight:600;font-size:.9rem}
+.champ .aide{font-size:.78rem;color:var(--c-doux)}
+.champ .err{font-size:.8rem;color:#ff8a6b;min-height:1em}
+input[type=text],input[type=tel],input[type=number],textarea{background:var(--c-fond);border:1px solid var(--c-ligne);border-radius:10px;padding:13px 14px;width:100%;transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--c-accent);box-shadow:0 0 0 3px rgba(255,77,26,.2)}
+.plaque{display:flex;align-items:stretch;border-radius:10px;overflow:hidden;border:2px solid #d9d9d9;background:#fff;max-width:340px}
+.plaque .eu{background:#1f3fae;color:#fff;width:40px;display:grid;place-items:center;font:700 .9rem/1 var(--f-titre)}
+.plaque input{border:0;border-radius:0;background:#fff;color:#111;font:700 1.7rem/1 var(--f-titre);letter-spacing:.12em;text-transform:uppercase;text-align:center;padding:10px 6px;min-width:0}
+.plaque input:focus{box-shadow:none}
+.plaque:focus-within{border-color:var(--c-accent);box-shadow:0 0 0 3px rgba(255,77,26,.3)}
+.km-apercu{display:flex;align-items:center;gap:12px;font-size:1.6rem;margin-top:6px}
+.km-apercu small{font:600 .8rem/1 var(--f-titre);letter-spacing:.15em;color:var(--c-doux)}
+.choix{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.puce{position:relative}
+.puce input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.puce span{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--c-ligne);border-radius:12px;padding:12px 14px;font-size:.9rem;transition:border-color .2s,background .2s,transform .15s;height:100%}
+.puce span em{font-style:normal;font-size:.75rem;color:var(--c-doux);white-space:nowrap}
+.puce input:checked + span{border-color:var(--c-accent);background:rgba(255,77,26,.1)}
+.puce input:focus-visible + span{outline:2px solid var(--c-accent);outline-offset:2px}
+.puce:active span{transform:scale(.97)}
+.total{margin:16px 0 4px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:.9rem;color:var(--c-doux)}
+.total strong{color:var(--c-texte);font:700 1.4rem/1 var(--f-titre)}
+.jours{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory;margin-bottom:14px}
+.jours button,.creneaux button{background:var(--c-fond);border:1px solid var(--c-ligne);border-radius:12px;cursor:pointer;transition:border-color .2s,background .2s,transform .15s}
+.jours button{flex:none;width:76px;padding:10px 6px;text-align:center;scroll-snap-align:start;font:600 .78rem/1.2 var(--f-titre);letter-spacing:.1em;text-transform:uppercase}
+.jours button b{display:block;font-size:1.6rem;letter-spacing:0}
+.creneaux{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.creneaux button{padding:11px 4px;font:700 1.05rem/1 var(--f-titre)}
+.jours button[aria-pressed="true"],.creneaux button[aria-pressed="true"]{border-color:var(--c-accent);background:rgba(255,77,26,.14)}
+.jours button:hover,.creneaux button:hover{border-color:var(--c-doux)}
+.jours button:active,.creneaux button:active{transform:scale(.95)}
+.ligne2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.coche{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;margin:6px 0 16px;cursor:pointer}
+.coche input{accent-color:var(--c-accent);width:18px;height:18px;margin-top:2px}
+.actions{display:flex;justify-content:space-between;gap:10px;margin-top:22px;flex-wrap:wrap}
+.recap{background:var(--c-fond);border:1px solid var(--c-ligne);border-radius:14px;padding:18px;display:grid;gap:8px;font-size:.92rem}
+.recap div{display:flex;justify-content:space-between;gap:14px}
+.recap span{color:var(--c-doux)}
+.recap b{text-align:right}
+.ok-ico{width:64px;height:64px;border-radius:50%;background:rgba(61,220,132,.12);display:grid;place-items:center;margin-bottom:14px}
+.ok-ico svg{width:32px;color:var(--c-ok)}
+
+/* ---------- Engagements ---------- */
+.engs{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:46px}
+.eng{background:var(--c-panneau);border:1px solid var(--c-ligne);border-radius:var(--r);padding:26px 22px;transition:transform .3s var(--ease),border-color .3s}
+.eng:hover{transform:translateY(-6px);border-color:var(--c-accent)}
+.eng .ico{width:52px;height:52px;border-radius:14px;background:rgba(255,77,26,.12);display:grid;place-items:center;margin-bottom:18px;transition:transform .4s var(--ease)}
+.eng:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.eng .ico svg{width:26px;color:var(--c-accent)}
+.eng h3{font-size:1.45rem;text-transform:uppercase;margin-bottom:8px}
+.eng p{margin:0;color:var(--c-doux);font-size:.92rem}
+
+/* ---------- Avis ---------- */
+.avis-vide{border:2px dashed var(--c-ligne);border-radius:22px;padding:clamp(30px,5vw,56px);display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:center}
+.avis-vide .bulle{width:84px;height:84px;border-radius:24px;background:var(--c-panneau);display:grid;place-items:center}
+.avis-vide .bulle svg{width:40px;color:var(--c-accent)}
+.avis-vide h3{font-size:clamp(1.6rem,3vw,2.2rem);text-transform:uppercase;margin-bottom:6px}
+.avis-vide p{margin:0;color:var(--c-doux)}
+
+/* ---------- Atelier / galerie ---------- */
+.atelier-intro{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:end;margin-bottom:40px}
+.galerie{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+.galerie button{padding:0;border:0;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;background:none}
+.galerie button .ph{aspect-ratio:auto;height:100%}
+.galerie button:nth-child(1){grid-column:span 2;grid-row:span 2}
+.galerie button:nth-child(6){grid-column:span 2}
+.galerie button:nth-child(9){grid-row:span 2}
+.galerie button::after{content:"+";position:absolute;right:12px;bottom:12px;width:36px;height:36px;border-radius:50%;background:var(--c-accent);color:#fff;font:700 1.4rem/36px var(--f-titre);text-align:center;transform:scale(0);transition:transform .3s var(--ease)}
+.galerie button:hover::after,.galerie button:focus-visible::after{transform:scale(1)}
+.galerie button:hover img{transform:scale(1.07)}
+.lb{position:fixed;inset:0;z-index:120;background:rgba(5,6,8,.96);display:none;align-items:center;justify-content:center;touch-action:pan-y}
+.lb.on{display:flex;animation:lbIn .3s var(--ease)}
+@keyframes lbIn{from{opacity:0}}
+.lb figure{margin:0;width:min(1200px,92vw);display:flex;flex-direction:column;gap:12px}
+.lb .ph{--ar:3/2;border-radius:12px;max-height:78vh}
+.lb .ph img{object-fit:contain;background:#000}
+.lb figcaption{display:flex;justify-content:space-between;color:var(--c-doux);font-size:.9rem;gap:10px}
+.lb button{position:absolute;background:rgba(28,31,38,.9);border:1px solid var(--c-ligne);color:var(--c-texte);width:52px;height:52px;border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:background .2s,transform .2s}
+.lb button:hover{background:var(--c-accent);transform:scale(1.08)}
+.lb button svg{width:22px}
+.lb .fermer{top:18px;right:18px}
+.lb .prec{left:18px;top:50%;margin-top:-26px}
+.lb .suiv{right:18px;top:50%;margin-top:-26px}
+
+/* ---------- Marques ---------- */
+.marques{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.marques span{border:1px solid var(--c-ligne);border-radius:999px;padding:10px 18px;font:600 1rem/1 var(--f-titre);letter-spacing:.12em;text-transform:uppercase;transition:border-color .2s,color .2s,transform .2s}
+.marques span:hover{border-color:var(--c-accent);color:var(--c-accent);transform:translateY(-2px)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.parallax-img{border-radius:22px;overflow:hidden;position:relative}
+.parallax-img .ph{--ar:4/5}
+.parallax-img img{transform:scale(1.18) translateY(var(--py,0));will-change:transform}
+
+/* ---------- Accès / horaires ---------- */
+.acces .wrap{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.bloc{background:var(--c-panneau);border:1px solid var(--c-ligne);border-radius:22px;padding:clamp(22px,3vw,34px)}
+.horaires{width:100%;border-collapse:collapse;margin-top:16px}
+.horaires td{padding:11px 0;border-bottom:1px solid var(--c-ligne);font-size:.95rem}
+.horaires td:last-child{text-align:right;font:600 1.1rem/1 var(--f-titre);letter-spacing:.05em}
+.horaires tr.auj td{color:var(--c-accent)}
+.horaires tr.auj td:first-child::after{content:" · aujourd'hui";font-size:.75rem}
+.carte-plan{position:relative;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#15171c;margin:18px 0}
+.carte-plan svg{width:100%;height:100%}
+.adresse{font-size:1.05rem;line-height:1.5}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--c-ligne)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 50px 22px 0;position:relative;font:600 1.3rem/1.25 var(--f-titre);letter-spacing:.02em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:14px;height:14px;margin-top:-10px;border-right:2px solid var(--c-accent);border-bottom:2px solid var(--c-accent);transform:rotate(45deg);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(225deg);margin-top:-3px}
+.faq details p{margin:0 0 22px;color:var(--c-doux);max-width:70ch}
+
+/* ---------- Pied ---------- */
+footer{border-top:1px solid var(--c-ligne);padding:56px 0 110px;font-size:.88rem;color:var(--c-doux)}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px}
+footer h4{font:700 1rem/1 var(--f-titre);letter-spacing:.2em;text-transform:uppercase;color:var(--c-texte);margin:0 0 14px}
+footer .legal{grid-column:1/-1;border-top:1px solid var(--c-ligne);padding-top:22px;font-size:.78rem}
+.barre-mobile{display:none}
+
+/* ---------- Révélations ---------- */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.vu{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1000px){
+  .grille{grid-template-columns:repeat(2,1fr)}
+  .engs{grid-template-columns:repeat(2,1fr)}
+  .hero .wrap,.rdv .wrap,.split,.atelier-intro,.acces .wrap{grid-template-columns:1fr}
+  .hero .dash{max-width:440px}
+  nav.menu{position:fixed;top:calc(var(--barre) + var(--entete));inset-inline:0;bottom:0;background:var(--c-fond);flex-direction:column;padding:30px 24px;gap:6px;transform:translateX(100%);transition:transform .4s var(--ease);visibility:hidden}
+  nav.menu.ouvert{transform:none;visibility:visible}
+  nav.menu a{font-size:1.6rem;padding:14px 0;border-bottom:1px solid var(--c-ligne);color:var(--c-texte)}
+  .burger{display:block}
+  header .rdv-nav{display:none}
+  .pin-in .wrap{grid-template-columns:1fr;gap:10px}
+  .etape-num{font-size:clamp(5rem,26vw,9rem)}
+  .galerie{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}
+  .galerie button:nth-child(9){grid-row:span 1}
+  footer .wrap{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  :root{--barre:40px;--entete:58px}
+  body{font-size:15px}
+  .topbar .tel-txt,.topbar .rdv-mini{display:none}
+  .grille,.engs{grid-template-columns:1fr}
+  .choix{grid-template-columns:1fr}
+  .creneaux{grid-template-columns:repeat(3,1fr)}
+  .ligne2{grid-template-columns:1fr}
+  .avis-vide{grid-template-columns:1fr;text-align:left}
+  .mini-ct{width:50px;height:50px;right:62px;bottom:auto;top:calc(var(--barre) + 4px);border-width:1px;box-shadow:none}
+  .mini-ct .lect{top:10px;font-size:.62rem}
+  .statut .mq{display:none}
+  .mini-ct .lect small{display:none}
+  .barre-mobile{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;position:fixed;inset:auto 0 0;z-index:58;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(14,15,18,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--c-ligne)}
+  .barre-mobile .btn{justify-content:center;padding:13px 10px;font-size:.92rem}
+  .hero{padding-bottom:90px}
+  .defile{display:none}
+  .galerie{grid-auto-rows:130px}
+  .galerie button:nth-child(1){grid-row:span 2}
+  .lb .prec,.lb .suiv{top:auto;bottom:22px;margin:0}
+  .lb .prec{left:calc(50% - 64px)}.lb .suiv{right:calc(50% - 64px)}
+  .etapes{min-height:330px}
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .hero h1 .l > span,.hero .fade{transform:none;opacity:1}
+  .ruban .piste{animation:none}
+  .pin{height:auto;padding:clamp(72px,10vw,130px) 0}
+  .pin-in{position:static;height:auto}
+  .etapes{min-height:0;display:grid;gap:30px}
+  .etape{position:static;opacity:1;transform:none}
+  .etape-num,.regime,.regime-l{display:none}
+  .parallax-img img{transform:none}
+}
+</style>
+</head>
+<body class="intro-on">
+
+<!-- ===== INTRO : mise du contact ===== -->
+<div class="intro" id="intro" aria-hidden="true">
+  <button class="passer" type="button" id="passer">Passer l'intro</button>
+  <svg class="cadran" id="cadranIntro" viewBox="0 0 400 400"></svg>
+  <div class="contact">Contact… démarrage</div>
+</div>
+
+<!-- ===== BARRE HAUTE ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="statut" id="statut"><i></i><span>Horaires du jour</span></div>
+    <a href="tel:06XXXXXXXX" data-cfg-tel><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="tel-txt" data-cfg="TEL">06 XX XX XX XX</span><span class="sr">Appeler le garage</span></a>
+    <a href="#rdv" class="rdv-mini">Prendre RDV</a>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Accueil">
+      <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="17" stroke="#F2F2F2" stroke-width="2.5" stroke-dasharray="80 27" transform="rotate(130 20 20)"/><path d="M20 20 L31 11" stroke="#FF4D1A" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="20" r="3" fill="#FF4D1A"/></svg>
+      <span><span data-cfg="NOM_COURT">Garage Ravelli</span><small>Mécanique multimarque</small></span>
+    </a>
+    <nav class="menu" id="menu" aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#methode">Méthode</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#acces">Accès</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#rdv" class="btn rdv-nav">Rendez-vous</a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<a href="#top" class="mini-ct" id="miniCt" aria-label="Remonter en haut de page">
+  <svg viewBox="0 0 400 400" class="cadran" id="cadranMini"></svg>
+  <span class="lect"><span id="miniVal">0.0</span><small>×1000</small></span>
+</a>
+
+<main id="top">
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"><div class="ph" data-ph="1727893119356-1702fe921cf9" data-alt="" data-sizes="100vw" data-eager></div></div>
+  <div class="wrap">
+    <div>
+      <div class="kicker fade d1">Garage indépendant · Toutes marques</div>
+      <h1><span class="l"><span data-cfg="NOM_L1">Garage</span></span><span class="l"><span class="accent" data-cfg="NOM_L2">Ravelli</span></span></h1>
+      <div class="ville fade d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.1 7-12a7 7 0 0 0-14 0c0 5.9 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-cfg="VILLE">Saint-Clair-sur-Ardière</span></div>
+      <p class="lead fade d3">Entretien, freins, pneus, climatisation, distribution : on vous explique, on chiffre, et on ne touche à rien sans votre accord. Tarifs affichés, devis gratuit avant travaux.</p>
+      <div class="ctas fade d4">
+        <a href="#rdv" class="btn">Prendre rendez-vous <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="#prestations" class="btn ghost">Voir les forfaits</a>
+      </div>
+    </div>
+    <div class="dash fade d4" aria-label="Tableau de bord du garage">
+      <svg class="cadran" id="cadranHero" viewBox="0 0 400 400" role="img" aria-label="Compte-tours qui suit votre défilement"></svg>
+      <div class="dash-ligne"><span>Ouverture aujourd'hui</span><strong><span class="odo" id="odoOuv" data-odo="--:--"></span></strong></div>
+      <div class="dash-ligne"><span>Fermeture</span><strong><span class="odo rouge" id="odoFerm" data-odo="--:--"></span></strong></div>
+    </div>
+  </div>
+  <div class="defile">Défiler</div>
+</section>
+
+<div class="ruban" aria-hidden="true"><div class="piste" id="ruban"></div></div>
+
+<!-- ===== PRESTATIONS ===== -->
+<section id="prestations">
+  <div class="wrap">
+    <div class="tete">
+      <div class="rv">
+        <div class="kicker">Prestations & forfaits</div>
+        <h2>Le prix avant<br>de lever le capot</h2>
+        <p class="lead">Forfaits TTC pièces et main-d'œuvre, pour une citadine ou compacte courante. Le prix exact dépend de votre véhicule : il est confirmé par devis, avant toute intervention.</p>
+      </div>
+      <div class="taux rv d1">
+        <div>Taux horaire main-d'œuvre <span class="tag-ex">prix d'exemple</span></div>
+        <div><span class="odo" data-odo="0" data-cfg-odo="TAUX_HORAIRE"></span> € TTC / heure</div>
+      </div>
+    </div>
+    <div class="grille" id="grillePresta"></div>
+    <p class="mention"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg><span><strong>Prix d'exemple</strong> affichés à titre indicatif pour cette démonstration. Tous les prix sont TTC. Pour les pièces concernées, nous vous proposons systématiquement une pièce issue de l'économie circulaire (réemploi) en alternative à la pièce neuve.</span></p>
+  </div>
+</section>
+
+<!-- ===== MÉTHODE (épinglée) ===== -->
+<section class="pin" id="methode">
+  <div class="pin-in">
+    <div class="wrap">
+      <div>
+        <div class="kicker">Comment ça se passe</div>
+        <div class="etape-num" aria-hidden="true"><span class="odo" id="odoEtape" data-odo="01"></span></div>
+      </div>
+      <div>
+        <div class="etapes" id="etapes">
+          <article class="etape on">
+            <h3>1. Accueil & écoute</h3>
+            <p>Vous déposez le véhicule et nous décrivez les symptômes : bruit, voyant, vibration. On note tout, kilométrage compris, devant vous.</p>
+            <ul><li>Dépôt dès l'ouverture</li><li>Carnet d'entretien vérifié</li></ul>
+          </article>
+          <article class="etape">
+            <h3>2. Diagnostic</h3>
+            <p>Diagnostic électronique et contrôle visuel. On vous appelle pour expliquer ce qu'on a trouvé, avec photos si besoin, en langage clair.</p>
+            <ul><li>Lecture des codes défaut</li><li>Photos des pièces usées</li></ul>
+          </article>
+          <article class="etape">
+            <h3>3. Devis, puis accord</h3>
+            <p>Devis écrit et gratuit, pièce neuve ou de réemploi au choix. Aucun travail n'est engagé sans votre accord, et rien n'est ajouté en cours de route sans vous prévenir.</p>
+            <ul><li>Devis gratuit</li><li>Choix neuf / réemploi</li></ul>
+          </article>
+          <article class="etape">
+            <h3>4. Restitution expliquée</h3>
+            <p>On vous montre ce qui a été fait, on vous rend les pièces remplacées si vous le souhaitez, et on tamponne le carnet : entretien constructeur sans perte de garantie.</p>
+            <ul><li>Pièces rendues sur demande</li><li>Facture détaillée</li></ul>
+          </article>
+        </div>
+        <div class="regime" aria-hidden="true"><i id="regime"></i></div>
+        <div class="regime-l" aria-hidden="true"><span>Ralenti</span><span>Zone rouge</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== RDV ===== -->
+<section class="rdv" id="rdv">
+  <div class="wrap">
+    <div class="rdv-info rv">
+      <div class="kicker">Devis & rendez-vous</div>
+      <h2>Rendez-vous<br>en 3 étapes</h2>
+      <p class="lead">Immatriculation, prestation, créneau. Nous vous rappelons pour confirmer et préciser le devis avant votre venue.</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Devis gratuit, confirmé par téléphone avant travaux</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Véhicule de prêt sur demande, selon disponibilité</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Délai annoncé au dépôt, et tenu au courant si ça change</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>Plutôt par téléphone ? <a href="tel:06XXXXXXXX" data-cfg-tel><span data-cfg="TEL">06 XX XX XX XX</span></a></li>
+      </ul>
+    </div>
+
+    <form class="form rv d1" id="formRdv" novalidate>
+      <div class="demo-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16h.01"/></svg>Formulaire de démonstration : aucune donnée n'est envoyée ni enregistrée.</div>
+      <ol class="pas" id="pas">
+        <li class="actif">1 · Véhicule</li>
+        <li>2 · Prestation</li>
+        <li>3 · Créneau</li>
+      </ol>
+
+      <!-- Étape 1 -->
+      <fieldset class="vol on" data-vol="1" style="border:0;padding:0;margin:0">
+        <legend class="sr">Étape 1 : votre véhicule</legend>
+        <div class="champ">
+          <label for="plaque">Immatriculation</label>
+          <div class="plaque"><span class="eu" aria-hidden="true">F</span><input id="plaque" type="text" inputmode="text" autocomplete="off" placeholder="AB-123-CD" maxlength="9" aria-describedby="plaqueAide plaqueErr"></div>
+          <span class="aide" id="plaqueAide">Format AA-123-AA. Les tirets s'ajoutent tout seuls.</span>
+          <span class="err" id="plaqueErr" role="alert"></span>
+        </div>
+        <div class="champ">
+          <label for="km">Kilométrage actuel</label>
+          <input id="km" type="number" inputmode="numeric" min="0" max="999999" placeholder="Ex. 142000" aria-describedby="kmErr">
+          <div class="km-apercu" aria-hidden="true"><span class="odo" id="odoKm" data-odo="000000"></span><small>KM</small></div>
+          <span class="err" id="kmErr" role="alert"></span>
+        </div>
+      </fieldset>
+
+      <!-- Étape 2 -->
+      <fieldset class="vol" data-vol="2" style="border:0;padding:0;margin:0">
+        <legend class="leg" style="margin-bottom:12px">Que faut-il faire ? <span class="aide" style="font-weight:400;color:var(--c-doux)">(plusieurs choix possibles)</span></legend>
+        <div class="choix" id="choixPresta"></div>
+        <div class="champ" style="margin-top:16px">
+          <label for="besoin">Décrivez votre besoin (facultatif)</label>
+          <textarea id="besoin" rows="3" placeholder="Ex. bruit au freinage côté avant droit, voyant moteur allumé…"></textarea>
+        </div>
+        <div class="total"><span>Estimation « à partir de » <span class="tag-ex">prix d'exemple</span></span><strong id="total">—</strong></div>
+        <span class="err" id="prestaErr" role="alert"></span>
+      </fieldset>
+
+      <!-- Étape 3 -->
+      <fieldset class="vol" data-vol="3" style="border:0;padding:0;margin:0">
+        <legend class="leg" style="margin-bottom:12px">Jour et heure de dépôt</legend>
+        <div class="jours" id="jours" role="group" aria-label="Jours disponibles"></div>
+        <div class="creneaux" id="creneaux" role="group" aria-label="Heures de dépôt"></div>
+        <span class="err" id="creneauErr" role="alert" style="display:block;margin-top:8px"></span>
+        <label class="coche"><input type="checkbox" id="pret"> Je souhaite un véhicule de prêt (selon disponibilité)</label>
+        <div class="ligne2">
+          <div class="champ"><label for="nom">Nom</label><input id="nom" type="text" autocomplete="name"></div>
+          <div class="champ"><label for="tel">Téléphone</label><input id="tel" type="tel" autocomplete="tel" placeholder="06 .. .. .. .."></div>
+        </div>
+        <span class="err" id="contactErr" role="alert"></span>
+      </fieldset>
+
+      <!-- Confirmation -->
+      <div class="vol" data-vol="4" id="confirm" tabindex="-1">
+        <div class="ok-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3 style="font-size:2rem;text-transform:uppercase;margin-bottom:8px">Demande prête</h3>
+        <p style="color:var(--c-doux);margin:0 0 16px">Dans la version en ligne, le garage vous rappellerait pour confirmer. <strong>Ici, c'est une démo : rien n'a été envoyé.</strong></p>
+        <div class="recap" id="recap"></div>
+      </div>
+
+      <div class="actions" id="actions">
+        <button type="button" class="btn ghost" id="retour" hidden>Retour</button>
+        <button type="submit" class="btn" id="suivant" style="margin-left:auto">Continuer</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== ENGAGEMENTS ===== -->
+<section id="engagements" style="padding-top:40px">
+  <div class="wrap">
+    <div class="rv">
+      <div class="kicker">Nos engagements</div>
+      <h2>Ce qu'on vous garantit</h2>
+    </div>
+    <div class="engs">
+      <article class="eng rv">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+        <h3>Devis gratuit avant travaux</h3>
+        <p>Écrit, détaillé, signé par vous. Si on découvre autre chose en cours de route, on vous appelle d'abord.</p>
+      </article>
+      <article class="eng rv d1">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 15-6.7L21 8M21 3v5h-5M21 12a9 9 0 0 1-15 6.7L3 16M3 21v-5h5"/></svg></div>
+        <h3>Pièces de réemploi proposées</h3>
+        <p>Pour les pièces concernées, on vous propose une pièce issue de l'économie circulaire : moins chère, garantie, plus sobre.</p>
+      </article>
+      <article class="eng rv d2">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17h14M6 17l1.5-5h9L18 17M7.5 12 9 7h6l1.5 5"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg></div>
+        <h3>Véhicule de prêt</h3>
+        <p>Sur réservation, pour continuer à rouler pendant l'intervention. Selon disponibilité, à demander au moment du RDV.</p>
+      </article>
+      <article class="eng rv d3">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Travaux garantis</h3>
+        <p>Pièces et main-d'œuvre garanties. Entretien selon les préconisations constructeur, sans perte de garantie.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AVIS ===== -->
+<section id="avis" style="padding-top:20px">
+  <div class="wrap">
+    <div class="kicker rv">Avis clients</div>
+    <div class="avis-vide rv">
+      <div class="bulle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+      <div>
+        <h3>Vos avis clients apparaîtront ici</h3>
+        <p>Cet emplacement affichera les avis vérifiés laissés par les clients du garage. Aucun avis n'est inventé.</p>
+      </div>
+      <span class="tag-ex">emplacement réservé</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ATELIER ===== -->
+<section id="atelier">
+  <div class="wrap">
+    <div class="atelier-intro">
+      <div class="rv">
+        <div class="kicker">L'atelier</div>
+        <h2>Ponts, outillage<br>& valise de diagnostic</h2>
+      </div>
+      <p class="lead rv d1">Un atelier rangé, des outils adaptés aux véhicules récents comme aux plus anciens. Diagnostic électronique, géométrie, recharge de climatisation : tout se fait sur place.</p>
+    </div>
+    <div class="galerie" id="galerie"></div>
+  </div>
+</section>
+
+<!-- ===== MARQUES ===== -->
+<section id="marques" style="padding-top:20px">
+  <div class="wrap split">
+    <div class="rv">
+      <div class="kicker">Multimarque</div>
+      <h2>Toutes marques,<br>toutes motorisations</h2>
+      <p class="lead">En tant que garage indépendant, nous entretenons les véhicules de toutes les marques, en respectant le plan d'entretien constructeur : votre garantie est préservée.</p>
+      <div class="marques">
+        <span>Constructeurs français</span><span>Allemands</span><span>Italiens</span><span>Japonais</span><span>Coréens</span><span>Essence</span><span>Diesel</span><span>Hybride</span><span>GPL</span><span>Utilitaires légers</span>
+      </div>
+    </div>
+    <div class="parallax-img rv d1"><div class="ph" data-ph="1486262715619-67b85e0b08d3" data-alt="Compartiment moteur vu de près" data-sizes="(max-width:1000px) 100vw, 560px"></div></div>
+  </div>
+</section>
+
+<!-- ===== ACCÈS ===== -->
+<section class="acces" id="acces" style="padding-top:20px">
+  <div class="wrap">
+    <div class="bloc rv">
+      <div class="kicker">Horaires</div>
+      <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem)">Quand passer</h2>
+      <table class="horaires" id="horaires"><caption class="sr">Horaires d'ouverture</caption></table>
+      <p style="color:var(--c-doux);font-size:.85rem;margin:14px 0 0">Dépôt des véhicules dès l'ouverture. Délai annoncé au dépôt.</p>
+    </div>
+    <div class="bloc rv d1">
+      <div class="kicker">Accès</div>
+      <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem)">Où nous trouver</h2>
+      <div class="carte-plan" aria-hidden="true">
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice"><rect width="400" height="250" fill="#15171c"/><g stroke="#2A2E37" stroke-width="10" fill="none"><path d="M-10 170 C100 150 180 190 410 120"/><path d="M120 -10 L160 260"/><path d="M260 -10 C250 80 300 160 290 260"/></g><g stroke="#3a3f4a" stroke-width="3" fill="none"><path d="M-10 60 L410 90"/><path d="M40 260 L80 -10"/><path d="M330 -10 L360 260"/></g><circle cx="215" cy="150" r="30" fill="rgba(255,77,26,.18)"/><path d="M215 152c0 0 14-12 14-23a14 14 0 0 0-28 0c0 11 14 23 14 23z" fill="#FF4D1A"/><circle cx="215" cy="129" r="5" fill="#0E0F12"/></svg>
+      </div>
+      <p class="adresse"><strong data-cfg="NOM_COURT">Garage Ravelli</strong><br><span data-cfg="ADRESSE">XX rue de l'Exemple</span><br><span data-cfg="CP">00000</span> <span data-cfg="VILLE">Saint-Clair-sur-Ardière</span></p>
+      <p style="color:var(--c-doux);font-size:.9rem">Parking clients devant l'atelier. <a href="tel:06XXXXXXXX" data-cfg-tel><span data-cfg="TEL">06 XX XX XX XX</span></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" style="padding-top:20px">
+  <div class="wrap">
+    <div class="kicker rv">Questions fréquentes</div>
+    <h2 class="rv" style="margin-bottom:24px">FAQ</h2>
+    <div class="faq rv">
+      <details><summary>Faire l'entretien chez vous fait-il perdre la garantie constructeur ?</summary><p>Non. Un garage indépendant peut réaliser l'entretien constructeur sans perte de garantie, à condition de suivre le plan d'entretien et d'utiliser des pièces de qualité équivalente. Nous tamponnons votre carnet et détaillons la facture.</p></details>
+      <details><summary>Le devis est-il vraiment gratuit ?</summary><p>Oui, le devis est gratuit et remis avant tout travail. Si un démontage important est nécessaire pour établir un diagnostic, nous vous l'annonçons et le chiffrons avant de le faire.</p></details>
+      <details><summary>Qu'est-ce qu'une pièce de réemploi ?</summary><p>C'est une pièce issue de l'économie circulaire : démontée sur un véhicule hors d'usage, contrôlée puis remise en circulation. Pour les pièces concernées, nous vous la proposons en alternative à la pièce neuve, avec son prix, sur le devis.</p></details>
+      <details><summary>Combien de temps gardez-vous la voiture ?</summary><p>Une vidange ou un changement de plaquettes se fait en général dans la journée. Pour une distribution ou une réparation plus lourde, nous vous annonçons un délai au dépôt et vous prévenons s'il change.</p></details>
+      <details><summary>Faites-vous le contrôle technique ?</summary><p>Le contrôle technique est réalisé par un centre agréé. Nous proposons un pré-contrôle technique pour repérer et corriger les points à risque avant votre passage, afin d'éviter une contre-visite.</p></details>
+      <details><summary>Les prix affichés sur ce site sont-ils définitifs ?</summary><p>Les montants affichés ici sont des prix d'exemple TTC « à partir de ». Le prix exact dépend de votre véhicule et vous est donné sur devis avant intervention.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a href="#top" class="logo" style="margin-bottom:14px"><span data-cfg="NOM_COURT">Garage Ravelli</span></a>
+      <p style="margin:0">Garage automobile indépendant multimarque à <span data-cfg="VILLE">Saint-Clair-sur-Ardière</span>. Entretien, réparation, diagnostic.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p style="margin:0"><span data-cfg="ADRESSE">XX rue de l'Exemple</span><br><span data-cfg="CP">00000</span> <span data-cfg="VILLE">Saint-Clair-sur-Ardière</span><br><a href="tel:06XXXXXXXX" data-cfg-tel><span data-cfg="TEL">06 XX XX XX XX</span></a></p>
+    </div>
+    <div>
+      <h4>Tarifs</h4>
+      <p style="margin:0">Taux horaire : <span data-cfg="TAUX_HORAIRE">0</span> € TTC (prix d'exemple). Forfaits TTC, pièces et main-d'œuvre. Pièces issues de l'économie circulaire proposées pour les prestations concernées.</p>
+    </div>
+    <p class="legal">Site de démonstration — nom, adresse, coordonnées, tarifs et photos sont fictifs ou d'illustration. Les formulaires ne transmettent aucune donnée. Photos : Unsplash.</p>
+  </div>
+</footer>
+
+<div class="barre-mobile">
+  <a href="tel:06XXXXXXXX" class="btn ghost" data-cfg-tel>Appeler</a>
+  <a href="#rdv" class="btn">Prendre RDV</a>
+</div>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galerie de l'atelier">
+  <figure><div class="ph" id="lbPh"></div><figcaption><span id="lbCap"></span><span id="lbNum"></span></figcaption></figure>
+  <button class="fermer" id="lbFermer" aria-label="Fermer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <button class="prec" id="lbPrec" aria-label="Photo précédente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <button class="suiv" id="lbSuiv" aria-label="Photo suivante"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+
+<script>
+/* =================== CONFIG (gabarit) =================== */
+const CONFIG = {
+  NOM: "Garage Ravelli",
+  NOM_COURT: "Garage Ravelli",
+  NOM_L1: "Garage",
+  NOM_L2: "Ravelli",
+  VILLE: "Saint-Clair-sur-Ardière",
+  ADRESSE: "XX rue de l'Exemple",
+  CP: "00000",
+  TEL: "06 XX XX XX XX",
+  TEL_LIEN: "06XXXXXXXX",
+  TAUX_HORAIRE: 65,               // € TTC / h — prix d'exemple
+  couleurs: { fond:"#0E0F12", panneau:"#1C1F26", accent:"#FF4D1A", texte:"#F2F2F2" },
+  // 0 = dimanche … 6 = samedi ; null = fermé ; [ouverture, fermeture, (pause début, pause fin)]
+  horaires: {
+    1:["08:00","18:30","12:00","13:30"],
+    2:["08:00","18:30","12:00","13:30"],
+    3:["08:00","18:30","12:00","13:30"],
+    4:["08:00","18:30","12:00","13:30"],
+    5:["08:00","18:00","12:00","13:30"],
+    6:["08:30","12:00"],
+    0:null
+  },
+  creneauxDepot: ["08:00","08:30","09:00","09:30","10:00","13:30","14:00","14:30"],
+  prestations: [
+    { id:"vidange", nom:"Vidange & filtres", prix:89,  photo:"1487754180451-c456f719a1fc", alt:"Remplissage d'huile moteur", txt:"Huile adaptée aux préconisations constructeur, filtre à huile, contrôle des niveaux. Carnet tamponné." },
+    { id:"freins", nom:"Freins", prix:119, photo:"1760317890322-364a810cd4da", alt:"Gros plan sur un disque et un étrier de frein", txt:"Plaquettes avant, contrôle des disques et du liquide. Disques chiffrés à part si nécessaire." },
+    { id:"pneus", nom:"Pneus & géométrie", prix:25, unite:"/ pneu", photo:"1675034743372-672c3c3f8377", alt:"Pneus rangés dans un atelier", txt:"Montage, équilibrage, valve. Géométrie (parallélisme) sur demande pour une usure régulière." },
+    { id:"clim", nom:"Recharge clim", prix:79, photo:"1625047509168-a7026f36de04", alt:"Véhicule dans l'atelier", txt:"Contrôle d'étanchéité, recharge de gaz, test de température en sortie de buse." },
+    { id:"distri", nom:"Distribution", prix:490, photo:"1429772011165-0c2e054367b8", alt:"Compartiment moteur", txt:"Kit courroie, galets et pompe à eau selon moteur. Échéance vérifiée sur votre carnet." },
+    { id:"prect", nom:"Pré-contrôle technique", prix:39, photo:"1711386689622-1cda23e10217", alt:"Mécanicien au travail sous un véhicule", txt:"Points de contrôle passés en revue avant votre CT, pour éviter la contre-visite." }
+  ],
+  photosAtelier: [
+    { id:"1727893119356-1702fe921cf9", alt:"Atelier lumineux avec plusieurs véhicules en réparation" },
+    { id:"1619642751034-765dfdf7c58e", alt:"Mains et clé sur un moteur" },
+    { id:"1727893304219-063d142ce6f3", alt:"Voiture en cours d'intervention" },
+    { id:"1597766325363-f5576d851d6a", alt:"Outil à main sur l'établi" },
+    { id:"1702146713858-8e7d1cc29fe8", alt:"Intervention sous un véhicule" },
+    { id:"1767681092416-bccf9410bda4", alt:"Véhicules en réparation dans l'atelier" },
+    { id:"1771340742493-52fbd5476ccb", alt:"Appoint d'huile moteur" },
+    { id:"1615906655593-ad0386982a0f", alt:"Contrôle du moteur" },
+    { id:"1747511578112-3d21e8b3d5d7", alt:"Travail sur des composants moteur" },
+    { id:"1643700973089-baa86a1ab9ee", alt:"Intervention dans le garage" },
+    { id:"1498887960847-2a5e46312788", alt:"Compteur de vitesse analogique" },
+    { id:"1625047509248-ec889cbff17f", alt:"Inspection du compartiment moteur" }
+  ],
+  ruban: ["Entretien constructeur sans perte de garantie","Diagnostic électronique","Distribution","Géométrie","Recharge clim","Freinage","Pré-contrôle technique","Pièces de réemploi"]
+};
+
+/* =================== Utilitaires =================== */
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const JOURS = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const MOIS = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const U = id => w => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+const fmtH = h => h.replace(":", "h");
+
+function photo(el, id, alt, sizes, eager){
+  const u = U(id);
+  const img = new Image();
+  img.alt = alt || "";
+  img.decoding = "async";
+  if (!eager) img.loading = "lazy"; else img.fetchPriority = "high";
+  img.sizes = sizes || "(max-width:640px) 100vw, 50vw";
+  img.srcset = [480,800,1200,1600].map(w => `${u(w)} ${w}w`).join(", ");
+  img.src = u(1600);
+  img.addEventListener("load", () => img.classList.add("ok"));
+  el.appendChild(img);
+}
+
+/* Applique la CONFIG */
+document.title = `${CONFIG.NOM} — Mécanique multimarque à ${CONFIG.VILLE}`;
+Object.entries(CONFIG.couleurs).forEach(([k,v]) => document.documentElement.style.setProperty("--c-"+k, v));
+$$("[data-cfg]").forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v !== undefined) el.textContent = v; });
+$$("[data-cfg-tel]").forEach(a => a.href = "tel:" + CONFIG.TEL_LIEN);
+$$("[data-ph]").forEach(el => photo(el, el.dataset.ph, el.dataset.alt, el.dataset.sizes, el.hasAttribute("data-eager")));
+
+/* =================== Compteur kilométrique =================== */
+function odoBuild(el, val){
+  el.innerHTML = "";
+  el.setAttribute("aria-label", val);
+  [...String(val)].forEach(ch => {
+    if (/\d/.test(ch)) {
+      const d = document.createElement("span"); d.className = "d"; d.setAttribute("aria-hidden","true");
+      const s = document.createElement("span");
+      for (let i=0;i<10;i++){ const b=document.createElement("b"); b.textContent=i; s.appendChild(b); }
+      d.appendChild(s); d.dataset.v = ch; el.appendChild(d);
+    } else {
+      const s = document.createElement("span"); s.className="s"; s.setAttribute("aria-hidden","true"); s.textContent = ch === "-" ? "–" : ch; el.appendChild(s);
+    }
+  });
+}
+function odoRoll(el){ $$(".d", el).forEach(d => d.firstChild.style.transform = `translateY(-${d.dataset.v * 10}%)`); }
+function odoSet(el, val, roll=true){
+  const str = String(val);
+  const ds = $$(".d", el), cur = [...el.childNodes].map(n => n.classList.contains("d") ? "0" : n.textContent).join("");
+  if (ds.length !== str.replace(/\D/g,"").length || str.length !== cur.length) odoBuild(el, str);
+  let i = 0;
+  [...str].forEach(ch => { if (/\d/.test(ch)) { $$(".d", el)[i].dataset.v = ch; i++; } });
+  el.setAttribute("aria-label", str);
+  if (roll) odoRoll(el);
+}
+$$("[data-cfg-odo]").forEach(el => el.dataset.odo = String(CONFIG[el.dataset.cfgOdo]));
+$$(".odo[data-odo]").forEach(el => odoBuild(el, el.dataset.odo));
+
+/* =================== Horaires du jour =================== */
+const now = new Date();
+const hAuj = CONFIG.horaires[now.getDay()];
+(function statut(){
+  const st = $("#statut"), span = $("span", st);
+  const min = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
+  const n = now.getHours()*60 + now.getMinutes();
+  if (!hAuj) { span.textContent = "Fermé aujourd'hui · prise de RDV en ligne possible"; return; }
+  const [o,f,p1,p2] = hAuj;
+  const ouvert = n >= min(o) && n < min(f) && !(p1 && n >= min(p1) && n < min(p2));
+  st.classList.toggle("ouvert", ouvert);
+  span.innerHTML = (ouvert ? "Ouvert" : "Fermé") + "<span class='mq'> · aujourd'hui</span> · " + fmtH(o) + (p1 ? "–" + fmtH(p1) + " / " + fmtH(p2) : "") + "–" + fmtH(f);
+  odoSet($("#odoOuv"), o, false); odoSet($("#odoFerm"), f, false);
+})();
+if (!hAuj) { odoSet($("#odoOuv"), "00:00", false); odoSet($("#odoFerm"), "00:00", false); $("#odoOuv").closest(".dash-ligne").firstElementChild.textContent = "Fermé aujourd'hui"; }
+
+(function tableHoraires(){
+  const t = $("#horaires");
+  [1,2,3,4,5,6,0].forEach(j => {
+    const h = CONFIG.horaires[j], tr = document.createElement("tr");
+    if (j === now.getDay()) tr.className = "auj";
+    tr.innerHTML = `<td>${JOURS[j]}</td><td>${!h ? "Fermé" : h[2] ? `${fmtH(h[0])}–${fmtH(h[2])} · ${fmtH(h[3])}–${fmtH(h[1])}` : `${fmtH(h[0])}–${fmtH(h[1])}`}</td>`;
+    t.appendChild(tr);
+  });
+})();
+
+/* Ruban */
+$("#ruban").innerHTML = [...CONFIG.ruban, ...CONFIG.ruban].map(t => `<span>${t}</span>`).join("");
+
+/* =================== Prestations =================== */
+(function cartes(){
+  const g = $("#grillePresta");
+  CONFIG.prestations.forEach((p,i) => {
+    const a = document.createElement("article");
+    a.className = "carte rv" + (i%3 ? " d"+(i%3) : "");
+    a.innerHTML = `<span class="num">${String(i+1).padStart(2,"0")}</span><div class="ph"></div>
+      <div class="corps"><h3>${p.nom}</h3><p>${p.txt}</p>
+      <div class="prix"><span class="px">À partir de <span class="odo" data-odo="${String(p.prix).padStart(3,"0")}"></span> € TTC ${p.unite||""}</span><span class="tag-ex">prix d'exemple</span></div></div>`;
+    photo($(".ph", a), p.photo, p.alt, "(max-width:640px) 100vw, (max-width:1000px) 50vw, 380px");
+    g.appendChild(a);
+    odoBuild($(".odo", a), String(p.prix).padStart(3,"0"));
+  });
+})();
+
+/* Galerie */
+(function galerie(){
+  const g = $("#galerie");
+  CONFIG.photosAtelier.forEach((p,i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "rv" + (i%4 ? " d"+Math.min(i%4,3) : "");
+    b.setAttribute("aria-label", "Agrandir : " + p.alt);
+    const ph = document.createElement("div"); ph.className = "ph";
+    photo(ph, p.id, p.alt, i===0 ? "(max-width:1000px) 100vw, 590px" : "(max-width:1000px) 50vw, 290px");
+    b.appendChild(ph); b.addEventListener("click", () => lbOuvrir(i));
+    g.appendChild(b);
+  });
+})();
+
+/* =================== Cadrans (compte-tours) =================== */
+function cadran(svg, opts={}){
+  const NS = "http://www.w3.org/2000/svg", C = 200, R = 170, A0 = -225, A1 = 45; // degrés (sens horaire depuis l'axe x)
+  const mk = (n, at) => { const e = document.createElementNS(NS, n); for (const k in at) e.setAttribute(k, at[k]); svg.appendChild(e); return e; };
+  const pt = (deg, r) => { const a = deg*Math.PI/180; return [C + r*Math.cos(a), C + r*Math.sin(a)]; };
+  const arc = (d0, d1, r) => { const [x0,y0]=pt(d0,r),[x1,y1]=pt(d1,r); return `M${x0} ${y0} A${r} ${r} 0 ${d1-d0>180?1:0} 1 ${x1} ${y1}`; };
+  const mini = opts.mini;
+  mk("circle",{cx:C,cy:C,r:192,fill:mini?"none":"#0b0c0f",stroke:mini?"none":"#2A2E37","stroke-width":2});
+  mk("path",{d:arc(A0,A1,R),fill:"none",stroke:"#2A2E37","stroke-width":mini?16:6});
+  const deg = v => A0 + (A1-A0)*v/8;
+  mk("path",{d:arc(deg(6.5),A1,R),fill:"none",class:"rouge","stroke-width":mini?16:10});
+  if (!mini) {
+    for (let i=0;i<=80;i++){
+      const v = i/10, maj = i%10===0, mid = i%5===0;
+      const [x0,y0] = pt(deg(v), R-4), [x1,y1] = pt(deg(v), R-(maj?26:mid?18:10));
+      mk("line",{x1:x0,y1:y0,x2:x1,y2:y1,stroke:v>=6.5?"#FF4D1A":"#F2F2F2","stroke-width":maj?4:mid?2.5:1.2,"stroke-linecap":"round"});
+      if (maj){ const [tx,ty] = pt(deg(v), R-50); const t = mk("text",{x:tx,y:ty+10,"text-anchor":"middle","font-size":30}); t.textContent = v; if (v>=7) t.setAttribute("fill","#FF4D1A"); }
+    }
+    const t1 = mk("text",{x:C,y:C+64,"text-anchor":"middle","font-size":14,fill:"#9BA1AD","letter-spacing":"3"}); t1.textContent = "×1000 TR/MIN";
+  }
+  const g = mk("g",{class:"aiguille"});
+  const needle = document.createElementNS(NS,"path");
+  needle.setAttribute("d", mini ? `M${C-6} ${C} L${C} ${C-140} L${C+6} ${C} Z` : `M${C-5} ${C+24} L${C-2} ${C-150} L${C+2} ${C-150} L${C+5} ${C+24} Z`);
+  needle.setAttribute("fill","#FF4D1A"); g.appendChild(needle);
+  mk("circle",{cx:C,cy:C,r:mini?22:18,fill:"#1C1F26",stroke:"#FF4D1A","stroke-width":3});
+  // L'aiguille pointe vers le haut (−90°) au repos : on la ramène sur A0
+  const set = v => { v = Math.max(0, Math.min(8, v)); g.style.transform = `rotate(${deg(v)+90}deg)`; };
+  set(0);
+  return { set };
+}
+const ctHero = cadran($("#cadranHero"));
+const ctMini = cadran($("#cadranMini"), { mini:true });
+const ctIntro = cadran($("#cadranIntro"));
+
+/* =================== Intro =================== */
+const intro = $("#intro");
+let introFini = false;
+function finIntro(){
+  if (introFini) return; introFini = true;
+  intro.classList.add("fin"); document.body.classList.remove("intro-on");
+  document.documentElement.classList.add("go");
+  setTimeout(() => { odoRoll($("#odoOuv")); odoRoll($("#odoFerm")); }, RM ? 0 : 600);
+  majScroll();
+}
+$("#passer").addEventListener("click", finIntro);
+if (RM || sessionStorage.getItem("introVue")) { intro.remove(); introFini = true; document.body.classList.remove("intro-on"); document.documentElement.classList.add("go"); odoRoll($("#odoOuv")); odoRoll($("#odoFerm")); }
+else {
+  sessionStorage.setItem("introVue","1");
+  const svgI = $("#cadranIntro"); $(".aiguille", svgI).style.transition = "none";
+  const t0 = performance.now(), D = 1700;
+  (function anim(t){
+    const p = Math.min(1, (t - t0)/D);
+    // monte en zone rouge puis redescend au ralenti
+    const v = p < .55 ? 7.6 * (1 - Math.pow(1 - p/.55, 3)) : 7.6 - (7.6-0.9) * Math.pow((p-.55)/.45, .7);
+    ctIntro.set(v);
+    if (p > .5 && p < .52) svgI.classList.add("flash");
+    if (p < 1 && !introFini) requestAnimationFrame(anim); else setTimeout(finIntro, 150);
+  })(t0);
+}
+
+/* =================== Défilement : aiguille, parallax, section épinglée =================== */
+const nav = $("#nav"), miniVal = $("#miniVal"), heroBg = $("#heroBg");
+const pin = $("#methode"), etapes = $$(".etape"), regime = $("#regime"), odoEtape = $("#odoEtape");
+const pImgs = $$(".parallax-img");
+let etapeCour = 0, ticking = false;
+function majScroll(){
+  ticking = false;
+  const y = scrollY, H = document.documentElement.scrollHeight - innerHeight;
+  const p = H > 0 ? y / H : 0;
+  const rpm = 0.8 + p * 7.0;   // ralenti → zone rouge en bas de page
+  ctHero.set(rpm); ctMini.set(rpm);
+  miniVal.textContent = rpm.toFixed(1);
+  nav.classList.toggle("solide", y > 30);
+  if (RM) return;
+  if (y < innerHeight * 1.2) heroBg.style.transform = `translate3d(0,${y*0.3}px,0)`;
+  pImgs.forEach(el => { const r = el.getBoundingClientRect(); const k = (r.top + r.height/2 - innerHeight/2) / innerHeight; el.querySelector("img") && el.querySelector("img").style.setProperty("--py", (k * -8) + "%"); });
+  const r = pin.getBoundingClientRect(), tot = pin.offsetHeight - innerHeight;
+  const pp = Math.max(0, Math.min(1, -r.top / tot));
+  regime.style.transform = `scaleX(${pp})`;
+  const e = Math.min(etapes.length - 1, Math.floor(pp * etapes.length * 0.999));
+  if (e !== etapeCour){ etapes[etapeCour].classList.remove("on"); etapes[e].classList.add("on"); etapeCour = e; odoSet(odoEtape, String(e+1).padStart(2,"0")); }
+}
+addEventListener("scroll", () => { if (!ticking){ ticking = true; requestAnimationFrame(majScroll); } }, { passive:true });
+addEventListener("resize", majScroll);
+odoRoll(odoEtape);
+
+/* Révélations */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add("vu"); $$(".odo", e.target).forEach(o => setTimeout(() => odoRoll(o), RM ? 0 : 250)); io.unobserve(e.target); }
+}), { threshold:.15, rootMargin:"0px 0px -40px 0px" });
+$$(".rv").forEach(el => io.observe(el));
+
+/* Inclinaison des cartes (souris uniquement) */
+if (!RM && matchMedia("(hover:hover) and (pointer:fine)").matches){
+  $$(".carte").forEach(c => {
+    c.addEventListener("pointermove", e => { const r = c.getBoundingClientRect(); const x = (e.clientX - r.left)/r.width - .5, y = (e.clientY - r.top)/r.height - .5; c.style.transform = `perspective(900px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`; });
+    c.addEventListener("pointerleave", () => c.style.transform = "");
+  });
+}
+
+/* Menu mobile */
+const burger = $("#burger"), menu = $("#menu");
+burger.addEventListener("click", () => { const o = burger.getAttribute("aria-expanded") !== "true"; burger.setAttribute("aria-expanded", o); menu.classList.toggle("ouvert", o); document.body.style.overflow = o ? "hidden" : ""; });
+$$("a", menu).forEach(a => a.addEventListener("click", () => { burger.setAttribute("aria-expanded", false); menu.classList.remove("ouvert"); document.body.style.overflow = ""; }));
+
+/* =================== Lightbox =================== */
+const lb = $("#lb"), lbPh = $("#lbPh"); let lbI = 0, lbDernierFocus = null;
+function lbAff(i){
+  lbI = (i + CONFIG.photosAtelier.length) % CONFIG.photosAtelier.length;
+  const p = CONFIG.photosAtelier[lbI]; lbPh.innerHTML = "";
+  photo(lbPh, p.id, p.alt, "92vw", true);
+  $("#lbCap").textContent = p.alt; $("#lbNum").textContent = `${lbI+1} / ${CONFIG.photosAtelier.length}`;
+}
+function lbOuvrir(i){ lbDernierFocus = document.activeElement; lbAff(i); lb.classList.add("on"); document.body.style.overflow = "hidden"; $("#lbFermer").focus(); }
+function lbFermer(){ lb.classList.remove("on"); document.body.style.overflow = ""; lbDernierFocus && lbDernierFocus.focus(); }
+$("#lbFermer").addEventListener("click", lbFermer);
+$("#lbPrec").addEventListener("click", () => lbAff(lbI-1));
+$("#lbSuiv").addEventListener("click", () => lbAff(lbI+1));
+lb.addEventListener("click", e => { if (e.target === lb) lbFermer(); });
+addEventListener("keydown", e => {
+  if (!lb.classList.contains("on")) return;
+  if (e.key === "Escape") lbFermer();
+  else if (e.key === "ArrowLeft") lbAff(lbI-1);
+  else if (e.key === "ArrowRight") lbAff(lbI+1);
+  else if (e.key === "Tab"){ const f = $$("button", lb), i = f.indexOf(document.activeElement); e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+});
+let tx = null;
+lb.addEventListener("touchstart", e => tx = e.touches[0].clientX, { passive:true });
+lb.addEventListener("touchend", e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 45) lbAff(lbI + (dx < 0 ? 1 : -1)); tx = null; });
+
+/* =================== Prise de RDV (démo) =================== */
+const form = $("#formRdv"), pasLi = $$("#pas li"), vols = $$(".vol", form);
+const RDV = { etape:1, plaque:"", km:"", presta:new Set(), jour:null, heure:null };
+const plaqueIn = $("#plaque"), kmIn = $("#km"), odoKm = $("#odoKm");
+
+plaqueIn.addEventListener("input", () => {
+  let v = plaqueIn.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0,7);
+  let out = v.slice(0,2); if (v.length > 2) out += "-" + v.slice(2,5); if (v.length > 5) out += "-" + v.slice(5,7);
+  plaqueIn.value = out; $("#plaqueErr").textContent = "";
+});
+kmIn.addEventListener("input", () => {
+  const n = Math.max(0, Math.min(999999, parseInt(kmIn.value || "0", 10) || 0));
+  odoSet(odoKm, String(n).padStart(6,"0")); $("#kmErr").textContent = "";
+});
+
+const choix = $("#choixPresta");
+CONFIG.prestations.forEach(p => {
+  const l = document.createElement("label"); l.className = "puce";
+  l.innerHTML = `<input type="checkbox" value="${p.id}"><span>${p.nom}<em>dès ${p.prix} €${p.unite ? " "+p.unite : ""}</em></span>`;
+  choix.appendChild(l);
+});
+const lAutre = document.createElement("label"); lAutre.className = "puce";
+lAutre.innerHTML = `<input type="checkbox" value="diag"><span>Diagnostic / autre panne<em>sur devis</em></span>`; choix.appendChild(lAutre);
+choix.addEventListener("change", e => {
+  e.target.checked ? RDV.presta.add(e.target.value) : RDV.presta.delete(e.target.value);
+  const tot = CONFIG.prestations.filter(p => RDV.presta.has(p.id)).reduce((s,p) => s + p.prix * (p.unite ? 4 : 1), 0);
+  $("#total").textContent = tot ? `dès ${tot} € TTC` + (RDV.presta.has("pneus") ? " (4 pneus)" : "") : (RDV.presta.size ? "sur devis" : "—");
+  $("#prestaErr").textContent = "";
+});
+
+/* Jours ouvrés à venir */
+const jours = $("#jours"), creneaux = $("#creneaux");
+(function genJours(){
+  const d = new Date(); d.setHours(0,0,0,0); let n = 0;
+  while (n < 8){
+    d.setDate(d.getDate() + 1);
+    const h = CONFIG.horaires[d.getDay()]; if (!h) continue;
+    const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-pressed","false");
+    const iso = d.toISOString(); b.dataset.iso = d.getTime();
+    b.innerHTML = `${JOURS[d.getDay()].slice(0,3)}<b>${d.getDate()}</b>${MOIS[d.getMonth()]}`;
+    b.setAttribute("aria-label", `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]}`);
+    b.addEventListener("click", () => choisirJour(b));
+    jours.appendChild(b); n++;
+  }
+})();
+function choisirJour(b){
+  $$("button", jours).forEach(x => x.setAttribute("aria-pressed", x === b));
+  const d = new Date(+b.dataset.iso); RDV.jour = d; RDV.heure = null;
+  const h = CONFIG.horaires[d.getDay()];
+  creneaux.innerHTML = "";
+  CONFIG.creneauxDepot.filter(c => c >= h[0] && c < (h[2] || h[1])  || (h[3] && c >= h[3] && c < h[1])).forEach((c, i) => {
+    const s = document.createElement("button"); s.type = "button"; s.textContent = fmtH(c); s.setAttribute("aria-pressed","false");
+    // créneaux pseudo-occupés (démo) pour rendre la grille crédible
+    if ((d.getDate() + i) % 5 === 0){ s.disabled = true; s.style.opacity = .35; s.title = "Complet"; s.setAttribute("aria-label", fmtH(c) + " complet"); }
+    s.addEventListener("click", () => { $$("button", creneaux).forEach(x => x.setAttribute("aria-pressed", x === s)); RDV.heure = c; $("#creneauErr").textContent = ""; });
+    creneaux.appendChild(s);
+  });
+  $("#creneauErr").textContent = "";
+}
+choisirJour($("button", jours));
+
+function allerA(n){
+  RDV.etape = n;
+  vols.forEach(v => v.classList.toggle("on", +v.dataset.vol === n));
+  pasLi.forEach((li,i) => { li.classList.toggle("actif", i+1 === n); li.classList.toggle("fait", i+1 < n); });
+  $("#retour").hidden = n === 1 || n === 4;
+  $("#suivant").textContent = n === 3 ? "Valider la demande" : n === 4 ? "Nouvelle demande" : "Continuer";
+  const tgt = n === 4 ? $("#confirm") : $("input, textarea, button", vols[n-1]);
+  if (tgt) tgt.focus({ preventScroll:true });
+  const r = form.getBoundingClientRect(); if (r.top < 0) form.scrollIntoView({ behavior: RM ? "auto" : "smooth", block:"start" });
+}
+function valider(n){
+  if (n === 1){
+    let ok = true;
+    if (!/^[A-Z]{2}-\d{3}-[A-Z]{2}$/.test(plaqueIn.value)){ $("#plaqueErr").textContent = "Saisissez une immatriculation au format AA-123-AA."; ok = false; }
+    const k = parseInt(kmIn.value, 10);
+    if (!(k >= 0 && k <= 999999) || kmIn.value === ""){ $("#kmErr").textContent = "Indiquez le kilométrage (même approximatif)."; ok = false; }
+    if (!ok) (($("#plaqueErr").textContent ? plaqueIn : kmIn)).focus();
+    return ok;
+  }
+  if (n === 2){ if (!RDV.presta.size){ $("#prestaErr").textContent = "Choisissez au moins une prestation."; return false; } return true; }
+  if (n === 3){
+    let ok = true;
+    if (!RDV.heure){ $("#creneauErr").textContent = "Choisissez une heure de dépôt."; ok = false; }
+    const tel = $("#tel").value.replace(/\D/g, "");
+    if (!$("#nom").value.trim() || tel.length < 10){ $("#contactErr").textContent = "Indiquez votre nom et un numéro à 10 chiffres pour être rappelé."; ok = false; }
+    else $("#contactErr").textContent = "";
+    return ok;
+  }
+  return true;
+}
+function recap(){
+  const noms = [...RDV.presta].map(id => (CONFIG.prestations.find(p => p.id === id) || { nom:"Diagnostic / autre" }).nom);
+  const d = RDV.jour;
+  const esc = s => s.replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+  $("#recap").innerHTML = [
+    ["Véhicule", plaqueIn.value],
+    ["Kilométrage", (+kmIn.value).toLocaleString("fr-FR") + " km"],
+    ["Prestation(s)", noms.join(", ")],
+    ["Dépôt", `${JOURS[d.getDay()]} ${d.getDate()} ${MOIS[d.getMonth()]} à ${fmtH(RDV.heure)}`],
+    ["Véhicule de prêt", $("#pret").checked ? "Demandé" : "Non"],
+    ["Contact", esc($("#nom").value.trim()) + " · " + esc($("#tel").value.trim())]
+  ].map(([k,v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+}
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  if (RDV.etape === 4){ form.reset(); RDV.presta.clear(); $("#total").textContent = "—"; odoSet(odoKm, "000000"); choisirJour($("button", jours)); allerA(1); return; }
+  if (!valider(RDV.etape)) return;
+  if (RDV.etape === 3) recap();
+  allerA(RDV.etape + 1);
+});
+$("#retour").addEventListener("click", () => allerA(Math.max(1, RDV.etape - 1)));
+
+majScroll();
+</script>
+</body>
+</html>

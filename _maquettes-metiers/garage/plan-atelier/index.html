@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Morvaine — Mécanique toutes marques à Montbrécy</title>
+<meta name="description" content="Garage indépendant à Montbrécy : entretien constructeur sans perte de garantie, freins, pneus, climatisation, distribution. Forfaits TTC affichés, devis gratuit avant travaux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ VARIABLES (gabarit) ============ */
+:root{
+  --papier:#F4F1EA;
+  --encre:#1F3A5F;
+  --rouge:#D7263D;
+  --gris:#9AA5B1;
+  --papier-2:#ECE7DC;
+  --encre-70:rgba(31,58,95,.7);
+  --encre-12:rgba(31,58,95,.12);
+  --encre-06:rgba(31,58,95,.06);
+  --rouge-10:rgba(215,38,61,.1);
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:4px;
+  --max:1200px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--sans);color:var(--encre);background:var(--papier);line-height:1.55;font-size:17px;
+  background-image:
+   linear-gradient(var(--encre-06) 1px,transparent 1px),
+   linear-gradient(90deg,var(--encre-06) 1px,transparent 1px),
+   linear-gradient(rgba(31,58,95,.028) 1px,transparent 1px),
+   linear-gradient(90deg,rgba(31,58,95,.028) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--rouge);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--encre);color:var(--papier);padding:8px 14px;z-index:100}
+.skip:focus{left:8px;top:8px}
+
+/* ============ BANDEAU HAUT ============ */
+.topbar{background:var(--encre);color:var(--papier);font-family:var(--mono);font-size:13px}
+.topbar .wrap{display:flex;align-items:center;gap:18px;min-height:40px;flex-wrap:wrap}
+.topbar a{text-decoration:none}
+.topbar .tel{font-weight:600;letter-spacing:.03em}
+.topbar .tel::before{content:"☎ ";opacity:.7}
+.statut{display:inline-flex;align-items:center;gap:7px}
+.statut i{width:8px;height:8px;border-radius:50%;background:var(--gris)}
+.statut.ouvert i{background:#5BD38A;box-shadow:0 0 0 3px rgba(91,211,138,.25)}
+.statut.ferme i{background:var(--rouge)}
+.topbar .rdv{margin-left:auto;background:var(--rouge);padding:6px 14px;border-radius:var(--r);font-weight:600;transition:transform .2s var(--ease),filter .2s}
+.topbar .rdv:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* ============ EN-TÊTE ============ */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--encre-12)}
+.hdr .wrap{display:flex;align-items:center;min-height:64px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.02em}
+.logo svg{flex:none}
+.logo small{display:block;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.12em;color:var(--encre-70);text-transform:uppercase}
+.nav{margin-left:auto;display:flex;gap:4px}
+.nav a{font-family:var(--mono);font-size:13px;text-decoration:none;padding:8px 10px;border-radius:var(--r);position:relative}
+.nav a::after{content:"";position:absolute;left:10px;right:10px;bottom:4px;height:1px;background:var(--rouge);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav a:hover::after{transform:scaleX(1)}
+.burger{display:none;margin-left:auto;background:none;border:1px solid var(--encre);border-radius:var(--r);width:44px;height:40px;cursor:pointer}
+.burger span{display:block;width:18px;height:2px;background:var(--encre);margin:4px auto;transition:transform .3s}
+
+/* ============ BOUTONS ============ */
+.btn{--bg:var(--encre);--fg:var(--papier);display:inline-flex;align-items:center;gap:10px;background:var(--bg);color:var(--fg);border:1.5px solid var(--bg);padding:13px 22px;border-radius:var(--r);font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.02em;text-decoration:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.12) 0 6px,transparent 6px 12px);transform:translateX(-101%);transition:transform .45s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:4px 4px 0 var(--rouge)}
+.btn:hover::before{transform:none}
+.btn:active{transform:translateY(0);box-shadow:1px 1px 0 var(--rouge)}
+.btn.rouge{--bg:var(--rouge)}
+.btn.rouge:hover{box-shadow:4px 4px 0 var(--encre)}
+.btn.ligne{--bg:transparent;--fg:var(--encre);border-color:var(--encre)}
+.btn .fl{transition:transform .25s var(--ease)}
+.btn:hover .fl{transform:translateX(4px)}
+
+/* ============ HERO ============ */
+.hero{position:relative;overflow:hidden;padding:56px 0 72px;border-bottom:1px solid var(--encre-12)}
+.hero-traits{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-traits line,.hero-traits circle{stroke:var(--encre);stroke-width:1;fill:none;opacity:.22;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s var(--ease)}
+.is-loaded .hero-traits line,.is-loaded .hero-traits circle{stroke-dashoffset:0}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.kicker{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge);display:flex;align-items:center;gap:10px}
+.kicker::before{content:"";width:28px;height:1.5px;background:currentColor}
+.titre{margin:14px 0 6px;line-height:.88;font-weight:700;text-transform:uppercase;letter-spacing:-.02em}
+.titre .l1{display:block;font-family:var(--mono);font-weight:500;font-size:clamp(18px,2.2vw,26px);letter-spacing:.3em;margin-bottom:10px}
+.titre .l2{display:block;white-space:nowrap;font-size:clamp(46px,7.6vw,108px)}
+.titre .ch{display:inline-block;opacity:0;transform:translateY(.4em) rotate(4deg);transition:opacity .6s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i)*45ms + .25s)}
+.is-loaded .titre .ch{opacity:1;transform:none}
+.ville{font-family:var(--mono);font-size:clamp(18px,2.4vw,28px);font-weight:500;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.ville b{font-family:var(--sans);font-weight:700;font-size:1.25em;border-bottom:3px solid var(--rouge);line-height:1.1}
+.hero p.chapo{font-size:19px;max-width:34em;margin:22px 0 28px;color:var(--encre-70)}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+.cartouche{margin-top:34px;display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--encre);font-family:var(--mono);font-size:12px;background:rgba(244,241,234,.7)}
+.cartouche div{padding:10px 12px;border-right:1px solid var(--encre)}
+.cartouche div:last-child{border-right:0}
+.cartouche span{display:block;color:var(--encre-70);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase}
+.cartouche strong{font-size:14px}
+.cartouche strong span{display:inline;font-size:inherit;color:inherit;letter-spacing:0;text-transform:none}
+.fadein{opacity:0;transform:translateY(14px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+.is-loaded .fadein{opacity:1;transform:none}
+.hero-visu{position:relative}
+.cadre{position:relative;padding:14px;border:1px solid var(--encre)}
+.cadre::before,.cadre::after{content:"";position:absolute;width:22px;height:22px;border:1.5px solid var(--rouge)}
+.cadre::before{top:-6px;left:-6px;border-right:0;border-bottom:0}
+.cadre::after{bottom:-6px;right:-6px;border-left:0;border-top:0}
+.ph{background:var(--papier-2);aspect-ratio:4/3;overflow:hidden;position:relative}
+.ph img{color:transparent;width:100%;height:100%;object-fit:cover;filter:saturate(.75) contrast(1.02)}
+.ph.p45{aspect-ratio:4/5}
+.ph.p169{aspect-ratio:16/9}
+.hero-visu .ph{aspect-ratio:4/5}
+.hero-visu .ph img{transform:scale(1.08)}
+.cote{position:absolute;left:14px;right:14px;bottom:-30px;font-family:var(--mono);font-size:11px;text-align:center;color:var(--encre-70)}
+.cote::before{content:"";position:absolute;left:0;right:0;top:-4px;border-top:1px solid var(--encre-70)}
+.cote::after{content:"";position:absolute;left:0;right:0;top:-8px;height:9px;border-left:1px solid var(--encre-70);border-right:1px solid var(--encre-70)}
+.tampon{position:absolute;top:22px;right:-14px;font-family:var(--mono);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--rouge);border:2px solid var(--rouge);padding:8px 12px;background:rgba(244,241,234,.85);transform:rotate(-8deg) scale(2.4);opacity:0;transition:transform .45s cubic-bezier(.3,1.6,.5,1) 1.5s,opacity .2s 1.5s;text-align:center;line-height:1.25}
+.is-loaded .tampon{transform:rotate(-8deg) scale(1);opacity:1}
+
+/* ============ SECTIONS ============ */
+section{position:relative}
+.sec{padding:96px 0}
+.sec-tete{display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:end;margin-bottom:44px}
+.sec-num{font-family:var(--mono);font-size:13px;color:var(--rouge);border:1.5px solid var(--rouge);padding:4px 8px;grid-row:span 2;align-self:start;margin-top:8px}
+.sec-tete h2{margin:0;font-size:clamp(30px,4.2vw,50px);line-height:1.05;letter-spacing:-.015em}
+.sec-tete p{margin:0;color:var(--encre-70);max-width:44em}
+.prix-ex{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;background:var(--rouge-10);color:var(--rouge);padding:3px 8px;border-radius:2px;border:1px dashed var(--rouge);white-space:nowrap}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ PLAN (signature) ============ */
+.plan-sec{background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,0));}
+.plan-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:32px;align-items:start}
+.planche{position:relative;border:1.5px solid var(--encre);background:rgba(244,241,234,.75);padding:10px}
+.planche::after{content:"";position:absolute;inset:5px;border:1px solid var(--encre-12);pointer-events:none}
+.planche svg{width:100%;height:auto;display:block;overflow:visible}
+.plan .d{fill:none;stroke:var(--encre);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease) var(--dl,0s),stroke .25s,fill .25s,stroke-width .25s}
+.plan.drawn .d{stroke-dashoffset:0}
+.plan .fin{stroke-width:1}
+.plan .axe{fill:none;stroke:var(--gris);stroke-width:1;stroke-dasharray:14 4 2 4;opacity:0;transition:opacity 1s 1.2s}
+.plan .leader{fill:none;stroke:var(--encre);stroke-width:1;stroke-dasharray:4 4;opacity:0;transition:opacity .6s var(--ease) 1.8s,stroke .25s}
+.plan .pt{fill:var(--encre);opacity:0;transition:opacity .6s 1.9s,fill .25s}
+.plan .tag{opacity:0;transform:translateY(6px);transition:opacity .6s var(--ease) calc(2s + var(--k,0)*.12s),transform .6s var(--ease) calc(2s + var(--k,0)*.12s)}
+.plan .tag circle{fill:var(--papier);stroke:var(--encre);stroke-width:1.4;transition:fill .25s,stroke .25s}
+.plan .tag text{font-family:var(--mono);font-size:17px;fill:var(--encre);transition:fill .25s}
+.plan .tag .n{font-size:13px;font-weight:600;text-anchor:middle;dominant-baseline:central}
+.plan .tag .ring{fill:none;stroke:var(--rouge);stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:ring 2.4s ease-out infinite;opacity:0}
+.plan.drawn .axe,.plan.drawn .leader,.plan.drawn .pt{opacity:1}
+.plan.drawn .tag{opacity:1;transform:none}
+.plan .cart text{font-family:var(--mono);font-size:11px;fill:var(--encre)}
+.plan .cart .big{font-size:14px;font-weight:600}
+.plan .zone{cursor:pointer;outline:none}
+.plan .zone .hit{fill:transparent;stroke:none}
+.plan .zone:hover .d,.plan .zone:focus-visible .d,.plan .zone.on .d{stroke:var(--rouge);fill:var(--rouge-10);stroke-width:2}
+.plan .zone:hover .leader,.plan .zone.on .leader{stroke:var(--rouge);stroke-dasharray:none}
+.plan .zone:hover .pt,.plan .zone.on .pt{fill:var(--rouge)}
+.plan .zone:hover .tag circle,.plan .zone.on .tag circle{fill:var(--rouge);stroke:var(--rouge)}
+.plan .zone:hover .tag .n,.plan .zone.on .tag .n{fill:#fff}
+.plan .zone:hover .tag text:not(.n),.plan .zone.on .tag text:not(.n){fill:var(--rouge);font-weight:600}
+.plan .zone:focus-visible .hit{stroke:var(--rouge);stroke-dasharray:3 3;stroke-width:1}
+.plan .zone.on .ring{animation:none}
+@keyframes ring{0%{opacity:.8;transform:scale(1)}80%,100%{opacity:0;transform:scale(2.1)}}
+.consigne{font-family:var(--mono);font-size:12px;color:var(--encre-70);margin:10px 4px 0;display:flex;gap:8px;align-items:center}
+.consigne::before{content:"↖";color:var(--rouge)}
+
+.fiche{border:1.5px solid var(--encre);background:var(--papier);position:sticky;top:90px;min-height:420px;box-shadow:8px 8px 0 var(--encre-12)}
+.fiche-tete{display:flex;justify-content:space-between;align-items:center;border-bottom:1.5px solid var(--encre);padding:10px 16px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.fiche-tete .rep{color:var(--rouge);font-weight:600}
+.fiche-corps{padding:18px 18px 20px}
+.fiche-corps.swap{animation:swap .45s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.fiche h3{margin:0 0 6px;font-size:28px;line-height:1.1}
+.fiche p{margin:0 0 14px;color:var(--encre-70);font-size:15.5px}
+.fiche .ph{aspect-ratio:16/7;margin:0 0 14px;border:1px solid var(--encre-12)}
+.ligne-forfait{display:flex;justify-content:space-between;gap:12px;align-items:baseline;padding:10px 0;border-top:1px dashed var(--encre-12);font-size:15px}
+.ligne-forfait .nm{font-weight:500}
+.ligne-forfait .nm small{display:block;font-family:var(--mono);font-size:11px;color:var(--encre-70);font-weight:400}
+.ligne-forfait .px{font-family:var(--mono);white-space:nowrap;text-align:right;font-size:13px}
+.ligne-forfait .px b{font-size:18px;color:var(--encre)}
+.fiche .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.fiche .actions .btn{padding:10px 16px;font-size:13px}
+.fiche-vide{display:grid;place-items:center;text-align:center;min-height:360px;padding:24px;color:var(--encre-70);font-family:var(--mono);font-size:13px}
+.fiche-vide svg{margin:0 auto 12px}
+.zones-liste{display:none;list-style:none;margin:18px 0 0;padding:0;border-top:1.5px solid var(--encre)}
+.zones-liste li{border-bottom:1px solid var(--encre-12)}
+.zones-liste button{width:100%;display:flex;align-items:center;gap:14px;padding:16px 4px;background:none;border:0;text-align:left;cursor:pointer;font-weight:600;font-size:17px;min-height:56px}
+.zones-liste button .n{font-family:var(--mono);font-size:12px;width:30px;height:30px;border-radius:50%;border:1.4px solid var(--encre);display:grid;place-items:center;flex:none;transition:background .2s,color .2s,border-color .2s}
+.zones-liste button .apx{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:400;color:var(--encre-70)}
+.zones-liste button .chev{transition:transform .3s var(--ease);font-family:var(--mono)}
+.zones-liste button[aria-expanded="true"] .n{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.zones-liste button[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.zones-liste .acc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.zones-liste .acc>div{overflow:hidden}
+.zones-liste .acc.open{grid-template-rows:1fr}
+.zones-liste .acc .in{padding:0 4px 18px}
+
+/* ============ FORFAITS (nomenclature) ============ */
+.nomenc{width:100%;border-collapse:collapse;border:1.5px solid var(--encre);background:rgba(244,241,234,.8);font-size:15.5px}
+.nomenc th{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-align:left;padding:10px 14px;border-bottom:1.5px solid var(--encre);background:var(--encre);color:var(--papier);font-weight:500}
+.nomenc td{padding:14px;border-bottom:1px solid var(--encre-12);vertical-align:top}
+.nomenc tr{transition:background .2s}
+.nomenc tbody tr:hover{background:var(--rouge-10)}
+.nomenc td.ref{font-family:var(--mono);font-size:12px;color:var(--rouge);white-space:nowrap}
+.nomenc td.pr{font-family:var(--mono);text-align:right;white-space:nowrap}
+.nomenc td.pr b{font-size:19px}
+.nomenc td.pr small{display:block;font-size:11px;color:var(--encre-70)}
+.nomenc td .det{display:block;color:var(--encre-70);font-size:14px}
+.nomenc td .dur{font-family:var(--mono);font-size:12px;color:var(--encre-70);white-space:nowrap}
+.mentions-prix{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:18px;border:1.5px solid var(--encre)}
+.mentions-prix div{padding:16px 18px;border-right:1px solid var(--encre-12);font-size:14.5px}
+.mentions-prix div:last-child{border-right:0}
+.mentions-prix strong{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge);margin-bottom:4px}
+.mentions-prix .taux{font-family:var(--mono);font-size:26px;font-weight:600;color:var(--encre)}
+
+/* ============ ESTIMATEUR ============ */
+.estim{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--encre);background:var(--papier)}
+.estim-g{padding:28px;border-right:1.5px solid var(--encre)}
+.estim-d{padding:28px;background:var(--encre);color:var(--papier);position:relative;overflow:hidden}
+.estim-d::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(244,241,234,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(244,241,234,.07) 1px,transparent 1px);background-size:24px 24px;pointer-events:none}
+.estim-d>*{position:relative}
+.champ{margin-bottom:20px}
+.champ>label,.champ>.lbl{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.vehs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.vehs input{position:absolute;opacity:0;pointer-events:none}
+.vehs label{display:flex;flex-direction:column;align-items:center;gap:6px;border:1.5px solid var(--encre-12);border-radius:var(--r);padding:12px 6px 10px;cursor:pointer;font-size:13px;text-align:center;transition:border-color .2s,background .2s,transform .2s var(--ease);background:rgba(255,255,255,.4)}
+.vehs label:hover{border-color:var(--encre);transform:translateY(-2px)}
+.vehs input:checked+label{border-color:var(--rouge);background:var(--rouge-10);color:var(--rouge);font-weight:600}
+.vehs input:focus-visible+label{outline:2px solid var(--rouge);outline-offset:2px}
+.vehs svg{width:56px;height:26px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+select,input[type=text],input[type=tel],input[type=email],input[type=number],input[type=date],textarea{width:100%;padding:12px 14px;border:1.5px solid var(--encre);border-radius:var(--r);background:#fff;font-size:16px;transition:box-shadow .2s}
+select:focus,input:focus,textarea:focus{box-shadow:4px 4px 0 var(--rouge-10)}
+.case{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;cursor:pointer}
+.case input{width:18px;height:18px;accent-color:var(--rouge);margin-top:3px;flex:none}
+.res-lbl{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.res-px{font-family:var(--mono);font-weight:600;font-size:clamp(34px,5vw,54px);line-height:1.05;margin:10px 0 4px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.res-px .sep{opacity:.5;font-weight:400;margin:0 .15em}
+.res-ttc{font-family:var(--mono);font-size:13px;opacity:.8}
+.res-det{margin:20px 0 0;padding:0;list-style:none;border-top:1px solid rgba(244,241,234,.25)}
+.res-det li{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid rgba(244,241,234,.15);font-size:14.5px}
+.res-det li span:last-child{font-family:var(--mono);text-align:right}
+.res-note{font-size:13px;opacity:.8;margin:16px 0 18px}
+.estim-d .prix-ex{background:rgba(215,38,61,.25);color:#fff;border-color:#fff}
+.estim-d .btn{--bg:var(--rouge)}
+.estim-d .btn:hover{box-shadow:4px 4px 0 var(--papier)}
+
+/* ============ PROCESS ÉPINGLÉ ============ */
+.pin{height:300vh;border-top:1px solid var(--encre-12);border-bottom:1px solid var(--encre-12)}
+.pin-in{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden}
+.pin-in .wrap{width:100%}
+.etapes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-top:30px}
+.rail{position:absolute;left:0;right:0;top:27px;height:2px;background:var(--encre-12)}
+.rail i{display:block;height:100%;background:var(--rouge);width:calc(var(--p,0)*100%)}
+.etape{padding:0 20px 0 0;opacity:.35;transition:opacity .5s var(--ease),transform .5s var(--ease);transform:translateY(10px)}
+.etape.on{opacity:1;transform:none}
+.etape .pastille{width:56px;height:56px;border-radius:50%;border:2px solid var(--encre);background:var(--papier);display:grid;place-items:center;font-family:var(--mono);font-weight:600;position:relative;z-index:1;transition:background .4s,color .4s,border-color .4s}
+.etape.on .pastille{background:var(--rouge);border-color:var(--rouge);color:#fff}
+.etape h3{margin:18px 0 6px;font-size:21px}
+.etape p{margin:0;color:var(--encre-70);font-size:15.5px}
+.pin-photo{position:absolute;right:-60px;top:50%;width:300px;transform:translateY(-50%) rotate(3deg);opacity:.16;pointer-events:none}
+
+/* ============ ENGAGEMENTS ============ */
+.engag{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.carte{border:1.5px solid var(--encre);background:var(--papier);padding:22px;position:relative;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.carte:hover{transform:translate(-3px,-3px);box-shadow:6px 6px 0 var(--encre)}
+.carte .ic{width:46px;height:46px;stroke:var(--rouge);fill:none;stroke-width:1.6;margin-bottom:14px;stroke-linecap:round;stroke-linejoin:round}
+.carte h3{margin:0 0 8px;font-size:19px;line-height:1.2}
+.carte p{margin:0;font-size:15px;color:var(--encre-70)}
+.carte .ref{position:absolute;top:10px;right:12px;font-family:var(--mono);font-size:11px;color:var(--gris)}
+
+/* ============ ATELIER / GALERIE ============ */
+.atelier-g{display:grid;grid-template-columns:1fr 1.6fr;gap:40px;align-items:start}
+.marques{border:1.5px solid var(--encre);padding:22px;background:var(--papier)}
+.marques h3{margin:0 0 10px;font-size:20px}
+.marques ul{list-style:none;margin:0;padding:0;font-size:15.5px}
+.marques li{padding:9px 0;border-bottom:1px dashed var(--encre-12);display:flex;gap:10px}
+.marques li::before{content:"—";color:var(--rouge);font-family:var(--mono)}
+.galerie{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:120px;gap:10px}
+.galerie button{padding:0;border:0;background:var(--papier-2);cursor:zoom-in;position:relative;overflow:hidden;grid-column:span 2;grid-row:span 2}
+.galerie button:nth-child(1){grid-column:span 4;grid-row:span 3}
+.galerie button:nth-child(2){grid-row:span 3}
+.galerie button:nth-child(6){grid-column:span 3}
+.galerie button:nth-child(7){grid-column:span 3}
+.galerie img{color:transparent;width:100%;height:100%;object-fit:cover;filter:saturate(.7);transition:transform .7s var(--ease),filter .4s}
+.galerie button:hover img,.galerie button:focus-visible img{transform:scale(1.06);filter:saturate(1)}
+.galerie button::after{content:attr(data-ref);position:absolute;left:8px;bottom:8px;font-family:var(--mono);font-size:11px;background:var(--papier);color:var(--encre);padding:2px 6px;border:1px solid var(--encre)}
+.lb{position:fixed;inset:0;z-index:200;background:rgba(20,34,56,.94);display:none;align-items:center;justify-content:center;padding:60px 70px}
+.lb.open{display:flex;animation:lbin .3s var(--ease)}
+@keyframes lbin{from{opacity:0}to{opacity:1}}
+.lb figure{margin:0;max-width:1200px;width:100%;text-align:center}
+.lb img{max-height:78vh;width:auto;max-width:100%;margin:0 auto;border:1px solid rgba(244,241,234,.4);background:#2a4466;min-height:200px;min-width:200px}
+.lb figcaption{color:var(--papier);font-family:var(--mono);font-size:13px;margin-top:12px}
+.lb button{position:absolute;background:transparent;border:1.5px solid var(--papier);color:var(--papier);width:48px;height:48px;border-radius:50%;cursor:pointer;font-family:var(--mono);font-size:20px;transition:background .2s}
+.lb button:hover{background:var(--rouge);border-color:var(--rouge)}
+.lb .x{top:16px;right:16px}
+.lb .prev{left:14px;top:50%;transform:translateY(-50%)}
+.lb .next{right:14px;top:50%;transform:translateY(-50%)}
+
+/* ============ AVIS ============ */
+.avis-vide{border:2px dashed var(--gris);padding:42px 24px;text-align:center;background:rgba(255,255,255,.3)}
+.avis-vide .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:0 auto 22px;max-width:760px}
+.avis-vide .slots span{height:86px;border:1.5px dashed var(--encre-12);background:repeating-linear-gradient(-45deg,var(--encre-06) 0 8px,transparent 8px 16px)}
+.avis-vide h3{margin:0 0 6px;font-size:22px}
+.avis-vide p{margin:0;color:var(--encre-70)}
+
+/* ============ RDV ============ */
+.rdv-g{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:start}
+.form{border:1.5px solid var(--encre);padding:28px;background:var(--papier);box-shadow:8px 8px 0 var(--encre-12)}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.plaque{display:flex;border:1.5px solid var(--encre);border-radius:var(--r);overflow:hidden;background:#fff}
+.plaque span{background:var(--encre);color:#fff;font-family:var(--mono);font-size:12px;display:grid;place-items:center;padding:0 10px;font-weight:600}
+.plaque input{border:0;border-radius:0;font-family:var(--mono);font-size:20px;letter-spacing:.12em;text-transform:uppercase;text-align:center}
+.demo-note{font-family:var(--mono);font-size:12px;color:var(--encre-70);margin:14px 0 0;display:flex;gap:8px}
+.demo-note::before{content:"ⓘ";color:var(--rouge)}
+.ok{display:none;margin-top:16px;padding:14px;border:1.5px solid var(--rouge);background:var(--rouge-10);font-size:15px}
+.ok.show{display:block;animation:swap .4s var(--ease)}
+.liste-check{list-style:none;padding:0;margin:20px 0 0}
+.liste-check li{padding:10px 0 10px 32px;position:relative;border-bottom:1px dashed var(--encre-12)}
+.liste-check li::before{content:"";position:absolute;left:4px;top:15px;width:14px;height:8px;border-left:2px solid var(--rouge);border-bottom:2px solid var(--rouge);transform:rotate(-45deg)}
+
+/* ============ ACCÈS ============ */
+.acces-g{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.horaires{width:100%;border-collapse:collapse;font-size:15.5px;border:1.5px solid var(--encre);background:var(--papier)}
+.horaires td{padding:11px 14px;border-bottom:1px solid var(--encre-12)}
+.horaires td:last-child{text-align:right;font-family:var(--mono);font-size:14px}
+.horaires tr.auj{background:var(--rouge-10)}
+.horaires tr.auj td:first-child{font-weight:700}
+.horaires tr.auj td:first-child::after{content:" · aujourd'hui";font-family:var(--mono);font-size:11px;color:var(--rouge);font-weight:400}
+.plan-acces{border:1.5px solid var(--encre);background:var(--papier);padding:8px}
+.plan-acces svg{width:100%;height:auto;display:block}
+.adresse{font-family:var(--mono);font-size:15px;margin:14px 0 0}
+
+/* ============ FAQ ============ */
+.faq details{border-bottom:1px solid var(--encre-12)}
+.faq details:first-child{border-top:1.5px solid var(--encre)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;font-weight:600;font-size:18px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:16px;font-family:var(--mono);font-size:24px;color:var(--rouge);transition:transform .3s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;color:var(--encre-70);max-width:52em}
+
+/* ============ PIED ============ */
+.pied{background:var(--encre);color:var(--papier);padding:56px 0 30px;margin-top:40px;font-size:14.5px}
+.pied .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.pied h4{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;opacity:.7;font-weight:500}
+.pied .grand{font-size:34px;font-weight:700;letter-spacing:-.01em;line-height:1}
+.pied p{margin:0 0 8px;opacity:.85}
+.pied .bas{grid-column:1/-1;border-top:1px solid rgba(244,241,234,.2);padding-top:18px;font-family:var(--mono);font-size:12px;opacity:.7}
+.barre-mob{display:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1020px){
+  .nav a{padding:8px 6px;font-size:12px}
+  .engag{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:860px){
+  body{font-size:16px;padding-bottom:68px}
+  .nav{display:none;position:absolute;top:64px;left:0;right:0;flex-direction:column;background:var(--papier);border-bottom:1.5px solid var(--encre);padding:8px 16px 16px}
+  .nav.open{display:flex}
+  .nav a{font-size:15px;padding:12px 4px;border-bottom:1px dashed var(--encre-12)}
+  .burger{display:block}
+  .topbar .heures{display:none}
+  .hero{padding:36px 0 64px}
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .hero-visu{max-width:440px}
+  .tampon{right:-4px}
+  .cartouche{grid-template-columns:1fr 1fr}
+  .cartouche div:nth-child(2){border-right:0}
+  .cartouche div:nth-child(3){grid-column:1/-1;border-top:1px solid var(--encre);border-right:0}
+  .sec{padding:68px 0}
+  .plan-grid{grid-template-columns:1fr}
+  .fiche{display:none}
+  .zones-liste{display:block}
+  .consigne{display:none}
+  .nomenc thead{display:none}
+  .nomenc,.nomenc tbody,.nomenc tr,.nomenc td{display:block;width:100%}
+  .nomenc tr{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;padding:14px;border-bottom:1px solid var(--encre-12)}
+  .nomenc td{padding:0;border:0}
+  .nomenc td.ref{grid-row:span 3}
+  .nomenc td.pr{text-align:left;margin-top:6px}
+  .mentions-prix{grid-template-columns:1fr}
+  .mentions-prix div{border-right:0;border-bottom:1px solid var(--encre-12)}
+  .estim{grid-template-columns:1fr}
+  .estim-g{border-right:0;border-bottom:1.5px solid var(--encre);padding:20px}
+  .estim-d{padding:22px 20px}
+  .vehs{grid-template-columns:repeat(2,1fr)}
+  .pin{height:auto}
+  .pin-in{position:relative;height:auto;padding:68px 0}
+  .etapes{grid-template-columns:1fr;gap:26px;padding-left:0}
+  .rail{display:none}
+  .etape{opacity:1;transform:none;display:grid;grid-template-columns:56px 1fr;gap:0 16px}
+  .etape h3{margin:6px 0 4px}
+  .etape .pastille{grid-row:span 2}
+  .pin-photo{display:none}
+  .atelier-g,.rdv-g,.acces-g{grid-template-columns:1fr}
+  .galerie{grid-template-columns:repeat(2,1fr);grid-auto-rows:130px}
+  .galerie button,.galerie button:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .galerie button:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .avis-vide .slots{grid-template-columns:1fr}
+  .avis-vide .slots span:nth-child(n+2){display:none}
+  .form{padding:20px}
+  .form .row{grid-template-columns:1fr}
+  .pied .wrap{grid-template-columns:1fr}
+  .lb{padding:60px 10px}
+  .lb .prev,.lb .next{top:auto;bottom:14px;transform:none}
+  .barre-mob{display:grid;grid-template-columns:1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:60;border-top:1.5px solid var(--encre)}
+  .barre-mob a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px;text-decoration:none;font-family:var(--mono);font-weight:600;background:var(--papier)}
+  .barre-mob a+a{background:var(--rouge);color:#fff}
+}
+@media (max-width:520px){
+  .wrap{padding:0 18px}
+  .engag{grid-template-columns:1fr}
+  .topbar .wrap{gap:10px;font-size:12px}
+  .topbar .rdv{padding:5px 10px}
+  .sec-tete{grid-template-columns:1fr}
+  .sec-num{grid-row:auto;justify-self:start}
+}
+
+/* ============ MOUVEMENT RÉDUIT ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0s!important}
+  .reveal,.fadein,.titre .ch{opacity:1!important;transform:none!important}
+  .tampon{opacity:1;transform:rotate(-8deg)}
+  .plan .d,.hero-traits line,.hero-traits circle{stroke-dashoffset:0!important}
+  .plan .axe,.plan .leader,.plan .pt,.plan .tag{opacity:1!important;transform:none!important}
+  .plan .tag .ring{display:none}
+  .pin{height:auto}
+  .pin-in{position:relative;height:auto;padding:96px 0}
+  .etape{opacity:1;transform:none}
+  .rail i{width:100%}
+  .hero-visu .ph img{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#plan">Aller au contenu</a>
+
+<!-- BANDEAU HAUT -->
+<div class="topbar">
+  <div class="wrap">
+    <a class="tel" data-c="telLien" href="tel:06XXXXXXXX"><span data-c="tel">06 XX XX XX XX</span></a>
+    <span class="statut" id="statut"><i></i><span id="statutTxt">Horaires</span></span>
+    <span class="heures" id="heuresAuj"></span>
+    <a class="rdv" href="#rdv">Prendre rendez-vous</a>
+  </div>
+</div>
+
+<!-- EN-TÊTE -->
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Accueil">
+      <svg width="38" height="38" viewBox="0 0 38 38" aria-hidden="true"><rect x="1" y="1" width="36" height="36" fill="none" stroke="#1F3A5F" stroke-width="1.5"/><circle cx="19" cy="19" r="9" fill="none" stroke="#D7263D" stroke-width="2"/><path d="M19 4v8M19 26v8M4 19h8M26 19h8" stroke="#1F3A5F" stroke-width="1.5"/></svg>
+      <span><span data-c="nom">Garage Morvaine</span><small data-c="ville">Montbrécy</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#plan">Prestations</a>
+      <a href="#forfaits">Forfaits</a>
+      <a href="#estimateur">Estimateur</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#acces">Accès</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" aria-labelledby="titre">
+  <svg class="hero-traits" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <line x1="0" y1="140" x2="1200" y2="140" pathLength="1"/>
+    <line x1="0" y1="560" x2="1200" y2="560" pathLength="1"/>
+    <line x1="700" y1="0" x2="700" y2="700" pathLength="1"/>
+    <line x1="80" y1="0" x2="80" y2="700" pathLength="1"/>
+    <circle cx="700" cy="140" r="90" pathLength="1"/>
+    <circle cx="700" cy="140" r="40" pathLength="1"/>
+    <line x1="0" y1="700" x2="700" y2="140" pathLength="1"/>
+  </svg>
+  <div class="wrap">
+    <div>
+      <div class="kicker fadein" style="--d:.1s">Garage indépendant · Mécanique toutes marques</div>
+      <h1 class="titre" id="titre"><span class="l1" data-split data-c="titre1">Garage</span><span class="l2" data-split data-c="titre2">Morvaine</span></h1>
+      <div class="ville fadein" style="--d:.9s"><span>Atelier à</span> <b data-c="ville">Montbrécy</b></div>
+      <p class="chapo fadein" style="--d:1.05s">Entretien constructeur sans perte de garantie, freins, pneus, climatisation, distribution. Nous vous expliquons ce que nous faisons, nous affichons nos prix, et rien ne démarre sans votre accord sur un devis écrit.</p>
+      <div class="ctas fadein" style="--d:1.2s">
+        <a class="btn rouge" href="#estimateur">Estimer mon entretien <span class="fl">→</span></a>
+        <a class="btn ligne" href="#plan">Voir le plan d'atelier</a>
+      </div>
+      <div class="cartouche fadein" style="--d:1.35s">
+        <div><span>Devis</span><strong>Gratuit, avant travaux</strong></div>
+        <div><span>Taux horaire TTC</span><strong><span data-c="taux">72</span> € · prix d'exemple</strong></div>
+        <div><span>Véhicule de prêt</span><strong>Sur réservation</strong></div>
+      </div>
+    </div>
+    <div class="hero-visu fadein" style="--d:.5s">
+      <div class="cadre">
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1727893119356-1702fe921cf9?w=1200&q=80&auto=format&fit=crop"
+               srcset="https://images.unsplash.com/photo-1727893119356-1702fe921cf9?w=600&q=80&auto=format&fit=crop 600w,https://images.unsplash.com/photo-1727893119356-1702fe921cf9?w=900&q=80&auto=format&fit=crop 900w,https://images.unsplash.com/photo-1727893119356-1702fe921cf9?w=1200&q=80&auto=format&fit=crop 1200w,https://images.unsplash.com/photo-1727893119356-1702fe921cf9?w=1600&q=80&auto=format&fit=crop 1600w"
+               sizes="(max-width:860px) 90vw, 480px" alt="Atelier de réparation automobile lumineux avec véhicules sur pont" data-parallax="-0.06" fetchpriority="high">
+        </div>
+        <div class="cote">ATELIER · VUE D'ENSEMBLE</div>
+      </div>
+      <div class="tampon">Devis signé<br>avant travaux</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAN D'ATELIER (signature) -->
+<section class="sec plan-sec" id="plan" aria-labelledby="plan-t">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">PL. 01</span>
+      <h2 id="plan-t">Le plan d'atelier : choisissez une zone</h2>
+      <p>Survolez ou touchez une pièce de la vue éclatée : la prestation s'ouvre avec son forfait TTC. Les montants sont des <span class="prix-ex">prix d'exemple</span></p>
+    </div>
+    <div class="plan-grid">
+      <div class="reveal">
+        <div class="planche">
+          <svg class="plan" id="planSvg" viewBox="0 0 1000 560" role="group" aria-label="Vue éclatée d'une voiture : six zones d'intervention">
+            <!-- axes -->
+            <path class="axe" d="M280 230 V540 M740 230 V540 M40 345 H960"/>
+            <!-- voiture -->
+            <g class="car">
+              <path class="d" pathLength="1" d="M120 330 L130 290 Q140 270 175 265 L300 255 Q340 215 400 190 L560 182 Q620 184 680 230 L800 250 Q860 258 875 290 L880 330 Q880 345 865 345 L802 345 A62 62 0 0 0 678 345 L342 345 A62 62 0 0 0 218 345 L135 345 Q120 345 120 330 Z"/>
+              <path class="d fin" pathLength="1" d="M345 254 Q378 226 415 212 L480 208 L482 252 Z"/>
+              <path class="d fin" pathLength="1" d="M496 207 L556 204 Q600 206 640 244 L496 250 Z"/>
+              <path class="d fin" pathLength="1" d="M335 258 L345 340 M488 252 L490 340 M648 246 L660 322 M300 266 L820 262"/>
+              <path class="d fin" pathLength="1" d="M128 292 L170 286 L172 300 L131 305 Z M862 268 L876 288 L864 294 Z M420 280 L446 280 M560 278 L586 278"/>
+              <circle class="d" pathLength="1" cx="280" cy="345" r="48"/>
+              <circle class="d fin" pathLength="1" cx="280" cy="345" r="28"/>
+              <circle class="d" pathLength="1" cx="740" cy="345" r="48"/>
+              <circle class="d fin" pathLength="1" cx="740" cy="345" r="28"/>
+            </g>
+            <!-- cartouche -->
+            <g class="cart">
+              <rect class="d fin" pathLength="1" x="770" y="20" width="210" height="72"/>
+              <path class="d fin" pathLength="1" d="M770 44 H980 M880 44 V92"/>
+              <text x="780" y="37" class="big" data-c="nomMaj">GARAGE MORVAINE</text>
+              <text x="780" y="62">PLANCHE 01</text><text x="780" y="80">VUE ÉCLATÉE</text>
+              <text x="890" y="62">ÉCHELLE LIBRE</text><text x="890" y="80">6 ZONES</text>
+            </g>
+
+            <!-- 01 MOTEUR -->
+            <g class="zone" data-zone="moteur" tabindex="0" role="button" aria-label="Zone moteur : entretien et vidange">
+              <rect class="hit" x="175" y="20" width="150" height="145"/>
+              <path class="leader" d="M250 155 L232 284"/><circle class="pt" cx="232" cy="286" r="4"/>
+              <rect class="d" pathLength="1" x="190" y="85" width="120" height="70" rx="4"/>
+              <rect class="d" pathLength="1" x="200" y="65" width="100" height="20" rx="2"/>
+              <path class="d fin" pathLength="1" d="M215 100 V140 M240 100 V140 M265 100 V140 M290 100 V140 M190 120 H175 M310 120 H325"/>
+              <circle class="d fin" pathLength="1" cx="280" cy="75" r="5"/>
+              <g class="tag" style="--k:0"><circle class="ring" cx="214" cy="40" r="15"/><circle cx="214" cy="40" r="15"/><text class="n" x="214" y="40">01</text><text x="234" y="45">MOTEUR</text></g>
+            </g>
+
+            <!-- 02 DISTRIBUTION -->
+            <g class="zone" data-zone="distribution" tabindex="0" role="button" aria-label="Zone distribution : kit de distribution">
+              <rect class="hit" x="365" y="50" width="270" height="95"/>
+              <path class="leader" d="M392 134 L296 286"/><circle class="pt" cx="295" cy="288" r="4"/>
+              <circle class="d" pathLength="1" cx="395" cy="110" r="22"/>
+              <circle class="d" pathLength="1" cx="456" cy="76" r="14"/>
+              <circle class="d fin" pathLength="1" cx="452" cy="124" r="8"/>
+              <path class="d fin" pathLength="1" d="M380 94 L446 65 M470 78 L462 122 M444 128 L414 122"/>
+              <circle class="d fin" pathLength="1" cx="395" cy="110" r="6"/>
+              <g class="tag" style="--k:1"><circle class="ring" cx="502" cy="108" r="15"/><circle cx="502" cy="108" r="15"/><text class="n" x="502" y="108">02</text><text x="522" y="113">DISTRIBUTION</text></g>
+            </g>
+
+            <!-- 03 BATTERIE -->
+            <g class="zone" data-zone="batterie" tabindex="0" role="button" aria-label="Zone batterie : test et remplacement">
+              <rect class="hit" x="40" y="110" width="125" height="100"/>
+              <path class="leader" d="M110 200 L186 288"/><circle class="pt" cx="188" cy="290" r="4"/>
+              <rect class="d" pathLength="1" x="60" y="150" width="84" height="50" rx="3"/>
+              <path class="d fin" pathLength="1" d="M72 150 V142 H86 V150 M118 150 V142 H132 V150 M75 172 H83 M79 168 V176 M121 172 H129"/>
+              <g class="tag" style="--k:2"><circle class="ring" cx="62" cy="124" r="15"/><circle cx="62" cy="124" r="15"/><text class="n" x="62" y="124">03</text><text x="82" y="129">BATTERIE</text></g>
+            </g>
+
+            <!-- 04 CLIM -->
+            <g class="zone" data-zone="clim" tabindex="0" role="button" aria-label="Zone climatisation : recharge et contrôle">
+              <rect class="hit" x="20" y="410" width="215" height="105"/>
+              <path class="leader" d="M88 428 L126 322"/><circle class="pt" cx="127" cy="320" r="4"/>
+              <rect class="d" pathLength="1" x="34" y="430" width="108" height="72" rx="2"/>
+              <path class="d fin" pathLength="1" d="M46 438 V494 M58 438 V494 M70 438 V494 M82 438 V494 M94 438 V494 M106 438 V494 M118 438 V494 M130 438 V494"/>
+              <g class="tag" style="--k:3"><circle class="ring" cx="168" cy="452" r="15"/><circle cx="168" cy="452" r="15"/><text class="n" x="168" y="452">04</text><text x="188" y="457">CLIM</text></g>
+            </g>
+
+            <!-- 05 FREINS -->
+            <g class="zone" data-zone="freins" tabindex="0" role="button" aria-label="Zone freins : plaquettes et disques">
+              <rect class="hit" x="245" y="418" width="210" height="125"/>
+              <path class="leader" d="M300 432 L284 396"/><circle class="pt" cx="283" cy="393" r="4"/>
+              <circle class="d" pathLength="1" cx="300" cy="482" r="46"/>
+              <circle class="d fin" pathLength="1" cx="300" cy="482" r="17"/>
+              <circle class="d fin" pathLength="1" cx="300" cy="469" r="3"/><circle class="d fin" pathLength="1" cx="312" cy="486" r="3"/><circle class="d fin" pathLength="1" cx="288" cy="486" r="3"/>
+              <path class="d" pathLength="1" d="M318 438 Q352 450 350 490 L336 490 Q338 462 312 452 Z"/>
+              <g class="tag" style="--k:4"><circle class="ring" cx="378" cy="500" r="15"/><circle cx="378" cy="500" r="15"/><text class="n" x="378" y="500">05</text><text x="398" y="505">FREINS</text></g>
+            </g>
+
+            <!-- 06 PNEUS -->
+            <g class="zone" data-zone="pneus" tabindex="0" role="button" aria-label="Zone pneus : montage et géométrie">
+              <rect class="hit" x="690" y="415" width="230" height="135"/>
+              <path class="leader" d="M752 424 L742 396"/><circle class="pt" cx="741" cy="393" r="4"/>
+              <circle class="d" pathLength="1" cx="760" cy="482" r="56"/>
+              <circle class="d fin" pathLength="1" cx="760" cy="482" r="38"/>
+              <circle class="d fin" pathLength="1" cx="760" cy="482" r="10"/>
+              <path class="d fin" pathLength="1" d="M760 426 V444 M760 520 V538 M704 482 H722 M798 482 H816 M720 442 L733 455 M787 509 L800 522 M800 442 L787 455 M733 509 L720 522"/>
+              <g class="tag" style="--k:5"><circle class="ring" cx="842" cy="448" r="15"/><circle cx="842" cy="448" r="15"/><text class="n" x="842" y="448">06</text><text x="862" y="453">PNEUS</text></g>
+            </g>
+          </svg>
+        </div>
+        <p class="consigne">Survolez une zone, cliquez pour la garder ouverte. Clavier : Tab puis Entrée.</p>
+        <ul class="zones-liste" id="zonesListe"></ul>
+      </div>
+      <aside class="fiche reveal" style="--d:.15s" aria-live="polite" id="fiche">
+        <div class="fiche-tete"><span class="rep" id="ficheRep">REP. —</span><span>Fiche prestation</span></div>
+        <div class="fiche-corps" id="ficheCorps">
+          <div class="fiche-vide">
+            <div><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="#9AA5B1" stroke-width="1.5" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d="M32 4v14M32 46v14M4 32h14M46 32h14"/><circle cx="32" cy="32" r="4" stroke="#D7263D"/></svg>
+            Sélectionnez une zone sur le plan<br>pour afficher la prestation et son forfait.</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FORFAITS -->
+<section class="sec" id="forfaits" aria-labelledby="forfaits-t">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">NOMENCL.</span>
+      <h2 id="forfaits-t">Nos forfaits, prix TTC affichés</h2>
+      <p>Pièces et main-d'œuvre comprises sauf mention contraire. Le montant exact dépend de votre véhicule : il figure sur le devis remis avant travaux. <span class="prix-ex">prix d'exemple</span></p>
+    </div>
+    <div class="reveal">
+      <table class="nomenc" id="tabForfaits">
+        <thead><tr><th>Réf.</th><th>Prestation</th><th>Durée indicative</th><th style="text-align:right">Tarif TTC</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="mentions-prix reveal">
+      <div><strong>Taux horaire main-d'œuvre</strong><span class="taux"><span data-c="taux">72</span> € TTC</span><br><span class="prix-ex">prix d'exemple</span></div>
+      <div><strong>Économie circulaire</strong>Pour les pièces éligibles, nous vous proposons des pièces issues de l'économie circulaire (réemploi) en alternative au neuf, si elles sont disponibles.</div>
+      <div><strong>Devis</strong>Gratuit et écrit, remis avant toute intervention. Aucun travail supplémentaire n'est réalisé sans votre accord.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATEUR -->
+<section class="sec" id="estimateur" aria-labelledby="estim-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">CALC.</span>
+      <h2 id="estim-t">Estimateur indicatif TTC</h2>
+      <p>Deux choix, une fourchette. C'est une estimation de démonstration, pas un devis : le prix définitif dépend de la référence exacte de votre véhicule.</p>
+    </div>
+    <form class="estim reveal" id="estimForm" onsubmit="return false">
+      <div class="estim-g">
+        <div class="champ">
+          <span class="lbl" id="vehLbl">1 · Type de véhicule</span>
+          <div class="vehs" id="vehs" role="radiogroup" aria-labelledby="vehLbl"></div>
+        </div>
+        <div class="champ">
+          <label for="prest">2 · Prestation</label>
+          <select id="prest"></select>
+        </div>
+        <div class="champ">
+          <label class="case"><input type="checkbox" id="piec"> Me proposer des pièces de réemploi (économie circulaire) quand c'est possible</label>
+        </div>
+      </div>
+      <div class="estim-d" aria-live="polite">
+        <div class="res-lbl">Fourchette estimée</div>
+        <div class="res-px"><span id="resMin">—</span><span class="sep">–</span><span id="resMax">—</span> €</div>
+        <div class="res-ttc">TTC, pièces et main-d'œuvre · <span class="prix-ex">prix d'exemple</span></div>
+        <ul class="res-det">
+          <li><span>Prestation</span><span id="resNom">—</span></li>
+          <li><span>Durée indicative</span><span id="resDur">—</span></li>
+          <li><span>Taux horaire</span><span><span data-c="taux">72</span> € TTC</span></li>
+        </ul>
+        <p class="res-note" id="resNote">Le devis écrit et gratuit précisera le montant exact avant toute intervention.</p>
+        <a class="btn" href="#rdv" id="estimRdv">Demander un devis précis <span class="fl">→</span></a>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- PROCESS ÉPINGLÉ -->
+<section class="pin" id="process" aria-labelledby="proc-t">
+  <div class="pin-in">
+    <div class="ph pin-photo" aria-hidden="true"><img loading="lazy" src="https://images.unsplash.com/photo-1597766325363-f5576d851d6a?w=600&q=80&auto=format&fit=crop" alt=""></div>
+    <div class="wrap">
+      <div class="sec-tete" style="margin-bottom:10px">
+        <span class="sec-num">PROC.</span>
+        <h2 id="proc-t">Comment se passe une intervention</h2>
+        <p>Le même déroulé pour une vidange ou une distribution. Vous savez toujours où en est votre voiture.</p>
+      </div>
+      <div class="etapes" id="etapes">
+        <div class="rail"><i></i></div>
+        <div class="etape"><div class="pastille">01</div><h3>Diagnostic</h3><p>Contrôle visuel et diagnostic électronique. Nous vous montrons ce que nous constatons, photo à l'appui si besoin.</p></div>
+        <div class="etape"><div class="pastille">02</div><h3>Devis écrit</h3><p>Gratuit, poste par poste : pièces, main-d'œuvre au taux affiché, options de pièces de réemploi.</p></div>
+        <div class="etape"><div class="pastille">03</div><h3>Votre accord</h3><p>Rien ne démarre sans votre signature. Un imprévu en cours de route ? Nous vous appelons avant d'aller plus loin.</p></div>
+        <div class="etape"><div class="pastille">04</div><h3>Restitution</h3><p>Facture détaillée, pièces remplacées à votre disposition, carnet d'entretien tamponné.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="sec" id="engagements" aria-labelledby="eng-t">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">ENG.</span>
+      <h2 id="eng-t">Nos engagements, noir sur blanc</h2>
+      <p>Ce que vous pouvez attendre de nous, à chaque passage à l'atelier.</p>
+    </div>
+    <div class="engag">
+      <article class="carte reveal" style="--d:0s"><span class="ref">E-01</span>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="6" width="28" height="36" rx="2"/><path d="M16 16h16M16 23h16M16 30h9"/><path d="M27 34l4 4 8-9" stroke="#1F3A5F"/></svg>
+        <h3>Devis gratuit avant travaux</h3><p>Écrit, détaillé et expliqué. Vous décidez en connaissance de cause.</p></article>
+      <article class="carte reveal" style="--d:.08s"><span class="ref">E-02</span>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 8a16 16 0 1 1-14 8"/><path d="M6 10l4 6 6-4"/><circle cx="24" cy="24" r="5" stroke="#1F3A5F"/></svg>
+        <h3>Pièces de réemploi proposées</h3><p>Quand c'est possible et autorisé, une alternative issue de l'économie circulaire, moins chère que le neuf.</p></article>
+      <article class="carte reveal" style="--d:.16s"><span class="ref">E-03</span>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 30l3-9q1-3 5-3h20q4 0 5 3l3 9v6H6z"/><circle cx="14" cy="36" r="4" stroke="#1F3A5F"/><circle cx="34" cy="36" r="4" stroke="#1F3A5F"/><path d="M12 18l3-6h18l3 6"/></svg>
+        <h3>Véhicule de prêt</h3><p>Sur réservation à la prise de rendez-vous, selon disponibilité, pour ne pas vous immobiliser.</p></article>
+      <article class="carte reveal" style="--d:.24s"><span class="ref">E-04</span>
+        <svg class="ic" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5l15 6v11c0 10-7 17-15 21C16 39 9 32 9 22V11z"/><path d="M17 24l5 5 9-10" stroke="#1F3A5F"/></svg>
+        <h3>Garantie pièces et main-d'œuvre</h3><p>Nos interventions sont garanties ; la durée applicable est précisée sur le devis et la facture.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIER -->
+<section class="sec" id="atelier" aria-labelledby="at-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">AT.</span>
+      <h2 id="at-t">L'atelier et les véhicules entretenus</h2>
+      <p>Un atelier multimarque équipé pour l'entretien courant comme pour les réparations plus lourdes.</p>
+    </div>
+    <div class="atelier-g">
+      <div class="marques reveal">
+        <h3>Multimarque, sans exception de constructeur</h3>
+        <ul>
+          <li>Citadines, compactes, berlines, SUV et utilitaires légers</li>
+          <li>Constructeurs français, européens et asiatiques</li>
+          <li>Essence, diesel et entretien courant des hybrides</li>
+          <li>Entretien constructeur sans perte de garantie, carnet tamponné</li>
+          <li>Diagnostic électronique, géométrie, recharge clim</li>
+        </ul>
+        <p class="demo-note" style="margin-top:18px">Photos d'illustration : cliquez pour agrandir (flèches du clavier ou glisser sur mobile).</p>
+      </div>
+      <div class="galerie reveal" id="galerie" style="--d:.1s"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="sec" id="avis" aria-labelledby="avis-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">AVIS</span>
+      <h2 id="avis-t">Ce qu'en disent nos clients</h2>
+    </div>
+    <div class="avis-vide reveal">
+      <div class="slots" aria-hidden="true"><span></span><span></span><span></span></div>
+      <h3>Vos avis clients apparaîtront ici</h3>
+      <p>Emplacement réservé aux avis vérifiés de vos clients.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RDV -->
+<section class="sec" id="rdv" aria-labelledby="rdv-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">RDV</span>
+      <h2 id="rdv-t">Demander un devis ou un rendez-vous</h2>
+      <p>Indiquez votre immatriculation et votre besoin : nous vous rappelons avec un devis et un créneau.</p>
+    </div>
+    <div class="rdv-g">
+      <div class="reveal">
+        <p style="margin-top:0">Vous préférez parler à quelqu'un ? Appelez l'atelier au <a href="tel:06XXXXXXXX" data-c="telLien"><strong data-c="tel">06 XX XX XX XX</strong></a>.</p>
+        <ul class="liste-check">
+          <li>Devis gratuit, envoyé avant toute intervention</li>
+          <li>Délai d'immobilisation annoncé à l'avance</li>
+          <li>Véhicule de prêt à réserver avec le rendez-vous</li>
+          <li>Pièces de réemploi proposées quand c'est possible</li>
+        </ul>
+      </div>
+      <form class="form reveal" id="rdvForm" novalidate>
+        <div class="champ">
+          <label for="immat">Immatriculation</label>
+          <div class="plaque"><span>F</span><input type="text" id="immat" name="immat" placeholder="AB-123-CD" maxlength="9" autocomplete="off" inputmode="text"></div>
+        </div>
+        <div class="row">
+          <div class="champ"><label for="km">Kilométrage</label><input type="number" id="km" name="km" placeholder="Ex. 145 000" min="0" inputmode="numeric"></div>
+          <div class="champ"><label for="besoin">Besoin</label><select id="besoin" name="besoin"></select></div>
+        </div>
+        <div class="champ"><label for="msg">Précisions (bruit, voyant allumé…)</label><textarea id="msg" name="msg" rows="3"></textarea></div>
+        <div class="row">
+          <div class="champ"><label for="nomc">Nom</label><input type="text" id="nomc" name="nom" autocomplete="name"></div>
+          <div class="champ"><label for="telc">Téléphone</label><input type="tel" id="telc" name="tel" autocomplete="tel"></div>
+        </div>
+        <div class="champ"><label for="date">Date souhaitée</label><input type="date" id="date" name="date"></div>
+        <div class="champ"><label class="case"><input type="checkbox" name="pret"> Je souhaite un véhicule de prêt (selon disponibilité)</label></div>
+        <button class="btn rouge" type="submit">Envoyer ma demande <span class="fl">→</span></button>
+        <p class="demo-note">Formulaire de démonstration : aucune donnée n'est envoyée ni enregistrée.</p>
+        <div class="ok" id="ok" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ACCÈS -->
+<section class="sec" id="acces" aria-labelledby="acces-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">ACC.</span>
+      <h2 id="acces-t">Accès et horaires</h2>
+    </div>
+    <div class="acces-g">
+      <div class="reveal">
+        <table class="horaires" id="tabHoraires"><caption class="sr">Horaires d'ouverture</caption><tbody></tbody></table>
+        <p class="adresse"><strong data-c="nom">Garage Morvaine</strong><br><span data-c="adresse">XX rue de l'Exemple</span>, <span data-c="cp">XXXXX</span> <span data-c="ville">Montbrécy</span></p>
+      </div>
+      <div class="plan-acces reveal" style="--d:.1s">
+        <svg viewBox="0 0 520 300" role="img" aria-label="Plan d'accès schématique (illustration)">
+          <defs><pattern id="hach" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#9AA5B1" stroke-width="1"/></pattern></defs>
+          <rect x="0" y="0" width="520" height="300" fill="none"/>
+          <path d="M0 150 H520 M260 0 V300 M0 40 L520 260" stroke="#9AA5B1" stroke-width="14" fill="none" opacity=".35"/>
+          <path d="M0 150 H520 M260 0 V300" stroke="#1F3A5F" stroke-width="1" stroke-dasharray="6 6" fill="none"/>
+          <rect x="40" y="170" width="150" height="90" fill="url(#hach)" stroke="#9AA5B1"/>
+          <rect x="300" y="30" width="180" height="90" fill="url(#hach)" stroke="#9AA5B1"/>
+          <rect x="300" y="175" width="120" height="80" fill="rgba(215,38,61,.12)" stroke="#D7263D" stroke-width="2"/>
+          <text x="360" y="212" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#D7263D" font-weight="600">ATELIER</text>
+          <text x="360" y="230" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="#1F3A5F">parking clients</text>
+          <text x="12" y="140" font-family="IBM Plex Mono, monospace" font-size="11" fill="#1F3A5F">rue de l'Exemple</text>
+          <circle cx="360" cy="165" r="6" fill="#D7263D"/>
+          <path d="M490 270 l0-30 m0 0 l-6 10 m6-10 l6 10" stroke="#1F3A5F" fill="none" stroke-width="1.5"/><text x="486" y="290" font-family="IBM Plex Mono, monospace" font-size="11" fill="#1F3A5F">N</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec faq" id="faq" aria-labelledby="faq-t" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-tete reveal">
+      <span class="sec-num">FAQ</span>
+      <h2 id="faq-t">Questions fréquentes</h2>
+    </div>
+    <div class="reveal">
+      <details><summary>Est-ce que je perds la garantie constructeur en faisant l'entretien chez vous ?</summary><p>Non. L'entretien peut être réalisé par un garage indépendant sans perte de garantie, à condition de respecter le programme d'entretien du constructeur et d'utiliser des pièces de qualité équivalente. Nous suivons ce programme et tamponnons votre carnet.</p></details>
+      <details><summary>Le devis est-il payant ?</summary><p>Non, le devis est gratuit et remis par écrit avant toute intervention. Si un diagnostic électronique approfondi est nécessaire pour l'établir, nous vous l'indiquons et vous en donnons le prix avant de le réaliser.</p></details>
+      <details><summary>Que sont les pièces issues de l'économie circulaire ?</summary><p>Ce sont des pièces de réemploi, contrôlées, récupérées sur des véhicules hors d'usage. Pour les pièces éligibles, nous vous les proposons comme alternative au neuf. Elles ne sont jamais utilisées pour les éléments de sécurité comme les freins ou la direction.</p></details>
+      <details><summary>Combien de temps ma voiture sera-t-elle immobilisée ?</summary><p>La durée indicative de chaque forfait figure dans notre tableau. Le délai précis vous est annoncé avec le devis, et nous vous prévenons si quelque chose change.</p></details>
+      <details><summary>Quand faut-il changer la courroie de distribution ?</summary><p>Selon les préconisations de votre constructeur, en kilomètres ou en années (le premier atteint). Donnez-nous votre immatriculation : nous vérifions l'échéance pour votre modèle.</p></details>
+      <details><summary>Puis-je avoir un véhicule de prêt ?</summary><p>Oui, sur réservation au moment de la prise de rendez-vous et selon disponibilité.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pied">
+  <div class="wrap">
+    <div>
+      <div class="grand" data-c="nom">Garage Morvaine</div>
+      <p style="margin-top:10px">Garage indépendant · Mécanique toutes marques<br><span data-c="adresse">XX rue de l'Exemple</span>, <span data-c="cp">XXXXX</span> <span data-c="ville">Montbrécy</span></p>
+    </div>
+    <div><h4>Contact</h4><p><a href="tel:06XXXXXXXX" data-c="telLien"><span data-c="tel">06 XX XX XX XX</span></a></p><p><a href="#rdv">Demande de devis</a></p></div>
+    <div><h4>Informations prix</h4><p>Prix TTC, pièces et main-d'œuvre. Taux horaire : <span data-c="taux">72</span> € TTC. Tous les montants affichés sur ce site sont des prix d'exemple.</p></div>
+    <div class="bas">Site de démonstration · nom, adresse, téléphone et tarifs fictifs · photos : Unsplash</div>
+  </div>
+</footer>
+
+<nav class="barre-mob" aria-label="Actions rapides">
+  <a href="tel:06XXXXXXXX" data-c="telLien">☎ Appeler</a>
+  <a href="#rdv">Rendez-vous</a>
+</nav>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galerie de l'atelier" hidden>
+  <button class="x" type="button" aria-label="Fermer">✕</button>
+  <button class="prev" type="button" aria-label="Photo précédente">←</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="next" type="button" aria-label="Photo suivante">→</button>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — tout ce qui change d'un garage à l'autre
+   ========================================================= */
+const CONFIG = {
+  nom: "Garage Morvaine",
+  titre1: "Garage",
+  titre2: "Morvaine",
+  ville: "Montbrécy",
+  adresse: "XX rue de l'Exemple",
+  cp: "XXXXX",
+  tel: "06 XX XX XX XX",
+  telLien: "tel:06XXXXXXXX",
+  couleurs: { papier: "#F4F1EA", encre: "#1F3A5F", rouge: "#D7263D", gris: "#9AA5B1" },
+  tauxHoraire: 72, // € TTC, prix d'exemple
+  // 0 = dimanche … 6 = samedi ; plages [ouverture, fermeture] en "HH:MM"
+  horaires: {
+    1: [["08:00","12:00"],["13:30","18:30"]],
+    2: [["08:00","12:00"],["13:30","18:30"]],
+    3: [["08:00","12:00"],["13:30","18:30"]],
+    4: [["08:00","12:00"],["13:30","18:30"]],
+    5: [["08:00","12:00"],["13:30","18:00"]],
+    6: [["08:30","12:00"]],
+    0: []
+  },
+  vehicules: [
+    { id: "citadine", label: "Citadine", k: 1.00, svg: "M4 19l3-6q1-2 4-2h16q3 0 5 3l4 5v3H4z M10 22a3 3 0 1 0 6 0 M36 22a3 3 0 1 0 6 0" },
+    { id: "compacte", label: "Compacte / berline", k: 1.12, svg: "M2 19l5-6q2-2 5-2h18q3 0 6 3l6 4q2 1 2 3v1H2z M10 22a3 3 0 1 0 6 0 M40 22a3 3 0 1 0 6 0" },
+    { id: "suv", label: "SUV / monospace", k: 1.28, svg: "M3 20V13q0-3 3-4l8-2h18q4 0 6 3l4 4q3 1 3 4v2H3z M10 22a3 3 0 1 0 6 0 M40 22a3 3 0 1 0 6 0" },
+    { id: "utilitaire", label: "Utilitaire léger", k: 1.40, svg: "M2 21V5h34l8 7q4 2 4 6v3H2z M36 5v8h10 M9 22a3 3 0 1 0 6 0 M38 22a3 3 0 1 0 6 0" }
+  ],
+  // prix "à partir de", € TTC, pour une citadine — prix d'exemple
+  forfaits: [
+    { id: "vidange",   zone: "moteur",       ref: "F-01", nom: "Vidange + filtre à huile",      detail: "Huile aux normes constructeur, contrôle des niveaux", prix: 89,  duree: "45 min" },
+    { id: "revision",  zone: "moteur",       ref: "F-02", nom: "Révision constructeur",          detail: "Selon carnet, sans perte de garantie, carnet tamponné", prix: 179, duree: "1 h 30" },
+    { id: "diag",      zone: "moteur",       ref: "F-03", nom: "Diagnostic électronique",        detail: "Lecture des codes défaut, explication du résultat", prix: 49,  duree: "30 min" },
+    { id: "distrib",   zone: "distribution", ref: "F-04", nom: "Kit de distribution + pompe à eau", detail: "Courroie, galets, pompe à eau et liquide de refroidissement", prix: 490, duree: "3 à 5 h" },
+    { id: "batterie",  zone: "batterie",     ref: "F-05", nom: "Remplacement de batterie",       detail: "Test de charge, batterie, montage et réinitialisation", prix: 129, duree: "30 min" },
+    { id: "clim",      zone: "clim",         ref: "F-06", nom: "Recharge de climatisation",       detail: "Contrôle d'étanchéité, recharge en fluide, test de température", prix: 69,  duree: "1 h" },
+    { id: "plaq",      zone: "freins",       ref: "F-07", nom: "Plaquettes de frein avant",       detail: "Pièces et pose, contrôle du liquide de frein", prix: 119, duree: "1 h" },
+    { id: "disq",      zone: "freins",       ref: "F-08", nom: "Disques + plaquettes avant",      detail: "Pièces et pose, essai sur route", prix: 239, duree: "1 h 30" },
+    { id: "pneus",     zone: "pneus",        ref: "F-09", nom: "Montage + équilibrage (par pneu)", detail: "Hors prix du pneu, valve neuve incluse", prix: 15,  duree: "20 min" },
+    { id: "geo",       zone: "pneus",        ref: "F-10", nom: "Géométrie (parallélisme)",        detail: "Contrôle et réglage sur banc", prix: 79,  duree: "1 h" },
+    { id: "precontrole", zone: null,         ref: "F-11", nom: "Pré-contrôle technique",          detail: "Vérification des points du contrôle technique avant passage", prix: 35,  duree: "30 min" }
+  ],
+  zones: {
+    moteur:       { n: "01", titre: "Moteur & entretien", texte: "Vidange, révision selon le carnet constructeur sans perte de garantie, diagnostic électronique d'un voyant allumé.", photo: "1486262715619-67b85e0b08d3" },
+    distribution: { n: "02", titre: "Distribution", texte: "Courroie ou chaîne, galets et pompe à eau. Nous vérifions l'échéance préconisée pour votre modèle avant de vous proposer l'intervention.", photo: "1775590766345-c117265f0c1b" },
+    batterie:     { n: "03", titre: "Batterie & démarrage", texte: "Test de la batterie et de la charge, remplacement et réinitialisation des équipements électroniques.", photo: "1619642751034-765dfdf7c58e" },
+    clim:         { n: "04", titre: "Climatisation", texte: "Recharge clim avec contrôle d'étanchéité : un circuit qui fuit est signalé avant d'être rechargé.", photo: "1429772011165-0c2e054367b8" },
+    freins:       { n: "05", titre: "Freinage", texte: "Plaquettes, disques, liquide de frein. Les éléments de sécurité sont toujours remplacés par des pièces neuves.", photo: "1760317890322-364a810cd4da" },
+    pneus:        { n: "06", titre: "Pneus & géométrie", texte: "Montage, équilibrage, permutation et réglage de la géométrie pour une usure régulière.", photo: "1675034743372-672c3c3f8377" }
+  },
+  photos: [
+    { id: "1727893304219-063d142ce6f3", alt: "Voiture en cours de réparation dans l'atelier" },
+    { id: "1702146713858-8e7d1cc29fe8", alt: "Intervention sous un véhicule" },
+    { id: "1767681092416-bccf9410bda4", alt: "Véhicules en réparation dans l'atelier" },
+    { id: "1487754180451-c456f719a1fc", alt: "Appoint d'huile moteur" },
+    { id: "1597766325363-f5576d851d6a", alt: "Outil à main sur l'établi" },
+    { id: "1625047509168-a7026f36de04", alt: "SUV stationné dans le garage" },
+    { id: "1771340742493-52fbd5476ccb", alt: "Versement d'huile dans un moteur" },
+    { id: "1615906655593-ad0386982a0f", alt: "Travail sur un moteur" },
+    { id: "1635437536607-b8572f443763", alt: "Bidons d'huile moteur" }
+  ]
+};
+
+/* ========================================================= */
+(function(){
+  "use strict";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const reduit = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const unsplash = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+  const srcset = id => [480, 800, 1200, 1600].map(w => `${unsplash(id, w)} ${w}w`).join(",");
+  const eur = n => n.toLocaleString("fr-FR");
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  /* --- injection CONFIG --- */
+  const root = document.documentElement.style;
+  Object.entries(CONFIG.couleurs).forEach(([k, v]) => root.setProperty("--" + k, v));
+  const vals = { nom: CONFIG.nom, titre1: CONFIG.titre1, titre2: CONFIG.titre2, ville: CONFIG.ville, adresse: CONFIG.adresse, cp: CONFIG.cp, tel: CONFIG.tel, taux: CONFIG.tauxHoraire, nomMaj: CONFIG.nom.toUpperCase() };
+  $$("[data-c]").forEach(el => {
+    const k = el.dataset.c;
+    if (k === "telLien") el.setAttribute("href", CONFIG.telLien);
+    else if (k in vals) el.textContent = vals[k];
+  });
+  document.title = `${CONFIG.nom} — Mécanique toutes marques à ${CONFIG.ville}`;
+
+  /* --- titre lettre par lettre --- */
+  let idx = 0;
+  $$("[data-split]").forEach(el => {
+    const t = el.textContent;
+    el.setAttribute("aria-label", t);
+    el.innerHTML = [...t].map(c => `<span class="ch" aria-hidden="true" style="--i:${idx++}">${c === " " ? "&nbsp;" : esc(c)}</span>`).join("");
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add("is-loaded")));
+
+  /* --- horaires --- */
+  const jours = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+  const fmt = h => h.replace(":", "h");
+  const plages = j => (CONFIG.horaires[j] || []);
+  const txtPlages = j => plages(j).length ? plages(j).map(p => `${fmt(p[0])}–${fmt(p[1])}`).join(" · ") : "Fermé";
+  const now = new Date(), j = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+  const toM = s => { const [h, m] = s.split(":").map(Number); return h * 60 + m; };
+  const ouvert = plages(j).some(p => mins >= toM(p[0]) && mins < toM(p[1]));
+  $("#statut").classList.add(ouvert ? "ouvert" : "ferme");
+  $("#statutTxt").textContent = ouvert ? "Ouvert maintenant" : "Fermé actuellement";
+  $("#heuresAuj").textContent = `Aujourd'hui : ${txtPlages(j)}`;
+  $("#tabHoraires tbody").innerHTML = [1, 2, 3, 4, 5, 6, 0].map(d =>
+    `<tr class="${d === j ? "auj" : ""}"><td>${jours[d]}</td><td>${txtPlages(d)}</td></tr>`).join("");
+
+  /* --- tableau des forfaits --- */
+  $("#tabForfaits tbody").innerHTML = CONFIG.forfaits.map(f =>
+    `<tr><td class="ref">${f.ref}</td><td><strong>${esc(f.nom)}</strong><span class="det">${esc(f.detail)}</span></td><td><span class="dur">${f.duree}</span></td><td class="pr">À partir de <b>${eur(f.prix)} €</b> TTC<small>prix d'exemple</small></td></tr>`).join("");
+
+  /* --- fiches zones --- */
+  const forfaitsZone = z => CONFIG.forfaits.filter(f => f.zone === z);
+  function ficheHTML(z) {
+    const Z = CONFIG.zones[z];
+    const lignes = forfaitsZone(z).map(f =>
+      `<div class="ligne-forfait"><span class="nm">${esc(f.nom)}<small>${f.ref} · ${f.duree}</small></span><span class="px">À partir de <b>${eur(f.prix)} €</b> TTC</span></div>`).join("");
+    const premier = forfaitsZone(z)[0];
+    return `<div class="ph"><img loading="lazy" src="${unsplash(Z.photo, 800)}" srcset="${srcset(Z.photo)}" sizes="(max-width:860px) 90vw, 440px" alt="Illustration : ${esc(Z.titre)}"></div>
+      <h3>${esc(Z.titre)}</h3><p>${esc(Z.texte)}</p>${lignes}
+      <p style="margin:12px 0 0"><span class="prix-ex">prix d'exemple</span></p>
+      <div class="actions"><a class="btn rouge" href="#estimateur" data-estim="${premier ? premier.id : ""}">Estimer <span class="fl">→</span></a><a class="btn ligne" href="#rdv" data-besoin="${premier ? premier.id : ""}">Prendre RDV</a></div>`;
+  }
+  const corps = $("#ficheCorps"), rep = $("#ficheRep");
+  let zoneActive = null, verrou = false;
+  function montrer(z, lock) {
+    if (lock !== undefined) verrou = lock;
+    if (z === zoneActive) return;
+    zoneActive = z;
+    $$("#planSvg .zone").forEach(g => g.classList.toggle("on", g.dataset.zone === z));
+    rep.textContent = `REP. ${CONFIG.zones[z].n} — ${z.toUpperCase()}`;
+    corps.innerHTML = ficheHTML(z);
+    corps.classList.remove("swap"); void corps.offsetWidth; corps.classList.add("swap");
+  }
+  const estMobile = () => window.matchMedia("(max-width:860px)").matches;
+  $$("#planSvg .zone").forEach(g => {
+    const z = g.dataset.zone;
+    g.addEventListener("mouseenter", () => { if (!verrou && !estMobile()) montrer(z); });
+    g.addEventListener("focus", () => { if (!estMobile()) montrer(z); });
+    g.addEventListener("click", () => {
+      if (estMobile()) { ouvrirAcc(z, true); return; }
+      verrou = true; zoneActive = null; montrer(z);
+    });
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); g.dispatchEvent(new Event("click")); } });
+  });
+
+  /* liste mobile (accordéon) */
+  const liste = $("#zonesListe");
+  liste.innerHTML = Object.entries(CONFIG.zones).map(([z, Z]) => {
+    const min = Math.min(...forfaitsZone(z).map(f => f.prix));
+    return `<li><button type="button" aria-expanded="false" aria-controls="acc-${z}" data-z="${z}"><span class="n">${Z.n}</span>${esc(Z.titre)}<span class="apx">dès ${min} €</span><span class="chev">›</span></button><div class="acc" id="acc-${z}"><div><div class="in"></div></div></div></li>`;
+  }).join("");
+  function ouvrirAcc(z, scroll) {
+    $$("button[data-z]", liste).forEach(b => {
+      const open = b.dataset.z === z && b.getAttribute("aria-expanded") !== "true";
+      b.setAttribute("aria-expanded", open);
+      const acc = $("#acc-" + b.dataset.z);
+      if (open) { $(".in", acc).innerHTML = ficheHTML(b.dataset.z); }
+      acc.classList.toggle("open", open);
+      if (open && scroll) b.scrollIntoView({ behavior: reduit ? "auto" : "smooth", block: "start" });
+    });
+    $$("#planSvg .zone").forEach(g => g.classList.toggle("on", g.dataset.zone === z && $(`button[data-z="${z}"]`, liste).getAttribute("aria-expanded") === "true"));
+  }
+  liste.addEventListener("click", e => { const b = e.target.closest("button[data-z]"); if (b) ouvrirAcc(b.dataset.z, false); });
+
+  /* liens fiche -> estimateur / RDV */
+  document.addEventListener("click", e => {
+    const a = e.target.closest("[data-estim]");
+    if (a && a.dataset.estim) { $("#prest").value = a.dataset.estim; calculer(); }
+    const b = e.target.closest("[data-besoin]");
+    if (b && b.dataset.besoin) $("#besoin").value = b.dataset.besoin;
+  });
+
+  /* --- tracé du plan --- */
+  const svg = $("#planSvg");
+  $$(".d", svg).forEach((p, i) => p.style.setProperty("--dl", (i * 0.045).toFixed(3) + "s"));
+  if (reduit || !("IntersectionObserver" in window)) svg.classList.add("drawn");
+  else {
+    const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { svg.classList.add("drawn"); io.disconnect(); } }), { threshold: 0.25 });
+    io.observe(svg);
+  }
+
+  /* --- estimateur --- */
+  $("#vehs").innerHTML = CONFIG.vehicules.map((v, i) =>
+    `<input type="radio" name="veh" id="veh-${v.id}" value="${v.id}" ${i === 0 ? "checked" : ""}><label for="veh-${v.id}"><svg viewBox="0 0 52 26" aria-hidden="true"><path d="${v.svg}"/></svg>${esc(v.label)}</label>`).join("");
+  const opts = CONFIG.forfaits.map(f => `<option value="${f.id}">${esc(f.nom)}</option>`).join("");
+  $("#prest").innerHTML = opts;
+  $("#besoin").innerHTML = opts + `<option value="autre">Autre / je ne sais pas</option>`;
+  const round5 = n => Math.round(n / 5) * 5;
+  const affiches = { min: 0, max: 0 };
+  function anim(el, key, cible) {
+    const dep = affiches[key]; affiches[key] = cible;
+    if (reduit || dep === 0) { el.textContent = eur(cible); return; }
+    const t0 = performance.now(), D = 500;
+    (function step(t) {
+      const p = Math.min(1, (t - t0) / D), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = eur(Math.round(dep + (cible - dep) * e));
+      if (p < 1) requestAnimationFrame(step);
+    })(t0);
+  }
+  function calculer() {
+    const vId = ($("input[name=veh]:checked") || {}).value || CONFIG.vehicules[0].id;
+    const v = CONFIG.vehicules.find(x => x.id === vId);
+    const f = CONFIG.forfaits.find(x => x.id === $("#prest").value) || CONFIG.forfaits[0];
+    const min = round5(f.prix * v.k), max = round5(f.prix * v.k * 1.3);
+    anim($("#resMin"), "min", min); anim($("#resMax"), "max", max);
+    $("#resNom").textContent = f.nom;
+    $("#resDur").textContent = f.duree;
+    const securite = f.zone === "freins" || f.zone === "pneus";
+    const piec = $("#piec");
+    let note = "Le devis écrit et gratuit précisera le montant exact avant toute intervention.";
+    if (piec.checked) note = securite
+      ? "Pièces de sécurité (freins, pneus) : toujours neuves. Le réemploi ne s'applique pas à cette prestation."
+      : "Nous vous proposerons des pièces issues de l'économie circulaire si elles sont disponibles pour votre véhicule ; l'écart de prix figurera sur le devis.";
+    $("#resNote").textContent = note;
+    $("#estimRdv").dataset.besoin = f.id;
+  }
+  $("#estimForm").addEventListener("change", calculer);
+  calculer();
+
+  /* --- révélations --- */
+  if (reduit || !("IntersectionObserver" in window)) $$(".reveal").forEach(el => el.classList.add("in"));
+  else {
+    const ro = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); ro.unobserve(en.target); } }), { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    $$(".reveal").forEach(el => ro.observe(el));
+  }
+
+  /* --- parallax + section épinglée --- */
+  const par = $$("[data-parallax]");
+  const pin = $("#process"), etapes = $$(".etape"), rail = $(".rail");
+  let tick = false;
+  function surScroll() {
+    tick = false;
+    const vh = window.innerHeight;
+    if (!reduit) par.forEach(el => {
+      const r = el.parentElement.getBoundingClientRect();
+      const d = (r.top + r.height / 2 - vh / 2) * parseFloat(el.dataset.parallax);
+      el.style.transform = `translate3d(0,${d.toFixed(1)}px,0) scale(1.12)`;
+    });
+    if (reduit || estMobile()) { etapes.forEach(e => e.classList.add("on")); return; }
+    const r = pin.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, -r.top / (r.height - vh)));
+    rail.style.setProperty("--p", p.toFixed(3));
+    const n = Math.min(etapes.length - 1, Math.floor(p * etapes.length * 0.999 + 0.25));
+    etapes.forEach((e, i) => e.classList.toggle("on", i <= n));
+  }
+  window.addEventListener("scroll", () => { if (!tick) { tick = true; requestAnimationFrame(surScroll); } }, { passive: true });
+  window.addEventListener("resize", surScroll);
+  surScroll();
+
+  /* --- galerie + lightbox --- */
+  const gal = $("#galerie");
+  gal.innerHTML = CONFIG.photos.map((p, i) =>
+    `<button type="button" data-i="${i}" data-ref="AT-${String(i + 1).padStart(2, "0")}" aria-label="Agrandir : ${esc(p.alt)}"><img loading="lazy" src="${unsplash(p.id, 800)}" srcset="${srcset(p.id)}" sizes="(max-width:860px) 50vw, 360px" alt="${esc(p.alt)}"></button>`).join("");
+  const lb = $("#lb"), lbImg = $("#lbImg"), lbCap = $("#lbCap");
+  let cur = 0, dernierFocus = null;
+  function voir(i) {
+    cur = (i + CONFIG.photos.length) % CONFIG.photos.length;
+    const p = CONFIG.photos[cur];
+    lbImg.src = unsplash(p.id, 1600); lbImg.srcset = srcset(p.id); lbImg.sizes = "90vw"; lbImg.alt = p.alt;
+    lbCap.textContent = `AT-${String(cur + 1).padStart(2, "0")} · ${p.alt} · ${cur + 1}/${CONFIG.photos.length}`;
+  }
+  function ouvrir(i) { dernierFocus = document.activeElement; voir(i); lb.hidden = false; lb.classList.add("open"); document.body.style.overflow = "hidden"; $(".x", lb).focus(); }
+  function fermer() { lb.classList.remove("open"); lb.hidden = true; document.body.style.overflow = ""; if (dernierFocus) dernierFocus.focus(); }
+  gal.addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) ouvrir(+b.dataset.i); });
+  $(".x", lb).addEventListener("click", fermer);
+  $(".prev", lb).addEventListener("click", () => voir(cur - 1));
+  $(".next", lb).addEventListener("click", () => voir(cur + 1));
+  lb.addEventListener("click", e => { if (e.target === lb) fermer(); });
+  document.addEventListener("keydown", e => {
+    if (lb.hidden) return;
+    if (e.key === "Escape") fermer();
+    else if (e.key === "ArrowLeft") voir(cur - 1);
+    else if (e.key === "ArrowRight") voir(cur + 1);
+    else if (e.key === "Tab") { // piège de focus
+      const f = $$("button", lb); const i = f.indexOf(document.activeElement);
+      e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+  let x0 = null;
+  lb.addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) voir(cur + (dx < 0 ? 1 : -1));
+  });
+
+  /* --- menu mobile --- */
+  const burger = $("#burger"), nav = $("#nav");
+  burger.addEventListener("click", () => { const o = nav.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
+  nav.addEventListener("click", e => { if (e.target.closest("a")) { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
+
+  /* --- formulaire RDV (démo) --- */
+  const immat = $("#immat");
+  immat.addEventListener("input", () => {
+    let v = immat.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 7);
+    if (v.length > 5) v = v.slice(0, 2) + "-" + v.slice(2, 5) + "-" + v.slice(5);
+    else if (v.length > 2) v = v.slice(0, 2) + "-" + v.slice(2);
+    immat.value = v;
+  });
+  $("#rdvForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const ok = $("#ok");
+    const im = immat.value || "non renseignée";
+    ok.textContent = `Démonstration : votre demande (immatriculation ${im}) n'a pas été envoyée. Sur le site réel, l'atelier vous rappellerait avec un devis.`;
+    ok.classList.remove("show"); void ok.offsetWidth; ok.classList.add("show");
+  });
+})();
+</script>
+</body>
+</html>

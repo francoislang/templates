@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Chez Margot &amp; Fils — Bistrot de quartier à Saint-Aubin-sur-Morelle</title>
+<meta name="description" content="Bistrot de quartier, cuisine de saison et fait maison. Carte avec prix, ardoise du jour, réservation en ligne.">
+<meta name="theme-color" content="#B3261E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===== Variables (gabarit) ===== */
+:root{
+  --creme:#F4EDE1;
+  --rouge:#B3261E;
+  --marine:#1F2A44;
+  --moutarde:#E8C872;
+  --creme-2:#EADFCB;
+  --encre:#1F2A44;
+  --blanc:#FFFDF8;
+  --titre:'Abril Fatface', Georgia, serif;
+  --texte:'Libre Franklin', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --rayon:22px;
+  --ombre-posee:0 2px 0 rgba(31,42,68,.08), 0 10px 24px -12px rgba(31,42,68,.35);
+  --ombre-levee:0 40px 60px -20px rgba(31,42,68,.45);
+  --carreau:34px;
+  --header-h:68px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px)}
+body{
+  margin:0;font-family:var(--texte);color:var(--encre);font-size:17px;line-height:1.6;
+  background-color:var(--creme);
+  /* la table : vichy très discret */
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--rouge) 7%, transparent) 50%, transparent 50%),
+    linear-gradient(color-mix(in srgb, var(--rouge) 7%, transparent) 50%, transparent 50%);
+  background-size:calc(var(--carreau)*2) calc(var(--carreau)*2);
+  overflow-x:hidden;
+}
+@supports (overflow:clip){body{overflow-x:clip}}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--moutarde);outline-offset:3px;border-radius:6px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1180px, 100% - 32px);margin-inline:auto}
+h1,h2,h3{font-family:var(--titre);font-weight:400;line-height:1.05;margin:0 0 .4em;letter-spacing:.005em}
+h2{font-size:clamp(2.2rem, 5.5vw, 3.8rem);color:var(--rouge)}
+h3{font-size:clamp(1.35rem, 2.6vw, 1.8rem)}
+p{margin:0 0 1em}
+.surtitre{font-weight:800;text-transform:uppercase;letter-spacing:.18em;font-size:.78rem;color:var(--marine);display:inline-flex;align-items:center;gap:.6em;margin-bottom:.6rem}
+.surtitre::before{content:"";width:28px;height:2px;background:var(--rouge)}
+.vichy{
+  background-color:var(--creme);
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--rouge) 55%, transparent) 50%, transparent 50%),
+    linear-gradient(color-mix(in srgb, var(--rouge) 55%, transparent) 50%, transparent 50%);
+  background-size:var(--carreau) var(--carreau);
+}
+
+/* ===== Boutons ===== */
+.btn{
+  --b:var(--rouge);
+  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+  padding:.85em 1.4em;border-radius:999px;border:2px solid var(--b);
+  background:var(--b);color:var(--blanc);font-weight:700;text-decoration:none;cursor:pointer;
+  box-shadow:0 4px 0 color-mix(in srgb, var(--b) 60%, #000);
+  transition:transform .15s ease, box-shadow .15s ease, background .2s;
+  white-space:nowrap;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 0 color-mix(in srgb, var(--b) 60%, #000)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 color-mix(in srgb, var(--b) 60%, #000)}
+.btn--ghost{background:transparent;color:var(--marine);--b:var(--marine);box-shadow:none}
+.btn--ghost:hover{background:var(--marine);color:var(--creme);box-shadow:none}
+.btn--marine{--b:var(--marine)}
+.btn svg{width:1.1em;height:1.1em}
+
+/* ===== Intro : la nappe se déplie ===== */
+#nappe{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  background:var(--marine);overflow:hidden;perspective:1400px;
+  transition:opacity .7s ease .1s, visibility 0s linear .8s;
+}
+#nappe.fini{opacity:0;visibility:hidden;pointer-events:none}
+.cloth{
+  --s:min(42vmin, 300px);
+  position:relative;width:calc(var(--s)*2);height:calc(var(--s)*2);
+  transform-style:preserve-3d;
+  transform:translate(25%,25%) scale(.9);
+  transition:transform 1s cubic-bezier(.7,0,.2,1);
+}
+.cloth .pan{position:absolute;backface-visibility:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.cloth .tl{left:0;top:0;width:50%;height:50%}
+.cloth .tr{left:50%;top:0;width:50%;height:50%;transform-origin:left center;transform:rotateY(-180deg);transition:transform .7s cubic-bezier(.6,0,.2,1)}
+.cloth .bot{position:absolute;left:0;top:50%;width:100%;height:50%;transform-origin:center top;transform:rotateX(180deg);transition:transform .8s cubic-bezier(.6,0,.2,1);transform-style:preserve-3d}
+.cloth .bot .pan{position:absolute;inset:0}
+.cloth .tl::after,.cloth .tr::after,.cloth .bot .pan::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg, rgba(255,255,255,.18), transparent 45%, rgba(0,0,0,.12))}
+#nappe.s1 .cloth{transform:translate(0,25%) scale(.9)}
+#nappe.s1 .tr{transform:rotateY(0)}
+#nappe.s2 .cloth{transform:translate(0,0) scale(.9)}
+#nappe.s2 .bot{transform:rotateX(0)}
+#nappe.s3 .cloth{transform:scale(4.2) rotate(-6deg);transition-duration:1.1s}
+.nappe-titre{
+  position:absolute;inset:auto 0 4vh;text-align:center;color:var(--creme);text-shadow:0 2px 12px rgba(0,0,0,.5);
+  font-family:var(--titre);font-size:clamp(1.4rem,4vw,2.4rem);opacity:0;transform:translateY(10px);
+  transition:opacity .5s, transform .5s;
+}
+#nappe.s1 .nappe-titre{opacity:1;transform:none}
+#nappe.s3 .nappe-titre{opacity:0}
+.passer{position:absolute;top:16px;right:16px;background:transparent;border:1px solid rgba(244,237,225,.4);color:var(--creme);border-radius:999px;padding:.4em 1em;cursor:pointer;font-size:.85rem}
+
+/* ===== En-tête ===== */
+header.top{
+  position:sticky;top:0;z-index:50;height:var(--header-h);
+  background:color-mix(in srgb, var(--creme) 92%, transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:3px solid var(--rouge);
+}
+header.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.logo-pastille{width:42px;height:42px;border-radius:50%;flex:none;border:3px solid var(--rouge);box-shadow:0 0 0 2px var(--creme) inset}
+.logo b{font-family:var(--titre);font-weight:400;font-size:1.35rem;color:var(--rouge);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+nav.menu ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+nav.menu a{display:block;padding:.45em .8em;border-radius:999px;text-decoration:none;font-weight:600;font-size:.95rem;position:relative}
+nav.menu a::after{content:"";position:absolute;left:.8em;right:.8em;bottom:.25em;height:2px;background:var(--rouge);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+nav.menu a:hover::after,nav.menu a.actif::after{transform:scaleX(1)}
+.top .btn{padding:.6em 1.15em}
+@media (max-width:960px){nav.menu{display:none}}
+@media (max-width:520px){.top .btn--resa-top{display:none}.logo b{font-size:1.15rem}}
+
+/* ===== Assiette : les sections se posent ===== */
+.assiette{
+  background:var(--blanc);border-radius:var(--rayon);
+  box-shadow:var(--ombre-posee), inset 0 0 0 10px var(--creme), inset 0 0 0 12px color-mix(in srgb, var(--rouge) 25%, transparent);
+  padding:clamp(28px, 5vw, 64px);
+  position:relative;
+}
+.js .pose{opacity:0;transform:translateY(-60px) scale(1.04) rotate(-1.2deg);filter:drop-shadow(0 50px 40px rgba(31,42,68,.25))}
+.js .pose.posee{animation:poser .9s cubic-bezier(.3,1.25,.5,1) forwards}
+@keyframes poser{
+  0%{opacity:0;transform:translateY(-60px) scale(1.04) rotate(-1.2deg);filter:drop-shadow(0 50px 40px rgba(31,42,68,.25))}
+  55%{opacity:1;transform:translateY(4px) scale(.995) rotate(.2deg);filter:drop-shadow(0 4px 6px rgba(31,42,68,.15))}
+  100%{opacity:1;transform:none;filter:drop-shadow(0 0 0 rgba(0,0,0,0))}
+}
+.js .revele{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+.js .revele.vu{opacity:1;transform:none}
+section{padding:clamp(48px, 8vw, 96px) 0}
+
+/* ===== Hero ===== */
+.hero{padding-top:clamp(24px,4vw,48px);position:relative}
+.hero-grille{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(20px,4vw,48px);align-items:stretch}
+.hero-texte{display:flex;flex-direction:column;justify-content:center}
+.hero h1{font-size:clamp(3rem, 7.6vw, 6.2rem);color:var(--rouge);margin:.1em 0 .05em;line-height:.92}
+.hero h1 .amp{color:var(--marine);font-size:.7em}
+.ville{font-family:var(--titre);line-height:1.1;font-size:clamp(1.5rem,3.6vw,2.6rem);color:var(--marine);display:flex;align-items:center;gap:.4em;margin-bottom:.6em}
+.ville::before{content:"";flex:none;width:.9em;height:.9em;border-radius:50%;background:var(--moutarde);box-shadow:0 0 0 3px var(--marine)}
+.accroche{font-size:clamp(1.05rem,1.6vw,1.2rem);max-width:34em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+.aujourdhui{
+  display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:18px 0 22px;padding:12px 16px;border-radius:16px;
+  background:var(--marine);color:var(--creme);font-weight:600;font-size:.95rem
+}
+.aujourdhui .etat{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--moutarde)}
+.aujourdhui .etat i{width:10px;height:10px;border-radius:50%;background:#7bd389;box-shadow:0 0 0 0 rgba(123,211,137,.7);animation:pouls 2s infinite}
+.aujourdhui .etat.ferme i{background:#e57a73;animation:none}
+@keyframes pouls{70%{box-shadow:0 0 0 10px rgba(123,211,137,0)}100%{box-shadow:0 0 0 0 rgba(123,211,137,0)}}
+.hero-photo{position:relative;border-radius:var(--rayon);overflow:hidden;min-height:440px;background:var(--marine)}
+.hero-photo img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover;will-change:transform}
+.hero-photo::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 10px rgba(244,237,225,.85);border-radius:inherit;pointer-events:none}
+.tampon{
+  position:absolute;right:18px;bottom:18px;z-index:2;width:118px;height:118px;border-radius:50%;
+  background:var(--moutarde);color:var(--marine);display:grid;place-items:center;text-align:center;
+  font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;line-height:1.25;
+  border:3px dashed var(--marine);transform:rotate(-10deg);transition:transform .4s
+}
+.tampon:hover{transform:rotate(8deg) scale(1.05)}
+.puces{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.puces li{background:var(--blanc);border:1.5px solid color-mix(in srgb,var(--marine) 25%,transparent);border-radius:999px;padding:.3em .85em;font-size:.86rem;font-weight:600}
+@media (max-width:860px){
+  .hero-grille{grid-template-columns:1fr}
+  .hero-photo{min-height:240px;order:-1}
+}
+
+/* bande défilante */
+.ruban{background:var(--rouge);color:var(--creme);overflow:hidden;white-space:nowrap;border-block:3px solid var(--marine);margin-top:clamp(32px,5vw,56px)}
+.ruban div{display:inline-flex;gap:2.5em;padding:.7em 0;animation:defile 38s linear infinite;font-family:var(--titre);font-size:1.25rem}
+.ruban span::after{content:"✦";margin-left:2.5em;color:var(--moutarde)}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ===== Carte ===== */
+.mention-prix{display:inline-block;background:var(--moutarde);color:var(--marine);font-weight:800;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .7em;border-radius:6px;transform:rotate(-2deg)}
+.carte-tete{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 24px;margin-bottom:22px}
+.onglets{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 26px;padding:6px;background:var(--creme);border-radius:999px;width:fit-content;max-width:100%}
+.onglets button{border:0;background:transparent;padding:.55em 1.05em;border-radius:999px;cursor:pointer;font-weight:700;font-size:.95rem;transition:background .2s,color .2s}
+.onglets button[aria-selected="true"]{background:var(--rouge);color:var(--creme)}
+.onglets button:not([aria-selected="true"]):hover{background:var(--creme-2)}
+@media (max-width:640px){.onglets{border-radius:18px}.onglets button{flex:1 1 auto;font-size:.88rem;padding:.55em .7em}}
+.panneau[hidden]{display:none}
+.panneau{animation:apparait .45s ease}
+@keyframes apparait{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.plats{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 48px}
+@media (max-width:760px){.plats{grid-template-columns:1fr}}
+.plat{padding:14px 0;border-bottom:1.5px dashed color-mix(in srgb,var(--marine) 22%,transparent)}
+.plat-ligne{display:flex;align-items:baseline;gap:10px}
+.plat-nom{font-weight:700;font-size:1.06rem}
+.plat-ligne .pointilles{flex:1;border-bottom:2px dotted color-mix(in srgb,var(--marine) 35%,transparent);transform:translateY(-4px);min-width:16px}
+.prix{font-family:var(--titre);font-size:1.3rem;color:var(--rouge);white-space:nowrap}
+.plat-desc{font-size:.93rem;color:color-mix(in srgb,var(--marine) 80%,transparent);margin:.2em 0 .35em}
+.plat-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.origine{font-size:.78rem;font-weight:700;color:var(--marine);background:color-mix(in srgb,var(--moutarde) 45%,transparent);border-radius:6px;padding:.1em .5em}
+.allerg{display:inline-grid;place-items:center;min-width:26px;height:26px;padding:0 5px;border-radius:50%;font-size:.68rem;font-weight:800;border:1.5px solid var(--marine);color:var(--marine);background:var(--blanc);cursor:help}
+.formules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.formule{background:var(--creme);border-radius:18px;padding:22px;position:relative;transition:transform .25s, box-shadow .25s;border:2px solid transparent}
+.formule:hover{transform:translateY(-4px) rotate(-.5deg);box-shadow:var(--ombre-levee);border-color:var(--rouge)}
+.formule h3{color:var(--marine);font-size:1.4rem}
+.formule .prix{font-size:2.2rem;display:block;margin:.1em 0}
+.formule .quand{font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rouge)}
+.boisson{display:inline-block;margin-top:8px;font-size:.82rem;font-weight:700;padding:.2em .6em;border-radius:6px;background:var(--marine);color:var(--creme)}
+.boisson.oui{background:var(--rouge)}
+.ardoise{
+  background:#2b2f2c;color:#f3efe6;border-radius:14px;padding:clamp(22px,4vw,40px);
+  border:14px solid #8a5a33;box-shadow:inset 0 0 40px rgba(0,0,0,.5), var(--ombre-posee);
+  font-family:var(--texte);position:relative;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px, transparent 1px);background-size:6px 6px
+}
+.ardoise h3{font-family:var(--titre);color:#fff;font-size:clamp(1.6rem,3.5vw,2.4rem)}
+.ardoise .date{color:var(--moutarde);font-weight:700}
+.ardoise ul{list-style:none;padding:0;margin:16px 0 0}
+.ardoise li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.25);font-size:1.08rem}
+.ardoise li .prix{color:var(--moutarde)}
+.ardoise small{opacity:.8;display:block;font-size:.85rem;width:100%}
+.ardoise .craie{font-style:italic;opacity:.85;margin-top:16px}
+.tablevins{width:100%;border-collapse:collapse;font-size:.98rem}
+.tablevins th,.tablevins td{padding:12px 8px;text-align:right;border-bottom:1.5px dashed color-mix(in srgb,var(--marine) 22%,transparent)}
+.tablevins th:first-child,.tablevins td:first-child{text-align:left}
+.tablevins thead th{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--rouge)}
+.tablevins td .prix{font-size:1.1rem}
+.tablevins td small{display:block;color:color-mix(in srgb,var(--marine) 70%,transparent)}
+@media (max-width:560px){.tablevins{font-size:.88rem}.tablevins th,.tablevins td{padding:10px 4px}}
+.encart-mentions{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.encart{background:var(--creme);border-radius:14px;padding:14px 16px;font-size:.9rem;display:flex;gap:12px;align-items:flex-start}
+.encart svg{flex:none;width:26px;height:26px;color:var(--rouge)}
+.legende{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:.84rem}
+.legende span{display:inline-flex;align-items:center;gap:6px}
+
+/* ===== Réservation ===== */
+.resa-grille{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(20px,4vw,56px)}
+@media (max-width:900px){.resa-grille{grid-template-columns:1fr}}
+.resa-aside .photo{border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--creme-2);margin:18px 0}
+.resa-aside .photo img{width:100%;height:100%;object-fit:cover}
+form.resa{display:grid;gap:20px}
+.champ label,.champ legend{display:block;font-weight:700;margin-bottom:8px;font-size:.95rem}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.champ input[type=date],.champ input[type=text],.champ input[type=tel],.champ input[type=email],.champ textarea{
+  width:100%;padding:.8em 1em;border-radius:12px;border:2px solid color-mix(in srgb,var(--marine) 25%,transparent);background:var(--blanc);transition:border-color .2s, box-shadow .2s
+}
+.champ input:focus,.champ textarea:focus{border-color:var(--rouge);box-shadow:0 0 0 4px color-mix(in srgb,var(--rouge) 15%,transparent);outline:none}
+.champ textarea{min-height:96px;resize:vertical}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.deux{grid-template-columns:1fr}}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choix input{position:absolute;opacity:0;pointer-events:none}
+.choix span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:.8em;border-radius:14px;border:2px solid color-mix(in srgb,var(--marine) 25%,transparent);background:var(--blanc);cursor:pointer;font-weight:700;transition:all .2s;text-align:center}
+.choix span small{font-weight:500;font-size:.8rem;opacity:.75}
+.choix input:checked + span{background:var(--marine);color:var(--creme);border-color:var(--marine);transform:scale(1.02)}
+.choix input:focus-visible + span{outline:3px solid var(--moutarde);outline-offset:2px}
+.choix input:disabled + span{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.creneaux{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.creneaux button{padding:.6em .2em;border-radius:10px;border:2px solid color-mix(in srgb,var(--marine) 22%,transparent);background:var(--blanc);font-weight:700;cursor:pointer;transition:transform .15s, background .2s}
+.creneaux button:hover:not(:disabled){transform:translateY(-2px);border-color:var(--rouge)}
+.creneaux button[aria-pressed="true"]{background:var(--rouge);color:var(--creme);border-color:var(--rouge)}
+.creneaux button:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.info-creneaux{font-size:.9rem;color:var(--rouge);font-weight:600;margin:0}
+.couverts{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.couverts .stepper{display:flex;align-items:center;background:var(--blanc);border:2px solid color-mix(in srgb,var(--marine) 25%,transparent);border-radius:999px;overflow:hidden}
+.couverts button{width:48px;height:48px;border:0;background:transparent;font-size:1.4rem;font-weight:700;cursor:pointer}
+.couverts button:hover:not(:disabled){background:var(--creme)}
+.couverts button:disabled{opacity:.3}
+.couverts output{min-width:3.2em;text-align:center;font-family:var(--titre);font-size:1.6rem;color:var(--rouge)}
+.assiettes-vis{display:flex;flex-wrap:wrap;gap:4px;max-width:260px}
+.assiettes-vis i{width:18px;height:18px;border-radius:50%;background:var(--blanc);border:2px solid var(--marine);box-shadow:inset 0 0 0 3px var(--creme);animation:plop .3s cubic-bezier(.3,1.6,.5,1)}
+@keyframes plop{from{transform:scale(0)}to{transform:scale(1)}}
+.note{font-size:.85rem;color:color-mix(in srgb,var(--marine) 75%,transparent)}
+.erreur{color:var(--rouge);font-weight:700;font-size:.9rem;min-height:1.2em;margin:0}
+.demo-bandeau{background:var(--moutarde);color:var(--marine);border-radius:12px;padding:10px 14px;font-weight:600;font-size:.9rem}
+.confirmation{background:var(--creme);border-radius:18px;padding:26px;border:3px dashed var(--rouge);animation:apparait .5s}
+.confirmation h3{color:var(--rouge)}
+.confirmation dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:12px 0 18px}
+.confirmation dt{font-weight:700}
+.confirmation dd{margin:0}
+
+/* ===== Infos pratiques ===== */
+.infos-grille{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+@media (max-width:960px){.infos-grille{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.infos-grille{grid-template-columns:1fr}}
+.horaires{width:100%;border-collapse:collapse;font-size:.95rem}
+.horaires td{padding:8px 4px;border-bottom:1px dashed color-mix(in srgb,var(--marine) 22%,transparent)}
+.horaires td:last-child{text-align:right}
+.horaires tr.ajd td{font-weight:800;color:var(--rouge)}
+.plan{border-radius:16px;overflow:hidden;background:var(--creme);aspect-ratio:4/3;margin-bottom:12px}
+.plan svg{width:100%;height:100%;display:block}
+.infos-grille ul{padding-left:1.1em;margin:0}
+.infos-grille li{margin-bottom:.4em}
+
+/* ===== Galerie ===== */
+.galerie{display:grid;grid-auto-flow:dense;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:12px}
+.galerie button{padding:0;border:0;border-radius:14px;overflow:hidden;cursor:zoom-in;background:var(--creme-2);position:relative}
+.galerie button img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.galerie button:hover img{transform:scale(1.07)}
+.galerie button::after{content:attr(data-legende);position:absolute;left:10px;bottom:10px;right:10px;color:var(--creme);font-weight:700;font-size:.85rem;text-align:left;text-shadow:0 1px 6px rgba(0,0,0,.6);opacity:0;transform:translateY(6px);transition:all .3s}
+.galerie button:hover::after,.galerie button:focus-visible::after{opacity:1;transform:none}
+.galerie .g-l{grid-row:span 2}
+.galerie .g-w{grid-column:span 2}
+@media (max-width:760px){.galerie{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}.galerie .g-w{grid-column:span 2}}
+.lightbox{position:fixed;inset:0;z-index:120;background:rgba(20,26,42,.94);display:grid;grid-template-rows:1fr auto;place-items:center;padding:56px 12px 20px;opacity:0;visibility:hidden;transition:opacity .3s, visibility 0s .3s;touch-action:pan-y}
+.lightbox.ouvert{opacity:1;visibility:visible;transition:opacity .3s}
+.lightbox figure{margin:0;max-width:min(1200px,100%);width:100%;display:grid;place-items:center;height:100%;min-height:0}
+.lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;background:var(--marine);aspect-ratio:3/2;width:min(1100px,100%);transition:transform .3s, opacity .3s}
+.lightbox .lb-legende{color:var(--creme);text-align:center;font-size:.95rem;margin-top:10px}
+.lightbox button{position:absolute;background:var(--creme);color:var(--marine);border:0;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:1.4rem;font-weight:700;display:grid;place-items:center;transition:transform .2s}
+.lightbox button:hover{transform:scale(1.08)}
+.lb-fermer{top:12px;right:12px}
+.lb-prec{left:12px;top:50%;margin-top:-24px}
+.lb-suiv{right:12px;top:50%;margin-top:-24px}
+
+/* ===== Section épinglée : fait maison ===== */
+.epingle{height:300vh;position:relative;padding:0}
+.epingle .colle{position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));display:flex;align-items:center;overflow:hidden}
+.etapes{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
+.etapes-visuels{position:relative;aspect-ratio:4/5;max-height:70vh;border-radius:var(--rayon);overflow:hidden;background:var(--marine);width:100%}
+.etapes-visuels img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .7s, transform 1.2s}
+.etapes-visuels img.on{opacity:1;transform:none}
+.etape{display:none}
+.etape.on{display:block;animation:apparait .6s}
+.etapes-num{display:flex;gap:10px;margin-bottom:18px}
+.etapes-num span{width:44px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--marine) 20%,transparent);overflow:hidden;position:relative}
+.etapes-num span i{position:absolute;inset:0;background:var(--rouge);transform:scaleX(0);transform-origin:left}
+.etape h3{font-size:clamp(1.8rem,4vw,2.8rem);color:var(--marine)}
+@media (max-width:760px){
+  .etapes{grid-template-columns:1fr;gap:16px}
+  .etapes-visuels{aspect-ratio:16/10;max-height:38vh}
+  .etape h3{font-size:1.6rem}
+  .etape p{font-size:.95rem}
+}
+
+/* ===== Groupes / bons cadeaux ===== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:860px){.duo{grid-template-columns:1fr}}
+.duo .assiette{display:flex;flex-direction:column}
+.duo .vignette{border-radius:14px;overflow:hidden;aspect-ratio:16/9;background:var(--creme-2);margin-bottom:18px}
+.duo .vignette img{width:100%;height:100%;object-fit:cover}
+.duo .btn{align-self:flex-start;margin-top:auto}
+.bon{
+  background:var(--rouge);color:var(--creme);border-radius:16px;padding:22px;margin-bottom:18px;position:relative;
+  border:2px dashed var(--moutarde);outline:8px solid var(--rouge);outline-offset:-1px;transition:transform .4s
+}
+.bon:hover{transform:rotate(-1.5deg) scale(1.01)}
+.bon b{font-family:var(--titre);font-size:1.8rem;font-weight:400;display:block}
+.bon::before,.bon::after{content:"";position:absolute;top:50%;width:26px;height:26px;margin-top:-13px;border-radius:50%;background:var(--blanc)}
+.bon::before{left:-21px}.bon::after{right:-21px}
+
+/* ===== Avis ===== */
+.avis-vide{border:3px dashed color-mix(in srgb,var(--marine) 30%,transparent);border-radius:18px;padding:40px 24px;text-align:center;color:color-mix(in srgb,var(--marine) 75%,transparent)}
+.avis-vide .couverts-ico{display:flex;justify-content:center;gap:10px;margin-bottom:12px;color:var(--rouge)}
+
+/* ===== Pied ===== */
+footer{background:var(--marine);color:var(--creme);padding:56px 0 120px;margin-top:40px;position:relative}
+footer::before{content:"";position:absolute;left:0;right:0;top:-18px;height:18px;background-color:var(--creme);background-image:linear-gradient(90deg, var(--rouge) 50%, transparent 50%);background-size:36px 18px}
+footer .wrap{display:grid;grid-template-columns:2fr 1fr 1fr;gap:28px}
+@media (max-width:760px){footer .wrap{grid-template-columns:1fr}}
+footer h3{color:var(--moutarde)}
+footer a{color:var(--creme)}
+footer small{opacity:.75}
+.legal{grid-column:1/-1;border-top:1px solid rgba(244,237,225,.2);padding-top:18px;font-size:.84rem;opacity:.85}
+
+/* ===== Barre mobile ===== */
+.barre-mobile{display:none}
+@media (max-width:760px){
+  .barre-mobile{
+    display:flex;gap:10px;position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:60;
+    background:var(--marine);padding:8px;border-radius:999px;box-shadow:0 12px 30px -8px rgba(0,0,0,.5);
+    transition:transform .35s
+  }
+  .barre-mobile.cachee{transform:translateY(150%)}
+  .barre-mobile .btn{flex:1;padding:.75em 1em}
+  .barre-mobile .btn--ghost{flex:0 0 auto;color:var(--creme);border-color:rgba(244,237,225,.4)}
+  body{padding-bottom:20px}
+}
+
+/* ===== Mouvement réduit ===== */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  html{scroll-behavior:auto}
+  #nappe{display:none}
+  .js .pose,.js .revele{opacity:1!important;transform:none!important;filter:none!important}
+  .ruban div{animation:none}
+  .epingle{height:auto;padding:clamp(48px,8vw,96px) 0}
+  .epingle .colle{position:static;height:auto}
+  .etape{display:block;margin-bottom:24px}
+  .etapes-num{display:none}
+  .etapes-visuels img{opacity:0}
+  .etapes-visuels img:first-child{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js');document.body.classList.add('js')</script>
+
+<!-- Intro : la nappe vichy se déplie -->
+<div id="nappe" aria-hidden="true">
+  <div class="cloth">
+    <div class="pan tl vichy"></div>
+    <div class="pan tr vichy"></div>
+    <div class="bot"><div class="pan vichy"></div></div>
+  </div>
+  <p class="nappe-titre" data-cfg="nom"></p>
+  <button class="passer" type="button" tabindex="-1">Passer</button>
+</div>
+
+<a class="sr" href="#carte">Aller à la carte</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#accueil"><span class="logo-pastille vichy" aria-hidden="true"></span><b data-cfg="nom">Chez Margot &amp; Fils</b></a>
+    <nav class="menu" aria-label="Navigation principale">
+      <ul>
+        <li><a href="#carte">La carte</a></li>
+        <li><a href="#infos">Horaires &amp; accès</a></li>
+        <li><a href="#galerie">Photos</a></li>
+        <li><a href="#maison">Fait maison</a></li>
+        <li><a href="#groupes">Groupes</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--resa-top" href="#reserver">Réserver</a>
+  </div>
+</header>
+
+<main id="accueil">
+  <!-- ===== HERO ===== -->
+  <section class="hero" aria-labelledby="titre-site">
+    <div class="wrap hero-grille">
+      <div class="hero-texte assiette pose">
+        <span class="surtitre">Bistrot de quartier · cuisine de saison</span>
+        <h1 id="titre-site" data-cfg="nomHtml">Chez Margot <span class="amp">&amp;</span> Fils</h1>
+        <p class="ville" data-cfg="ville">Saint-Aubin-sur-Morelle</p>
+        <p class="accroche" data-cfg="accroche"></p>
+        <div class="aujourdhui" id="aujourdhui" aria-live="polite"></div>
+        <div class="hero-cta">
+          <a class="btn" href="#reserver"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Réserver une table</a>
+          <a class="btn btn--ghost" href="#carte">Voir la carte &amp; les prix</a>
+        </div>
+        <ul class="puces">
+          <li>Titres-restaurant acceptés</li>
+          <li>Terrasse aux beaux jours</li>
+          <li>Groupes jusqu'à 30 couverts</li>
+          <li>Eau en carafe offerte</li>
+        </ul>
+      </div>
+      <div class="hero-photo pose">
+        <img id="hero-img" alt="La salle du bistrot : tables en bois et lumière douce" fetchpriority="high" sizes="(max-width:860px) 100vw, 48vw" data-photo="salle">
+        <div class="tampon" aria-hidden="true">Fait<br>sur place<br>chaque jour</div>
+      </div>
+    </div>
+    <div class="ruban" aria-hidden="true"><div id="ruban"></div></div>
+  </section>
+
+  <!-- ===== CARTE ===== -->
+  <section id="carte" aria-labelledby="t-carte">
+    <div class="wrap">
+      <div class="assiette pose">
+        <div class="carte-tete">
+          <div>
+            <span class="surtitre">À table</span>
+            <h2 id="t-carte">La carte &amp; les menus</h2>
+            <p class="note" style="margin:0">Prix nets en euros, TTC, service compris. Carte de saison, susceptible d'évoluer selon le marché.</p>
+          </div>
+          <span class="mention-prix">Prix d'exemple — maquette</span>
+        </div>
+        <div class="onglets" role="tablist" aria-label="Rubriques de la carte" id="onglets"></div>
+        <div id="panneaux"></div>
+        <div class="legende" id="legende" aria-label="Légende des allergènes"></div>
+        <div class="encart-mentions">
+          <div class="encart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.5"/></svg><div><b>Allergènes :</b> liste détaillée disponible, demandez-nous. Signalez toute allergie à la réservation ou au service.</div></div>
+          <div class="encart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 3h10l-1 18H8z"/><path d="M7.5 9h9"/></svg><div><b>Eau en carafe</b> gratuite sur demande.</div></div>
+          <div class="encart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l4 4 10-10"/></svg><div><b>Origine des viandes :</b> pays d'origine indiqué sur chaque plat concerné.</div></div>
+          <div class="encart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>Titres-restaurant acceptés</b> (papier et carte), selon la réglementation en vigueur.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RÉSERVATION ===== -->
+  <section id="reserver" aria-labelledby="t-resa">
+    <div class="wrap">
+      <div class="assiette pose resa-grille">
+        <div class="resa-aside">
+          <span class="surtitre">Votre table</span>
+          <h2 id="t-resa">Réserver</h2>
+          <p>Choisissez votre jour, votre service et l'heure qui vous arrange : nous vous gardons la table. Réservation possible à toute heure, depuis votre téléphone.</p>
+          <div class="photo"><img alt="Table dressée avec verres à vin" loading="lazy" sizes="(max-width:900px) 100vw, 34vw" data-photo="tablevin"></div>
+          <p class="note">Au-delà de 12 couverts, voyez la rubrique <a href="#groupes">groupes &amp; privatisation</a>. Les tables sont gardées 15 minutes après l'heure réservée.</p>
+        </div>
+        <div>
+          <p class="demo-bandeau" role="note">Démonstration : ce formulaire fonctionne mais rien n'est envoyé ni enregistré.</p>
+          <form class="resa" id="form-resa" novalidate>
+            <div class="champ">
+              <label for="r-date">Date</label>
+              <input type="date" id="r-date" name="date" required>
+              <p class="erreur" id="err-date"></p>
+            </div>
+            <fieldset class="champ">
+              <legend>Service</legend>
+              <div class="services">
+                <label class="choix"><input type="radio" name="service" value="midi" checked><span>Midi<small id="h-midi"></small></span></label>
+                <label class="choix"><input type="radio" name="service" value="soir"><span>Soir<small id="h-soir"></small></span></label>
+              </div>
+            </fieldset>
+            <fieldset class="champ">
+              <legend>Heure d'arrivée <span class="note">(créneaux de 15 min)</span></legend>
+              <div class="creneaux" id="creneaux" role="group" aria-label="Créneaux disponibles"></div>
+              <p class="info-creneaux" id="info-creneaux" aria-live="polite"></p>
+            </fieldset>
+            <fieldset class="champ">
+              <legend id="lg-couverts">Nombre de couverts</legend>
+              <div class="couverts">
+                <div class="stepper">
+                  <button type="button" id="moins" aria-label="Retirer un couvert">−</button>
+                  <output id="nb-couverts" aria-live="polite" aria-labelledby="lg-couverts">2</output>
+                  <button type="button" id="plus" aria-label="Ajouter un couvert">+</button>
+                </div>
+                <div class="assiettes-vis" id="assiettes-vis" aria-hidden="true"></div>
+              </div>
+            </fieldset>
+            <div class="deux">
+              <div class="champ"><label for="r-nom">Nom</label><input type="text" id="r-nom" name="nom" autocomplete="name" required><p class="erreur" id="err-nom"></p></div>
+              <div class="champ"><label for="r-tel">Téléphone</label><input type="tel" id="r-tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="06 XX XX XX XX" required><p class="erreur" id="err-tel"></p></div>
+            </div>
+            <div class="champ">
+              <label for="r-demande">Demande particulière <span class="note">(facultatif : allergie, poussette, anniversaire, terrasse…)</span></label>
+              <textarea id="r-demande" name="demande" maxlength="400"></textarea>
+            </div>
+            <button class="btn" type="submit" style="justify-self:start">Confirmer la réservation (démo)</button>
+          </form>
+          <div id="confirmation" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFOS ===== -->
+  <section id="infos" aria-labelledby="t-infos">
+    <div class="wrap">
+      <div class="assiette pose">
+        <span class="surtitre">Infos pratiques</span>
+        <h2 id="t-infos">Horaires, adresse &amp; accès</h2>
+        <div class="infos-grille">
+          <div>
+            <h3>Jours de service</h3>
+            <table class="horaires" id="table-horaires"><caption class="sr">Horaires d'ouverture</caption><tbody></tbody></table>
+            <p class="note" style="margin-top:10px">Dernière prise de commande 30 min avant la fermeture de la cuisine.</p>
+          </div>
+          <div>
+            <h3>Nous trouver</h3>
+            <div class="plan" aria-label="Plan schématique du quartier" role="img">
+              <svg viewBox="0 0 400 300" aria-hidden="true">
+                <rect width="400" height="300" fill="#EADFCB"/>
+                <path d="M0 190 L400 150" stroke="#F4EDE1" stroke-width="30"/>
+                <path d="M150 0 L190 300" stroke="#F4EDE1" stroke-width="22"/>
+                <path d="M300 0 C280 120 320 200 290 300" stroke="#b9cfe0" stroke-width="16" fill="none"/>
+                <rect x="40" y="40" width="80" height="110" rx="8" fill="#d9ccb4"/><rect x="215" y="30" width="60" height="90" rx="8" fill="#d9ccb4"/>
+                <rect x="40" y="215" width="100" height="60" rx="8" fill="#d9ccb4"/><rect x="210" y="190" width="60" height="80" rx="8" fill="#d9ccb4"/>
+                <circle cx="330" cy="60" r="16" fill="#1F2A44"/><text x="330" y="66" font-size="16" text-anchor="middle" fill="#F4EDE1" font-family="sans-serif" font-weight="700">P</text>
+                <circle cx="95" cy="178" r="10" fill="#E8C872" stroke="#1F2A44" stroke-width="3"/>
+                <g transform="translate(200 128)"><path d="M0 0c-14-18-22-28-22-40a22 22 0 0 1 44 0c0 12-8 22-22 40z" fill="#B3261E"/><circle cy="-40" r="8" fill="#F4EDE1"/></g>
+                <text x="16" y="294" font-size="12" fill="#1F2A44" font-family="sans-serif">Plan schématique — démo</text>
+              </svg>
+            </div>
+            <p><b data-cfg="adresse">XX rue de l'Exemple</b><br><span data-cfg="cp-ville"></span></p>
+            <p>Tél. <a href="#reserver" data-cfg="tel">06 XX XX XX XX</a></p>
+          </div>
+          <div>
+            <h3>Accès</h3>
+            <ul id="acces-liste"></ul>
+            <h3 style="margin-top:18px">Sur place</h3>
+            <ul>
+              <li>Terrasse aux beaux jours</li>
+              <li>Salle accessible en fauteuil roulant</li>
+              <li>Chaise haute sur demande</li>
+              <li>Titres-restaurant, CB, espèces</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALERIE ===== -->
+  <section id="galerie" aria-labelledby="t-galerie">
+    <div class="wrap">
+      <div class="revele">
+        <span class="surtitre">En images</span>
+        <h2 id="t-galerie">La salle, la terrasse, l'assiette</h2>
+        <p class="note">Photos d'illustration pour la maquette — à remplacer par vos propres photos, fidèles aux plats et à la salle.</p>
+      </div>
+      <div class="galerie" id="galerie-grille"></div>
+    </div>
+  </section>
+
+  <!-- ===== FAIT MAISON (section épinglée) ===== -->
+  <section id="maison" class="epingle" aria-labelledby="t-maison">
+    <div class="colle">
+      <div class="wrap etapes">
+        <div class="etapes-visuels" id="etapes-visuels"></div>
+        <div>
+          <span class="surtitre">Le chef, les producteurs, le fait maison</span>
+          <h2 id="t-maison" class="sr">Le fait maison</h2>
+          <div class="etapes-num" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div>
+          <div id="etapes-textes"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GROUPES & BONS CADEAUX ===== -->
+  <section id="groupes" aria-labelledby="t-groupes">
+    <div class="wrap">
+      <div class="revele"><span class="surtitre">Pour les grandes tablées</span><h2 id="t-groupes">Groupes, privatisation &amp; bons cadeaux</h2></div>
+      <div class="duo">
+        <div class="assiette pose">
+          <div class="vignette"><img alt="Salle de restaurant avec tables en bois" loading="lazy" sizes="(max-width:860px) 100vw, 45vw" data-photo="salle2"></div>
+          <h3>Repas de groupe &amp; privatisation</h3>
+          <p>Anniversaire, repas d'équipe, fête de famille : jusqu'à 30 couverts en salle, privatisation possible le soir. Menu unique conçu avec vous, boissons au forfait ou à la consommation.</p>
+          <ul>
+            <li>Devis gratuit sous 48 h (démo)</li>
+            <li>Menus adaptés aux régimes et allergies</li>
+            <li>Paiement unique ou par personne</li>
+          </ul>
+          <a class="btn btn--marine" href="#reserver" data-demande="Demande de devis groupe : ">Demander un devis</a>
+        </div>
+        <div class="assiette pose">
+          <div class="bon"><small>Bon cadeau</small><b>Un repas chez <span data-cfg="nomCourt">Margot</span></b><span>Montant libre ou menu au choix · valable 1 an</span></div>
+          <h3>Offrir un bon cadeau</h3>
+          <p>Le cadeau qui fait toujours plaisir : un bon à imprimer ou à retirer au bistrot, d'un montant libre ou pour un menu à deux.</p>
+          <p class="note">En démo : aucun paiement en ligne n'est proposé sur cette maquette.</p>
+          <a class="btn" href="#reserver" data-demande="Bon cadeau : ">Commander un bon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AVIS ===== -->
+  <section id="avis" aria-labelledby="t-avis">
+    <div class="wrap">
+      <div class="assiette pose">
+        <span class="surtitre">Ils en parlent</span>
+        <h2 id="t-avis">Avis</h2>
+        <div class="avis-vide">
+          <div class="couverts-ico" aria-hidden="true">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v8a2 2 0 0 1-4 0V3M5 11v10M17 3c-2 0-3 3-3 6s1 4 3 4v8"/></svg>
+          </div>
+          <p style="font-family:var(--titre);font-size:1.6rem;color:var(--marine);margin:0 0 .3em">Vos avis clients apparaîtront ici</p>
+          <p class="note" style="margin:0">Emplacement réservé aux avis réels de vos clients.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h3 style="font-size:2rem" data-cfg="nom">Chez Margot &amp; Fils</h3>
+      <p><span data-cfg="adresse">XX rue de l'Exemple</span> · <span data-cfg="cp-ville"></span><br>Tél. <span data-cfg="tel">06 XX XX XX XX</span></p>
+      <a class="btn" href="#reserver">Réserver une table</a>
+    </div>
+    <div>
+      <h3>Rubriques</h3>
+      <p><a href="#carte">La carte</a><br><a href="#infos">Horaires &amp; accès</a><br><a href="#galerie">Photos</a><br><a href="#groupes">Groupes &amp; bons cadeaux</a></p>
+    </div>
+    <div>
+      <h3>Bon à savoir</h3>
+      <p><small>Prix TTC, service compris. Eau en carafe gratuite sur demande. Liste des allergènes disponible sur demande. Titres-restaurant acceptés.</small></p>
+    </div>
+    <p class="legal">Maquette de démonstration — nom, adresse, téléphone, prix et photos sont fictifs ou d'illustration. Aucun formulaire n'envoie de données. L'abus d'alcool est dangereux pour la santé, à consommer avec modération. Photos : Unsplash.</p>
+  </div>
+</footer>
+
+<div class="barre-mobile" id="barre-mobile">
+  <a class="btn btn--ghost" href="#infos" aria-label="Horaires et accès"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Infos</a>
+  <a class="btn" href="#reserver">Réserver une table</a>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie photo" aria-hidden="true">
+  <figure><img id="lb-img" alt=""><figcaption class="lb-legende" id="lb-legende"></figcaption></figure>
+  <button class="lb-fermer" type="button" aria-label="Fermer">×</button>
+  <button class="lb-prec" type="button" aria-label="Photo précédente">‹</button>
+  <button class="lb-suiv" type="button" aria-label="Photo suivante">›</button>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — tout ce qui change d'un restaurant à l'autre
+   ========================================================= */
+const CONFIG = {
+  NOM: "Chez Margot & Fils",
+  NOM_HTML: 'Chez Margot <span class="amp">&amp;</span> Fils',
+  NOM_COURT: "Margot",
+  VILLE: "Saint-Aubin-sur-Morelle",
+  CP: "XXXXX",
+  ADRESSE: "XX rue de l'Exemple",
+  TEL: "06 XX XX XX XX",
+  ACCROCHE: "La cuisine de bistrot comme on l'aime : des plats mijotés, des produits de saison venus des environs, une ardoise qui change chaque jour et un verre de vin servi au juste prix.",
+  COULEURS: { creme:"#F4EDE1", rouge:"#B3261E", marine:"#1F2A44", moutarde:"#E8C872" },
+  CAPACITE_GROUPE: 30,
+  COUVERTS_MAX: 12,
+  PAS_MINUTES: 15,
+  DERNIER_CRENEAU_AVANT_FERMETURE: 30, // minutes
+  // 0 = dimanche … 6 = samedi ; null = fermé
+  HORAIRES: {
+    0: { midi:["12:00","14:00"], soir:null },
+    1: { midi:null, soir:null },
+    2: { midi:["12:00","14:00"], soir:["19:00","22:00"] },
+    3: { midi:["12:00","14:00"], soir:["19:00","22:00"] },
+    4: { midi:["12:00","14:00"], soir:["19:00","22:00"] },
+    5: { midi:["12:00","14:00"], soir:["19:00","22:30"] },
+    6: { midi:["12:00","14:30"], soir:["19:00","22:30"] }
+  },
+  ACCES: [
+    "Bus : arrêt « Place du Marché » (lignes à préciser), à 2 min à pied",
+    "Parking public gratuit à 150 m",
+    "Arceaux vélo devant le bistrot",
+    "Gare à environ 10 min à pied"
+  ],
+  ALLERGENES: {
+    Gl:"Gluten", Cr:"Crustacés", Œu:"Œufs", Po:"Poisson", Ar:"Arachides", So:"Soja", La:"Lait",
+    Fc:"Fruits à coque", Cé:"Céleri", Mo:"Moutarde", Sé:"Sésame", Su:"Sulfites", Lu:"Lupin", Mol:"Mollusques"
+  },
+  // Photos Unsplash (identifiants réels)
+  PHOTOS: {
+    salle:   {id:"1555396273-367ea4eb4db5", alt:"Intérieur rustique avec tables en bois"},
+    salle2:  {id:"1521917441209-e886f0404a7b", alt:"Tables et chaises dans la salle"},
+    table:   {id:"1525193612562-0ec53b0e5d7c", alt:"Table en bois dressée dans la salle"},
+    salle3:  {id:"1578474846511-04ba529f0b88", alt:"Tables et chaises dans une salle lumineuse"},
+    suspens: {id:"1540224769541-7e6e20a42330", alt:"Suspension en laiton au-dessus des tables"},
+    terrasse:{id:"1569096651661-820d0de8b4ab", alt:"Tables et chaises en terrasse devant la vitrine"},
+    terrasse2:{id:"1579027989536-b7b1f875659b", alt:"Terrasse sous les parasols rayés le soir"},
+    terrasse3:{id:"1596910715979-6a1ef3bb0731", alt:"Table et chaises en bois en extérieur"},
+    plat:    {id:"1414235077428-338989a2e8c0", alt:"Assiette dressée"},
+    soupe:   {id:"1476718406336-bb5a9690ee2a", alt:"Bols de velouté de saison"},
+    soupe2:  {id:"1613844237701-8f3664fc2eff", alt:"Velouté aux herbes dans un bol"},
+    service: {id:"1564758564527-b97d79cb27c1", alt:"Assiette servie à la main"},
+    pain:    {id:"1509440159596-0249088772ff", alt:"Pains de campagne sur une planche en bois"},
+    pain2:   {id:"1559811814-e2c57b5e69df", alt:"Pain tranché et couteau à pain"},
+    pain3:   {id:"1586765501019-cbe3973ef8fa", alt:"Pain sur table en bois"},
+    vin:     {id:"1553361371-9b22f78e8b1d", alt:"Vin rouge versé dans un verre"},
+    vin2:    {id:"1474722883778-792e7990302f", alt:"Verre de vin rouge et raisin"},
+    tablevin:{id:"1510812431401-41d2bd2722f3", alt:"Verres de vin levés autour de la table"}
+  },
+  GALERIE: [
+    ["salle","g-l","La salle"],["plat","","L'assiette du jour"],["vin","","Vin au verre"],
+    ["terrasse","g-w","La terrasse"],["soupe","","Velouté de saison"],["pain","g-l","Pain de campagne"],
+    ["suspens","","Lumière du soir"],["terrasse2","g-w","La terrasse le soir"],["salle3","","En salle"],
+    ["soupe2","","Soupe du jour"],["pain2","","À la planche"],["terrasse3","","Au calme dehors"]
+  ],
+  // Carte — prix d'exemple
+  CARTE: {
+    formules: [
+      { nom:"Formule du midi", detail:"Entrée + plat ou plat + dessert, selon l'ardoise", prix:17.5, quand:"Du mardi au vendredi midi", boisson:false },
+      { nom:"Formule complète", detail:"Entrée + plat + dessert, selon l'ardoise", prix:21, quand:"Du mardi au vendredi midi", boisson:false },
+      { nom:"Menu du marché", detail:"Entrée + plat + dessert à la carte", prix:32, quand:"Tous les services", boisson:false },
+      { nom:"Menu des petits", detail:"Plat + dessert + sirop à l'eau (jusqu'à 10 ans)", prix:11, quand:"Tous les services", boisson:true }
+    ],
+    entrees: [
+      { nom:"Œuf mayonnaise", desc:"Œufs plein air, mayonnaise montée minute", prix:6.5, all:["Œu","Mo"] },
+      { nom:"Velouté de saison", desc:"Selon le maraîcher, crème crue et croûtons", prix:7, all:["La","Cé","Gl"] },
+      { nom:"Terrine de campagne", desc:"Maison, pickles et pain grillé", prix:8.5, all:["Gl","Mo","Su"], origine:"Porc : France" },
+      { nom:"Poireaux vinaigrette", desc:"Vinaigrette à l'échalote, œuf mimosa", prix:7.5, all:["Œu","Mo"] }
+    ],
+    plats: [
+      { nom:"Bœuf bourguignon", desc:"Mijoté au vin rouge, purée au beurre", prix:19.5, all:["La","Cé","Su"], origine:"Bœuf : France" },
+      { nom:"Blanquette de veau", desc:"À l'ancienne, riz pilaf", prix:20, all:["La","Gl","Cé"], origine:"Veau : France" },
+      { nom:"Pavé de cabillaud", desc:"Beurre blanc, légumes du moment", prix:21, all:["Po","La"] },
+      { nom:"Croque du bistrot", desc:"Pain de campagne, jambon blanc, comté, salade", prix:14, all:["Gl","La"], origine:"Porc : France" },
+      { nom:"Assiette du potager", desc:"Plat végétarien selon la saison", prix:16, all:["Fc"] },
+      { nom:"Entrecôte frites maison", desc:"Environ 250 g, sauce au poivre", prix:24, all:["La","Su"], origine:"Bœuf : Irlande" }
+    ],
+    desserts: [
+      { nom:"Mousse au chocolat", desc:"À la louche, comme à la maison", prix:7, all:["Œu","La"] },
+      { nom:"Tarte du moment", desc:"Pâte brisée maison, fruits de saison", prix:7.5, all:["Gl","Œu","La"] },
+      { nom:"Île flottante", desc:"Crème anglaise vanille, caramel", prix:7, all:["Œu","La"] },
+      { nom:"Café gourmand", desc:"Café et trois mignardises", prix:8.5, all:["Gl","Œu","La","Fc"] }
+    ],
+    ardoise: [
+      { nom:"Petit salé aux lentilles", detail:"Porc : France", prix:17 },
+      { nom:"Filet de lieu, beurre noisette", detail:"Pêche de l'Atlantique", prix:18.5 },
+      { nom:"Tarte fine aux pommes", detail:"Glace vanille", prix:7.5 }
+    ],
+    vins: [
+      { nom:"Rouge de Loire — gamay", note:"Fruité, léger", verre:4.5, p25:9, p50:16 },
+      { nom:"Côtes-du-Rhône rouge", note:"Rond, épicé", verre:5, p25:10, p50:18 },
+      { nom:"Blanc de Bourgogne — chardonnay", note:"Frais, minéral", verre:6, p25:12, p50:22 },
+      { nom:"Rosé de Provence", note:"Sec, aux beaux jours", verre:5, p25:10, p50:18 },
+      { nom:"Crémant (coupe)", note:"Bulles fines", verre:7, p25:null, p50:null, cl:"12 cl" }
+    ],
+    sansAlcool: [
+      { nom:"Eau en carafe", prix:0, txt:"Gratuite sur demande" },
+      { nom:"Eau minérale 50 cl", prix:4 },
+      { nom:"Jus de fruits artisanal 25 cl", prix:4.5 },
+      { nom:"Café / déca", prix:2 }
+    ]
+  },
+  RUBAN: ["Ardoise du jour","Cuisine de saison","Circuit court","Vins au verre","Fait sur place","Terrasse","Titres-restaurant acceptés"],
+  ETAPES: [
+    { photo:"pain", titre:"Les producteurs d'à côté", texte:"Le maraîcher, le boulanger et l'éleveur sont à quelques kilomètres. Nous travaillons en circuit court, au rythme des saisons : la carte suit ce qui pousse." },
+    { photo:"soupe", titre:"Une cuisine de saison", texte:"Fonds, sauces, terrines, desserts : tout est préparé sur place, chaque matin, par le chef et sa petite brigade. L'ardoise change selon le marché." },
+    { photo:"plat", titre:"Le chef, en cuisine ouverte", texte:"Le chef — à présenter ici avec sa propre photo et son parcours — vient vous saluer en fin de service. Cuisine généreuse, sans chichis, servie à la bonne température." }
+  ]
+};
+
+/* ========================================================= */
+(function(){
+  'use strict';
+  const $ = (s, c=document) => c.querySelector(s);
+  const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
+  const reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const JOURS = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+  const euro = n => n === 0 ? "Offerte" : n.toFixed(2).replace('.', ',').replace(',00', '') + " €";
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  /* Couleurs CONFIG -> variables CSS */
+  const r = document.documentElement.style;
+  Object.entries(CONFIG.COULEURS).forEach(([k,v]) => r.setProperty('--'+k, v));
+
+  /* Textes CONFIG */
+  const map = {
+    nom: CONFIG.NOM, nomCourt: CONFIG.NOM_COURT, ville: CONFIG.VILLE, accroche: CONFIG.ACCROCHE,
+    adresse: CONFIG.ADRESSE, tel: CONFIG.TEL, 'cp-ville': CONFIG.CP + " " + CONFIG.VILLE
+  };
+  $$('[data-cfg]').forEach(el => {
+    const k = el.dataset.cfg;
+    if (k === 'nomHtml') el.innerHTML = CONFIG.NOM_HTML;
+    else if (k in map) el.textContent = map[k];
+  });
+  document.title = CONFIG.NOM + " — Bistrot de quartier à " + CONFIG.VILLE;
+
+  /* Photos : src + srcset */
+  const url = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+  const srcset = id => [480,800,1200,1600].map(w => `${url(id,w)} ${w}w`).join(', ');
+  function poserPhoto(img, key){
+    const p = CONFIG.PHOTOS[key]; if (!p) return;
+    img.src = url(p.id, 1600); img.srcset = srcset(p.id);
+    if (!img.alt) img.alt = p.alt;
+  }
+  $$('img[data-photo]').forEach(img => poserPhoto(img, img.dataset.photo));
+
+  /* Ruban */
+  const items = CONFIG.RUBAN.map(t => `<span>${esc(t)}</span>`).join('');
+  $('#ruban').innerHTML = items + items;
+
+  /* ===== Horaires ===== */
+  const toMin = h => { const [a,b] = h.split(':').map(Number); return a*60+b; };
+  const fmt = m => `${String(Math.floor(m/60)).padStart(2,'0')}h${String(m%60).padStart(2,'0')}`;
+  const plage = p => p ? `${p[0].replace(':','h')} – ${p[1].replace(':','h')}` : null;
+  function texteJour(j){
+    const h = CONFIG.HORAIRES[j];
+    const parts = [plage(h.midi), plage(h.soir)].filter(Boolean);
+    return parts.length ? parts.join(' · ') : 'Fermé';
+  }
+  function majAujourdhui(){
+    const now = new Date(), j = now.getDay(), m = now.getHours()*60 + now.getMinutes();
+    const h = CONFIG.HORAIRES[j];
+    let ouvert = false;
+    ['midi','soir'].forEach(s => { if (h[s] && m >= toMin(h[s][0]) && m < toMin(h[s][1])) ouvert = true; });
+    let prochain = '';
+    if (!ouvert){
+      for (let d=0; d<8 && !prochain; d++){
+        const jj = (j+d)%7, hh = CONFIG.HORAIRES[jj];
+        for (const s of ['midi','soir']){
+          if (hh[s] && (d>0 || toMin(hh[s][0]) > m)){
+            prochain = `Prochain service : ${d===0 ? "aujourd'hui" : d===1 ? 'demain' : JOURS[jj].toLowerCase()} ${s}, ${hh[s][0].replace(':','h')}`;
+            break;
+          }
+        }
+      }
+    }
+    $('#aujourdhui').innerHTML =
+      `<span class="etat ${ouvert?'':'ferme'}"><i></i>${ouvert ? 'Ouvert en ce moment' : 'Fermé en ce moment'}</span>` +
+      `<span>Aujourd'hui (${JOURS[j].toLowerCase()}) : ${texteJour(j)}</span>` +
+      (prochain ? `<span>${prochain}</span>` : '');
+  }
+  majAujourdhui(); setInterval(majAujourdhui, 60000);
+  const tb = $('#table-horaires tbody'), jAuj = new Date().getDay();
+  [1,2,3,4,5,6,0].forEach(j => {
+    const tr = document.createElement('tr'); if (j === jAuj) tr.className = 'ajd';
+    tr.innerHTML = `<td>${JOURS[j]}${j===jAuj?' <span class="sr">(aujourd\'hui)</span>':''}</td><td>${texteJour(j)}</td>`;
+    tb.appendChild(tr);
+  });
+  $('#acces-liste').innerHTML = CONFIG.ACCES.map(a => `<li>${esc(a)}</li>`).join('');
+
+  /* ===== Carte ===== */
+  const C = CONFIG.CARTE;
+  const pictos = arr => (arr||[]).map(a => `<abbr class="allerg" title="Contient : ${esc(CONFIG.ALLERGENES[a]||a)}">${esc(a)}</abbr>`).join('');
+  const listePlats = arr => `<ul class="plats">${arr.map(p => `
+    <li class="plat"><div class="plat-ligne"><span class="plat-nom">${esc(p.nom)}</span><span class="pointilles"></span><span class="prix">${euro(p.prix)}</span></div>
+    <p class="plat-desc">${esc(p.desc)}</p>
+    <div class="plat-meta">${p.origine?`<span class="origine">Origine ${esc(p.origine)}</span>`:''}${pictos(p.all)}</div></li>`).join('')}</ul>`;
+  const auj = new Date();
+  const dateLongue = auj.toLocaleDateString('fr-FR',{weekday:'long', day:'numeric', month:'long'});
+  const ONGLETS = [
+    { id:'formules', titre:'Formules & menus', html:`<div class="formules">${C.formules.map(f => `
+        <article class="formule"><span class="quand">${esc(f.quand)}</span><h3>${esc(f.nom)}</h3><p style="margin:0">${esc(f.detail)}</p>
+        <span class="prix">${euro(f.prix)}</span><span class="boisson ${f.boisson?'oui':''}">${f.boisson?'Boisson comprise':'Boisson non comprise'}</span></article>`).join('')}</div>
+        <p class="note" style="margin-top:16px">Prix TTC, service compris.</p>` },
+    { id:'ardoise', titre:'Ardoise du jour', html:`<div class="ardoise"><h3>Suggestions du jour</h3><span class="date">${esc(dateLongue)}</span>
+        <ul>${C.ardoise.map(a => `<li><span>${esc(a.nom)}</span><span class="prix">${euro(a.prix)}</span><small>${esc(a.detail)}</small></li>`).join('')}</ul>
+        <p class="craie">Selon arrivage — dans la limite des quantités préparées. Prix TTC service compris.</p></div>` },
+    { id:'entrees', titre:'Entrées', html:listePlats(C.entrees) },
+    { id:'plats', titre:'Plats', html:listePlats(C.plats) },
+    { id:'desserts', titre:'Desserts', html:listePlats(C.desserts) },
+    { id:'vins', titre:'Vins & boissons', html:`<table class="tablevins"><caption class="sr">Vins au verre et en pichet</caption>
+        <thead><tr><th scope="col">Vins</th><th scope="col">Verre 12 cl</th><th scope="col">Pichet 25 cl</th><th scope="col">Pichet 50 cl</th></tr></thead>
+        <tbody>${C.vins.map(v => `<tr><td><b>${esc(v.nom)}</b><small>${esc(v.note)}${v.cl?' · '+esc(v.cl):''}</small></td>
+          <td><span class="prix">${euro(v.verre)}</span></td><td>${v.p25?`<span class="prix">${euro(v.p25)}</span>`:'—'}</td><td>${v.p50?`<span class="prix">${euro(v.p50)}</span>`:'—'}</td></tr>`).join('')}</tbody></table>
+        <h3 style="margin-top:28px;color:var(--marine)">Sans alcool</h3>
+        <ul class="plats">${C.sansAlcool.map(b => `<li class="plat"><div class="plat-ligne"><span class="plat-nom">${esc(b.nom)}</span><span class="pointilles"></span><span class="prix">${b.prix===0?'Gratuit':euro(b.prix)}</span></div>${b.txt?`<p class="plat-desc">${esc(b.txt)}</p>`:''}</li>`).join('')}</ul>
+        <p class="note">L'abus d'alcool est dangereux pour la santé, à consommer avec modération. Contenances indiquées en cl.</p>` }
+  ];
+  const tl = $('#onglets'), pn = $('#panneaux');
+  ONGLETS.forEach((o,i) => {
+    const b = document.createElement('button');
+    b.type='button'; b.role='tab'; b.id='tab-'+o.id; b.textContent=o.titre;
+    b.setAttribute('role','tab'); b.setAttribute('aria-controls','pan-'+o.id);
+    b.setAttribute('aria-selected', i===0); b.tabIndex = i===0 ? 0 : -1;
+    tl.appendChild(b);
+    const p = document.createElement('div');
+    p.className='panneau'; p.id='pan-'+o.id; p.setAttribute('role','tabpanel'); p.setAttribute('aria-labelledby','tab-'+o.id);
+    p.tabIndex = 0; p.innerHTML = o.html; if (i) p.hidden = true;
+    pn.appendChild(p);
+  });
+  function activer(btn, focus){
+    $$('[role=tab]', tl).forEach(b => { const on = b===btn; b.setAttribute('aria-selected', on); b.tabIndex = on?0:-1; $('#'+b.getAttribute('aria-controls')).hidden = !on; });
+    if (focus) btn.focus();
+  }
+  tl.addEventListener('click', e => { const b = e.target.closest('[role=tab]'); if (b) activer(b); });
+  tl.addEventListener('keydown', e => {
+    const tabs = $$('[role=tab]', tl), i = tabs.indexOf(document.activeElement); if (i<0) return;
+    let n = null;
+    if (e.key==='ArrowRight') n = (i+1)%tabs.length; else if (e.key==='ArrowLeft') n = (i-1+tabs.length)%tabs.length;
+    else if (e.key==='Home') n = 0; else if (e.key==='End') n = tabs.length-1;
+    if (n!==null){ e.preventDefault(); activer(tabs[n], true); }
+  });
+  $('#legende').innerHTML = '<b>Allergènes :</b>' + Object.entries(CONFIG.ALLERGENES).map(([k,v]) => `<span><abbr class="allerg" title="${esc(v)}">${esc(k)}</abbr>${esc(v)}</span>`).join('');
+
+  /* ===== Réservation ===== */
+  const fDate = $('#r-date'), grid = $('#creneaux'), info = $('#info-creneaux');
+  let creneau = null, couverts = 2;
+  const iso = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  const today = new Date(); today.setHours(0,0,0,0);
+  const maxD = new Date(today); maxD.setDate(maxD.getDate()+90);
+  fDate.min = iso(today); fDate.max = iso(maxD);
+  // première date ouverte
+  const premiere = new Date(today);
+  for (let i=0;i<8;i++){ const h = CONFIG.HORAIRES[premiere.getDay()]; if (h.midi||h.soir) break; premiere.setDate(premiere.getDate()+1); }
+  fDate.value = iso(premiere);
+  const lireDate = () => { if (!fDate.value) return null; const [y,m,d] = fDate.value.split('-').map(Number); return new Date(y, m-1, d); };
+  const service = () => ($('input[name=service]:checked')||{}).value;
+
+  function majServices(){
+    const d = lireDate(); $('#err-date').textContent = '';
+    const h = d ? CONFIG.HORAIRES[d.getDay()] : null;
+    ['midi','soir'].forEach(s => {
+      const inp = $(`input[name=service][value=${s}]`);
+      inp.disabled = !h || !h[s];
+      $('#h-'+s).textContent = h && h[s] ? plage(h[s]) : 'pas de service';
+    });
+    const sel = $('input[name=service]:checked');
+    if (sel && sel.disabled){ const autre = $$('input[name=service]').find(i => !i.disabled); if (autre) autre.checked = true; }
+    if (d && h && !h.midi && !h.soir) $('#err-date').textContent = `Le restaurant est fermé le ${JOURS[d.getDay()].toLowerCase()}. Choisissez un autre jour.`;
+    if (d && (d < today || d > maxD)) $('#err-date').textContent = "Choisissez une date entre aujourd'hui et les 90 prochains jours.";
+    majCreneaux();
+  }
+  function majCreneaux(){
+    grid.innerHTML = ''; info.textContent = '';
+    const d = lireDate(); const s = service();
+    if (!d || $('#err-date').textContent){ creneau = null; info.textContent = 'Choisissez une date ouverte pour voir les créneaux.'; return; }
+    const h = CONFIG.HORAIRES[d.getDay()][s];
+    if (!h){ creneau = null; info.textContent = 'Pas de service à ce moment-là.'; return; }
+    const debut = toMin(h[0]), fin = toMin(h[1]) - CONFIG.DERNIER_CRENEAU_AVANT_FERMETURE;
+    const now = new Date(); const estAuj = d.getTime() === today.getTime(); const mNow = now.getHours()*60 + now.getMinutes();
+    let dispo = 0, garde = false;
+    for (let m = debut; m <= fin; m += CONFIG.PAS_MINUTES){
+      const b = document.createElement('button');
+      b.type='button'; b.textContent = fmt(m); b.dataset.m = m;
+      const passe = estAuj && m <= mNow + 30;
+      b.disabled = passe; b.setAttribute('aria-pressed', 'false');
+      if (passe) b.setAttribute('aria-label', fmt(m)+' (indisponible)'); else dispo++;
+      if (!passe && creneau === m){ b.setAttribute('aria-pressed','true'); garde = true; }
+      grid.appendChild(b);
+    }
+    if (!garde) creneau = null;
+    if (!dispo) info.textContent = 'Ce service est passé ou complet pour aujourd\'hui : essayez un autre service ou un autre jour.';
+  }
+  grid.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b || b.disabled) return;
+    $$('button', grid).forEach(x => x.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true'); creneau = Number(b.dataset.m); info.textContent = '';
+  });
+  fDate.addEventListener('change', majServices);
+  $$('input[name=service]').forEach(i => i.addEventListener('change', () => { creneau = null; majCreneaux(); }));
+  function majCouverts(){
+    $('#nb-couverts').value = couverts; $('#nb-couverts').textContent = couverts;
+    $('#moins').disabled = couverts <= 1; $('#plus').disabled = couverts >= CONFIG.COUVERTS_MAX;
+    const vis = $('#assiettes-vis'); vis.innerHTML = '<i></i>'.repeat(couverts);
+  }
+  $('#moins').addEventListener('click', () => { if (couverts>1){ couverts--; majCouverts(); } });
+  $('#plus').addEventListener('click', () => { if (couverts<CONFIG.COUVERTS_MAX){ couverts++; majCouverts(); } });
+  majCouverts(); majServices();
+
+  // boutons "Demander un devis" / "bon cadeau" pré-remplissent la demande
+  $$('[data-demande]').forEach(a => a.addEventListener('click', () => { const t = $('#r-demande'); if (!t.value) t.value = a.dataset.demande; }));
+
+  $('#form-resa').addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    const nom = $('#r-nom').value.trim(), tel = $('#r-tel').value.trim();
+    $('#err-nom').textContent = nom.length < 2 ? 'Indiquez votre nom.' : '';
+    $('#err-tel').textContent = tel.replace(/\D/g,'').length < 10 ? 'Indiquez un numéro de téléphone à 10 chiffres.' : '';
+    if (!lireDate()){ $('#err-date').textContent = 'Choisissez une date.'; }
+    if ($('#err-nom').textContent || $('#err-tel').textContent || $('#err-date').textContent) ok = false;
+    if (creneau === null){ info.textContent = 'Choisissez une heure d\'arrivée.'; ok = false; }
+    if (!ok){ const f = $('.erreur:not(:empty)') || info; (f.previousElementSibling || f).scrollIntoView({block:'center', behavior: reduit?'auto':'smooth'}); return; }
+    const d = lireDate();
+    const conf = $('#confirmation');
+    conf.innerHTML = `<div class="confirmation" tabindex="-1"><h3>Merci ${esc(nom)}, c'est noté (démo) !</h3>
+      <p>Voici le récapitulatif. <b>Rien n'a été envoyé</b> : sur le vrai site, vous recevriez une confirmation par SMS ou courriel.</p>
+      <dl><dt>Date</dt><dd>${esc(d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}))}</dd>
+      <dt>Service</dt><dd>${service()==='midi'?'Midi':'Soir'}, arrivée à ${fmt(creneau)}</dd>
+      <dt>Couverts</dt><dd>${couverts}</dd><dt>Téléphone</dt><dd>${esc(tel)}</dd>
+      ${$('#r-demande').value.trim()?`<dt>Demande</dt><dd>${esc($('#r-demande').value.trim())}</dd>`:''}</dl>
+      <button class="btn btn--ghost" type="button" id="nouvelle">Modifier / nouvelle réservation</button></div>`;
+    $('#form-resa').hidden = true; conf.hidden = false; $('.confirmation', conf).focus();
+    $('#nouvelle').addEventListener('click', () => { conf.hidden = true; $('#form-resa').hidden = false; $('#r-nom').focus(); });
+  });
+
+  /* ===== Galerie + lightbox ===== */
+  const gg = $('#galerie-grille');
+  CONFIG.GALERIE.forEach(([k, cls, leg], i) => {
+    const p = CONFIG.PHOTOS[k];
+    const b = document.createElement('button'); b.type='button'; if (cls) b.className = cls;
+    b.dataset.i = i; b.dataset.legende = leg; b.setAttribute('aria-label', 'Agrandir : ' + leg);
+    b.innerHTML = `<img loading="lazy" alt="${esc(p.alt)}" src="${url(p.id,800)}" srcset="${srcset(p.id)}" sizes="(max-width:760px) 50vw, 25vw">`;
+    gg.appendChild(b);
+  });
+  const lb = $('#lightbox'), lbImg = $('#lb-img'); let idx = 0, dernierFocus = null;
+  function montrer(i){
+    idx = (i + CONFIG.GALERIE.length) % CONFIG.GALERIE.length;
+    const [k,,leg] = CONFIG.GALERIE[idx]; const p = CONFIG.PHOTOS[k];
+    lbImg.src = url(p.id,1600); lbImg.srcset = srcset(p.id); lbImg.sizes = '100vw'; lbImg.alt = p.alt;
+    $('#lb-legende').textContent = `${leg} — ${idx+1} / ${CONFIG.GALERIE.length}`;
+  }
+  function ouvrir(i){ dernierFocus = document.activeElement; montrer(i); lb.classList.add('ouvert'); lb.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; $('.lb-fermer').focus(); }
+  function fermer(){ lb.classList.remove('ouvert'); lb.setAttribute('aria-hidden','true'); document.body.style.overflow=''; if (dernierFocus) dernierFocus.focus(); }
+  gg.addEventListener('click', e => { const b = e.target.closest('button'); if (b) ouvrir(Number(b.dataset.i)); });
+  $('.lb-fermer').addEventListener('click', fermer);
+  $('.lb-prec').addEventListener('click', () => montrer(idx-1));
+  $('.lb-suiv').addEventListener('click', () => montrer(idx+1));
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.tagName === 'FIGURE') fermer(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('ouvert')) return;
+    if (e.key === 'Escape') fermer();
+    else if (e.key === 'ArrowLeft') montrer(idx-1);
+    else if (e.key === 'ArrowRight') montrer(idx+1);
+    else if (e.key === 'Tab'){ // piège du focus
+      const f = $$('button', lb); const i = f.indexOf(document.activeElement);
+      e.preventDefault(); f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+  let x0 = null, y0 = null;
+  lb.addEventListener('pointerdown', e => { x0 = e.clientX; y0 = e.clientY; });
+  lb.addEventListener('pointerup', e => {
+    if (x0 === null) return; const dx = e.clientX - x0, dy = e.clientY - y0; x0 = null;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) montrer(idx + (dx < 0 ? 1 : -1));
+  });
+
+  /* ===== Section épinglée ===== */
+  const ev = $('#etapes-visuels'), et = $('#etapes-textes');
+  CONFIG.ETAPES.forEach((s,i) => {
+    const p = CONFIG.PHOTOS[s.photo];
+    ev.insertAdjacentHTML('beforeend', `<img loading="lazy" alt="${esc(p.alt)}" src="${url(p.id,1200)}" srcset="${srcset(p.id)}" sizes="(max-width:760px) 100vw, 45vw" class="${i===0?'on':''}">`);
+    et.insertAdjacentHTML('beforeend', `<div class="etape ${i===0?'on':''}"><h3>${esc(s.titre)}</h3><p>${esc(s.texte)}</p>${i===2?'<a class="btn" href="#reserver">Goûter la cuisine du chef</a>':''}</div>`);
+  });
+  const sec = $('#maison'), imgsE = $$('img', ev), txtE = $$('.etape', et), barres = $$('.etapes-num i');
+  let etapeCourante = 0;
+  function majEpingle(){
+    if (reduit) return;
+    const rct = sec.getBoundingClientRect(), total = sec.offsetHeight - window.innerHeight;
+    const prog = Math.min(1, Math.max(0, -rct.top / Math.max(1,total)));
+    const n = Math.min(CONFIG.ETAPES.length - 1, Math.floor(prog * CONFIG.ETAPES.length));
+    barres.forEach((b,i) => { const v = Math.min(1, Math.max(0, prog*CONFIG.ETAPES.length - i)); b.style.transform = `scaleX(${v})`; });
+    if (n !== etapeCourante){
+      etapeCourante = n;
+      imgsE.forEach((im,i) => im.classList.toggle('on', i===n));
+      txtE.forEach((t,i) => t.classList.toggle('on', i===n));
+    }
+  }
+
+  /* ===== Parallax + barre mobile + nav active ===== */
+  const heroImg = $('#hero-img'), barre = $('#barre-mobile'), resaSec = $('#reserver');
+  const liens = $$('nav.menu a'); const cibles = liens.map(a => $(a.getAttribute('href')));
+  let ticking = false;
+  function surDefilement(){
+    ticking = false;
+    const y = window.scrollY;
+    if (!reduit && y < window.innerHeight * 1.2) heroImg.style.transform = `translate3d(0, ${y * 0.12}px, 0) scale(1.02)`;
+    majEpingle();
+    // cacher la barre mobile quand le formulaire est à l'écran
+    const rr = resaSec.getBoundingClientRect();
+    barre.classList.toggle('cachee', rr.top < window.innerHeight*0.6 && rr.bottom > window.innerHeight*0.4);
+    let actif = -1; cibles.forEach((c,i) => { if (c && c.getBoundingClientRect().top < window.innerHeight*0.35) actif = i; });
+    liens.forEach((a,i) => a.classList.toggle('actif', i===actif));
+  }
+  window.addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(surDefilement); } }, {passive:true});
+  window.addEventListener('resize', surDefilement);
+
+  /* ===== Révélations : les assiettes se posent ===== */
+  const cibleAnim = $$('.pose, .revele');
+  if ('IntersectionObserver' in window && !reduit){
+    const io = new IntersectionObserver(ents => ents.forEach(en => {
+      if (en.isIntersecting){ en.target.classList.add(en.target.classList.contains('pose') ? 'posee' : 'vu'); io.unobserve(en.target); }
+    }), {threshold:0.12, rootMargin:'0px 0px -6% 0px'});
+    window.__observerAssiettes = io;
+  } else {
+    cibleAnim.forEach(el => el.classList.add('posee','vu'));
+  }
+
+  /* ===== Intro : la nappe ===== */
+  const nappe = $('#nappe');
+  function lancerObservation(){
+    if (window.__observerAssiettes) cibleAnim.forEach(el => window.__observerAssiettes.observe(el));
+    surDefilement();
+  }
+  function finIntro(){
+    if (nappe.classList.contains('fini')) return;
+    nappe.classList.add('fini'); document.body.style.overflow = '';
+    setTimeout(lancerObservation, 150);
+  }
+  if (reduit){
+    nappe.classList.add('fini'); nappe.style.display = 'none'; lancerObservation();
+  } else {
+    document.body.style.overflow = 'hidden';
+    const T = [[200,'s1'],[1000,'s2'],[1900,'s3']];
+    T.forEach(([t,c]) => setTimeout(() => nappe.classList.add(c), t));
+    setTimeout(finIntro, 2700);
+    $('.passer', nappe).addEventListener('click', finIntro);
+    nappe.addEventListener('click', finIntro);
+  }
+})();
+</script>
+</body>
+</html>

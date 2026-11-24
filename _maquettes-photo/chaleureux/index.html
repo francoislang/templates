@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maëlle Doré — Photographe portrait, famille &amp; mariage (maquette)</title>
+<meta name="description" content="Maquette de démonstration : site vitrine d'une photographe portrait, famille et mariage. Photographe fictive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#F7F0E5; --creme-2:#EFE4D3; --sable:#E6D5BF;
+  --terra:#B5603F; --terra-d:#8C4429; --terra-l:#E7B9A2;
+  --sauge:#8C9C7D; --sauge-d:#5B6A50; --sauge-l:#D5DCC8;
+  --encre:#3B2F27; --encre-2:#6B5A4D;
+  --serif:"Cormorant Garamond", Georgia, serif;
+  --sans:"Jost", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --script:"Parisienne", "Snell Roundhand", cursive;
+  --r:22px; --ease:cubic-bezier(.22,.8,.24,1);
+  --wrap:min(1180px, 100% - 2.5rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--encre);font:300 1.0625rem/1.7 var(--sans);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;margin:0;letter-spacing:-.01em}
+p{margin:0 0 1em}
+.wrap{width:var(--wrap);margin-inline:auto}
+.script{font-family:var(--script);font-weight:400;color:var(--terra);letter-spacing:0;line-height:1}
+.eyebrow{font:500 .78rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--sauge-d);margin-bottom:1.2rem;display:inline-flex;gap:.7rem;align-items:center}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+.section{padding:clamp(4.5rem,10vw,8.5rem) 0}
+.section__head{max-width:640px;margin-bottom:clamp(2.5rem,6vw,4.5rem)}
+.section__head h2{font-size:clamp(2.3rem,5.2vw,3.9rem)}
+.section__head h2 .script{font-size:1.15em;display:inline-block;transform:translateY(.08em)}
+.section__head p{color:var(--encre-2);margin-top:1.2rem;max-width:52ch}
+.btn{display:inline-flex;align-items:center;gap:.6rem;border:0;cursor:pointer;font:500 .95rem/1 var(--sans);letter-spacing:.04em;padding:1.05rem 1.7rem;border-radius:999px;background:var(--terra);color:#fff;text-decoration:none;transition:background .3s,transform .3s var(--ease),box-shadow .3s}
+.btn:hover{background:var(--terra-d);transform:translateY(-2px);box-shadow:0 10px 24px -12px rgba(140,68,41,.6)}
+.btn--ghost{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 1px rgba(59,47,39,.35)}
+.btn--ghost:hover{background:var(--encre);color:var(--creme);box-shadow:none}
+.btn svg{width:1em;height:1em}
+:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:0}.skip:focus{left:1rem;top:1rem;z-index:100;background:#fff;padding:.6rem 1rem}
+
+/* ---------- Photo frames: colour background + mask reveal + parallax ---------- */
+.ph{margin:0;position:relative;aspect-ratio:var(--ratio,4/5);background:var(--tone,#E7D3BF);border-radius:var(--r);overflow:hidden;isolation:isolate}
+.ph::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(59,47,39,.06);pointer-events:none}
+.ph__in{position:absolute;inset:-9% 0;will-change:transform}
+.ph img{width:100%;height:100%;object-fit:cover;transform:scale(1.14);transition:transform 1.6s var(--ease)}
+.ph.reveal{clip-path:inset(100% 0 0 0 round var(--r));transition:clip-path 1.3s var(--ease)}
+.ph.reveal.is-in{clip-path:inset(0 0 0 0 round var(--r))}
+.ph.reveal.is-in img{transform:scale(1)}
+.ph--arch{border-radius:999px 999px var(--r) var(--r)}
+.ph--arch.reveal{clip-path:inset(100% 0 0 0 round 999px 999px var(--r) var(--r))}
+.ph--arch.reveal.is-in{clip-path:inset(0 0 0 0 round 999px 999px var(--r) var(--r))}
+.reveal-up{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.reveal-up.is-in{opacity:1;transform:none}
+.no-js .ph.reveal{clip-path:none}.no-js .reveal-up{opacity:1;transform:none}
+
+/* ---------- Header ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;transition:background .4s,box-shadow .4s,padding .4s;padding:1.25rem 0}
+.hdr.is-scrolled{background:rgba(247,240,229,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(59,47,39,.08);padding:.7rem 0}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.logo b{font:500 1.55rem/1 var(--serif);letter-spacing:.02em}
+.logo span{font-family:var(--script);color:var(--terra);font-size:1.25rem;margin:-.15rem 0 0 2.2rem}
+.nav{display:flex;gap:2rem;align-items:center}
+.nav a{text-decoration:none;font-size:.92rem;letter-spacing:.04em;position:relative}
+.nav a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--terra);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.nav a:not(.btn):hover::after{transform:scaleX(1);transform-origin:left}
+.nav .btn{padding:.8rem 1.3rem}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;position:relative;color:var(--encre)}
+.burger span,.burger::before,.burger::after{content:"";position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .35s var(--ease),opacity .2s}
+.burger::before{top:16px}.burger span{top:21.5px}.burger::after{top:27px}
+.menu-open .burger::before{transform:translateY(5.5px) rotate(45deg)}
+.menu-open .burger span{opacity:0}
+.menu-open .burger::after{transform:translateY(-5.5px) rotate(-45deg)}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;padding:8rem 0 4rem;display:flex;align-items:center;overflow:hidden}
+.hero::before{content:"";position:absolute;width:62vw;height:62vw;max-width:820px;max-height:820px;right:-14vw;top:-16vw;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--terra-l),transparent 68%);opacity:.45;z-index:-1}
+.hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.hero h1{font-size:clamp(2.9rem,6.6vw,5.6rem);font-weight:400}
+.hero h1 em{font-style:italic;color:var(--terra-d)}
+.hero h1 .script{display:block;font-size:1.05em;margin:.15em 0 0 .6em;color:var(--terra)}
+.hero__lead{margin:1.8rem 0 2.4rem;max-width:44ch;color:var(--encre-2);font-size:1.12rem}
+.hero__cta{display:flex;flex-wrap:wrap;gap:.9rem}
+.hero__media{position:relative}
+.hero__media .ph{--r:28px}
+.hero__badge{position:absolute;left:-2.2rem;bottom:2.5rem;background:var(--creme);border-radius:999px;width:128px;height:128px;display:grid;place-items:center;box-shadow:0 18px 40px -22px rgba(59,47,39,.5)}
+.hero__badge svg{width:118px;height:118px;animation:spin 26s linear infinite}
+.hero__badge i{position:absolute;font-style:normal;font-family:var(--script);font-size:1.9rem;color:var(--terra)}
+.hero__small{position:absolute;right:-1.5rem;top:-2rem;width:38%;z-index:2}
+.hero__small .ph{box-shadow:0 0 0 8px var(--creme)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero__line{display:block;overflow:hidden}
+.hero__line>span{display:inline-block;transform:translateY(110%);animation:rise 1.2s var(--ease) forwards}
+.hero__line:nth-child(2)>span{animation-delay:.12s}.hero__line:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.scroll-hint{position:absolute;left:50%;bottom:1.6rem;transform:translateX(-50%);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--encre-2);display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.scroll-hint::after{content:"";width:1px;height:42px;background:linear-gradient(var(--encre-2),transparent);animation:drip 2.2s var(--ease) infinite}
+@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- Univers ---------- */
+.univers{background:var(--creme-2)}
+.univers__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.2rem,3vw,2.5rem)}
+.uni{text-decoration:none;display:block}
+.uni:nth-child(2){margin-top:4rem}
+.uni h3{font-size:2rem;margin-top:1.4rem;display:flex;align-items:baseline;gap:.6rem}
+.uni h3 small{font:500 .75rem var(--sans);letter-spacing:.2em;color:var(--sauge-d)}
+.uni p{color:var(--encre-2);margin-top:.5rem}
+.uni .ph img{transition:transform 1.6s var(--ease),filter .6s}
+.uni:hover .ph.is-in img{transform:scale(1.05)}
+
+/* ---------- Manifesto ---------- */
+.manif{text-align:center}
+.manif blockquote{margin:0 auto;max-width:880px;font:400 clamp(1.8rem,4.2vw,3.2rem)/1.25 var(--serif)}
+.manif blockquote em{color:var(--terra-d)}
+.manif .script{font-size:clamp(2rem,4vw,2.8rem);display:block;margin-top:1.6rem}
+.manif .word{opacity:.18;transition:opacity .5s}
+.manif .word.on{opacity:1}
+
+/* ---------- Timeline ---------- */
+.recit{background:linear-gradient(var(--creme),var(--sauge-l) 55%,var(--creme))}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before,.tl__fill{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(91,106,80,.28);transform:translateX(-50%)}
+.tl__fill{background:var(--terra);bottom:auto;height:0;width:2px;z-index:1}
+.tl__item{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,7vw,6.5rem);align-items:center;position:relative;padding:clamp(1.8rem,4vw,3.4rem) 0}
+.tl__item--r .tl__media{order:2}
+.tl__item--l .tl__text{text-align:left}
+.tl__item--r .tl__text{text-align:right;justify-self:end}
+.tl__text{max-width:420px}
+.tl__dot{position:absolute;left:50%;top:50%;width:15px;height:15px;border-radius:50%;background:var(--creme);box-shadow:inset 0 0 0 2px var(--sauge);transform:translate(-50%,-50%);z-index:2;transition:background .5s,box-shadow .5s,transform .5s var(--ease)}
+.tl__item.is-past .tl__dot{background:var(--terra);box-shadow:0 0 0 6px rgba(181,96,63,.18);transform:translate(-50%,-50%) scale(1.15)}
+.tl__hour{font:400 clamp(3rem,6vw,4.6rem)/1 var(--serif);color:var(--terra);margin:0 0 .5rem;font-variant-numeric:lining-nums}
+.tl__kicker{font:500 .74rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--sauge-d);margin-bottom:.7rem}
+.tl__title{font-size:clamp(1.7rem,3vw,2.3rem);margin-bottom:.8rem}
+.tl__text p:last-child{color:var(--encre-2)}
+.tl__media .ph{max-width:440px}
+.tl__item--r .tl__media .ph{margin-left:auto}
+.tl__end{text-align:center;padding-top:2rem}
+.tl__end .script{font-size:clamp(2.2rem,5vw,3.4rem)}
+
+/* ---------- Galerie famille ---------- */
+.gal{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(.8rem,2vw,1.4rem)}
+.gal .ph:nth-child(1){grid-column:1/6;grid-row:span 2}
+.gal .ph:nth-child(2){grid-column:6/10}
+.gal .ph:nth-child(3){grid-column:10/13;margin-top:3rem}
+.gal .ph:nth-child(4){grid-column:6/9}
+.gal .ph:nth-child(5){grid-column:9/13}
+.gal figcaption{position:absolute;left:1rem;bottom:1rem;z-index:2;background:rgba(247,240,229,.92);padding:.35rem .8rem;border-radius:999px;font-size:.78rem;letter-spacing:.06em}
+
+/* ---------- Étapes ---------- */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;counter-reset:s;list-style:none;padding:0;margin:0}
+.step{position:relative;background:#FBF7F0;border-radius:var(--r);padding:2.2rem 1.6rem 1.8rem;box-shadow:0 1px 0 rgba(59,47,39,.06),0 20px 40px -32px rgba(59,47,39,.4)}
+.step::before{counter-increment:s;content:counter(s,decimal-leading-zero);font:400 3.2rem/1 var(--serif);color:var(--terra-l);display:block;margin-bottom:1rem}
+.step h3{font-size:1.55rem;margin-bottom:.6rem}
+.step p{color:var(--encre-2);font-size:.98rem;margin:0}
+.step .script{position:absolute;right:1.4rem;top:1.9rem;font-size:1.5rem;color:var(--sauge)}
+.steps .step:not(:last-child)::after{content:"";position:absolute;top:3.9rem;right:-1.1rem;width:.8rem;height:1px;background:var(--terra-l)}
+
+/* ---------- Forfaits ---------- */
+.offres{background:var(--encre);color:var(--creme)}
+.offres .eyebrow{color:var(--sauge-l)}
+.offres .section__head p{color:#CDBFAE}
+.offres .script{color:var(--terra-l)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;align-items:stretch}
+.plan{position:relative;background:#463830;border-radius:var(--r);padding:2.2rem 1.9rem;display:flex;flex-direction:column;border:1px solid rgba(247,240,229,.08);transition:transform .5s var(--ease),border-color .4s}
+.plan:hover{transform:translateY(-6px);border-color:rgba(231,185,162,.45)}
+.plan--star{background:var(--creme);color:var(--encre)}
+.plan.plan--star .plan__note,.plan.plan--star li{color:var(--encre-2)}
+.plan__tag{position:absolute;top:-.8rem;left:1.9rem;background:var(--terra);color:#fff;font:500 .7rem/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px}
+.plan h3{font-size:2.1rem}
+.plan__sub{font-family:var(--script);font-size:1.5rem;color:var(--terra-l);margin:.1rem 0 1.4rem}
+.plan--star .plan__sub{color:var(--terra)}
+.plan ul{list-style:none;padding:0;margin:0 0 1.8rem;display:grid;gap:.75rem}
+.plan li{display:flex;gap:.7rem;align-items:flex-start;color:#DCCFBF;font-size:.98rem;line-height:1.5}
+.plan li svg{flex:none;width:18px;height:18px;margin-top:.2rem;color:var(--sauge)}
+.plan__price{margin-top:auto;padding-top:1.4rem;border-top:1px solid rgba(247,240,229,.14)}
+.plan--star .plan__price{border-color:rgba(59,47,39,.12)}
+.plan__price strong{display:block;font:500 2rem/1.1 var(--serif)}
+.plan__price small{font-size:.85rem}
+.plan__note{display:inline-block;margin-top:.5rem;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:#BBA996;border:1px dashed currentColor;border-radius:999px;padding:.3rem .7rem}
+.plan .btn{margin-top:1.4rem;justify-content:center}
+.plan:not(.plan--star) .btn--ghost{color:var(--creme);box-shadow:inset 0 0 0 1px rgba(247,240,229,.35)}
+.plan:not(.plan--star) .btn--ghost:hover{background:var(--creme);color:var(--encre)}
+.plans__foot{margin-top:2rem;font-size:.9rem;color:#BBA996;text-align:center}
+
+/* ---------- Avis (emplacement) ---------- */
+.avis__box{border:1.5px dashed var(--terra-l);border-radius:calc(var(--r) * 1.5);padding:clamp(2.5rem,6vw,4.5rem) 1.5rem;text-align:center;background:repeating-linear-gradient(-45deg,transparent 0 14px,rgba(231,185,162,.12) 14px 15px)}
+.avis__box .script{font-size:clamp(2.2rem,5vw,3.2rem)}
+.avis__box p{color:var(--encre-2);max-width:46ch;margin:1rem auto 0}
+.avis__slots{display:flex;justify-content:center;gap:1rem;margin-top:2rem}
+.avis__slots span{width:min(160px,26vw);height:80px;border-radius:14px;background:rgba(247,240,229,.8);box-shadow:inset 0 0 0 1px rgba(59,47,39,.08)}
+
+/* ---------- FAQ ---------- */
+.faq__grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.faq__aside{position:sticky;top:7rem}
+.faq__aside .ph{max-width:340px;margin-top:2rem}
+.acc{border-top:1px solid rgba(59,47,39,.15)}
+.acc__item{border-bottom:1px solid rgba(59,47,39,.15)}
+.acc__btn{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.5rem .2rem;font:500 clamp(1.25rem,2.2vw,1.5rem)/1.3 var(--serif)}
+.acc__btn:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+.acc__ico{flex:none;width:34px;height:34px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(59,47,39,.25);position:relative;transition:background .3s,transform .5s var(--ease)}
+.acc__ico::before,.acc__ico::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--encre);transform:translate(-50%,-50%);transition:transform .4s var(--ease),background .3s}
+.acc__ico::after{transform:translate(-50%,-50%) rotate(90deg)}
+.acc__btn[aria-expanded="true"] .acc__ico{background:var(--terra);transform:rotate(180deg);box-shadow:none}
+.acc__btn[aria-expanded="true"] .acc__ico::before,.acc__btn[aria-expanded="true"] .acc__ico::after{background:#fff}
+.acc__btn[aria-expanded="true"] .acc__ico::after{transform:translate(-50%,-50%) rotate(0)}
+.acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.acc__panel>div{overflow:hidden}
+.acc__panel p{color:var(--encre-2);padding:0 3rem 1.5rem .2rem;margin:0}
+.acc__item.open .acc__panel{grid-template-rows:1fr}
+
+/* ---------- Formulaire multi-étapes ---------- */
+.contact{background:var(--creme-2)}
+.contact__grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.contact__info dl{margin:2rem 0 0;display:grid;gap:1.2rem}
+.contact__info dt{font:500 .74rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--sauge-d)}
+.contact__info dd{margin:.2rem 0 0;font:400 1.35rem var(--serif)}
+.form{background:#FBF7F0;border-radius:calc(var(--r) * 1.3);padding:clamp(1.6rem,4vw,2.8rem);box-shadow:0 30px 60px -40px rgba(59,47,39,.45);position:relative;overflow:hidden}
+.prog{display:flex;gap:.5rem;margin-bottom:2rem;list-style:none;padding:0}
+.prog li{flex:1;font-size:.78rem;letter-spacing:.06em;color:var(--encre-2)}
+.prog li::before{content:"";display:block;height:3px;border-radius:3px;background:var(--sable);margin-bottom:.6rem;background-image:linear-gradient(var(--terra),var(--terra));background-repeat:no-repeat;background-size:0 100%;transition:background-size .6s var(--ease)}
+.prog li.done::before,.prog li.cur::before{background-size:100% 100%}
+.prog li.cur{color:var(--encre);font-weight:500}
+.fsteps{position:relative;transition:height .5s var(--ease)}
+.fstep{border:0;margin:0;padding:0;min-width:0}
+.fstep[hidden]{display:none}
+.fstep.enter{animation:fin .6s var(--ease) both}
+.fstep.enter-back{animation:finb .6s var(--ease) both}
+@keyframes fin{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes finb{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+.fstep legend{font:500 clamp(1.6rem,3vw,2.1rem)/1.15 var(--serif);margin-bottom:.4rem;padding:0}
+.fstep .hint{color:var(--encre-2);font-size:.95rem;margin-bottom:1.6rem}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}
+.choice{position:relative}
+.choice input{position:absolute;opacity:0;width:1px;height:1px;left:1rem;top:1rem;margin:0;pointer-events:none}
+.choice label{display:flex;flex-direction:column;gap:.2rem;padding:1.1rem 1.1rem 1rem;border-radius:16px;background:var(--creme);box-shadow:inset 0 0 0 1px rgba(59,47,39,.12);cursor:pointer;transition:box-shadow .3s,background .3s,transform .3s var(--ease);height:100%}
+.choice label b{font:500 1.3rem var(--serif)}
+.choice label span{font-size:.85rem;color:var(--encre-2)}
+.choice label .script{font-size:1.4rem;color:var(--sauge);position:absolute;right:1rem;top:.8rem;transition:color .3s}
+.choice label:hover{transform:translateY(-2px)}
+.choice input:checked+label{background:#fff;box-shadow:inset 0 0 0 2px var(--terra)}
+.choice input:checked+label .script{color:var(--terra)}
+.choice input:focus-visible+label{outline:2px solid var(--terra);outline-offset:3px}
+.field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.1rem}
+.field label{font-size:.85rem;letter-spacing:.04em;font-weight:500}
+.field input,.field textarea,.field select{font:400 1rem var(--sans);color:var(--encre);background:var(--creme);border:0;border-radius:12px;padding:.95rem 1rem;box-shadow:inset 0 0 0 1px rgba(59,47,39,.14);transition:box-shadow .3s,background .3s;width:100%}
+.field input:focus,.field textarea:focus,.field select:focus{outline:none;background:#fff;box-shadow:inset 0 0 0 2px var(--sauge)}
+.field.err input,.field.err textarea{box-shadow:inset 0 0 0 2px var(--terra)}
+.field .msg{font-size:.8rem;color:var(--terra-d);min-height:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.check{display:flex;gap:.6rem;align-items:center;font-size:.92rem;margin:-.2rem 0 1.1rem;cursor:pointer}
+.check input{accent-color:var(--terra);width:18px;height:18px}
+.ferr{color:var(--terra-d);font-size:.88rem;min-height:1.3em;margin:.6rem 0 0}
+.factions{display:flex;justify-content:space-between;align-items:center;margin-top:1.6rem;gap:1rem}
+.factions .btn--ghost[hidden]{display:none}
+.fdone{text-align:center;padding:2rem 0 1rem}
+.fdone .script{font-size:3rem;display:block}
+.fdone svg{width:74px;height:74px;margin:0 auto 1rem;color:var(--sauge-d)}
+.fdone svg path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw 1s .3s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fdone p{color:var(--encre-2);max-width:40ch;margin:1rem auto 0}
+
+/* ---------- Footer ---------- */
+.ftr{background:var(--encre);color:#D8CBBB;padding:4rem 0 2rem}
+.ftr__top{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;padding-bottom:2.5rem;border-bottom:1px solid rgba(247,240,229,.12)}
+.ftr .logo b{color:var(--creme);font-size:2.2rem}
+.ftr .logo span{color:var(--terra-l);font-size:1.6rem}
+.ftr nav{display:flex;gap:1.6rem;flex-wrap:wrap}
+.ftr nav a{text-decoration:none;font-size:.92rem}
+.ftr nav a:hover{color:var(--terra-l)}
+.ftr__bot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;font-size:.82rem;color:#A7988A}
+.demo-flag{position:fixed;right:1rem;bottom:1rem;z-index:40;background:var(--sauge-d);color:#fff;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.5rem .8rem;border-radius:999px;opacity:.9}
+
+/* ---------- Responsive ---------- */
+@media (max-width:1020px){
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .steps .step::after{display:none}
+  .plans{grid-template-columns:1fr;max-width:520px;margin-inline:auto}
+}
+@media (max-width:860px){
+  .nav{position:fixed;inset:0;background:var(--creme);flex-direction:column;justify-content:center;gap:1.6rem;transform:translateY(-100%);transition:transform .6s var(--ease);visibility:hidden}
+  .nav a{font:500 2rem var(--serif)}
+  .nav .btn{font:500 1rem var(--sans)}
+  .menu-open .nav{transform:none;visibility:visible}
+  .burger{display:block;z-index:60}
+  .hero{padding-top:7rem;min-height:auto}
+  .hero__grid{grid-template-columns:1fr}
+  .hero__media{max-width:480px;width:88%;margin:1rem auto 0}
+  .hero__badge{left:-1.2rem;bottom:1.2rem;width:100px;height:100px}
+  .hero__badge svg{width:92px;height:92px}
+  .hero__small{right:-1rem;top:-1.5rem}
+  .scroll-hint{display:none}
+  .univers__grid{grid-template-columns:1fr;max-width:460px;margin-inline:auto}
+  .uni:nth-child(2){margin-top:0}
+  .faq__grid,.contact__grid{grid-template-columns:1fr}
+  .faq__aside{position:static}
+  .faq__aside .ph{display:none}
+}
+@media (max-width:760px){
+  body{font-size:1rem}
+  .tl::before,.tl__fill{left:14px}
+  .tl__item,.tl__item--r{grid-template-columns:1fr;gap:1.4rem;padding:1.8rem 0 1.8rem 44px}
+  .tl__item--r .tl__media{order:0}
+  .tl__item--r .tl__text{text-align:left;justify-self:start}
+  .tl__dot{left:14px;top:2.4rem}
+  .tl__media .ph,.tl__item--r .tl__media .ph{max-width:none;margin:0}
+  .tl__hour{font-size:2.8rem}
+  .gal{grid-template-columns:1fr 1fr}
+  .gal .ph:nth-child(n){grid-column:auto;grid-row:auto;margin-top:0}
+  .gal .ph:nth-child(1){grid-column:1/3;--ratio:4/3 !important}
+  .gal .ph:nth-child(5){grid-column:1/3;--ratio:16/10 !important}
+  .steps{grid-template-columns:1fr}
+  .choices{grid-template-columns:1fr}
+  .row2{grid-template-columns:1fr}
+  .factions .btn{padding:.95rem 1.3rem}
+  .prog li{font-size:.7rem}
+  .avis__slots span{height:60px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .ph.reveal,.ph--arch.reveal{clip-path:none !important}
+  .ph img{transform:none !important}
+  .ph__in{inset:0;transform:none !important}
+  .reveal-up{opacity:1;transform:none}
+  .hero__line>span{transform:none}
+  .manif .word{opacity:1}
+  .hero__badge svg{animation:none}
+}
+</style>
+</head>
+<body class="no-js">
+<script>document.body.classList.remove('no-js')</script>
+<a class="skip" href="#main">Aller au contenu</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Maëlle Doré, accueil"><b>Maëlle Doré</b><span>photographie</span></a>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span></button>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#recit">Mariage</a>
+      <a href="#famille">Famille</a>
+      <a href="#seance">La séance</a>
+      <a href="#forfaits">Forfaits</a>
+      <a href="#faq">Questions</a>
+      <a class="btn" href="#contact">Réserver une date</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">Portrait · Famille · Mariage</p>
+      <h1>
+        <span class="hero__line"><span>Les jours qui comptent,</span></span>
+        <span class="hero__line"><span>racontés avec <em>douceur</em></span></span>
+        <span class="hero__line"><span class="script">&amp; pour longtemps</span></span>
+      </h1>
+      <p class="hero__lead">Je photographie les gens que vous aimez, tels qu'ils sont : les rires, les mains serrées, les silences. Des images simples et lumineuses, à regarder encore dans vingt ans.</p>
+      <div class="hero__cta">
+        <a class="btn" href="#contact">Parlons de votre projet <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn--ghost" href="#recit">Voir un mariage raconté</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <figure class="ph reveal ph--arch" style="--ratio:4/5;--tone:#E6CDB9"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1519741497674-611481863552?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 860px) 88vw, 46vw" alt="Mariée tenant son bouquet aux côtés du marié" fetchpriority="high" decoding="async"></div></figure>
+      <div class="hero__small"><figure class="ph reveal " style="--ratio:1/1;--tone:#F0DCD3"><div class="ph__in"><img src="https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 860px) 34vw, 18vw" alt="Bouquet de fleurs rose pâle et blanches" loading="lazy" decoding="async"></div></figure></div>
+      <div class="hero__badge" aria-hidden="true">
+        <svg viewBox="0 0 120 120"><defs><path id="circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs><text font-family="Jost" font-size="10.5" letter-spacing="3.2" fill="#5B6A50"><textPath href="#circ">PHOTOGRAPHIE · SOUVENIRS · LUMIÈRE · </textPath></text></svg>
+        <i>M</i>
+      </div>
+    </div>
+  </div>
+  <span class="scroll-hint" aria-hidden="true">Défiler</span>
+</section>
+
+<section class="section univers" aria-labelledby="univ-t">
+  <div class="wrap">
+    <div class="section__head reveal-up">
+      <p class="eyebrow">Trois façons de se raconter</p>
+      <h2 id="univ-t">Des séances à votre <span class="script">image</span></h2>
+    </div>
+    <div class="univers__grid">
+      <a class="uni" href="#recit"><figure class="ph reveal ph--arch" style="--ratio:3/4;--tone:#E7D0BE"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 860px) 100vw, 33vw" alt="Marié embrassant la mariée" loading="lazy" decoding="async"></div></figure><h3>Mariage <small>01</small></h3><p>Le reportage de votre journée, des préparatifs à la dernière danse.</p></a>
+      <a class="uni" href="#famille"><figure class="ph reveal ph--arch" style="--ratio:3/4;--tone:#D9DCC6"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1542037179399-bbf09c7f9888?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 860px) 100vw, 33vw" alt="Père et deux enfants dans l'herbe" loading="lazy" decoding="async"></div></figure><h3>Famille <small>02</small></h3><p>À la maison ou en extérieur, une séance où les enfants restent des enfants.</p></a>
+      <a class="uni" href="#forfaits"><figure class="ph reveal ph--arch" style="--ratio:3/4;--tone:#E8D2B8"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1496602910407-bacda74a0fe4?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 860px) 100vw, 33vw" alt="Couple assis près des arbres à l'heure dorée" loading="lazy" decoding="async"></div></figure><h3>Portrait &amp; couple <small>03</small></h3><p>Une heure pour vous, pour un anniversaire, des fiançailles ou sans raison.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="section manif" aria-label="Approche">
+  <div class="wrap">
+    <blockquote id="manif">Je ne vous demanderai pas de sourire. Je vous laisserai <em>vivre</em> votre moment, et je serai là, discrète, pour le garder.</blockquote>
+    <span class="script reveal-up">— Maëlle</span>
+  </div>
+</section>
+
+<section class="section recit" id="recit" aria-labelledby="recit-t">
+  <div class="wrap">
+    <div class="section__head reveal-up">
+      <p class="eyebrow">Un récit, heure par heure</p>
+      <h2 id="recit-t">Une journée de <span class="script">mariage</span></h2>
+      <p>De 9h à minuit, voici comment je vous accompagne. Chaque mariage est différent : ce déroulé est un exemple, nous construisons le vôtre ensemble.</p>
+    </div>
+    <ol class="tl" id="tl">
+      <li class="tl__fill" id="tlFill" aria-hidden="true"></li>
+      
+      <li class="tl__item tl__item--l">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#EAD9C6"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1606216794079-73f85bbd57d5?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Mariée en robe blanche pendant les préparatifs" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">9h00</p>
+          <p class="tl__kicker">Préparatifs</p>
+          <h3 class="tl__title">Le calme avant</h3>
+          <p>Lumière du matin, robe sur le cintre, mains qui tremblent un peu. Je me fais discrète et je guette les regards.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--r">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#E9CFC4"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Alliances posées sur un bouquet de roses" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">11h30</p>
+          <p class="tl__kicker">Détails</p>
+          <h3 class="tl__title">Les petites choses</h3>
+          <p>Les alliances, le bouquet, le faire-part posé sur la table : ces objets que l'on oublie et qui racontent tant.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--l">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#D8DCC9"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Arche de cérémonie sous les arbres" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">15h00</p>
+          <p class="tl__kicker">Cérémonie</p>
+          <h3 class="tl__title">Le oui</h3>
+          <p>Je me place là où je ne gêne personne, et je ne quitte pas vos visages des yeux.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--r">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#DCD3BC"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1532712938310-34cb3982ef74?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Mariés marchant sur une colline" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">17h00</p>
+          <p class="tl__kicker">Séance couple</p>
+          <h3 class="tl__title">Rien que vous deux</h3>
+          <p>Une vingtaine de minutes à l'écart, à marcher, à respirer. Pas de pose figée, juste vous.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--l">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#EBDCC8"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1775126964424-913480443772?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1775126964424-913480443772?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1775126964424-913480443772?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1775126964424-913480443772?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1775126964424-913480443772?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Table de réception dressée pour un mariage" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">19h00</p>
+          <p class="tl__kicker">Cocktail &amp; décor</p>
+          <h3 class="tl__title">La table est mise</h3>
+          <p>Avant que les invités ne s'installent, je photographie la salle comme vous l'avez rêvée.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--r">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#E4D6C6"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Verres alignés sur la table du dîner" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">21h00</p>
+          <p class="tl__kicker">Dîner &amp; discours</p>
+          <h3 class="tl__title">Les mots qui émeuvent</h3>
+          <p>Les verres qui se lèvent, les rires, la larme du témoin : le cœur de la soirée.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--l">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#E2C9B8"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1762319981432-609103ab4a75?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1762319981432-609103ab4a75?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1762319981432-609103ab4a75?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1762319981432-609103ab4a75?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1762319981432-609103ab4a75?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Mariés célébrant avec leurs amis" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">23h00</p>
+          <p class="tl__kicker">Soirée</p>
+          <h3 class="tl__title">Tout le monde danse</h3>
+          <p>L'ouverture de bal, puis la piste qui se remplit. Je range le flash discret et je danse un peu aussi.</p>
+        </div>
+      </li>
+      <li class="tl__item tl__item--r">
+        <span class="tl__dot" aria-hidden="true"></span>
+        <div class="tl__media"><figure class="ph reveal " style="--ratio:4/5;--tone:#D9C2AE"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1615966650071-855b15f29ad1?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 86vw, 40vw" alt="Silhouette d'un couple qui danse au coucher du soleil" loading="lazy" decoding="async"></div></figure></div>
+        <div class="tl__text reveal-up">
+          <p class="tl__hour">00h00</p>
+          <p class="tl__kicker">Minuit</p>
+          <h3 class="tl__title">Une dernière lumière</h3>
+          <p>Avant de partir, une dernière image tous les deux, dehors, sous la nuit.</p>
+        </div>
+      </li>
+    </ol>
+    <div class="tl__end reveal-up"><span class="script">… et la galerie arrive quelques semaines plus tard.</span></div>
+  </div>
+</section>
+
+<section class="section" id="famille" aria-labelledby="fam-t">
+  <div class="wrap">
+    <div class="section__head reveal-up">
+      <p class="eyebrow">Famille &amp; naissance</p>
+      <h2 id="fam-t">Ceux qui grandissent <span class="script">trop vite</span></h2>
+      <p>Un dimanche matin dans votre salon, une balade dans un champ en fin de journée, les premières semaines d'un bébé : on prend le temps, on joue, on se câline. Les photos viennent toutes seules.</p>
+    </div>
+    <div class="gal">
+      <figure class="ph reveal " style="--ratio:4/5;--tone:#DCD8C2"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1529518152792-d08317b26e22?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1529518152792-d08317b26e22?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1529518152792-d08317b26e22?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1529518152792-d08317b26e22?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1529518152792-d08317b26e22?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 100vw, 42vw" alt="Famille debout devant des arbres" loading="lazy" decoding="async"></div><figcaption>Balade en forêt</figcaption></figure>
+      <figure class="ph reveal " style="--ratio:1/1;--tone:#E9D3C2"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1531984929664-2fb2be468d3e?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1531984929664-2fb2be468d3e?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1531984929664-2fb2be468d3e?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1531984929664-2fb2be468d3e?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1531984929664-2fb2be468d3e?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 50vw, 34vw" alt="Petit garçon serrant sa mère dans ses bras" loading="lazy" decoding="async"></div></figure>
+      <figure class="ph reveal " style="--ratio:3/4;--tone:#EEDFD2"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1651861787284-bf1bb85bcec8?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1651861787284-bf1bb85bcec8?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1651861787284-bf1bb85bcec8?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1651861787284-bf1bb85bcec8?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1651861787284-bf1bb85bcec8?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 50vw, 25vw" alt="Main de bébé posée dans la paume d'un adulte" loading="lazy" decoding="async"></div></figure>
+      <figure class="ph reveal " style="--ratio:3/4;--tone:#E4D4C3"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1623249288685-835abe0123b4?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1623249288685-835abe0123b4?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1623249288685-835abe0123b4?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1623249288685-835abe0123b4?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1623249288685-835abe0123b4?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 50vw, 25vw" alt="Femme tenant un bébé dans ses bras" loading="lazy" decoding="async"></div></figure>
+      <figure class="ph reveal " style="--ratio:4/3;--tone:#DDD9C0"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1611024847487-e26177381a3f?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1611024847487-e26177381a3f?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1611024847487-e26177381a3f?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1611024847487-e26177381a3f?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1611024847487-e26177381a3f?w=1600&q=80&auto=format&fit=crop 1600w" sizes="(max-width: 760px) 100vw, 34vw" alt="Famille avec quatre enfants dans un champ" loading="lazy" decoding="async"></div><figcaption>Fin de journée</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="seance" aria-labelledby="seance-t" style="padding-top:0">
+  <div class="wrap">
+    <div class="section__head reveal-up">
+      <p class="eyebrow">Le déroulé</p>
+      <h2 id="seance-t">Comment se passe une <span class="script">séance</span></h2>
+    </div>
+    <ol class="steps">
+      <li class="step reveal-up"><span class="script">bonjour</span><h3>On fait connaissance</h3><p>Un appel ou un café pour parler de vous, de vos envies, du lieu et de l'ambiance souhaitée.</p></li>
+      <li class="step reveal-up" style="transition-delay:.1s"><span class="script">ensemble</span><h3>On prépare</h3><p>Je vous envoie un petit guide : tenues, horaires de belle lumière, idées de lieux. Rien d'imposé.</p></li>
+      <li class="step reveal-up" style="transition-delay:.2s"><span class="script">le jour J</span><h3>On vit le moment</h3><p>Je vous guide doucement, sans poses figées. Les enfants courent, vous riez, je photographie.</p></li>
+      <li class="step reveal-up" style="transition-delay:.3s"><span class="script">souvenirs</span><h3>Vous recevez</h3><p>Une galerie en ligne privée, à partager et télécharger, avec des images retouchées une à une.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section offres" id="forfaits" aria-labelledby="off-t">
+  <div class="wrap">
+    <div class="section__head reveal-up">
+      <p class="eyebrow">Forfaits</p>
+      <h2 id="off-t">Des formules <span class="script">claires</span></h2>
+      <p>Chaque formule est ajustable. Les tarifs ci-dessous sont des prix d'exemple pour cette maquette.</p>
+    </div>
+    <div class="plans">
+      <article class="plan reveal-up">
+        <h3>Portrait</h3><p class="plan__sub">solo ou à deux</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Séance d'environ 1 heure</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> 30 photos retouchées livrées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Galerie en ligne privée (6 mois)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Un lieu au choix, en extérieur ou chez vous</li>
+        </ul>
+        <div class="plan__price"><small>À partir de</small><strong>180 €</strong><span class="plan__note">Prix d'exemple</span></div>
+        <a class="btn btn--ghost" href="#contact" data-type="portrait">Choisir Portrait</a>
+      </article>
+      <article class="plan plan--star reveal-up" style="transition-delay:.1s">
+        <span class="plan__tag">La plus demandée</span>
+        <h3>Famille</h3><p class="plan__sub">petits &amp; grands</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Séance d'1h30, à votre rythme</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> 60 photos retouchées livrées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Galerie en ligne privée (1 an)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Option nouveau-né à domicile</li>
+        </ul>
+        <div class="plan__price"><small>À partir de</small><strong>290 €</strong><span class="plan__note">Prix d'exemple</span></div>
+        <a class="btn" href="#contact" data-type="famille">Choisir Famille</a>
+      </article>
+      <article class="plan reveal-up" style="transition-delay:.2s">
+        <h3>Mariage</h3><p class="plan__sub">votre journée</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> De 4 heures à la journée complète</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> 300 à 600 photos retouchées</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Galerie en ligne privée (2 ans)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg> Rendez-vous de préparation inclus</li>
+        </ul>
+        <div class="plan__price"><strong>Sur devis</strong><small>Selon la durée et le lieu</small></div>
+        <a class="btn btn--ghost" href="#contact" data-type="mariage">Demander un devis</a>
+      </article>
+    </div>
+    <p class="plans__foot">Tirages, albums et déplacements : sur demande.</p>
+  </div>
+</section>
+
+<section class="section avis" aria-labelledby="avis-t">
+  <div class="wrap">
+    <div class="avis__box reveal-up">
+      <p class="eyebrow" style="justify-content:center">Emplacement de démonstration</p>
+      <h2 id="avis-t" class="script">Vos avis clients apparaîtront ici</h2>
+      <p>Cette zone accueillera les témoignages réels de vos clients, avec leur accord. Aucun avis n'est inventé dans cette maquette.</p>
+      <div class="avis__slots" aria-hidden="true"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq" aria-labelledby="faq-t" style="padding-top:0">
+  <div class="wrap faq__grid">
+    <div class="faq__aside">
+      <div class="section__head reveal-up" style="margin-bottom:0">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 id="faq-t">Tout ce que vous vous <span class="script">demandez</span></h2>
+      </div>
+      <figure class="ph reveal ph--arch" style="--ratio:4/5;--tone:#E6D3C3"><div class="ph__in" data-parallax><img src="https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1600&q=80&auto=format&fit=crop" srcset="https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=480&q=80&auto=format&fit=crop 480w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1200&q=80&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1769251296969-a4c7aa0b4478?w=1600&q=80&auto=format&fit=crop 1600w" sizes="30vw" alt="Bouquet de fleurs rose pâle et blanches" loading="lazy" decoding="async"></div></figure>
+    </div>
+    <div class="acc" id="acc">
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq0" id="faqb0">Combien de temps à l'avance faut-il réserver ?<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq0" role="region" aria-labelledby="faqb0"><div><p>Pour un mariage, idéalement 9 à 12 mois avant, surtout entre mai et septembre. Pour une séance famille ou portrait, quelques semaines suffisent en général.</p></div></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq1" id="faqb1">Nous ne sommes pas à l'aise devant l'objectif…<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq1" role="region" aria-labelledby="faqb1"><div><p>C'est le cas de presque tout le monde, et c'est très bien ainsi. Je vous guide avec des petites consignes simples, on marche, on discute : vous oubliez vite l'appareil.</p></div></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq2" id="faqb2">Quand recevrons-nous nos photos ?<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq2" role="region" aria-labelledby="faqb2"><div><p>Comptez environ 3 semaines pour une séance famille ou portrait, et 6 à 8 semaines pour un mariage. Un petit aperçu vous est envoyé quelques jours après.</p></div></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq3" id="faqb3">Vous déplacez-vous ?<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq3" role="region" aria-labelledby="faqb3"><div><p>Oui, dans toute la région et au-delà. Les frais de déplacement éventuels sont indiqués clairement dans le devis, avant toute réservation.</p></div></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq4" id="faqb4">Comment se passe la réservation ?<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq4" role="region" aria-labelledby="faqb4"><div><p>Après notre échange, je vous envoie un devis et un contrat. La date est bloquée à réception du contrat signé et d'un acompte.</p></div></div></div>
+      <div class="acc__item"><button class="acc__btn" type="button" aria-expanded="false" aria-controls="faq5" id="faqb5">Que se passe-t-il s'il pleut ?<span class="acc__ico" aria-hidden="true"></span></button><div class="acc__panel" id="faq5" role="region" aria-labelledby="faqb5"><div><p>Pour une séance en extérieur, nous décalons sans frais. Pour un mariage, la pluie donne souvent des images magnifiques : parapluies, lumières douces, fous rires.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact" aria-labelledby="ct-t">
+  <div class="wrap contact__grid">
+    <div class="contact__info reveal-up">
+      <p class="eyebrow">Demande de séance</p>
+      <h2 id="ct-t" style="font-size:clamp(2.3rem,5vw,3.6rem)">Racontez-moi <span class="script">tout</span></h2>
+      <p style="color:var(--encre-2);margin-top:1.2rem">Trois petites étapes, et je vous réponds sous 48 heures avec mes disponibilités.</p>
+      <dl>
+        <div><dt>Téléphone</dt><dd>06 XX XX XX XX</dd></div>
+        <div><dt>Atelier</dt><dd>XX rue de l'Exemple</dd></div>
+        <div><dt>Déplacements</dt><dd>Dans toute la région et au-delà</dd></div>
+      </dl>
+    </div>
+
+    <form class="form" id="form" novalidate>
+      <ol class="prog" id="prog" aria-hidden="true"><li class="cur">Type de séance</li><li>Date</li><li>Coordonnées</li></ol>
+      <p class="sr" id="stepLive" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"></p>
+      <div class="fsteps" id="fsteps">
+        <fieldset class="fstep" data-step="0">
+          <legend>Quel type de séance ?</legend>
+          <p class="hint">Choisissez ce qui vous ressemble le plus.</p>
+          <div class="choices">
+            <div class="choice"><input type="radio" name="type" id="t-mariage" value="mariage" required><label for="t-mariage"><span class="script">oui</span><b>Mariage</b><span>Reportage de votre journée</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t-famille" value="famille"><label for="t-famille"><span class="script">tribu</span><b>Famille</b><span>Parents, enfants, grands-parents</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t-naissance" value="naissance"><label for="t-naissance"><span class="script">bébé</span><b>Naissance</b><span>Grossesse ou nouveau-né</span></label></div>
+            <div class="choice"><input type="radio" name="type" id="t-portrait" value="portrait"><label for="t-portrait"><span class="script">vous</span><b>Portrait &amp; couple</b><span>Solo, fiançailles, anniversaire</span></label></div>
+          </div>
+        </fieldset>
+        <fieldset class="fstep" data-step="1" hidden>
+          <legend>Pour quand ?</legend>
+          <p class="hint">Une date précise ou une période approximative, les deux me vont.</p>
+          <div class="field"><label for="f-date">Date souhaitée</label><input type="date" id="f-date" name="date"><span class="msg"></span></div>
+          <label class="check"><input type="checkbox" id="f-flex" name="flexible"> Mes dates sont flexibles</label>
+          <div class="field"><label for="f-lieu">Lieu (ville ou région)</label><input type="text" id="f-lieu" name="lieu" placeholder="Ex. : en extérieur, près de chez nous" autocomplete="address-level2"><span class="msg"></span></div>
+        </fieldset>
+        <fieldset class="fstep" data-step="2" hidden>
+          <legend>Vos coordonnées</legend>
+          <p class="hint">Pour que je puisse vous répondre.</p>
+          <div class="row2">
+            <div class="field"><label for="f-nom">Prénom et nom</label><input type="text" id="f-nom" name="nom" autocomplete="name" required><span class="msg"></span></div>
+            <div class="field"><label for="f-tel">Téléphone <span style="font-weight:300">(facultatif)</span></label><input type="tel" id="f-tel" name="tel" autocomplete="tel"><span class="msg"></span></div>
+          </div>
+          <div class="field"><label for="f-mail">Adresse e-mail</label><input type="email" id="f-mail" name="email" autocomplete="email" required><span class="msg"></span></div>
+          <div class="field"><label for="f-msg">Quelques mots sur votre projet</label><textarea id="f-msg" name="message" rows="3" placeholder="Votre histoire, vos envies, vos questions…"></textarea></div>
+        </fieldset>
+        <div class="fdone" id="fdone" hidden tabindex="-1">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="21" opacity=".25"/><path d="M14 25l7 7 13-15"/></svg>
+          <span class="script">Merci&nbsp;!</span>
+          <p>Votre demande est bien partie (démonstration : rien n'est réellement envoyé). Je reviens vers vous très vite.</p>
+          <button type="button" class="btn btn--ghost" id="restart" style="margin-top:1.6rem">Nouvelle demande</button>
+        </div>
+      </div>
+      <p class="ferr" id="ferr" role="alert"></p>
+      <div class="factions" id="factions">
+        <button type="button" class="btn btn--ghost" id="prev" hidden>Retour</button>
+        <span></span>
+        <button type="submit" class="btn" id="next">Continuer <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__top">
+      <a class="logo" href="#top"><b>Maëlle Doré</b><span>photographie</span></a>
+      <nav aria-label="Pied de page"><a href="#recit">Mariage</a><a href="#famille">Famille</a><a href="#forfaits">Forfaits</a><a href="#faq">FAQ</a><a href="#contact">Contact</a></nav>
+    </div>
+    <div class="ftr__bot">
+      <span>Maquette de démonstration — photographe fictive. Photos : Unsplash.</span>
+      <span>06 XX XX XX XX · XX rue de l'Exemple</span>
+    </div>
+  </div>
+</footer>
+<span class="demo-flag">Maquette</span>
+
+<script>
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Header + menu */
+  var hdr = document.getElementById('hdr'), burger = document.getElementById('burger'), nav = document.getElementById('nav');
+  function setMenu(open){
+    document.body.classList.toggle('menu-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', function(){ setMenu(!document.body.classList.contains('menu-open')); });
+  nav.addEventListener('click', function(e){ if(e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  /* Manifesto: split words */
+  var mf = document.getElementById('manif');
+  (function split(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType === 3){
+        var frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(w){
+          if(!w) return;
+          if(/^\s+$/.test(w)){ frag.appendChild(document.createTextNode(w)); return; }
+          var s = document.createElement('span'); s.className = 'word'; s.textContent = w; frag.appendChild(s);
+        });
+        n.parentNode.replaceChild(frag, n);
+      } else if(n.nodeType === 1){ split(n); }
+    });
+  })(mf);
+  var words = mf.querySelectorAll('.word');
+
+  /* Reveal on scroll. Text: IntersectionObserver. Photos: checked in the rAF loop
+     (their clip-path hides them from IntersectionObserver). */
+  var els = document.querySelectorAll('.reveal-up');
+  var pending = Array.prototype.slice.call(document.querySelectorAll('.ph.reveal'));
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('is-in'); io.unobserve(en.target); } });
+    }, {rootMargin:'0px 0px -10% 0px', threshold:0.05});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-in'); });
+    pending.forEach(function(el){ el.classList.add('is-in'); }); pending = [];
+  }
+
+  /* Parallax + timeline fill + manifesto words (one rAF loop) */
+  var para = Array.prototype.slice.call(document.querySelectorAll('[data-parallax]'));
+  var tl = document.getElementById('tl'), fill = document.getElementById('tlFill');
+  var items = Array.prototype.slice.call(tl.querySelectorAll('.tl__item'));
+  var ticking = false;
+  function frame(){
+    ticking = false;
+    var vh = window.innerHeight;
+    hdr.classList.toggle('is-scrolled', window.scrollY > 30);
+    if(pending.length){
+      pending = pending.filter(function(el){
+        var r = el.getBoundingClientRect();
+        if(r.top < vh*0.9 && r.bottom > 0){ el.classList.add('is-in'); return false; }
+        return true;
+      });
+    }
+    if(!reduce){
+      for(var i=0;i<para.length;i++){
+        var r = para[i].parentNode.getBoundingClientRect();
+        if(r.bottom < -100 || r.top > vh + 100) continue;
+        var p = (r.top + r.height/2 - vh/2) / (vh/2 + r.height/2); // -1..1
+        para[i].style.transform = 'translate3d(0,' + (p * -7).toFixed(2) + '%,0)';
+      }
+    }
+    var tr = tl.getBoundingClientRect();
+    var prog = Math.min(1, Math.max(0, (vh*0.6 - tr.top) / tr.height));
+    fill.style.height = (prog*100).toFixed(2) + '%';
+    var line = vh*0.6;
+    items.forEach(function(it){
+      var d = it.querySelector('.tl__dot').getBoundingClientRect();
+      it.classList.toggle('is-past', d.top < line);
+    });
+    if(!reduce){
+      var mr = mf.getBoundingClientRect();
+      var mp = Math.min(1, Math.max(0, (vh*0.85 - mr.top) / (mr.height + vh*0.35)));
+      var n = Math.round(mp * words.length * 1.15);
+      for(var w=0; w<words.length; w++) words[w].classList.toggle('on', w < n);
+    }
+  }
+  function onScroll(){ if(!ticking){ ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  frame();
+
+  /* Accordion */
+  document.querySelectorAll('.acc__btn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var item = b.closest('.acc__item'), open = !item.classList.contains('open');
+      document.querySelectorAll('.acc__item.open').forEach(function(o){
+        if(o !== item){ o.classList.remove('open'); o.querySelector('.acc__btn').setAttribute('aria-expanded','false'); }
+      });
+      item.classList.toggle('open', open);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+
+  /* Multi-step form */
+  var form = document.getElementById('form'), steps = form.querySelectorAll('.fstep'),
+      prog = document.querySelectorAll('#prog li'), prev = document.getElementById('prev'),
+      next = document.getElementById('next'), ferr = document.getElementById('ferr'),
+      done = document.getElementById('fdone'), actions = document.getElementById('factions'),
+      live = document.getElementById('stepLive'), cur = 0;
+  var labels = ['Type de séance','Date','Coordonnées'];
+  var nextHTML = next.innerHTML;
+  var dateIn = document.getElementById('f-date');
+  var t = new Date(); t.setDate(t.getDate()+1);
+  dateIn.min = t.toISOString().slice(0,10);
+
+  function setErr(input, msg){
+    var f = input.closest('.field'); if(!f) return;
+    f.classList.toggle('err', !!msg); f.querySelector('.msg').textContent = msg || '';
+    input.setAttribute('aria-invalid', msg ? 'true' : 'false');
+  }
+  function validate(i){
+    ferr.textContent = '';
+    if(i === 0){
+      if(!form.querySelector('input[name="type"]:checked')){ ferr.textContent = 'Choisissez un type de séance pour continuer.'; return false; }
+    }
+    if(i === 1){
+      var flex = document.getElementById('f-flex').checked;
+      if(!dateIn.value && !flex){ setErr(dateIn, 'Indiquez une date, ou cochez « dates flexibles ».'); dateIn.focus(); return false; }
+      if(dateIn.value && dateIn.value < dateIn.min){ setErr(dateIn, 'Choisissez une date à venir.'); dateIn.focus(); return false; }
+      setErr(dateIn, '');
+    }
+    if(i === 2){
+      var ok = true, nom = document.getElementById('f-nom'), mail = document.getElementById('f-mail'), tel = document.getElementById('f-tel');
+      if(nom.value.trim().length < 2){ setErr(nom, 'Merci d’indiquer votre nom.'); ok = false; } else setErr(nom, '');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail.value.trim())){ setErr(mail, 'Adresse e-mail invalide.'); ok = false; } else setErr(mail, '');
+      if(tel.value && !/^[+\d][\d\s.\-()]{7,}$/.test(tel.value.trim())){ setErr(tel, 'Numéro invalide.'); ok = false; } else setErr(tel, '');
+      if(!ok){ var first = form.querySelector('.field.err input'); if(first) first.focus(); }
+      return ok;
+    }
+    return true;
+  }
+  function show(i, back){
+    steps.forEach(function(s, k){
+      s.hidden = k !== i;
+      s.classList.remove('enter','enter-back');
+    });
+    if(!reduce){ void steps[i].offsetWidth; steps[i].classList.add(back ? 'enter-back' : 'enter'); }
+    prog.forEach(function(p, k){ p.classList.toggle('cur', k === i); p.classList.toggle('done', k < i); });
+    prev.hidden = i === 0;
+    next.innerHTML = i === steps.length - 1 ? 'Envoyer ma demande' : nextHTML;
+    live.textContent = 'Étape ' + (i+1) + ' sur 3 : ' + labels[i];
+    cur = i;
+  }
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!validate(cur)) return;
+    if(cur < steps.length - 1){
+      show(cur + 1, false);
+      var f = steps[cur].querySelector('input:not([type=checkbox])');
+      if(f && cur > 0) f.focus({preventScroll:true});
+    } else {
+      steps.forEach(function(s){ s.hidden = true; });
+      actions.hidden = true; actions.style.display = 'none';
+      prog.forEach(function(p){ p.classList.add('done'); p.classList.remove('cur'); });
+      done.hidden = false; done.focus({preventScroll:true});
+      live.textContent = 'Demande envoyée.';
+    }
+  });
+  prev.addEventListener('click', function(){ ferr.textContent=''; if(cur > 0) show(cur - 1, true); });
+  form.querySelectorAll('input[name="type"]').forEach(function(r){
+    r.addEventListener('change', function(){ ferr.textContent = ''; });
+  });
+  document.getElementById('restart').addEventListener('click', function(){
+    form.reset(); done.hidden = true; actions.hidden = false; actions.style.display = '';
+    form.querySelectorAll('.field.err').forEach(function(f){ f.classList.remove('err'); f.querySelector('.msg').textContent=''; });
+    show(0, true);
+  });
+  /* Plan buttons preselect type */
+  document.querySelectorAll('[data-type]').forEach(function(a){
+    a.addEventListener('click', function(){
+      var r = document.getElementById('t-' + a.getAttribute('data-type'));
+      if(r){ r.checked = true; if(cur !== 0) show(0, true); }
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Veillée — Restaurant à Valmorance</title>
+<meta name="description" content="La Veillée, table de saison à Valmorance. Cuisine du marché, cave de vins au verre, privatisation. Réservation en ligne.">
+<meta name="theme-color" content="#0F1212">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   VARIABLES — à adapter par client
+   ========================================================= */
+:root{
+  --noir:#0F1212;
+  --ardoise:#1F2D2D;
+  --creme:#E9E2D6;
+  --cuivre:#D39969;
+  --creme-70:rgba(233,226,214,.7);
+  --creme-45:rgba(233,226,214,.45);
+  --creme-15:rgba(233,226,214,.15);
+  --creme-08:rgba(233,226,214,.08);
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --ease:cubic-bezier(.77,0,.18,1);
+  --ease-out:cubic-bezier(.16,1,.3,1);
+  --marge:clamp(20px,5vw,80px);
+  --entete:76px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--noir);color:var(--creme);-webkit-text-size-adjust:100%;overflow-x:clip}
+body{font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:clip;background:var(--noir);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html.verrou,html.verrou body{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--cuivre);color:var(--noir)}
+:focus-visible{outline:1px solid var(--cuivre);outline-offset:4px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* grain photographique très léger pour un noir « riche » */
+body::after{content:"";position:fixed;inset:-50%;z-index:400;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .9 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* cadres photo : fond de couleur + ratio, jamais de saut */
+.ph{position:relative;overflow:hidden;background:var(--ardoise)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.02) sepia(.06)}
+.ph--para img{top:-9%;height:118%;will-change:transform}
+
+/* typo */
+.surtitre{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--cuivre)}
+.titre{font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;letter-spacing:-.025em;line-height:.95;font-size:clamp(3rem,8vw,8.5rem)}
+.titre em,.hero__titre em{font-style:italic;font-weight:300;color:var(--cuivre)}
+.chapo{font-family:var(--serif);font-weight:300;font-size:clamp(1.15rem,1.6vw,1.45rem);line-height:1.5;color:var(--creme-70);font-variation-settings:"opsz" 24}
+.petit{font-size:13px;color:var(--creme-45);line-height:1.55}
+.mention{font-size:12px;letter-spacing:.04em;color:var(--creme-45)}
+.mention strong{color:var(--creme-70);font-weight:500}
+
+/* texte découpé qui monte */
+.sw{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .14em;margin:0 -.02em -.14em}
+.si{display:inline-block;transform:translate3d(0,108%,0);transition:transform 1.3s var(--ease);transition-delay:calc(var(--i,0) * 55ms + var(--d,0ms))}
+.in .si,.si.in{transform:none}
+.monte{opacity:0;transform:translate3d(0,28px,0);transition:opacity 1.2s var(--ease-out),transform 1.4s var(--ease-out);transition-delay:var(--d,0ms)}
+.monte.in{opacity:1;transform:none}
+
+/* =========================================================
+   CURSEUR
+   ========================================================= */
+.curseur{position:fixed;left:0;top:0;z-index:500;pointer-events:none;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;
+  background:var(--cuivre);display:grid;place-items:center;transition:width .6s var(--ease),height .6s var(--ease),margin .6s var(--ease),background .4s,opacity .3s;opacity:0}
+.curseur span{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--noir);opacity:0;transition:opacity .3s}
+.curseur.visible{opacity:1}
+.curseur.grand{width:92px;height:92px;margin:-46px 0 0 -46px}
+.curseur.grand span{opacity:1;transition-delay:.15s}
+.curseur.lien{width:42px;height:42px;margin:-21px 0 0 -21px;background:rgba(211,153,105,.25)}
+html.curseur-on,html.curseur-on a,html.curseur-on button{cursor:none}
+html.curseur-on .panneau,html.curseur-on .panneau *{cursor:auto}
+html.curseur-on .panneau button,html.curseur-on .panneau a{cursor:pointer}
+
+/* =========================================================
+   EN-TÊTE
+   ========================================================= */
+.entete{position:fixed;inset:0 0 auto 0;z-index:100;height:var(--entete);display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--marge);transition:background .8s var(--ease),transform .9s var(--ease),border-color .8s;border-bottom:1px solid transparent}
+.entete.fond{background:rgba(15,18,18,.72);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);border-color:var(--creme-08)}
+.entete.cache{transform:translateY(-100%)}
+.logo{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-.01em;line-height:1}
+.logo em{font-style:italic;color:var(--cuivre)}
+.logo small{display:block;font-family:var(--sans);font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--creme-45);margin-top:5px}
+.nav{display:flex;gap:clamp(18px,2.4vw,40px);align-items:center}
+.nav a{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--creme-70);position:relative;padding:6px 0;transition:color .4s}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--cuivre);transform:scaleX(0);transform-origin:right;transition:transform .7s var(--ease)}
+.nav a:hover{color:var(--creme)}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:46px;padding:0 26px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid var(--cuivre);color:var(--creme);position:relative;overflow:hidden;isolation:isolate;transition:color .6s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--cuivre);transform:translateY(101%);border-radius:inherit;transition:transform .7s var(--ease)}
+.btn:hover{color:var(--noir)}
+.btn:hover::before{transform:none}
+.btn--plein{background:var(--cuivre);color:var(--noir)}
+.btn--plein::before{background:var(--creme)}
+.btn .lbl{display:inline-block;will-change:transform}
+.menu-btn{display:none;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;height:44px;padding:0 4px;align-items:center;gap:10px}
+.menu-btn i{display:block;width:22px;height:1px;background:var(--creme);position:relative}
+.menu-btn i::after{content:"";position:absolute;left:6px;right:0;top:6px;height:1px;background:var(--creme)}
+
+/* menu mobile */
+.menu-mobile{position:fixed;inset:0;z-index:150;background:var(--noir);display:flex;flex-direction:column;justify-content:center;padding:var(--marge);
+  clip-path:inset(0 0 100% 0);transition:clip-path 1s var(--ease);visibility:hidden}
+.menu-mobile.ouvert{clip-path:inset(0);visibility:visible}
+.menu-mobile a{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,12vw,4rem);line-height:1.15;letter-spacing:-.02em;display:block}
+.menu-mobile a em{color:var(--cuivre)}
+.menu-mobile .fermer{position:absolute;top:18px;right:var(--marge);height:44px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.menu-mobile .petit{margin-top:40px}
+
+/* =========================================================
+   OUVERTURE
+   ========================================================= */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:var(--noir)}
+.hero__media{position:absolute;inset:0;will-change:transform}
+.hero__media .ph{position:absolute;inset:0;background:var(--noir)}
+.hero__media img{transform:scale(1.18);filter:brightness(.16) saturate(.6) sepia(.2);transition:filter 5.5s var(--ease-out),transform 7s var(--ease-out)}
+.pret .hero__media img{transform:scale(1.03);filter:brightness(.72) saturate(1.05) sepia(.1)}
+.hero__voile{position:absolute;inset:0;background:
+  radial-gradient(120% 80% at 50% 40%,transparent 0,rgba(15,18,18,.35) 55%,rgba(15,18,18,.9) 100%),
+  linear-gradient(180deg,rgba(15,18,18,.55) 0,transparent 22%,transparent 50%,rgba(15,18,18,.95) 100%)}
+.hero__contenu{position:absolute;left:var(--marge);right:var(--marge);bottom:clamp(110px,16vh,170px);will-change:transform,opacity}
+.hero__titre{font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;font-size:clamp(5rem,20.5vw,19rem);line-height:.82;letter-spacing:-.045em;margin:18px 0 0 -.04em}
+.hero__titre .la{display:block;font-size:.26em;font-style:italic;letter-spacing:-.01em;color:var(--cuivre);margin:0 0 .12em .08em;line-height:1}
+.hero__titre .si{transition-duration:1.6s}
+.hero__ligne{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:28px;flex-wrap:wrap}
+.hero__ligne .chapo{max-width:30ch}
+.hero__bas{position:absolute;left:var(--marge);right:var(--marge);bottom:30px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--creme-45)}
+.defiler{display:flex;align-items:center;gap:14px}
+.defiler i{display:block;width:1px;height:42px;background:var(--creme-15);position:relative;overflow:hidden}
+.defiler i::after{content:"";position:absolute;left:0;top:0;width:1px;height:45%;background:var(--cuivre);animation:goutte 2.6s var(--ease) infinite}
+@keyframes goutte{0%{transform:translateY(-100%)}100%{transform:translateY(240%)}}
+
+/* =========================================================
+   MANIFESTE + LA SALLE
+   ========================================================= */
+.section{position:relative;padding:clamp(100px,18vh,200px) var(--marge)}
+.manifeste{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px}
+.manifeste .surtitre{grid-column:1/-1;margin-bottom:34px}
+.manifeste__texte{grid-column:1/11;font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4.1vw,4.3rem);line-height:1.08;letter-spacing:-.022em;font-variation-settings:"opsz" 96}
+.manifeste__texte em{font-style:italic;color:var(--cuivre)}
+.manifeste__pied{grid-column:7/12;margin-top:56px}
+.salle{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:0 var(--marge) clamp(80px,14vh,160px);align-items:start}
+.salle figure:nth-child(1){grid-column:1/6;margin-top:12vh}
+.salle figure:nth-child(1) .ph{aspect-ratio:4/5}
+.salle figure:nth-child(2){grid-column:6/10}
+.salle figure:nth-child(2) .ph{aspect-ratio:3/4}
+.salle figure:nth-child(3){grid-column:10/13;margin-top:30vh}
+.salle figure:nth-child(3) .ph{aspect-ratio:2/3}
+figcaption.leg{margin-top:14px;font-size:12px;letter-spacing:.06em;color:var(--creme-45);display:flex;justify-content:space-between;gap:12px}
+figcaption.leg b{font-weight:500;color:var(--creme-70)}
+
+/* =========================================================
+   PLATS — ZOOM AU DÉFILEMENT
+   ========================================================= */
+.plats-intro{padding:clamp(80px,14vh,160px) var(--marge) 40px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.plats-intro .chapo{max-width:34ch}
+.zoom{position:relative;height:230vh;--p:0}
+.zoom__collant{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.zoom__cadre{position:absolute;inset:0;background:var(--noir);
+  clip-path:inset(calc(15vh * (1 - var(--p))) calc(15vw * (1 - var(--p))) round calc(6px * (1 - var(--p))))}
+.zoom__cadre .ph{position:absolute;inset:0}
+.zoom__cadre img{transform:scale(calc(1.25 - .25 * var(--p)));filter:brightness(calc(.62 + .3 * var(--p))) saturate(1.04) sepia(.08);will-change:transform}
+.zoom__voile{position:absolute;inset:0;pointer-events:none;opacity:var(--p);
+  background:linear-gradient(90deg,rgba(15,18,18,.86) 0,rgba(15,18,18,.35) 45%,transparent 70%),linear-gradient(0deg,rgba(15,18,18,.8) 0,transparent 40%)}
+.zoom__num{position:absolute;top:calc(15vh * (1 - var(--p)) + 24px);right:calc(15vw * (1 - var(--p)) + 28px);font-family:var(--serif);font-style:italic;font-size:15px;color:var(--creme-70)}
+.zoom__leg{position:absolute;left:var(--marge);bottom:clamp(48px,10vh,110px);max-width:min(620px,calc(100% - 2 * var(--marge)))}
+.zoom__leg h3{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,6.2vw,6.4rem);line-height:.95;letter-spacing:-.03em;margin:18px 0 22px;font-variation-settings:"opsz" 144}
+.zoom__leg h3 em{font-style:italic;color:var(--cuivre)}
+.zoom__leg p{max-width:44ch;color:var(--creme-70)}
+.zoom__meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;align-items:center;font-size:13px}
+.zoom__prix{font-family:var(--serif);font-size:24px;color:var(--creme)}
+.zoom__leg .surtitre,.zoom__leg p,.zoom__meta{opacity:0;transform:translateY(16px);transition:opacity 1s var(--ease-out),transform 1.2s var(--ease-out)}
+.zoom__leg.in .surtitre,.zoom__leg.in p,.zoom__leg.in .zoom__meta{opacity:1;transform:none}
+.zoom__leg.in p{transition-delay:.35s}.zoom__leg.in .zoom__meta{transition-delay:.5s}
+
+/* pictos allergènes */
+.allg{display:inline-flex;gap:5px;flex-wrap:wrap;vertical-align:middle}
+.allg abbr{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--creme-15);font-size:8.5px;font-weight:600;letter-spacing:.04em;color:var(--creme-45);text-decoration:none;cursor:help}
+.origine{font-size:12px;color:var(--creme-45);letter-spacing:.02em}
+.origine::before{content:"";display:inline-block;width:14px;height:1px;background:var(--cuivre);vertical-align:middle;margin-right:8px}
+
+/* =========================================================
+   LA CAVE
+   ========================================================= */
+.cave{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;align-items:start}
+.cave__photos{grid-column:1/6;position:relative}
+.cave__photos .ph:first-child{aspect-ratio:4/5.4}
+.cave__photos .ph.flotte{position:absolute;width:52%;aspect-ratio:3/4;right:-18%;bottom:-14%;box-shadow:0 30px 80px rgba(0,0,0,.55);z-index:2}
+.cave__texte{grid-column:7/13;padding-top:4vh}
+.cave__texte .titre{margin:22px 0 30px}
+.verres{margin-top:46px;border-top:1px solid var(--creme-15)}
+.verre{display:grid;grid-template-columns:1fr auto auto;gap:4px 22px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--creme-15);transition:padding .6s var(--ease)}
+.verre:hover{padding-left:12px}
+.verre b{font-family:var(--serif);font-weight:400;font-size:clamp(1.15rem,1.6vw,1.4rem);letter-spacing:-.01em}
+.verre .cl{font-size:12px;color:var(--creme-45);letter-spacing:.08em}
+.verre .px{font-family:var(--serif);font-size:1.15rem;color:var(--cuivre);min-width:3.5ch;text-align:right}
+.verre span.o{grid-column:1/-1;font-size:13px;color:var(--creme-45)}
+.cave__notes{display:flex;flex-direction:column;gap:6px;margin-top:28px}
+
+/* =========================================================
+   PRIVATISATION
+   ========================================================= */
+.prive{padding:0 0 clamp(100px,18vh,200px)}
+.prive__image{position:relative;height:clamp(420px,88vh,900px)}
+.prive__image .ph{position:absolute;inset:0}
+.prive__image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--noir) 0,transparent 25%,transparent 55%,rgba(15,18,18,.92) 100%)}
+.prive__titre{position:absolute;left:var(--marge);right:var(--marge);bottom:clamp(36px,8vh,90px);z-index:2}
+.prive__titre .titre{margin-top:18px}
+.prive__grille{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;padding:clamp(50px,9vh,90px) var(--marge) 0}
+.prive__grille > .chapo{grid-column:1/6}
+.offres{grid-column:7/13;display:grid;gap:0}
+.offre{display:grid;grid-template-columns:auto 1fr;gap:6px 26px;padding:26px 0;border-top:1px solid var(--creme-15)}
+.offre:last-of-type{border-bottom:1px solid var(--creme-15)}
+.offre .n{font-family:var(--serif);font-style:italic;color:var(--cuivre);font-size:15px;padding-top:6px}
+.offre h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;letter-spacing:-.015em;line-height:1.2}
+.offre p{grid-column:2;color:var(--creme-70);font-size:15px}
+.offres .actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:16px 26px;align-items:center}
+
+/* =========================================================
+   LA CARTE — ONGLETS + RIDEAU
+   ========================================================= */
+.carte{background:var(--ardoise);position:relative}
+.carte__tete{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.carte__tete .titre{margin-top:18px}
+.onglets{display:flex;gap:clamp(22px,4vw,56px);margin:clamp(50px,8vh,80px) 0 0;border-bottom:1px solid var(--creme-15);position:relative}
+.onglet{font-family:var(--serif);font-weight:300;font-size:clamp(1.6rem,3.2vw,2.8rem);letter-spacing:-.02em;padding:0 0 18px;color:var(--creme-45);transition:color .6s var(--ease);position:relative}
+.onglet sup{font-family:var(--sans);font-size:11px;letter-spacing:.12em;margin-left:6px;vertical-align:super;color:var(--creme-45)}
+.onglet[aria-selected="true"]{color:var(--creme)}
+.onglet[aria-selected="true"] em{color:var(--cuivre)}
+.onglets__trait{position:absolute;bottom:-1px;left:0;height:1px;background:var(--cuivre);transition:transform .9s var(--ease),width .9s var(--ease)}
+.scene{position:relative;overflow:hidden;transition:height .9s var(--ease)}
+.rideau{position:absolute;inset:0;z-index:5;pointer-events:none;transform:scaleY(0);transform-origin:bottom}
+.rideau--a{background:var(--cuivre)}
+.rideau--b{background:var(--noir);display:grid;place-items:center}
+.rideau--b span{font-family:var(--serif);font-style:italic;font-size:clamp(2rem,5vw,4rem);color:var(--cuivre);opacity:0;transition:opacity .4s}
+.rideau--b.mot span{opacity:1}
+.panneau-carte{padding:clamp(40px,7vh,70px) 0 10px}
+.carte__grille{display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px}
+.formules{grid-column:1/6;display:flex;flex-direction:column;gap:18px}
+.formule{border:1px solid var(--creme-15);padding:26px 26px 22px;position:relative}
+.formule h3{font-family:var(--serif);font-weight:400;font-size:1.45rem;letter-spacing:-.01em;line-height:1.2;padding-right:90px}
+.formule .px{position:absolute;top:24px;right:26px;font-family:var(--serif);font-size:1.7rem;color:var(--cuivre)}
+.formule p{color:var(--creme-70);font-size:14.5px;margin-top:8px}
+.formule .boisson{display:inline-block;margin-top:14px;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--creme);border-top:1px solid var(--cuivre);padding-top:8px}
+.plats-liste{grid-column:7/13}
+.rubrique + .rubrique{margin-top:40px}
+.rubrique h4{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--cuivre);margin-bottom:6px}
+.plat{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:18px 0;border-bottom:1px solid var(--creme-08)}
+.plat b{font-family:var(--serif);font-weight:400;font-size:1.22rem;letter-spacing:-.01em;line-height:1.3}
+.plat .px{font-family:var(--serif);font-size:1.15rem;color:var(--creme);white-space:nowrap}
+.plat .d{grid-column:1/-1;font-size:14px;color:var(--creme-70)}
+.plat .bas{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:4px}
+.carte__notes{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(50px,8vh,80px);padding-top:28px;border-top:1px solid var(--creme-15)}
+.carte__notes div{font-size:13px;color:var(--creme-70);line-height:1.5}
+.carte__notes b{display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--cuivre);font-weight:600;margin-bottom:8px}
+.legende-allg{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px 20px;font-size:12px;color:var(--creme-45)}
+.legende-allg span{display:inline-flex;align-items:center;gap:8px}
+
+/* =========================================================
+   RÉSERVATION (section)
+   ========================================================= */
+.resa{min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;position:relative}
+.resa__fond{position:absolute;inset:-10% 0;opacity:.32}
+.resa__fond .ph{position:absolute;inset:0;background:var(--noir)}
+.resa__fond::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 50% 50%,rgba(15,18,18,.35),var(--noir) 85%)}
+.resa__in{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.resa .titre{margin:22px 0 50px;font-size:clamp(3.2rem,9vw,9.5rem)}
+.aimant-rond{width:clamp(150px,15vw,200px);aspect-ratio:1;border-radius:50%;background:var(--cuivre);color:var(--noir);display:grid;place-items:center;
+  font-size:12.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;position:relative;will-change:transform;transition:background .6s var(--ease)}
+.aimant-rond:hover{background:var(--creme)}
+.aimant-rond::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(211,153,105,.35);transition:inset .8s var(--ease),opacity .8s}
+.aimant-rond:hover::after{inset:-24px;opacity:0}
+.resa .petit{margin-top:60px;max-width:44ch}
+.resa .petit a{color:var(--creme);border-bottom:1px solid var(--cuivre)}
+
+/* =========================================================
+   AVIS (emplacement) + INFOS
+   ========================================================= */
+.avis{margin:0 var(--marge);padding:44px 30px;border:1px dashed var(--creme-15);text-align:center}
+.avis p{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--creme-45)}
+.infos{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.infos__tete{grid-column:1/-1;margin-bottom:clamp(40px,7vh,70px)}
+.infos__tete .titre{margin-top:18px}
+.infos__photo{grid-column:1/6}
+.infos__photo .ph{aspect-ratio:4/5}
+.infos__blocs{grid-column:7/13;display:grid;grid-template-columns:1fr 1fr;gap:44px 30px;align-content:start}
+.bloc h3{font-size:10.5px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--cuivre);margin-bottom:14px}
+.bloc p,.bloc li{font-size:15px;color:var(--creme-70);line-height:1.65;list-style:none}
+.bloc .grand{font-family:var(--serif);font-size:1.45rem;color:var(--creme);line-height:1.3;font-weight:300}
+.bloc--large{grid-column:1/-1}
+.horaires{width:100%;border-collapse:collapse;font-size:14.5px}
+.horaires th,.horaires td{text-align:left;padding:11px 0;border-bottom:1px solid var(--creme-08);font-weight:400}
+.horaires th{color:var(--creme);font-weight:500;width:28%}
+.horaires td{color:var(--creme-70)}
+.horaires td.ferme{color:var(--creme-45);font-style:italic}
+.horaires tr.auj th{color:var(--cuivre)}
+
+/* =========================================================
+   PIED DE PAGE
+   ========================================================= */
+.pied{padding:clamp(80px,14vh,140px) var(--marge) 34px;border-top:1px solid var(--creme-08);overflow:hidden}
+.pied__nom{font-family:var(--serif);font-weight:300;font-variation-settings:"opsz" 144;font-size:clamp(4rem,17vw,17rem);line-height:.85;letter-spacing:-.05em;white-space:nowrap}
+.pied__nom em{font-style:italic;color:var(--cuivre)}
+.pied__bas{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px 40px;margin-top:50px;font-size:12px;color:var(--creme-45);letter-spacing:.04em}
+.pied__bas a{border-bottom:1px solid transparent;transition:border-color .4s}
+.pied__bas a:hover{border-color:var(--cuivre)}
+.pied__liens{display:flex;flex-wrap:wrap;gap:10px 26px}
+
+/* bouton réserver fixe (mobile) */
+.resa-fixe{display:none}
+
+/* =========================================================
+   PANNEAU LATÉRAL DE RÉSERVATION
+   ========================================================= */
+.voile{position:fixed;inset:0;z-index:190;background:rgba(6,8,8,.62);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:opacity .9s var(--ease),visibility 0s .9s}
+.voile.ouvert{opacity:1;visibility:visible;transition:opacity .9s var(--ease)}
+.panneau{position:fixed;top:0;right:0;bottom:0;z-index:200;width:min(580px,100%);background:var(--noir);border-left:1px solid var(--creme-08);
+  display:flex;flex-direction:column;transform:translate3d(102%,0,0);transition:transform 1.05s var(--ease);visibility:hidden}
+.panneau.ouvert{transform:none;visibility:visible}
+.panneau:not(.ouvert){transition:transform 1.05s var(--ease),visibility 0s 1.05s}
+.pn__tete{position:relative;height:150px;flex:none}
+.pn__tete .ph{position:absolute;inset:0}
+.pn__tete .ph img{filter:brightness(.55) sepia(.12)}
+.pn__tete::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 0,var(--noir) 100%)}
+.pn__titre{position:absolute;left:32px;bottom:10px;z-index:2;font-family:var(--serif);font-weight:300;font-size:2.4rem;letter-spacing:-.025em;line-height:1}
+.pn__titre em{font-style:italic;color:var(--cuivre)}
+.pn__fermer{position:absolute;top:18px;right:20px;z-index:3;width:46px;height:46px;border-radius:50%;border:1px solid var(--creme-15);background:rgba(15,18,18,.5);display:grid;place-items:center;transition:transform .6s var(--ease),border-color .4s}
+.pn__fermer:hover{transform:rotate(90deg);border-color:var(--cuivre)}
+.pn__fermer svg{width:14px;height:14px}
+.pn__corps{flex:1;overflow-y:auto;overscroll-behavior:contain;padding:18px 32px 30px;-webkit-overflow-scrolling:touch}
+.pn__demo{font-size:12px;color:var(--creme-45);border-left:1px solid var(--cuivre);padding-left:12px;margin-bottom:28px}
+.etape{padding:24px 0;border-top:1px solid var(--creme-08)}
+.etape > h3{display:flex;align-items:baseline;gap:12px;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--creme-70);margin-bottom:18px}
+.etape > h3 i{font-family:var(--serif);font-style:italic;font-size:15px;letter-spacing:0;text-transform:none;color:var(--cuivre);font-weight:400}
+.cal__nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cal__mois{font-family:var(--serif);font-size:1.35rem;font-weight:400;text-transform:capitalize;letter-spacing:-.01em}
+.cal__fl{width:40px;height:40px;border-radius:50%;border:1px solid var(--creme-15);display:grid;place-items:center;transition:border-color .4s,opacity .4s}
+.cal__fl:hover:not(:disabled){border-color:var(--cuivre)}
+.cal__fl:disabled{opacity:.25;cursor:default}
+.cal__fl svg{width:12px;height:12px}
+.cal__grille{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal__jsem{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--creme-45);text-align:center;padding:4px 0 8px}
+.jour{aspect-ratio:1;display:grid;place-items:center;font-size:14px;border:1px solid transparent;position:relative;transition:background .35s,color .35s,border-color .35s}
+.jour:not(:disabled):hover{border-color:var(--creme-15)}
+.jour:disabled{color:rgba(233,226,214,.2);cursor:default}
+.jour.ferme::after{content:"";position:absolute;width:30%;height:1px;background:rgba(233,226,214,.2);bottom:22%}
+.jour.auj{border-color:var(--creme-15)}
+.jour[aria-pressed="true"]{background:var(--cuivre);color:var(--noir);border-color:var(--cuivre)}
+.cal__leg{display:flex;gap:18px;margin-top:12px;font-size:11.5px;color:var(--creme-45)}
+.seg{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--creme-15);border-radius:999px;padding:4px;position:relative}
+.seg button{height:46px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;position:relative;z-index:1;transition:color .5s var(--ease)}
+.seg button:disabled{color:rgba(233,226,214,.2);cursor:default}
+.seg button[aria-pressed="true"]{color:var(--noir)}
+.seg__pastille{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:var(--cuivre);transition:transform .7s var(--ease),opacity .4s;opacity:0}
+.creneaux{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.creneau{height:40px;padding:0 16px;border:1px solid var(--creme-15);border-radius:999px;font-size:13.5px;transition:background .35s,color .35s,border-color .35s}
+.creneau:hover{border-color:var(--cuivre)}
+.creneau[aria-pressed="true"]{background:var(--creme);color:var(--noir);border-color:var(--creme)}
+.vide{font-size:13px;color:var(--creme-45);font-style:italic}
+.couverts{display:flex;align-items:center;gap:22px}
+.couverts button{width:48px;height:48px;border-radius:50%;border:1px solid var(--creme-15);font-size:20px;line-height:1;transition:border-color .4s,opacity .4s}
+.couverts button:hover:not(:disabled){border-color:var(--cuivre)}
+.couverts button:disabled{opacity:.25;cursor:default}
+.couverts output{font-family:var(--serif);font-size:2.6rem;font-weight:300;min-width:2ch;text-align:center;line-height:1}
+.couverts span{font-size:13px;color:var(--creme-45)}
+.champs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.champ{display:flex;flex-direction:column;gap:6px}
+.champ--l{grid-column:1/-1}
+.champ label{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--creme-45)}
+.champ input,.champ textarea{font:inherit;font-size:16px;color:var(--creme);background:transparent;border:0;border-bottom:1px solid var(--creme-15);padding:10px 0;border-radius:0;transition:border-color .4s;width:100%}
+.champ textarea{resize:vertical;min-height:70px}
+.champ input:focus,.champ textarea:focus{outline:none;border-color:var(--cuivre)}
+.champ input[aria-invalid="true"]{border-color:#c9776b}
+.err{font-size:12.5px;color:#d98b7e;margin-top:10px;min-height:1em}
+.pn__pied{flex:none;border-top:1px solid var(--creme-08);padding:18px 32px calc(18px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:18px;background:var(--noir)}
+.recap{font-size:13px;color:var(--creme-70);line-height:1.4}
+.recap b{display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem;color:var(--creme)}
+.confirm{text-align:left;padding:40px 0}
+.confirm h3{font-family:var(--serif);font-weight:300;font-size:2.4rem;letter-spacing:-.02em;line-height:1.05;margin:16px 0 18px}
+.confirm h3 em{font-style:italic;color:var(--cuivre)}
+.confirm p{color:var(--creme-70);margin-bottom:12px}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width:1000px){
+  .nav,.entete .btn{display:none}
+  .menu-btn{display:inline-flex}
+  .manifeste__texte{grid-column:1/-1}
+  .manifeste__pied{grid-column:1/-1}
+  .cave__photos{grid-column:1/-1;margin-right:18%}
+  .cave__texte{grid-column:1/-1;padding-top:16vh}
+  .prive__grille > .chapo,.offres{grid-column:1/-1}
+  .formules,.plats-liste{grid-column:1/-1}
+  .plats-liste{margin-top:46px}
+  .carte__notes{grid-template-columns:1fr 1fr}
+  .infos__photo,.infos__blocs{grid-column:1/-1}
+  .infos__photo .ph{aspect-ratio:16/10}
+  .resa-fixe{display:flex;position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:120;transform:translate(-50%,0);height:54px;padding:0 34px;border-radius:999px;
+    background:var(--cuivre);color:var(--noir);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;align-items:center;gap:12px;
+    box-shadow:0 12px 40px rgba(0,0,0,.5);transition:transform .8s var(--ease),opacity .5s}
+  .resa-fixe.cache{transform:translate(-50%,160%);opacity:0}
+  .pied{padding-bottom:100px}
+}
+@media (max-width:640px){
+  :root{--entete:66px}
+  body{font-size:15.5px}
+  .hero__contenu{bottom:120px}
+  .hero__bas .h-info{display:none}
+  .hero__titre{font-size:27vw}
+  .pied__nom{font-size:23vw}
+  .salle{grid-template-columns:repeat(6,1fr);gap:14px}
+  .salle figure:nth-child(1){grid-column:1/5;margin-top:0}
+  .salle figure:nth-child(2){grid-column:3/7;margin-top:-6vh}
+  .salle figure:nth-child(3){grid-column:1/4;margin-top:-10vh}
+  .zoom{height:200vh}
+  .zoom__cadre{clip-path:inset(calc(18vh * (1 - var(--p))) calc(8vw * (1 - var(--p))) round calc(4px * (1 - var(--p))))}
+  .zoom__num{top:calc(18vh * (1 - var(--p)) + 16px);right:calc(8vw * (1 - var(--p)) + 18px)}
+  .zoom__voile{background:linear-gradient(0deg,rgba(15,18,18,.95) 0,rgba(15,18,18,.55) 50%,transparent 80%)}
+  .zoom__leg{bottom:96px}
+  .zoom__leg p{font-size:14.5px}
+  .cave__photos .ph.flotte{right:-22%;width:58%}
+  .champs{grid-template-columns:1fr}
+  .carte__notes{grid-template-columns:1fr}
+  .infos__blocs{grid-template-columns:1fr;gap:36px}
+  .pn__corps{padding:14px 22px 26px}
+  .pn__pied{padding-left:22px;padding-right:22px}
+  .pn__titre{left:22px}
+  .verre{grid-template-columns:1fr auto;}
+  .verre .cl{grid-row:2;grid-column:1}
+  .verre span.o{grid-row:3}
+  .verre .px{grid-row:1/3;grid-column:2;align-self:center}
+  .formule{padding:22px 20px 18px}
+  .formule .px{right:20px;top:20px}
+  .avis{padding:34px 20px}
+}
+
+/* =========================================================
+   MOUVEMENT RÉDUIT
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0ms!important;scroll-behavior:auto!important}
+  .si{transform:none}
+  .monte{opacity:1;transform:none}
+  .hero__media img{transform:none;filter:brightness(.72) saturate(1.05) sepia(.1)}
+  .zoom{height:auto}
+  .zoom__collant{position:relative;height:auto;min-height:100svh}
+  .zoom{--p:1!important}
+  .zoom__leg .surtitre,.zoom__leg p,.zoom__meta{opacity:1;transform:none}
+  .ph--para img{transform:none!important;top:0;height:100%}
+  .rideau{display:none}
+}
+</style>
+</head>
+<body>
+<a class="sr" href="#contenu">Aller au contenu</a>
+<div class="curseur" aria-hidden="true"><span></span></div>
+
+<!-- ================= EN-TÊTE ================= -->
+<header class="entete" id="entete">
+  <a href="#haut" class="logo" aria-label="Retour en haut"><span data-cfg="nomHtml">La <em>Veillée</em></span><small data-cfg="ville">Valmorance</small></a>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#plats" data-cursor-lien>Plats</a>
+    <a href="#cave" data-cursor-lien>La cave</a>
+    <a href="#groupes" data-cursor-lien>Groupes</a>
+    <a href="#carte" data-cursor-lien>La carte</a>
+    <a href="#infos" data-cursor-lien>Accès</a>
+  </nav>
+  <button class="btn" data-ouvrir-resa data-aimant data-cursor="Réserver"><span class="lbl">Réserver</span></button>
+  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menuMobile">Menu <i></i></button>
+</header>
+
+<div class="menu-mobile" id="menuMobile" aria-hidden="true">
+  <button class="fermer" id="menuFermer">Fermer</button>
+  <nav aria-label="Navigation mobile">
+    <a href="#plats">Les <em>plats</em></a>
+    <a href="#cave">La <em>cave</em></a>
+    <a href="#groupes">Groupes</a>
+    <a href="#carte">La <em>carte</em></a>
+    <a href="#infos">Accès</a>
+  </nav>
+  <p class="petit"><span data-cfg="adresse">XX rue de l'Exemple, 00000 Valmorance</span><br><span data-cfg="tel">06 XX XX XX XX</span></p>
+</div>
+
+<main id="contenu">
+
+<!-- ================= OUVERTURE ================= -->
+<section class="hero" id="haut" aria-label="Ouverture">
+  <div class="hero__media" id="heroMedia">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Salle du restaurant dans la pénombre, tables dressées sous une lumière tamisée" loading="eager" fetchpriority="high" decoding="async"></div>
+  </div>
+  <div class="hero__voile"></div>
+  <div class="hero__contenu" id="heroContenu">
+    <p class="surtitre monte" style="--d:900ms"><span data-cfg="ville">Valmorance</span> — Table de saison</p>
+    <h1 class="hero__titre" id="heroTitre"><span class="la" data-split>La</span><span data-split data-cfg="nomCourt">Veillée</span></h1>
+    <div class="hero__ligne">
+      <p class="chapo monte" style="--d:1500ms">Une salle à la lueur des bougies, une cuisine de marché, des vins choisis un à un.</p>
+      <button class="btn monte" style="--d:1700ms" data-ouvrir-resa data-aimant data-cursor="Réserver"><span class="lbl">Réserver une table</span></button>
+    </div>
+  </div>
+  <div class="hero__bas">
+    <span class="defiler"><i></i>Descendre</span>
+    <span class="h-info" data-cfg="horairesCourt">Du mardi au samedi</span>
+  </div>
+</section>
+
+<!-- ================= MANIFESTE ================= -->
+<section class="section manifeste" aria-label="La maison">
+  <p class="surtitre monte">La maison</p>
+  <p class="manifeste__texte" data-split>Ici, la lumière baisse quand la salle se remplit. Du <em>cuivre</em>, du bois sombre, des bougies — et dans l'assiette, ce que le marché offre de plus juste <em>cette semaine-là.</em></p>
+  <div class="manifeste__pied monte">
+    <p class="chapo">Une carte courte, qui change au fil des arrivages. Les produits sont travaillés en cuisine à partir de matières brutes ; nous vous indiquons l'origine des viandes et les allergènes de chaque plat.</p>
+  </div>
+</section>
+
+<section class="salle" aria-label="La salle en images">
+  <figure class="monte">
+    <div class="ph ph--para" data-vitesse="0.08" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1774509623829-881b7946b8e0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1774509623829-881b7946b8e0?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1774509623829-881b7946b8e0?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1774509623829-881b7946b8e0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1774509623829-881b7946b8e0?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:640px) 66vw, 40vw" alt="Bougie allumée et verres à vin vides sur une table" loading="lazy" decoding="async"></div>
+    <figcaption class="leg"><b>Avant le service</b><span>I</span></figcaption>
+  </figure>
+  <figure class="monte" style="--d:150ms">
+    <div class="ph ph--para" data-vitesse="-0.06" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:640px) 66vw, 33vw" alt="Salle de restaurant élégante sous une lumière chaude" loading="lazy" decoding="async"></div>
+    <figcaption class="leg"><b>La salle</b><span>II</span></figcaption>
+  </figure>
+  <figure class="monte" style="--d:300ms">
+    <div class="ph ph--para" data-vitesse="0.12" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1773188243397-29591fa09047?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1773188243397-29591fa09047?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1773188243397-29591fa09047?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1773188243397-29591fa09047?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1773188243397-29591fa09047?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:640px) 50vw, 25vw" alt="Bougie allumée sur une table, silhouette floue en arrière-plan" loading="lazy" decoding="async"></div>
+    <figcaption class="leg"><b>La flamme</b><span>III</span></figcaption>
+  </figure>
+</section>
+
+<!-- ================= PLATS (ZOOM) ================= -->
+<section id="plats" aria-label="Les plats du moment">
+  <div class="plats-intro">
+    <div>
+      <p class="surtitre monte">Les plats du moment</p>
+      <h2 class="titre" data-split>Trois <em>assiettes</em></h2>
+    </div>
+    <p class="chapo monte">Photographiées telles qu'elles arrivent à table. La carte évolue chaque semaine ; ces plats sont donnés à titre d'exemple.</p>
+  </div>
+
+  <article class="zoom" data-zoom>
+    <div class="zoom__collant">
+      <div class="zoom__cadre" data-cursor="Voir">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1663530761401-15eefb544889?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1663530761401-15eefb544889?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1663530761401-15eefb544889?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1663530761401-15eefb544889?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1663530761401-15eefb544889?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Jus versé sur une pièce de bœuf dressée à l'assiette" loading="lazy" decoding="async"></div>
+        <div class="zoom__voile"></div>
+        <span class="zoom__num">01 / 03</span>
+      </div>
+      <div class="zoom__leg">
+        <p class="surtitre">Plat — le soir</p>
+        <h3 data-split>Le bœuf, <em>jus versé à table</em></h3>
+        <p>Paleron braisé lentement, jus corsé monté au dernier moment, légumes racines rôtis.</p>
+        <div class="zoom__meta"><span class="zoom__prix">32 €</span><span class="origine">Bœuf né, élevé et abattu en France</span><span class="allg"><abbr title="Céleri" aria-label="Céleri">CE</abbr><abbr title="Sulfites" aria-label="Sulfites">SU</abbr></span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="zoom" data-zoom>
+    <div class="zoom__collant">
+      <div class="zoom__cadre" data-cursor="Voir">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1775498053538-ec293e32b963?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1775498053538-ec293e32b963?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1775498053538-ec293e32b963?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1775498053538-ec293e32b963?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1775498053538-ec293e32b963?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Plat de la mer délicatement garni d'herbes fraîches" loading="lazy" decoding="async"></div>
+        <div class="zoom__voile"></div>
+        <span class="zoom__num">02 / 03</span>
+      </div>
+      <div class="zoom__leg">
+        <p class="surtitre">Entrée — midi &amp; soir</p>
+        <h3 data-split>La mer, <em>herbes du jour</em></h3>
+        <p>Poisson de ligne selon la criée, beurre blanc léger, herbes fraîches et pickles de saison.</p>
+        <div class="zoom__meta"><span class="zoom__prix">16 €</span><span class="origine">Poisson selon arrivage, origine affichée en salle</span><span class="allg"><abbr title="Poisson" aria-label="Poisson">PO</abbr><abbr title="Lait" aria-label="Lait">LA</abbr></span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="zoom" data-zoom>
+    <div class="zoom__collant">
+      <div class="zoom__cadre" data-cursor="Voir">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1458253756247-1e4ed949191b?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1458253756247-1e4ed949191b?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1458253756247-1e4ed949191b?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1458253756247-1e4ed949191b?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1458253756247-1e4ed949191b?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Gâteau au chocolat sur une surface noire" loading="lazy" decoding="async"></div>
+        <div class="zoom__voile"></div>
+        <span class="zoom__num">03 / 03</span>
+      </div>
+      <div class="zoom__leg">
+        <p class="surtitre">Dessert</p>
+        <h3 data-split>Le chocolat, <em>presque noir</em></h3>
+        <p>Chocolat noir intense, sarrasin torréfié, crème légèrement fumée.</p>
+        <div class="zoom__meta"><span class="zoom__prix">12 €</span><span class="allg"><abbr title="Gluten" aria-label="Gluten">GL</abbr><abbr title="Lait" aria-label="Lait">LA</abbr><abbr title="Œufs" aria-label="Œufs">OE</abbr></span></div>
+      </div>
+    </div>
+  </article>
+  <p class="mention" style="padding:22px var(--marge) 0">Prix d'exemple, TTC, service compris.</p>
+</section>
+
+<!-- ================= LA CAVE ================= -->
+<section class="section cave" id="cave" aria-label="La cave">
+  <div class="cave__photos">
+    <div class="ph ph--para monte" data-vitesse="0.07" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:1000px) 82vw, 40vw" alt="Bouteilles de vin rangées sur des étagères dans une cave en brique" loading="lazy" decoding="async"></div>
+    <div class="ph ph--para flotte monte" style="--d:250ms" data-vitesse="-0.1" data-para-bloc="-0.08" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1474722883778-792e7990302f?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:1000px) 48vw, 22vw" alt="Verre de vin rouge sur une surface sombre" loading="lazy" decoding="async"></div>
+  </div>
+  <div class="cave__texte">
+    <p class="surtitre monte">La cave</p>
+    <h2 class="titre" data-split>Au <em>verre</em>,<br>sans détour</h2>
+    <p class="chapo monte">Une cave de petits vignerons, ouverte au verre chaque soir. Demandez conseil : nous servons volontiers une gorgée avant de vous décider.</p>
+    <div class="verres" id="verresCave" aria-label="Sélection de vins au verre"></div>
+    <div class="cave__notes">
+      <p class="mention"><strong>Vins servis au verre de 12 cl</strong> · Prix d'exemple, TTC, service compris</p>
+      <p class="mention">Eau en carafe offerte sur demande</p>
+      <p class="mention">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIVATISATION ================= -->
+<section class="prive" id="groupes" aria-label="Privatisation et groupes">
+  <div class="prive__image">
+    <div class="ph ph--para" data-vitesse="0.1" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Longue table dressée pour un dîner, bougies et fleurs" loading="lazy" decoding="async"></div>
+    <div class="prive__titre">
+      <p class="surtitre monte">Privatisation &amp; groupes</p>
+      <h2 class="titre" data-split>La salle, <em>rien que pour vous</em></h2>
+    </div>
+  </div>
+  <div class="prive__grille">
+    <p class="chapo monte">Anniversaire, repas de famille, dîner d'équipe : nous composons avec vous un menu unique et adaptons la salle, la musique et la lumière.</p>
+    <div class="offres">
+      <div class="offre monte"><span class="n">i.</span><h3>La grande table</h3><p>Une table unique au cœur de la salle, de 8 à 14 convives, le midi comme le soir.</p></div>
+      <div class="offre monte" style="--d:120ms"><span class="n">ii.</span><h3>La salle entière</h3><p>Privatisation complète en soirée, du mardi au jeudi, sur demande au moins trois semaines à l'avance.</p></div>
+      <div class="offre monte" style="--d:240ms"><span class="n">iii.</span><h3>Menus de groupe</h3><p>À partir de 48 € par personne, boisson non comprise · accords mets et vins en option. Prix d'exemple, TTC, service compris.</p></div>
+      <div class="actions monte">
+        <button class="btn btn--plein" data-ouvrir-resa="groupe" data-aimant data-cursor="Réserver"><span class="lbl">Demander un devis</span></button>
+        <span class="petit">ou au <span data-cfg="tel">06 XX XX XX XX</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LA CARTE ================= -->
+<section class="section carte" id="carte" aria-label="La carte">
+  <div class="carte__tete">
+    <div>
+      <p class="surtitre monte">La carte</p>
+      <h2 class="titre" data-split>Midi, soir <em>&amp; vins</em></h2>
+    </div>
+    <p class="mention monte" style="max-width:36ch">Tous nos prix sont TTC, <strong>service compris</strong>. <strong>Prix d'exemple</strong> — la carte change selon les saisons.</p>
+  </div>
+  <div class="onglets" role="tablist" aria-label="Choisir la carte">
+    <button class="onglet" role="tab" id="tab-midi" aria-controls="panneauCarte" aria-selected="true" data-onglet="midi">Le <em>midi</em></button>
+    <button class="onglet" role="tab" id="tab-soir" aria-controls="panneauCarte" aria-selected="false" tabindex="-1" data-onglet="soir">Le <em>soir</em></button>
+    <button class="onglet" role="tab" id="tab-vins" aria-controls="panneauCarte" aria-selected="false" tabindex="-1" data-onglet="vins">Les <em>vins</em></button>
+    <span class="onglets__trait" id="ongletTrait"></span>
+  </div>
+  <div class="scene" id="scene">
+    <div class="panneau-carte" id="panneauCarte" role="tabpanel" aria-labelledby="tab-midi" tabindex="0"></div>
+    <div class="rideau rideau--a"></div>
+    <div class="rideau rideau--b"><span id="rideauMot">le midi</span></div>
+  </div>
+  <div class="carte__notes monte">
+    <div><b>Allergènes</b>Pictogrammes indicatifs sur chaque plat. Liste complète des 14 allergènes disponible sur demande auprès de l'équipe.</div>
+    <div><b>Origine des viandes</b>Indiquée sous chaque plat concerné et affichée en salle.</div>
+    <div><b>Eau</b>Eau en carafe offerte, servie fraîche.</div>
+    <div><b>Paiement</b>Carte bancaire, espèces. Titres-restaurant acceptés le midi.</div>
+  </div>
+  <div class="legende-allg" id="legendeAllg" aria-label="Légende des pictogrammes allergènes"></div>
+</section>
+
+<!-- ================= RÉSERVATION ================= -->
+<section class="section resa" id="reserver" aria-label="Réservation">
+  <div class="resa__fond ph--para" data-vitesse="0.06"><div class="ph"><img src="https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="100vw" alt="Bougies allumées sur une table ronde" loading="lazy" decoding="async"></div></div>
+  <div class="resa__in">
+    <p class="surtitre monte">Réservation</p>
+    <h2 class="titre" data-split>Une table, <em>ce soir ?</em></h2>
+    <button class="aimant-rond" data-ouvrir-resa data-aimant data-cursor="Réserver"><span class="lbl">Réserver</span></button>
+    <p class="petit monte">Réservation en ligne en quelques secondes, ou par téléphone au <a href="tel:0600000000" data-cfg="tel">06 XX XX XX XX</a> aux heures de service. Allergies ou régime particulier : précisez-le, la cuisine s'adapte.</p>
+  </div>
+</section>
+
+<!-- ================= AVIS (emplacement) ================= -->
+<div class="avis monte" aria-label="Avis clients">
+  <p>Vos avis clients apparaîtront ici.</p>
+</div>
+
+<!-- ================= INFOS / ACCÈS ================= -->
+<section class="section infos" id="infos" aria-label="Infos pratiques et accès">
+  <div class="infos__tete">
+    <p class="surtitre monte">Infos &amp; accès</p>
+    <h2 class="titre" data-split>Nous <em>trouver</em></h2>
+  </div>
+  <div class="infos__photo">
+    <div class="ph ph--para monte" data-vitesse="0.07" data-cursor="Voir"><img src="https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="(max-width:1000px) 100vw, 40vw" alt="Petite façade éclairée à la tombée de la nuit" loading="lazy" decoding="async"></div>
+  </div>
+  <div class="infos__blocs">
+    <div class="bloc monte">
+      <h3>Adresse</h3>
+      <p class="grand" data-cfg="adresseHtml">XX rue de l'Exemple<br>00000 Valmorance</p>
+    </div>
+    <div class="bloc monte" style="--d:100ms">
+      <h3>Contact</h3>
+      <p class="grand"><a href="tel:0600000000" data-cfg="tel">06 XX XX XX XX</a></p>
+      <p><a href="mailto:contact@exemple.fr" data-cfg="email">contact@exemple.fr</a></p>
+    </div>
+    <div class="bloc bloc--large monte">
+      <h3>Jours &amp; horaires de service</h3>
+      <table class="horaires" id="horaires"><caption class="sr">Horaires d'ouverture</caption><tbody></tbody></table>
+    </div>
+    <div class="bloc monte">
+      <h3>Accès</h3>
+      <ul>
+        <li>Stationnement public à proximité</li>
+        <li>Arrêt de bus « Exemple » à 3 min à pied</li>
+        <li>Salle de plain-pied, accessible en fauteuil</li>
+      </ul>
+    </div>
+    <div class="bloc monte" style="--d:100ms">
+      <h3>Bon à savoir</h3>
+      <ul>
+        <li>Titres-restaurant acceptés le midi</li>
+        <li>Eau en carafe offerte</li>
+        <li>Allergènes : liste sur demande</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= PIED DE PAGE ================= -->
+<footer class="pied">
+  <p class="pied__nom" aria-hidden="true" data-cfg="nomHtml">La <em>Veillée</em></p>
+  <div class="pied__bas">
+    <span>© <span id="annee">2026</span> <span data-cfg="nom">La Veillée</span> · <span data-cfg="adresse">XX rue de l'Exemple, 00000 Valmorance</span></span>
+    <div class="pied__liens">
+      <a href="#" data-cursor-lien>Mentions légales</a>
+      <a href="#" data-cursor-lien>Confidentialité</a>
+      <a href="#carte" data-cursor-lien>Allergènes</a>
+    </div>
+    <span>Maquette de démonstration · Photos Unsplash · Prix d'exemple</span>
+  </div>
+</footer>
+
+<button class="resa-fixe" data-ouvrir-resa aria-label="Réserver une table">Réserver</button>
+
+<!-- ================= PANNEAU RÉSERVATION ================= -->
+<div class="voile" id="voile"></div>
+<aside class="panneau" id="panneau" role="dialog" aria-modal="true" aria-labelledby="pnTitre" aria-hidden="true">
+  <div class="pn__tete">
+    <div class="ph"><img src="https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=1600&amp;q=80&amp;auto=format&amp;fit=crop" srcset="https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=640&amp;q=80&amp;auto=format&amp;fit=crop 640w, https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=1000&amp;q=80&amp;auto=format&amp;fit=crop 1000w, https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=1600&amp;q=80&amp;auto=format&amp;fit=crop 1600w, https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=2200&amp;q=80&amp;auto=format&amp;fit=crop 2200w" sizes="580px" alt="Salle tamisée, tables et bougies allumées" loading="lazy" decoding="async"></div>
+    <p class="pn__titre" id="pnTitre">Réserver <em>une table</em></p>
+    <button class="pn__fermer" id="pnFermer" aria-label="Fermer la réservation"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 1l12 12M13 1L1 13"/></svg></button>
+  </div>
+  <form class="pn__corps" id="formResa" novalidate>
+    <div id="resaEtapes">
+      <p class="pn__demo">Formulaire de démonstration : aucune donnée n'est envoyée ni enregistrée.</p>
+      <div class="etape">
+        <h3><i>01</i> Date</h3>
+        <div class="cal__nav">
+          <button type="button" class="cal__fl" id="calPrec" aria-label="Mois précédent"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 1L3 6l5 5"/></svg></button>
+          <p class="cal__mois" id="calMois" aria-live="polite"></p>
+          <button type="button" class="cal__fl" id="calSuiv" aria-label="Mois suivant"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 1l5 5-5 5"/></svg></button>
+        </div>
+        <div class="cal__grille" id="calGrille"></div>
+        <p class="cal__leg"><span>— jour de fermeture</span></p>
+      </div>
+      <div class="etape">
+        <h3><i>02</i> Service</h3>
+        <div class="seg" id="seg">
+          <span class="seg__pastille" id="segPastille"></span>
+          <button type="button" data-service="midi" aria-pressed="false">Midi</button>
+          <button type="button" data-service="soir" aria-pressed="false">Soir</button>
+        </div>
+        <div class="creneaux" id="creneaux"><p class="vide">Choisissez d'abord une date.</p></div>
+      </div>
+      <div class="etape">
+        <h3><i>03</i> Couverts</h3>
+        <div class="couverts">
+          <button type="button" id="cMoins" aria-label="Retirer un couvert">−</button>
+          <output id="cNb" aria-live="polite">2</output>
+          <button type="button" id="cPlus" aria-label="Ajouter un couvert">+</button>
+          <span id="cInfo">personnes</span>
+        </div>
+      </div>
+      <div class="etape">
+        <h3><i>04</i> Vos coordonnées</h3>
+        <div class="champs">
+          <div class="champ"><label for="fNom">Nom</label><input id="fNom" name="nom" autocomplete="name" required></div>
+          <div class="champ"><label for="fTel">Téléphone</label><input id="fTel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required></div>
+          <div class="champ champ--l"><label for="fMail">E-mail (facultatif)</label><input id="fMail" name="email" type="email" autocomplete="email"></div>
+          <div class="champ champ--l"><label for="fNote">Allergies, occasion, demande particulière</label><textarea id="fNote" name="note" rows="2"></textarea></div>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+      </div>
+    </div>
+    <div class="confirm" id="confirm" hidden tabindex="-1">
+      <p class="surtitre">Démonstration</p>
+      <h3>Merci, <em>à bientôt.</em></h3>
+      <p id="confirmTxt"></p>
+      <p class="petit">Ceci est une maquette : aucune demande n'a été transmise au restaurant. Sur le site final, vous recevriez une confirmation par SMS ou e-mail.</p>
+      <button type="button" class="btn" id="resaNouvelle" style="margin-top:22px"><span class="lbl">Nouvelle demande</span></button>
+    </div>
+  </form>
+  <div class="pn__pied" id="pnPied">
+    <p class="recap" id="recap"><b>Votre table</b>Choisissez une date</p>
+    <button type="submit" form="formResa" class="btn btn--plein" id="resaEnvoyer"><span class="lbl">Confirmer</span></button>
+  </div>
+</aside>
+
+<script>
+/* =========================================================
+   CONFIG — tout ce qui change d'un client à l'autre
+   ========================================================= */
+const CONFIG = {
+  nom: "La Veillée",
+  nomAvant: "La",            // petit mot en italique au-dessus
+  nomCourt: "Veillée",
+  ville: "Valmorance",
+  adresse: "XX rue de l'Exemple",
+  codePostal: "00000",
+  tel: "06 XX XX XX XX",
+  email: "contact@exemple.fr",
+  couleurs: { noir: "#0F1212", ardoise: "#1F2D2D", creme: "#E9E2D6", cuivre: "#D39969" },
+  // 0 = dimanche … 6 = samedi ; null = fermé
+  horaires: [
+    { jour: "Dimanche", midi: null, soir: null },
+    { jour: "Lundi",    midi: null, soir: null },
+    { jour: "Mardi",    midi: "12h – 13h30", soir: "19h – 21h30" },
+    { jour: "Mercredi", midi: "12h – 13h30", soir: "19h – 21h30" },
+    { jour: "Jeudi",    midi: "12h – 13h30", soir: "19h – 21h30" },
+    { jour: "Vendredi", midi: "12h – 13h30", soir: "19h – 22h" },
+    { jour: "Samedi",   midi: null,          soir: "19h – 22h" }
+  ],
+  horairesCourt: "Mardi – samedi · midi & soir",
+  creneaux: {
+    midi: ["12:00","12:15","12:30","12:45","13:00","13:15","13:30"],
+    soir: ["19:00","19:30","20:00","20:15","20:30","21:00","21:30"]
+  },
+  reservationJoursMax: 75,
+  couvertsMax: 8,             // au-delà : demande de groupe
+  allergenes: { GL:"Gluten", CR:"Crustacés", OE:"Œufs", PO:"Poisson", AR:"Arachides", SO:"Soja", LA:"Lait",
+                FC:"Fruits à coque", CE:"Céleri", MO:"Moutarde", SE:"Sésame", SU:"Sulfites", LU:"Lupin", ML:"Mollusques" },
+  carte: {
+    midi: {
+      titre: "le midi",
+      info: "Du mardi au vendredi, 12h – 13h30. Titres-restaurant acceptés.",
+      formules: [
+        { nom: "Formule du midi", detail: "Entrée + plat, ou plat + dessert", prix: 24, boisson: "Boisson non comprise" },
+        { nom: "Menu complet", detail: "Entrée + plat + dessert", prix: 29, boisson: "Boisson non comprise" },
+        { nom: "Menu du midi & un verre", detail: "Entrée + plat + dessert, un verre de vin (12 cl) ou un jus, café", prix: 36, boisson: "Boisson comprise" }
+      ],
+      rubriques: [
+        { titre: "Entrée", plats: [
+          { nom: "Velouté de potimarron, noisettes torréfiées", desc: "Huile de courge, crème crue", allg: ["LA","FC"] },
+          { nom: "Œuf parfait, champignons des bois", desc: "Jus de volaille réduit, pain grillé", allg: ["OE","GL","LA"] } ]},
+        { titre: "Plat", plats: [
+          { nom: "Paleron de bœuf braisé", desc: "Carottes glacées au cumin, jus corsé", allg: ["CE","SU"], origine: "Bœuf né, élevé et abattu en France" },
+          { nom: "Poisson du jour, beurre blanc", desc: "Poireaux fondants, herbes fraîches", allg: ["PO","LA"], origine: "Poisson selon criée, origine affichée en salle" } ]},
+        { titre: "Dessert", plats: [
+          { nom: "Poire pochée au vin épicé", desc: "Crème crue, sablé breton", allg: ["LA","GL","OE","SU"] } ]}
+      ]
+    },
+    soir: {
+      titre: "le soir",
+      info: "Du mardi au samedi, à partir de 19h.",
+      formules: [
+        { nom: "Menu Veillée, en cinq temps", detail: "Le menu du chef, servi à toute la table", prix: 58, boisson: "Boisson non comprise" },
+        { nom: "Menu Veillée & accords", detail: "Le même menu, accompagné de quatre verres de 8 cl choisis pour chaque plat", prix: 86, boisson: "Boisson comprise" }
+      ],
+      rubriques: [
+        { titre: "Entrées", plats: [
+          { nom: "Truite fumée au bois de hêtre", desc: "Betterave crue et cuite, raifort", prix: 15, allg: ["PO","LA"] },
+          { nom: "La mer, herbes du jour", desc: "Poisson de ligne, beurre blanc léger, pickles", prix: 16, allg: ["PO","LA"] } ]},
+        { titre: "Plats", plats: [
+          { nom: "Le bœuf, jus versé à table", desc: "Paleron braisé, légumes racines rôtis", prix: 32, allg: ["CE","SU"], origine: "Bœuf né, élevé et abattu en France" },
+          { nom: "Pigeon rôti sur le coffre", desc: "Cuisses confites, chou fumé, jus au cassis", prix: 34, allg: ["SU","CE"], origine: "Pigeon élevé en France" },
+          { nom: "Céleri rôti en croûte de sel", desc: "Beurre noisette, sarrasin, champignons", prix: 26, allg: ["CE","LA"] } ]},
+        { titre: "Desserts & fromages", plats: [
+          { nom: "Le chocolat, presque noir", desc: "Sarrasin torréfié, crème fumée", prix: 12, allg: ["GL","LA","OE"] },
+          { nom: "Fromages affinés", desc: "Sélection du fromager, pain au levain", prix: 13, allg: ["LA","GL"] } ]}
+      ]
+    },
+    vins: {
+      titre: "les vins",
+      info: "Au verre (12 cl) ou à la bouteille (75 cl). Carte complète à table.",
+      rubriques: [
+        { titre: "Bulles", vins: [
+          { nom: "Crémant, extra-brut", origine: "Jura", verre: 9, bouteille: 48 } ]},
+        { titre: "Blancs", vins: [
+          { nom: "Chenin sec", origine: "Anjou", verre: 8, bouteille: 39 },
+          { nom: "Chardonnay ouillé", origine: "Côtes du Jura", verre: 10, bouteille: 52 },
+          { nom: "Riesling", origine: "Alsace", verre: 9, bouteille: 45 } ]},
+        { titre: "Rouges", vins: [
+          { nom: "Gamay", origine: "Beaujolais", verre: 7, bouteille: 34 },
+          { nom: "Syrah", origine: "Vallée du Rhône nord", verre: 11, bouteille: 56 },
+          { nom: "Pinot noir", origine: "Bourgogne", verre: 13, bouteille: 64 } ]},
+        { titre: "Sans alcool", vins: [
+          { nom: "Jus de raisin pétillant", origine: "Bouteille de 25 cl", prix: 6 },
+          { nom: "Eau en carafe", origine: "Offerte, servie fraîche", prix: 0 } ]}
+      ],
+      selectionCave: ["Crémant, extra-brut","Chenin sec","Chardonnay ouillé","Gamay","Syrah","Pinot noir"]
+    }
+  }
+};
+
+(() => {
+"use strict";
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const root = document.documentElement;
+const reduit = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const tactile = matchMedia("(hover: none), (pointer: coarse)").matches;
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const prix = n => n === 0 ? "offerte" : n.toLocaleString("fr-FR", { minimumFractionDigits: n % 1 ? 2 : 0 }) + " €";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+
+/* ---------- 1. Injection de la CONFIG ---------- */
+const C = CONFIG;
+Object.entries(C.couleurs).forEach(([k, v]) => root.style.setProperty("--" + k, v));
+const champs = {
+  nom: C.nom, ville: C.ville, tel: C.tel, email: C.email, nomCourt: C.nomCourt,
+  adresse: `${C.adresse}, ${C.codePostal} ${C.ville}`, horairesCourt: C.horairesCourt
+};
+$$("[data-cfg]").forEach(el => {
+  const k = el.dataset.cfg;
+  if (k === "nomHtml") el.innerHTML = `${esc(C.nomAvant)} <em>${esc(C.nomCourt)}</em>`;
+  else if (k === "adresseHtml") el.innerHTML = `${esc(C.adresse)}<br>${esc(C.codePostal)} ${esc(C.ville)}`;
+  else if (champs[k] != null) el.textContent = champs[k];
+});
+$(".hero__titre .la").textContent = C.nomAvant;
+document.title = `${C.nom} — Restaurant à ${C.ville}`;
+$("#annee").textContent = new Date().getFullYear();
+
+const abbr = codes => `<span class="allg">${(codes || []).map(c => `<abbr title="${esc(C.allergenes[c])}" aria-label="${esc(C.allergenes[c])}">${c}</abbr>`).join("")}</span>`;
+
+/* horaires */
+const auj = new Date().getDay();
+const ordre = [2,3,4,5,6,0,1];
+$("#horaires tbody").innerHTML = ordre.map(i => {
+  const h = C.horaires[i];
+  const cell = v => v ? `<td>${esc(v)}</td>` : `<td class="ferme">fermé</td>`;
+  return `<tr class="${i === auj ? "auj" : ""}"><th scope="row">${h.jour}</th>${!h.midi && !h.soir ? '<td class="ferme" colspan="2">fermé</td>' : cell(h.midi ? "Midi · " + h.midi : null) + cell(h.soir ? "Soir · " + h.soir : null)}</tr>`;
+}).join("");
+
+/* sélection de la cave */
+const tousVins = C.carte.vins.rubriques.flatMap(r => r.vins);
+$("#verresCave").innerHTML = C.carte.vins.selectionCave.map(n => tousVins.find(v => v.nom === n)).filter(Boolean)
+  .map(v => `<div class="verre"><b>${esc(v.nom)}</b><span class="cl">12 cl</span><span class="px">${prix(v.verre)}</span><span class="o">${esc(v.origine)}</span></div>`).join("");
+
+/* légende allergènes */
+$("#legendeAllg").innerHTML = Object.entries(C.allergenes).map(([k, v]) => `<span><span class="allg"><abbr title="${esc(v)}">${k}</abbr></span>${esc(v)}</span>`).join("");
+
+/* rendu d'une carte */
+function rendreCarte(cle) {
+  const c = C.carte[cle];
+  let gauche = "", droite = "";
+  if (cle === "vins") {
+    gauche = `<div class="formule"><h3>Vins au verre</h3><span class="px">12 cl</span><p>${esc(c.info)}</p><span class="boisson">Prix d'exemple · TTC · service compris</span></div>
+      <div class="formule"><h3>Accords mets &amp; vins</h3><span class="px">8 cl</span><p>Quatre verres de 8 cl servis avec le menu Veillée du soir (voir l'onglet Soir).</p><span class="boisson">Eau en carafe offerte</span></div>
+      <p class="mention">L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>`;
+    droite = c.rubriques.map(r => `<div class="rubrique"><h4>${esc(r.titre)}</h4>${r.vins.map(v => {
+      const px = v.prix != null ? prix(v.prix) : `${prix(v.verre)} <span class="petit">/ 12 cl</span>`;
+      const bout = v.bouteille ? `<span class="origine">Bouteille 75 cl · ${prix(v.bouteille)}</span>` : "";
+      return `<div class="plat"><b>${esc(v.nom)}</b><span class="px">${px}</span><span class="d">${esc(v.origine)}</span>${bout ? `<span class="bas">${bout}</span>` : ""}</div>`;
+    }).join("")}</div>`).join("");
+  } else {
+    gauche = c.formules.map(f => `<div class="formule"><h3>${esc(f.nom)}</h3><span class="px">${prix(f.prix)}</span><p>${esc(f.detail)}</p><span class="boisson">${esc(f.boisson)}</span></div>`).join("")
+      + `<p class="mention">${esc(c.info)}<br>Prix d'exemple · TTC · service compris.</p>`;
+    droite = c.rubriques.map(r => `<div class="rubrique"><h4>${esc(r.titre)}</h4>${r.plats.map(p => `
+      <div class="plat"><b>${esc(p.nom)}</b><span class="px">${p.prix ? prix(p.prix) : ""}</span><span class="d">${esc(p.desc)}</span>
+      <span class="bas">${abbr(p.allg)}${p.origine ? `<span class="origine">${esc(p.origine)}</span>` : ""}</span></div>`).join("")}</div>`).join("");
+  }
+  return `<div class="carte__grille"><div class="formules">${gauche}</div><div class="plats-liste">${droite}</div></div>`;
+}
+
+/* ---------- 2. Texte découpé ---------- */
+let compteur = 0;
+function decouper(el) {
+  let i = 0;
+  const marcher = node => {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(m => {
+          if (!m) return;
+          if (/^\s+$/.test(m)) { frag.appendChild(document.createTextNode(" ")); return; }
+          const sw = document.createElement("span"); sw.className = "sw";
+          const si = document.createElement("span"); si.className = "si"; si.style.setProperty("--i", i++);
+          si.textContent = m; sw.appendChild(si); frag.appendChild(sw);
+        });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1 && n.tagName !== "BR") marcher(n);
+    });
+  };
+  marcher(el);
+  el.classList.add("decoupe");
+}
+$$("[data-split]").forEach(decouper);
+/* titre d'ouverture : délai propre */
+$$("#heroTitre .si").forEach((s, k) => s.style.setProperty("--d", (500 + k * 140) + "ms"));
+
+/* ---------- 3. Apparitions ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { rootMargin: "0px 0px -12% 0px" });
+$$(".monte, [data-split]").forEach(el => { if (!el.closest(".zoom__leg") && !el.closest(".hero")) io.observe(el); });
+
+window.addEventListener("load", () => root.classList.add("pret"));
+setTimeout(() => root.classList.add("pret"), 1200);
+requestAnimationFrame(() => setTimeout(() => $$(".hero [data-split], .hero .monte").forEach(e => e.classList.add("in")), 60));
+
+/* ---------- 4. Défilement fluide à inertie ---------- */
+const fluide = !reduit && !tactile;
+let cible = scrollY, courant = scrollY, interne = false, verrou = false;
+const maxScroll = () => document.documentElement.scrollHeight - innerHeight;
+if (fluide) {
+  window.addEventListener("wheel", e => {
+    if (verrou || e.ctrlKey) return;
+    if (e.target.closest && e.target.closest(".panneau, .menu-mobile")) return;
+    e.preventDefault();
+    const d = e.deltaMode === 1 ? e.deltaY * 32 : e.deltaMode === 2 ? e.deltaY * innerHeight : e.deltaY;
+    cible = clamp(cible + d, 0, maxScroll());
+  }, { passive: false });
+  window.addEventListener("scroll", () => {
+    if (interne) return;
+    cible = courant = scrollY;                    /* clavier, barre, ancre native */
+  }, { passive: true });
+}
+function allerA(y) {
+  y = clamp(y, 0, maxScroll());
+  if (fluide) cible = y; else window.scrollTo({ top: y, behavior: reduit ? "auto" : "smooth" });
+}
+$$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+  const id = a.getAttribute("href"); if (id.length < 2) return;
+  const t = $(id); if (!t) return;
+  e.preventDefault(); fermerMenu();
+  allerA(t.getBoundingClientRect().top + scrollY - (id === "#haut" ? 0 : 10));
+}));
+
+/* ---------- 5. Boucle d'animation : zoom, parallax, en-tête ---------- */
+const zooms = $$("[data-zoom]").map(el => ({ el, leg: $(".zoom__leg", el), p: -1 }));
+const paras = $$("[data-vitesse]").map(el => ({ el, v: parseFloat(el.dataset.vitesse), img: el.classList.contains("ph") ? $("img", el) : $("img", el) }));
+const blocs = $$("[data-para-bloc]").map(el => ({ el, v: parseFloat(el.dataset.paraBloc) }));
+const heroMedia = $("#heroMedia"), heroContenu = $("#heroContenu"), entete = $("#entete"), resaFixe = $(".resa-fixe");
+let dernierY = -1, dernierSens = 0;
+const easeIO = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+function rendre(y) {
+  const vh = innerHeight;
+  /* ouverture : couches à vitesses différentes */
+  if (!reduit && y < vh * 1.2) {
+    heroMedia.style.transform = `translate3d(0,${y * .38}px,0)`;
+    heroContenu.style.transform = `translate3d(0,${y * .16}px,0)`;
+    heroContenu.style.opacity = clamp(1 - y / (vh * .7));
+  }
+  /* zoom au défilement */
+  zooms.forEach(z => {
+    const r = z.el.getBoundingClientRect();
+    if (r.bottom < -50 || r.top > vh + 50) return;
+    const total = z.el.offsetHeight - vh;
+    const brut = reduit ? 1 : clamp(-r.top / (total * .72));
+    const p = easeIO(brut);
+    if (Math.abs(p - z.p) > .0005) { z.el.style.setProperty("--p", p.toFixed(4)); z.p = p; }
+    z.leg.classList.toggle("in", reduit || brut > .55);
+  });
+  /* parallax discret */
+  if (!reduit) {
+    paras.forEach(o => {
+      const r = o.el.getBoundingClientRect();
+      if (r.bottom < -100 || r.top > vh + 100) return;
+      const d = (r.top + r.height / 2 - vh / 2) * o.v;
+      if (o.img) o.img.style.transform = `translate3d(0,${d.toFixed(1)}px,0)`;
+    });
+    blocs.forEach(o => {
+      const r = o.el.parentElement.getBoundingClientRect();
+      o.el.style.translate = `0 ${((r.top + r.height / 2 - vh / 2) * o.v).toFixed(1)}px`;
+    });
+  }
+  /* en-tête */
+  const sens = y > dernierY ? 1 : y < dernierY ? -1 : dernierSens;
+  entete.classList.toggle("fond", y > vh * .6);
+  entete.classList.toggle("cache", sens === 1 && y > vh && !panneauOuvert);
+  if (resaFixe) resaFixe.classList.toggle("cache", y < vh * .5 || panneauOuvert || nearResa());
+  dernierSens = sens; dernierY = y;
+}
+const sectionResa = $("#reserver");
+function nearResa() { const r = sectionResa.getBoundingClientRect(); return r.top < innerHeight * .6 && r.bottom > innerHeight * .4; }
+
+function boucle() {
+  if (fluide && !verrou) {
+    courant = lerp(courant, cible, .08);
+    if (Math.abs(cible - courant) < .3) courant = cible;
+    if (Math.abs(scrollY - courant) > .3) { interne = true; window.scrollTo(0, courant); interne = false; }
+  }
+  rendre(fluide ? courant : scrollY);
+  aimants();
+  curseurBoucle();
+  requestAnimationFrame(boucle);
+}
+
+/* ---------- 6. Boutons magnétiques ---------- */
+let mx = -9999, my = -9999;
+const listeAimants = $$("[data-aimant]").map(el => ({ el, lbl: $(".lbl", el), x: 0, y: 0, tx: 0, ty: 0 }));
+function aimants() {
+  if (tactile || reduit) return;
+  listeAimants.forEach(a => {
+    const r = a.el.getBoundingClientRect();
+    const w = r.width - a.x * 0, cx = r.left - a.x + r.width / 2, cy = r.top - a.y + r.height / 2;
+    const dx = mx - cx, dy = my - cy;
+    const rayon = Math.max(r.width, r.height) * 1.5;
+    if (Math.hypot(dx, dy) < rayon && r.width) { a.tx = dx * .3; a.ty = dy * .3; } else { a.tx = 0; a.ty = 0; }
+    a.x = lerp(a.x, a.tx, .14); a.y = lerp(a.y, a.ty, .14);
+    if (Math.abs(a.x) < .01 && Math.abs(a.y) < .01 && !a.tx) { a.x = a.y = 0; }
+    a.el.style.transform = `translate3d(${a.x.toFixed(2)}px,${a.y.toFixed(2)}px,0)`;
+    if (a.lbl) a.lbl.style.transform = `translate3d(${(a.x * .35).toFixed(2)}px,${(a.y * .35).toFixed(2)}px,0)`;
+  });
+}
+
+/* ---------- 7. Curseur personnalisé ---------- */
+const curseur = $(".curseur"), curseurTxt = $(".curseur span");
+let cx = -100, cy = -100;
+if (!tactile) {
+  root.classList.add("curseur-on");
+  addEventListener("pointermove", e => { mx = e.clientX; my = e.clientY; curseur.classList.add("visible"); }, { passive: true });
+  document.addEventListener("pointerleave", () => curseur.classList.remove("visible"));
+  document.addEventListener("pointerover", e => {
+    const t = e.target.closest("[data-cursor], [data-cursor-lien], a, button, .panneau");
+    curseur.classList.remove("grand", "lien");
+    if (!t) return;
+    if (t.closest(".panneau")) { curseur.classList.remove("visible"); return; }
+    curseur.classList.add("visible");
+    if (t.dataset.cursor) { curseurTxt.textContent = t.dataset.cursor; curseur.classList.add("grand"); }
+    else curseur.classList.add("lien");
+  });
+}
+function curseurBoucle() {
+  if (tactile) return;
+  const k = reduit ? 1 : .2;
+  cx = lerp(cx, mx, k); cy = lerp(cy, my, k);
+  curseur.style.transform = `translate3d(${cx.toFixed(1)}px,${cy.toFixed(1)}px,0)`;
+}
+
+/* ---------- 8. Onglets de la carte : transition rideau ---------- */
+const scene = $("#scene"), panneauCarte = $("#panneauCarte"), trait = $("#ongletTrait");
+const rideauA = $(".rideau--a"), rideauB = $(".rideau--b"), rideauMot = $("#rideauMot");
+const onglets = $$(".onglet");
+let ongletActif = "midi", enTransition = false;
+panneauCarte.innerHTML = rendreCarte("midi");
+function placerTrait() {
+  const b = onglets.find(o => o.dataset.onglet === ongletActif);
+  trait.style.width = b.offsetWidth + "px";
+  trait.style.transform = `translateX(${b.offsetLeft}px)`;
+}
+placerTrait(); addEventListener("resize", placerTrait);
+document.fonts && document.fonts.ready.then(placerTrait);
+const attendre = ms => new Promise(r => setTimeout(r, ms));
+const anim = (el, kf, opt) => el.animate(kf, { duration: 700, easing: "cubic-bezier(.77,0,.18,1)", fill: "forwards", ...opt }).finished;
+
+async function changerOnglet(cle, focus) {
+  if (cle === ongletActif || enTransition) return;
+  enTransition = true;
+  ongletActif = cle;
+  onglets.forEach(o => { const on = o.dataset.onglet === cle; o.setAttribute("aria-selected", on); o.tabIndex = on ? 0 : -1; });
+  panneauCarte.setAttribute("aria-labelledby", "tab-" + cle);
+  if (focus) onglets.find(o => o.dataset.onglet === cle).focus();
+  placerTrait();
+  if (reduit) { panneauCarte.innerHTML = rendreCarte(cle); enTransition = false; return; }
+  rideauMot.textContent = C.carte[cle].titre;
+  scene.style.height = scene.offsetHeight + "px";
+  /* entrée : panneaux scaleY 0 → 1 depuis le bas */
+  rideauA.style.transformOrigin = rideauB.style.transformOrigin = "50% 100%";
+  const pA = anim(rideauA, [{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }]);
+  await attendre(110);
+  await anim(rideauB, [{ transform: "scaleY(0)" }, { transform: "scaleY(1)" }]);
+  await pA;
+  rideauB.classList.add("mot");
+  panneauCarte.innerHTML = rendreCarte(cle);
+  scene.style.height = panneauCarte.offsetHeight + "px";
+  await attendre(420);
+  rideauB.classList.remove("mot");
+  /* sortie : retrait vers le haut */
+  rideauA.style.transformOrigin = rideauB.style.transformOrigin = "50% 0%";
+  rideauA.animate([{ transform: "scaleY(0)" }, { transform: "scaleY(0)" }], { duration: 10, fill: "forwards" });
+  await anim(rideauB, [{ transform: "scaleY(1)" }, { transform: "scaleY(0)" }], { duration: 850 });
+  scene.style.height = "";
+  enTransition = false;
+}
+onglets.forEach((o, k) => {
+  o.addEventListener("click", () => changerOnglet(o.dataset.onglet));
+  o.addEventListener("keydown", e => {
+    if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+    e.preventDefault();
+    const n = onglets[(k + (e.key === "ArrowRight" ? 1 : onglets.length - 1)) % onglets.length];
+    changerOnglet(n.dataset.onglet, true);
+  });
+});
+
+/* ---------- 9. Menu mobile ---------- */
+const menu = $("#menuMobile"), menuBtn = $("#menuBtn");
+function fermerMenu() { menu.classList.remove("ouvert"); menu.setAttribute("aria-hidden", "true"); menuBtn.setAttribute("aria-expanded", "false"); root.classList.remove("verrou"); }
+menuBtn.addEventListener("click", () => { menu.classList.add("ouvert"); menu.setAttribute("aria-hidden", "false"); menuBtn.setAttribute("aria-expanded", "true"); root.classList.add("verrou"); $("#menuFermer").focus(); });
+$("#menuFermer").addEventListener("click", fermerMenu);
+
+/* ---------- 10. Panneau de réservation ---------- */
+const panneau = $("#panneau"), voile = $("#voile");
+let panneauOuvert = false, dernierFocus = null;
+const etat = { date: null, service: null, heure: null, couverts: 2, groupe: false };
+let moisVu = new Date(); moisVu.setDate(1);
+const aujourdhui = new Date(); aujourdhui.setHours(0,0,0,0);
+const limite = new Date(aujourdhui); limite.setDate(limite.getDate() + C.reservationJoursMax);
+const jsem = ["Lu","Ma","Me","Je","Ve","Sa","Di"];
+const fmtMois = new Intl.DateTimeFormat("fr-FR", { month: "long", year: "numeric" });
+const fmtJour = new Intl.DateTimeFormat("fr-FR", { weekday: "short", day: "numeric", month: "short" });
+const ouvertLe = d => { const h = C.horaires[d.getDay()]; return !!(h.midi || h.soir); };
+
+function rendreCal() {
+  const g = $("#calGrille");
+  $("#calMois").textContent = fmtMois.format(moisVu);
+  $("#calPrec").disabled = moisVu.getFullYear() === aujourdhui.getFullYear() && moisVu.getMonth() === aujourdhui.getMonth();
+  const fin = new Date(moisVu.getFullYear(), moisVu.getMonth() + 1, 1);
+  $("#calSuiv").disabled = fin > limite;
+  let html = jsem.map(j => `<span class="cal__jsem" aria-hidden="true">${j}</span>`).join("");
+  const decal = (moisVu.getDay() + 6) % 7;
+  for (let i = 0; i < decal; i++) html += "<span></span>";
+  const nb = new Date(moisVu.getFullYear(), moisVu.getMonth() + 1, 0).getDate();
+  for (let j = 1; j <= nb; j++) {
+    const d = new Date(moisVu.getFullYear(), moisVu.getMonth(), j);
+    const passe = d < aujourdhui || d > limite, ferme = !ouvertLe(d);
+    const sel = etat.date && d.getTime() === etat.date.getTime();
+    const cls = ["jour", ferme ? "ferme" : "", d.getTime() === aujourdhui.getTime() ? "auj" : ""].join(" ");
+    html += `<button type="button" class="${cls}" data-j="${j}" ${passe || ferme ? "disabled" : ""} aria-pressed="${sel}" aria-label="${new Intl.DateTimeFormat("fr-FR",{weekday:"long",day:"numeric",month:"long"}).format(d)}${ferme ? " — fermé" : ""}">${j}</button>`;
+  }
+  g.innerHTML = html;
+}
+$("#calGrille").addEventListener("click", e => {
+  const b = e.target.closest(".jour"); if (!b || b.disabled) return;
+  etat.date = new Date(moisVu.getFullYear(), moisVu.getMonth(), +b.dataset.j);
+  const h = C.horaires[etat.date.getDay()];
+  if (etat.service && !h[etat.service]) { etat.service = null; etat.heure = null; }
+  if (!etat.service) etat.service = h.soir ? "soir" : "midi";
+  rendreCal(); rendreService(); recap();
+});
+$("#calPrec").addEventListener("click", () => { moisVu.setMonth(moisVu.getMonth() - 1); rendreCal(); });
+$("#calSuiv").addEventListener("click", () => { moisVu.setMonth(moisVu.getMonth() + 1); rendreCal(); });
+
+function rendreService() {
+  const h = etat.date ? C.horaires[etat.date.getDay()] : null;
+  $$("#seg button").forEach(b => {
+    const s = b.dataset.service;
+    b.disabled = !h || !h[s];
+    b.setAttribute("aria-pressed", etat.service === s);
+  });
+  const pas = $("#segPastille");
+  pas.style.opacity = etat.service && h ? 1 : 0;
+  pas.style.transform = `translateX(${etat.service === "soir" ? "100%" : "0"})`;
+  const zone = $("#creneaux");
+  if (!h) { zone.innerHTML = `<p class="vide">Choisissez d'abord une date.</p>`; return; }
+  if (!etat.service) { zone.innerHTML = `<p class="vide">Choisissez un service.</p>`; return; }
+  zone.innerHTML = C.creneaux[etat.service].map(t => `<button type="button" class="creneau" aria-pressed="${etat.heure === t}" data-h="${t}">${t.replace(":", "h")}</button>`).join("");
+}
+$("#seg").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b || b.disabled) return;
+  if (etat.service !== b.dataset.service) etat.heure = null;
+  etat.service = b.dataset.service; rendreService(); recap();
+});
+$("#creneaux").addEventListener("click", e => {
+  const b = e.target.closest(".creneau"); if (!b) return;
+  etat.heure = b.dataset.h; rendreService(); recap();
+});
+function rendreCouverts() {
+  $("#cNb").textContent = etat.couverts;
+  $("#cMoins").disabled = etat.couverts <= 1;
+  $("#cPlus").disabled = etat.couverts >= 20;
+  $("#cInfo").textContent = etat.couverts > C.couvertsMax ? "personnes · demande de groupe, nous vous rappelons" : etat.couverts > 1 ? "personnes" : "personne";
+}
+$("#cMoins").addEventListener("click", () => { etat.couverts--; rendreCouverts(); recap(); });
+$("#cPlus").addEventListener("click", () => { etat.couverts++; rendreCouverts(); recap(); });
+
+function texteResa() {
+  const p = [];
+  if (etat.date) p.push(fmtJour.format(etat.date));
+  if (etat.service) p.push(etat.service === "midi" ? "midi" : "soir");
+  if (etat.heure) p.push(etat.heure.replace(":", "h"));
+  p.push(`${etat.couverts} couvert${etat.couverts > 1 ? "s" : ""}`);
+  return p.join(" · ");
+}
+function recap() {
+  $("#recap").innerHTML = `<b>${etat.date ? esc(texteResa()) : "Votre table"}</b>${etat.date ? (etat.heure ? "Prêt à confirmer" : "Choisissez un horaire") : "Choisissez une date"}`;
+}
+
+function ouvrirResa(mode) {
+  dernierFocus = document.activeElement;
+  if (mode === "groupe" && etat.couverts <= C.couvertsMax) { etat.couverts = 10; rendreCouverts(); recap(); }
+  panneauOuvert = true; verrou = true;
+  panneau.classList.add("ouvert"); voile.classList.add("ouvert");
+  panneau.setAttribute("aria-hidden", "false");
+  root.classList.add("verrou");
+  setTimeout(() => $("#pnFermer").focus({ preventScroll: true }), 50);
+}
+function fermerResa() {
+  if (!panneauOuvert) return;
+  panneauOuvert = false; verrou = false;
+  cible = courant = scrollY;
+  panneau.classList.remove("ouvert"); voile.classList.remove("ouvert");
+  panneau.setAttribute("aria-hidden", "true");
+  root.classList.remove("verrou");
+  if (dernierFocus) dernierFocus.focus({ preventScroll: true });
+}
+$$("[data-ouvrir-resa]").forEach(b => b.addEventListener("click", () => ouvrirResa(b.dataset.ouvrirResa)));
+$("#pnFermer").addEventListener("click", fermerResa);
+voile.addEventListener("click", fermerResa);
+addEventListener("keydown", e => {
+  if (e.key === "Escape") { fermerResa(); fermerMenu(); }
+  if (e.key === "Tab" && panneauOuvert) {
+    const f = $$("button:not(:disabled), input, textarea, [tabindex='0']", panneau).filter(x => x.offsetParent !== null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+  }
+});
+
+$("#formResa").addEventListener("submit", e => {
+  e.preventDefault();
+  const err = $("#err"), nom = $("#fNom"), tel = $("#fTel");
+  [nom, tel].forEach(i => i.removeAttribute("aria-invalid"));
+  let m = "";
+  if (!etat.date) m = "Choisissez une date.";
+  else if (!etat.service || !etat.heure) m = "Choisissez un service et un horaire.";
+  else if (!nom.value.trim()) { m = "Indiquez votre nom."; nom.setAttribute("aria-invalid", "true"); }
+  else if (tel.value.replace(/\D/g, "").length < 10) { m = "Indiquez un numéro de téléphone valide."; tel.setAttribute("aria-invalid", "true"); }
+  err.textContent = m;
+  if (m) { if (!etat.date || !etat.heure) $("#formResa").scrollTo({ top: 0, behavior: reduit ? "auto" : "smooth" }); return; }
+  $("#resaEtapes").hidden = true; $("#pnPied").hidden = true;
+  const c = $("#confirm"); c.hidden = false;
+  $("#confirmTxt").textContent = `${nom.value.trim()}, votre demande pour ${texteResa()} serait transmise à l'équipe de ${C.nom}.`;
+  c.focus();
+});
+$("#resaNouvelle").addEventListener("click", () => {
+  $("#confirm").hidden = true; $("#resaEtapes").hidden = false; $("#pnPied").hidden = false;
+  $("#formResa").reset(); Object.assign(etat, { date: null, service: null, heure: null, couverts: 2 });
+  rendreCal(); rendreService(); rendreCouverts(); recap();
+});
+rendreCal(); rendreService(); rendreCouverts(); recap();
+
+requestAnimationFrame(boucle);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquettes menuisier — comparaison</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#16171b;color:#eee}
+  header{padding:18px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #2a2c33}
+  h1{font-size:17px;margin:0 16px 0 0}
+  button{background:#24262d;color:#ddd;border:1px solid #33363f;border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit}
+  button.on{background:#c4682c;border-color:#c4682c;color:#fff}
+  .vue{margin-left:auto;display:flex;gap:8px}
+  main{display:flex;gap:24px;padding:24px;justify-content:center;align-items:flex-start}
+  .cadre{background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px #0008;transition:width .3s}
+  iframe{border:0;display:block;width:100%;height:calc(100vh - 150px)}
+  .desktop{width:min(1280px,100%)}
+  .mobile{width:390px}
+  .info{max-width:300px;font-size:14px;color:#aaa}
+  .info h2{color:#fff;font-size:18px;margin:0 0 6px}
+  a{color:#e69a63}
+  @media (max-width:900px){.info{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Maquettes menuisier</h1>
+  <div id="choix"></div>
+  <div class="vue">
+    <button data-v="desktop" class="on">Ordinateur</button>
+    <button data-v="mobile">Mobile</button>
+  </div>
+</header>
+<main>
+  <div class="cadre desktop" id="cadre"><iframe id="f" title="maquette"></iframe></div>
+  <div class="info" id="info"></div>
+</main>
+<script>
+const M=[
+ {d:"fil-du-bois",n:"A. Fil du bois",p:"Atelier Sauvène",t:"Clair et éditorial, chêne blanchi (esprit Shape Studio, Soren Rose) : cernes de bois au chargement, hero WebGL doux, manifeste ligne par ligne, réalisations filtrables dont la photo suit la souris, slider infini des 6 essences."},
+ {d:"atelier-nuit",n:"B. Atelier de nuit",p:"Atelier Fendrel",t:"Fond sombre (esprit Shed, Floema) : la souris agit comme une lampe rasante qui révèle le relief du bois, récit « de la planche à la pose » sur une règle graduée, galerie horizontale qui penche selon la vitesse."},
+ {d:"plan-atelier",n:"C. Plan d'atelier",p:"Travée",t:"Précision technique (esprit Spearhead, Hays) : le plan d'escalier se dessine puis se fond dans la photo en tache d'encre, cotes qui comptent, cartes 3D, avant/après à glisser, curseur réticule, devis avec mini-schéma."},
+ {d:"noyer",n:"D. Noyer monumental",p:"D. Noyer",t:"Typographie géante et tons chauds (esprit Kvell, Bensen, Menuiserie Perret) : la photo apparaît dans les lettres du titre puis passe en plein écran, réalisation phare épinglée, index des projets, avant/après."}
+];
+const f=document.getElementById('f'),info=document.getElementById('info'),choix=document.getElementById('choix');
+function voir(i){const m=M[i];f.src=m.d+'/index.html';
+ info.innerHTML=`<h2>${m.n}</h2><p><b>${m.p}</b> (fictif)</p><p>${m.t}</p><p><a href="${m.d}/index.html" target="_blank">Ouvrir en plein écran ↗</a></p>`;
+ [...choix.children].forEach((b,j)=>b.classList.toggle('on',j==i));history.replaceState(null,'','#'+m.d);}
+M.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m.n;b.onclick=()=>voir(i);choix.append(b);});
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{document.getElementById('cadre').className='cadre '+b.dataset.v;
+ document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x==b));});
+voir(Math.max(0,M.findIndex(m=>'#'+m.d==location.hash)));
+</script>
+</body>
+</html>

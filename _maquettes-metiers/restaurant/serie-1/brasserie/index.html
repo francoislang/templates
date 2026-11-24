@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le Grand Laiton — Brasserie Art déco à Bellerive-sur-Loire (maquette)</title>
+<meta name="description" content="Maquette de démonstration : brasserie Art déco, carte avec prix, horaires, réservation en ligne, terrasse et salon privé.">
+<meta name="theme-color" content="#0E1A17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Poiret+One&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ==== Variables (miroir de CONFIG.couleurs, réécrites par le JS) ==== */
+:root{
+  --nuit:#0E1A17; --nuit-2:#13241F; --nuit-3:#1A2F29;
+  --laiton:#C9A45C; --laiton-clair:#E6CB8E; --laiton-sombre:#8E7038;
+  --creme:#F2EBDD; --creme-2:#D9D0BE;
+  --bordeaux:#7A1F2B;
+  --f-deco:"Poiret One", "Didot", serif;
+  --f-texte:"Playfair Display", Georgia, serif;
+  --rayon:2px;
+  --ombre:0 20px 50px -20px rgba(0,0,0,.7);
+  --or-grad:linear-gradient(110deg,#8E7038 0%,#C9A45C 22%,#F5E2B0 38%,#C9A45C 52%,#8E7038 70%,#E6CB8E 88%,#C9A45C 100%);
+  --barre:64px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nuit);color:var(--creme);font-family:var(--f-texte);font-size:1.02rem;line-height:1.65;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:var(--laiton-clair)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--laiton-clair);outline-offset:3px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+section{position:relative}
+h1,h2,h3{font-family:var(--f-deco);font-weight:400;letter-spacing:.04em;line-height:1.1;margin:0}
+.eyebrow{font-family:var(--f-deco);text-transform:uppercase;letter-spacing:.35em;font-size:.8rem;color:var(--laiton)}
+.titre{font-size:clamp(2.2rem,5.5vw,4rem);margin:.4rem 0 1rem}
+.or{background:var(--or-grad);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:dorure 7s linear infinite}
+@keyframes dorure{to{background-position:-250% 0}}
+.filet{display:flex;align-items:center;gap:.8rem;color:var(--laiton);margin:1rem 0}
+.filet::before,.filet::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--laiton),transparent)}
+.filet span{width:9px;height:9px;transform:rotate(45deg);border:1px solid var(--laiton)}
+.sec{padding:clamp(4.5rem,10vw,8rem) 0}
+.sec-head{text-align:center;max-width:720px;margin:0 auto 3rem}
+.sec-head p{color:var(--creme-2)}
+.demo-tag{display:inline-block;font-family:var(--f-texte);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px dashed var(--laiton);color:var(--laiton-clair);padding:.15rem .55rem;border-radius:20px}
+
+/* ==== Boutons + reflet doré ==== */
+.btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.7rem 1.5rem;border:1px solid var(--laiton);background:transparent;color:var(--creme);text-decoration:none;font-family:var(--f-deco);font-size:1rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;border-radius:var(--rayon);transition:color .3s,background .3s,transform .2s}
+.btn.plein{background:var(--laiton);color:var(--nuit);font-weight:700}
+.btn::after,.reflet::after{content:"";position:absolute;inset:-2px;background:linear-gradient(115deg,transparent 30%,rgba(255,240,200,.55) 48%,transparent 60%);transform:translateX(-120%);pointer-events:none}
+.btn:hover::after,.btn:focus-visible::after,.reflet:hover::after{transition:transform .9s cubic-bezier(.2,.7,.2,1);transform:translateX(120%)}
+.btn:hover{background:rgba(201,164,92,.12)}
+.btn.plein:hover{background:var(--laiton-clair)}
+.btn:active{transform:scale(.98)}
+.reflet{position:relative;overflow:hidden}
+
+/* ==== Intro ==== */
+#intro{position:fixed;inset:0;z-index:100;background:var(--nuit);display:grid;place-items:center;transition:opacity .9s ease,visibility .9s}
+#intro.fin{opacity:0;visibility:hidden}
+#intro svg{width:min(560px,86vw);height:auto;overflow:visible}
+#intro .tr{fill:none;stroke:var(--laiton);stroke-width:1.2;stroke-dasharray:1;stroke-dashoffset:1;animation:trace 1.6s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes trace{to{stroke-dashoffset:0}}
+#intro .nom-intro{font-family:var(--f-deco);font-size:44px;letter-spacing:6px;text-anchor:middle;opacity:0;animation:allume 1s 1.2s ease forwards}
+#intro .ville-intro{font-family:var(--f-texte);font-size:13px;letter-spacing:8px;text-anchor:middle;fill:var(--creme-2);text-transform:uppercase;opacity:0;animation:allume 1s 1.6s ease forwards}
+@keyframes allume{0%{opacity:0;filter:brightness(.3)}60%{opacity:1;filter:brightness(1.8) drop-shadow(0 0 8px rgba(230,203,142,.8))}100%{opacity:1;filter:none}}
+#intro .passer{position:absolute;bottom:1.5rem;right:1.5rem;background:none;border:0;color:var(--creme-2);font-size:.85rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;min-height:44px}
+
+/* ==== En-tête ==== */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.hdr.plein{background:rgba(14,26,23,.92);backdrop-filter:blur(8px);border-color:rgba(201,164,92,.25)}
+.hdr .in{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:var(--barre)}
+.logo{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--creme)}
+.logo b{font-family:var(--f-deco);font-weight:400;font-size:1.45rem;letter-spacing:.12em}
+.logo small{font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:var(--laiton)}
+.nav{display:flex;gap:1.6rem;align-items:center}
+.nav a{color:var(--creme);text-decoration:none;font-size:.88rem;letter-spacing:.12em;text-transform:uppercase;position:relative;padding:.4rem 0}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--laiton);transform:scaleX(0);transition:transform .35s}
+.nav a:hover::after{transform:scaleX(1)}
+.hdr .btn{min-height:42px;padding:.5rem 1.1rem;font-size:.9rem}
+.burger{display:none;background:none;border:1px solid rgba(201,164,92,.5);width:44px;height:44px;cursor:pointer;border-radius:var(--rayon)}
+.burger span{display:block;width:20px;height:1px;background:var(--laiton);margin:5px auto}
+
+/* ==== Héros ==== */
+.hero{min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.hero .fond{position:absolute;inset:-8% 0;z-index:-2;background:var(--nuit-3)}
+.hero .fond img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.55)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,26,23,.55) 0%,rgba(14,26,23,.15) 35%,rgba(14,26,23,.92) 85%,var(--nuit) 100%)}
+.hero .cadre{position:absolute;inset:calc(var(--barre) + 14px) 14px 14px;border:1px solid rgba(201,164,92,.35);pointer-events:none}
+.hero .cadre::before,.hero .cadre::after{content:"";position:absolute;width:46px;height:46px;border:1px solid var(--laiton)}
+.hero .cadre::before{top:6px;left:6px;border-right:0;border-bottom:0}
+.hero .cadre::after{bottom:6px;right:6px;border-left:0;border-top:0}
+.hero-c{padding:calc(var(--barre) + 4rem) 0 4.5rem;text-align:center}
+.hero h1{font-size:clamp(3rem,11vw,8.5rem);letter-spacing:.06em;line-height:.95}
+.hero .ville{font-size:clamp(.95rem,2.4vw,1.3rem);letter-spacing:.5em;text-transform:uppercase;color:var(--creme-2);margin-top:.6rem}
+.hero .accroche{max-width:620px;margin:1.2rem auto 0;color:var(--creme);font-style:italic}
+.jour{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.4rem .9rem;margin:1.8rem auto 0;padding:.7rem 1.2rem;border:1px solid rgba(201,164,92,.45);background:rgba(14,26,23,.6);backdrop-filter:blur(4px)}
+.jour .etat{display:inline-flex;align-items:center;gap:.45rem;font-weight:600}
+.jour .etat i{width:9px;height:9px;border-radius:50%;background:#7fbf8a;box-shadow:0 0 0 4px rgba(127,191,138,.2)}
+.jour .etat.ferme i{background:var(--bordeaux);box-shadow:0 0 0 4px rgba(122,31,43,.3)}
+.hero .ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
+.badges{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:1.6rem}
+.badge{font-size:.78rem;letter-spacing:.06em;padding:.3rem .75rem;border:1px solid rgba(242,235,221,.25);border-radius:30px;color:var(--creme-2);background:rgba(14,26,23,.5)}
+.badge b{color:var(--laiton-clair);font-weight:600}
+.defile{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);width:1px;height:46px;background:linear-gradient(var(--laiton),transparent);animation:goutte 2.2s ease-in-out infinite}
+@keyframes goutte{0%{transform:translateX(-50%) scaleY(0);transform-origin:top}50%{transform:translateX(-50%) scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:translateX(-50%) scaleY(0);transform-origin:bottom}}
+
+/* ==== Assiette (effet signature) ==== */
+.assiette-sec{height:520vh;background:radial-gradient(ellipse at 50% 40%,var(--nuit-3),var(--nuit) 70%)}
+.assiette-pin{position:sticky;top:0;height:100vh;height:100svh;padding-top:var(--barre);display:grid;grid-template-columns:1fr 1.1fr;align-items:center;gap:2rem;overflow:hidden}
+.assiette-txt{padding-left:max(1.25rem,calc((100vw - 1180px)/2))}
+.assiette-txt .titre{font-size:clamp(2rem,4.2vw,3.4rem)}
+.etapes{list-style:none;margin:1.4rem 0 0;padding:0;counter-reset:e}
+.etapes li{counter-increment:e;display:grid;grid-template-columns:2.2rem 1fr;align-items:baseline;padding:.32rem 0;color:rgba(242,235,221,.35);transition:color .4s,transform .4s}
+.etapes li::before{content:counter(e,decimal-leading-zero);font-family:var(--f-deco);color:rgba(201,164,92,.35);transition:color .4s}
+.etapes li small{display:block;grid-column:2;font-size:.78rem;color:var(--laiton);opacity:0;max-height:0;transition:opacity .4s,max-height .4s}
+.etapes li.fait{color:var(--creme-2)}
+.etapes li.fait::before{color:var(--laiton)}
+.etapes li.cours{color:var(--creme);transform:translateX(6px)}
+.etapes li.cours small,.etapes li.fait small{opacity:1;max-height:2em}
+.assiette-fin{margin-top:1.2rem;opacity:0;transform:translateY(10px);transition:opacity .6s,transform .6s}
+.assiette-fin.vis{opacity:1;transform:none}
+.assiette-fin .prix{font-family:var(--f-deco);font-size:1.6rem;color:var(--laiton-clair)}
+.scene{position:relative;height:100%;display:grid;place-items:center}
+.scene svg{width:min(560px,92%);height:auto;overflow:visible}
+.scene .ly{transform-box:view-box;transform-origin:center;will-change:transform,opacity}
+#vapeur{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.progress-or{position:absolute;left:0;bottom:0;height:2px;background:var(--or-grad);width:0}
+
+/* ==== Carte ==== */
+.carte-sec{background:linear-gradient(180deg,var(--nuit),var(--nuit-2))}
+.onglets{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+.onglet{background:none;border:1px solid rgba(201,164,92,.35);color:var(--creme-2);padding:.55rem 1.1rem;min-height:44px;cursor:pointer;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;border-radius:var(--rayon);transition:all .3s}
+.onglet[aria-selected="true"]{background:var(--laiton);color:var(--nuit);border-color:var(--laiton);font-weight:700}
+.panneau{display:none;animation:apparait .5s ease}
+.panneau.actif{display:block}
+@keyframes apparait{from{opacity:0;transform:translateY(8px)}}
+.miroir{position:relative;border:1px solid rgba(201,164,92,.45);padding:clamp(1.4rem,4vw,3rem);background:linear-gradient(160deg,rgba(242,235,221,.045),rgba(242,235,221,0) 40%),var(--nuit-2);box-shadow:var(--ombre)}
+.miroir::before{content:"";position:absolute;inset:8px;border:1px solid rgba(201,164,92,.18);pointer-events:none}
+.p-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.p-head h3{font-size:clamp(1.6rem,3.5vw,2.3rem)}
+.p-head p{margin:0;color:var(--creme-2);font-size:.9rem}
+.plats{display:grid;grid-template-columns:repeat(2,1fr);gap:0 3rem}
+.plat{padding:.85rem 0;border-bottom:1px dotted rgba(201,164,92,.25)}
+.plat-l{display:flex;align-items:baseline;gap:.6rem}
+.plat-l .n{font-weight:600}
+.plat-l .pts{flex:1;border-bottom:1px dotted rgba(242,235,221,.25);transform:translateY(-4px);min-width:1rem}
+.plat-l .p{font-family:var(--f-deco);font-size:1.2rem;color:var(--laiton-clair);white-space:nowrap}
+.plat .d{font-size:.88rem;color:var(--creme-2);font-style:italic;margin:.15rem 0 0}
+.plat .meta{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.35rem;align-items:center}
+.orig{font-size:.72rem;letter-spacing:.05em;color:var(--laiton);border:1px solid rgba(201,164,92,.4);padding:.05rem .45rem;border-radius:10px}
+.al{display:inline-grid;place-items:center;min-width:24px;height:24px;padding:0 .2rem;border-radius:50%;border:1px solid rgba(242,235,221,.35);font-size:.62rem;font-family:var(--f-texte);font-weight:700;color:var(--creme-2);cursor:help}
+.menus{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem}
+.menu{border:1px solid rgba(201,164,92,.35);padding:1.5rem;text-align:center;position:relative}
+.menu h4{font-family:var(--f-deco);font-weight:400;font-size:1.5rem;margin:0}
+.menu .px{font-family:var(--f-deco);font-size:2.2rem;color:var(--laiton-clair);margin:.4rem 0}
+.menu ul{list-style:none;padding:0;margin:.8rem 0;font-size:.92rem;color:var(--creme-2)}
+.menu li+li::before{content:"◆";display:block;font-size:.5rem;color:var(--laiton);margin:.3rem 0}
+.boisson{display:inline-block;font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;background:rgba(122,31,43,.45);border:1px solid var(--bordeaux)}
+.boisson.oui{background:rgba(201,164,92,.18);border-color:var(--laiton)}
+.mentions{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1rem;margin-top:2rem}
+.mention{display:flex;gap:.8rem;align-items:flex-start;font-size:.88rem;color:var(--creme-2);padding:1rem;border-left:2px solid var(--laiton);background:rgba(242,235,221,.03)}
+.mention svg{flex:none;width:26px;height:26px;stroke:var(--laiton);fill:none;stroke-width:1.3}
+.mention b{color:var(--creme);display:block;font-weight:600}
+.legende{display:flex;flex-wrap:wrap;gap:.5rem .9rem;margin-top:1.4rem;font-size:.78rem;color:var(--creme-2)}
+.legende span{display:inline-flex;align-items:center;gap:.3rem}
+
+/* ==== Réservation + plan ==== */
+.resa-sec{background:var(--nuit-2)}
+.resa-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:2.5rem;align-items:start}
+.plan-box{position:relative}
+.plan-svg{width:100%;height:auto;display:block}
+.zone{cursor:pointer;outline:none}
+.zone .sol{fill:rgba(201,164,92,.05);stroke:rgba(201,164,92,.5);stroke-width:1.2;transition:fill .3s,stroke .3s}
+.zone .mob{fill:none;stroke:rgba(242,235,221,.45);stroke-width:1.2;transition:stroke .3s}
+.zone .lbl{font-family:var(--f-deco);font-size:17px;fill:var(--creme);letter-spacing:2px;pointer-events:none}
+.zone .cap{font-size:11px;fill:var(--laiton);letter-spacing:1px;pointer-events:none;font-family:var(--f-texte)}
+.zone:hover .sol,.zone:focus-visible .sol{fill:rgba(201,164,92,.16);stroke:var(--laiton-clair)}
+.zone:focus-visible .sol{stroke-width:2.5}
+.zone.sel .sol{fill:rgba(201,164,92,.28);stroke:var(--laiton-clair);stroke-width:2}
+.zone.sel .mob{stroke:var(--laiton-clair)}
+.plan-note{font-size:.8rem;color:var(--creme-2);margin-top:.5rem;text-align:center}
+.zones-liste{display:none;gap:.6rem}
+.zbtn{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;text-align:left;background:rgba(242,235,221,.03);border:1px solid rgba(201,164,92,.35);padding:1rem;min-height:64px;cursor:pointer;border-radius:var(--rayon)}
+.zbtn b{font-family:var(--f-deco);font-weight:400;font-size:1.25rem;display:block;letter-spacing:.06em}
+.zbtn small{color:var(--creme-2);font-size:.8rem}
+.zbtn .c{font-size:.78rem;color:var(--laiton);white-space:nowrap}
+.zbtn[aria-pressed="true"]{background:rgba(201,164,92,.2);border-color:var(--laiton-clair)}
+.zone-info{margin-top:1rem;padding:1rem 1.2rem;border:1px solid rgba(201,164,92,.35);min-height:96px}
+.zone-info h4{font-family:var(--f-deco);font-weight:400;font-size:1.35rem;margin:0 0 .2rem;color:var(--laiton-clair)}
+.zone-info p{margin:0;font-size:.9rem;color:var(--creme-2)}
+form.resa{display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1rem}
+.champ{display:flex;flex-direction:column;gap:.3rem}
+.champ.l2{grid-column:1/-1}
+.champ label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--laiton)}
+.champ input,.champ select,.champ textarea{width:100%;min-height:46px;padding:.6rem .8rem;background:rgba(242,235,221,.04);border:1px solid rgba(242,235,221,.25);border-radius:var(--rayon);color:var(--creme);color-scheme:dark}
+.champ textarea{min-height:90px;resize:vertical}
+.champ input:focus,.champ select:focus,.champ textarea:focus{border-color:var(--laiton);outline:none;box-shadow:0 0 0 3px rgba(201,164,92,.2)}
+.champ .err{font-size:.78rem;color:#e7a0a8;min-height:0}
+.champ.ko input,.champ.ko select{border-color:#c4525f}
+.groupe{grid-column:1/-1;display:none;grid-template-columns:1fr 1fr;gap:.9rem 1rem;padding:1rem;border:1px dashed var(--laiton)}
+.groupe.vis{display:grid}
+.groupe p{grid-column:1/-1;margin:0;font-size:.85rem;color:var(--laiton-clair)}
+.avert{grid-column:1/-1;font-size:.8rem;color:var(--creme-2);margin:0;padding:.6rem .8rem;border-left:2px solid var(--bordeaux);background:rgba(122,31,43,.15)}
+.confirm{display:none;padding:1.5rem;border:1px solid var(--laiton);background:rgba(201,164,92,.08);margin-top:1rem}
+.confirm.vis{display:block;animation:apparait .5s}
+.confirm h4{font-family:var(--f-deco);font-weight:400;font-size:1.5rem;margin:0 0 .5rem;color:var(--laiton-clair)}
+.confirm dl{display:grid;grid-template-columns:auto 1fr;gap:.2rem 1rem;margin:.6rem 0;font-size:.92rem}
+.confirm dt{color:var(--laiton)}
+.confirm dd{margin:0}
+
+/* ==== Horaires / accès ==== */
+.acces-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+table.hor{width:100%;border-collapse:collapse}
+.hor td{padding:.65rem .3rem;border-bottom:1px solid rgba(201,164,92,.2);vertical-align:top}
+.hor td:last-child{text-align:right;color:var(--creme-2)}
+.hor tr.auj td{color:var(--laiton-clair);font-weight:600}
+.hor tr.auj td:first-child::before{content:"◆ ";font-size:.6rem}
+.hor .fermé{color:rgba(242,235,221,.4)!important;font-style:italic}
+.carto{position:relative;border:1px solid rgba(201,164,92,.4);aspect-ratio:4/3;background:var(--nuit-2);overflow:hidden}
+.carto svg{width:100%;height:100%}
+.infos-acces{display:grid;gap:.7rem;margin-top:1.2rem;font-size:.93rem}
+.infos-acces div{display:flex;gap:.7rem}
+.infos-acces b{color:var(--laiton);min-width:6.5rem;font-weight:600}
+
+/* ==== Galerie ==== */
+.galerie{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-flow:dense;gap:10px}
+.g-item{position:relative;grid-column:span 4;background:var(--nuit-3);overflow:hidden;cursor:zoom-in;border:0;padding:0;aspect-ratio:4/3}
+.g-item.h{grid-row:span 2;aspect-ratio:auto}
+.g-item.w{grid-column:span 8;aspect-ratio:16/9}
+.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1),filter .6s;filter:saturate(.9)}
+.g-item:hover img,.g-item:focus-visible img{transform:scale(1.06);filter:saturate(1.05)}
+.g-item figcaption{position:absolute;left:0;right:0;bottom:0;padding:.8rem 1rem;font-size:.82rem;text-align:left;background:linear-gradient(transparent,rgba(14,26,23,.9));color:var(--creme);transform:translateY(100%);transition:transform .4s}
+.g-item:hover figcaption,.g-item:focus-visible figcaption{transform:none}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(8,15,13,.96);display:none;align-items:center;justify-content:center;flex-direction:column;padding:1rem}
+.lb.ouvert{display:flex}
+.lb figure{margin:0;max-width:min(1400px,100%);display:flex;flex-direction:column;align-items:center}
+.lb .lb-img{max-width:100%;max-height:78vh;object-fit:contain;background:var(--nuit-3);min-width:min(300px,80vw);min-height:200px;border:1px solid rgba(201,164,92,.4)}
+.lb figcaption{margin-top:.8rem;color:var(--creme-2);text-align:center;font-size:.92rem}
+.lb button{position:absolute;background:rgba(14,26,23,.7);border:1px solid var(--laiton);color:var(--laiton-clair);width:50px;height:50px;font-size:1.4rem;cursor:pointer;border-radius:50%}
+.lb .x{top:1rem;right:1rem}
+.lb .prev{left:1rem;top:50%;transform:translateY(-50%)}
+.lb .next{right:1rem;top:50%;transform:translateY(-50%)}
+.lb .cpt{position:absolute;top:1.6rem;left:1.4rem;font-family:var(--f-deco);color:var(--laiton);letter-spacing:.2em}
+
+/* ==== Maison / producteurs ==== */
+.maison-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.maison-img{position:relative;aspect-ratio:4/5;background:var(--nuit-3);overflow:hidden}
+.maison-img img{width:100%;height:115%;object-fit:cover;position:absolute;top:-7.5%}
+.maison-img::after{content:"";position:absolute;inset:12px;border:1px solid rgba(201,164,92,.55);pointer-events:none}
+.prods{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:3rem}
+.prod{padding:1.4rem;border:1px solid rgba(201,164,92,.3);text-align:center;transition:transform .4s,border-color .4s}
+.prod:hover{transform:translateY(-4px);border-color:var(--laiton)}
+.prod svg{width:44px;height:44px;stroke:var(--laiton);fill:none;stroke-width:1.2;margin:0 auto .6rem}
+.prod h4{font-family:var(--f-deco);font-weight:400;font-size:1.25rem;margin:0 0 .3rem}
+.prod p{margin:0;font-size:.88rem;color:var(--creme-2)}
+
+/* ==== Groupes / bons cadeaux ==== */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.carte-or{position:relative;overflow:hidden;padding:2.2rem;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;background:var(--nuit-3);isolation:isolate;border:1px solid rgba(201,164,92,.4)}
+.carte-or img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:brightness(.4) saturate(.8);transition:transform 1.2s}
+.carte-or:hover img{transform:scale(1.05)}
+.carte-or::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(transparent 20%,rgba(14,26,23,.9))}
+.carte-or h3{font-size:clamp(1.8rem,3.5vw,2.4rem)}
+.carte-or p{color:var(--creme-2);max-width:460px}
+.carte-or .btn{align-self:flex-start;margin-top:.6rem}
+.bon{display:none;margin-top:1rem;padding:1rem;border:1px dashed var(--laiton);font-size:.9rem;background:rgba(14,26,23,.7)}
+.bon.vis{display:block}
+
+/* ==== Avis (placeholder honnête) ==== */
+.avis-vide{border:1px dashed rgba(201,164,92,.5);padding:3rem 1.5rem;text-align:center;color:var(--creme-2)}
+.avis-vide .etoiles{font-size:1.4rem;letter-spacing:.4em;color:rgba(201,164,92,.35)}
+
+/* ==== Pied ==== */
+footer{border-top:1px solid rgba(201,164,92,.3);padding:3rem 0 calc(3rem + var(--barre));font-size:.85rem;color:var(--creme-2)}
+.pied{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:2rem}
+footer h4{font-family:var(--f-deco);font-weight:400;font-size:1.2rem;color:var(--laiton);margin:0 0 .5rem}
+.disclaimer{margin-top:2rem;padding-top:1.2rem;border-top:1px solid rgba(201,164,92,.15);font-size:.78rem;text-align:center}
+
+/* ==== Barre mobile Réserver ==== */
+.barre-mob{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;padding:.6rem .8rem calc(.6rem + env(safe-area-inset-bottom));background:rgba(14,26,23,.96);border-top:1px solid rgba(201,164,92,.4);gap:.6rem}
+.barre-mob .btn{flex:1;min-height:48px;font-size:.9rem;padding:.5rem}
+
+/* ==== Révélations / parallax ==== */
+.rv{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+
+/* ==== Responsive ==== */
+@media (max-width:960px){
+  .nav{display:none;position:absolute;top:var(--barre);left:0;right:0;flex-direction:column;gap:0;background:rgba(14,26,23,.98);border-bottom:1px solid rgba(201,164,92,.3);padding:.5rem 0}
+  .nav.ouvert{display:flex}
+  .nav a{padding:.9rem 1.25rem;width:100%}
+  .burger{display:block}
+  .assiette-pin{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-content:start;gap:0;padding-top:calc(var(--barre) + .6rem)}
+  .assiette-txt{padding:0 1.25rem}
+  .assiette-txt .titre{font-size:1.75rem;margin:.2rem 0 .3rem}
+  .assiette-txt > p{display:none}
+  .etapes{display:none}
+  .etape-mob{display:block!important}
+  .assiette-fin{margin-top:.4rem}
+  .assiette-fin .prix{font-size:1.1rem}
+  .assiette-fin .btn{display:none}
+  .scene svg{width:min(400px,84vw)}
+  .resa-grid,.acces-grid,.maison-grid,.duo{grid-template-columns:1fr}
+  .plats{grid-template-columns:1fr}
+  .onglets{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;margin-inline:-1.25rem;padding:0 1.25rem .3rem;-webkit-overflow-scrolling:touch}
+  .onglets::-webkit-scrollbar{display:none}
+  .onglet{flex:none}
+  .pied{grid-template-columns:1fr}
+  .galerie{grid-template-columns:repeat(2,1fr)}
+  .g-item,.g-item.w{grid-column:span 1;aspect-ratio:1}
+  .g-item.w{grid-column:span 2;aspect-ratio:16/10}
+  .g-item.h{grid-row:span 2}
+  .maison-img{aspect-ratio:4/3}
+}
+@media (max-width:720px){
+  .hdr .btn{display:none}
+  .barre-mob{display:flex}
+  .plan-svg-wrap{display:none}
+  .zones-liste{display:grid}
+  form.resa,.groupe{grid-template-columns:1fr}
+  .hero .cadre{inset:calc(var(--barre) + 8px) 8px 8px}
+  .hero h1{letter-spacing:.03em}
+  .hero .ville{letter-spacing:.3em}
+  .lb .prev,.lb .next{top:auto;bottom:1rem;transform:none}
+  .assiette-sec{height:430vh}
+}
+.etape-mob{display:none;font-size:.9rem;color:var(--laiton-clair);min-height:3.2em}
+.etape-mob small{display:block;color:var(--creme-2);font-size:.78rem}
+
+/* ==== Mouvement réduit ==== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .assiette-sec{height:auto}
+  .assiette-pin{position:relative;height:auto;min-height:0;padding:5rem 0}
+  #vapeur,.defile{display:none}
+  #intro{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Entrée en scène ===== -->
+<div id="intro" aria-hidden="true">
+  <svg viewBox="0 0 600 420">
+    <defs>
+      <linearGradient id="gOr" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0" stop-color="#8E7038"/><stop offset=".35" stop-color="#C9A45C"/><stop offset=".5" stop-color="#F5E2B0"/><stop offset=".65" stop-color="#C9A45C"/><stop offset="1" stop-color="#8E7038"/>
+      </linearGradient>
+    </defs>
+    <g id="introTraits"></g>
+    <text class="nom-intro" x="300" y="300" fill="url(#gOr)" data-cfg="nom"></text>
+    <text class="ville-intro" x="300" y="332" data-cfg="ville"></text>
+  </svg>
+  <button class="passer" type="button">Passer ›</button>
+</div>
+
+<!-- ===== En-tête ===== -->
+<header class="hdr" id="hdr">
+  <div class="wrap in">
+    <a class="logo" href="#haut" aria-label="Accueil"><b data-cfg="nom"></b><small data-cfg="type"></small></a>
+    <nav class="nav" id="nav" aria-label="Navigation principale">
+      <a href="#carte">La carte</a>
+      <a href="#reserver">Réserver</a>
+      <a href="#acces">Horaires &amp; accès</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#maison">La maison</a>
+      <a href="#groupes">Groupes</a>
+    </nav>
+    <div style="display:flex;gap:.6rem;align-items:center">
+      <a class="btn plein" href="#reserver">Réserver</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="haut">
+<!-- ===== Héros ===== -->
+<section class="hero" aria-label="Accueil">
+  <div class="fond" data-par="0.25"><img data-ph="hero" alt="Salle de la brasserie aux lumières tamisées, nappes blanches" fetchpriority="high" sizes="100vw"></div>
+  <div class="cadre" aria-hidden="true"></div>
+  <div class="wrap hero-c">
+    <p class="eyebrow rv" data-cfg="type"></p>
+    <h1 class="rv d1"><span class="or" data-cfg="nom"></span></h1>
+    <p class="ville rv d1" data-cfg="ville"></p>
+    <p class="accroche rv d2" data-cfg="accroche"></p>
+    <div class="jour rv d2" id="jour" aria-live="polite"></div>
+    <div class="ctas rv d3">
+      <a class="btn plein" href="#reserver">Réserver une table</a>
+      <a class="btn" href="#carte">Voir la carte &amp; les prix</a>
+    </div>
+    <div class="badges rv d3" id="badges"></div>
+  </div>
+  <span class="defile" aria-hidden="true"></span>
+</section>
+
+<!-- ===== Effet signature : l'assiette ===== -->
+<section class="assiette-sec" id="assiette" aria-label="L'assiette du chef, ingrédient par ingrédient">
+  <div class="assiette-pin">
+    <div class="assiette-txt">
+      <p class="eyebrow">Fait maison, ingrédient par ingrédient</p>
+      <h2 class="titre">L'assiette se dresse</h2>
+      <p style="color:var(--creme-2);max-width:440px">Faites défiler : chaque élément de notre pavé de bœuf, sauce au vin, prend sa place, tel qu'il est dressé en cuisine.</p>
+      <ol class="etapes" id="etapes"></ol>
+      <p class="etape-mob" id="etapeMob" aria-live="polite"></p>
+      <div class="assiette-fin" id="assietteFin">
+        <span class="prix" id="assiettePrix"></span> <span class="demo-tag">prix d'exemple</span>
+        <div style="margin-top:.8rem"><a class="btn" href="#carte">Toute la carte</a></div>
+      </div>
+    </div>
+    <div class="scene">
+      <canvas id="vapeur" aria-hidden="true"></canvas>
+      <svg id="plat" viewBox="-220 -230 440 450" role="img" aria-label="Illustration d'une assiette : pavé de bœuf, écrasé de pommes de terre, carottes, haricots verts, sauce au vin">
+        <defs>
+          <radialGradient id="porc" cx="45%" cy="40%" r="65%"><stop offset="0" stop-color="#FFFDF7"/><stop offset=".7" stop-color="#EFE7D6"/><stop offset="1" stop-color="#D8CDB6"/></radialGradient>
+          <radialGradient id="ombre" cx="50%" cy="50%" r="50%"><stop offset=".6" stop-color="#000" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+          <linearGradient id="boeuf" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8A4A2E"/><stop offset="1" stop-color="#4E2516"/></linearGradient>
+          <radialGradient id="puree" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FBEFC4"/><stop offset="1" stop-color="#DCC384"/></radialGradient>
+          <linearGradient id="orP" x1="0" x2="1"><stop offset="0" stop-color="#8E7038"/><stop offset=".5" stop-color="#F0D9A0"/><stop offset="1" stop-color="#8E7038"/></linearGradient>
+        </defs>
+        <ellipse cx="0" cy="22" rx="196" ry="190" fill="url(#ombre)" class="ly" data-i="0"/>
+        <g class="ly" data-i="0">
+          <circle r="180" fill="url(#porc)"/>
+          <circle r="176" fill="none" stroke="url(#orP)" stroke-width="4"/>
+          <circle r="166" fill="none" stroke="#C9A45C" stroke-width=".8"/>
+          <g id="frise" stroke="#C9A45C" stroke-width="1" fill="none"></g>
+          <circle r="124" fill="none" stroke="#C9A45C" stroke-width=".8"/>
+          <circle r="122" fill="#FAF6EC" opacity=".55"/>
+        </g>
+        <g class="ly" data-i="1">
+          <path d="M-112 18c-4-34 22-62 58-60 30 2 46 22 48 50 2 34-26 58-58 56-28-2-46-20-48-46z" fill="url(#puree)"/>
+          <path d="M-92 4c14-14 34-16 48-6M-96 30c18 10 40 8 56-6M-80 -18c10-6 24-6 32 0" stroke="#C9A86A" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/>
+        </g>
+        <g class="ly" data-i="2">
+          <g transform="translate(34 -8) rotate(-14)">
+            <rect x="-62" y="-40" width="124" height="80" rx="26" fill="url(#boeuf)"/>
+            <rect x="-54" y="-33" width="108" height="62" rx="22" fill="#7A3E26"/>
+            <path d="M-40 -30l26 56M-12 -32l26 58M16 -32l26 58" stroke="#3A1A0F" stroke-width="5" stroke-linecap="round" opacity=".75"/>
+            <path d="M-50 -20c20-10 70-12 96-2" stroke="#B0694A" stroke-width="3" fill="none" opacity=".6"/>
+          </g>
+        </g>
+        <g class="ly" data-i="3">
+          <path d="M-30 64c40 26 110 18 140-24 14-20 14-48 2-70" stroke="#7A1F2B" stroke-width="10" fill="none" stroke-linecap="round" opacity=".95"/>
+          <path d="M-30 64c40 26 110 18 140-24" stroke="#A8434F" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+          <circle cx="-48" cy="70" r="6" fill="#7A1F2B"/><circle cx="-62" cy="64" r="3.5" fill="#7A1F2B"/><circle cx="128" cy="-46" r="4" fill="#7A1F2B"/>
+        </g>
+        <g class="ly" data-i="4">
+          <g transform="translate(-24 -84) rotate(28)"><ellipse rx="34" ry="9" fill="#D9822B"/><ellipse rx="26" ry="3" cy="-3" fill="#F2A65A" opacity=".7"/></g>
+          <g transform="translate(6 -96) rotate(8)"><ellipse rx="32" ry="8.5" fill="#CF7425"/><ellipse rx="24" ry="3" cy="-3" fill="#F2A65A" opacity=".7"/></g>
+          <g transform="translate(-50 -66) rotate(48)"><ellipse rx="28" ry="8" fill="#DB8A33"/><ellipse rx="20" ry="2.5" cy="-3" fill="#F2A65A" opacity=".7"/></g>
+        </g>
+        <g class="ly" data-i="5" stroke-linecap="round" fill="none">
+          <path d="M-70 78c20 6 46 6 70-4" stroke="#4F7A3A" stroke-width="7"/>
+          <path d="M-74 92c24 4 52 2 76-10" stroke="#5E8A44" stroke-width="7"/>
+          <path d="M-62 104c22 2 46-2 66-14" stroke="#476F33" stroke-width="7"/>
+          <path d="M-56 66c18 6 38 6 56 0" stroke="#6A9650" stroke-width="6"/>
+        </g>
+        <g class="ly" data-i="6">
+          <g fill="#6E9B4A"><path d="M30 -20c8-10 20-10 24 0-8 8-18 8-24 0z"/><path d="M44 -30c4-12 16-14 22-6-6 10-16 12-22 6z"/><path d="M18 -8c10-6 20-2 22 6-10 4-18 2-22-6z"/></g>
+          <path d="M28 -12l30 -14" stroke="#4E7A33" stroke-width="1.5"/>
+          <g fill="#8DB86A"><circle cx="-80" cy="-6" r="3"/><circle cx="-70" cy="-14" r="2.5"/><circle cx="-60" cy="-4" r="2"/></g>
+        </g>
+        <g class="ly" data-i="7" fill="#FFFFFF">
+          <circle cx="20" cy="-18" r="1.8"/><circle cx="36" cy="4" r="1.5"/><circle cx="56" cy="-8" r="1.8"/><circle cx="8" cy="8" r="1.3"/><circle cx="64" cy="10" r="1.4"/><circle cx="44" cy="-24" r="1.2"/><circle cx="26" cy="20" r="1.5"/><circle cx="-2" cy="-6" r="1.2"/>
+        </g>
+      </svg>
+    </div>
+    <div class="progress-or" id="assietteProg"></div>
+  </div>
+</section>
+
+<!-- ===== Carte ===== -->
+<section class="sec carte-sec" id="carte" aria-labelledby="t-carte">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">La carte</p>
+      <h2 class="titre" id="t-carte">Carte &amp; menus</h2>
+      <div class="filet" aria-hidden="true"><span></span></div>
+      <p>Cuisine de brasserie, fruits de mer et vins au verre. Tous nos prix sont TTC, service compris. <span class="demo-tag">prix d'exemple — maquette</span></p>
+    </div>
+    <div class="onglets rv" role="tablist" id="onglets" aria-label="Rubriques de la carte"></div>
+    <div id="panneaux" class="rv"></div>
+    <div class="legende rv" id="legende" aria-label="Légende des allergènes"></div>
+    <div class="mentions rv" id="mentions"></div>
+  </div>
+</section>
+
+<!-- ===== Réservation ===== -->
+<section class="sec resa-sec" id="reserver" aria-labelledby="t-resa">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Réservation</p>
+      <h2 class="titre" id="t-resa">Choisissez votre place</h2>
+      <div class="filet" aria-hidden="true"><span></span></div>
+      <p>Touchez un espace du plan, puis indiquez date, heure et nombre de couverts. Groupes et privatisation : à partir de 9 couverts ou en salon privé.</p>
+    </div>
+    <div class="resa-grid">
+      <div class="plan-box rv">
+        <div class="plan-svg-wrap">
+          <svg class="plan-svg" id="planSvg" viewBox="0 0 800 560" aria-label="Plan de salle interactif">
+            <!-- murs -->
+            <rect x="20" y="20" width="760" height="380" fill="none" stroke="#C9A45C" stroke-width="3"/>
+            <text x="400" y="545" text-anchor="middle" fill="#D9D0BE" font-size="12" letter-spacing="4" font-family="Playfair Display,serif">— RUE —</text>
+            <g class="zone" data-zone="banquettes" tabindex="0" role="button" aria-label="Banquettes">
+              <rect class="sol" x="32" y="32" width="150" height="356"/>
+              <g class="mob">
+                <rect x="38" y="44" width="22" height="330" rx="6"/>
+                <rect x="78" y="56" width="40" height="34"/><rect x="78" y="118" width="40" height="34"/><rect x="78" y="180" width="40" height="34"/><rect x="78" y="242" width="40" height="34"/><rect x="78" y="304" width="40" height="34"/>
+              </g>
+              <text class="lbl" x="150" y="210" transform="rotate(-90 150 210)" text-anchor="middle">BANQUETTES</text>
+            </g>
+            <g class="zone" data-zone="salle" tabindex="0" role="button" aria-label="Grande salle">
+              <rect class="sol" x="196" y="32" width="352" height="356"/>
+              <g class="mob">
+                <circle cx="250" cy="90" r="20"/><circle cx="340" cy="90" r="20"/><circle cx="430" cy="90" r="20"/>
+                <circle cx="250" cy="190" r="24"/><circle cx="340" cy="190" r="24"/><circle cx="430" cy="190" r="24"/>
+                <circle cx="250" cy="290" r="20"/><circle cx="340" cy="290" r="20"/><circle cx="430" cy="290" r="20"/>
+                <path d="M500 50v150" stroke-dasharray="4 4"/>
+              </g>
+              <text class="lbl" x="372" y="360" text-anchor="middle">GRANDE SALLE</text>
+              <text class="cap" x="520" y="130" text-anchor="middle" transform="rotate(90 520 130)">ZINC · BAR</text>
+            </g>
+            <g class="zone" data-zone="salon" tabindex="0" role="button" aria-label="Salon privé">
+              <rect class="sol" x="562" y="32" width="206" height="226"/>
+              <g class="mob">
+                <rect x="600" y="100" width="130" height="70" rx="4"/>
+                <circle cx="615" cy="88" r="6"/><circle cx="645" cy="88" r="6"/><circle cx="675" cy="88" r="6"/><circle cx="705" cy="88" r="6"/>
+                <circle cx="615" cy="182" r="6"/><circle cx="645" cy="182" r="6"/><circle cx="675" cy="182" r="6"/><circle cx="705" cy="182" r="6"/>
+                <path d="M562 230 a28 28 0 0 1 28 28"/>
+              </g>
+              <text class="lbl" x="665" y="232" text-anchor="middle">SALON PRIVÉ</text>
+            </g>
+            <g aria-hidden="true">
+              <rect x="562" y="272" width="206" height="116" fill="rgba(242,235,221,.03)" stroke="rgba(201,164,92,.25)"/>
+              <text x="665" y="336" text-anchor="middle" fill="rgba(242,235,221,.4)" font-size="12" letter-spacing="3" font-family="Playfair Display,serif">CUISINE</text>
+            </g>
+            <g class="zone" data-zone="terrasse" tabindex="0" role="button" aria-label="Terrasse">
+              <rect class="sol" x="20" y="420" width="760" height="100" stroke-dasharray="6 5"/>
+              <g class="mob">
+                <circle cx="80" cy="470" r="15"/><circle cx="170" cy="470" r="15"/><circle cx="260" cy="470" r="15"/><circle cx="330" cy="460" r="15"/>
+                <circle cx="470" cy="460" r="15"/><circle cx="540" cy="470" r="15"/><circle cx="630" cy="470" r="15"/><circle cx="720" cy="470" r="15"/>
+              </g>
+              <text class="lbl" x="400" y="500" text-anchor="middle">TERRASSE</text>
+            </g>
+            <rect x="370" y="396" width="60" height="8" fill="#0E1A17"/><text x="400" y="414" text-anchor="middle" fill="#C9A45C" font-size="10" letter-spacing="2" font-family="Playfair Display,serif">ENTRÉE</text>
+          </svg>
+          <p class="plan-note">Plan indicatif. Le placement exact est confirmé par l'équipe.</p>
+        </div>
+        <div class="zones-liste" id="zonesListe" role="group" aria-label="Choisir un espace"></div>
+        <div class="zone-info" id="zoneInfo" aria-live="polite"><h4>Aucun espace choisi</h4><p>Sans préférence, nous vous placerons au mieux.</p></div>
+      </div>
+
+      <div class="rv d1">
+        <form class="resa" id="formResa" novalidate>
+          <div class="champ"><label for="fDate">Date</label><input type="date" id="fDate" required><span class="err"></span></div>
+          <div class="champ"><label for="fHeure">Heure</label><select id="fHeure" required></select><span class="err"></span></div>
+          <div class="champ"><label for="fCouverts">Couverts</label><input type="number" id="fCouverts" min="1" max="60" value="2" inputmode="numeric" required><span class="err"></span></div>
+          <div class="champ"><label for="fZone">Espace</label><select id="fZone"></select></div>
+          <div class="groupe" id="blocGroupe">
+            <p>◆ Demande de groupe / privatisation — un menu groupe vous sera proposé.</p>
+            <div class="champ"><label for="fOccasion">Occasion</label><select id="fOccasion"><option>Repas d'affaires</option><option>Anniversaire</option><option>Famille</option><option>Séminaire</option><option>Autre</option></select></div>
+            <div class="champ"><label for="fFormule">Formule souhaitée</label><select id="fFormule"><option>Menu groupe à définir</option><option>Cocktail dînatoire</option><option>Privatisation complète du salon</option></select></div>
+          </div>
+          <div class="champ"><label for="fNom">Nom</label><input id="fNom" autocomplete="name" required><span class="err"></span></div>
+          <div class="champ"><label for="fTel">Téléphone</label><input id="fTel" type="tel" autocomplete="tel" inputmode="tel" required placeholder="06 .. .. .. .."><span class="err"></span></div>
+          <div class="champ l2"><label for="fMail">Courriel (facultatif)</label><input id="fMail" type="email" autocomplete="email"><span class="err"></span></div>
+          <div class="champ l2"><label for="fMsg">Allergies, chaise haute, occasion…</label><textarea id="fMsg"></textarea></div>
+          <p class="avert">Maquette de démonstration : ce formulaire fonctionne, mais rien n'est envoyé ni enregistré.</p>
+          <div class="l2" style="grid-column:1/-1"><button class="btn plein" type="submit" style="width:100%">Envoyer la demande</button></div>
+        </form>
+        <div class="confirm" id="confirm" role="status" tabindex="-1"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Horaires / accès ===== -->
+<section class="sec" id="acces" aria-labelledby="t-acces">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Nous trouver</p>
+      <h2 class="titre" id="t-acces">Horaires &amp; accès</h2>
+      <div class="filet" aria-hidden="true"><span></span></div>
+    </div>
+    <div class="acces-grid">
+      <div class="rv">
+        <table class="hor" id="tabHoraires"><caption class="sr">Jours et horaires de service</caption></table>
+        <div class="infos-acces" id="infosAcces"></div>
+      </div>
+      <div class="carto rv d1" aria-label="Plan d'accès stylisé">
+        <svg viewBox="0 0 400 300" aria-hidden="true">
+          <rect width="400" height="300" fill="#13241F"/>
+          <g stroke="#1F3A33" stroke-width="18" fill="none"><path d="M-10 90H410"/><path d="M-10 210H410"/><path d="M130 -10V310"/><path d="M290 -10V310"/></g>
+          <path d="M-10 260C80 240 160 280 410 250" stroke="#1E3F48" stroke-width="26" fill="none"/>
+          <path class="trace-carte" d="M20 210H130V90H205" stroke="#C9A45C" stroke-width="2.5" fill="none" stroke-dasharray="1" pathLength="1"/>
+          <g transform="translate(212 90)"><circle r="16" fill="#7A1F2B" stroke="#C9A45C" stroke-width="2"/><path d="M-5 -2l5-7 5 7-5 9z" fill="#F2EBDD"/></g>
+          <text x="232" y="78" fill="#F2EBDD" font-family="Poiret One,serif" font-size="16" data-cfg="nom"></text>
+          <g font-family="Playfair Display,serif" font-size="10" fill="#C9A45C"><circle cx="20" cy="210" r="5"/><text x="12" y="232">Tram</text><rect x="296" y="160" width="14" height="14"/><text x="314" y="171">Parking</text><text x="40" y="275" fill="#7FA7B0">la Loire</text></g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Galerie ===== -->
+<section class="sec" id="galerie" aria-labelledby="t-gal" style="background:var(--nuit-2)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">En images</p>
+      <h2 class="titre" id="t-gal">La salle &amp; l'assiette</h2>
+      <div class="filet" aria-hidden="true"><span></span></div>
+      <p>Photos d'illustration pour la maquette — à remplacer par les photos fidèles de vos plats et de votre salle.</p>
+    </div>
+    <div class="galerie" id="galerieGrid"></div>
+  </div>
+</section>
+
+<!-- ===== La maison ===== -->
+<section class="sec" id="maison" aria-labelledby="t-maison">
+  <div class="wrap">
+    <div class="maison-grid">
+      <div class="maison-img rv"><img data-ph="maison" alt="Verres à vin alignés sur une table dressée" sizes="(max-width:960px) 100vw, 50vw" loading="lazy" data-par="-0.12"></div>
+      <div class="rv d1">
+        <p class="eyebrow">La maison</p>
+        <h2 class="titre" id="t-maison">Le fait maison, sous les lustres</h2>
+        <div class="filet" aria-hidden="true" style="justify-content:flex-start"><span></span></div>
+        <p>Une brasserie de quartier, avec ses miroirs, son zinc et ses banquettes de velours. En cuisine, les plats sont élaborés sur place à partir de produits bruts : fonds et sauces, frites taillées à la main, desserts du jour.</p>
+        <p>Les plats faits maison sont signalés sur la carte. La viande est d'origine indiquée pour chaque plat, et la carte suit les arrivages et les saisons.</p>
+        <a class="btn" href="#carte">Découvrir la carte</a>
+      </div>
+    </div>
+    <div class="prods">
+      <div class="prod rv"><svg viewBox="0 0 48 48"><path d="M8 38c6-14 14-22 32-28-4 18-12 26-28 30"/><path d="M8 38l18-18"/></svg><h4>Maraîchage</h4><p>Légumes de saison de producteurs de la région.</p></div>
+      <div class="prod rv d1"><svg viewBox="0 0 48 48"><path d="M10 30c0-8 6-14 14-14s14 6 14 14"/><path d="M6 30h36M14 30v8M34 30v8"/><circle cx="24" cy="12" r="3"/></svg><h4>Boucherie</h4><p>Viandes d'origine France, précisée sur chaque plat.</p></div>
+      <div class="prod rv d2"><svg viewBox="0 0 48 48"><path d="M6 26c8-10 28-10 36 0-8 10-28 10-36 0z"/><path d="M42 26l4-6v12z"/><circle cx="16" cy="24" r="1.5"/></svg><h4>Marée</h4><p>Fruits de mer et poissons selon les arrivages.</p></div>
+      <div class="prod rv d3"><svg viewBox="0 0 48 48"><path d="M18 6h12v8c6 4 8 10 8 16v12H10V30c0-6 2-12 8-16z"/><path d="M14 30h20"/></svg><h4>Cave</h4><p>Vins de vignerons, servis au verre en 12 cl.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Groupes / bons cadeaux ===== -->
+<section class="sec" id="groupes" aria-labelledby="t-groupes" style="background:var(--nuit-2)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Recevoir &amp; offrir</p>
+      <h2 class="titre" id="t-groupes">Groupes, privatisation &amp; bons cadeaux</h2>
+      <div class="filet" aria-hidden="true"><span></span></div>
+    </div>
+    <div class="duo">
+      <article class="carte-or reflet rv">
+        <img data-ph="salon" alt="Longue table dressée avec bougies" loading="lazy" sizes="(max-width:960px) 100vw, 50vw">
+        <p class="eyebrow">Salon privé</p>
+        <h3>Privatisation &amp; repas de groupe</h3>
+        <p>Repas d'affaires, anniversaires, fêtes de famille : salon privé ou privatisation de la brasserie, avec menu groupe sur mesure.</p>
+        <a class="btn plein" href="#reserver" id="btnGroupe">Demander un devis groupe</a>
+      </article>
+      <article class="carte-or reflet rv d1">
+        <img data-ph="cadeau" alt="Coupe et verres à pied sur une table" loading="lazy" sizes="(max-width:960px) 100vw, 50vw">
+        <p class="eyebrow">À offrir</p>
+        <h3>Bons cadeaux</h3>
+        <p>Un dîner à deux, un plateau de fruits de mer ou un montant libre, valable un an.</p>
+        <button class="btn" type="button" id="btnBon">Offrir un bon cadeau</button>
+        <div class="bon" id="bon" role="status">Démo : en version finale, ce bouton mène au paiement en ligne sécurisé ou à une demande par téléphone au <span data-cfg="tel"></span>. Rien n'est commandé ici.</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Avis ===== -->
+<section class="sec" id="avis" aria-labelledby="t-avis">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Avis</p>
+      <h2 class="titre" id="t-avis">Ils sont venus</h2>
+    </div>
+    <div class="avis-vide rv"><div class="etoiles" aria-hidden="true">★★★★★</div><p style="font-size:1.15rem;margin:.6rem 0 0">Vos avis clients apparaîtront ici.</p><p style="font-size:.85rem;margin:.3rem 0 0">Intégration de vos avis vérifiés (Google, etc.) dans la version finale.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pied">
+      <div><h4 data-cfg="nom"></h4><p style="margin:0" id="piedAdr"></p><p style="margin:.3rem 0 0">Tél. <span data-cfg="tel"></span></p></div>
+      <div><h4>Service</h4><p style="margin:0" id="piedHor"></p></div>
+      <div><h4>Bon à savoir</h4><p style="margin:0">Prix TTC, service compris. Eau en carafe gratuite sur demande. Liste des allergènes sur demande. Titres-restaurant acceptés.</p></div>
+    </div>
+    <p class="disclaimer">Maquette de démonstration — nom, adresse, téléphone, prix et photos sont fictifs ou d'illustration (photos Unsplash). Les formulaires n'envoient rien. L'abus d'alcool est dangereux pour la santé, à consommer avec modération.</p>
+  </div>
+</footer>
+
+<div class="barre-mob" aria-label="Actions rapides">
+  <a class="btn" href="#carte">Carte</a>
+  <a class="btn plein" href="#reserver">Réserver</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Galerie photo">
+  <span class="cpt" id="lbCpt"></span>
+  <button class="x" type="button" aria-label="Fermer">×</button>
+  <button class="prev" type="button" aria-label="Photo précédente">‹</button>
+  <figure><img class="lb-img" id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="next" type="button" aria-label="Photo suivante">›</button>
+</div>
+
+<script>
+/* ======================================================================
+   CONFIG — tout ce qui change d'un client à l'autre (future conversion gabarit)
+   ====================================================================== */
+const CONFIG = {
+  nom: "Le Grand Laiton",
+  type: "Brasserie",
+  ville: "Bellerive-sur-Loire",
+  accroche: "Brasserie Art déco — cuisine de marché faite maison, fruits de mer et vins au verre, sous les miroirs et le laiton.",
+  adresse: "XX rue de l'Exemple",
+  codePostal: "XXXXX",
+  tel: "06 XX XX XX XX",
+  couleurs: { nuit:"#0E1A17", laiton:"#C9A45C", creme:"#F2EBDD", bordeaux:"#7A1F2B" },
+  titresRestaurant: true,
+  terrasse: true,
+  // 0 = dimanche … 6 = samedi ; créneaux [début, fin]
+  horaires: [
+    { j:"Dimanche", s:[["12:00","15:30"]] },
+    { j:"Lundi",    s:[] },
+    { j:"Mardi",    s:[["12:00","14:30"],["19:00","22:30"]] },
+    { j:"Mercredi", s:[["12:00","14:30"],["19:00","22:30"]] },
+    { j:"Jeudi",    s:[["12:00","14:30"],["19:00","22:30"]] },
+    { j:"Vendredi", s:[["12:00","14:30"],["19:00","23:00"]] },
+    { j:"Samedi",   s:[["12:00","23:00"]], note:"service continu" }
+  ],
+  acces: [
+    ["Adresse", "XX rue de l'Exemple, Bellerive-sur-Loire"],
+    ["Tram", "Arrêt « Place du Marché », à 3 min à pied"],
+    ["Parking", "Parking public à proximité"],
+    ["Terrasse", "Ouverte aux beaux jours, selon météo"],
+    ["Accessibilité", "Salle de plain-pied"]
+  ],
+  // Photos Unsplash (identifiants réels)
+  photos: {
+    hero:   "1687648431656-da99da578d50",
+    maison: "1484156818044-c040038b0719",
+    salon:  "1562050344-f7ad946cee35",
+    cadeau: "1509710398975-6454dcdf049f"
+  },
+  galerie: [
+    { id:"1766832255363-c9f060ade8b0", alt:"Tables dressées dans une salle chaleureuse", f:"w" },
+    { id:"1715249792892-ec2689ab016e", alt:"Huîtres et verre de vin", f:"h" },
+    { id:"1600891964092-4316c288032e", alt:"Viande grillée dressée sur assiette blanche" },
+    { id:"1746720828889-5b20ee16ef30", alt:"Bar bien garni sous un éclairage d'ambiance" },
+    { id:"1778855400007-37cbd89592ef", alt:"Steak, frites et salade" },
+    { id:"1572387147902-d7d137cb0fbd", alt:"Couverts dressés pour le dîner", f:"h" },
+    { id:"1716901445214-d5f0a5c9f40e", alt:"Huîtres et vin en terrasse de café" },
+    { id:"1739799120521-c5f44a9335a3", alt:"Comptoir tamisé, tabourets et bouteilles" },
+    { id:"1588168333986-5078d3ae3976", alt:"Pièce de bœuf saisie sur salade" },
+    { id:"1692866267930-a501e6c2e2cd", alt:"Tables alignées en terrasse sur le trottoir", f:"w" },
+    { id:"1781955781178-6ea29c66e860", alt:"Salle tamisée aux bougies" },
+    { id:"1519233991914-26a44330ccd7", alt:"Plat cuisiné dans une assiette grise" },
+    { id:"1552960226-639240203497", alt:"Suspensions lumineuses dans la salle" },
+    { id:"1673912402587-57ac40f1b4a5", alt:"Part de gâteau et fourchette" }
+  ],
+  assiette: {
+    nom: "Pavé de bœuf, sauce au vin rouge",
+    prix: "24,00 €",
+    etapes: [
+      ["L'assiette", "Porcelaine, filet doré"],
+      ["Écrasé de pommes de terre", "Beurre demi-sel, fait maison"],
+      ["Pavé de bœuf", "Origine France"],
+      ["Sauce au vin rouge", "Réduction maison"],
+      ["Carottes glacées", "Légumes de saison"],
+      ["Haricots verts", "Extra-fins"],
+      ["Herbes fraîches", "Persil plat, cerfeuil"],
+      ["Fleur de sel", "Pour finir"]
+    ]
+  },
+  allergenes: {
+    G:"Gluten", Cr:"Crustacés", O:"Œufs", P:"Poisson", A:"Arachides", S:"Soja", L:"Lait",
+    F:"Fruits à coque", Ce:"Céleri", M:"Moutarde", Se:"Sésame", Su:"Sulfites", Lu:"Lupin", Mo:"Mollusques"
+  },
+  carte: [
+    { id:"midi", titre:"Formule du midi", note:"Du mardi au vendredi, midi, hors jours fériés",
+      menus:[
+        { n:"Formule", px:"19,50 €", boisson:false, c:["Entrée + plat","ou plat + dessert","Selon l'ardoise du jour"] },
+        { n:"Formule complète", px:"23,50 €", boisson:false, c:["Entrée + plat + dessert","Selon l'ardoise du jour"] },
+        { n:"Menu brasserie", px:"36,00 €", boisson:false, c:["Œuf mayonnaise ou soupe à l'oignon","Pavé de bœuf ou poisson du jour","Profiteroles ou île flottante"] },
+        { n:"Menu enfant", px:"12,00 €", boisson:true, c:["Jusqu'à 10 ans","Plat + dessert","Sirop à l'eau ou jus de fruit"] }
+      ]},
+    { id:"brasserie", titre:"Plats de brasserie", note:"Fait maison, selon le marché",
+      items:[
+        { n:"Œuf mayonnaise", d:"Œufs bio, mayonnaise montée minute", p:"7,00 €", al:["O","M"] },
+        { n:"Soupe à l'oignon gratinée", d:"Croûtons, fromage gratiné", p:"9,50 €", al:["G","L","Su"] },
+        { n:"Poireaux vinaigrette", d:"Noisettes torréfiées", p:"8,00 €", al:["M","F"] },
+        { n:"Os à moelle", d:"Fleur de sel, pain grillé", p:"10,00 €", al:["G"], o:"Veau : origine France" },
+        { n:"Pavé de bœuf, sauce au vin", d:"Écrasé de pommes de terre, légumes glacés", p:"24,00 €", al:["L","Su"], o:"Bœuf : origine France" },
+        { n:"Tartare de bœuf préparé", d:"Coupé au couteau, frites maison", p:"21,00 €", al:["O","M"], o:"Bœuf : origine France" },
+        { n:"Volaille fermière rôtie", d:"Jus corsé, purée maison", p:"22,00 €", al:["L"], o:"Volaille : origine France" },
+        { n:"Choucroute de la mer", d:"Poissons, beurre blanc", p:"26,00 €", al:["P","L","Su"] },
+        { n:"Sole meunière", d:"Beurre noisette, pommes vapeur", p:"34,00 €", al:["P","L","G"] }
+      ]},
+    { id:"mer", titre:"Fruits de mer", note:"Selon arrivages — banc d'écailler",
+      items:[
+        { n:"Huîtres creuses n°3 — les 6", d:"Pain de seigle, beurre, échalote", p:"15,00 €", al:["Mo","G","L"] },
+        { n:"Huîtres creuses n°3 — les 12", d:"Pain de seigle, beurre, échalote", p:"28,00 €", al:["Mo","G","L"] },
+        { n:"Bulots mayonnaise", d:"Mayonnaise maison", p:"11,00 €", al:["Mo","O","M"] },
+        { n:"Crevettes roses", d:"Mayonnaise maison", p:"12,00 €", al:["Cr","O","M"] },
+        { n:"Plateau du Zinc (2 pers.)", d:"Huîtres, crevettes, bulots, bigorneaux, langoustines", p:"78,00 €", al:["Mo","Cr","O","M"] }
+      ]},
+    { id:"desserts", titre:"Desserts", note:"Faits maison",
+      items:[
+        { n:"Profiteroles", d:"Chocolat chaud, glace vanille", p:"10,00 €", al:["G","O","L","F"] },
+        { n:"Île flottante", d:"Crème anglaise, pralin", p:"8,00 €", al:["O","L","F"] },
+        { n:"Tarte fine aux pommes", d:"Servie tiède", p:"9,00 €", al:["G","L","O"] },
+        { n:"Café gourmand", d:"Trois mignardises du jour", p:"10,00 €", al:["G","O","L","F"] }
+      ]},
+    { id:"vins", titre:"Vins au verre", note:"Verre 12 cl · pichet 46 cl · bouteille 75 cl",
+      items:[
+        { n:"Muscadet sur lie — 12 cl", d:"Blanc, idéal avec les huîtres", p:"6,50 €", al:["Su"] },
+        { n:"Chablis — 12 cl", d:"Blanc, minéral", p:"9,00 €", al:["Su"] },
+        { n:"Côtes-du-Rhône — 12 cl", d:"Rouge, fruité", p:"6,50 €", al:["Su"] },
+        { n:"Bordeaux supérieur — 12 cl", d:"Rouge, charpenté", p:"7,50 €", al:["Su"] },
+        { n:"Champagne brut — coupe 12 cl", d:"Pour trinquer", p:"12,00 €", al:["Su"] },
+        { n:"Vin du mois — pichet 46 cl", d:"Sélection du moment", p:"22,00 €", al:["Su"] },
+        { n:"Eau en carafe", d:"Gratuite sur demande", p:"offerte", al:[] }
+      ]}
+  ],
+  zones: {
+    banquettes: { n:"Banquettes", cap:"24 couverts", d:"Le long des miroirs, banquettes de velours, tables de 2 à 4." },
+    salle:      { n:"Grande salle", cap:"40 couverts", d:"Sous les lustres, près du zinc, tables rondes de 2 à 6." },
+    terrasse:   { n:"Terrasse", cap:"30 couverts", d:"Aux beaux jours, selon météo. Confirmation le jour même." },
+    salon:      { n:"Salon privé", cap:"10 à 22 couverts", d:"Privatisable pour repas d'affaires, anniversaires, fêtes de famille.", groupe:true }
+  },
+  seuilGroupe: 9
+};
+
+/* ====================================================================== */
+(() => {
+"use strict";
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* --- Variables CSS depuis CONFIG --- */
+const r = document.documentElement.style;
+r.setProperty("--nuit", CONFIG.couleurs.nuit);
+r.setProperty("--laiton", CONFIG.couleurs.laiton);
+r.setProperty("--creme", CONFIG.couleurs.creme);
+r.setProperty("--bordeaux", CONFIG.couleurs.bordeaux);
+
+/* --- Textes --- */
+$$("[data-cfg]").forEach(el => { const v = CONFIG[el.dataset.cfg]; if (v != null) el.textContent = v; });
+document.title = `${CONFIG.nom} — ${CONFIG.type} à ${CONFIG.ville} (maquette)`;
+
+/* --- Images Unsplash + srcset --- */
+const U = (id, w) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+const setImg = (img, id) => {
+  img.src = U(id, 1600);
+  img.srcset = [480, 800, 1200, 1600, 2000].map(w => `${U(id, w)} ${w}w`).join(", ");
+  if (!img.sizes) img.sizes = "100vw";
+  img.decoding = "async";
+};
+$$("img[data-ph]").forEach(img => setImg(img, CONFIG.photos[img.dataset.ph]));
+
+/* --- Horaires --- */
+const hfmt = t => t.replace(":", "h");
+const sessTxt = d => d.s.length ? d.s.map(s => `${hfmt(s[0])} – ${hfmt(s[1])}`).join(" · ") + (d.note ? ` (${d.note})` : "") : "Fermé";
+const toMin = t => { const [h, m] = t.split(":").map(Number); return h * 60 + m; };
+function etatJour() {
+  const now = new Date(), d = now.getDay(), j = CONFIG.horaires[d], m = now.getHours() * 60 + now.getMinutes();
+  const ouvert = j.s.some(s => m >= toMin(s[0]) && m < toMin(s[1]));
+  let prochain = "";
+  if (!ouvert) {
+    const reste = j.s.find(s => toMin(s[0]) > m);
+    if (reste) prochain = `ouverture à ${hfmt(reste[0])}`;
+    else for (let k = 1; k <= 7; k++) { const jj = CONFIG.horaires[(d + k) % 7]; if (jj.s.length) { prochain = `réouverture ${k === 1 ? "demain" : jj.j.toLowerCase()} à ${hfmt(jj.s[0][0])}`; break; } }
+  }
+  $("#jour").innerHTML = `<span class="etat ${ouvert ? "" : "ferme"}"><i></i>${ouvert ? "Ouvert maintenant" : "Fermé"}${prochain ? " · " + prochain : ""}</span><span>Aujourd'hui (${j.j.toLowerCase()}) : ${sessTxt(j)}</span>`;
+}
+etatJour(); setInterval(etatJour, 60000);
+$("#badges").innerHTML = [
+  CONFIG.titresRestaurant ? "<b>Titres-restaurant</b> acceptés" : "",
+  CONFIG.terrasse ? "<b>Terrasse</b> aux beaux jours" : "",
+  "<b>Salon privé</b> & groupes",
+  "Eau en carafe <b>offerte</b>"
+].filter(Boolean).map(t => `<span class="badge">${t}</span>`).join("");
+const today = new Date().getDay();
+$("#tabHoraires").insertAdjacentHTML("beforeend", "<tbody>" + [1,2,3,4,5,6,0].map(i => {
+  const d = CONFIG.horaires[i];
+  return `<tr class="${i === today ? "auj" : ""}"><td>${d.j}${i === today ? ' <span class="sr">(aujourd\'hui)</span>' : ""}</td><td class="${d.s.length ? "" : "fermé"}">${sessTxt(d)}</td></tr>`;
+}).join("") + "</tbody>");
+$("#infosAcces").innerHTML = CONFIG.acces.map(a => `<div><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div>`).join("");
+$("#piedAdr").textContent = `${CONFIG.adresse}, ${CONFIG.codePostal} ${CONFIG.ville}`;
+$("#piedHor").innerHTML = [1,2,3,4,5,6,0].map(i => `${CONFIG.horaires[i].j.slice(0,3)}. ${sessTxt(CONFIG.horaires[i])}`).join("<br>");
+
+/* --- Carte --- */
+const alHTML = list => list.map(c => `<span class="al" title="${CONFIG.allergenes[c]}" aria-label="Allergène : ${CONFIG.allergenes[c]}">${c}</span>`).join("");
+$("#onglets").innerHTML = CONFIG.carte.map((s, i) => `<button class="onglet" role="tab" id="tab-${s.id}" aria-controls="pan-${s.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}">${s.titre}</button>`).join("");
+$("#panneaux").innerHTML = CONFIG.carte.map((s, i) => {
+  let corps;
+  if (s.menus) corps = `<div class="menus">${s.menus.map(m => `<div class="menu reflet"><h4>${m.n}</h4><div class="px">${m.px}</div><span class="boisson ${m.boisson ? "oui" : ""}">Boisson ${m.boisson ? "comprise" : "non comprise"}</span><ul>${m.c.map(x => `<li>${x}</li>`).join("")}</ul></div>`).join("")}</div>`;
+  else corps = `<div class="plats">${s.items.map(p => `<div class="plat"><div class="plat-l"><span class="n">${p.n}</span><span class="pts" aria-hidden="true"></span><span class="p">${p.p}</span></div><p class="d">${p.d}</p>${(p.al.length || p.o) ? `<div class="meta">${p.o ? `<span class="orig">${p.o}</span>` : ""}${alHTML(p.al)}</div>` : ""}</div>`).join("")}</div>`;
+  return `<div class="panneau miroir ${i === 0 ? "actif" : ""}" role="tabpanel" id="pan-${s.id}" aria-labelledby="tab-${s.id}" tabindex="0"><div class="p-head"><div><h3>${s.titre}</h3><p>${s.note}</p></div><span class="demo-tag">prix d'exemple · TTC service compris</span></div>${corps}</div>`;
+}).join("");
+const tabs = $$(".onglet");
+function choisirTab(t, focus) {
+  tabs.forEach(b => { const on = b === t; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; $("#" + b.getAttribute("aria-controls")).classList.toggle("actif", on); });
+  if (focus) t.focus();
+}
+tabs.forEach((t, i) => {
+  t.addEventListener("click", () => choisirTab(t));
+  t.addEventListener("keydown", e => {
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft") { e.preventDefault(); choisirTab(tabs[(i + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length], true); }
+  });
+});
+$("#legende").innerHTML = "<span><b style='color:var(--laiton)'>Allergènes :</b></span>" + Object.entries(CONFIG.allergenes).map(([k, v]) => `<span><span class="al" aria-hidden="true">${k}</span>${v}</span>`).join("");
+const ico = {
+  ttc:'<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11"/><path d="M9 13h8M13 9v8"/></svg>',
+  eau:'<svg viewBox="0 0 26 26"><path d="M8 4h10l-1 18H9z"/><path d="M8.6 12h8.8"/></svg>',
+  al:'<svg viewBox="0 0 26 26"><path d="M13 3l10 18H3z"/><path d="M13 10v5M13 18v.5"/></svg>',
+  tr:'<svg viewBox="0 0 26 26"><rect x="3" y="7" width="20" height="13" rx="2"/><path d="M3 11h20M7 16h5"/></svg>',
+  vi:'<svg viewBox="0 0 26 26"><path d="M7 5h12l-6 10zM13 15v6M9 21h8"/></svg>',
+  or:'<svg viewBox="0 0 26 26"><path d="M13 3a7 7 0 0 1 7 7c0 6-7 13-7 13S6 16 6 10a7 7 0 0 1 7-7z"/><circle cx="13" cy="10" r="2.5"/></svg>'
+};
+$("#mentions").innerHTML = [
+  ["ttc", "Prix TTC, service compris", "Boisson comprise ou non comprise indiquée sur chaque menu."],
+  ["eau", "Eau en carafe", "Gratuite sur simple demande."],
+  ["al", "Allergènes", "Pictogrammes sur la carte ; liste complète des 14 allergènes sur demande."],
+  ["or", "Origine des viandes", "Pays d'origine indiqué pour chaque viande."],
+  ["vi", "Vins au verre", "Contenance en cl : verre 12 cl, pichet 46 cl, bouteille 75 cl."],
+  ["tr", "Titres-restaurant", "Acceptés selon la réglementation en vigueur."]
+].map(m => `<div class="mention">${ico[m[0]]}<div><b>${m[1]}</b>${m[2]}</div></div>`).join("");
+
+/* --- Galerie + lightbox --- */
+const G = CONFIG.galerie;
+$("#galerieGrid").innerHTML = G.map((g, i) => `<figure class="g-item rv ${g.f || ""}" style="margin:0"><button type="button" data-i="${i}" style="all:unset;display:block;width:100%;height:100%;cursor:zoom-in" aria-label="Agrandir : ${esc(g.alt)}"><img alt="${esc(g.alt)}" loading="lazy" sizes="(max-width:960px) 50vw, 33vw" data-g="${g.id}"></button><figcaption>${esc(g.alt)}</figcaption></figure>`).join("");
+$$("img[data-g]").forEach(img => setImg(img, img.dataset.g));
+const lb = $("#lb"), lbImg = $("#lbImg");
+let lbI = 0, lbRet = null;
+function lbShow(i) {
+  lbI = (i + G.length) % G.length;
+  lbImg.src = U(G[lbI].id, 1600);
+  lbImg.srcset = [800, 1200, 1600, 2000].map(w => `${U(G[lbI].id, w)} ${w}w`).join(", ");
+  lbImg.sizes = "100vw";
+  lbImg.alt = G[lbI].alt;
+  $("#lbCap").textContent = G[lbI].alt;
+  $("#lbCpt").textContent = `${String(lbI + 1).padStart(2, "0")} / ${String(G.length).padStart(2, "0")}`;
+}
+function lbOpen(i) { lbRet = document.activeElement; lbShow(i); lb.classList.add("ouvert"); document.body.style.overflow = "hidden"; $(".x", lb).focus(); }
+function lbClose() { lb.classList.remove("ouvert"); document.body.style.overflow = ""; if (lbRet) lbRet.focus(); }
+$("#galerieGrid").addEventListener("click", e => { const b = e.target.closest("button[data-i]"); if (b) lbOpen(+b.dataset.i); });
+$(".x", lb).onclick = lbClose; $(".prev", lb).onclick = () => lbShow(lbI - 1); $(".next", lb).onclick = () => lbShow(lbI + 1);
+lb.addEventListener("click", e => { if (e.target === lb) lbClose(); });
+document.addEventListener("keydown", e => {
+  if (!lb.classList.contains("ouvert")) return;
+  if (e.key === "Escape") lbClose();
+  else if (e.key === "ArrowRight") lbShow(lbI + 1);
+  else if (e.key === "ArrowLeft") lbShow(lbI - 1);
+  else if (e.key === "Tab") { const f = $$("button", lb); const idx = f.indexOf(document.activeElement); e.preventDefault(); f[(idx + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus(); }
+});
+let tx = 0, ty = 0;
+lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive: true });
+lb.addEventListener("touchend", e => {
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbShow(lbI + (dx < 0 ? 1 : -1));
+}, { passive: true });
+
+/* --- Plan de salle + réservation --- */
+const Z = CONFIG.zones, fZone = $("#fZone"), info = $("#zoneInfo");
+fZone.innerHTML = `<option value="">Sans préférence</option>` + Object.entries(Z).map(([k, z]) => `<option value="${k}">${z.n} (${z.cap})</option>`).join("");
+$("#zonesListe").innerHTML = Object.entries(Z).map(([k, z]) => `<button type="button" class="zbtn reflet" data-zone="${k}" aria-pressed="false"><span><b>${z.n}</b><small>${z.d}</small></span><span class="c">${z.cap}</span></button>`).join("");
+$$(".zone .cap").length; // (étiquettes de capacité ajoutées ci-dessous)
+$$("#planSvg .zone").forEach(g => {
+  const z = Z[g.dataset.zone], t = g.querySelector(".lbl");
+  if (z && t && !g.querySelector(".cap.auto")) {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    c.setAttribute("class", "cap auto"); c.setAttribute("text-anchor", "middle");
+    c.setAttribute("x", t.getAttribute("x")); c.setAttribute("y", +t.getAttribute("y") + 16);
+    if (t.getAttribute("transform")) { c.setAttribute("x", +t.getAttribute("x") + 0); c.setAttribute("y", +t.getAttribute("y") + 18); c.setAttribute("transform", t.getAttribute("transform")); }
+    c.textContent = z.cap.toUpperCase(); g.appendChild(c);
+  }
+});
+function choisirZone(k, scroll) {
+  fZone.value = k || "";
+  $$("#planSvg .zone").forEach(g => { const on = g.dataset.zone === k; g.classList.toggle("sel", on); g.setAttribute("aria-pressed", on); });
+  $$(".zbtn").forEach(b => b.setAttribute("aria-pressed", b.dataset.zone === k));
+  const z = Z[k];
+  info.innerHTML = z ? `<h4>${z.n} · ${z.cap}</h4><p>${z.d}</p>` : `<h4>Aucun espace choisi</h4><p>Sans préférence, nous vous placerons au mieux.</p>`;
+  majGroupe();
+  if (scroll && innerWidth <= 720) $("#fDate").focus({ preventScroll: false });
+}
+$$("#planSvg .zone").forEach(g => {
+  g.setAttribute("aria-pressed", "false");
+  g.addEventListener("click", () => choisirZone(g.dataset.zone));
+  g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choisirZone(g.dataset.zone); } });
+});
+$("#zonesListe").addEventListener("click", e => { const b = e.target.closest(".zbtn"); if (b) choisirZone(b.dataset.zone); });
+fZone.addEventListener("change", () => choisirZone(fZone.value));
+
+const fDate = $("#fDate"), fHeure = $("#fHeure"), fCouv = $("#fCouverts");
+const iso = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const auj = new Date(); fDate.min = iso(auj);
+let first = new Date(auj); for (let k = 0; k < 8; k++) { if (CONFIG.horaires[first.getDay()].s.length) break; first.setDate(first.getDate() + 1); }
+fDate.value = iso(first);
+function majHeures() {
+  const v = fDate.value; fHeure.innerHTML = "";
+  if (!v) { fHeure.innerHTML = "<option value=''>Choisissez une date</option>"; return; }
+  const [y, m, d] = v.split("-").map(Number), jour = CONFIG.horaires[new Date(y, m - 1, d).getDay()];
+  if (!jour.s.length) { fHeure.innerHTML = `<option value="">Fermé le ${jour.j.toLowerCase()}</option>`; return; }
+  const opts = [];
+  const isToday = v === iso(new Date()), nowM = new Date().getHours() * 60 + new Date().getMinutes();
+  jour.s.forEach(([a, b]) => { for (let t = toMin(a); t <= toMin(b) - 60; t += 15) { if (isToday && t < nowM + 30) continue; const h = `${String(Math.floor(t / 60)).padStart(2, "0")}:${String(t % 60).padStart(2, "0")}`; opts.push(`<option value="${h}">${hfmt(h)}</option>`); } });
+  fHeure.innerHTML = opts.length ? `<option value="">Choisir…</option>` + opts.join("") : `<option value="">Plus de créneau aujourd'hui</option>`;
+}
+fDate.addEventListener("change", majHeures); majHeures();
+function majGroupe() {
+  const n = +fCouv.value || 0, z = Z[fZone.value];
+  $("#blocGroupe").classList.toggle("vis", n >= CONFIG.seuilGroupe || !!(z && z.groupe));
+}
+fCouv.addEventListener("input", majGroupe);
+$("#btnGroupe").addEventListener("click", () => { choisirZone("salon"); if (+fCouv.value < CONFIG.seuilGroupe) fCouv.value = 12; majGroupe(); });
+
+function erreur(el, msg) { const c = el.closest(".champ"); c.classList.toggle("ko", !!msg); $(".err", c).textContent = msg || ""; if (msg) el.setAttribute("aria-invalid", "true"); else el.removeAttribute("aria-invalid"); return !msg; }
+$("#formResa").addEventListener("submit", e => {
+  e.preventDefault();
+  const nom = $("#fNom"), tel = $("#fTel"), mail = $("#fMail");
+  let ok = true;
+  ok &= erreur(fDate, fDate.value && fDate.value >= fDate.min ? "" : "Choisissez une date à venir.");
+  ok &= erreur(fHeure, fHeure.value ? "" : "Choisissez un créneau ouvert.");
+  ok &= erreur(fCouv, (+fCouv.value >= 1 && +fCouv.value <= 60) ? "" : "Entre 1 et 60 couverts.");
+  ok &= erreur(nom, nom.value.trim().length >= 2 ? "" : "Indiquez votre nom.");
+  ok &= erreur(tel, /^[+0-9 .()-]{8,}$/.test(tel.value.trim()) ? "" : "Numéro de téléphone invalide.");
+  ok &= erreur(mail, !mail.value || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(mail.value) ? "" : "Courriel invalide.");
+  if (!ok) { const k = $(".champ.ko input, .champ.ko select"); if (k) k.focus(); return; }
+  const [y, m, d] = fDate.value.split("-").map(Number);
+  const dateTxt = new Date(y, m - 1, d).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
+  const grp = $("#blocGroupe").classList.contains("vis");
+  const c = $("#confirm");
+  c.innerHTML = `<h4>Demande ${grp ? "de groupe " : ""}préparée</h4><p>Merci ${esc(nom.value.trim())}. Voici le récapitulatif :</p><dl><dt>Date</dt><dd>${dateTxt} à ${hfmt(fHeure.value)}</dd><dt>Couverts</dt><dd>${+fCouv.value}</dd><dt>Espace</dt><dd>${fZone.value ? Z[fZone.value].n : "Sans préférence"}</dd>${grp ? `<dt>Occasion</dt><dd>${esc($("#fOccasion").value)} — ${esc($("#fFormule").value)}</dd>` : ""}<dt>Contact</dt><dd>${esc(tel.value.trim())}</dd></dl><p class="avert" style="margin-top:.6rem">Démo : rien n'a été envoyé. En version finale, le restaurant confirme par SMS ou courriel.</p><button type="button" class="btn" id="nouv" style="margin-top:.8rem">Nouvelle demande</button>`;
+  c.classList.add("vis"); $("#formResa").style.display = "none"; c.focus();
+  $("#nouv").onclick = () => { c.classList.remove("vis"); $("#formResa").style.display = ""; $("#formResa").reset(); fDate.value = iso(first); majHeures(); choisirZone(""); fDate.focus(); };
+});
+
+/* --- Bon cadeau (démo) --- */
+$("#btnBon").addEventListener("click", () => $("#bon").classList.toggle("vis"));
+
+/* --- Menu mobile --- */
+const burger = $("#burger"), nav = $("#nav");
+burger.addEventListener("click", () => { const o = nav.classList.toggle("ouvert"); burger.setAttribute("aria-expanded", o); });
+nav.addEventListener("click", e => { if (e.target.tagName === "A") { nav.classList.remove("ouvert"); burger.setAttribute("aria-expanded", "false"); } });
+
+/* --- Intro : lignes Art déco --- */
+(function intro() {
+  const el = $("#intro");
+  const fin = () => { el.classList.add("fin"); setTimeout(() => el.remove(), 1000); };
+  if (RM) { el.remove(); return; }
+  const g = $("#introTraits"), NS = "http://www.w3.org/2000/svg";
+  const paths = [
+    "M300 20 V100", "M150 250 Q150 60 300 40 Q450 60 450 250", "M130 260 Q130 40 300 18 Q470 40 470 260",
+    "M60 260 H540", "M80 272 H520", "M60 260 L40 240 M540 260 L560 240", "M300 260 L300 360",
+    "M200 360 H400", "M240 372 H360"
+  ];
+  for (let i = 0; i < 13; i++) { const a = Math.PI * (0.12 + 0.76 * i / 12); paths.push(`M300 250 L${300 - Math.cos(a) * 140} ${250 - Math.sin(a) * 160}`); }
+  paths.forEach((d, i) => { const p = document.createElementNS(NS, "path"); p.setAttribute("d", d); p.setAttribute("class", "tr"); p.setAttribute("pathLength", "1"); p.style.animationDelay = (i * 0.05) + "s"; if (i > 8) p.style.opacity = ".45"; g.appendChild(p); });
+  const nomT = $(".nom-intro"); nomT.setAttribute("y", "300");
+  // fond masquant les rayons derrière le nom
+  const bg = document.createElementNS(NS, "rect"); bg.setAttribute("x", "90"); bg.setAttribute("y", "262"); bg.setAttribute("width", "420"); bg.setAttribute("height", "84"); bg.setAttribute("fill", CONFIG.couleurs.nuit);
+  g.parentNode.insertBefore(bg, nomT);
+  $(".passer", el).onclick = fin;
+  setTimeout(fin, 2900);
+})();
+
+/* --- En-tête, révélations, parallax --- */
+const hdr = $("#hdr");
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+$$(".rv").forEach(el => RM ? el.classList.add("in") : io.observe(el));
+const pars = RM ? [] : $$("[data-par]");
+
+/* --- Assiette : construction au défilement --- */
+const sec = $("#assiette"), layers = $$("#plat .ly"), N = CONFIG.assiette.etapes.length;
+$("#etapes").innerHTML = CONFIG.assiette.etapes.map(e => `<li>${e[0]}<small>${e[1]}</small></li>`).join("");
+$("#assiettePrix").textContent = `${CONFIG.assiette.nom} — ${CONFIG.assiette.prix}`;
+const lis = $$("#etapes li"), etapeMob = $("#etapeMob"), finBox = $("#assietteFin"), prog = $("#assietteProg");
+(function frise() { // motif Art déco sur le marli
+  const g = $("#frise"), NS = "http://www.w3.org/2000/svg";
+  for (let i = 0; i < 32; i++) {
+    const a = i / 32 * Math.PI * 2, c = Math.cos(a), s = Math.sin(a);
+    const p = document.createElementNS(NS, "path");
+    p.setAttribute("d", i % 2 ? `M${c*132} ${s*132}L${c*160} ${s*160}` : `M${c*140} ${s*140}L${c*152} ${s*152}`);
+    g.appendChild(p);
+    if (i % 4 === 0) { const d = document.createElementNS(NS, "circle"); d.setAttribute("cx", c * 146); d.setAttribute("cy", s * 146); d.setAttribute("r", 2.2); d.setAttribute("fill", "#C9A45C"); g.appendChild(d); }
+  }
+})();
+const ease = t => 1 - Math.pow(1 - t, 3);
+const bounce = t => { const n = 7.5625, d = 2.75; if (t < 1 / d) return n * t * t; if (t < 2 / d) return n * (t -= 1.5 / d) * t + .75; if (t < 2.5 / d) return n * (t -= 2.25 / d) * t + .9375; return n * (t -= 2.625 / d) * t + .984375; };
+let platP = 0, curStep = -1;
+function majAssiette(p) {
+  platP = p;
+  const span = 0.86 / N; // dernière portion = assiette finie
+  layers.forEach(l => {
+    const i = +l.dataset.i, t = Math.min(1, Math.max(0, (p - 0.04 - i * span) / span));
+    if (i === 0) { const k = ease(t); l.style.opacity = k; l.style.transform = `scale(${0.7 + 0.3 * k}) rotate(${(1 - k) * -25}deg)`; }
+    else { const k = bounce(t); l.style.opacity = t > 0 ? Math.min(1, t * 4) : 0; l.style.transform = `translate(0px, ${(1 - k) * -300}px) rotate(${(1 - k) * (i % 2 ? 14 : -14)}deg) scale(${1 + (1 - k) * 0.15})`; }
+  });
+  const step = Math.min(N - 1, Math.floor(Math.max(0, p - 0.04) / span));
+  const done = p >= 0.9;
+  if (step !== curStep || done !== finBox.classList.contains("vis")) {
+    curStep = step;
+    lis.forEach((li, i) => { li.classList.toggle("fait", i < step || (done && i === step)); li.classList.toggle("cours", i === step && !done); });
+    const e = CONFIG.assiette.etapes[step];
+    etapeMob.innerHTML = done ? `Prête à servir.<small>${N} éléments, dressés à la minute.</small>` : `${String(step + 1).padStart(2, "0")} — ${e[0]}<small>${e[1]}</small>`;
+    finBox.classList.toggle("vis", done);
+  }
+  prog.style.width = (p * 100) + "%";
+}
+
+/* --- Vapeur (canvas) --- */
+const cv = $("#vapeur"), ctx = cv.getContext("2d");
+let parts = [], vapActive = false, rafV = 0, W = 0, H = 0, DPR = 1;
+function tailleCv() { const b = cv.getBoundingClientRect(); DPR = Math.min(2, devicePixelRatio || 1); W = b.width; H = b.height; cv.width = W * DPR; cv.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+function boucleV() {
+  rafV = 0;
+  if (!vapActive) return;
+  ctx.clearRect(0, 0, W, H);
+  const svgB = $("#plat").getBoundingClientRect(), cB = cv.getBoundingClientRect();
+  const cx = svgB.left - cB.left + svgB.width * 0.55, cy = svgB.top - cB.top + svgB.height * 0.48, R = svgB.width * 0.22;
+  const intens = Math.max(0, Math.min(1, (platP - 0.5) / 0.35));
+  if (Math.random() < intens * 0.9) for (let k = 0; k < 2; k++) parts.push({ x: cx + (Math.random() - .5) * R * 1.6, y: cy + (Math.random() - .5) * R * .6, vx: (Math.random() - .5) * .25, vy: -(.35 + Math.random() * .55), r: 6 + Math.random() * 10, a: 0, life: 0, max: 160 + Math.random() * 120, ph: Math.random() * 6.28 });
+  parts = parts.filter(p => p.life < p.max);
+  for (const p of parts) {
+    p.life++; p.x += p.vx + Math.sin(p.life * .03 + p.ph) * .35; p.y += p.vy; p.r += .12;
+    const t = p.life / p.max; p.a = (t < .2 ? t / .2 : 1 - (t - .2) / .8) * .16;
+    const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+    g.addColorStop(0, `rgba(242,235,221,${p.a})`); g.addColorStop(1, "rgba(242,235,221,0)");
+    ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+  }
+  rafV = requestAnimationFrame(boucleV);
+}
+if (!RM) {
+  tailleCv(); addEventListener("resize", tailleCv);
+  new IntersectionObserver(es => { vapActive = es[0].isIntersecting; if (vapActive && !rafV) rafV = requestAnimationFrame(boucleV); if (!vapActive) { parts = []; ctx.clearRect(0, 0, W, H); } }).observe(sec);
+}
+
+/* --- Boucle de défilement --- */
+let tick = false;
+function surScroll() {
+  tick = false;
+  const y = scrollY, vh = innerHeight;
+  hdr.classList.toggle("plein", y > 40);
+  if (!RM) {
+    const b = sec.getBoundingClientRect();
+    majAssiette(Math.min(1, Math.max(0, -b.top / (b.height - vh))));
+    pars.forEach(el => { const rb = el.parentElement.getBoundingClientRect(); if (rb.bottom < 0 || rb.top > vh) return; const k = +el.dataset.par; el.style.transform = `translate3d(0, ${((rb.top + rb.height / 2) - vh / 2) * -k}px, 0)`; });
+  }
+}
+addEventListener("scroll", () => { if (!tick) { tick = true; requestAnimationFrame(surScroll); } }, { passive: true });
+addEventListener("resize", surScroll);
+if (RM) majAssiette(1); else surScroll();
+
+/* --- Trace du chemin sur la carte d'accès --- */
+const tc = $(".trace-carte");
+if (tc && !RM) { tc.style.strokeDashoffset = 1; new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { tc.style.transition = "stroke-dashoffset 2s ease"; tc.style.strokeDashoffset = 0; o.disconnect(); } }).observe(tc); }
+})();
+</script>
+</body>
+</html>

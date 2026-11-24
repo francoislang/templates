@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sorbier — Cuisine de marché à Montbrézil</title>
+<meta name="description" content="Sorbier, restaurant indépendant de cuisine de marché à Montbrézil. L'ardoise change chaque jour avec les producteurs. Réservation en ligne.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lin:#FFFCF9;        /* fond */
+  --encre:#332D29;      /* texte */
+  --argile:#C9B8A3;     /* second ton */
+  --sauge:#3F5A40;      /* accent */
+  --argile-12:rgba(201,184,163,.18);
+  --encre-60:rgba(51,45,41,.62);
+  --ease:cubic-bezier(.77,0,.18,1);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --serif:"Instrument Serif", "Times New Roman", serif;
+  --sans:"Work Sans", system-ui, sans-serif;
+  --pad:clamp(20px,4.2vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--lin);color:var(--encre);font-family:var(--sans);font-weight:400;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--sauge);color:var(--lin)}
+:focus-visible{outline:2px solid var(--sauge);outline-offset:3px}
+
+/* ---------- Défilement fluide ---------- */
+.has-smooth #smooth{position:fixed;top:0;left:0;width:100%;will-change:transform}
+.has-smooth body{overscroll-behavior:none}
+
+/* ---------- Curseur ---------- */
+.cursor{position:fixed;top:0;left:0;z-index:100;pointer-events:none;width:0;height:0;display:none}
+.has-cursor .cursor{display:block}
+.has-cursor, .has-cursor *{cursor:none!important}
+.cursor__dot{position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--encre);transition:width .5s var(--ease),height .5s var(--ease),margin .5s var(--ease),background-color .4s;display:flex;align-items:center;justify-content:center}
+.cursor__label{font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--lin);opacity:0;transform:scale(.6);transition:opacity .3s,transform .5s var(--ease)}
+.cursor.is-big .cursor__dot{width:86px;height:86px;margin:-43px 0 0 -43px;background:var(--sauge)}
+.cursor.is-big .cursor__label{opacity:1;transform:none}
+.cursor.is-hidden .cursor__dot{width:0;height:0;margin:0}
+
+/* ---------- Navigation ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad);transition:transform .8s var(--ease),background-color .5s}
+.nav.is-scrolled{background:rgba(255,252,249,.86);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding-top:14px;padding-bottom:14px}
+.nav.is-up{transform:translateY(-110%)}
+.nav__brand{font-family:var(--serif);font-size:28px;line-height:1;letter-spacing:-.01em}
+.nav__links{display:flex;gap:34px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.nav__links a{position:relative;padding:6px 0}
+.nav__links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .6s var(--ease)}
+.nav__links a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:52px;padding:0 30px;border-radius:999px;background:var(--encre);color:var(--lin);font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:background-color .4s}
+.btn:hover{background:var(--sauge)}
+.btn--ghost{background:transparent;color:var(--encre);box-shadow:inset 0 0 0 1px var(--encre)}
+.btn--ghost:hover{background:var(--encre);color:var(--lin)}
+.btn__inner{display:inline-flex;align-items:center;gap:12px;pointer-events:none}
+.magnetic{will-change:transform;transition:transform .7s var(--ease-out)}
+.nav .btn{min-height:44px;padding:0 22px}
+
+/* ---------- Typo commune ---------- */
+.kicker{display:flex;align-items:center;gap:14px;font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--encre-60)}
+.kicker::before{content:"";width:28px;height:1px;background:currentColor}
+.h2{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7.4vw,124px);line-height:.95;letter-spacing:-.02em}
+.h2 em,.h1 em{font-style:italic;color:var(--sauge)}
+.lead{font-size:clamp(17px,1.35vw,20px);line-height:1.6;max-width:34em;font-weight:300}
+.small{font-size:13px;color:var(--encre-60)}
+section{position:relative}
+.wrap{padding-left:var(--pad);padding-right:var(--pad)}
+
+/* Texte découpé en lignes */
+.line{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.line>span{display:block;transform:translateY(108%);transition:transform 1.15s var(--ease);transition-delay:calc(var(--i,0) * 90ms)}
+.is-in .line>span{transform:none}
+[data-split]:not(.is-split){visibility:hidden}
+
+/* Masque photo */
+.media{position:relative;overflow:hidden;background:var(--argile)}
+.media img{width:100%;height:100%;object-fit:cover}
+.reveal{clip-path:inset(100% 0 0 0);transition:clip-path 1.5s var(--ease)}
+.reveal img{transform:scale(1.3);transition:transform 2s var(--ease)}
+.reveal.is-in{clip-path:inset(0 0 0 0)}
+.reveal.is-in img{transform:scale(1)}
+.px{position:absolute;left:0;right:0;top:-9%;bottom:-9%;will-change:transform}
+.px img{height:100%}
+
+/* ---------- Ouverture ---------- */
+.hero{height:100vh;height:100svh;min-height:620px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--pad) 40px;overflow:hidden;isolation:isolate}
+.trail{position:absolute;inset:0;z-index:1;pointer-events:none}
+.trail img{position:absolute;left:0;top:0;width:clamp(170px,17vw,280px);aspect-ratio:4/5;object-fit:cover;background:var(--argile);opacity:0;transform:translate(-50%,-50%);will-change:transform,opacity}
+.trail img.is-land{aspect-ratio:5/4;width:clamp(210px,21vw,330px)}
+.hero__top{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:2vh}
+.hero__title{position:relative;z-index:2;font-family:var(--serif);font-weight:400;font-size:clamp(110px,min(40vw,60vh),640px);line-height:.78;letter-spacing:-.045em;margin-left:-.04em;pointer-events:none;mix-blend-mode:multiply}
+.hero__title .line{padding-bottom:.12em;margin-bottom:-.12em}
+.hero__foot{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr 1fr auto;gap:32px;align-items:end;margin-top:3.2vh;padding-top:22px;border-top:1px solid rgba(51,45,41,.18)}
+.hero__foot p{max-width:30em}
+.hero__hint{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--encre-60);display:flex;align-items:center;gap:10px}
+.hero__hint i{width:7px;height:7px;border-radius:50%;background:var(--sauge);display:inline-block;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{50%{transform:scale(1.8);opacity:.35}}
+.hero__slides{display:none}
+
+/* ---------- Manifeste ---------- */
+.manif{padding:clamp(110px,16vw,240px) var(--pad) clamp(90px,12vw,180px);display:grid;grid-template-columns:repeat(12,1fr);gap:0 24px}
+.manif .kicker{grid-column:1/4;align-self:start;margin-top:.9em}
+.manif__txt{grid-column:4/13;font-family:var(--serif);font-size:clamp(34px,4.3vw,72px);line-height:1.08;letter-spacing:-.015em}
+.manif__txt em{font-style:italic;color:var(--sauge)}
+.manif__aside{grid-column:4/9;margin-top:48px}
+
+/* ---------- Producteurs ---------- */
+.prod{padding:clamp(60px,8vw,120px) 0 clamp(90px,12vw,170px)}
+.prod__head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:clamp(40px,5vw,72px)}
+.prod__head p{max-width:24em}
+.track{display:flex;gap:clamp(16px,2vw,28px);overflow-x:auto;padding:0 var(--pad) 8px;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;user-select:none}
+.track::-webkit-scrollbar{display:none}
+.track.is-drag{scroll-snap-type:none}
+.track.is-drag a{pointer-events:none}
+.card{flex:0 0 clamp(270px,28vw,420px);scroll-snap-align:start;scroll-margin-left:var(--pad)}
+.card .media{aspect-ratio:4/5}
+.card .media img{transition:transform 1.4s var(--ease)}
+.card:hover .media img{transform:scale(1.05)}
+.card__meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:18px;padding-bottom:14px;border-bottom:1px solid rgba(51,45,41,.18)}
+.card__name{font-family:var(--serif);font-size:clamp(28px,2.4vw,38px);line-height:1}
+.card__job{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--sauge);white-space:nowrap}
+.card__txt{margin-top:12px;font-size:15px;color:var(--encre-60);max-width:28em}
+.card--end{display:flex;flex-direction:column;justify-content:flex-end;padding:32px;background:var(--argile-12)}
+.card--end .card__name{font-size:clamp(30px,2.6vw,42px);margin-bottom:14px}
+.prod__bar{margin:34px var(--pad) 0;height:1px;background:rgba(51,45,41,.14);position:relative;overflow:hidden}
+.prod__bar span{position:absolute;inset:0;background:var(--encre);transform-origin:left;transform:scaleX(.1)}
+
+/* ---------- Plats ---------- */
+.plats{padding:clamp(60px,8vw,120px) var(--pad) clamp(100px,12vw,180px)}
+.plats__head{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;margin-bottom:clamp(50px,7vw,110px)}
+.plats__head .h2{grid-column:1/9}
+.plats__head p{grid-column:9/13;align-self:end}
+.plats__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px;row-gap:clamp(60px,8vw,120px)}
+.dish{display:block}
+.dish a{display:block}
+.dish .media{aspect-ratio:4/5}
+.dish:nth-child(1){grid-column:1/8}
+.dish:nth-child(1) .media{aspect-ratio:5/4}
+.dish:nth-child(2){grid-column:9/13;margin-top:22vw}
+.dish:nth-child(3){grid-column:2/6}
+.dish:nth-child(4){grid-column:7/13;margin-top:-10vw}
+.dish:nth-child(4) .media{aspect-ratio:1/1}
+.dish figcaption{display:flex;justify-content:space-between;gap:20px;margin-top:18px;align-items:baseline}
+.dish__name{font-family:var(--serif);font-size:clamp(24px,2vw,32px);line-height:1.1}
+.dish__note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--encre-60);white-space:nowrap}
+
+/* ---------- Bandeau ---------- */
+.band{height:min(88vh,900px);overflow:hidden}
+.band .media{position:absolute;inset:0}
+.band__txt{position:absolute;left:var(--pad);bottom:clamp(30px,5vw,70px);right:var(--pad);color:var(--lin);z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:30px}
+.band__txt .h2{font-size:clamp(40px,6vw,100px);max-width:10em}
+.band::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(51,45,41,0) 40%,rgba(51,45,41,.55));z-index:1;pointer-events:none}
+
+/* ---------- Ardoise ---------- */
+.ardoise{padding:clamp(100px,13vw,200px) var(--pad) clamp(90px,11vw,160px)}
+.ardoise__title{font-family:var(--serif);font-weight:400;font-size:clamp(64px,13.5vw,250px);line-height:.86;letter-spacing:-.04em}
+.ardoise__title em{font-style:italic;color:var(--sauge)}
+.ardoise__date{display:flex;flex-wrap:wrap;gap:10px 28px;margin:34px 0 clamp(60px,7vw,110px);font-size:14px;letter-spacing:.06em}
+.ardoise__date strong{font-weight:500}
+.ardoise__date .dotlive{display:inline-flex;align-items:center;gap:10px;color:var(--sauge)}
+.ardoise__date .dotlive::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.carte{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(30px,4vw,70px)}
+.carte__col h3{font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--encre-60);padding-bottom:16px;border-bottom:1px solid var(--encre);margin-bottom:8px}
+.plat{padding:22px 0;border-bottom:1px solid rgba(51,45,41,.14)}
+.plat__row{display:flex;justify-content:space-between;gap:16px;align-items:baseline}
+.plat__nom{font-family:var(--serif);font-size:clamp(25px,2.15vw,34px);line-height:1.08;letter-spacing:-.005em}
+.plat__prix{font-family:var(--serif);font-size:clamp(24px,2vw,30px);white-space:nowrap}
+.plat__desc{font-size:14.5px;color:var(--encre-60);margin-top:6px}
+.plat__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;align-items:center}
+.allg{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 5px;border-radius:11px;border:1px solid var(--argile);font-size:10.5px;font-weight:500;color:var(--encre-60);letter-spacing:.02em}
+.orig{font-size:12px;color:var(--sauge);margin-left:4px}
+.menus{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px);margin-top:clamp(70px,8vw,120px)}
+.menu{padding:clamp(26px,2.6vw,40px);background:var(--argile-12);display:flex;flex-direction:column;gap:10px;min-height:280px}
+.menu__when{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--encre-60)}
+.menu__nom{font-family:var(--serif);font-size:clamp(32px,2.8vw,44px);line-height:1}
+.menu__compo{font-size:15px;color:var(--encre-60);flex:1}
+.menu__foot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-top:16px;border-top:1px solid rgba(51,45,41,.16)}
+.menu__prix{font-family:var(--serif);font-size:clamp(40px,3.4vw,56px);line-height:.9}
+.menu__boisson{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:99px;border:1px solid currentColor}
+.menu__boisson.is-in{color:var(--sauge)}
+.vins{margin-top:clamp(50px,6vw,80px);display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:start}
+.vins h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3vw,48px);line-height:1}
+.vins ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.vins li{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(51,45,41,.14);font-size:15px}
+.vins li span:last-child{font-family:var(--serif);font-size:22px;white-space:nowrap}
+.mentions{margin-top:clamp(50px,6vw,80px);display:grid;grid-template-columns:repeat(4,1fr);gap:24px 32px;padding-top:30px;border-top:1px solid var(--encre)}
+.mentions div{font-size:13.5px;color:var(--encre-60);line-height:1.55}
+.mentions strong{display:block;color:var(--encre);font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
+.exemple{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--lin);background:var(--sauge);padding:5px 10px;border-radius:99px}
+
+/* ---------- Réservation ---------- */
+.resa{padding:clamp(100px,12vw,180px) var(--pad);background:var(--encre);color:var(--lin)}
+.resa .kicker{color:rgba(255,252,249,.6)}
+.resa__grid{display:grid;grid-template-columns:5fr 7fr;gap:clamp(40px,6vw,110px);align-items:start}
+.resa .h2 em{color:var(--argile)}
+.resa__intro p{margin-top:26px;color:rgba(255,252,249,.7);max-width:26em;font-weight:300}
+.steps{display:flex;align-items:center;gap:clamp(10px,1.6vw,22px);margin-bottom:clamp(30px,3.6vw,50px);font-family:var(--serif);font-size:clamp(30px,3.4vw,56px);line-height:1}
+.steps button{color:rgba(255,252,249,.32);transition:color .5s;padding:6px 0;position:relative}
+.steps button[disabled]{cursor:default}
+.steps button.is-done{color:rgba(255,252,249,.7)}
+.steps button.is-current{color:var(--lin);font-style:italic}
+.steps button::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--argile);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+.steps button.is-current::after{transform:scaleX(1)}
+.steps .arr{font-family:var(--sans);font-size:.42em;color:rgba(255,252,249,.32)}
+.panels{display:grid}
+.panel{grid-area:1/1;opacity:0;visibility:hidden;transform:translateX(40px);transition:opacity .6s var(--ease),transform .9s var(--ease),visibility 0s .9s}
+.panel.is-active{opacity:1;visibility:visible;transform:none;transition:opacity .7s var(--ease) .15s,transform .9s var(--ease) .1s,visibility 0s}
+.panel.is-past{transform:translateX(-40px)}
+.panel__label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,252,249,.55);margin-bottom:18px;display:block}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.opt{min-height:64px;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(255,252,249,.22);color:var(--lin);transition:background-color .35s,box-shadow .35s,color .35s,transform .5s var(--ease);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:10px 6px}
+.opt:hover:not([disabled]){box-shadow:inset 0 0 0 1px var(--lin)}
+.opt[aria-pressed="true"]{background:var(--lin);color:var(--encre)}
+.opt[disabled]{opacity:.28;cursor:not-allowed}
+.opt:active:not([disabled]){transform:scale(.97)}
+.day{min-height:104px}
+.day__dow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+.day__num{font-family:var(--serif);font-size:40px;line-height:1}
+.day__mon{font-size:12px;opacity:.7}
+.slots{display:flex;flex-direction:column;gap:26px}
+.slots__grp h4{font-weight:400;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,252,249,.55);margin-bottom:12px}
+.slots__row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.slot{font-family:var(--serif);font-size:26px}
+.covers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.cover{font-family:var(--serif);font-size:38px;min-height:80px}
+.resa__note{margin-top:18px;font-size:13.5px;color:rgba(255,252,249,.6)}
+.recap{border-top:1px solid rgba(255,252,249,.25)}
+.recap dl{display:grid;grid-template-columns:auto 1fr;}
+.recap dt,.recap dd{padding:18px 0;border-bottom:1px solid rgba(255,252,249,.16)}
+.recap dt{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,252,249,.55);padding-right:30px;align-self:stretch;display:flex;align-items:center}
+.recap dd{font-family:var(--serif);font-size:clamp(28px,2.6vw,40px);line-height:1.1;text-align:right}
+.recap__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px;align-items:center}
+.resa .btn{background:var(--lin);color:var(--encre)}
+.resa .btn:hover{background:var(--argile)}
+.resa .btn--ghost{background:transparent;color:var(--lin);box-shadow:inset 0 0 0 1px rgba(255,252,249,.4)}
+.resa .btn--ghost:hover{background:rgba(255,252,249,.1)}
+.recap__done{margin-top:26px;padding:20px 22px;border-radius:14px;background:rgba(63,90,64,.55);font-size:15px;display:none}
+.recap__done.is-on{display:block;animation:fadeup .8s var(--ease)}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}}
+.demo-flag{display:inline-flex;gap:8px;align-items:center;margin-top:28px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,252,249,.55)}
+.demo-flag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--argile)}
+
+/* ---------- Infos ---------- */
+.infos{padding:clamp(100px,12vw,180px) var(--pad) clamp(80px,9vw,130px)}
+.infos__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.infos__photo{grid-column:1/6}
+.infos__photo .media{aspect-ratio:3/4}
+.infos__body{grid-column:7/13}
+.infos__body .h2{margin-bottom:46px}
+.hours{width:100%;border-collapse:collapse;margin-bottom:40px}
+.hours th,.hours td{text-align:left;padding:14px 0;border-bottom:1px solid rgba(51,45,41,.14);font-weight:400;vertical-align:top}
+.hours th{font-family:var(--serif);font-size:24px;width:38%}
+.hours td{font-size:15px}
+.hours tr.is-today th,.hours tr.is-today td{color:var(--sauge)}
+.hours tr.is-closed td{color:var(--encre-60)}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px}
+.facts h3{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--encre-60);margin-bottom:8px}
+.facts p{font-size:15.5px}
+.facts .big{font-family:var(--serif);font-size:28px;line-height:1.15}
+.avis{margin-top:clamp(70px,8vw,120px);padding:28px 30px;border:1px dashed var(--argile);display:flex;justify-content:space-between;align-items:center;gap:20px;color:var(--encre-60);font-size:14.5px}
+.avis span:first-child{font-family:var(--serif);font-size:24px;color:var(--encre)}
+
+/* ---------- Pied ---------- */
+.foot{padding:clamp(70px,8vw,120px) var(--pad) 36px;border-top:1px solid rgba(51,45,41,.14);overflow:hidden}
+.foot__big{font-family:var(--serif);font-size:clamp(90px,22vw,400px);line-height:.8;letter-spacing:-.045em;margin-left:-.04em}
+.foot__big em{font-style:italic;color:var(--sauge)}
+.foot__row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-top:clamp(40px,5vw,70px);font-size:14px}
+.foot__row h4{font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--encre-60);margin-bottom:10px}
+.foot__row a{display:block;padding:3px 0}
+.foot__legal{margin-top:50px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--encre-60)}
+
+/* ---------- Bouton fixe mobile ---------- */
+.fab{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:60;display:none;min-height:58px;border-radius:999px;background:var(--sauge);color:var(--lin);font-size:14px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;align-items:center;justify-content:space-between;padding:0 10px 0 26px;box-shadow:0 10px 30px -10px rgba(51,45,41,.5);transition:transform .7s var(--ease),opacity .5s}
+.fab b{width:40px;height:40px;border-radius:50%;background:var(--lin);color:var(--sauge);display:flex;align-items:center;justify-content:center;font-weight:400;font-size:18px}
+.fab.is-hidden{transform:translateY(140%);opacity:0;pointer-events:none}
+
+/* ---------- Mobile ---------- */
+@media (max-width:900px){
+  .nav__links{display:none}
+  .nav .btn{display:none}
+  .hero{height:auto;min-height:0;padding-top:96px;padding-bottom:30px;justify-content:flex-start}
+  .trail{display:none}
+  .hero__top{order:1;margin-bottom:10px}
+  .hero__title{order:2;font-size:43vw;mix-blend-mode:normal}
+  .hero__slides{order:3;display:block;position:relative;aspect-ratio:4/5;margin:22px 0 0;background:var(--argile);overflow:hidden}
+  .hero__slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity 2s ease,transform 7s linear}
+  .hero__slides img.is-on{opacity:1;transform:scale(1)}
+  .hero__slides figcaption{position:absolute;left:14px;bottom:12px;z-index:2;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lin);text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  .hero__foot{order:4;grid-template-columns:1fr;gap:18px}
+  .hero__hint{display:none}
+  .hero__foot .btn{display:none}
+  .manif{grid-template-columns:1fr;gap:28px}
+  .manif .kicker,.manif__txt,.manif__aside{grid-column:1/-1}
+  .manif__aside{margin-top:6px}
+  .prod__head{flex-direction:column;align-items:flex-start}
+  .card{flex-basis:78vw}
+  .plats__head{grid-template-columns:1fr}
+  .plats__head .h2,.plats__head p{grid-column:1/-1}
+  .plats__grid{grid-template-columns:repeat(6,1fr);row-gap:56px}
+  .dish:nth-child(1){grid-column:1/7}
+  .dish:nth-child(2){grid-column:2/7;margin-top:0}
+  .dish:nth-child(3){grid-column:1/6}
+  .dish:nth-child(4){grid-column:1/7;margin-top:0}
+  .dish figcaption{flex-direction:column;gap:6px}
+  .band{height:72vh}
+  .band__txt{flex-direction:column;align-items:flex-start}
+  .carte,.menus{grid-template-columns:1fr}
+  .vins{grid-template-columns:1fr}
+  .vins ul{grid-template-columns:1fr}
+  .mentions{grid-template-columns:1fr 1fr}
+  .resa__grid{grid-template-columns:1fr}
+  .days{grid-template-columns:repeat(4,1fr)}
+  .day{min-height:92px}
+  .day__num{font-size:32px}
+  .slots__row{grid-template-columns:repeat(3,1fr)}
+  .infos__photo,.infos__body{grid-column:1/-1}
+  .infos__photo .media{aspect-ratio:4/3}
+  .infos__body{margin-top:40px}
+  .facts{grid-template-columns:1fr}
+  .avis{flex-direction:column;align-items:flex-start}
+  .foot__row{grid-template-columns:1fr 1fr}
+  .foot__row>div:first-child{grid-column:1/-1}
+  .foot{padding-bottom:110px}
+  .fab{display:flex}
+}
+@media (max-width:420px){
+  .days{grid-template-columns:repeat(3,1fr)}
+  .mentions{grid-template-columns:1fr}
+  .steps{font-size:28px}
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .line>span{transform:none}
+  .reveal{clip-path:none}
+  .reveal img{transform:none}
+  .trail{display:none}
+  .hero__slides img{transform:none}
+}
+.rm .hero__slides{display:block}
+@media (min-width:901px){
+  .rm .hero__slides{position:absolute;right:var(--pad);top:96px;width:min(30vw,440px);aspect-ratio:4/5;z-index:1;background:var(--argile);overflow:hidden}
+  .rm .hero__slides img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
+  .rm .hero__slides img.is-on{opacity:1}
+  .rm .hero__slides figcaption{position:absolute;left:14px;bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--lin)}
+  .rm .hero__hint{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Curseur personnalisé -->
+<div class="cursor" aria-hidden="true"><div class="cursor__dot"><span class="cursor__label"></span></div></div>
+
+<!-- Navigation (hors du conteneur de défilement) -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__brand" data-c="nom">Sorbier</a>
+  <nav class="nav__links" aria-label="Navigation principale">
+    <a href="#producteurs">Producteurs</a>
+    <a href="#cuisine">Cuisine</a>
+    <a href="#ardoise">L'ardoise</a>
+    <a href="#infos">Infos &amp; accès</a>
+  </nav>
+  <a href="#reserver" class="btn magnetic" data-cursor="Réserver"><span class="btn__inner">Réserver une table</span></a>
+</header>
+
+<a href="#reserver" class="fab" id="fab"><span>Réserver une table</span><b aria-hidden="true">→</b></a>
+
+<div id="smooth">
+<main id="top">
+
+  <!-- ============ OUVERTURE ============ -->
+  <section class="hero" id="hero" aria-label="Accueil">
+    <div class="trail" id="trail" aria-hidden="true"></div>
+
+    <div class="hero__top">
+      <p class="kicker">Cuisine de marché · <span data-c="ville">Montbrézil</span></p>
+    </div>
+
+    <h1 class="hero__title" aria-label="Sorbier"><span class="line"><span data-c="nom">Sorbier</span></span></h1>
+
+    <figure class="hero__slides" id="slides" aria-label="Photos du restaurant">
+      <figcaption>Le marché du matin</figcaption>
+    </figure>
+
+    <div class="hero__foot">
+      <p class="lead">Le marché du matin, cuisiné le jour même. Une salle en plein jour, du lin, de la céramique, et une ardoise qui change avec les producteurs.</p>
+      <p class="small" id="heroHours">Du mardi au samedi · <span data-c="adresseCourte">XX rue de l'Exemple</span></p>
+      <div style="display:flex;gap:26px;align-items:center;justify-content:flex-end">
+        <span class="hero__hint"><i></i>Déplacez le curseur</span>
+        <a href="#reserver" class="btn magnetic" data-cursor="Réserver"><span class="btn__inner">Réserver</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MANIFESTE ============ -->
+  <section class="manif" aria-label="Notre approche">
+    <p class="kicker">Notre approche</p>
+    <p class="manif__txt" data-split>Chaque matin, nous partons de ce que <em>les producteurs</em> ont récolté. La carte suit, jamais l'inverse.</p>
+    <p class="manif__aside lead">Pas de surgelé, pas de carte figée. Des produits bruts, travaillés sur place, servis dans une vaisselle de potier et sur des nappes de lin lavé.</p>
+  </section>
+
+  <!-- ============ PRODUCTEURS ============ -->
+  <section class="prod" id="producteurs" aria-labelledby="t-prod">
+    <div class="prod__head wrap">
+      <div>
+        <p class="kicker" style="margin-bottom:24px">01 — Circuit court</p>
+        <h2 class="h2" id="t-prod" data-split>Nos <em>producteurs</em></h2>
+      </div>
+      <p class="small">Faites glisser pour les rencontrer. Ils et elles fixent, avec la saison, ce que nous cuisinons.</p>
+    </div>
+    <div class="track" id="track" data-cursor="Glisser"></div>
+    <div class="prod__bar" aria-hidden="true"><span id="trackBar"></span></div>
+  </section>
+
+  <!-- ============ CUISINE ============ -->
+  <section class="plats" id="cuisine" aria-labelledby="t-plats">
+    <div class="plats__head">
+      <div class="h2-wrap" style="grid-column:1/9">
+        <p class="kicker" style="margin-bottom:24px">02 — La cuisine</p>
+        <h2 class="h2" id="t-plats" data-split>Des assiettes <em>simples</em>, des produits justes</h2>
+      </div>
+      <p class="lead">Photos de nos assiettes telles qu'elles sont servies. Les plats changent selon l'arrivage : consultez l'ardoise du jour.</p>
+    </div>
+    <div class="plats__grid" id="dishes"></div>
+  </section>
+
+  <!-- ============ BANDEAU ============ -->
+  <section class="band" aria-label="La salle">
+    <div class="media"><div class="px" data-speed="0.9"><img id="bandImg" alt="La salle du restaurant en lumière naturelle" loading="lazy" decoding="async"></div></div>
+    <div class="band__txt">
+      <h2 class="h2" data-split>Une salle en plein jour</h2>
+      <p style="max-width:22em;font-weight:300">Tables de chêne, nappes de lin, assiettes façonnées à la main. Le midi, la lumière entre par la vitrine.</p>
+    </div>
+  </section>
+
+  <!-- ============ ARDOISE ============ -->
+  <section class="ardoise" id="ardoise" aria-labelledby="t-ardoise">
+    <p class="kicker" style="margin-bottom:28px">03 — La carte</p>
+    <h2 class="ardoise__title" id="t-ardoise" data-split>L'ardoise <em>du jour</em></h2>
+    <div class="ardoise__date">
+      <span class="dotlive"><strong id="today">—</strong></span>
+      <span>Mise à jour à <strong id="majTime">—</strong></span>
+      <span class="exemple">Prix d'exemple</span>
+    </div>
+
+    <div class="carte" id="carte"></div>
+
+    <div class="menus" id="menus"></div>
+
+    <div class="vins">
+      <h3>Vins au verre<br><span style="font-size:.5em;color:var(--encre-60);font-family:var(--sans)">sélection de vignerons indépendants</span></h3>
+      <ul id="vins"></ul>
+    </div>
+
+    <div class="mentions" id="mentions"></div>
+  </section>
+
+  <!-- ============ RÉSERVATION ============ -->
+  <section class="resa" id="reserver" aria-labelledby="t-resa">
+    <div class="resa__grid">
+      <div class="resa__intro">
+        <p class="kicker" style="margin-bottom:24px">04 — Réserver</p>
+        <h2 class="h2" id="t-resa" data-split>Votre table en <em>trois mots</em></h2>
+        <p>Choisissez un jour, une heure, le nombre de couverts. Pour une tablée de plus de 8 personnes ou une demande particulière, appelez-nous au <span data-c="tel">06 XX XX XX XX</span>.</p>
+        <p class="demo-flag">Démonstration : aucune donnée n'est envoyée</p>
+      </div>
+
+      <div class="booking" id="booking">
+        <div class="steps" role="tablist" aria-label="Étapes de réservation">
+          <button type="button" data-step="0" class="is-current" role="tab">Jour</button>
+          <span class="arr" aria-hidden="true">→</span>
+          <button type="button" data-step="1" disabled role="tab">Heure</button>
+          <span class="arr" aria-hidden="true">→</span>
+          <button type="button" data-step="2" disabled role="tab">Couverts</button>
+        </div>
+
+        <div class="panels">
+          <div class="panel is-active" data-panel="0">
+            <span class="panel__label">Quel jour ?</span>
+            <div class="days" id="days"></div>
+            <p class="resa__note" id="closedNote"></p>
+          </div>
+          <div class="panel" data-panel="1">
+            <span class="panel__label" id="slotLabel">À quelle heure ?</span>
+            <div class="slots" id="slots"></div>
+          </div>
+          <div class="panel" data-panel="2">
+            <span class="panel__label">Combien de couverts ?</span>
+            <div class="covers" id="covers"></div>
+            <p class="resa__note">Au-delà de 8 personnes, appelez-nous au <span data-c="tel">06 XX XX XX XX</span>.</p>
+          </div>
+          <div class="panel" data-panel="3">
+            <span class="panel__label">Récapitulatif</span>
+            <div class="recap">
+              <dl>
+                <dt>Jour</dt><dd id="rDay">—</dd>
+                <dt>Heure</dt><dd id="rTime">—</dd>
+                <dt>Couverts</dt><dd id="rCov">—</dd>
+              </dl>
+              <div class="recap__actions">
+                <button type="button" class="btn magnetic" id="confirm" data-cursor="Réserver"><span class="btn__inner">Confirmer la table</span></button>
+                <button type="button" class="btn btn--ghost" id="restart"><span class="btn__inner">Modifier</span></button>
+              </div>
+              <p class="recap__done" id="done" role="status">Ceci est une démonstration : aucune réservation n'a été transmise. Sur le site réel, vous recevriez ici la confirmation de votre table.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INFOS ============ -->
+  <section class="infos" id="infos" aria-labelledby="t-infos">
+    <div class="infos__grid">
+      <div class="infos__photo">
+        <div class="media reveal"><div class="px" data-speed="1.08"><img id="infosImg" alt="Verre à pied sur une table dressée" loading="lazy" decoding="async"></div></div>
+      </div>
+      <div class="infos__body">
+        <p class="kicker" style="margin-bottom:24px">05 — Infos &amp; accès</p>
+        <h2 class="h2" id="t-infos" data-split>Nous <em>trouver</em></h2>
+        <table class="hours" id="hours" aria-label="Horaires d'ouverture"></table>
+        <div class="facts">
+          <div><h3>Adresse</h3><p class="big"><span data-c="adresse">XX rue de l'Exemple</span><br><span data-c="cp">00000</span> <span data-c="ville">Montbrézil</span></p></div>
+          <div><h3>Téléphone</h3><p class="big"><a href="tel:+33600000000" data-c="tel">06 XX XX XX XX</a></p></div>
+          <div><h3>Venir</h3><p id="acces"></p></div>
+          <div><h3>Accueil</h3><p>Salle de plain-pied, accessible en fauteuil. Chaises hautes sur demande. Chiens tenus en laisse bienvenus en terrasse.</p></div>
+          <div><h3>Paiement</h3><p>Carte bancaire, espèces, titres-restaurant (papier et carte) acceptés au déjeuner.</p></div>
+          <div><h3>Allergies</h3><p>Prévenez-nous à la réservation : la liste des 14 allergènes de chaque plat est disponible sur demande.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="avis"><span>Vos avis clients apparaîtront ici</span><span>Espace réservé — aucun avis n'est affiché sur cette démonstration.</span></div>
+  </section>
+
+  <!-- ============ PIED DE PAGE ============ -->
+  <footer class="foot">
+    <p class="foot__big" aria-hidden="true">Sor<em>bier</em></p>
+    <div class="foot__row">
+      <div><h4>Restaurant</h4><p style="max-width:24em">Cuisine de marché, produits de producteurs, ardoise renouvelée chaque jour. Plats cuisinés sur place à partir de produits bruts.</p></div>
+      <div><h4>Adresse</h4><p><span data-c="adresse">XX rue de l'Exemple</span><br><span data-c="cp">00000</span> <span data-c="ville">Montbrézil</span></p></div>
+      <div><h4>Contact</h4><a href="tel:+33600000000" data-c="tel">06 XX XX XX XX</a><a href="#reserver">Réserver en ligne</a></div>
+      <div><h4>Explorer</h4><a href="#producteurs">Producteurs</a><a href="#ardoise">L'ardoise</a><a href="#infos">Accès</a></div>
+    </div>
+    <div class="foot__legal">
+      <span>© <span id="year"></span> <span data-c="nom">Sorbier</span> — site de démonstration, établissement et contenus fictifs. Prix d'exemple, TTC, service compris.</span>
+      <span>Photos : Unsplash · Mentions légales · Confidentialité</span>
+    </div>
+  </footer>
+
+</main>
+</div>
+
+<script>
+/* =====================================================================
+   CONFIG — tout ce qui se personnalise est ici
+   ===================================================================== */
+const CONFIG = {
+  nom: "Sorbier",
+  ville: "Montbrézil",
+  adresse: "XX rue de l'Exemple",
+  adresseCourte: "XX rue de l'Exemple",
+  cp: "00000",
+  tel: "06 XX XX XX XX",
+  acces: "Arrêt de bus « Les Halles » à deux minutes à pied. Parking public de la place du Marché. Arceaux vélo devant la vitrine.",
+  couleurs: { lin:"#FFFCF9", encre:"#332D29", argile:"#C9B8A3", sauge:"#3F5A40" },
+  /* 0 = dimanche … 6 = samedi ; null = fermé ; [début, dernière arrivée] */
+  horaires: {
+    0: null,
+    1: null,
+    2: { midi:["12:00","13:30"], soir:["19:15","21:15"] },
+    3: { midi:["12:00","13:30"], soir:["19:15","21:15"] },
+    4: { midi:["12:00","13:30"], soir:["19:15","21:15"] },
+    5: { midi:["12:00","13:30"], soir:["19:15","21:30"] },
+    6: { midi:null,              soir:["19:15","21:30"] }
+  },
+  pasCreneau: 15,
+  joursAffiches: 8,
+  photo: (id, w=1600) => `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`,
+  /* Traînée d'images du curseur (identifiants Unsplash réels) */
+  trainee: [
+    "1788710737703-48dee6844122","1414235077428-338989a2e8c0","1471193945509-9ad0617afabf",
+    "1764521882411-549ceb0160a7","1590779033100-9f60a05a013d","1615366105533-5b8f3255ea5d",
+    "1550989460-0adf9ea622e2","1729781514035-5d0d8c061db6","1560717845-968823efbee1",
+    "1542838132-92c53300491e","1626735555205-4a98ef539557","1571987530791-58e3e7744d99",
+    "1589483233144-795633bf597c","1676471926534-d5c9771909fa","1758673825420-3e7fb0eb199a",
+    "1488459716781-31db52582fe9"
+  ],
+  diaporama: ["1788710737703-48dee6844122","1414235077428-338989a2e8c0","1764521882411-549ceb0160a7","1471193945509-9ad0617afabf","1758673825420-3e7fb0eb199a"],
+  producteurs: [
+    { prenom:"Claire",  metier:"Maraîchère",     photo:"1709634760469-feab76ac50a4", txt:"Salades, blettes et choux cueillis à l'aube, livrés avant le service du midi." },
+    { prenom:"Bastien", metier:"Légumes racines", photo:"1471193945509-9ad0617afabf", txt:"Carottes de couleur, poireaux et céleris, cultivés en plein champ sans traitement chimique." },
+    { prenom:"Odile",   metier:"Arboricultrice", photo:"1764521882408-67ccefda1fc4", txt:"Poires et pommes de variétés anciennes, cueillies à maturité dans son verger." },
+    { prenom:"Mathieu", metier:"Vigneron",       photo:"1755698542421-532ed051f591", txt:"Vins en agriculture biologique, vendanges à la main ; une partie de nos vins au verre." },
+    { prenom:"Margaux", metier:"Cueillette & herbes", photo:"1626735555205-4a98ef539557", txt:"Herbes aromatiques, fleurs comestibles et jeunes pousses qui terminent nos assiettes." }
+  ],
+  plats: [
+    { nom:"Assiette du moment, légumes du jardin", note:"Selon la récolte", photo:"1414235077428-338989a2e8c0", speed:1.06 },
+    { nom:"Poisson de ligne, légumes glacés",      note:"Selon la pêche",   photo:"1676471926534-d5c9771909fa", speed:0.92 },
+    { nom:"Mijoté du jour, purée maison",          note:"Plat du midi",     photo:"1603073163308-9654c3fb70b5", speed:1.04 },
+    { nom:"Fleurs et herbes de Margaux",           note:"En saison",        photo:"1624272823876-470c7f48c8c0", speed:0.95 }
+  ],
+  bandeau: "1766832255363-c9f060ade8b0",
+  infos: "1509710398975-6454dcdf049f",
+  /* ---------- L'ardoise (prix d'exemple, TTC, service compris) ---------- */
+  ardoise: {
+    miseAJour: "11 h 20",
+    allergenes: { G:"Gluten", L:"Lait", O:"Œufs", F:"Fruits à coque", P:"Poisson", M:"Moutarde", S:"Sulfites", C:"Céleri" },
+    colonnes: [
+      { titre:"Entrées", plats:[
+        { nom:"Velouté de courge, noisettes torréfiées", desc:"Huile de sauge, crème crue", prix:"9 €", allg:["L","F"] },
+        { nom:"Poireaux vinaigrette, œuf mollet", desc:"Câpres frites, herbes de Margaux", prix:"10 €", allg:["O","M"] },
+        { nom:"Terrine de campagne maison", desc:"Pickles d'oignons, pain au levain", prix:"11 €", allg:["G","S"], orig:"Porc : né, élevé et abattu en France" }
+      ]},
+      { titre:"Plats", plats:[
+        { nom:"Truite de rivière, beurre blanc", desc:"Poireaux fondants, pommes de terre de Bastien", prix:"22 €", allg:["P","L","S"] },
+        { nom:"Volaille fermière rôtie, jus court", desc:"Purée de céleri, chou braisé", prix:"24 €", allg:["L","C"], orig:"Volaille : née, élevée et abattue en France" },
+        { nom:"Joue de bœuf braisée au vin rouge", desc:"Carottes de couleur glacées", prix:"25 €", allg:["S","C"], orig:"Bœuf : né, élevé et abattu en France" },
+        { nom:"Risotto d'épeautre, champignons", desc:"Vieux fromage de montagne, cerfeuil — végétarien", prix:"19 €", allg:["G","L"] }
+      ]},
+      { titre:"Desserts", plats:[
+        { nom:"Tarte fine aux pommes d'Odile", desc:"Crème crue, caramel au beurre salé", prix:"9 €", allg:["G","L","O"] },
+        { nom:"Poire pochée, sabayon", desc:"Sabayon au vin jaune, sablé breton", prix:"10 €", allg:["O","S","G","L"] },
+        { nom:"Fromages affinés", desc:"Sélection de la fromagère du marché", prix:"11 €", allg:["L"] }
+      ]}
+    ],
+    menus: [
+      { quand:"Déjeuner · mardi au vendredi", nom:"Formule midi", compo:"Entrée + plat ou plat + dessert, à choisir sur l'ardoise.", prix:"21 €", boisson:false },
+      { quand:"Déjeuner · mardi au vendredi", nom:"Midi complet", compo:"Entrée + plat + dessert, un verre de vin (12 cl) ou une eau minérale (50 cl), et un café.", prix:"29 €", boisson:true },
+      { quand:"Le soir", nom:"Menu du marché", compo:"Trois temps au choix du chef selon l'arrivage. Accord mets et vins : trois verres de 10 cl, + 19 €.", prix:"38 €", boisson:false }
+    ],
+    vins: [
+      ["Blanc du moment — verre 12 cl","6 €"],
+      ["Rouge du moment — verre 12 cl","6,50 €"],
+      ["Vin de Mathieu — verre 12 cl","7 €"],
+      ["Pichet du moment — 46 cl","19 €"],
+      ["Jus de pomme d'Odile — 25 cl","4 €"],
+      ["Eau en carafe","offerte"]
+    ]
+  }
+};
+
+/* =====================================================================
+   Utilitaires & état
+   ===================================================================== */
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const FINE = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const lerp = (a,b,t) => a + (b-a)*t;
+const srcset = id => [600,1000,1600].map(w => `${CONFIG.photo(id,w)} ${w}w`).join(", ");
+function setImg(img, id, sizes="100vw"){ img.src = CONFIG.photo(id,1000); img.srcset = srcset(id); img.sizes = sizes; }
+if (RM) document.documentElement.classList.add("rm");
+
+/* Variables CSS depuis CONFIG */
+const rs = document.documentElement.style;
+rs.setProperty("--lin", CONFIG.couleurs.lin); rs.setProperty("--encre", CONFIG.couleurs.encre);
+rs.setProperty("--argile", CONFIG.couleurs.argile); rs.setProperty("--sauge", CONFIG.couleurs.sauge);
+
+/* Textes simples */
+$$("[data-c]").forEach(el => { const k = el.dataset.c; if (CONFIG[k] != null && typeof CONFIG[k] === "string") el.textContent = CONFIG[k]; });
+$("#year").textContent = new Date().getFullYear();
+$("#acces").textContent = CONFIG.acces;
+document.title = `${CONFIG.nom} — Cuisine de marché à ${CONFIG.ville}`;
+$(".hero__title").setAttribute("aria-label", CONFIG.nom);
+
+/* =====================================================================
+   Rendu du contenu
+   ===================================================================== */
+// Producteurs
+$("#track").innerHTML = CONFIG.producteurs.map(p => `
+  <article class="card">
+    <div class="media"><img alt="${p.metier} — ${p.prenom}" loading="lazy" decoding="async" data-id="${p.photo}" draggable="false"></div>
+    <div class="card__meta"><h3 class="card__name">${p.prenom}</h3><span class="card__job">${p.metier}</span></div>
+    <p class="card__txt">${p.txt}</p>
+  </article>`).join("") + `
+  <article class="card card--end">
+    <h3 class="card__name">Vous produisez près de chez nous&nbsp;?</h3>
+    <p class="card__txt">Nous cherchons toujours de nouveaux producteurs. Passez nous voir le matin, avant le service.</p>
+  </article>`;
+$$("#track img").forEach(img => setImg(img, img.dataset.id, "(max-width:900px) 78vw, 28vw"));
+
+// Plats
+$("#dishes").innerHTML = CONFIG.plats.map(p => `
+  <figure class="dish" data-cursor="Voir">
+    <a href="#ardoise" aria-label="Voir l'ardoise du jour">
+      <div class="media reveal"><div class="px" data-speed="${p.speed}"><img alt="${p.nom}" loading="lazy" decoding="async" data-id="${p.photo}"></div></div>
+    </a>
+    <figcaption><span class="dish__name">${p.nom}</span><span class="dish__note">${p.note}</span></figcaption>
+  </figure>`).join("");
+$$("#dishes img").forEach(img => setImg(img, img.dataset.id, "(max-width:900px) 100vw, 58vw"));
+setImg($("#bandImg"), CONFIG.bandeau);
+setImg($("#infosImg"), CONFIG.infos, "(max-width:900px) 100vw, 40vw");
+
+// Ardoise
+const A = CONFIG.ardoise;
+const now = new Date();
+const today = now.toLocaleDateString("fr-FR", { weekday:"long", day:"numeric", month:"long", year:"numeric" });
+$("#today").textContent = today.charAt(0).toUpperCase() + today.slice(1);
+$("#majTime").textContent = A.miseAJour;
+$("#carte").innerHTML = A.colonnes.map(c => `
+  <div class="carte__col"><h3>${c.titre}</h3>
+    ${c.plats.map(p => `
+      <div class="plat">
+        <div class="plat__row"><span class="plat__nom">${p.nom}</span><span class="plat__prix">${p.prix}</span></div>
+        <p class="plat__desc">${p.desc}</p>
+        <div class="plat__tags">${p.allg.map(a => `<abbr class="allg" title="${A.allergenes[a]}">${a === "O" ? "Œ" : a}</abbr>`).join("")}${p.orig ? `<span class="orig">${p.orig}</span>` : ""}</div>
+      </div>`).join("")}
+  </div>`).join("");
+$("#menus").innerHTML = A.menus.map(m => `
+  <div class="menu">
+    <span class="menu__when">${m.quand}</span>
+    <span class="menu__nom">${m.nom}</span>
+    <p class="menu__compo">${m.compo}</p>
+    <div class="menu__foot"><span class="menu__prix">${m.prix}</span><span class="menu__boisson ${m.boisson ? "is-in" : ""}">${m.boisson ? "Boisson comprise" : "Boisson non comprise"}</span></div>
+  </div>`).join("");
+$("#vins").innerHTML = A.vins.map(v => `<li><span>${v[0]}</span><span>${v[1]}</span></li>`).join("");
+$("#mentions").innerHTML = `
+  <div><strong>Prix</strong>Prix nets en euros, TTC, service compris. <span class="exemple" style="margin-top:8px">Prix d'exemple</span></div>
+  <div><strong>Allergènes</strong>${Object.entries(A.allergenes).map(([k,v]) => `<abbr class="allg" title="${v}">${k==="O"?"Œ":k}</abbr> ${v}`).join(" · ")}. Liste complète des 14 allergènes sur demande.</div>
+  <div><strong>Origine des viandes</strong>Bœuf, porc et volaille nés, élevés et abattus en France, précisé sur chaque plat.</div>
+  <div><strong>À savoir</strong>Eau en carafe offerte. Vins au verre servis en 10 ou 12 cl. Titres-restaurant acceptés au déjeuner. Tout est cuisiné sur place à partir de produits bruts.</div>`;
+
+// Horaires
+const JOURS = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const fmtH = t => t.replace(":", " h ").replace(" h 00", " h");
+const servTxt = s => s ? `${fmtH(s[0])} – ${fmtH(s[1])}` : null;
+$("#hours").innerHTML = [2,3,4,5,6,0,1].map(d => {
+  const h = CONFIG.horaires[d];
+  const parts = h ? [h.midi && `Midi ${servTxt(h.midi)}`, h.soir && `Soir ${servTxt(h.soir)}`].filter(Boolean).join("<br>") : "Fermé";
+  return `<tr class="${d === now.getDay() ? "is-today" : ""} ${h ? "" : "is-closed"}"><th scope="row">${JOURS[d]}</th><td>${parts}</td></tr>`;
+}).join("");
+
+/* =====================================================================
+   Texte découpé ligne par ligne
+   ===================================================================== */
+function splitLines(el){
+  if (!el.dataset.src) el.dataset.src = el.innerHTML;
+  el.innerHTML = el.dataset.src;
+  const tmp = document.createElement("div"); tmp.innerHTML = el.dataset.src;
+  const words = [];
+  tmp.childNodes.forEach(n => {
+    if (n.nodeType === 3) n.textContent.split(/(\s+)/).forEach(t => { if (t.trim()) words.push(t); });
+    else words.push(n.outerHTML);
+  });
+  el.innerHTML = words.map(w => `<span class="w" style="display:inline-block">${w}</span>`).join(" ");
+  const lines = []; let top = null;
+  $$(".w", el).forEach(w => {
+    const t = w.offsetTop;
+    if (top === null || Math.abs(t - top) > 4){ lines.push([]); top = t; }
+    lines[lines.length-1].push(w.innerHTML);
+  });
+  el.innerHTML = lines.map((l,i) => `<span class="line"><span style="--i:${i}">${l.join(" ")}</span></span>`).join("");
+  el.classList.add("is-split");
+}
+const splits = $$("[data-split]");
+function doSplits(){ splits.forEach(splitLines); }
+
+/* =====================================================================
+   Apparitions (masques, lignes)
+   ===================================================================== */
+/* le masque clip-path rend la cible « invisible » pour l'observateur : on observe donc son parent */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting){ (e.target._rv || e.target).classList.add("is-in"); io.unobserve(e.target); } });
+}, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+function observeAll(){
+  $$("[data-split]").forEach(el => { if (!el.classList.contains("is-in")) io.observe(el); });
+  $$(".reveal").forEach(el => { if (!el.classList.contains("is-in")){ const p = el.parentElement; p._rv = el; io.observe(p); } });
+}
+
+/* =====================================================================
+   Défilement fluide à inertie (souris uniquement, hors mouvement réduit)
+   ===================================================================== */
+const smoothEl = $("#smooth");
+const SM = { on: FINE && !RM, cur: 0, tgt: 0 };
+function setBodyHeight(){ if (SM.on) document.body.style.height = smoothEl.getBoundingClientRect().height + "px"; }
+if (SM.on){
+  document.documentElement.classList.add("has-smooth");
+  new ResizeObserver(setBodyHeight).observe(smoothEl);
+  SM.cur = SM.tgt = scrollY;
+}
+function scrollToEl(el){
+  const y = el.getBoundingClientRect().top + (SM.on ? SM.cur : scrollY);
+  window.scrollTo({ top: y, behavior: (SM.on || RM) ? "auto" : "smooth" });
+}
+document.addEventListener("click", e => {
+  const a = e.target.closest('a[href^="#"]'); if (!a) return;
+  const id = a.getAttribute("href"); const el = id === "#top" ? smoothEl : $(id);
+  if (!el) return; e.preventDefault(); scrollToEl(el);
+});
+
+/* =====================================================================
+   Parallax discret
+   ===================================================================== */
+const pxEls = $$("[data-speed]").map(el => ({ el, s: parseFloat(el.dataset.speed), ref: el.parentElement }));
+function parallax(){
+  if (RM) return;
+  const vh = innerHeight;
+  pxEls.forEach(p => {
+    const r = p.ref.getBoundingClientRect();
+    if (r.bottom < -100 || r.top > vh + 100) return;
+    const d = (r.top + r.height/2 - vh/2);
+    const y = Math.max(-r.height*0.08, Math.min(r.height*0.08, d * (1 - p.s)));
+    p.el.style.transform = `translate3d(0,${y.toFixed(2)}px,0)`;
+  });
+}
+
+/* =====================================================================
+   Navigation : masquage au défilement, bouton fixe mobile
+   ===================================================================== */
+const nav = $("#nav"), fab = $("#fab"), resaSec = $("#reserver"), heroSec = $("#hero");
+let lastY = 0;
+function navState(y){
+  nav.classList.toggle("is-scrolled", y > 40);
+  nav.classList.toggle("is-up", y > innerHeight*0.6 && y > lastY + 2);
+  if (y < lastY - 2) nav.classList.remove("is-up");
+  lastY = y;
+  const r = resaSec.getBoundingClientRect();
+  fab.classList.toggle("is-hidden", (r.top < innerHeight && r.bottom > 0) || y < 120);
+}
+
+/* =====================================================================
+   Boucle principale
+   ===================================================================== */
+function loop(){
+  if (SM.on){
+    SM.tgt = scrollY;
+    SM.cur = lerp(SM.cur, SM.tgt, 0.08);
+    if (Math.abs(SM.tgt - SM.cur) < 0.05) SM.cur = SM.tgt;
+    smoothEl.style.transform = `translate3d(0,${-SM.cur.toFixed(2)}px,0)`;
+  }
+  const y = SM.on ? SM.cur : scrollY;
+  navState(y);
+  parallax();
+  cursorTick();
+  trackTick();
+  requestAnimationFrame(loop);
+}
+
+/* =====================================================================
+   Curseur personnalisé
+   ===================================================================== */
+const cur = $(".cursor"), curLabel = $(".cursor__label");
+const C = { x: -100, y: -100, tx: -100, ty: -100 };
+if (FINE){
+  document.documentElement.classList.add("has-cursor");
+  addEventListener("mousemove", e => { C.tx = e.clientX; C.ty = e.clientY; }, { passive:true });
+  document.addEventListener("mouseover", e => {
+    const t = e.target.closest("[data-cursor]");
+    if (t){ curLabel.textContent = t.dataset.cursor; cur.classList.add("is-big"); }
+    else cur.classList.remove("is-big");
+  });
+  document.addEventListener("mouseleave", () => cur.classList.add("is-hidden"));
+  document.addEventListener("mouseenter", () => cur.classList.remove("is-hidden"));
+}
+function cursorTick(){
+  if (!FINE) return;
+  const k = RM ? 1 : 0.22;
+  C.x = lerp(C.x, C.tx, k); C.y = lerp(C.y, C.ty, k);
+  cur.style.transform = `translate3d(${C.x}px,${C.y}px,0)`;
+}
+
+/* =====================================================================
+   Boutons magnétiques
+   ===================================================================== */
+if (FINE && !RM){
+  $$(".magnetic").forEach(b => {
+    b.addEventListener("mousemove", e => {
+      const r = b.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width/2), dy = e.clientY - (r.top + r.height/2);
+      b.style.transform = `translate(${dx*0.32}px,${dy*0.42}px)`;
+    });
+    b.addEventListener("mouseleave", () => { b.style.transform = ""; });
+  });
+}
+
+/* =====================================================================
+   Traînée d'images (bureau) / diaporama en fondu (mobile, mouvement réduit)
+   ===================================================================== */
+const trail = $("#trail");
+const POOL = 10, STEP = 80;
+const pool = [];
+let tIdx = 0, imgIdx = 0, zTop = 1, last = null;
+const useTrail = FINE && !RM && matchMedia("(min-width: 901px)").matches;
+if (useTrail){
+  // préchargement des images de la traînée
+  CONFIG.trainee.forEach(id => { const i = new Image(); i.src = CONFIG.photo(id, 600); });
+  for (let i = 0; i < POOL; i++){ const im = document.createElement("img"); im.alt = ""; im.decoding = "async"; trail.appendChild(im); pool.push(im); }
+}
+function spawn(x, y){
+  const im = pool[tIdx++ % POOL];
+  const id = CONFIG.trainee[imgIdx++ % CONFIG.trainee.length];
+  im.getAnimations().forEach(a => a.cancel());
+  im.src = CONFIG.photo(id, 600);
+  im.classList.toggle("is-land", imgIdx % 3 === 0);
+  im.style.left = x + "px"; im.style.top = y + "px"; im.style.zIndex = ++zTop;
+  const rot = (Math.random() - .5) * 6;
+  im.animate([
+    { opacity: 0, transform: `translate(-50%,-50%) scale(.55) rotate(${rot}deg)` },
+    { opacity: 1, transform: `translate(-50%,-50%) scale(1) rotate(0deg)`, offset: .14 },
+    { opacity: 1, transform: `translate(-50%,-50%) scale(1)`, offset: .5 },
+    { opacity: 0, transform: `translate(-50%,-50%) scale(.82)` }
+  ], { duration: 1500, easing: "cubic-bezier(.77,0,.18,1)", fill: "forwards" });
+}
+let hinted = false;
+if (useTrail){
+  heroSec.addEventListener("mousemove", e => {
+    const r = heroSec.getBoundingClientRect();
+    const x = e.clientX - r.left, y = e.clientY - r.top;
+    if (!last){ last = { x, y }; spawn(x, y); return; }
+    const d = Math.hypot(x - last.x, y - last.y);
+    if (d >= STEP){ spawn(x, y); last = { x, y }; }
+    if (!hinted){ hinted = true; $(".hero__hint").style.opacity = 0; }
+  });
+  heroSec.addEventListener("mouseleave", () => { last = null; });
+  // démonstration douce à l'arrivée : une courbe d'images
+  window.addEventListener("load", () => {
+    const r = heroSec.getBoundingClientRect(); let k = 0;
+    const pts = 9;
+    const t = setInterval(() => {
+      if (hinted || k >= pts){ clearInterval(t); return; }
+      const p = k / (pts - 1);
+      spawn(r.width * (0.18 + p * 0.64), r.height * (0.42 + Math.sin(p * Math.PI * 1.4) * 0.16));
+      k++;
+    }, 130);
+  });
+} else {
+  const slides = $("#slides");
+  CONFIG.diaporama.forEach((id, i) => {
+    const im = document.createElement("img");
+    im.alt = i === 0 ? "Étal de légumes frais au marché" : "";
+    im.loading = i === 0 ? "eager" : "lazy"; im.decoding = "async";
+    setImg(im, id); if (i === 0) im.classList.add("is-on");
+    slides.insertBefore(im, slides.querySelector("figcaption"));
+  });
+  if (!RM){
+    let s = 0; const ims = $$("img", slides);
+    setInterval(() => { ims[s].classList.remove("is-on"); s = (s + 1) % ims.length; ims[s].classList.add("is-on"); }, 4800);
+  }
+}
+
+/* =====================================================================
+   Cartes producteurs : glisser avec inertie (souris), natif au toucher
+   ===================================================================== */
+const track = $("#track"), bar = $("#trackBar");
+const D = { down:false, x:0, sl:0, v:0, lx:0, moved:false };
+track.addEventListener("pointerdown", e => {
+  if (e.pointerType !== "mouse") return;
+  D.down = true; D.moved = false; D.x = D.lx = e.clientX; D.sl = track.scrollLeft; D.v = 0;
+  track.setPointerCapture(e.pointerId);
+});
+track.addEventListener("pointermove", e => {
+  if (!D.down) return;
+  const dx = e.clientX - D.x;
+  if (Math.abs(dx) > 4){ D.moved = true; track.classList.add("is-drag"); }
+  track.scrollLeft = D.sl - dx; D.v = e.clientX - D.lx; D.lx = e.clientX;
+});
+const endDrag = () => { if (!D.down) return; D.down = false; if (RM) D.v = 0; setTimeout(() => { if (Math.abs(D.v) < .5) track.classList.remove("is-drag"); }, 0); };
+track.addEventListener("pointerup", endDrag); track.addEventListener("pointercancel", endDrag);
+track.addEventListener("click", e => { if (D.moved){ e.preventDefault(); e.stopPropagation(); } }, true);
+function trackTick(){
+  if (!D.down && Math.abs(D.v) > .5){ track.scrollLeft -= D.v; D.v *= 0.94; if (Math.abs(D.v) <= .5) track.classList.remove("is-drag"); }
+  const max = track.scrollWidth - track.clientWidth;
+  const p = max > 0 ? track.scrollLeft / max : 0;
+  bar.style.transform = `scaleX(${(0.1 + p * 0.9).toFixed(3)})`;
+}
+
+/* =====================================================================
+   Réservation : Jour → Heure → Couverts → récapitulatif
+   ===================================================================== */
+const R = { step:0, day:null, time:null, cov:null };
+const stepBtns = $$(".steps button"), panels = $$(".panel");
+const toMin = t => { const [h,m] = t.split(":").map(Number); return h*60 + m; };
+const fromMin = m => `${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
+function goStep(n){
+  R.step = n;
+  panels.forEach((p,i) => { p.classList.toggle("is-active", i === n); p.classList.toggle("is-past", i < n); p.setAttribute("aria-hidden", i !== n); p.inert = i !== n; });
+  stepBtns.forEach((b,i) => {
+    b.classList.toggle("is-current", i === n);
+    b.classList.toggle("is-done", i < n || (n === 3));
+    b.disabled = !(i <= n || (i === 1 && R.day) || (i === 2 && R.time));
+    b.setAttribute("aria-selected", i === n);
+  });
+}
+function openDays(){
+  const out = []; const d = new Date(); d.setHours(0,0,0,0);
+  for (let i = 0; out.length < CONFIG.joursAffiches && i < 30; i++){
+    const day = new Date(d); day.setDate(d.getDate() + i);
+    const h = CONFIG.horaires[day.getDay()];
+    if (!h) continue;
+    if (slotsFor(day).length) out.push(day);
+  }
+  return out;
+}
+function slotsFor(day){
+  const h = CONFIG.horaires[day.getDay()]; if (!h) return [];
+  const isToday = day.toDateString() === new Date().toDateString();
+  const nowMin = new Date().getHours()*60 + new Date().getMinutes() + 30;
+  const res = [];
+  [["Midi", h.midi], ["Soir", h.soir]].forEach(([lab, s]) => {
+    if (!s) return;
+    const list = [];
+    for (let m = toMin(s[0]); m <= toMin(s[1]); m += CONFIG.pasCreneau) if (!isToday || m > nowMin) list.push(fromMin(m));
+    if (list.length) res.push({ lab, list });
+  });
+  return res;
+}
+const fmtDay = d => d.toLocaleDateString("fr-FR", { weekday:"long", day:"numeric", month:"long" });
+function renderDays(){
+  const days = openDays();
+  $("#days").innerHTML = days.map((d,i) => `
+    <button type="button" class="opt day" data-i="${i}" aria-pressed="false" aria-label="${fmtDay(d)}">
+      <span class="day__dow">${d.toLocaleDateString("fr-FR",{weekday:"short"}).replace(".","")}</span>
+      <span class="day__num">${d.getDate()}</span>
+      <span class="day__mon">${d.toLocaleDateString("fr-FR",{month:"short"})}</span>
+    </button>`).join("");
+  $("#closedNote").textContent = "Fermé le dimanche et le lundi. Le samedi, service du soir uniquement.";
+  $$("#days .opt").forEach(b => b.addEventListener("click", () => {
+    $$("#days .opt").forEach(x => x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true");
+    R.day = days[+b.dataset.i]; R.time = null; renderSlots(); setTimeout(() => goStep(1), 260);
+  }));
+}
+function renderSlots(){
+  const groups = slotsFor(R.day);
+  $("#slotLabel").textContent = `À quelle heure, ${fmtDay(R.day)} ?`;
+  $("#slots").innerHTML = groups.map(g => `
+    <div class="slots__grp"><h4>${g.lab}</h4><div class="slots__row">
+      ${g.list.map(t => `<button type="button" class="opt slot" data-t="${t}" aria-pressed="false">${fmtH(t)}</button>`).join("")}
+    </div></div>`).join("");
+  $$("#slots .opt").forEach(b => b.addEventListener("click", () => {
+    $$("#slots .opt").forEach(x => x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true");
+    R.time = b.dataset.t; setTimeout(() => goStep(2), 260);
+  }));
+}
+function renderCovers(){
+  $("#covers").innerHTML = Array.from({length:8}, (_,i) => `<button type="button" class="opt cover" data-c="${i+1}" aria-pressed="false" aria-label="${i+1} couvert${i?"s":""}">${i+1}</button>`).join("");
+  $$("#covers .opt").forEach(b => b.addEventListener("click", () => {
+    $$("#covers .opt").forEach(x => x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true");
+    R.cov = +b.dataset.c;
+    const d = fmtDay(R.day);
+    $("#rDay").textContent = d.charAt(0).toUpperCase() + d.slice(1);
+    $("#rTime").textContent = fmtH(R.time);
+    $("#rCov").textContent = `${R.cov} couvert${R.cov > 1 ? "s" : ""}`;
+    $("#done").classList.remove("is-on");
+    setTimeout(() => goStep(3), 260);
+  }));
+}
+stepBtns.forEach(b => b.addEventListener("click", () => { if (!b.disabled) goStep(+b.dataset.step); }));
+$("#confirm").addEventListener("click", () => $("#done").classList.add("is-on"));
+$("#restart").addEventListener("click", () => goStep(0));
+renderDays(); renderCovers(); goStep(0);
+
+/* =====================================================================
+   Démarrage
+   ===================================================================== */
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(() => {
+  doSplits(); observeAll(); setBodyHeight();
+  requestAnimationFrame(() => $(".hero__title").classList.add("is-in"));
+});
+setTimeout(() => { splits.forEach(el => { if (!el.classList.contains("is-split")) splitLines(el); }); observeAll(); $(".hero__title").classList.add("is-in"); }, 2500);
+let rT, lastW = innerWidth; addEventListener("resize", () => { clearTimeout(rT); rT = setTimeout(() => { if (innerWidth !== lastW){ lastW = innerWidth; doSplits(); } setBodyHeight(); }, 200); });
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>

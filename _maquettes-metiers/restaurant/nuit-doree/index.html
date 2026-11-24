@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sylve — Table du soir à Montaurel</title>
+<meta name="description" content="Sylve, restaurant indépendant à Montaurel : cuisine de saison, cave, salle intimiste et réservation en ligne.">
+<meta name="theme-color" content="#0E1F1A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   VARIABLES — modifiables aussi depuis CONFIG.couleurs (JS)
+   ========================================================= */
+:root{
+  --sapin:#0E1F1A;
+  --sapin-2:#142A23;
+  --sapin-3:#1B362D;
+  --laiton-1:#C9A25B;
+  --laiton-2:#E8CF8E;
+  --ivoire:#F3EEE3;
+  --ivoire-doux:rgba(243,238,227,.72);
+  --ivoire-faible:rgba(243,238,227,.5);
+  --trait:rgba(232,207,142,.22);
+  --or:linear-gradient(120deg,var(--laiton-1) 0%,var(--laiton-2) 50%,var(--laiton-1) 100%);
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --ease:cubic-bezier(.22,.8,.18,1);
+  --head-h:84px;
+  --gut:clamp(20px,5vw,64px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:auto;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--sapin);color:var(--ivoire);font-family:var(--sans);font-size:16px;line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--laiton-2);outline-offset:3px}
+
+/* Typo */
+.sur{font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--laiton-2);margin:0 0 1.2rem;display:inline-flex;align-items:center;gap:.9em}
+.sur::before,.sur::after{content:"";width:28px;height:1px;background:currentColor;opacity:.6}
+.sur.gauche::before{display:none}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.02;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(2.6rem,6.4vw,5.4rem)}
+h2 em,h1 em{font-style:italic;background:var(--or);-webkit-background-clip:text;background-clip:text;color:transparent}
+h3{font-size:clamp(1.5rem,2.4vw,2rem)}
+.chapo{font-family:var(--serif);font-size:clamp(1.2rem,1.9vw,1.55rem);line-height:1.45;color:var(--ivoire-doux);font-style:italic}
+.centre{text-align:center}
+.wrap{width:min(1240px,100% - 2*var(--gut));margin-inline:auto}
+section{position:relative}
+.pad{padding:clamp(90px,13vw,170px) 0}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:48px;padding:.85em 1.8em;border-radius:999px;font-size:.75rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .5s var(--ease),box-shadow .5s var(--ease),background-color .4s,border-color .4s,color .4s;white-space:nowrap}
+.btn-or{background:var(--or);background-size:200% 100%;color:#1a1408;box-shadow:0 10px 30px -12px rgba(201,162,91,.7);border:0}
+.btn-or:hover{background-position:100% 0;transform:translateY(-2px);box-shadow:0 18px 40px -14px rgba(232,207,142,.8)}
+.btn-ligne{border-color:rgba(243,238,227,.45);background:transparent}
+.btn-ligne:hover{border-color:var(--laiton-2);color:var(--laiton-2)}
+.btn-petit{min-height:40px;padding:.6em 1.25em;font-size:.68rem}
+
+/* =================== EN-TÊTE =================== */
+.tete{position:fixed;inset:0 0 auto;z-index:50;height:var(--head-h);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--gut);transition:height .5s var(--ease),background-color .5s,backdrop-filter .5s,border-color .5s;border-bottom:1px solid transparent}
+.tete.condense{--head-h:64px;background:rgba(14,31,26,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:var(--trait)}
+.burger{justify-self:start;display:inline-flex;align-items:center;gap:.8em;background:none;border:0;cursor:pointer;padding:10px 0;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;font-weight:600}
+.burger i{display:block;width:26px;height:9px;position:relative}
+.burger i::before,.burger i::after{content:"";position:absolute;left:0;height:1px;background:currentColor;transition:transform .5s var(--ease),width .5s var(--ease)}
+.burger i::before{top:0;width:100%}
+.burger i::after{bottom:0;width:65%}
+.burger:hover i::after{width:100%}
+.logo{justify-self:center;text-decoration:none;text-align:center;line-height:1}
+.logo b{display:block;font-family:var(--serif);font-weight:500;font-size:2rem;letter-spacing:.14em;transition:font-size .5s var(--ease)}
+.logo small{display:block;font-size:.58rem;letter-spacing:.42em;text-transform:uppercase;color:var(--laiton-2);margin-top:.35em;transition:opacity .4s,max-height .4s;max-height:20px;overflow:hidden}
+.tete.condense .logo b{font-size:1.55rem}
+.tete.condense .logo small{opacity:0;max-height:0;margin:0}
+.actions{justify-self:end;display:flex;gap:10px}
+
+/* Menu plein écran */
+.menu{position:fixed;inset:0;z-index:60;background:var(--sapin);display:grid;grid-template-columns:1.2fr 1fr;visibility:hidden;clip-path:circle(0% at 40px 40px);transition:clip-path .9s var(--ease),visibility 0s .9s}
+.menu.ouvert{visibility:visible;clip-path:circle(150% at 40px 40px);transition:clip-path .9s var(--ease),visibility 0s}
+.menu-g{padding:calc(var(--head-h) + 30px) var(--gut) 40px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
+.menu ol{list-style:none;margin:0;padding:0}
+.menu li{overflow:hidden}
+.menu li a{display:flex;align-items:baseline;gap:22px;text-decoration:none;padding:.18em 0;font-family:var(--serif);font-size:clamp(2rem,5.2vw,4.2rem);line-height:1.1;transform:translateY(105%);transition:transform .8s var(--ease),color .3s}
+.menu.ouvert li a{transform:none}
+.menu li a span{font-family:var(--sans);font-size:.72rem;letter-spacing:.2em;color:var(--laiton-2);min-width:2.2em}
+.menu li a:hover{color:var(--laiton-2)}
+.menu li a:hover em{transform:translateX(10px)}
+.menu li a em{font-style:italic;transition:transform .5s var(--ease)}
+.menu-d{position:relative;overflow:hidden;background:var(--sapin-2)}
+.menu-d img{width:100%;height:100%;object-fit:cover;opacity:.55;transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.menu.ouvert .menu-d img{transform:scale(1)}
+.menu-infos{position:absolute;left:40px;right:40px;bottom:40px;font-size:.88rem;color:var(--ivoire-doux)}
+.menu-infos strong{display:block;font-family:var(--serif);font-size:1.6rem;font-weight:500;color:var(--ivoire)}
+.fermer{position:absolute;top:18px;left:var(--gut);z-index:2;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:.8em;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;font-weight:600;padding:12px 0}
+.fermer i{width:22px;height:22px;position:relative}
+.fermer i::before,.fermer i::after{content:"";position:absolute;top:50%;left:0;width:100%;height:1px;background:currentColor;transform:rotate(45deg)}
+.fermer i::after{transform:rotate(-45deg)}
+
+/* =================== HERO =================== */
+.hero{height:100vh;height:100svh;min-height:620px;display:grid;place-items:center;overflow:hidden;text-align:center;isolation:isolate}
+.hero-img{position:absolute;inset:-8% 0;z-index:-2;background:var(--sapin-2)}
+.hero-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);animation:zoomHero 2.8s var(--ease) forwards}
+@keyframes zoomHero{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 40%,rgba(14,31,26,.35),rgba(14,31,26,.88) 70%),linear-gradient(180deg,rgba(14,31,26,.6),transparent 30%,transparent 60%,var(--sapin))}
+.hero-c{padding:0 var(--gut);max-width:1100px}
+.hero h1{font-size:clamp(4.6rem,17vw,13.5rem);line-height:.86;letter-spacing:.04em;font-weight:500}
+.hero .chapo{max-width:560px;margin:1.6rem auto 2.4rem}
+.hero-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.histoire-lien{position:absolute;bottom:34px;left:0;right:0;margin:0 auto;width:max-content;display:flex;flex-direction:column;align-items:center;gap:14px;text-decoration:none;font-size:.66rem;letter-spacing:.32em;text-transform:uppercase;color:var(--ivoire-doux)}
+.histoire-lien i{display:block;width:1px;height:56px;background:rgba(243,238,227,.2);position:relative;overflow:hidden}
+.histoire-lien i::after{content:"";position:absolute;left:0;top:-50%;width:1px;height:50%;background:var(--laiton-2);animation:goutte 2.2s var(--ease) infinite}
+@keyframes goutte{to{top:100%}}
+
+/* Entrée du hero (lettres) */
+.lettre{display:inline-block;opacity:0;transform:translateY(40%) rotate(4deg);filter:blur(8px);animation:lettre 1.4s var(--ease) forwards}
+@keyframes lettre{to{opacity:1;transform:none;filter:none}}
+.fondu{opacity:0;transform:translateY(18px);animation:fondu 1.2s var(--ease) forwards}
+@keyframes fondu{to{opacity:1;transform:none}}
+
+/* =================== RÉVÉLATIONS =================== */
+[data-reveal]{opacity:0;transform:translateY(40px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal].in{opacity:1;transform:none}
+.mot{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.mot>span{display:inline-block;transform:translateY(110%);transition:transform 1.1s var(--ease);transition-delay:calc(var(--i)*55ms + var(--d,0s))}
+[data-split].in .mot>span{transform:none}
+.masque{clip-path:inset(100% 0 0 0);transition:clip-path 1.5s var(--ease);transition-delay:var(--d,0s)}
+.masque img{transform:scale(1.25);transition:transform 2s var(--ease);transition-delay:var(--d,0s)}
+.masque.in{clip-path:inset(0 0 0 0)}
+.masque.in img{transform:scale(1)}
+
+/* Canvas ciel étoilé */
+.ciel{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.sombre{background:var(--sapin);overflow:hidden}
+.sombre>.wrap,.sombre>.contenu{position:relative;z-index:1}
+
+/* Images avec fond + ratio */
+.ph{position:relative;background:var(--sapin-3);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+
+/* =================== HISTOIRE =================== */
+.histoire-grille{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,110px);align-items:center}
+.histoire p{color:var(--ivoire-doux);max-width:520px}
+.histoire .chapo{margin:1.6rem 0}
+.histoire-photos{position:relative;aspect-ratio:4/5}
+.histoire-photos .ph:first-child{position:absolute;inset:0 18% 14% 0;aspect-ratio:auto}
+.histoire-photos .ph:last-child{position:absolute;right:0;bottom:0;width:48%;aspect-ratio:3/4;border:8px solid var(--sapin)}
+.signature{font-family:var(--serif);font-style:italic;font-size:1.6rem;color:var(--laiton-2);margin-top:1.4rem}
+
+/* Constellation */
+.constellation{position:relative;margin-top:clamp(70px,9vw,120px);border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);padding:40px 0 30px}
+.constellation canvas{display:block;width:100%;height:clamp(240px,30vw,340px)}
+.constellation figcaption{text-align:center;font-size:.8rem;letter-spacing:.06em;color:var(--ivoire-faible);margin-top:10px}
+
+/* =================== BANDEAU DÉFILANT =================== */
+.bandeau{overflow:hidden;border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);padding:26px 0;background:var(--sapin-2)}
+.bandeau-piste{display:flex;width:max-content;animation:defile 38s linear infinite}
+.bandeau:hover .bandeau-piste{animation-play-state:paused}
+.bandeau-piste span{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,3rem);font-style:italic;white-space:nowrap;padding:0 .7em;display:flex;align-items:center;gap:1.4em}
+.bandeau-piste span::after{content:"◆";font-style:normal;font-size:.35em;color:var(--laiton-1)}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* =================== SLIDER =================== */
+.chefs{background:var(--sapin-2);overflow:hidden}
+.chefs .tete-sec{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:clamp(40px,6vw,70px)}
+.fleches{display:flex;gap:10px}
+.fleche{width:56px;height:56px;border-radius:50%;border:1px solid rgba(243,238,227,.3);background:transparent;cursor:pointer;display:grid;place-items:center;transition:border-color .3s,background-color .3s,color .3s}
+.fleche:hover{border-color:var(--laiton-2);color:var(--laiton-2)}
+.fleche svg{width:18px;height:18px}
+.slider{position:relative;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.slider.drag{cursor:grabbing}
+.piste{display:flex;gap:clamp(16px,2.4vw,34px);will-change:transform}
+.piste.anim{transition:transform .9s var(--ease)}
+.diapo{flex:0 0 clamp(260px,40vw,520px);transition:opacity .8s var(--ease),transform .9s var(--ease);opacity:.38;transform:scale(.86)}
+.diapo.actif{opacity:1;transform:scale(1)}
+.diapo .ph{aspect-ratio:4/5;border-radius:4px}
+.diapo .ph img{pointer-events:none;-webkit-user-drag:none}
+.diapo .legende{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding-top:18px;opacity:0;transform:translateY(10px);transition:opacity .6s .15s,transform .6s .15s var(--ease)}
+.diapo.actif .legende{opacity:1;transform:none}
+.diapo h3{font-size:1.7rem}
+.diapo .legende p{margin:.25em 0 0;font-size:.86rem;color:var(--ivoire-doux)}
+.prix{font-family:var(--serif);font-size:1.5rem;color:var(--laiton-2);white-space:nowrap}
+.prix small{display:block;font-family:var(--sans);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ivoire-faible);text-align:right}
+.compteur-slider{margin-top:34px;display:flex;align-items:center;gap:18px;justify-content:center;font-size:.72rem;letter-spacing:.24em;color:var(--ivoire-faible)}
+.compteur-slider .barre{width:160px;height:1px;background:rgba(243,238,227,.2);position:relative}
+.compteur-slider .barre i{position:absolute;left:0;top:0;height:1px;background:var(--laiton-2);transition:width .9s var(--ease)}
+
+/* =================== PARALLAX =================== */
+.parallax{height:clamp(340px,62vh,620px);overflow:hidden;position:relative;background:var(--sapin-3)}
+.parallax img{position:absolute;left:0;top:-20%;width:100%;height:140%;object-fit:cover;will-change:transform}
+.parallax::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--sapin) 0%,rgba(14,31,26,.25) 25%,rgba(14,31,26,.25) 75%,var(--sapin-2) 100%)}
+.parallax.v2::after{background:linear-gradient(180deg,var(--sapin) 0%,rgba(14,31,26,.3) 25%,rgba(14,31,26,.3) 75%,var(--sapin) 100%)}
+.parallax blockquote{position:absolute;inset:0;z-index:1;display:grid;place-items:center;margin:0;padding:0 var(--gut);text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(1.8rem,4.4vw,3.6rem);line-height:1.15;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+
+/* =================== SIGNATURES (tilt) =================== */
+.cartes3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.6vw,36px);margin-top:clamp(50px,7vw,80px);perspective:1200px}
+.plat{position:relative;background:var(--sapin-2);border:1px solid var(--trait);border-radius:6px;overflow:hidden;transform-style:preserve-3d;transition:transform .6s var(--ease),box-shadow .6s var(--ease);--rx:0deg;--ry:0deg;transform:rotateX(var(--rx)) rotateY(var(--ry))}
+.plat.survol{transition:transform .12s linear,box-shadow .6s var(--ease);box-shadow:0 30px 60px -30px rgba(0,0,0,.8),0 0 0 1px rgba(232,207,142,.35)}
+.plat .ph{aspect-ratio:1/1}
+.plat .ph img{transition:transform 1.2s var(--ease)}
+.plat:hover .ph img{transform:scale(1.06)}
+.plat-c{padding:24px 24px 28px;transform:translateZ(30px)}
+.plat-c p{color:var(--ivoire-doux);font-size:.9rem;margin:.6em 0 1em}
+.plat-c .ligne{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.reflet{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(232,207,142,.18),transparent 45%);opacity:0;transition:opacity .4s}
+.plat.survol .reflet{opacity:1}
+.pictos{display:flex;gap:5px;flex-wrap:wrap}
+.picto{width:24px;height:24px;border-radius:50%;border:1px solid rgba(232,207,142,.5);display:inline-grid;place-items:center;font-size:.58rem;font-weight:700;color:var(--laiton-2);cursor:help;letter-spacing:0}
+
+/* =================== COMPTEURS =================== */
+.chiffres{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--trait);border-bottom:1px solid var(--trait)}
+.chiffre{padding:46px 20px;text-align:center;border-left:1px solid var(--trait)}
+.chiffre:first-child{border-left:0}
+.chiffre b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(3rem,6vw,5rem);line-height:1;background:var(--or);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.chiffre span{display:block;margin-top:.8em;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ivoire-doux)}
+.note-chiffres{text-align:center;font-size:.78rem;color:var(--ivoire-faible);margin-top:16px}
+
+/* =================== CARTE =================== */
+.carte{background:var(--sapin-2)}
+.onglets{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:40px 0 50px}
+.onglet{background:none;border:1px solid transparent;border-radius:999px;padding:.7em 1.3em;cursor:pointer;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ivoire-doux);transition:all .3s}
+.onglet:hover{color:var(--ivoire)}
+.onglet[aria-selected="true"]{border-color:var(--laiton-1);color:var(--laiton-2)}
+.panneau{display:grid;grid-template-columns:1fr 1fr;gap:6px 70px;max-width:1080px;margin:0 auto}
+.panneau[hidden]{display:none}
+.panneau.entre .ligne-carte{animation:fondu .8s var(--ease) both;animation-delay:calc(var(--i)*60ms)}
+.ligne-carte{padding:22px 0;border-bottom:1px dashed rgba(232,207,142,.18)}
+.ligne-carte .haut{display:flex;align-items:baseline;gap:12px}
+.ligne-carte h4{margin:0;font-family:var(--serif);font-size:1.45rem;font-weight:500}
+.ligne-carte .pointilles{flex:1;border-bottom:1px dotted rgba(243,238,227,.25);transform:translateY(-5px);min-width:20px}
+.ligne-carte .p{font-family:var(--serif);font-size:1.35rem;color:var(--laiton-2);white-space:nowrap}
+.ligne-carte p{margin:.3em 0 .6em;font-size:.88rem;color:var(--ivoire-doux)}
+.ligne-carte .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.etiq{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ivoire-faible)}
+.mentions{max-width:1080px;margin:60px auto 0;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--trait);border:1px solid var(--trait)}
+.mentions div{background:var(--sapin-2);padding:22px 22px;font-size:.84rem;color:var(--ivoire-doux)}
+.mentions strong{display:block;color:var(--ivoire);font-weight:600;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:.4em}
+.legende-pictos{max-width:1080px;margin:28px auto 0;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:center;font-size:.78rem;color:var(--ivoire-faible)}
+.legende-pictos span{display:inline-flex;align-items:center;gap:7px}
+
+/* =================== SALLE =================== */
+.salle-grille{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(14px,2vw,26px);margin-top:clamp(50px,7vw,80px);align-items:end}
+.salle-grille figure{margin:0}
+.salle-grille .ph{aspect-ratio:3/4}
+.salle-grille figure:first-child .ph{aspect-ratio:4/5}
+.salle-grille figure:nth-child(2){transform:translateY(-50px)}
+.salle-grille figcaption{padding-top:14px;display:flex;gap:12px;align-items:baseline;font-size:.86rem;color:var(--ivoire-doux)}
+.salle-grille figcaption b{font-family:var(--serif);font-weight:500;font-size:1.25rem;color:var(--ivoire)}
+.salle-grille figcaption span{font-size:.66rem;letter-spacing:.2em;color:var(--laiton-2)}
+
+/* =================== AVIS (emplacements) =================== */
+.avis{text-align:center}
+.rotateur{position:relative;max-width:760px;margin:50px auto 0;min-height:260px}
+.avis-carte{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:44px 30px;border:1px dashed rgba(232,207,142,.35);border-radius:6px;background:rgba(20,42,35,.5);opacity:0;transform:translateY(16px) scale(.98);transition:opacity .9s var(--ease),transform .9s var(--ease);pointer-events:none}
+.avis-carte.actif{opacity:1;transform:none;pointer-events:auto}
+.avis-carte .guillemet{font-family:var(--serif);font-size:5rem;line-height:.6;color:var(--laiton-1);opacity:.6}
+.avis-carte p{font-family:var(--serif);font-style:italic;font-size:clamp(1.4rem,2.6vw,2rem);margin:.6em 0 .4em}
+.avis-carte small{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ivoire-faible)}
+.lignes-vides{display:flex;flex-direction:column;gap:9px;width:min(340px,80%);margin-top:20px}
+.lignes-vides i{height:6px;border-radius:3px;background:rgba(243,238,227,.08)}
+.lignes-vides i:nth-child(2){width:80%;margin:auto}
+.lignes-vides i:nth-child(3){width:55%;margin:auto}
+.points{display:flex;justify-content:center;gap:4px;margin-top:28px}
+.points button{width:32px;height:32px;border:0;background:none;cursor:pointer;display:grid;place-items:center;padding:0}
+.points button::after{content:"";width:7px;height:7px;border-radius:50%;background:rgba(243,238,227,.25);transition:all .4s}
+.points button[aria-current="true"]::after{background:var(--laiton-2);width:22px;border-radius:4px}
+
+/* =================== PRIVATISATION =================== */
+.privat{display:grid;grid-template-columns:1fr 1fr;min-height:620px;background:var(--sapin-2)}
+.privat .ph{min-height:420px}
+.privat-c{padding:clamp(50px,8vw,110px) clamp(24px,6vw,90px);display:flex;flex-direction:column;justify-content:center}
+.privat-c p{color:var(--ivoire-doux)}
+.privat-c ul{list-style:none;padding:0;margin:1.4rem 0 2rem;display:grid;gap:12px}
+.privat-c li{display:flex;gap:14px;align-items:baseline;font-size:.95rem}
+.privat-c li::before{content:"◆";color:var(--laiton-1);font-size:.6rem}
+
+/* =================== RÉSERVATION =================== */
+.resa-grille{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,90px);align-items:start}
+.resa-info p{color:var(--ivoire-doux)}
+.horaires{margin-top:28px;border-top:1px solid var(--trait)}
+.horaires div{display:flex;justify-content:space-between;gap:20px;padding:12px 0;border-bottom:1px solid var(--trait);font-size:.9rem}
+.horaires div span:last-child{color:var(--ivoire-doux);text-align:right}
+.horaires div.ferme span:last-child{color:var(--ivoire-faible);font-style:italic}
+.horaires div.auj{color:var(--laiton-2)}
+.form{background:var(--sapin-2);border:1px solid var(--trait);border-radius:8px;padding:clamp(24px,4vw,44px);position:relative}
+.avert{display:flex;gap:12px;align-items:flex-start;font-size:.82rem;color:var(--ivoire-doux);background:rgba(201,162,91,.08);border:1px solid rgba(201,162,91,.3);border-radius:6px;padding:12px 14px;margin-bottom:26px}
+.avert b{color:var(--laiton-2)}
+.champ{margin-bottom:22px}
+.champ>label,.champ>.lbl{display:block;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ivoire-doux);margin-bottom:9px}
+.champ input,.champ select{width:100%;min-height:50px;background:var(--sapin);border:1px solid rgba(243,238,227,.18);border-radius:4px;color:var(--ivoire);font:inherit;font-size:16px;padding:0 14px;transition:border-color .3s;color-scheme:dark}
+.champ input:focus,.champ select:focus{border-color:var(--laiton-1);outline:none}
+.deux{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.services{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.services label{position:relative;cursor:pointer}
+.services input{position:absolute;opacity:0;inset:0}
+.services span{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62px;border:1px solid rgba(243,238,227,.18);border-radius:4px;font-family:var(--serif);font-size:1.25rem;transition:all .3s}
+.services span small{font-family:var(--sans);font-size:.66rem;color:var(--ivoire-faible);letter-spacing:.06em}
+.services input:checked+span{border-color:var(--laiton-1);background:rgba(201,162,91,.1);color:var(--laiton-2)}
+.services input:disabled+span{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.services input:focus-visible+span{outline:2px solid var(--laiton-2);outline-offset:2px}
+.heures{display:flex;flex-wrap:wrap;gap:8px}
+.heures button{min-width:68px;min-height:42px;border:1px solid rgba(243,238,227,.18);background:transparent;border-radius:999px;cursor:pointer;font-size:.86rem;transition:all .3s}
+.heures button:hover{border-color:var(--laiton-1)}
+.heures button[aria-pressed="true"]{background:var(--or);color:#1a1408;border-color:transparent;font-weight:600}
+.heures .vide{font-size:.86rem;color:var(--ivoire-faible);font-style:italic}
+.pas{display:flex;align-items:center;gap:0;border:1px solid rgba(243,238,227,.18);border-radius:999px;width:max-content}
+.pas button{width:48px;height:48px;border:0;background:none;cursor:pointer;font-size:1.3rem;border-radius:50%}
+.pas button:hover{color:var(--laiton-2)}
+.pas output{min-width:90px;text-align:center;font-family:var(--serif);font-size:1.3rem}
+.aide{font-size:.76rem;color:var(--ivoire-faible);margin-top:8px}
+.erreur{color:#f0b78e;font-size:.82rem;min-height:1.2em;margin:-6px 0 12px}
+.confirmation{position:absolute;inset:0;background:var(--sapin-2);border-radius:8px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:30px;opacity:0;visibility:hidden;transition:opacity .6s,visibility 0s .6s}
+.confirmation.vu{opacity:1;visibility:visible;transition:opacity .6s}
+.confirmation .sceau{width:74px;height:74px;border-radius:50%;background:var(--or);display:grid;place-items:center;color:#1a1408;margin-bottom:22px}
+.confirmation h3{margin-bottom:.4em}
+.confirmation p{color:var(--ivoire-doux);max-width:400px;margin:.3em 0}
+.recap{font-family:var(--serif);font-size:1.3rem;color:var(--laiton-2)!important;margin:.8em 0!important}
+
+/* =================== SUR PLACE / À EMPORTER =================== */
+.double{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.4vw,30px);margin-top:clamp(50px,7vw,80px)}
+.carte-finale{position:relative;min-height:520px;border-radius:6px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate;text-decoration:none;background:var(--sapin-3)}
+.carte-finale img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s var(--ease)}
+.carte-finale::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(14,31,26,.1),rgba(14,31,26,.92) 75%)}
+.carte-finale:hover img{transform:scale(1.06)}
+.carte-finale-c{padding:clamp(24px,4vw,44px)}
+.carte-finale h3{font-size:clamp(2.2rem,4vw,3.4rem)}
+.carte-finale p{color:var(--ivoire-doux);max-width:420px}
+
+/* =================== PIED =================== */
+.pied{background:#0A1713;border-top:1px solid var(--trait);padding:80px 0 120px}
+.pied-grille{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.pied h4{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--laiton-2);margin:0 0 1em;font-weight:600}
+.pied p,.pied li{font-size:.9rem;color:var(--ivoire-doux);margin:0 0 .4em}
+.pied ul{list-style:none;padding:0;margin:0}
+.pied a{text-decoration:none}
+.pied a:hover{color:var(--laiton-2)}
+.pied .logo{justify-self:start;text-align:left}
+.bas{margin-top:60px;padding-top:24px;border-top:1px solid var(--trait);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.76rem;color:var(--ivoire-faible)}
+
+/* Bouton Réserver fixe (mobile) */
+.resa-fixe{position:fixed;left:16px;right:16px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:40;display:none;transform:translateY(140%);transition:transform .6s var(--ease)}
+.resa-fixe.vu{transform:none}
+.resa-fixe .btn{width:100%;min-height:54px;font-size:.78rem}
+
+/* =================== RESPONSIVE =================== */
+@media (max-width:1000px){
+  .histoire-grille,.resa-grille,.privat{grid-template-columns:1fr}
+  .histoire-photos{max-width:560px;width:100%;margin:0 auto}
+  .cartes3{grid-template-columns:1fr 1fr}
+  .cartes3 .plat:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}
+  .cartes3 .plat:last-child .ph{aspect-ratio:auto;min-height:100%}
+  .chiffres{grid-template-columns:1fr 1fr}
+  .chiffre:nth-child(3){border-left:0}
+  .chiffre:nth-child(n+3){border-top:1px solid var(--trait)}
+  .mentions{grid-template-columns:1fr 1fr}
+  .pied-grille{grid-template-columns:1fr 1fr}
+  .menu{grid-template-columns:1fr}
+  .menu-d{display:none}
+}
+@media (max-width:760px){
+  :root{--head-h:68px}
+  .tete.condense{--head-h:58px}
+  .burger b{display:none}
+  .logo b{font-size:1.6rem}
+  .tete.condense .logo b{font-size:1.35rem}
+  .actions .btn-ligne{display:none}
+  .actions .btn-or{display:none}
+  .resa-fixe{display:block}
+  .hero h1{font-size:clamp(4.2rem,24vw,7rem)}
+  .hero-btns .btn{flex:1 1 220px}
+  .histoire-lien{bottom:24px}
+  .hero .sur{letter-spacing:.2em;font-size:.66rem}
+  .hero .sur::before,.hero .sur::after{display:none}
+  .chefs .tete-sec{flex-direction:column;align-items:flex-start}
+  .fleches{display:none}
+  .diapo{flex-basis:76vw}
+  .cartes3{grid-template-columns:1fr}
+  .cartes3 .plat:last-child{display:block}
+  .cartes3 .plat:last-child .ph{aspect-ratio:1/1;min-height:0}
+  .panneau{grid-template-columns:1fr}
+  .mentions{grid-template-columns:1fr}
+  .salle-grille{grid-template-columns:1fr 1fr}
+  .salle-grille figure:first-child{grid-column:1/-1}
+  .salle-grille figure:nth-child(2){transform:none}
+  .salle-grille figure:first-child .ph{aspect-ratio:4/3}
+  .deux{grid-template-columns:1fr}
+  .double{grid-template-columns:1fr}
+  .carte-finale{min-height:420px}
+  .pied-grille{grid-template-columns:1fr}
+  .chiffre{padding:34px 12px}
+  .rotateur{min-height:300px}
+  .onglets{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(-1*var(--gut));padding:0 var(--gut);scrollbar-width:none}
+  .onglets::-webkit-scrollbar{display:none}
+  .onglet{flex:0 0 auto}
+  .pied{padding-bottom:130px}
+}
+
+/* =================== MOUVEMENT RÉDUIT =================== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  [data-reveal],.mot>span,.lettre,.fondu{opacity:1!important;transform:none!important;filter:none!important}
+  .masque{clip-path:none!important}
+  .masque img,.hero-img img{transform:none!important}
+  .bandeau-piste{animation:none!important;flex-wrap:wrap;width:auto;justify-content:center}
+  .bandeau-piste [aria-hidden]{display:none}
+  .histoire-lien i::after{display:none}
+  .parallax img{top:0;height:100%;transform:none!important}
+  .plat{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ EN-TÊTE ============ -->
+<header class="tete" id="tete">
+  <button class="burger" id="ouvrirMenu" aria-expanded="false" aria-controls="menu"><i></i><b>Menu</b><span class="sr">Ouvrir le menu</span></button>
+  <a class="logo" href="#accueil" aria-label="Accueil"><b data-c="nom">SYLVE</b><small data-c="sousTitre">Table du soir</small></a>
+  <div class="actions">
+    <a class="btn btn-ligne btn-petit" href="#emporter">Commander</a>
+    <a class="btn btn-or btn-petit" href="#reserver">Réserver</a>
+  </div>
+</header>
+
+<!-- Menu plein écran -->
+<nav class="menu" id="menu" aria-label="Menu principal" aria-hidden="true">
+  <button class="fermer" id="fermerMenu"><i></i>Fermer</button>
+  <div class="menu-g">
+    <ol>
+      <li><a href="#accueil"><span>00</span><em>Accueil</em></a></li>
+      <li><a href="#histoire"><span>01</span><em>L'histoire</em></a></li>
+      <li><a href="#chefs-doeuvre"><span>02</span><em>Les chefs-d'œuvre</em></a></li>
+      <li><a href="#carte"><span>03</span><em>La carte</em></a></li>
+      <li><a href="#salle"><span>04</span><em>La salle</em></a></li>
+      <li><a href="#privatiser"><span>05</span><em>Privatiser</em></a></li>
+      <li><a href="#reserver"><span>06</span><em>Réserver</em></a></li>
+    </ol>
+  </div>
+  <div class="menu-d">
+    <img src="https://images.unsplash.com/photo-1781955781178-6ea29c66e860?w=1200&q=80&auto=format&fit=crop" alt="" loading="lazy">
+    <div class="menu-infos">
+      <strong data-c="nom">Sylve</strong>
+      <span data-c="adresse">XX rue de l'Exemple, 00000 Montaurel</span><br>
+      <span data-c="tel">06 XX XX XX XX</span>
+    </div>
+  </div>
+</nav>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="accueil">
+  <div class="hero-img" id="heroImg">
+    <img src="https://images.unsplash.com/photo-1663530761401-15eefb544889?w=1600&q=80&auto=format&fit=crop" alt="Jus nappé sur une pièce de bœuf dressée à l'assiette" fetchpriority="high">
+  </div>
+  <div class="hero-c">
+    <p class="sur fondu" style="animation-delay:.2s">Restaurant indépendant · <span data-c="ville">Montaurel</span></p>
+    <h1 id="heroTitre" data-c="nom" aria-label="Sylve">SYLVE</h1>
+    <p class="chapo fondu" style="animation-delay:1.1s">Une cuisine de forêt et de saison, servie à la bougie, du jeudi au dimanche soir et quelques midis choisis.</p>
+    <div class="hero-btns fondu" style="animation-delay:1.35s">
+      <a class="btn btn-ligne" href="#carte">Voir la carte</a>
+      <a class="btn btn-or" href="#reserver">Réserver une table</a>
+    </div>
+  </div>
+  <a class="histoire-lien fondu" style="animation-delay:1.8s" href="#histoire">Commencer l'histoire<i></i></a>
+</section>
+
+<!-- ============ HISTOIRE ============ -->
+<section class="pad sombre histoire" id="histoire" data-ciel>
+  <div class="wrap">
+    <div class="histoire-grille">
+      <div>
+        <p class="sur gauche" data-reveal>01 — L'histoire</p>
+        <h2 data-split>La forêt à la <em>tombée</em> du jour</h2>
+        <p class="chapo" data-reveal style="--d:.2s">Sylve est née d'une idée simple : une petite salle, un feu, et des assiettes qui suivent les sous-bois, le marché et les éleveurs voisins.</p>
+        <p data-reveal style="--d:.3s">Chaque semaine, la carte change au gré des arrivages. Les champignons, le gibier en saison, les herbes sauvages, les légumes des maraîchers alentour : tout est travaillé sur place, des fonds aux desserts.</p>
+        <p data-reveal style="--d:.4s">Le soir, la salle s'éclaire à la bougie. On y vient pour un dîner à deux, une table entre amis ou un repas qui prend son temps.</p>
+        <p class="signature" data-reveal style="--d:.5s">— L'équipe de <span data-c="nom">Sylve</span></p>
+      </div>
+      <div class="histoire-photos">
+        <div class="ph masque" data-reveal-masque><img src="https://images.unsplash.com/photo-1775497950035-38677f62bb3e?w=1200&q=80&auto=format&fit=crop" alt="Mains ajoutant des herbes fraîches sur une assiette" loading="lazy"></div>
+        <div class="ph masque" data-reveal-masque style="--d:.3s"><img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=800&q=80&auto=format&fit=crop" alt="Verre de vin rouge sur une surface sombre" loading="lazy"></div>
+      </div>
+    </div>
+
+    <figure class="constellation" data-reveal>
+      <canvas id="constellation" aria-hidden="true"></canvas>
+      <figcaption>La constellation du garde-manger : les aromates qui reviennent, saison après saison.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ BANDEAU ============ -->
+<div class="bandeau" aria-label="Nos engagements">
+  <div class="bandeau-piste" id="bandeau">
+    <span>Cuisine de saison</span><span>Fait maison</span><span>Producteurs voisins</span><span>Vins vivants</span><span>Dîner à la bougie</span><span>Carte courte</span>
+  </div>
+</div>
+
+<!-- ============ CHEFS-D'ŒUVRE (slider) ============ -->
+<section class="pad chefs" id="chefs-doeuvre">
+  <div class="wrap tete-sec">
+    <div>
+      <p class="sur gauche" data-reveal>02 — Les chefs-d'œuvre</p>
+      <h2 data-split>Les assiettes <em>signatures</em></h2>
+    </div>
+    <div class="fleches">
+      <button class="fleche" id="prec" aria-label="Plat précédent"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="fleche" id="suiv" aria-label="Plat suivant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+  <div class="slider" id="slider" role="region" aria-roledescription="carrousel" aria-label="Plats signatures" tabindex="0">
+    <div class="piste" id="piste"></div>
+  </div>
+  <div class="compteur-slider" aria-live="polite"><span id="numSlide">01</span><span class="barre"><i id="barreSlide"></i></span><span id="totSlide">06</span></div>
+</section>
+
+<!-- ============ PARALLAX 1 ============ -->
+<div class="parallax" data-parallax>
+  <img src="https://images.unsplash.com/photo-1536392706976-e486e2ba97af?w=1600&q=80&auto=format&fit=crop" alt="Longue table dressée pour un dîner, bougies et fleurs" loading="lazy">
+  <blockquote data-reveal>« Une table, une flamme,<br>et le temps de bien manger. »</blockquote>
+</div>
+
+<!-- ============ SIGNATURES TILT + COMPTEURS ============ -->
+<section class="pad sombre" id="saison" data-ciel>
+  <div class="wrap">
+    <div class="centre">
+      <p class="sur" data-reveal>De saison</p>
+      <h2 data-split>Ce que l'on <em>sert</em> en ce moment</h2>
+    </div>
+    <div class="cartes3">
+      <article class="plat" data-tilt data-reveal>
+        <div class="ph"><img src="https://images.unsplash.com/photo-1519233991914-26a44330ccd7?w=900&q=80&auto=format&fit=crop" alt="Assiette du jour dressée dans une assiette grise" loading="lazy"></div>
+        <div class="plat-c"><p class="etiq">Entrée</p><h3>Cèpes rôtis, jaune confit</h3><p>Noisettes torréfiées, bouillon de sous-bois.</p><div class="ligne"><div class="pictos"><span class="picto" title="Œufs">Œ</span><span class="picto" title="Fruits à coque">FC</span></div><span class="prix">16 €<small>prix d'exemple</small></span></div></div>
+        <span class="reflet"></span>
+      </article>
+      <article class="plat" data-tilt data-reveal style="--d:.12s">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop" alt="Assiette de saison dressée sur porcelaine blanche" loading="lazy"></div>
+        <div class="plat-c"><p class="etiq">Plat</p><h3>Légumes du maraîcher</h3><p>Cuits au foin, beurre noisette, herbes sauvages.</p><div class="ligne"><div class="pictos"><span class="picto" title="Lait">L</span></div><span class="prix">24 €<small>prix d'exemple</small></span></div></div>
+        <span class="reflet"></span>
+      </article>
+      <article class="plat" data-tilt data-reveal style="--d:.24s">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1673912402587-57ac40f1b4a5?w=900&q=80&auto=format&fit=crop" alt="Part de gâteau sur assiette blanche, fourchette" loading="lazy"></div>
+        <div class="plat-c"><p class="etiq">Dessert</p><h3>Tarte aux poires</h3><p>Pâte sablée, crème au foin, poire pochée au vin.</p><div class="ligne"><div class="pictos"><span class="picto" title="Gluten">G</span><span class="picto" title="Lait">L</span><span class="picto" title="Œufs">Œ</span></div><span class="prix">11 €<small>prix d'exemple</small></span></div></div>
+        <span class="reflet"></span>
+      </article>
+    </div>
+
+    <div style="margin-top:clamp(70px,9vw,120px)">
+      <div class="chiffres" id="chiffres"></div>
+      <p class="note-chiffres">Chiffres calculés à partir de la carte et des horaires de cette page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARTE ============ -->
+<section class="pad carte" id="carte">
+  <div class="wrap">
+    <div class="centre">
+      <p class="sur" data-reveal>03 — La carte</p>
+      <h2 data-split>La <em>carte</em> du moment</h2>
+      <p class="chapo" data-reveal style="--d:.2s;max-width:620px;margin:1.2rem auto 0">Courte, changeante, écrite chaque semaine. Les prix indiqués sont des prix d'exemple.</p>
+    </div>
+    <div class="onglets" role="tablist" id="onglets" aria-label="Rubriques de la carte"></div>
+    <div id="panneaux"></div>
+
+    <div class="legende-pictos" id="legendePictos"></div>
+    <div class="mentions" id="mentions"></div>
+  </div>
+</section>
+
+<!-- ============ PARALLAX 2 ============ -->
+<div class="parallax v2" data-parallax>
+  <img src="https://images.unsplash.com/photo-1709548145082-04d0cde481d4?w=1600&q=80&auto=format&fit=crop" alt="Salle du restaurant dans la pénombre, tables dressées sous une lumière tamisée" loading="lazy">
+</div>
+
+<!-- ============ SALLE ============ -->
+<section class="pad sombre" id="salle" data-ciel>
+  <div class="wrap">
+    <div class="centre">
+      <p class="sur" data-reveal>04 — La salle</p>
+      <h2 data-split>Un lieu <em>intime</em>, à la bougie</h2>
+      <p class="chapo" data-reveal style="--d:.2s;max-width:620px;margin:1.2rem auto 0"><span data-c="couverts">42</span> couverts, des banquettes, une cave vitrée et une cuisine ouverte sur la salle.</p>
+    </div>
+    <div class="salle-grille">
+      <figure data-reveal><div class="ph masque" data-reveal-masque><img src="https://images.unsplash.com/photo-1774989423979-6a7bf5add3f0?w=1200&q=80&auto=format&fit=crop" alt="Salle de restaurant élégante sous une lumière chaude" loading="lazy"></div><figcaption><span>I</span><b>La grande salle</b> banquettes et tables rondes</figcaption></figure>
+      <figure data-reveal style="--d:.12s"><div class="ph masque" data-reveal-masque style="--d:.12s"><img src="https://images.unsplash.com/photo-1608932586266-c627cb9e5e9d?w=900&q=80&auto=format&fit=crop" alt="Bougies allumées sur une table ronde" loading="lazy"></div><figcaption><span>II</span><b>L'alcôve</b> pour dîner à deux</figcaption></figure>
+      <figure data-reveal style="--d:.24s"><div class="ph masque" data-reveal-masque style="--d:.24s"><img src="https://images.unsplash.com/photo-1784386126762-cb3c91cb92f0?w=900&q=80&auto=format&fit=crop" alt="Bouteilles de vin rangées sur des étagères dans une cave en brique" loading="lazy"></div><figcaption><span>III</span><b>La cave</b> vins de vignerons</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS (emplacements) ============ -->
+<section class="pad avis" id="avis" style="background:var(--sapin-2)">
+  <div class="wrap">
+    <p class="sur" data-reveal>Livre d'or</p>
+    <h2 data-split>Ce que <em>vous</em> en direz</h2>
+    <div class="rotateur" id="rotateur" aria-live="polite">
+      <div class="avis-carte actif"><span class="guillemet">“</span><p>Vos avis clients apparaîtront ici</p><small>Emplacement réservé · avis vérifiés uniquement</small><div class="lignes-vides"><i></i><i></i><i></i></div></div>
+      <div class="avis-carte"><span class="guillemet">“</span><p>Vos avis clients apparaîtront ici</p><small>Emplacement réservé · avis Google ou TripAdvisor reliés</small><div class="lignes-vides"><i></i><i></i><i></i></div></div>
+      <div class="avis-carte"><span class="guillemet">“</span><p>Vos avis clients apparaîtront ici</p><small>Emplacement réservé · avec l'accord de leurs auteurs</small><div class="lignes-vides"><i></i><i></i><i></i></div></div>
+    </div>
+    <div class="points" id="points"></div>
+  </div>
+</section>
+
+<!-- ============ PRIVATISATION ============ -->
+<section class="privat" id="privatiser">
+  <div class="ph masque" data-reveal-masque><img src="https://images.unsplash.com/photo-1751011983324-fe9d30fe9efd?w=1400&q=80&auto=format&fit=crop" alt="Grande table dressée avec verres à vin et couverts" loading="lazy"></div>
+  <div class="privat-c">
+    <p class="sur gauche" data-reveal>05 — Privatiser</p>
+    <h2 data-split>La salle, rien que <em>pour vous</em></h2>
+    <p data-reveal style="--d:.2s;margin-top:1.4rem">Anniversaire, repas de famille, dîner d'équipe : la salle se privatise en soirée, et l'alcôve accueille les petites tablées.</p>
+    <ul data-reveal style="--d:.3s">
+      <li>Jusqu'à <span data-c="couverts">42</span> convives assis</li>
+      <li>Menu composé avec le chef, accords mets et vins</li>
+      <li>Devis sous 48 h, sans engagement</li>
+    </ul>
+    <div data-reveal style="--d:.4s"><a class="btn btn-ligne" href="tel:" data-href-tel>Appeler le <span data-c="tel">06 XX XX XX XX</span></a></div>
+  </div>
+</section>
+
+<!-- ============ RÉSERVATION ============ -->
+<section class="pad sombre" id="reserver" data-ciel>
+  <div class="wrap resa-grille">
+    <div class="resa-info">
+      <p class="sur gauche" data-reveal>06 — Réserver</p>
+      <h2 data-split>Votre <em>table</em> vous attend</h2>
+      <p data-reveal style="--d:.2s;margin-top:1.4rem">Choisissez une date, un service et une heure. Pour les groupes de plus de 10 personnes, appelez-nous directement.</p>
+      <div class="horaires" id="horaires" data-reveal style="--d:.3s"></div>
+    </div>
+
+    <form class="form" id="form" novalidate data-reveal style="--d:.2s">
+      <div class="avert" role="note"><span aria-hidden="true">◆</span><span><b>Démonstration.</b> Ce formulaire fonctionne, mais rien n'est envoyé : aucune donnée ne quitte votre navigateur.</span></div>
+      <div class="deux">
+        <div class="champ"><label for="date">Date</label><input type="date" id="date" required></div>
+        <div class="champ"><span class="lbl" id="lblCouv">Couverts</span>
+          <div class="pas" role="group" aria-labelledby="lblCouv"><button type="button" id="moins" aria-label="Retirer un couvert">−</button><output id="couv" aria-live="polite">2 pers.</output><button type="button" id="plus" aria-label="Ajouter un couvert">+</button></div>
+        </div>
+      </div>
+      <div class="champ"><span class="lbl">Service</span>
+        <div class="services" role="radiogroup" aria-label="Service">
+          <label><input type="radio" name="service" value="dejeuner"><span>Déjeuner<small id="hDej">—</small></span></label>
+          <label><input type="radio" name="service" value="diner" checked><span>Dîner<small id="hDin">—</small></span></label>
+        </div>
+      </div>
+      <div class="champ"><span class="lbl">Heure d'arrivée</span><div class="heures" id="heures"></div></div>
+      <div class="deux">
+        <div class="champ"><label for="nomClient">Nom</label><input type="text" id="nomClient" autocomplete="name" required placeholder="Votre nom"></div>
+        <div class="champ"><label for="telClient">Téléphone</label><input type="tel" id="telClient" autocomplete="tel" placeholder="Facultatif en démo"></div>
+      </div>
+      <p class="erreur" id="erreur" role="alert"></p>
+      <button class="btn btn-or" type="submit" style="width:100%">Demander la réservation</button>
+      <p class="aide">En situation réelle, la demande serait confirmée par le restaurant.</p>
+
+      <div class="confirmation" id="confirmation" aria-live="polite">
+        <div class="sceau"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5 9-10"/></svg></div>
+        <h3>Demande enregistrée (démo)</h3>
+        <p class="recap" id="recap"></p>
+        <p>Il s'agit d'une démonstration : rien n'a été envoyé au restaurant.</p>
+        <button type="button" class="btn btn-ligne btn-petit" id="nouvelle" style="margin-top:20px">Nouvelle demande</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ SUR PLACE / À EMPORTER ============ -->
+<section class="pad" id="emporter" style="background:var(--sapin-2)">
+  <div class="wrap">
+    <div class="centre">
+      <p class="sur" data-reveal>Deux façons de goûter</p>
+      <h2 data-split>Sur place ou <em>à emporter</em></h2>
+    </div>
+    <div class="double">
+      <a class="carte-finale" href="#reserver" data-reveal>
+        <img src="https://images.unsplash.com/photo-1750124933194-e021f47b5f8b?w=1200&q=80&auto=format&fit=crop" alt="Cocktail doré sur un bar, verres en arrière-plan" loading="lazy">
+        <div class="carte-finale-c"><p class="sur gauche">Sur place</p><h3>Dîner en salle</h3><p>La carte complète, la cave, les accords mets et vins et le service à la bougie.</p><span class="btn btn-or" style="margin-top:12px">Réserver une table</span></div>
+      </a>
+      <a class="carte-finale" href="tel:" data-href-tel data-reveal style="--d:.12s">
+        <img src="https://images.unsplash.com/photo-1731570226547-d3f31b1b6c72?w=1200&q=80&auto=format&fit=crop" alt="Plat de saison sur une table en bois" loading="lazy">
+        <div class="carte-finale-c"><p class="sur gauche">À emporter</p><h3>Le panier du chef</h3><p>Plats du jour et desserts à retirer du jeudi au samedi, sur commande la veille par téléphone.</p><span class="btn btn-ligne" style="margin-top:12px">Commander par téléphone</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARALLAX 3 (façade) ============ -->
+<div class="parallax v2" data-parallax>
+  <img src="https://images.unsplash.com/photo-1758555025642-d67d011cfeba?w=1600&q=80&auto=format&fit=crop" alt="Petite façade éclairée à la tombée de la nuit" loading="lazy">
+  <blockquote data-reveal><span>À bientôt, <span data-c="nom">Sylve</span>.</span></blockquote>
+</div>
+</main>
+
+<!-- ============ PIED ============ -->
+<footer class="pied">
+  <div class="wrap">
+    <div class="pied-grille">
+      <div>
+        <a class="logo" href="#accueil"><b data-c="nom">SYLVE</b><small data-c="sousTitre">Table du soir</small></a>
+        <p style="margin-top:1.4rem;max-width:300px">Restaurant indépendant, cuisine de saison et vins de vignerons à <span data-c="ville">Montaurel</span>.</p>
+      </div>
+      <div><h4>Nous trouver</h4><p data-c="adresse">XX rue de l'Exemple, 00000 Montaurel</p><p><a href="tel:" data-href-tel data-c="tel">06 XX XX XX XX</a></p></div>
+      <div><h4>Horaires</h4><ul id="horairesPied"></ul></div>
+      <div><h4>Naviguer</h4><ul><li><a href="#carte">La carte</a></li><li><a href="#salle">La salle</a></li><li><a href="#privatiser">Privatiser</a></li><li><a href="#reserver">Réserver</a></li></ul></div>
+    </div>
+    <div class="bas"><span>© <span id="annee">2026</span> <span data-c="nom">Sylve</span> · Nom, adresse, prix et photos d'illustration fictifs.</span><span>Photos : Unsplash · Mentions légales · Confidentialité</span></div>
+  </div>
+</footer>
+
+<div class="resa-fixe" id="resaFixe"><a class="btn btn-or" href="#reserver">Réserver une table</a></div>
+
+<script>
+/* =========================================================
+   CONFIG — tout le contenu variable du restaurant est ici
+   ========================================================= */
+const CONFIG = {
+  nom: "Sylve",
+  sousTitre: "Table du soir",
+  ville: "Montaurel",
+  adresse: "XX rue de l'Exemple, 00000 Montaurel",
+  tel: "06 XX XX XX XX",
+  couverts: 42,
+  couleurs: { sapin:"#0E1F1A", sapin2:"#142A23", laiton1:"#C9A25B", laiton2:"#E8CF8E", ivoire:"#F3EEE3" },
+  // Horaires : 0 = dimanche … 6 = samedi. null = fermé. [début, fin] en "HH:MM".
+  horaires: {
+    1:{ dejeuner:null, diner:null },
+    2:{ dejeuner:null, diner:null },
+    3:{ dejeuner:["12:00","14:00"], diner:null },
+    4:{ dejeuner:["12:00","14:00"], diner:["19:00","22:30"] },
+    5:{ dejeuner:["12:00","14:00"], diner:["19:00","22:30"] },
+    6:{ dejeuner:null, diner:["19:00","23:00"] },
+    0:{ dejeuner:["12:00","14:30"], diner:null }
+  },
+  dernierService: 90, // minutes avant fermeture, dernière arrivée possible
+  allergenes: {
+    G:"Gluten", Cr:"Crustacés", "Œ":"Œufs", P:"Poisson", Ar:"Arachides", S:"Soja", L:"Lait",
+    FC:"Fruits à coque", Ce:"Céleri", M:"Moutarde", Se:"Sésame", Su:"Sulfites", Lu:"Lupin", Mo:"Mollusques"
+  },
+  carte: [
+    { rubrique:"Entrées", plats:[
+      { n:"Cèpes rôtis, jaune confit", d:"Noisettes torréfiées, bouillon de sous-bois", p:16, a:["Œ","FC"] },
+      { n:"Truite fumée maison", d:"Crème crue à l'aneth, pickles de betterave", p:15, a:["P","L","Su"] },
+      { n:"Velouté de potimarron", d:"Châtaignes, huile de sapin, croûtons au levain", p:12, a:["G","L"] },
+      { n:"Terrine de campagne", d:"Porc fermier, condiment moutarde-genièvre", p:13, a:["M","Su"] }
+    ]},
+    { rubrique:"Plats", plats:[
+      { n:"Pièce de bœuf, jus corsé", d:"Bœuf origine France, échalote confite, pommes fondantes", p:32, a:["L","Su"] },
+      { n:"Lieu jaune de ligne", d:"Beurre blanc au cidre, poireaux brûlés", p:28, a:["P","L"] },
+      { n:"Volaille fermière rôtie", d:"Volaille origine France, girolles, jus au thym", p:26, a:["L","Ce"] },
+      { n:"Légumes du maraîcher", d:"Cuits au foin, beurre noisette, herbes sauvages (végétarien)", p:24, a:["L"] }
+    ]},
+    { rubrique:"Desserts", plats:[
+      { n:"Tarte aux poires", d:"Pâte sablée, crème au foin, poire pochée au vin", p:11, a:["G","L","Œ","Su"] },
+      { n:"Chocolat noir 70 %", d:"Ganache fumée, glace fève tonka", p:12, a:["L","Œ","S"] },
+      { n:"Fromages affinés", d:"Sélection du fromager, confiture de cerises noires", p:12, a:["L","FC"] }
+    ]},
+    { rubrique:"Vins & boissons", plats:[
+      { n:"Vin blanc du moment", d:"Verre de 12 cl · bouteille 75 cl : 34 €", p:7, a:["Su"] },
+      { n:"Vin rouge du moment", d:"Verre de 12 cl · bouteille 75 cl : 38 €", p:8, a:["Su"] },
+      { n:"Cocktail de saison", d:"Verre de 10 cl, création du bar", p:11, a:["Su"] },
+      { n:"Jus de pomme fermier", d:"Verre de 25 cl", p:5, a:[] },
+      { n:"Eau en carafe", d:"Filtrée, servie à volonté", p:0, a:[] }
+    ]},
+    { rubrique:"Menus", plats:[
+      { n:"Menu du midi", d:"Entrée, plat ou plat, dessert · boisson non comprise", p:24, a:[] },
+      { n:"Menu Sylve", d:"Entrée, plat, dessert · boisson non comprise", p:46, a:[] },
+      { n:"Menu dégustation", d:"Six temps, accord de trois verres de 8 cl · boisson comprise", p:78, a:[] }
+    ]}
+  ],
+  slider: [
+    { n:"La mer, sous les herbes", d:"Poisson du jour, beurre aux algues", p:29, img:"1775498053538-ec293e32b963", alt:"Plat de la mer délicatement garni d'herbes fraîches" },
+    { n:"Bœuf saisi, cœur rosé", d:"Jeunes pousses, jus réduit", p:32, img:"1588168333986-5078d3ae3976", alt:"Pièce de bœuf saisie, cœur rosé, sur jeunes pousses" },
+    { n:"Jardin d'automne", d:"Légumes racines, bouillon clair", p:22, img:"1624272823876-470c7f48c8c0", alt:"Assiette colorée dressée dans un bol noir" },
+    { n:"Agneau, semoule fine", d:"Côtelettes grillées, herbes", p:30, img:"1768849352371-24837caf2179", alt:"Dressage de côtelettes d'agneau" },
+    { n:"Poisson rôti, vin rouge", d:"Condiment aux herbes, sauce au vin", p:28, img:"1467003909585-2f8a72700288", alt:"Poisson rôti, condiment aux herbes et verre de vin rouge" },
+    { n:"Le chocolat, la nuit", d:"Gâteau fondant, grué de cacao", p:12, img:"1458253756247-1e4ed949191b", alt:"Gâteau au chocolat sur une surface noire" }
+  ],
+  epices: ["Thym","Genièvre","Poivre de Kampot","Laurier","Fève tonka","Safran","Aiguilles de sapin","Ail des ours","Baies roses"],
+  mentions: [
+    ["Prix","Prix nets TTC, service compris. Les prix affichés sont des exemples."],
+    ["Boissons","Menus du midi et Sylve : boisson non comprise. Menu dégustation : boisson comprise."],
+    ["Origine des viandes","Bœuf et volaille nés, élevés et abattus en France (exemple)."],
+    ["Allergènes","Liste des 14 allergènes réglementaires disponible sur demande auprès de l'équipe."],
+    ["Eau & vins","Eau en carafe gratuite. Vins au verre servis en 12 cl, menu dégustation en 8 cl."],
+    ["Paiement","Titres-restaurant acceptés au déjeuner, cartes bancaires et espèces."]
+  ]
+};
+
+(function(){
+"use strict";
+const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const TACTILE = matchMedia("(hover: none), (pointer: coarse)").matches;
+const $ = (s,c=document)=>c.querySelector(s), $$ = (s,c=document)=>[...c.querySelectorAll(s)];
+const U = (id,w=1200)=>`https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+const euro = p => p===0 ? "Offerte" : (Number.isInteger(p)? p : p.toFixed(2).replace(".",",")) + " €";
+const JOURS = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const ORDRE = [1,2,3,4,5,6,0];
+
+/* --- Application de CONFIG --- */
+const r = document.documentElement.style, c = CONFIG.couleurs;
+r.setProperty("--sapin",c.sapin); r.setProperty("--sapin-2",c.sapin2);
+r.setProperty("--laiton-1",c.laiton1); r.setProperty("--laiton-2",c.laiton2); r.setProperty("--ivoire",c.ivoire);
+$$("[data-c]").forEach(el=>{
+  const k = el.dataset.c; let v = CONFIG[k]; if(v==null) return;
+  if(k==="nom" && (el.tagName==="B" || el.id==="heroTitre")) v = String(v).toUpperCase();
+  if(el.id!=="heroTitre") el.textContent = v;
+});
+const telHref = "tel:" + CONFIG.tel.replace(/[^\d+]/g,"");
+$$("[data-href-tel]").forEach(a=>a.setAttribute("href", /\d{6,}/.test(telHref)? telHref : "#reserver"));
+document.title = `${CONFIG.nom} — ${CONFIG.sousTitre} à ${CONFIG.ville}`;
+$("#annee").textContent = new Date().getFullYear();
+
+/* --- Hero : lettres --- */
+const h1 = $("#heroTitre"), nomMaj = CONFIG.nom.toUpperCase();
+h1.setAttribute("aria-label", CONFIG.nom);
+h1.innerHTML = [...nomMaj].map((ch,i)=>`<span class="lettre" aria-hidden="true" style="animation-delay:${.35+i*.09}s">${ch===" "?"&nbsp;":ch}</span>`).join("");
+
+/* --- Découpe des titres en mots --- */
+$$("[data-split]").forEach(el=>{
+  let i=0;
+  const walk = node=>{
+    [...node.childNodes].forEach(n=>{
+      if(n.nodeType===3){
+        const frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(w=>{
+          if(!w) return;
+          if(/^\s+$/.test(w)){frag.appendChild(document.createTextNode(" "));return;}
+          const m=document.createElement("span");m.className="mot";
+          const s=document.createElement("span");s.textContent=w;s.style.setProperty("--i",i++);
+          m.appendChild(s);frag.appendChild(m);
+        });
+        n.replaceWith(frag);
+      } else if(n.nodeType===1) walk(n);
+    });
+  };
+  walk(el);
+});
+
+/* --- Révélations --- */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ const t=e.target; (t._masque||t).classList.add("in"); io.unobserve(t);} }),{rootMargin:"0px 0px -8% 0px",threshold:.12});
+$$("[data-reveal],[data-split]").forEach(el=>io.observe(el));
+// un élément masqué par clip-path n'est pas « visible » pour l'observateur : on observe son parent
+const ioM = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target._masques.forEach(m=>m.classList.add("in")); ioM.unobserve(e.target);} }),{rootMargin:"0px 0px -8% 0px",threshold:.05});
+$$("[data-reveal-masque]").forEach(el=>{ const p=el.parentElement; (p._masques=p._masques||[]).push(el); ioM.observe(p); });
+
+/* --- En-tête condensé + bouton fixe --- */
+const tete=$("#tete"), fixe=$("#resaFixe"), resaSec=$("#reserver");
+function surDefilement(){
+  const y=scrollY;
+  tete.classList.toggle("condense", y>60);
+  const rr=resaSec.getBoundingClientRect();
+  const dansResa = rr.top < innerHeight*.8 && rr.bottom > 0;
+  fixe.classList.toggle("vu", y>innerHeight*.6 && !dansResa);
+}
+
+/* --- Menu plein écran --- */
+const menu=$("#menu"), btnMenu=$("#ouvrirMenu");
+function ouvrirMenu(o){
+  menu.classList.toggle("ouvert",o); menu.setAttribute("aria-hidden",!o); btnMenu.setAttribute("aria-expanded",o);
+  document.body.style.overflow = o?"hidden":"";
+  $$("li a",menu).forEach((a,i)=>a.style.transitionDelay = o? (.25+i*.06)+"s":"0s");
+  if(o) setTimeout(()=>$("#fermerMenu").focus(),50); else btnMenu.focus({preventScroll:true});
+}
+btnMenu.addEventListener("click",()=>ouvrirMenu(true));
+$("#fermerMenu").addEventListener("click",()=>ouvrirMenu(false));
+addEventListener("keydown",e=>{ if(e.key==="Escape" && menu.classList.contains("ouvert")) ouvrirMenu(false); });
+
+/* --- Défilement fluide (lerp 0.08) + ancres --- */
+const fluide = !RM && !TACTILE;
+let cible=scrollY, actuel=scrollY, enCours=false;
+const maxY=()=>document.documentElement.scrollHeight-innerHeight;
+function boucle(){
+  actuel += (cible-actuel)*0.08;
+  if(Math.abs(cible-actuel)<0.5){ actuel=cible; enCours=false; }
+  scrollTo(0,actuel);
+  if(enCours) requestAnimationFrame(boucle);
+}
+function allerA(y){
+  cible=Math.max(0,Math.min(maxY(),y));
+  if(!fluide){ scrollTo({top:cible,behavior:RM?"auto":"smooth"}); return; }
+  actuel=scrollY;
+  if(!enCours){ enCours=true; requestAnimationFrame(boucle); }
+}
+if(fluide){
+  addEventListener("wheel",e=>{
+    if(e.ctrlKey || menu.classList.contains("ouvert")) return;
+    if(e.target.closest("select,.onglets")) return;
+    e.preventDefault();
+    const f = e.deltaMode===1?40:(e.deltaMode===2?innerHeight:1);
+    if(!enCours) actuel=scrollY;
+    cible=Math.max(0,Math.min(maxY(),cible+e.deltaY*f));
+    if(!enCours){ enCours=true; requestAnimationFrame(boucle); }
+  },{passive:false});
+}
+addEventListener("scroll",()=>{ if(!enCours){ cible=actuel=scrollY; } },{passive:true});
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href^="#"]'); if(!a) return;
+  const id=a.getAttribute("href"); const t = id==="#"?null:$(id); if(!t) return;
+  e.preventDefault();
+  const fermer = menu.classList.contains("ouvert");
+  if(fermer) ouvrirMenu(false);
+  const go=()=>{ const off = id==="#accueil"?0: t.getBoundingClientRect().top+scrollY-(id==="#reserver"||id==="#carte"?20:0); allerA(off); history.replaceState(null,"",id); };
+  fermer ? setTimeout(go, RM?0:350) : go();
+});
+
+/* --- Parallax --- */
+const heroImg=$("#heroImg"), bandes=$$("[data-parallax]");
+function parallax(){
+  if(RM) return;
+  const y=scrollY, vh=innerHeight;
+  if(y<vh*1.2) heroImg.style.transform=`translate3d(0,${y*0.35}px,0)`;
+  bandes.forEach(b=>{
+    const rr=b.getBoundingClientRect();
+    if(rr.bottom<-50||rr.top>vh+50) return;
+    const prog=(rr.top+rr.height/2-vh/2)/(vh/2+rr.height/2); // -1..1
+    b.querySelector("img").style.transform=`translate3d(0,${prog*-12}%,0)`;
+  });
+}
+let tic=false;
+addEventListener("scroll",()=>{ if(!tic){ tic=true; requestAnimationFrame(()=>{ surDefilement(); parallax(); tic=false; }); } },{passive:true});
+addEventListener("resize",()=>{ surDefilement(); parallax(); });
+surDefilement(); parallax();
+
+/* --- Ciel étoilé (canvas) --- */
+$$("[data-ciel]").forEach(sec=>{
+  const cv=document.createElement("canvas"); cv.className="ciel"; cv.setAttribute("aria-hidden","true");
+  sec.prepend(cv);
+  const ctx=cv.getContext("2d"); let etoiles=[], w=0, h=0, visible=false, raf=0;
+  const dpr=Math.min(devicePixelRatio||1,2);
+  function taille(){
+    w=sec.offsetWidth; h=sec.offsetHeight; cv.width=w*dpr; cv.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const n=Math.round(w*h/9000);
+    etoiles=Array.from({length:Math.min(n,320)},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.1+.2,ph:Math.random()*6.28,v:.4+Math.random()*1.4,or:Math.random()<.18}));
+    dessin(0);
+  }
+  function dessin(t){
+    ctx.clearRect(0,0,w,h);
+    for(const s of etoiles){
+      const a = RM ? .45 : .2+.6*(.5+.5*Math.sin(s.ph+t*.001*s.v));
+      ctx.fillStyle = s.or ? `rgba(232,207,142,${a})` : `rgba(243,238,227,${a*.8})`;
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,6.283); ctx.fill();
+    }
+  }
+  function anime(t){ dessin(t); if(visible) raf=requestAnimationFrame(anime); }
+  taille();
+  let rt; addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(taille,200); });
+  if(!RM) new IntersectionObserver(([e])=>{ visible=e.isIntersecting; cancelAnimationFrame(raf); if(visible) raf=requestAnimationFrame(anime); }).observe(sec);
+});
+
+/* --- Constellation d'épices --- */
+(function(){
+  const cv=$("#constellation"); if(!cv) return;
+  const ctx=cv.getContext("2d"), dpr=Math.min(devicePixelRatio||1,2);
+  let pts=[], liens=[], w=0, h=0, debut=null, fini=false;
+  function placer(){
+    w=cv.clientWidth; h=cv.clientHeight; cv.width=w*dpr; cv.height=h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    const noms=CONFIG.epices, n=noms.length, mob=w<600;
+    // positions pseudo-aléatoires stables
+    let seed=7; const rnd=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
+    pts=noms.map((nom,i)=>{
+      const col = mob ? (i%3) : i, cols = mob?3:n;
+      const x = mob ? (w*(.16+.34*col)) + (rnd()-.5)*w*.08 : w*(.06+.88*(i/(n-1)));
+      const y = mob ? h*(.14+.72*(Math.floor(i/3)/2)) + (rnd()-.5)*h*.08 : h*(.22+.56*rnd());
+      return {x,y,nom};
+    });
+    liens=[];
+    for(let i=0;i<pts.length-1;i++) liens.push([i,i+1]);
+    if(!mob){ liens.push([0,3],[2,5],[4,7],[6,8]); } else { liens.push([0,3],[2,5],[3,6],[5,8]); }
+    if(fini||RM) rendre(1);
+  }
+  function rendre(p){
+    ctx.clearRect(0,0,w,h);
+    const total=liens.length;
+    ctx.lineWidth=.8;
+    liens.forEach(([a,b],k)=>{
+      const lp=Math.max(0,Math.min(1,p*total-k*.6)); if(lp<=0) return;
+      const A=pts[a],B=pts[b];
+      const g=ctx.createLinearGradient(A.x,A.y,B.x,B.y); g.addColorStop(0,"rgba(201,162,91,.55)"); g.addColorStop(1,"rgba(232,207,142,.25)");
+      ctx.strokeStyle=g; ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(A.x+(B.x-A.x)*lp,A.y+(B.y-A.y)*lp); ctx.stroke();
+    });
+    pts.forEach((P,i)=>{
+      const a=Math.max(0,Math.min(1,p*1.6-i*.1));
+      ctx.fillStyle=`rgba(232,207,142,${a})`; ctx.beginPath(); ctx.arc(P.x,P.y,3,0,6.283); ctx.fill();
+      ctx.strokeStyle=`rgba(232,207,142,${a*.35})`; ctx.beginPath(); ctx.arc(P.x,P.y,8,0,6.283); ctx.stroke();
+      ctx.fillStyle=`rgba(243,238,227,${a*.8})`; ctx.font=`500 ${w<600?10:11}px Manrope, sans-serif`;
+      ctx.textAlign="center"; ctx.fillText(P.nom.toUpperCase(),P.x,P.y+(P.y>h*.5?-16:24));
+    });
+  }
+  function anime(t){ if(debut===null) debut=t; const p=Math.min(1,(t-debut)/3200); rendre(p*(2-p)); if(p<1) requestAnimationFrame(anime); else fini=true; }
+  placer();
+  if(document.fonts) document.fonts.ready.then(()=>{ if(fini||RM) rendre(1); });
+  let rt; addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(placer,200); });
+  if(RM){ rendre(1); fini=true; return; }
+  const o=new IntersectionObserver(([e])=>{ if(e.isIntersecting){ o.disconnect(); requestAnimationFrame(anime);} },{threshold:.35});
+  o.observe(cv);
+})();
+
+/* --- Bandeau défilant (duplication pour boucle) --- */
+(function(){ const b=$("#bandeau"); const html=b.innerHTML; b.insertAdjacentHTML("beforeend", html.replace(/<span>/g,'<span aria-hidden="true">')); })();
+
+/* --- Slider infini --- */
+(function(){
+  const piste=$("#piste"), slider=$("#slider"), items=CONFIG.slider, N=items.length;
+  const html = items.map((it,i)=>`<div class="diapo" data-i="${i}"><div class="ph"><img src="${U(it.img,1000)}" alt="${it.alt}" loading="lazy" draggable="false"></div><div class="legende"><div><h3>${it.n}</h3><p>${it.d}</p></div><span class="prix">${euro(it.p)}<small>prix d'exemple</small></span></div></div>`).join("");
+  piste.innerHTML = html+html+html;
+  const diapos=$$(".diapo",piste);
+  diapos.forEach((d,k)=>{ if(k<N||k>=2*N){ d.setAttribute("aria-hidden","true"); } });
+  $("#totSlide").textContent=String(N).padStart(2,"0");
+  let idx=N, base=0, dx=0;
+  function decal(i){ const d=diapos[i]; return -(d.offsetLeft + d.offsetWidth/2 - slider.clientWidth/2); }
+  function poser(anim){
+    piste.classList.toggle("anim",anim && !RM);
+    base=decal(idx); piste.style.transform=`translate3d(${base}px,0,0)`;
+    diapos.forEach((d,k)=>d.classList.toggle("actif",k===idx));
+    const r=((idx%N)+N)%N;
+    $("#numSlide").textContent=String(r+1).padStart(2,"0");
+    $("#barreSlide").style.width=((r+1)/N*100)+"%";
+  }
+  function aller(i){ idx=i; poser(true); if(RM) rembobiner(); }
+  function rembobiner(){
+    if(idx<N||idx>=2*N){ idx = N + ((idx%N)+N)%N; poser(false); void piste.offsetWidth; }
+  }
+  piste.addEventListener("transitionend",e=>{ if(e.target===piste && e.propertyName==="transform") rembobiner(); });
+  $("#prec").addEventListener("click",()=>aller(idx-1));
+  $("#suiv").addEventListener("click",()=>aller(idx+1));
+  slider.addEventListener("keydown",e=>{ if(e.key==="ArrowLeft"){e.preventDefault();aller(idx-1);} if(e.key==="ArrowRight"){e.preventDefault();aller(idx+1);} });
+  // glisser / swipe
+  let x0=null,y0=0,glisse=false,t0=0,pid=null;
+  slider.addEventListener("pointerdown",e=>{ if(e.button!==0) return; x0=e.clientX;y0=e.clientY;t0=performance.now();glisse=false;dx=0;pid=e.pointerId; rembobiner(); piste.classList.remove("anim"); });
+  slider.addEventListener("pointermove",e=>{
+    if(x0===null||e.pointerId!==pid) return;
+    dx=e.clientX-x0; const dy=e.clientY-y0;
+    if(!glisse && Math.abs(dx)>8 && Math.abs(dx)>Math.abs(dy)){ glisse=true; slider.classList.add("drag"); try{slider.setPointerCapture(pid);}catch(_){} }
+    if(glisse) piste.style.transform=`translate3d(${base+dx}px,0,0)`;
+  });
+  const fin=e=>{
+    if(x0===null) return;
+    const w=diapos[0].offsetWidth, v=Math.abs(dx)/(performance.now()-t0);
+    if(glisse){
+      let pas=Math.round(-dx/w); if(pas===0 && (Math.abs(dx)>w*.15 || v>.4)) pas = dx<0?1:-1;
+      aller(idx+pas);
+    }
+    x0=null; glisse=false; slider.classList.remove("drag");
+  };
+  slider.addEventListener("pointerup",fin); slider.addEventListener("pointercancel",fin);
+  slider.addEventListener("click",e=>{ const d=e.target.closest(".diapo"); if(d && Math.abs(dx)<6){ const k=diapos.indexOf(d); if(k!==idx) aller(k);} });
+  addEventListener("resize",()=>poser(false));
+  addEventListener("load",()=>poser(false));
+  poser(false);
+})();
+
+/* --- Inclinaison 3D --- */
+if(!RM && !TACTILE){
+  $$("[data-tilt]").forEach(card=>{
+    card.addEventListener("pointermove",e=>{
+      const r=card.getBoundingClientRect();
+      const x=((e.clientX-r.left)/r.width)*2-1, y=((e.clientY-r.top)/r.height)*2-1; // -1..1
+      card.classList.add("survol");
+      card.style.setProperty("--rx",(-y*6).toFixed(2)+"deg"); card.style.setProperty("--ry",(x*8).toFixed(2)+"deg");
+      card.style.setProperty("--gx",((x+1)*50)+"%"); card.style.setProperty("--gy",((y+1)*50)+"%");
+    });
+    card.addEventListener("pointerleave",()=>{ card.classList.remove("survol"); card.style.setProperty("--rx","0deg"); card.style.setProperty("--ry","0deg"); });
+  });
+}
+
+/* --- Compteurs (données vraies de la page) --- */
+(function(){
+  const nbPlats = CONFIG.carte.filter(r=>["Entrées","Plats","Desserts"].includes(r.rubrique)).reduce((s,r)=>s+r.plats.length,0);
+  const min = s=>{ const [h,m]=s.split(":").map(Number); return h*60+m; };
+  let services=0, minutes=0;
+  Object.values(CONFIG.horaires).forEach(j=>["dejeuner","diner"].forEach(k=>{ if(j[k]){ services++; minutes+=min(j[k][1])-min(j[k][0]); } }));
+  const jours = Object.values(CONFIG.horaires).filter(j=>j.dejeuner||j.diner).length;
+  const data=[[nbPlats,"plats à la carte"],[CONFIG.couverts,"couverts en salle"],[services,"services par semaine"],[Math.round(minutes/60),"heures d'ouverture / semaine"]];
+  const box=$("#chiffres");
+  box.innerHTML=data.map(([v,l])=>`<div class="chiffre"><b data-v="${v}">${RM?v:0}</b><span>${l}</span></div>`).join("");
+  if(RM) return;
+  const o=new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting) return; o.disconnect();
+    $$("b",box).forEach((b,i)=>{
+      const v=+b.dataset.v, d=1800+i*150; let t0=null;
+      const f=t=>{ if(t0===null)t0=t; const p=Math.min(1,(t-t0)/d), e2=1-Math.pow(1-p,4); b.textContent=Math.round(v*e2); if(p<1) requestAnimationFrame(f); };
+      requestAnimationFrame(f);
+    });
+  },{threshold:.4});
+  o.observe(box);
+  $(".note-chiffres").textContent = `Chiffres calculés à partir de la carte et des horaires de cette page (${jours} jours d'ouverture).`;
+})();
+
+/* --- Carte (onglets) --- */
+(function(){
+  const tabs=$("#onglets"), pans=$("#panneaux"), A=CONFIG.allergenes;
+  CONFIG.carte.forEach((rub,i)=>{
+    const id="rub"+i;
+    tabs.insertAdjacentHTML("beforeend",`<button class="onglet" role="tab" id="t-${id}" aria-controls="${id}" aria-selected="${i===0}" tabindex="${i===0?0:-1}">${rub.rubrique}</button>`);
+    pans.insertAdjacentHTML("beforeend",`<div class="panneau" role="tabpanel" id="${id}" aria-labelledby="t-${id}" ${i?"hidden":""}>${rub.plats.map((p,k)=>`
+      <div class="ligne-carte" style="--i:${k}"><div class="haut"><h4>${p.n}</h4><span class="pointilles"></span><span class="p">${euro(p.p)}</span></div>
+      <p>${p.d}</p><div class="meta"><div class="pictos">${p.a.map(a=>`<span class="picto" title="${A[a]}" aria-label="Allergène : ${A[a]}">${a}</span>`).join("")}</div><span class="etiq">${p.p===0?"gratuit":"prix d'exemple"}</span></div></div>`).join("")}</div>`);
+  });
+  const bts=$$(".onglet",tabs);
+  function choisir(i,focus){
+    bts.forEach((b,k)=>{ b.setAttribute("aria-selected",k===i); b.tabIndex=k===i?0:-1; });
+    $$(".panneau",pans).forEach((p,k)=>{ p.hidden=k!==i; p.classList.remove("entre"); if(k===i){ void p.offsetWidth; p.classList.add("entre"); } });
+    if(focus) bts[i].focus();
+  }
+  bts.forEach((b,i)=>{ b.addEventListener("click",()=>choisir(i)); b.addEventListener("keydown",e=>{ if(e.key==="ArrowRight") choisir((i+1)%bts.length,true); if(e.key==="ArrowLeft") choisir((i-1+bts.length)%bts.length,true); }); });
+  const utilises=new Set(CONFIG.carte.flatMap(r=>r.plats.flatMap(p=>p.a)));
+  $("#legendePictos").innerHTML = Object.entries(A).filter(([k])=>utilises.has(k)).map(([k,v])=>`<span><span class="picto" aria-hidden="true">${k}</span>${v}</span>`).join("") + `<span>· Liste complète des allergènes sur demande</span>`;
+  $("#mentions").innerHTML = CONFIG.mentions.map(([t,d])=>`<div><strong>${t}</strong>${d}</div>`).join("");
+})();
+
+/* --- Horaires --- */
+(function(){
+  const f = s=>s.replace(":","h");
+  const txt = j=>{ const a=[]; if(j.dejeuner) a.push(f(j.dejeuner[0])+"–"+f(j.dejeuner[1])); if(j.diner) a.push(f(j.diner[0])+"–"+f(j.diner[1])); return a.length?a.join(" · "):"Fermé"; };
+  const auj=new Date().getDay();
+  $("#horaires").innerHTML = ORDRE.map(d=>{ const j=CONFIG.horaires[d], t=txt(j); return `<div class="${t==="Fermé"?"ferme":""} ${d===auj?"auj":""}"><span>${JOURS[d]}${d===auj?" · aujourd'hui":""}</span><span>${t}</span></div>`; }).join("");
+  $("#horairesPied").innerHTML = ORDRE.map(d=>`<li>${JOURS[d].slice(0,3)}. ${txt(CONFIG.horaires[d])}</li>`).join("");
+})();
+
+/* --- Avis : rotateur d'emplacements --- */
+(function(){
+  const cartes=$$(".avis-carte"), pts=$("#points"); let i=0, timer;
+  pts.innerHTML=cartes.map((_,k)=>`<button aria-label="Emplacement ${k+1}" aria-current="${k===0}"></button>`).join("");
+  const bts=$$("button",pts);
+  function voir(k){ i=k; cartes.forEach((c,n)=>c.classList.toggle("actif",n===k)); bts.forEach((b,n)=>b.setAttribute("aria-current",n===k)); }
+  bts.forEach((b,k)=>b.addEventListener("click",()=>{ voir(k); relance(); }));
+  function relance(){ clearInterval(timer); if(!RM) timer=setInterval(()=>voir((i+1)%cartes.length),6000); }
+  relance();
+})();
+
+/* --- Réservation (démo, rien n'est envoyé) --- */
+(function(){
+  const form=$("#form"), date=$("#date"), heures=$("#heures"), err=$("#erreur");
+  let couv=2, heure=null;
+  const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  const auj=new Date(); date.min=iso(auj); const max=new Date(); max.setDate(max.getDate()+90); date.max=iso(max);
+  // première date ouverte pour le dîner
+  let d0=new Date(); for(let k=0;k<14;k++){ const j=CONFIG.horaires[d0.getDay()]; if(j.diner||j.dejeuner) break; d0.setDate(d0.getDate()+1); }
+  date.value=iso(d0);
+  const min=s=>{ const [h,m]=s.split(":").map(Number); return h*60+m; };
+  const hh=m=>`${String(Math.floor(m/60)).padStart(2,"0")}h${String(m%60).padStart(2,"0")}`;
+  function jourChoisi(){ if(!date.value) return null; const [y,m,dd]=date.value.split("-").map(Number); return new Date(y,m-1,dd); }
+  function maj(){
+    const d=jourChoisi(); const j=d?CONFIG.horaires[d.getDay()]:null;
+    const rDej=form.querySelector('[value="dejeuner"]'), rDin=form.querySelector('[value="diner"]');
+    rDej.disabled=!(j&&j.dejeuner); rDin.disabled=!(j&&j.diner);
+    $("#hDej").textContent = j&&j.dejeuner ? j.dejeuner.map(s=>s.replace(":","h")).join("–") : "fermé";
+    $("#hDin").textContent = j&&j.diner ? j.diner.map(s=>s.replace(":","h")).join("–") : "fermé";
+    if(rDej.checked&&rDej.disabled) rDej.checked=false;
+    if(rDin.checked&&rDin.disabled) rDin.checked=false;
+    if(!form.querySelector('[name="service"]:checked')){ const ok=[rDin,rDej].find(r=>!r.disabled); if(ok) ok.checked=true; }
+    const s=form.querySelector('[name="service"]:checked');
+    heures.innerHTML="";
+    if(!s){ heures.innerHTML=`<span class="vide">Le restaurant est fermé ce jour-là. Choisissez une autre date.</span>`; heure=null; return; }
+    const [a,b]=j[s.value]; const fin=min(b)-CONFIG.dernierService;
+    const liste=[]; for(let m=min(a); m<=fin; m+=15) liste.push(m);
+    // créneaux passés aujourd'hui
+    const now=new Date(); const estAuj = iso(d)===iso(now); const nowM=now.getHours()*60+now.getMinutes()+60;
+    const dispo=liste.filter(m=>!estAuj||m>=nowM);
+    if(!dispo.length){ heures.innerHTML=`<span class="vide">Plus de créneau disponible pour ce service aujourd'hui.</span>`; heure=null; return; }
+    if(!dispo.includes(heure)) heure=null;
+    heures.innerHTML=dispo.map(m=>`<button type="button" data-m="${m}" aria-pressed="${m===heure}">${hh(m)}</button>`).join("");
+  }
+  heures.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b) return; heure=+b.dataset.m; $$("button",heures).forEach(x=>x.setAttribute("aria-pressed",x===b)); err.textContent=""; });
+  date.addEventListener("change",()=>{ err.textContent=""; maj(); });
+  form.addEventListener("change",e=>{ if(e.target.name==="service") maj(); });
+  const out=$("#couv");
+  const majCouv=()=>{ out.textContent = couv+(couv>1?" pers.":" pers."); $("#moins").disabled=couv<=1; };
+  $("#moins").addEventListener("click",()=>{ if(couv>1){couv--;majCouv();} });
+  $("#plus").addEventListener("click",()=>{ if(couv<10){couv++;majCouv();} else err.textContent="Au-delà de 10 personnes, appelez-nous pour une privatisation."; });
+  majCouv(); maj();
+  form.addEventListener("submit",e=>{
+    e.preventDefault();
+    const d=jourChoisi(), s=form.querySelector('[name="service"]:checked'), nom=$("#nomClient").value.trim();
+    if(!d||date.value<date.min){ err.textContent="Choisissez une date à venir."; return; }
+    if(!s){ err.textContent="Le restaurant est fermé ce jour-là."; return; }
+    if(heure===null){ err.textContent="Choisissez une heure d'arrivée."; return; }
+    if(!nom){ err.textContent="Indiquez votre nom."; $("#nomClient").focus(); return; }
+    err.textContent="";
+    const jour=d.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"});
+    $("#recap").textContent=`${nom} · ${couv} pers. · ${jour} à ${hh(heure)} (${s.value==="diner"?"dîner":"déjeuner"})`;
+    $("#confirmation").classList.add("vu");
+    $("#nouvelle").focus({preventScroll:true});
+  });
+  $("#nouvelle").addEventListener("click",()=>{ $("#confirmation").classList.remove("vu"); form.reset(); couv=2; heure=null; date.value=iso(d0); majCouv(); maj(); });
+})();
+
+})();
+</script>
+</body>
+</html>

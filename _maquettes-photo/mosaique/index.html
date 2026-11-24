@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noé Castagné — Photographe | Portrait, mariage, paysage, reportage</title>
+<meta name="description" content="Noé Castagné, photographe : portraits, mariages, paysages et reportages. Galerie, prestations sur devis et contact.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#141210; --paper:#f3efe8; --paper-2:#e8e2d7; --muted:#6f675c; --accent:#b4532a;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter Tight",system-ui,sans-serif;
+  --gap:14px; --hh:62px; --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---------- En-tête ---------- */
+.top{position:fixed;inset:0 0 auto;z-index:40;height:var(--hh);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,48px);color:#fff;transition:background .4s,color .4s,box-shadow .4s}
+.top.solid{background:rgba(243,239,232,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink)}
+.logo{font-family:var(--serif);font-size:1.25rem;text-decoration:none;letter-spacing:.01em}
+.logo em{font-style:italic;font-weight:300}
+.nav{display:flex;gap:26px;font-size:.88rem;letter-spacing:.04em}
+.nav a{text-decoration:none;opacity:.85}
+.nav a:hover{opacity:1}
+
+/* ---------- Accueil : mur défilant ---------- */
+.hero{position:relative;height:100svh;min-height:560px;overflow:hidden;background:var(--ink);color:#fff}
+.wall{position:absolute;inset:-10% -4%;display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gap);transform:rotate(-6deg) scale(1.08);opacity:.62}
+.wall-col{overflow:hidden}
+.wall-track{display:flex;flex-direction:column;gap:var(--gap);animation:wall 70s linear infinite}
+.wall-col:nth-child(even) .wall-track{animation-direction:reverse;animation-duration:85s}
+.wall-col:nth-child(3) .wall-track{animation-duration:60s}
+.wall .ph{border-radius:4px}
+@keyframes wall{to{transform:translateY(-50%)}}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%,rgba(20,18,16,.25),rgba(20,18,16,.85) 75%)}
+.hero-text{position:absolute;z-index:2;left:clamp(20px,6vw,90px);bottom:clamp(40px,10vh,110px);max-width:760px}
+.kicker{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;opacity:.8;margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,7vw,6rem);line-height:.98;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:#f0b38f}
+.hero p{margin-top:22px;max-width:480px;font-size:1.05rem;opacity:.85}
+.btn{display:inline-flex;align-items:center;gap:10px;margin-top:30px;padding:14px 24px;border-radius:999px;background:var(--paper);color:var(--ink);text-decoration:none;font-weight:500;transition:transform .3s var(--ease),background .3s}
+.btn:hover{transform:translateY(-2px);background:#fff}
+.scroll-hint{position:absolute;z-index:2;right:clamp(20px,4vw,48px);bottom:36px;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;writing-mode:vertical-rl;opacity:.7}
+
+/* ---------- Placeholder couleur sous image ---------- */
+.ph{position:relative;overflow:hidden;background:var(--c,#cfc6b8);aspect-ratio:var(--r,3/4)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s var(--ease)}
+.ph img.ok{opacity:1}
+
+/* ---------- Sections ---------- */
+section{padding:clamp(70px,11vw,140px) 0}
+.sec-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px;flex-wrap:wrap}
+.sec-head h2,.h2{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.05;letter-spacing:-.015em}
+.sec-head h2 em,.h2 em{font-style:italic}
+.sec-head p{max-width:420px;color:var(--muted)}
+.num{font-size:.75rem;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:12px}
+
+/* ---------- Filtres collants ---------- */
+.filters{position:sticky;top:calc(var(--hh) - 1px);z-index:30;background:rgba(243,239,232,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(20,18,16,.08);margin-bottom:28px}
+.filters .wrap{display:flex;align-items:center;gap:8px;padding:12px 0;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+.filters .wrap::-webkit-scrollbar{display:none}
+.chip{flex:none;scroll-snap-align:start;padding:9px 18px;border-radius:999px;border:1px solid rgba(20,18,16,.18);font-size:.9rem;white-space:nowrap;transition:background .3s,color .3s,border-color .3s}
+.chip sup{font-size:.65rem;opacity:.6;margin-left:3px}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.filters .count{margin-left:auto;flex:none;font-size:.8rem;color:var(--muted);padding-left:16px}
+
+/* ---------- Grille masonry ---------- */
+.grid{position:relative;transition:height .6s var(--ease)}
+.tile{position:absolute;top:0;left:0;perspective:900px}
+.tile.out{pointer-events:none;visibility:hidden}
+.tile button{display:block;width:100%;text-align:left;border-radius:6px;transform-style:preserve-3d;transition:transform .5s var(--ease),box-shadow .5s var(--ease);will-change:transform}
+.tile .ph{border-radius:6px}
+.tile .ph img{transform:scale(1.12) translate3d(var(--px,0),var(--py,0),0);transition:opacity .8s var(--ease),transform .5s var(--ease)}
+.tile .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.55));opacity:0;transform:translateY(8px) translateZ(30px);transition:opacity .4s,transform .4s var(--ease);font-size:.86rem}
+.tile .cap b{display:block;font-family:var(--serif);font-weight:400;font-size:1.1rem}
+@media (hover:hover){
+  .tile button:hover{box-shadow:0 24px 50px -24px rgba(20,18,16,.55)}
+  .tile button:hover .cap,.tile button:focus-visible .cap{opacity:1;transform:translateY(0) translateZ(30px)}
+}
+@media (hover:none){.tile .cap{opacity:1;transform:none;padding:10px;font-size:.75rem}.tile .cap b{font-size:.9rem}}
+
+/* ---------- Lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:100;display:none;touch-action:pan-y}
+.lb.open{display:block}
+.lb-bg{position:absolute;inset:0;background:#0e0d0c;opacity:0;transition:opacity .45s var(--ease)}
+.lb.show .lb-bg{opacity:.985}
+.lb-stage{position:absolute;inset:0}
+.lb-img{position:absolute;background:var(--c,#333);overflow:hidden;border-radius:4px;transform-origin:0 0}
+.lb-img img{width:100%;height:100%;object-fit:cover;color:transparent}
+.lb-ui{position:absolute;inset:0;pointer-events:none;color:#fff;opacity:0;transition:opacity .35s .1s}
+.lb.show .lb-ui{opacity:1}
+.lb-ui>*{pointer-events:auto}
+.lb-close,.lb-prev,.lb-next{position:absolute;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:background .25s}
+.lb-close:hover,.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.2)}
+.lb-close{top:18px;right:18px}
+.lb-prev{left:18px;top:50%;translate:0 -50%}
+.lb-next{right:18px;top:50%;translate:0 -50%}
+.lb-meta{position:absolute;left:24px;bottom:20px;font-size:.88rem;opacity:.85;pointer-events:none}
+.lb-meta b{font-family:var(--serif);font-weight:400;font-size:1.15rem;display:block}
+.lb-idx{position:absolute;right:24px;bottom:22px;font-size:.8rem;letter-spacing:.15em;opacity:.7}
+svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6}
+
+/* ---------- À propos ---------- */
+.about{background:var(--paper-2)}
+.about-grid{display:grid;grid-template-columns:5fr 6fr;gap:clamp(30px,6vw,90px);align-items:center}
+.about-pics{position:relative}
+.about-pics .ph:first-child{width:78%}
+.about-pics .ph:last-child{position:absolute;width:48%;right:0;bottom:-12%;border:8px solid var(--paper-2)}
+.about p{color:#3b362f;margin-top:18px;max-width:560px}
+.about ul{list-style:none;margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;max-width:520px}
+.about li{border-top:1px solid rgba(20,18,16,.15);padding-top:10px;font-size:.92rem}
+.about li span{display:block;color:var(--muted);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- Prestations ---------- */
+.offers{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.offer{position:relative;border-radius:8px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;padding:24px;isolation:isolate}
+.offer .ph{position:absolute;inset:0;aspect-ratio:auto;z-index:-2}
+.offer .ph img{transition:opacity .8s,transform 1.2s var(--ease)}
+.offer:hover .ph img{transform:scale(1.06)}
+.offer::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.78))}
+.offer h3{font-family:var(--serif);font-weight:400;font-size:1.6rem}
+.offer p{font-size:.9rem;opacity:.9;margin:8px 0 14px}
+.offer .price{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.35);padding-top:12px}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--ink);color:var(--paper)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(30px,6vw,90px)}
+.contact .h2 em{color:#f0b38f}
+.coords{margin-top:30px;display:grid;gap:16px;font-size:.98rem}
+.coords span{display:block;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;opacity:.55}
+form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+input,select,textarea{font:inherit;color:var(--paper);background:transparent;border:0;border-bottom:1px solid rgba(243,239,232,.3);padding:10px 0;border-radius:0;transition:border-color .3s}
+select option{color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#f0b38f}
+textarea{min-height:110px;resize:vertical}
+form .btn{border:0;cursor:pointer;justify-self:start;margin-top:8px}
+.form-ok{grid-column:1/-1;font-size:.92rem;color:#f0b38f;min-height:1.4em}
+footer{background:var(--ink);color:rgba(243,239,232,.55);font-size:.8rem;padding:26px 0;border-top:1px solid rgba(243,239,232,.1)}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* ---------- Apparition au scroll ---------- */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .offers{grid-template-columns:1fr 1fr}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-pics{max-width:520px;margin-bottom:40px}
+}
+@media (max-width:640px){
+  :root{--gap:10px}
+  .nav{display:none}
+  .wall{grid-template-columns:repeat(3,1fr);inset:-10% -20%}
+  .offers{grid-template-columns:1fr}
+  .offer{min-height:300px}
+  form{grid-template-columns:1fr}
+  .about ul{grid-template-columns:1fr}
+  .lb-prev,.lb-next{display:none}
+  .filters .count{display:none}
+  .scroll-hint{display:none}
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .wall-track{animation:none}
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#accueil">Noé <em>Castagné</em></a>
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#galerie">Galerie</a><a href="#apropos">À propos</a><a href="#prestations">Prestations</a><a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="accueil" aria-label="Accueil">
+  <div class="wall" id="wall" aria-hidden="true"></div>
+  <div class="hero-text">
+    <p class="kicker">Photographe — portrait · mariage · paysage · reportage</p>
+    <h1>Des images qui<br>gardent la <em>lumière</em><br>du moment.</h1>
+    <p>Je photographie les gens, leurs grands jours et les lieux qui les entourent, avec patience et discrétion.</p>
+    <a class="btn" href="#galerie">Voir la galerie <svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+  </div>
+  <span class="scroll-hint">Faites défiler</span>
+</section>
+
+<section id="galerie" style="padding-bottom:clamp(50px,8vw,100px)">
+  <div class="wrap sec-head rv">
+    <div><span class="num">01 — Galerie</span><h2>Une mosaïque <em>vivante</em></h2></div>
+    <p>Filtrez par univers : la grille se recompose. Cliquez sur une image pour l'ouvrir en grand.</p>
+  </div>
+  <div class="filters" role="toolbar" aria-label="Filtrer la galerie">
+    <div class="wrap" id="filters"></div>
+  </div>
+  <div class="wrap"><div class="grid" id="grid"></div></div>
+</section>
+
+<section class="about" id="apropos">
+  <div class="wrap about-grid">
+    <div class="about-pics rv" id="aboutPics"></div>
+    <div class="rv">
+      <span class="num">02 — À propos</span>
+      <h2 class="h2">Regarder longtemps,<br><em>déclencher</em> peu.</h2>
+      <p>Je m'appelle Noé et je photographie depuis l'adolescence. J'aime les lumières rasantes, les silences avant un éclat de rire, les rues au petit matin.</p>
+      <p>Que vous prépariez un mariage, souhaitiez un portrait ou ayez besoin d'un reportage, je prends le temps de vous écouter pour construire des images qui vous ressemblent.</p>
+      <ul>
+        <li><span>Approche</span>Lumière naturelle, direction douce</li>
+        <li><span>Déplacements</span>En France et à l'étranger</li>
+        <li><span>Livraison</span>Galerie privée en ligne</li>
+        <li><span>Tirages</span>Papiers d'art sur demande</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="prestations">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><span class="num">03 — Prestations</span><h2>Quatre façons de <em>travailler ensemble</em></h2></div>
+      <p>Chaque projet est différent : je vous établis un devis détaillé après un premier échange.</p>
+    </div>
+    <div class="offers" id="offers"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <span class="num">04 — Contact</span>
+      <h2 class="h2">Parlons de votre <em>projet</em>.</h2>
+      <p style="margin-top:18px;opacity:.75;max-width:420px">Décrivez-moi en quelques lignes ce que vous imaginez ; je vous réponds rapidement avec des disponibilités et un devis.</p>
+      <div class="coords">
+        <div><span>Téléphone</span>06 XX XX XX XX</div>
+        <div><span>Atelier</span>XX rue de l'Exemple</div>
+        <div><span>Rendez-vous</span>Sur demande, en semaine et le samedi</div>
+      </div>
+    </div>
+    <form class="rv" id="form" novalidate>
+      <div class="field"><label for="f-nom">Nom</label><input id="f-nom" name="nom" autocomplete="name" required></div>
+      <div class="field"><label for="f-mail">Courriel</label><input id="f-mail" name="mail" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="f-type">Prestation</label>
+        <select id="f-type" name="type"><option>Portrait</option><option>Mariage</option><option>Paysage</option><option>Reportage</option><option>Autre</option></select></div>
+      <div class="field"><label for="f-date">Date envisagée</label><input id="f-date" name="date" type="date"></div>
+      <div class="field full"><label for="f-msg">Votre message</label><textarea id="f-msg" name="msg" required></textarea></div>
+      <button class="btn" type="submit">Envoyer la demande</button>
+      <p class="form-ok" id="formOk" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span>© Noé Castagné — Photographe</span><span>Maquette de démonstration · Photos : Unsplash</span></div></footer>
+
+<!-- Lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Visionneuse" hidden>
+  <div class="lb-bg"></div>
+  <div class="lb-stage" id="lbStage"></div>
+  <div class="lb-ui">
+    <button class="lb-close" id="lbClose" aria-label="Fermer"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb-prev" id="lbPrev" aria-label="Photo précédente"><svg class="i" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="lb-next" id="lbNext" aria-label="Photo suivante"><svg class="i" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    <div class="lb-meta" id="lbMeta"></div>
+    <div class="lb-idx" id="lbIdx"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+const EASE = "cubic-bezier(.22,.8,.24,1)";
+
+/* r = ratio largeur/hauteur imposé par recadrage Unsplash (fit=crop) */
+const P = [
+ {id:"1500648767791-00dcc994a43e",cat:"portrait",r:.75,c:"#b9a48f",t:"Regard franc",a:"Portrait d'un homme souriant en tee-shirt"},
+ {id:"1506744038136-46273834b3fb",cat:"paysage",r:1.5,c:"#5b6a58",t:"Vallée au crépuscule",a:"Rivière dans une vallée entourée de falaises"},
+ {id:"1520854221256-17451cc331bf",cat:"mariage",r:.8,c:"#c9bfb2",t:"Mains liées",a:"Mariés se tenant la main"},
+ {id:"1546636889-ba9fdd63583e",cat:"reportage",r:.67,c:"#55585e",t:"Pluie sur l'avenue",a:"Rue mouillée et gratte-ciel"},
+ {id:"1632765854612-9b02b6ec2b15",cat:"portrait",r:.8,c:"#8a6a55",t:"Douceur",a:"Portrait d'une femme aux cheveux afro"},
+ {id:"1470071459604-3b5ec3a7fe05",cat:"paysage",r:1.33,c:"#6f7a6c",t:"Sommet dans la brume",a:"Montagne couverte de brouillard"},
+ {id:"1532712938310-34cb3982ef74",cat:"mariage",r:1.5,c:"#a9a58b",t:"Sur la colline",a:"Mariés marchant sur une colline"},
+ {id:"1488034976201-ffbaa99cbf5c",cat:"reportage",r:.75,c:"#7d7a72",t:"Traversée",a:"Passant avec un parapluie traversant la rue"},
+ {id:"1534528741775-53994a69daeb",cat:"portrait",r:.67,c:"#3d3a38",t:"Clair-obscur",a:"Portrait d'une femme en haut noir"},
+ {id:"1464822759023-fed622ff2c3b",cat:"paysage",r:.75,c:"#7c8a9a",t:"Neiges éternelles",a:"Montagnes enneigées au-dessus d'une vallée"},
+ {id:"1573676048035-9c2a72b6a12a",cat:"mariage",r:.75,c:"#8c8c8c",t:"Noir et blanc",a:"Jeunes mariés en noir et blanc"},
+ {id:"1429292394373-ddbcc6bb7468",cat:"reportage",r:1.5,c:"#6b6b6b",t:"Pas pressés",a:"Femme marchant sur la route, en noir et blanc"},
+ {id:"1531746020798-e6953c6e8e04",cat:"portrait",r:.8,c:"#d2a5a0",t:"Mur rose",a:"Femme regardant l'objectif devant un mur rose"},
+ {id:"1501785888041-af3ef285b470",cat:"paysage",r:.8,c:"#5f8aa0",t:"Barques au lac",a:"Barques en bois sur un lac bleu"},
+ {id:"1537633552985-df8429e8048b",cat:"mariage",r:.67,c:"#b8c2c4",t:"Bord de mer",a:"Couple de mariés sur le rivage"},
+ {id:"1517586979036-b7d1e86b3345",cat:"reportage",r:1,c:"#5e6067",t:"Carrefour vu d'en haut",a:"Vue aérienne de piétons à une intersection"},
+ {id:"1506794778202-cad84cf45f1d",cat:"portrait",r:1.33,c:"#5c5650",t:"Portrait studio",a:"Portrait d'homme en chemise grise"},
+ {id:"1472214103451-9374bd1c798e",cat:"paysage",r:1.5,c:"#8c9a5a",t:"Champ au couchant",a:"Champ d'herbe au coucher du soleil"},
+ {id:"1519741196428-6a2175fa2557",cat:"mariage",r:.8,c:"#c7b6a2",t:"Complicité",a:"Mariée posant la main sur le torse du marié"},
+ {id:"1534847004764-b93737310da1",cat:"reportage",r:.75,c:"#3a3a48",t:"La nuit en ville",a:"Passants dans une rue de nuit"},
+ {id:"1614204424926-196a80bf0be8",cat:"portrait",r:.75,c:"#7a6a5e",t:"Silence",a:"Portrait d'une femme en haut noir"},
+ {id:"1494500764479-0c8f2919a3d8",cat:"paysage",r:.75,c:"#4f6b7a",t:"L'arbre et le lac",a:"Arbre au bord d'un lac près des montagnes"},
+ {id:"1533091090875-1ff4acc497dd",cat:"mariage",r:1.33,c:"#a89a8a",t:"Les alliances",a:"Mains des mariés portant leurs alliances"},
+ {id:"1620259570543-31964aa22586",cat:"reportage",r:.67,c:"#6d655c",t:"Capuche",a:"Homme en sweat à capuche marchant dans la rue"}
+];
+const CATS = [["tout","Tout"],["portrait","Portrait"],["mariage","Mariage"],["paysage","Paysage"],["reportage","Reportage"]];
+const LABEL = Object.fromEntries(CATS);
+
+const url = (p, w, r = p.r) => `https://images.unsplash.com/photo-${p.id}?w=${w}&h=${Math.round(w / r)}&q=80&auto=format&fit=crop`;
+const srcset = (p, r) => [400, 800, 1200].map(w => `${url(p, w, r)} ${w}w`).join(", ");
+const ph = (p, {sizes = "(max-width:640px) 50vw, 33vw", r = p.r, lazy = true, w = 800} = {}) =>
+  `<div class="ph" style="--c:${p.c};--r:${r}"><img src="${url(p, w, r)}" srcset="${srcset(p, r)}" sizes="${sizes}" alt="${p.a}" ${lazy ? 'loading="lazy"' : ""} decoding="async" onload="this.classList.add('ok')"></div>`;
+
+/* ---------- Mur défilant ---------- */
+const wall = document.getElementById("wall");
+const nCols = 5;
+for (let c = 0; c < nCols; c++) {
+  const items = P.filter((_, i) => i % nCols === c);
+  const html = items.map(p => ph(p, {sizes: "20vw", w: 400, lazy: c > 2})).join("");
+  wall.insertAdjacentHTML("beforeend", `<div class="wall-col"><div class="wall-track">${html}${html}</div></div>`);
+}
+// les copies du mur sont décoratives
+wall.querySelectorAll("img").forEach(i => i.alt = "");
+
+/* ---------- Galerie ---------- */
+const grid = document.getElementById("grid");
+grid.innerHTML = P.map((p, i) =>
+  `<div class="tile" data-cat="${p.cat}" data-i="${i}"><button type="button" aria-label="Agrandir : ${p.t} (${LABEL[p.cat]})">${ph(p)}<span class="cap"><b>${p.t}</b>${LABEL[p.cat]}</span></button></div>`
+).join("");
+const tiles = [...grid.children];
+
+const filters = document.getElementById("filters");
+filters.innerHTML = CATS.map(([k, l]) => {
+  const n = k === "tout" ? P.length : P.filter(p => p.cat === k).length;
+  return `<button class="chip" type="button" data-f="${k}" aria-pressed="${k === "tout"}">${l}<sup>${n}</sup></button>`;
+}).join("") + `<span class="count" id="count" aria-live="polite"></span>`;
+
+let current = "tout";
+let layoutPos = new Map(); // tile -> {x,y}
+
+function columns() { const w = grid.clientWidth; return w < 640 ? 2 : w < 1000 ? 3 : 4; }
+
+function layout() {
+  const cols = columns(), gap = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--gap")) || 14;
+  const W = grid.clientWidth, cw = (W - gap * (cols - 1)) / cols;
+  const h = new Array(cols).fill(0);
+  const pos = new Map();
+  tiles.forEach(t => {
+    const p = P[t.dataset.i];
+    t.style.width = cw + "px";
+    if (current !== "tout" && p.cat !== current) return;
+    const c = h.indexOf(Math.min(...h));
+    const x = c * (cw + gap), y = h[c];
+    h[c] += cw / p.r + gap;
+    pos.set(t, {x, y});
+  });
+  grid.style.height = Math.max(0, Math.max(...h) - gap) + "px";
+  return pos;
+}
+
+function apply(pos, animate) {
+  const visible = tiles.filter(t => pos.has(t));
+  tiles.forEach(t => {
+    const old = layoutPos.get(t), nw = pos.get(t);
+    t.getAnimations().forEach(a => a.cancel());
+    if (nw) {
+      t.classList.remove("out");
+      t.style.transform = `translate(${nw.x}px,${nw.y}px)`;
+      t.removeAttribute("aria-hidden"); t.querySelector("button").tabIndex = 0;
+      if (!animate) return;
+      if (old) {
+        // FLIP : on part de l'ancienne position (First/Invert) vers la nouvelle (Last/Play)
+        if (old.x !== nw.x || old.y !== nw.y) t.animate(
+          [{transform: `translate(${old.x}px,${old.y}px)`}, {transform: `translate(${nw.x}px,${nw.y}px)`}],
+          {duration: 700, easing: EASE, delay: Math.min(visible.indexOf(t) * 18, 200)});
+      } else {
+        t.animate(
+          [{transform: `translate(${nw.x}px,${nw.y + 40}px) scale(.85)`, opacity: 0}, {transform: `translate(${nw.x}px,${nw.y}px) scale(1)`, opacity: 1}],
+          {duration: 650, easing: EASE, delay: 120 + Math.min(visible.indexOf(t) * 30, 300), fill: "backwards"});
+      }
+    } else {
+      t.setAttribute("aria-hidden", "true"); t.querySelector("button").tabIndex = -1;
+      if (animate && old) {
+        const a = t.animate(
+          [{transform: `translate(${old.x}px,${old.y}px) scale(1)`, opacity: 1}, {transform: `translate(${old.x}px,${old.y}px) scale(.8)`, opacity: 0}],
+          {duration: 350, easing: EASE});
+        a.onfinish = () => t.classList.add("out");
+      } else t.classList.add("out");
+    }
+  });
+  layoutPos = pos;
+  document.getElementById("count").textContent = `${visible.length} photo${visible.length > 1 ? "s" : ""}`;
+}
+
+function refresh(animate) { apply(layout(), animate && !reduce.matches); }
+
+filters.addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b || b.dataset.f === current) return;
+  current = b.dataset.f;
+  filters.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
+  b.scrollIntoView({inline: "center", block: "nearest", behavior: reduce.matches ? "auto" : "smooth"});
+  refresh(true);
+  // si l'on est descendu dans la grille, on remonte en haut de la sélection
+  const fh = filters.parentElement.offsetHeight + 62 + 16;
+  const y = grid.getBoundingClientRect().top + scrollY - fh;
+  if (scrollY > y + 5) scrollTo({top: y, behavior: reduce.matches ? "auto" : "smooth"});
+});
+
+refresh(false);
+let rt; new ResizeObserver(() => { clearTimeout(rt); rt = setTimeout(() => refresh(false), 80); }).observe(grid);
+
+/* ---------- Profondeur au survol (tilt + parallax) ---------- */
+if (matchMedia("(hover:hover) and (pointer:fine)").matches) {
+  grid.addEventListener("pointermove", e => {
+    if (reduce.matches) return;
+    const b = e.target.closest(".tile button"); if (!b) return;
+    const r = b.getBoundingClientRect();
+    const dx = (e.clientX - r.left) / r.width - .5, dy = (e.clientY - r.top) / r.height - .5;
+    b.style.transform = `rotateX(${(-dy * 8).toFixed(2)}deg) rotateY(${(dx * 10).toFixed(2)}deg) translateZ(10px)`;
+    b.style.setProperty("--px", `${(-dx * 14).toFixed(1)}px`);
+    b.style.setProperty("--py", `${(-dy * 14).toFixed(1)}px`);
+  });
+  grid.addEventListener("pointerout", e => {
+    const b = e.target.closest(".tile button"); if (!b || b.contains(e.relatedTarget)) return;
+    b.style.transform = ""; b.style.removeProperty("--px"); b.style.removeProperty("--py");
+  });
+}
+
+/* ---------- Lightbox avec transition d'élément partagé ---------- */
+const lb = document.getElementById("lb"), stage = document.getElementById("lbStage");
+const meta = document.getElementById("lbMeta"), idxEl = document.getElementById("lbIdx");
+let list = [], pos = 0, card = null, lastFocus = null, busy = false;
+
+function fitRect(r) {
+  const m = innerWidth < 640 ? 12 : 80, vw = innerWidth - m * 2, vh = innerHeight - (innerWidth < 640 ? 120 : 140);
+  let w = vw, h = w / r; if (h > vh) { h = vh; w = h * r; }
+  return {x: (innerWidth - w) / 2, y: (innerHeight - h) / 2 - (innerWidth < 640 ? 10 : 0), w, h};
+}
+function thumbOf(i) { return tiles[i].querySelector(".ph"); }
+function place(el, R) { Object.assign(el.style, {left: R.x + "px", top: R.y + "px", width: R.w + "px", height: R.h + "px"}); }
+function makeCard(p, small) {
+  const d = document.createElement("div"); d.className = "lb-img"; d.style.setProperty("--c", p.c);
+  const img = new Image(); img.alt = p.a; img.decoding = "async";
+  img.src = small; // vignette déjà en cache : affichage immédiat
+  const hi = new Image(); hi.onload = () => { img.src = hi.src; }; hi.src = url(p, innerWidth > 900 ? 1600 : 1000);
+  d.appendChild(img); return d;
+}
+function updateMeta() {
+  const p = P[list[pos]];
+  meta.innerHTML = `<b>${p.t}</b>${LABEL[p.cat]}`;
+  idxEl.textContent = `${String(pos + 1).padStart(2, "0")} / ${String(list.length).padStart(2, "0")}`;
+}
+
+function open(i) {
+  if (busy) return;
+  list = tiles.filter(t => !t.classList.contains("out") && layoutPos.has(t)).map(t => +t.dataset.i);
+  pos = list.indexOf(i); lastFocus = document.activeElement;
+  const p = P[i], th = thumbOf(i), from = th.getBoundingClientRect(), to = fitRect(p.r);
+  const thumbImg = th.querySelector("img");
+  card = makeCard(p, thumbImg.currentSrc || thumbImg.src);
+  place(card, to); stage.replaceChildren(card);
+  lb.hidden = false; lb.classList.add("open"); document.body.style.overflow = "hidden";
+  updateMeta();
+  requestAnimationFrame(() => lb.classList.add("show"));
+  th.style.visibility = "hidden";
+  if (!reduce.matches) {
+    busy = true;
+    const sx = from.width / to.w, sy = from.height / to.h;
+    card.animate([
+      {transform: `translate(${from.left - to.x}px,${from.top - to.y}px) scale(${sx},${sy})`, borderRadius: "6px"},
+      {transform: "none", borderRadius: "4px"}
+    ], {duration: 600, easing: EASE}).onfinish = () => { busy = false; };
+  }
+  document.getElementById("lbClose").focus({preventScroll: true});
+}
+
+function close() {
+  if (busy || !card) return;
+  const i = list[pos], th = thumbOf(i), to = th.getBoundingClientRect(), from = card.getBoundingClientRect();
+  lb.classList.remove("show");
+  const done = () => {
+    lb.classList.remove("open"); lb.hidden = true; stage.replaceChildren(); card = null; busy = false;
+    tiles.forEach(t => thumbOf(+t.dataset.i).style.visibility = "");
+    document.body.style.overflow = "";
+    (lastFocus && document.contains(lastFocus) ? lastFocus : tiles[i].querySelector("button")).focus({preventScroll: true});
+  };
+  const onScreen = to.bottom > 0 && to.top < innerHeight;
+  if (reduce.matches || !onScreen) { card.animate([{opacity: 1}, {opacity: 0}], {duration: reduce.matches ? 1 : 300}).onfinish = done; busy = true; return; }
+  busy = true;
+  card.animate([
+    {transform: "none"},
+    {transform: `translate(${to.left - from.left}px,${to.top - from.top}px) scale(${to.width / from.width},${to.height / from.height})`}
+  ], {duration: 520, easing: EASE, fill: "forwards"}).onfinish = done;
+}
+
+function go(dir) {
+  if (busy || !card || list.length < 2) return;
+  thumbOf(list[pos]).style.visibility = "";
+  pos = (pos + dir + list.length) % list.length;
+  const i = list[pos], p = P[i]; thumbOf(i).style.visibility = "hidden";
+  const th = thumbOf(i).querySelector("img");
+  const old = card, nc = makeCard(p, th.currentSrc || th.src); place(nc, fitRect(p.r));
+  stage.appendChild(nc); card = nc; updateMeta();
+  if (reduce.matches) { old.remove(); return; }
+  busy = true;
+  old.animate([{transform: "none", opacity: 1}, {transform: `translateX(${-dir * 120}px)`, opacity: 0}], {duration: 420, easing: EASE, fill: "forwards"}).onfinish = () => old.remove();
+  nc.animate([{transform: `translateX(${dir * 120}px)`, opacity: 0}, {transform: "none", opacity: 1}], {duration: 480, easing: EASE}).onfinish = () => { busy = false; };
+}
+
+grid.addEventListener("click", e => { const t = e.target.closest(".tile"); if (t) open(+t.dataset.i); });
+document.getElementById("lbClose").onclick = close;
+document.getElementById("lbPrev").onclick = () => go(-1);
+document.getElementById("lbNext").onclick = () => go(1);
+lb.querySelector(".lb-bg").onclick = close;
+stage.addEventListener("click", e => { if (e.target === stage) close(); });
+addEventListener("keydown", e => {
+  if (!lb.classList.contains("open")) return;
+  if (e.key === "Escape") close();
+  else if (e.key === "ArrowRight") go(1);
+  else if (e.key === "ArrowLeft") go(-1);
+  else if (e.key === "Tab") { // piège à focus
+    const f = [...lb.querySelectorAll("button")].filter(b => b.offsetParent);
+    const a = f.indexOf(document.activeElement);
+    if (e.shiftKey && a <= 0) { e.preventDefault(); f[f.length - 1].focus(); }
+    else if (!e.shiftKey && a === f.length - 1) { e.preventDefault(); f[0].focus(); }
+  }
+});
+addEventListener("resize", () => { if (card) place(card, fitRect(P[list[pos]].r)); });
+
+/* Swipe : glisser horizontalement = suivante/précédente, vers le bas = fermer */
+let sx = 0, sy = 0, tracking = false;
+stage.addEventListener("touchstart", e => { if (e.touches.length !== 1) return; tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive: true});
+stage.addEventListener("touchmove", e => {
+  if (!tracking || !card || busy) return;
+  const dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
+  card.style.transform = Math.abs(dx) > Math.abs(dy) ? `translateX(${dx}px)` : (dy > 0 ? `translateY(${dy}px) scale(${1 - Math.min(dy, 300) / 1500})` : "");
+}, {passive: true});
+stage.addEventListener("touchend", e => {
+  if (!tracking || !card) return; tracking = false;
+  const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+  card.style.transform = "";
+  if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1);
+  else if (dy > 100) close();
+});
+
+/* ---------- À propos & prestations ---------- */
+document.getElementById("aboutPics").innerHTML = ph(P[16], {r: .8, sizes: "(max-width:980px) 80vw, 35vw"}) + ph(P[21], {r: .8, sizes: "20vw"});
+const OFF = [
+  [8, "Portrait", "Séance individuelle, en famille ou professionnelle, en extérieur ou à domicile."],
+  [18, "Mariage", "Des préparatifs à la soirée, un récit complet et discret de votre journée."],
+  [21, "Paysage", "Tirages d'art, commandes pour lieux, gîtes ou collectivités."],
+  [7, "Reportage", "Événements, entreprises, associations : l'essentiel saisi sur le vif."]
+];
+document.getElementById("offers").innerHTML = OFF.map(([i, t, d]) =>
+  `<article class="offer rv">${ph(P[i], {r: .75, sizes: "(max-width:640px) 100vw, (max-width:980px) 50vw, 25vw"})}<h3>${t}</h3><p>${d}</p><span class="price">Sur devis</span></article>`).join("");
+
+/* ---------- En-tête opaque hors accueil ---------- */
+const top = document.querySelector(".top"), hero = document.getElementById("accueil");
+new IntersectionObserver(([e]) => top.classList.toggle("solid", !e.isIntersecting), {rootMargin: "-62px 0px 0px 0px"}).observe(hero);
+
+/* ---------- Apparitions ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold: .12});
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+/* images déjà en cache (onload manqué) */
+document.querySelectorAll(".ph img").forEach(i => { if (i.complete && i.naturalWidth) i.classList.add("ok"); });
+
+/* ---------- Formulaire (démo) ---------- */
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, ok = document.getElementById("formOk");
+  if (!f.checkValidity()) { ok.textContent = "Merci de renseigner votre nom, un courriel valide et un message."; f.querySelector(":invalid").focus(); return; }
+  ok.textContent = "Merci, votre demande a bien été préparée. (Maquette : aucun envoi réel.)"; f.reset();
+});
+})();
+</script>
+</body>
+</html>

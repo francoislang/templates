@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garage Delorme — Mécanique toutes marques à Valbreuil-sur-Moselle</title>
+<meta name="description" content="Garage indépendant multimarque à Valbreuil-sur-Moselle : entretien, freins, pneus, climatisation, distribution, diagnostic électronique. Devis gratuit avant travaux.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ====== VARIABLES (gabarit) ====== */
+:root{
+  --nuit:#0A0A12;
+  --nuit-2:#11111c;
+  --nuit-3:#181826;
+  --cyan:#00E5FF;
+  --ambre:#FFB800;
+  --blanc:#E8E8F0;
+  --gris:#8d8da3;
+  --ligne:rgba(232,232,240,.12);
+  --rouge-neon:#ff3b5c;
+  --f-titre:'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --f-texte:'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --rayon:14px;
+  --max:1200px;
+  --halo-cyan:0 0 4px #fff,0 0 10px var(--cyan),0 0 22px var(--cyan),0 0 44px var(--cyan),0 0 80px rgba(0,229,255,.55);
+  --halo-ambre:0 0 4px #fff,0 0 10px var(--ambre),0 0 22px var(--ambre),0 0 44px var(--ambre),0 0 80px rgba(255,184,0,.5);
+  --halo-rouge:0 0 4px #fff,0 0 10px var(--rouge-neon),0 0 22px var(--rouge-neon),0 0 44px var(--rouge-neon),0 0 80px rgba(255,59,92,.5);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nuit);color:var(--blanc);font-family:var(--f-texte);font-size:16px;line-height:1.6;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{width:min(var(--max),100% - 40px);margin-inline:auto}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3{font-family:var(--f-titre);font-weight:400;letter-spacing:.02em;line-height:.95;margin:0}
+h2{font-size:clamp(2.6rem,6vw,4.6rem)}
+h3{font-size:1.7rem}
+p{margin:0 0 1em}
+.surtitre{font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan);font-weight:600;display:inline-flex;gap:.6em;align-items:center;margin-bottom:14px}
+.surtitre::before{content:"";width:28px;height:2px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.badge-ex{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--nuit);background:var(--ambre);padding:3px 8px;border-radius:4px}
+section{position:relative}
+.sec{padding:clamp(70px,10vw,130px) 0}
+
+/* ====== INTRO ====== */
+#intro{position:fixed;inset:0;z-index:100;background:var(--nuit);display:grid;place-items:center;transition:opacity .8s ease,visibility .8s}
+#intro.fin{opacity:0;visibility:hidden}
+.intro-nom{font-family:var(--f-titre);font-size:clamp(3rem,13vw,9rem);letter-spacing:.06em;color:#1d1d2b;text-align:center;line-height:.9;padding:0 16px}
+.intro-nom span{display:inline-block;transition:color .1s}
+.intro-nom span.on{color:#eafcff;text-shadow:var(--halo-cyan)}
+.intro-ville{display:block;font-family:var(--f-texte);font-size:clamp(.8rem,2.4vw,1.1rem);letter-spacing:.5em;color:#2a2a3a;margin-top:18px;transition:color .4s,text-shadow .4s}
+.intro-ville.on{color:var(--ambre);text-shadow:0 0 12px rgba(255,184,0,.7)}
+#intro button{position:absolute;bottom:24px;right:24px;background:none;border:1px solid var(--ligne);color:var(--gris);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:.8rem}
+
+/* ====== BANDEAU HAUT ====== */
+.bandeau{background:#06060c;border-bottom:1px solid var(--ligne);font-size:.88rem;position:relative;z-index:30}
+.bandeau .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:44px;flex-wrap:wrap;padding:6px 0}
+.bandeau a.tel{font-weight:700;text-decoration:none;color:var(--cyan);white-space:nowrap}
+.pastille{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:7px;vertical-align:1px;background:var(--gris)}
+.pastille.ouv{background:#38ff9c;box-shadow:0 0 8px #38ff9c}
+.pastille.ferm{background:var(--rouge-neon);box-shadow:0 0 8px var(--rouge-neon)}
+.bandeau .actions{display:flex;gap:8px}
+
+/* ====== NAV ====== */
+header.nav{position:sticky;top:0;z-index:40;background:rgba(10,10,18,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--ligne)}
+header.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:var(--f-titre);font-size:1.9rem;text-decoration:none;letter-spacing:.06em;line-height:1;color:var(--blanc)}
+.logo b{color:var(--cyan);font-weight:400;text-shadow:0 0 12px rgba(0,229,255,.6)}
+.logo small{display:block;font-family:var(--f-texte);font-size:.6rem;letter-spacing:.3em;color:var(--gris)}
+nav.menu{display:flex;gap:26px}
+nav.menu a{text-decoration:none;font-size:.92rem;color:#c9c9d8;position:relative;padding:6px 0}
+nav.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+nav.menu a:hover::after{transform:scaleX(1)}
+.burger{display:none;background:none;border:1px solid var(--ligne);border-radius:10px;width:44px;height:44px;cursor:pointer;place-items:center}
+.burger span{display:block;width:20px;height:2px;background:var(--blanc);margin:4px auto;transition:transform .3s,opacity .3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* ====== BOUTONS ====== */
+.btn{--c:var(--cyan);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:13px 22px;border-radius:999px;border:1.5px solid var(--c);background:transparent;color:var(--c);font-weight:600;text-decoration:none;cursor:pointer;transition:background .25s,color .25s,box-shadow .25s,transform .2s;white-space:nowrap;overflow:hidden;isolation:isolate}
+.btn::before{content:"";position:absolute;inset:0;background:radial-gradient(120px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 35%,transparent),transparent 70%);opacity:0;transition:opacity .3s;z-index:-1}
+.btn:hover::before{opacity:1}
+.btn:hover{box-shadow:0 0 18px color-mix(in srgb,var(--c) 55%,transparent),inset 0 0 12px color-mix(in srgb,var(--c) 25%,transparent)}
+.btn:active{transform:scale(.97)}
+.btn.plein{background:var(--c);color:var(--nuit)}
+.btn.plein:hover{color:var(--nuit)}
+.btn.ambre{--c:var(--ambre)}
+.btn.petit{padding:7px 14px;font-size:.82rem}
+.btn.panne{--c:var(--rouge-neon)}
+
+/* ====== HERO ====== */
+.hero{min-height:calc(100svh - 108px);display:flex;align-items:center;overflow:hidden;padding:60px 0 0}
+.hero-fond{position:absolute;inset:-12% 0 0 0;z-index:0;background:#0d0d18}
+.hero-fond img{width:100%;height:100%;object-fit:cover;opacity:.32;filter:saturate(.7) contrast(1.1)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,18,.55) 0%,rgba(10,10,18,.35) 40%,var(--nuit) 100%),radial-gradient(60% 50% at 70% 40%,rgba(0,229,255,.10),transparent 70%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(4rem,11vw,9.5rem);line-height:.85}
+.hero h1 .l2{display:block;color:transparent;-webkit-text-stroke:1.5px var(--cyan);text-shadow:0 0 30px rgba(0,229,255,.35)}
+.hero .ville{font-size:clamp(1rem,2.2vw,1.35rem);letter-spacing:.32em;text-transform:uppercase;color:var(--ambre);margin:18px 0 22px;font-weight:600}
+.hero .accroche{font-size:clamp(1.05rem,1.6vw,1.2rem);max-width:520px;color:#c9c9d8}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.hero .preuves{display:flex;gap:18px;flex-wrap:wrap;margin-top:28px;font-size:.88rem;color:#b5b5c8;padding:0;list-style:none}
+.hero .preuves li::before{content:"✓";color:var(--cyan);margin-right:6px;text-shadow:0 0 6px var(--cyan)}
+
+/* ====== ENSEIGNE NÉON (effet signature) ====== */
+.enseigne{position:relative;min-width:0;max-width:100%;display:flex;flex-direction:column;align-items:center;padding-bottom:20px}
+.cadre{position:relative;padding:26px 30px 22px;border-radius:18px;background:linear-gradient(160deg,#141420,#0c0c14);border:1px solid #23233a;box-shadow:inset 0 0 40px rgba(0,0,0,.8),0 30px 60px rgba(0,0,0,.6)}
+.cadre::before,.cadre::after{content:"";position:absolute;top:-60px;width:2px;height:60px;background:linear-gradient(#2c2c40,#4a4a60)}
+.cadre::before{left:22%}.cadre::after{right:22%}
+.tube{font-family:var(--f-titre);font-size:clamp(3.4rem,6.4vw,6rem);letter-spacing:.08em;line-height:1;color:#2a2a3c;text-shadow:none;transition:color .15s;user-select:none;white-space:nowrap}
+.tube.ouvert{color:#eafcff;text-shadow:var(--halo-cyan)}
+.tube.ferme{color:#ffe3e8;text-shadow:var(--halo-rouge)}
+.tube.ouvert,.tube.ferme{animation:gresille 7s infinite steps(1)}
+.tube.allumage{animation:allume 1.2s steps(1) forwards}
+.tube .lettre-faible{animation:faible 4.3s infinite steps(1)}
+@keyframes gresille{0%,100%{opacity:1}41%{opacity:1}42%{opacity:.35}43%{opacity:1}44%{opacity:.6}45%{opacity:1}78%{opacity:1}78.5%{opacity:.5}79%{opacity:1}}
+@keyframes faible{0%,100%{opacity:1}20%{opacity:.25}21%{opacity:1}60%{opacity:1}61%{opacity:.4}62%{opacity:.9}63%{opacity:1}}
+@keyframes allume{0%{opacity:0}10%{opacity:1}15%{opacity:0}30%{opacity:.8}34%{opacity:0}48%{opacity:1}52%{opacity:.3}60%,100%{opacity:1}}
+.reflet{position:relative;margin-top:6px;transform:scaleY(-1);opacity:.35;filter:blur(3px);-webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 75%);mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 75%);pointer-events:none}
+.reflet .cadre{background:transparent;border-color:transparent;box-shadow:none}
+.reflet .cadre::before,.reflet .cadre::after{display:none}
+.sol{position:absolute;bottom:0;left:-20%;right:-20%;height:55%;background:radial-gradient(50% 40% at 50% 10%,var(--glow,rgba(0,229,255,.18)),transparent 70%);pointer-events:none;transition:background .6s}
+.statut{margin-top:6px;text-align:center;font-size:.95rem;color:#c9c9d8;min-height:1.6em}
+.statut strong{color:var(--blanc)}
+.demo-horloge{display:flex;gap:6px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.demo-horloge button{background:#14141f;border:1px solid var(--ligne);color:var(--gris);font-size:.74rem;padding:5px 10px;border-radius:999px;cursor:pointer}
+.demo-horloge button[aria-pressed="true"]{border-color:var(--cyan);color:var(--cyan)}
+
+/* ====== RÉVÉLATIONS ====== */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.vu{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}.rv.d5{transition-delay:.4s}
+
+/* ====== DÉFILANT ====== */
+.ruban{border-block:1px solid var(--ligne);background:#07070d;overflow:hidden;padding:16px 0}
+.ruban .piste{display:flex;gap:48px;width:max-content;animation:defile 38s linear infinite;font-family:var(--f-titre);font-size:1.7rem;letter-spacing:.08em;color:#55556c}
+.ruban .piste span:nth-child(3n+1){color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.5)}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+/* ====== PRESTATIONS ====== */
+.tete-sec{display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
+.tete-sec p{max-width:460px;color:#b5b5c8;margin:0}
+.grille-presta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.carte{--c:var(--cyan);position:relative;background:linear-gradient(170deg,var(--nuit-3),var(--nuit-2));border:1px solid var(--ligne);border-radius:var(--rayon);padding:26px;overflow:hidden;transition:transform .35s,border-color .35s,box-shadow .35s;isolation:isolate}
+.carte::before{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx,50%) var(--my,0%),color-mix(in srgb,var(--c) 16%,transparent),transparent 70%);opacity:0;transition:opacity .35s;z-index:-1}
+.carte:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--c) 60%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--c) 30%,transparent),0 18px 40px rgba(0,0,0,.5),0 0 30px color-mix(in srgb,var(--c) 18%,transparent)}
+.carte:hover::before{opacity:1}
+.carte .ico{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;border:1px solid color-mix(in srgb,var(--c) 50%,transparent);color:var(--c);margin-bottom:18px;box-shadow:0 0 14px color-mix(in srgb,var(--c) 25%,transparent)}
+.carte .ico svg{width:24px;height:24px}
+.carte h3{margin-bottom:8px}
+.carte p{color:#b5b5c8;font-size:.95rem}
+.prix{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;border-top:1px dashed var(--ligne);padding-top:14px;margin-top:6px}
+.prix .ap{font-size:.8rem;color:var(--gris)}
+.prix .montant{font-family:var(--f-titre);font-size:2.3rem;color:var(--ambre);text-shadow:0 0 14px rgba(255,184,0,.35);line-height:1}
+.prix .ttc{font-size:.82rem;font-weight:700;color:var(--blanc)}
+.taux{margin-top:28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border:1px solid rgba(255,184,0,.35);border-radius:var(--rayon);padding:20px 24px;background:rgba(255,184,0,.05)}
+.taux .val{font-family:var(--f-titre);font-size:2.4rem;color:var(--ambre)}
+.mentions-prix{font-size:.82rem;color:var(--gris);margin-top:14px}
+
+/* ====== SECTION ÉPINGLÉE ====== */
+.epingle{height:340vh;position:relative}
+.epingle .colle{position:sticky;top:64px;height:calc(100vh - 64px);display:flex;align-items:center;overflow:hidden}
+.epingle .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.etapes-liste{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:6px}
+.etapes-liste li{display:flex;gap:14px;align-items:center;font-size:1.05rem;color:#5b5b72;transition:color .4s}
+.etapes-liste li .n{font-family:var(--f-titre);font-size:1.6rem;width:42px;height:42px;border-radius:50%;border:1.5px solid #2a2a3c;display:grid;place-items:center;transition:all .4s;flex:none}
+.etapes-liste li.actif{color:var(--blanc)}
+.etapes-liste li.actif .n{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 14px rgba(0,229,255,.5)}
+.etapes-liste li.fait .n{border-color:var(--ambre);color:var(--ambre)}
+.ecran{position:relative;aspect-ratio:4/3;border-radius:20px;border:1px solid #23233a;background:#0d0d18;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.6)}
+.ecran img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .8s,transform 1.4s}
+.ecran img.actif{opacity:.75;transform:scale(1)}
+.ecran .legende{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(transparent,rgba(10,10,18,.95));z-index:2}
+.ecran .legende h3{color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,.5)}
+.ecran .legende p{margin:6px 0 0;color:#d5d5e2;font-size:.95rem}
+.barre{height:3px;background:#1d1d2b;border-radius:3px;margin-top:22px;overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--ambre));box-shadow:0 0 10px var(--cyan)}
+
+/* ====== ENGAGEMENTS ====== */
+.engag{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.engag .carte{--c:var(--ambre)}
+.engag .carte .gros{font-family:var(--f-titre);font-size:3rem;color:var(--ambre);line-height:1;text-shadow:0 0 14px rgba(255,184,0,.4);margin-bottom:10px}
+.eco{margin-top:22px;display:flex;gap:16px;align-items:flex-start;padding:20px 24px;border-radius:var(--rayon);border:1px solid rgba(0,229,255,.3);background:rgba(0,229,255,.04);font-size:.95rem;color:#c9c9d8}
+.eco svg{flex:none;width:28px;height:28px;color:var(--cyan)}
+
+/* ====== DEVIS / FORMULAIRES ====== */
+.devis{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:start}
+.form{background:linear-gradient(170deg,var(--nuit-3),var(--nuit-2));border:1px solid var(--ligne);border-radius:20px;padding:clamp(20px,4vw,34px);display:grid;gap:16px}
+.form .ligne2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:.85rem;color:#b5b5c8;margin-bottom:6px;font-weight:500}
+input,select,textarea{width:100%;background:#0b0b14;border:1px solid #2a2a3c;border-radius:10px;padding:12px 14px;font-size:1rem;transition:border-color .25s,box-shadow .25s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,229,255,.15),0 0 14px rgba(0,229,255,.25)}
+textarea{min-height:110px;resize:vertical}
+.immat{font-family:var(--f-titre);font-size:1.6rem;letter-spacing:.12em;text-transform:uppercase;text-align:center;background:#f2f2f2;color:#111;border:3px solid #111;padding:6px 10px 2px;border-left:28px solid #0033a0;border-right:28px solid #0033a0}
+.immat:focus{border-color:#111;border-left-color:#0033a0;border-right-color:#0033a0}
+.note-demo{font-size:.8rem;color:var(--gris);display:flex;gap:8px;align-items:flex-start}
+.note-demo::before{content:"i";flex:none;width:18px;height:18px;border-radius:50%;border:1px solid var(--gris);display:grid;place-items:center;font-size:.7rem;font-weight:700;margin-top:2px}
+.retour{display:none;padding:14px 16px;border-radius:12px;background:rgba(56,255,156,.08);border:1px solid rgba(56,255,156,.4);color:#c8ffe2;font-size:.95rem}
+.retour.vu{display:block}
+.info-liste{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:14px}
+.info-liste li{display:flex;gap:14px;align-items:flex-start;color:#c9c9d8}
+.info-liste li b{color:var(--blanc);display:block}
+.info-liste .pt{flex:none;width:10px;height:10px;margin-top:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+
+/* ====== AVIS ====== */
+.avis-vide{border:1.5px dashed #2f2f46;border-radius:20px;padding:clamp(30px,6vw,60px);text-align:center;color:#a3a3b8;background:repeating-linear-gradient(135deg,transparent 0 14px,rgba(255,255,255,.015) 14px 28px)}
+.avis-vide .etoiles{font-size:1.8rem;letter-spacing:.3em;color:#2f2f46;margin-bottom:10px}
+.avis-vide h3{color:var(--blanc);margin-bottom:10px}
+
+/* ====== GALERIE ====== */
+.galerie{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px}
+.galerie button{position:relative;padding:0;border:0;border-radius:12px;overflow:hidden;cursor:zoom-in;background:#14141f}
+.galerie button:nth-child(1){grid-column:span 2;grid-row:span 2}
+.galerie button:nth-child(6){grid-column:span 2}
+.galerie img{width:100%;height:100%;object-fit:cover;transition:transform .7s,filter .5s;filter:saturate(.8) brightness(.85)}
+.galerie button:hover img{transform:scale(1.06);filter:saturate(1.05) brightness(1)}
+.galerie button::after{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px var(--ligne);transition:box-shadow .35s}
+.galerie button:hover::after{box-shadow:inset 0 0 0 2px var(--cyan),inset 0 0 30px rgba(0,229,255,.25)}
+.lightbox{position:fixed;inset:0;z-index:90;background:rgba(5,5,10,.94);display:none;align-items:center;justify-content:center;touch-action:pan-y}
+.lightbox.ouvert{display:flex}
+.lightbox figure{margin:0;max-width:min(1200px,92vw);width:100%}
+.lightbox .boite{position:relative;aspect-ratio:3/2;background:#14141f;border-radius:12px;overflow:hidden;max-height:78vh}
+.lightbox img{width:100%;height:100%;object-fit:contain}
+.lightbox figcaption{margin-top:12px;color:#c9c9d8;text-align:center;font-size:.92rem}
+.lb-btn{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid var(--ligne);background:rgba(20,20,31,.8);color:var(--blanc);font-size:1.4rem;cursor:pointer;z-index:2}
+.lb-btn:hover{border-color:var(--cyan);box-shadow:0 0 14px rgba(0,229,255,.4)}
+.lb-prec{left:18px}.lb-suiv{right:18px}
+.lb-fermer{position:absolute;top:16px;right:16px;width:46px;height:46px;border-radius:50%;border:1px solid var(--ligne);background:rgba(20,20,31,.8);font-size:1.3rem;cursor:pointer;z-index:2}
+
+/* ====== MARQUES ====== */
+.marques{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chips span{border:1px solid var(--ligne);border-radius:999px;padding:8px 16px;font-size:.9rem;color:#c9c9d8;transition:border-color .3s,color .3s,box-shadow .3s}
+.chips span:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 12px rgba(0,229,255,.25)}
+.photo-ratio{position:relative;border-radius:20px;overflow:hidden;background:#14141f;aspect-ratio:4/3}
+.photo-ratio img{width:100%;height:100%;object-fit:cover}
+
+/* ====== ACCÈS ====== */
+.acces{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.horaires{width:100%;border-collapse:collapse;font-size:.98rem}
+.horaires td{padding:11px 4px;border-bottom:1px solid var(--ligne)}
+.horaires td:last-child{text-align:right;color:#c9c9d8}
+.horaires tr.auj td{color:var(--cyan);font-weight:600}
+.horaires tr.auj td:first-child::after{content:" · aujourd'hui";font-size:.75rem;color:var(--ambre);font-weight:500}
+.plan{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--ligne);min-height:320px;background:
+  linear-gradient(90deg,transparent 49.6%,rgba(0,229,255,.25) 49.6% 50.4%,transparent 50.4%),
+  linear-gradient(0deg,transparent 59.6%,rgba(255,184,0,.22) 59.6% 60.4%,transparent 60.4%),
+  repeating-linear-gradient(0deg,#0e0e18 0 38px,#12121e 38px 40px),
+  repeating-linear-gradient(90deg,transparent 0 38px,rgba(255,255,255,.03) 38px 40px);display:grid;place-items:center}
+.plan .pin{width:22px;height:22px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--cyan);box-shadow:0 0 20px var(--cyan);animation:pin 2s ease-in-out infinite}
+@keyframes pin{50%{transform:rotate(-45deg) translate(4px,-4px)}}
+.plan .adr{position:absolute;left:16px;bottom:16px;right:16px;background:rgba(10,10,18,.85);border:1px solid var(--ligne);border-radius:12px;padding:12px 16px;font-size:.92rem}
+
+/* ====== FAQ ====== */
+.faq{max-width:860px}
+.faq details{border-bottom:1px solid var(--ligne)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 40px 22px 0;font-size:1.08rem;font-weight:600;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:1.6rem;color:var(--cyan);transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq details p{color:#b5b5c8;padding-bottom:18px;margin:0}
+
+/* ====== FOOTER ====== */
+footer{border-top:1px solid var(--ligne);padding:50px 0 110px;background:#06060c;font-size:.88rem;color:var(--gris)}
+footer .wrap{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px}
+footer h3{color:var(--blanc);font-size:1.4rem;margin-bottom:10px}
+footer .bas{grid-column:1/-1;border-top:1px solid var(--ligne);padding-top:20px;font-size:.8rem}
+
+/* ====== BOUTON PANNE FLOTTANT ====== */
+.fab-panne{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;align-items:center;gap:10px;padding:14px 20px;border-radius:999px;border:1.5px solid var(--rouge-neon);background:rgba(10,10,18,.9);color:#ffd9e0;font-weight:700;cursor:pointer;box-shadow:0 0 18px rgba(255,59,92,.45),inset 0 0 12px rgba(255,59,92,.2);transition:transform .2s,box-shadow .3s}
+.fab-panne:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(255,59,92,.7),inset 0 0 16px rgba(255,59,92,.3)}
+.fab-panne .gyro{width:10px;height:10px;border-radius:50%;background:var(--rouge-neon);box-shadow:0 0 10px var(--rouge-neon);animation:gyro 1.2s infinite}
+@keyframes gyro{50%{opacity:.25}}
+
+/* ====== PANNEAU URGENCE ====== */
+.panneau{position:fixed;inset:0;z-index:80;display:none}
+.panneau.ouvert{display:block}
+.panneau .voile{position:absolute;inset:0;background:rgba(5,5,10,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);animation:fondu .3s}
+.panneau .tiroir{position:absolute;top:0;right:0;bottom:0;width:min(480px,100%);background:linear-gradient(180deg,#141420,#0b0b13);border-left:1px solid rgba(255,59,92,.5);box-shadow:-10px 0 50px rgba(255,59,92,.15);overflow-y:auto;padding:26px clamp(18px,4vw,30px) 40px;animation:glisse .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes glisse{from{transform:translateX(100%)}}
+@keyframes fondu{from{opacity:0}}
+.panneau h2{font-size:2.8rem;color:#ffe3e8;text-shadow:var(--halo-rouge)}
+.panneau .fermer{position:absolute;top:18px;right:18px;width:44px;height:44px;border-radius:50%;border:1px solid var(--ligne);background:transparent;cursor:pointer;font-size:1.2rem}
+.appel{display:flex;align-items:center;gap:14px;margin:20px 0;padding:18px;border-radius:16px;background:var(--rouge-neon);color:#fff;text-decoration:none;font-weight:700;font-size:1.1rem;box-shadow:0 0 24px rgba(255,59,92,.5);transition:transform .2s,box-shadow .3s}
+.appel:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(255,59,92,.75)}
+.appel svg{width:30px;height:30px;flex:none}
+.appel small{display:block;font-weight:500;opacity:.9;font-size:.82rem}
+.apercu{display:none;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--ligne);background:#14141f;aspect-ratio:4/3;margin-top:10px}
+.apercu.vu{display:block}
+.apercu img{width:100%;height:100%;object-fit:cover}
+.apercu button{position:absolute;top:8px;right:8px;background:rgba(10,10,18,.85);border:1px solid var(--ligne);border-radius:999px;padding:4px 10px;font-size:.78rem;cursor:pointer}
+.symptomes{display:flex;flex-wrap:wrap;gap:8px}
+.symptomes label{margin:0}
+.symptomes input{position:absolute;opacity:0;width:1px;height:1px}
+.symptomes span{display:inline-block;border:1px solid #2a2a3c;border-radius:999px;padding:7px 13px;font-size:.86rem;cursor:pointer;transition:all .25s;color:#c9c9d8}
+.symptomes input:checked+span{border-color:var(--rouge-neon);color:#ffd9e0;box-shadow:0 0 12px rgba(255,59,92,.4);background:rgba(255,59,92,.1)}
+.symptomes input:focus-visible+span{outline:2px solid var(--cyan);outline-offset:2px}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width:980px){
+  .hero .wrap,.devis,.marques,.acces,.epingle .wrap{grid-template-columns:1fr}
+  .grille-presta{grid-template-columns:1fr 1fr}
+  .engag{grid-template-columns:1fr 1fr}
+  .galerie{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px}
+  .galerie button:nth-child(6){grid-column:span 2}
+  footer .wrap{grid-template-columns:1fr 1fr}
+  .enseigne{margin-top:40px}
+  .epingle .ecran{aspect-ratio:16/10}
+  .epingle .wrap{gap:22px}
+}
+@media (max-width:760px){
+  nav.menu{position:fixed;top:64px;left:0;right:0;flex-direction:column;gap:0;background:rgba(10,10,18,.97);border-bottom:1px solid var(--ligne);padding:8px 20px 20px;transform:translateY(-20px);opacity:0;visibility:hidden;transition:transform .35s,opacity .35s,visibility .35s}
+  nav.menu.ouvert{transform:none;opacity:1;visibility:visible}
+  nav.menu a{padding:14px 0;border-bottom:1px solid var(--ligne);font-size:1.05rem}
+  .burger{display:grid}
+  header.nav .btn-rdv{display:none}
+  .bandeau .actions .btn-rdv-b{display:none}
+  .bandeau .wrap{justify-content:space-between}
+  .bandeau .horaire-j{font-size:.8rem}
+  .grille-presta,.engag{grid-template-columns:1fr}
+  .form .ligne2{grid-template-columns:1fr}
+  .tube{font-size:clamp(3.2rem,17vw,5rem)}
+  .cadre{padding:18px 20px 14px}
+  .epingle{height:300vh}
+  .epingle .colle{align-items:flex-start;padding-top:20px}
+  .epingle h2{font-size:2.4rem}
+  .etapes-liste{margin-top:14px;grid-template-columns:repeat(5,1fr);gap:4px}
+  .etapes-liste li{flex-direction:column;gap:4px;font-size:.66rem;text-align:center;line-height:1.2}
+  .etapes-liste li .n{width:34px;height:34px;font-size:1.25rem}
+  .epingle .intro-txt{display:none}
+  .galerie{grid-auto-rows:140px;gap:8px}
+  .lb-btn{width:42px;height:42px;top:auto;bottom:-64px;transform:none}
+  .lightbox figure{margin-bottom:60px}
+  footer .wrap{grid-template-columns:1fr}
+  .fab-panne{left:16px;right:16px;bottom:14px;justify-content:center}
+  .hero{padding-top:36px}
+}
+
+/* ====== MOUVEMENT RÉDUIT ====== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .tube.ouvert,.tube.ferme,.tube .lettre-faible,.tube.allumage{animation:none!important;opacity:1!important}
+  .rv{opacity:1;transform:none}
+  .ruban .piste{animation:none}
+  .epingle{height:auto}
+  .epingle .colle{position:relative;height:auto;padding:80px 0}
+  .ecran img{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO : néons qui s'allument un à un -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-nom"><span id="intro-lettres"></span><span class="intro-ville" id="intro-ville"></span></div>
+  <button type="button" id="passer-intro">Passer</button>
+</div>
+
+<!-- BANDEAU HAUT -->
+<div class="bandeau">
+  <div class="wrap">
+    <span class="horaire-j"><span class="pastille" id="pastille-bandeau"></span><span id="horaire-jour">Horaires…</span></span>
+    <div class="actions">
+      <a class="tel btn petit" href="tel:+33600000000" data-tel>06 XX XX XX XX</a>
+      <a class="btn petit ambre plein btn-rdv-b" href="#devis">Prendre RDV</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" data-nom-logo><span data-nom-a>GARAGE</span> <b data-nom-b>DELORME</b><small data-ville>VALBREUIL-SUR-MOSELLE</small></a>
+    <nav class="menu" id="menu" aria-label="Navigation principale">
+      <a href="#prestations">Prestations</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#atelier">Atelier</a>
+      <a href="#acces">Accès</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn petit btn-rdv" href="#devis">Devis gratuit</a>
+    <button class="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="titre-hero">
+  <div class="hero-fond" id="parallax">
+    <img src="https://images.unsplash.com/photo-1505545121909-2d48e22dede6?w=1600&q=80&auto=format&fit=crop"
+      srcset="https://images.unsplash.com/photo-1505545121909-2d48e22dede6?w=800&q=70&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1505545121909-2d48e22dede6?w=1600&q=80&auto=format&fit=crop 1600w, https://images.unsplash.com/photo-1505545121909-2d48e22dede6?w=2400&q=80&auto=format&fit=crop 2400w"
+      sizes="100vw" alt="" fetchpriority="high">
+  </div>
+  <div class="wrap">
+    <div>
+      <p class="surtitre rv">Mécanique toutes marques · indépendant</p>
+      <h1 id="titre-hero" class="rv d1"><span data-nom-a>GARAGE</span><span class="l2" data-nom-b>DELORME</span></h1>
+      <p class="ville rv d2" data-ville>Valbreuil-sur-Moselle</p>
+      <p class="accroche rv d3">Entretien, freins, pneus, climatisation, distribution. Un devis clair avant chaque intervention, des tarifs affichés, et on vous explique ce qu'on fait — sans jargon.</p>
+      <div class="cta rv d4">
+        <a class="btn plein" href="#devis">Demander un devis gratuit</a>
+        <button class="btn panne" type="button" data-ouvrir-panne>Une panne ?</button>
+      </div>
+      <ul class="preuves rv d5">
+        <li>Devis gratuit avant travaux</li>
+        <li>Prix TTC affichés</li>
+        <li>Véhicule de prêt</li>
+      </ul>
+    </div>
+
+    <!-- EFFET SIGNATURE : enseigne OUVERT / FERMÉ -->
+    <div class="enseigne rv d2" aria-live="polite">
+      <div class="sol" id="sol"></div>
+      <div class="cadre"><div class="tube" id="tube" role="img" aria-label="Enseigne lumineuse">OUVERT</div></div>
+      <div class="reflet" aria-hidden="true"><div class="cadre"><div class="tube" id="tube-reflet">OUVERT</div></div></div>
+      <p class="statut" id="statut">&nbsp;</p>
+      <div class="demo-horloge" role="group" aria-label="Simulation de l'heure (démo)">
+        <button type="button" data-sim="auto" aria-pressed="true">Heure réelle</button>
+        <button type="button" data-sim="ouvert" aria-pressed="false">Simuler ouvert</button>
+        <button type="button" data-sim="ferme" aria-pressed="false">Simuler fermé</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruban" aria-hidden="true"><div class="piste" id="piste"></div></div>
+
+<!-- PRESTATIONS -->
+<section class="sec" id="prestations" aria-labelledby="t-presta">
+  <div class="wrap">
+    <div class="tete-sec">
+      <div>
+        <p class="surtitre rv">Prestations & forfaits</p>
+        <h2 id="t-presta" class="rv d1">Ce qu'on fait,<br>et combien ça coûte.</h2>
+      </div>
+      <p class="rv d2">Des forfaits TTC « à partir de », pièces et main-d'œuvre comprises. Le prix final dépend de votre véhicule : il est toujours confirmé par un devis écrit avant travaux. <span class="badge-ex">Prix d'exemple</span></p>
+    </div>
+    <div class="grille-presta" id="grille-presta"></div>
+    <div class="taux rv">
+      <div><strong>Taux horaire main-d'œuvre</strong><br><span style="color:var(--gris);font-size:.9rem">Appliqué aux travaux hors forfait, affiché à l'accueil de l'atelier.</span></div>
+      <div><span class="val" id="taux-val">XX €</span> <strong>TTC / heure</strong> <span class="badge-ex">Prix d'exemple</span></div>
+    </div>
+    <p class="mentions-prix">Prix d'exemple, donnés à titre indicatif pour cette maquette. Tous les prix s'entendent TTC. Des pièces issues de l'économie circulaire (réemploi) vous sont proposées lorsque c'est possible, conformément à la réglementation.</p>
+  </div>
+</section>
+
+<!-- SECTION ÉPINGLÉE : comment ça se passe -->
+<section class="epingle" id="deroule" aria-labelledby="t-deroule">
+  <div class="colle">
+    <div class="wrap">
+      <div>
+        <p class="surtitre">Comment ça se passe</p>
+        <h2 id="t-deroule">Pas de surprise<br>sur la facture.</h2>
+        <p class="intro-txt" style="color:#b5b5c8;margin-top:16px;max-width:440px">Vous savez ce qui sera fait, et pour combien, avant qu'on touche à quoi que ce soit.</p>
+        <ol class="etapes-liste" id="etapes-liste"></ol>
+        <div class="barre"><i id="barre"></i></div>
+      </div>
+      <div class="ecran" id="ecran">
+        <div class="legende"><h3 id="etape-titre"></h3><p id="etape-texte"></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGAGEMENTS -->
+<section class="sec" id="engagements" aria-labelledby="t-engag">
+  <div class="wrap">
+    <div class="tete-sec">
+      <div>
+        <p class="surtitre rv">Nos engagements</p>
+        <h2 id="t-engag" class="rv d1">La confiance,<br>ça se prouve.</h2>
+      </div>
+    </div>
+    <div class="engag">
+      <article class="carte rv d1"><div class="gros">0 €</div><h3>Devis gratuit</h3><p>Un devis écrit et détaillé avant tous travaux. Rien n'est fait sans votre accord.</p></article>
+      <article class="carte rv d2"><div class="gros">♻</div><h3>Pièces de réemploi</h3><p>On vous propose des pièces issues de l'économie circulaire quand c'est possible : moins cher, et utile.</p></article>
+      <article class="carte rv d3"><div class="gros">⇄</div><h3>Véhicule de prêt</h3><p>Sur réservation, pour que vous ne restiez pas sans voiture pendant l'intervention.</p></article>
+      <article class="carte rv d4"><div class="gros">✓</div><h3>Garantie</h3><p>Pièces et main-d'œuvre garanties. Entretien constructeur sans perte de la garantie de votre véhicule.</p></article>
+    </div>
+    <div class="eco rv">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.6-2.7L5 13"/><path d="M11 19h8.2a1.8 1.8 0 0 0 1.6-2.7l-1.2-2"/><path d="m14 16-3 3 3 3"/><path d="M8.3 7.4 10.4 4a1.8 1.8 0 0 1 3.1 0l1.1 1.8"/><path d="m18 10-1.2-2.1"/><path d="m5 13 3 1 1-3"/><path d="m14.6 5.8-1 3.1 3.2.8"/></svg>
+      <p style="margin:0"><strong>Pièces issues de l'économie circulaire :</strong> pour l'entretien et la réparation, nous vous proposons, lorsqu'elles sont disponibles, des pièces de réemploi en alternative aux pièces neuves. Le choix vous appartient et figure sur le devis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEVIS / RDV -->
+<section class="sec" id="devis" aria-labelledby="t-devis" style="background:linear-gradient(180deg,transparent,#0d0d17 30%,#0d0d17 70%,transparent)">
+  <div class="wrap devis">
+    <div>
+      <p class="surtitre rv">Devis & rendez-vous</p>
+      <h2 id="t-devis" class="rv d1">Votre devis,<br>sans engagement.</h2>
+      <p class="rv d2" style="color:#b5b5c8;margin-top:18px">Indiquez votre immatriculation et votre besoin : nous vous rappelons avec un prix et un créneau.</p>
+      <ul class="info-liste rv d3">
+        <li><span class="pt"></span><span><b>Réponse rapide</b>Nous vous recontactons dans les meilleurs délais, aux horaires d'ouverture.</span></li>
+        <li><span class="pt"></span><span><b>Délais annoncés</b>Une date de restitution vous est donnée avec le devis.</span></li>
+        <li><span class="pt"></span><span><b>Diagnostic électronique</b>Voyant allumé ? On lit les codes défaut et on vous explique.</span></li>
+      </ul>
+    </div>
+    <form class="form rv d2" id="form-devis" novalidate>
+      <div>
+        <label for="d-immat">Immatriculation</label>
+        <input class="immat" id="d-immat" name="immat" placeholder="AB-123-CD" maxlength="9" autocomplete="off" required>
+      </div>
+      <div class="ligne2">
+        <div><label for="d-km">Kilométrage</label><input id="d-km" name="km" inputmode="numeric" placeholder="ex. 145 000"></div>
+        <div><label for="d-besoin">Besoin</label>
+          <select id="d-besoin" name="besoin" required>
+            <option value="">Choisir…</option>
+            <option>Vidange / révision</option><option>Freins</option><option>Pneus / géométrie</option><option>Recharge clim</option><option>Distribution</option><option>Pré-contrôle technique</option><option>Diagnostic électronique</option><option>Autre</option>
+          </select></div>
+      </div>
+      <div class="ligne2">
+        <div><label for="d-nom">Nom</label><input id="d-nom" name="nom" autocomplete="name" required></div>
+        <div><label for="d-tel">Téléphone</label><input id="d-tel" name="tel" type="tel" autocomplete="tel" required></div>
+      </div>
+      <div><label for="d-msg">Précisions (facultatif)</label><textarea id="d-msg" name="msg" placeholder="Bruit, voyant, date souhaitée, besoin d'un véhicule de prêt…"></textarea></div>
+      <button class="btn plein" type="submit">Envoyer ma demande</button>
+      <p class="note-demo">Formulaire de démonstration : aucune donnée n'est envoyée ni enregistrée.</p>
+      <div class="retour" id="retour-devis" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<!-- AVIS -->
+<section class="sec" id="avis" aria-labelledby="t-avis" style="padding-top:40px">
+  <div class="wrap">
+    <p class="surtitre rv">Avis clients</p>
+    <h2 id="t-avis" class="rv d1" style="margin-bottom:34px">Ce qu'ils en disent.</h2>
+    <div class="avis-vide rv d2">
+      <div class="etoiles" aria-hidden="true">★★★★★</div>
+      <h3>Vos avis clients apparaîtront ici</h3>
+      <p style="margin:0 auto;max-width:520px">Cet emplacement accueillera les avis vérifiés de vos clients, reliés à votre fiche d'établissement.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIER / GALERIE -->
+<section class="sec" id="atelier" aria-labelledby="t-atelier">
+  <div class="wrap">
+    <div class="tete-sec">
+      <div>
+        <p class="surtitre rv">L'atelier</p>
+        <h2 id="t-atelier" class="rv d1">Ponts, outillage,<br>et lumière.</h2>
+      </div>
+      <p class="rv d2">Un atelier équipé pour l'entretien et la réparation de tous types de véhicules. Cliquez sur une photo pour l'agrandir.</p>
+    </div>
+    <div class="galerie" id="galerie"></div>
+  </div>
+</section>
+
+<!-- MARQUES -->
+<section class="sec" aria-labelledby="t-marques" style="padding-top:20px">
+  <div class="wrap marques">
+    <div class="photo-ratio rv">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1429772011165-0c2e054367b8?w=1200&q=80&auto=format&fit=crop"
+        srcset="https://images.unsplash.com/photo-1429772011165-0c2e054367b8?w=600&q=70&auto=format&fit=crop 600w, https://images.unsplash.com/photo-1429772011165-0c2e054367b8?w=1200&q=80&auto=format&fit=crop 1200w"
+        sizes="(max-width:980px) 100vw, 50vw" alt="Compartiment moteur d'une voiture">
+    </div>
+    <div>
+      <p class="surtitre rv">Multimarque</p>
+      <h2 id="t-marques" class="rv d1">Toutes marques,<br>tous âges.</h2>
+      <p class="rv d2" style="color:#b5b5c8;margin-top:18px">Françaises, européennes, asiatiques : nous entretenons votre véhicule selon le carnet constructeur, <strong>sans perte de garantie</strong>, même s'il a douze ans et beaucoup de kilomètres.</p>
+      <div class="chips rv d3">
+        <span>Citadines</span><span>Compactes</span><span>Berlines</span><span>Breaks & monospaces</span><span>SUV</span><span>Utilitaires légers</span><span>Hybrides</span><span>Diesel & essence</span><span>Géométrie</span><span>Diagnostic électronique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCÈS & HORAIRES -->
+<section class="sec" id="acces" aria-labelledby="t-acces">
+  <div class="wrap">
+    <p class="surtitre rv">Accès & horaires</p>
+    <h2 id="t-acces" class="rv d1" style="margin-bottom:34px">Venez nous voir.</h2>
+    <div class="acces">
+      <div class="rv d1">
+        <table class="horaires"><caption class="sr">Horaires d'ouverture</caption><tbody id="table-horaires"></tbody></table>
+        <p style="margin-top:20px;color:#b5b5c8">Dépôt de clés possible en dehors des horaires : demandez-nous la marche à suivre.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <a class="btn" href="tel:+33600000000" data-tel>Appeler le 06 XX XX XX XX</a>
+          <a class="btn ambre" href="#devis">Prendre RDV</a>
+        </div>
+      </div>
+      <div class="plan rv d2" role="img" aria-label="Plan d'accès schématique">
+        <span class="pin"></span>
+        <div class="adr"><strong data-nom-complet>Garage Delorme</strong><br>XX rue de l'Exemple, <span data-ville-cp>57XXX Valbreuil-sur-Moselle</span><br><span style="color:var(--gris)">Parking clients devant l'atelier</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" aria-labelledby="t-faq" style="padding-top:20px">
+  <div class="wrap">
+    <p class="surtitre rv">Questions fréquentes</p>
+    <h2 id="t-faq" class="rv d1" style="margin-bottom:24px">FAQ</h2>
+    <div class="faq rv d2">
+      <details><summary>Faire l'entretien chez un indépendant fait-il perdre la garantie constructeur ?</summary><p>Non. Nous réalisons l'entretien selon le programme du constructeur, avec des pièces de qualité équivalente, et nous tamponnons votre carnet. Votre garantie est conservée.</p></details>
+      <details><summary>Le devis est-il vraiment gratuit ?</summary><p>Oui. Le devis est gratuit et écrit. Aucun travail n'est réalisé sans votre accord. Si un diagnostic approfondi est nécessaire, son prix vous est annoncé avant.</p></details>
+      <details><summary>Qu'est-ce qu'une pièce de réemploi ?</summary><p>C'est une pièce d'occasion contrôlée, issue de l'économie circulaire. Elle est souvent moins chère qu'une pièce neuve. Nous vous la proposons lorsqu'elle est disponible ; vous choisissez.</p></details>
+      <details><summary>Quand faut-il changer la distribution ?</summary><p>Cela dépend du moteur : souvent entre 100 000 et 180 000 km, ou selon un nombre d'années. Donnez-nous votre immatriculation, nous vérifions la préconisation constructeur.</p></details>
+      <details><summary>Proposez-vous un véhicule de prêt ?</summary><p>Oui, sur réservation et selon disponibilité. Signalez-le lors de votre demande de rendez-vous.</p></details>
+      <details><summary>Faites-vous le contrôle technique ?</summary><p>Nous réalisons un pré-contrôle technique pour repérer les points de défaillance et les corriger avant votre passage au centre agréé.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><h3 data-nom-complet>Garage Delorme</h3><p>Garage indépendant multimarque<br>XX rue de l'Exemple, <span data-ville-cp>57XXX Valbreuil-sur-Moselle</span><br><a href="tel:+33600000000" data-tel>06 XX XX XX XX</a></p></div>
+    <div><h3>Prestations</h3><p>Vidange & révision · Freins · Pneus & géométrie · Recharge clim · Distribution · Pré-contrôle technique · Diagnostic électronique</p></div>
+    <div><h3>Infos</h3><p>Prix TTC affichés, taux horaire affiché à l'atelier. Pièces issues de l'économie circulaire proposées. Les prix de cette page sont des prix d'exemple.</p></div>
+    <p class="bas">© <span id="annee"></span> <span data-nom-complet>Garage Delorme</span> — maquette de démonstration. Mentions légales · Confidentialité. Photos : Unsplash.</p>
+  </div>
+</footer>
+
+<button class="fab-panne" type="button" data-ouvrir-panne><span class="gyro" aria-hidden="true"></span>Une panne ?</button>
+
+<!-- PANNEAU URGENCE -->
+<div class="panneau" id="panneau" role="dialog" aria-modal="true" aria-labelledby="t-panne" hidden>
+  <div class="voile" data-fermer-panne></div>
+  <div class="tiroir">
+    <button class="fermer" type="button" aria-label="Fermer" data-fermer-panne>✕</button>
+    <h2 id="t-panne">Une panne ?</h2>
+    <p style="color:#c9c9d8;margin-top:10px">Mettez-vous en sécurité (gilet, triangle), puis appelez-nous ou décrivez le problème.</p>
+    <a class="appel" href="tel:+33600000000" data-tel-appel>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span>Appeler le 06 XX XX XX XX<small id="panne-dispo">Aux horaires d'ouverture</small></span>
+    </a>
+    <form class="form" id="form-panne" novalidate style="padding:20px">
+      <div><label for="p-immat">Immatriculation</label><input class="immat" id="p-immat" name="immat" placeholder="AB-123-CD" maxlength="9" autocomplete="off" required></div>
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend style="font-size:.85rem;color:#b5b5c8;margin-bottom:8px;font-weight:500">Symptôme</legend>
+        <div class="symptomes">
+          <label><input type="radio" name="symptome" value="Ne démarre pas" required><span>Ne démarre pas</span></label>
+          <label><input type="radio" name="symptome" value="Voyant allumé"><span>Voyant allumé</span></label>
+          <label><input type="radio" name="symptome" value="Bruit anormal"><span>Bruit anormal</span></label>
+          <label><input type="radio" name="symptome" value="Fumée / odeur"><span>Fumée / odeur</span></label>
+          <label><input type="radio" name="symptome" value="Freinage"><span>Freinage</span></label>
+          <label><input type="radio" name="symptome" value="Crevaison"><span>Crevaison</span></label>
+          <label><input type="radio" name="symptome" value="Autre"><span>Autre</span></label>
+        </div>
+      </fieldset>
+      <div><label for="p-desc">Décrivez en quelques mots</label><textarea id="p-desc" name="desc" placeholder="Où êtes-vous ? Depuis quand ? Que se passe-t-il ?"></textarea></div>
+      <div><label for="p-tel">Votre téléphone</label><input id="p-tel" name="tel" type="tel" autocomplete="tel" required></div>
+      <div>
+        <label for="p-photo">Photo (voyant, fuite, pneu…)</label>
+        <input id="p-photo" name="photo" type="file" accept="image/*" capture="environment">
+        <div class="apercu" id="apercu"><img id="apercu-img" alt="Aperçu de la photo jointe"><button type="button" id="apercu-suppr">Retirer</button></div>
+      </div>
+      <button class="btn panne plein" type="submit">Envoyer le signalement</button>
+      <p class="note-demo">Démonstration : rien n'est envoyé. La photo reste sur votre appareil (aperçu local uniquement).</p>
+      <div class="retour" id="retour-panne" role="status"></div>
+    </form>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galerie de l'atelier" hidden>
+  <button class="lb-fermer" type="button" aria-label="Fermer la galerie">✕</button>
+  <button class="lb-btn lb-prec" type="button" aria-label="Photo précédente">‹</button>
+  <figure><div class="boite"><img id="lb-img" alt=""></div><figcaption id="lb-leg"></figcaption></figure>
+  <button class="lb-btn lb-suiv" type="button" aria-label="Photo suivante">›</button>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG — tout ce qui change d'un garage à l'autre
+   ========================================================= */
+const CONFIG = {
+  NOM_A: "GARAGE",
+  NOM_B: "DELORME",
+  VILLE: "Valbreuil-sur-Moselle",
+  CODE_POSTAL: "57XXX",
+  TEL_AFFICHE: "06 XX XX XX XX",
+  TEL_LIEN: "+33600000000",
+  ADRESSE: "XX rue de l'Exemple",
+  COULEURS: { nuit:"#0A0A12", cyan:"#00E5FF", ambre:"#FFB800", blanc:"#E8E8F0" },
+  TAUX_HORAIRE_TTC: "XX",
+  // Horaires : 0 = dimanche … 6 = samedi ; plages "HH:MM"
+  HORAIRES: {
+    1: [["08:00","12:00"],["13:30","18:30"]],
+    2: [["08:00","12:00"],["13:30","18:30"]],
+    3: [["08:00","12:00"],["13:30","18:30"]],
+    4: [["08:00","12:00"],["13:30","18:30"]],
+    5: [["08:00","12:00"],["13:30","18:00"]],
+    6: [["08:30","12:00"]],
+    0: []
+  },
+  FORFAITS: [
+    { ico:"huile",  titre:"Vidange & révision", texte:"Huile adaptée, filtres, contrôle des niveaux et des points de sécurité, carnet tamponné.", prix:"XX" },
+    { ico:"frein",  titre:"Freins", texte:"Plaquettes, disques, liquide de frein. Contrôle de l'usure et essai routier.", prix:"XX" },
+    { ico:"pneu",   titre:"Pneus & géométrie", texte:"Montage, équilibrage, permutation, réglage de la géométrie (parallélisme).", prix:"XX" },
+    { ico:"clim",   titre:"Recharge clim", texte:"Contrôle d'étanchéité, recharge en gaz, désinfection du circuit.", prix:"XX" },
+    { ico:"distri", titre:"Distribution", texte:"Kit de distribution et pompe à eau selon la préconisation constructeur.", prix:"XXX" },
+    { ico:"ct",     titre:"Pré-contrôle technique", texte:"Vérification des points de contrôle pour passer le contrôle technique sereinement.", prix:"XX" }
+  ],
+  ETAPES: [
+    { titre:"Diagnostic", texte:"On écoute, on regarde, on branche la valise de diagnostic électronique si besoin.", img:"1615906655593-ad0386982a0f" },
+    { titre:"Devis écrit", texte:"Un devis détaillé et gratuit : pièces neuves ou de réemploi, main-d'œuvre, délai.", img:"1777177967028-bd91fe0954a0" },
+    { titre:"Votre accord", texte:"Rien n'est fait sans votre validation. Une question ? On vous rappelle.", img:"1486006920555-c77dcf18193c" },
+    { titre:"Travaux", texte:"Intervention sur pont, pièces remplacées conservées pour vous être montrées.", img:"1727893304219-063d142ce6f3" },
+    { titre:"Restitution", texte:"On vous explique ce qui a été fait, facture conforme au devis, garantie.", img:"1637970067784-927e66e07e36" }
+  ],
+  GALERIE: [
+    { id:"1625047509168-a7026f36de04", alt:"Véhicule dans l'atelier" },
+    { id:"1619642751034-765dfdf7c58e", alt:"Mains travaillant sur un moteur avec une clé" },
+    { id:"1760310936486-4dd450aab2a8", alt:"Mur d'outils et établi" },
+    { id:"1760317890322-364a810cd4da", alt:"Système de freinage en gros plan" },
+    { id:"1675034743372-672c3c3f8377", alt:"Stock de pneus dans un garage" },
+    { id:"1727893119356-1702fe921cf9", alt:"Atelier de réparation automobile spacieux" },
+    { id:"1791259190324-7b540779c800", alt:"Voiture capot ouvert dans l'atelier" },
+    { id:"1771340742493-52fbd5476ccb", alt:"Appoint d'huile moteur" },
+    { id:"1666554498255-5250121b4865", alt:"Voiture capot ouvert" },
+    { id:"1767681092416-bccf9410bda4", alt:"Voitures en réparation dans l'atelier" }
+  ],
+  RUBAN: ["Entretien constructeur","Diagnostic électronique","Distribution","Géométrie","Recharge clim","Freins","Pneus","Pré-contrôle technique","Pièces de réemploi","Véhicule de prêt"]
+};
+
+/* ========================================================= */
+let io; // déclaré tôt : l'intro peut appeler reveler() immédiatement
+const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = (s, c=document) => c.querySelector(s);
+const $$ = (s, c=document) => [...c.querySelectorAll(s)];
+const JOURS = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const unsplash = (id, w, q=80) => `https://images.unsplash.com/photo-${id}?w=${w}&q=${q}&auto=format&fit=crop`;
+const srcset = (id, ws=[600,1000,1600]) => ws.map(w => `${unsplash(id,w,w<1000?70:80)} ${w}w`).join(", ");
+
+/* --- Couleurs CONFIG -> variables CSS --- */
+const rs = document.documentElement.style;
+rs.setProperty('--nuit', CONFIG.COULEURS.nuit);
+rs.setProperty('--cyan', CONFIG.COULEURS.cyan);
+rs.setProperty('--ambre', CONFIG.COULEURS.ambre);
+rs.setProperty('--blanc', CONFIG.COULEURS.blanc);
+
+/* --- Injection textes CONFIG --- */
+$$('[data-nom-a]').forEach(e => e.textContent = CONFIG.NOM_A);
+$$('[data-nom-b]').forEach(e => e.textContent = CONFIG.NOM_B);
+$$('[data-ville]').forEach(e => e.textContent = CONFIG.VILLE);
+$$('[data-nom-complet]').forEach(e => e.textContent = cap(CONFIG.NOM_A) + " " + cap(CONFIG.NOM_B));
+$$('[data-ville-cp]').forEach(e => e.textContent = CONFIG.CODE_POSTAL + " " + CONFIG.VILLE);
+$$('a[href^="tel:"]').forEach(a => a.href = "tel:" + CONFIG.TEL_LIEN);
+$$('[data-tel]').forEach(a => a.textContent = a.textContent.replace(/06 XX XX XX XX/, CONFIG.TEL_AFFICHE));
+$('#taux-val').textContent = CONFIG.TAUX_HORAIRE_TTC + " €";
+$('#annee').textContent = new Date().getFullYear();
+function cap(s){ return s.charAt(0) + s.slice(1).toLowerCase(); }
+
+/* --- Ruban défilant --- */
+{ const items = CONFIG.RUBAN.concat(CONFIG.RUBAN).map(t => `<span>${t}</span><span>✦</span>`).join("");
+  $('#piste').innerHTML = items; }
+
+/* --- Forfaits --- */
+const ICONES = {
+  huile:'<path d="M12 3s-6 7-6 11a6 6 0 0 0 12 0c0-4-6-11-6-11z"/>',
+  frein:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3a9 9 0 0 1 9 9"/>',
+  pneu:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v5M12 16v5M3 12h5M16 12h5"/>',
+  clim:'<path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9"/>',
+  distri:'<circle cx="7" cy="12" r="4"/><circle cx="17" cy="12" r="4"/><path d="M7 8h10M7 16h10"/>',
+  ct:'<path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/>'
+};
+$('#grille-presta').innerHTML = CONFIG.FORFAITS.map((f,i) => `
+  <article class="carte rv d${(i%3)+1}">
+    <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONES[f.ico]}</svg></div>
+    <h3>${f.titre}</h3><p>${f.texte}</p>
+    <div class="prix"><span class="ap">À partir de</span><span class="montant">${f.prix} €</span><span class="ttc">TTC</span><span class="badge-ex" style="margin-left:auto">Prix d'exemple</span></div>
+  </article>`).join("");
+
+/* --- Horaires --- */
+const hm = s => { const [h,m] = s.split(":").map(Number); return h*60+m; };
+const fmt = s => s.replace(":00","h").replace(":","h");
+function plagesTexte(p){ return p.length ? p.map(([a,b]) => `${fmt(a)} – ${fmt(b)}`).join(" · ") : "Fermé"; }
+{ const ordre = [1,2,3,4,5,6,0], auj = new Date().getDay();
+  $('#table-horaires').innerHTML = ordre.map(j => `<tr class="${j===auj?'auj':''}"><td>${JOURS[j]}</td><td>${plagesTexte(CONFIG.HORAIRES[j])}</td></tr>`).join(""); }
+
+function etatGarage(d = new Date()){
+  const j = d.getDay(), min = d.getHours()*60 + d.getMinutes();
+  const plages = CONFIG.HORAIRES[j] || [];
+  for (const [a,b] of plages){
+    if (min >= hm(a) && min < hm(b)) return { ouvert:true, jusqua:b, plages };
+  }
+  // prochaine ouverture
+  for (const [a] of plages){ if (min < hm(a)) return { ouvert:false, prochain:{ jour:"aujourd'hui", h:a }, plages }; }
+  for (let k=1;k<=7;k++){
+    const jj = (j+k)%7, p = CONFIG.HORAIRES[jj] || [];
+    if (p.length) return { ouvert:false, prochain:{ jour: k===1 ? "demain" : JOURS[jj].toLowerCase(), h:p[0][0] }, plages };
+  }
+  return { ouvert:false, plages };
+}
+
+/* --- EFFET SIGNATURE : tube néon --- */
+const tube = $('#tube'), tubeR = $('#tube-reflet'), statut = $('#statut'), sol = $('#sol');
+let simulation = "auto", etatAffiche = null, neonPret = false;
+
+function texteTube(t){
+  // Une lettre "faible" qui grésille indépendamment
+  const idx = t.length - 2;
+  return [...t].map((c,i) => i===idx ? `<span class="lettre-faible">${c}</span>` : c).join("");
+}
+function majNeon(force){
+  const e = etatGarage();
+  const ouvert = simulation === "auto" ? e.ouvert : simulation === "ouvert";
+  const cle = ouvert ? "o" : "f";
+  // Bandeau + panneau panne
+  const pb = $('#pastille-bandeau');
+  pb.className = "pastille " + (e.ouvert ? "ouv" : "ferm");
+  $('#horaire-jour').textContent = e.ouvert
+    ? `Ouvert aujourd'hui · jusqu'à ${fmt(e.jusqua)}`
+    : (e.prochain ? `Fermé · ouvre ${e.prochain.jour} à ${fmt(e.prochain.h)}` : "Fermé");
+  $('#panne-dispo').textContent = e.ouvert ? `Atelier ouvert jusqu'à ${fmt(e.jusqua)}` : "Atelier fermé : laissez-nous un message, on vous rappelle à l'ouverture";
+
+  if (!neonPret || (cle === etatAffiche && !force)) return;
+  etatAffiche = cle;
+  const mot = ouvert ? "OUVERT" : "FERMÉ";
+  [tube, tubeR].forEach(t => { t.className = "tube"; t.innerHTML = texteTube(mot); });
+  tube.setAttribute("aria-label", "Enseigne : " + (ouvert ? "ouvert" : "fermé"));
+  const allume = () => {
+    [tube, tubeR].forEach(t => t.classList.add(ouvert ? "ouvert" : "ferme"));
+    if (!RM){
+      tube.classList.add("allumage"); tubeR.classList.add("allumage");
+      setTimeout(() => { tube.classList.remove("allumage"); tubeR.classList.remove("allumage"); }, 1250);
+    }
+  };
+  if (RM) allume(); else setTimeout(allume, 250);
+  sol.style.setProperty('--glow', ouvert ? 'rgba(0,229,255,.2)' : 'rgba(255,59,92,.2)');
+  if (simulation !== "auto"){
+    statut.innerHTML = `<strong>Simulation</strong> : enseigne ${ouvert ? "allumée sur OUVERT" : "sur FERMÉ"}.`;
+  } else if (e.ouvert){
+    statut.innerHTML = `<strong>On est là.</strong> Ouvert jusqu'à ${fmt(e.jusqua)}.`;
+  } else {
+    statut.innerHTML = e.prochain ? `<strong>L'atelier dort.</strong> Réouverture ${e.prochain.jour} à ${fmt(e.prochain.h)}.` : "<strong>Fermé.</strong>";
+  }
+}
+$$('.demo-horloge button').forEach(b => b.addEventListener('click', () => {
+  simulation = b.dataset.sim;
+  $$('.demo-horloge button').forEach(x => x.setAttribute('aria-pressed', x===b ? 'true' : 'false'));
+  majNeon(true);
+}));
+majNeon();
+setInterval(majNeon, 30000);
+
+/* --- INTRO : lettres qui s'allument une à une --- */
+(function intro(){
+  const box = $('#intro'), l = $('#intro-lettres'), v = $('#intro-ville');
+  const nom = CONFIG.NOM_A + " " + CONFIG.NOM_B;
+  l.innerHTML = [...nom].map(c => c === " " ? "<br>" : `<span>${c}</span>`).join("");
+  v.textContent = CONFIG.VILLE.toUpperCase();
+  const spans = $$('span', l);
+  let fini = false;
+  const terminer = () => {
+    if (fini) return; fini = true;
+    box.classList.add('fin');
+    document.body.style.overflow = "";
+    neonPret = true; majNeon(true);
+    reveler();
+    setTimeout(() => box.remove(), 900);
+  };
+  $('#passer-intro').addEventListener('click', terminer);
+  if (RM || sessionStorage.getItem('intro-vue')){ terminer(); return; }
+  sessionStorage.setItem('intro-vue', '1');
+  document.body.style.overflow = "hidden";
+  const ordre = spans.map((_,i)=>i).sort(() => Math.random() - .5);
+  ordre.forEach((i,k) => {
+    setTimeout(() => {
+      spans[i].classList.add('on');
+      if (Math.random() < .4){ setTimeout(() => spans[i].classList.remove('on'), 60); setTimeout(() => spans[i].classList.add('on'), 140); }
+    }, 180 + k*110);
+  });
+  setTimeout(() => v.classList.add('on'), 220 + ordre.length*110);
+  setTimeout(terminer, 900 + ordre.length*110);
+})();
+
+/* --- Révélations au défilement --- */
+function reveler(){
+  if (io) return;
+  if (RM || !('IntersectionObserver' in window)){ $$('.rv').forEach(e => e.classList.add('vu')); return; }
+  io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('vu'); io.unobserve(e.target); } }), { rootMargin:"0px 0px -8% 0px", threshold:.08 });
+  $$('.rv').forEach(e => io.observe(e));
+}
+
+/* --- Lueur qui suit la souris (boutons, cartes) --- */
+document.addEventListener('pointermove', ev => {
+  const t = ev.target.closest && ev.target.closest('.btn, .carte');
+  if (!t) return;
+  const r = t.getBoundingClientRect();
+  t.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+  t.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+}, { passive:true });
+
+/* --- Menu mobile --- */
+{ const b = $('.burger'), m = $('#menu');
+  b.addEventListener('click', () => { const o = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', o); m.classList.toggle('ouvert', o); });
+  $$('a', m).forEach(a => a.addEventListener('click', () => { b.setAttribute('aria-expanded', 'false'); m.classList.remove('ouvert'); })); }
+
+/* --- Section épinglée --- */
+const ecran = $('#ecran'), liste = $('#etapes-liste');
+CONFIG.ETAPES.forEach((e,i) => {
+  const img = document.createElement('img');
+  img.loading = "lazy"; img.alt = ""; img.src = unsplash(e.img, 1200); img.srcset = srcset(e.img, [600,1200]);
+  img.sizes = "(max-width:980px) 100vw, 50vw";
+  ecran.insertBefore(img, ecran.firstChild);
+  e.el = img;
+  liste.insertAdjacentHTML('beforeend', `<li><span class="n">${i+1}</span><span>${e.titre}</span></li>`);
+});
+let etapeCourante = -1;
+function majEtape(i){
+  if (i === etapeCourante) return; etapeCourante = i;
+  CONFIG.ETAPES.forEach((e,k) => e.el.classList.toggle('actif', k===i));
+  $$('li', liste).forEach((li,k) => { li.classList.toggle('actif', k===i); li.classList.toggle('fait', k<i); });
+  $('#etape-titre').textContent = (i+1) + ". " + CONFIG.ETAPES[i].titre;
+  $('#etape-texte').textContent = CONFIG.ETAPES[i].texte;
+}
+majEtape(0);
+
+/* --- Parallax + progression épinglée --- */
+const par = $('#parallax'), ep = $('#deroule'), barre = $('#barre');
+let ticking = false;
+function onScroll(){
+  ticking = false;
+  const y = window.scrollY;
+  if (!RM && y < window.innerHeight * 1.2) par.style.transform = `translate3d(0,${y*0.35}px,0)`;
+  const r = ep.getBoundingClientRect(), total = ep.offsetHeight - window.innerHeight;
+  let p = RM ? 1 : Math.min(1, Math.max(0, -r.top / Math.max(1,total)));
+  barre.style.width = (p*100) + "%";
+  if (!RM) majEtape(Math.min(CONFIG.ETAPES.length-1, Math.floor(p * CONFIG.ETAPES.length)));
+}
+window.addEventListener('scroll', () => { if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, { passive:true });
+onScroll();
+if (RM){ // sans animation : rotation au clic sur les étapes
+  $$('li', liste).forEach((li,k) => { li.style.cursor = "pointer"; li.addEventListener('click', () => majEtape(k)); });
+}
+
+/* --- Galerie + lightbox (clavier + swipe) --- */
+const gal = $('#galerie');
+CONFIG.GALERIE.forEach((g,i) => {
+  gal.insertAdjacentHTML('beforeend', `<button type="button" class="rv d${(i%4)+1}" data-i="${i}" aria-label="Agrandir : ${g.alt}">
+    <img loading="lazy" src="${unsplash(g.id, 800)}" srcset="${srcset(g.id,[400,800,1200])}" sizes="(max-width:980px) 50vw, 25vw" alt="${g.alt}"></button>`);
+});
+const lb = $('#lightbox'), lbImg = $('#lb-img'), lbLeg = $('#lb-leg');
+let lbI = 0, dernierFocus = null;
+function lbMontrer(i){
+  lbI = (i + CONFIG.GALERIE.length) % CONFIG.GALERIE.length;
+  const g = CONFIG.GALERIE[lbI];
+  lbImg.src = unsplash(g.id, 1600); lbImg.srcset = srcset(g.id,[800,1600,2000]); lbImg.sizes = "92vw"; lbImg.alt = g.alt;
+  lbLeg.textContent = `${g.alt} — ${lbI+1} / ${CONFIG.GALERIE.length}`;
+}
+function lbOuvrir(i){ dernierFocus = document.activeElement; lb.hidden = false; lb.classList.add('ouvert'); lbMontrer(i); document.body.style.overflow = "hidden"; $('.lb-fermer').focus(); }
+function lbFermer(){ lb.classList.remove('ouvert'); lb.hidden = true; document.body.style.overflow = ""; dernierFocus && dernierFocus.focus(); }
+gal.addEventListener('click', e => { const b = e.target.closest('button'); if (b) lbOuvrir(+b.dataset.i); });
+$('.lb-prec').addEventListener('click', () => lbMontrer(lbI-1));
+$('.lb-suiv').addEventListener('click', () => lbMontrer(lbI+1));
+$('.lb-fermer').addEventListener('click', lbFermer);
+lb.addEventListener('click', e => { if (e.target === lb) lbFermer(); });
+let tx = null, ty = null;
+lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; ty = e.touches[0].clientY; }, { passive:true });
+lb.addEventListener('touchend', e => {
+  if (tx === null) return;
+  const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+  if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) lbMontrer(lbI + (dx < 0 ? 1 : -1));
+  tx = null;
+});
+
+/* --- Panneau panne --- */
+const pan = $('#panneau');
+function panOuvrir(){ dernierFocus = document.activeElement; pan.hidden = false; pan.classList.add('ouvert'); document.body.style.overflow = "hidden"; majNeon(); setTimeout(() => $('.appel', pan).focus(), 50); }
+function panFermer(){ pan.classList.remove('ouvert'); pan.hidden = true; document.body.style.overflow = ""; dernierFocus && dernierFocus.focus(); }
+$$('[data-ouvrir-panne]').forEach(b => b.addEventListener('click', panOuvrir));
+$$('[data-fermer-panne]').forEach(b => b.addEventListener('click', panFermer));
+
+// Piège de focus + Échap (panneau et lightbox)
+document.addEventListener('keydown', e => {
+  const modal = !pan.hidden ? pan : (!lb.hidden ? lb : null);
+  if (!modal) return;
+  if (e.key === "Escape"){ modal === pan ? panFermer() : lbFermer(); return; }
+  if (modal === lb && e.key === "ArrowLeft") lbMontrer(lbI-1);
+  if (modal === lb && e.key === "ArrowRight") lbMontrer(lbI+1);
+  if (e.key === "Tab"){
+    const f = $$('a[href],button,input,select,textarea', modal).filter(x => x.offsetParent !== null);
+    if (!f.length) return;
+    if (e.shiftKey && document.activeElement === f[0]){ e.preventDefault(); f[f.length-1].focus(); }
+    else if (!e.shiftKey && document.activeElement === f[f.length-1]){ e.preventDefault(); f[0].focus(); }
+  }
+});
+
+// Aperçu photo local
+const inPhoto = $('#p-photo'), apercu = $('#apercu'), apImg = $('#apercu-img');
+let urlApercu = null;
+inPhoto.addEventListener('change', () => {
+  const f = inPhoto.files && inPhoto.files[0];
+  if (urlApercu){ URL.revokeObjectURL(urlApercu); urlApercu = null; }
+  if (!f || !f.type.startsWith('image/')){ apercu.classList.remove('vu'); return; }
+  urlApercu = URL.createObjectURL(f); apImg.src = urlApercu; apercu.classList.add('vu');
+});
+$('#apercu-suppr').addEventListener('click', () => { inPhoto.value = ""; if (urlApercu) URL.revokeObjectURL(urlApercu); urlApercu = null; apercu.classList.remove('vu'); });
+
+/* --- Immatriculation : format AB-123-CD --- */
+$$('.immat').forEach(i => i.addEventListener('input', () => {
+  let v = i.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0,7);
+  if (/^[A-Z]{2}\d/.test(v)) v = v.replace(/^([A-Z]{2})(\d{0,3})([A-Z]{0,2}).*$/, (m,a,b,c) => [a,b,c].filter(Boolean).join("-"));
+  i.value = v;
+}));
+
+/* --- Soumissions (démo) --- */
+function demoSubmit(form, retour, msg){
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const manquants = $$('[required]', form).filter(x => x.type === "radio" ? !form.querySelector(`[name="${x.name}"]:checked`) : !x.value.trim());
+    const r = $(retour);
+    if (manquants.length){
+      r.style.cssText = "background:rgba(255,59,92,.08);border-color:rgba(255,59,92,.5);color:#ffd9e0";
+      r.textContent = "Merci de compléter les champs obligatoires (immatriculation, téléphone…).";
+      r.classList.add('vu'); manquants[0].focus(); return;
+    }
+    r.style.cssText = "";
+    r.textContent = msg(new FormData(form));
+    r.classList.add('vu');
+  });
+}
+demoSubmit($('#form-devis'), '#retour-devis', d => `Merci ! (Démo) Votre demande « ${d.get('besoin')} » pour ${d.get('immat')} aurait été transmise à l'atelier. Rien n'a été envoyé.`);
+demoSubmit($('#form-panne'), '#retour-panne', d => `Signalement prêt (démo) : ${d.get('immat')} — ${d.get('symptome')}${inPhoto.files.length ? " — photo jointe" : ""}. Rien n'a été envoyé : pour une urgence, appelez directement.`);
+</script>
+</body>
+</html>

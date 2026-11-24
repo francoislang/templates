@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mathis Orvane — Photographe de la nuit et des brumes</title>
+<meta name="description" content="Mathis Orvane, photographe. Paysages nocturnes, brumes et rivages : tirages d'art, commandes éditoriales et ateliers.">
+<meta name="theme-color" content="#050505">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noir:#050505;
+  --noir-2:#0c0c0c;
+  --noir-3:#151515;
+  --gris:#8a8780;
+  --gris-clair:#c9c5bc;
+  --blanc:#ece8df;
+  --ambre:#d8a65a;
+  --serif:"Bodoni Moda", "Didot", "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --pad:clamp(1.25rem, 4vw, 4rem);
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--noir);color:var(--blanc);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:var(--mono);font-weight:300;font-size:15px;line-height:1.65;background:var(--noir);overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--ambre);color:var(--noir)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+:focus-visible{outline:1px solid var(--ambre);outline-offset:4px}
+.skip{position:fixed;left:1rem;top:-4rem;z-index:200;background:var(--blanc);color:var(--noir);padding:.6rem 1rem;text-decoration:none;font-size:13px}
+.skip:focus{top:1rem}
+
+/* ---------- Grain de film ---------- */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:90;opacity:.11;background-repeat:repeat;background-size:180px 180px;animation:grain 1s steps(6) infinite;mix-blend-mode:overlay}
+@keyframes grain{
+  0%{transform:translate(0,0)}17%{transform:translate(-4%,3%)}33%{transform:translate(3%,-5%)}
+  50%{transform:translate(-6%,-2%)}67%{transform:translate(5%,4%)}83%{transform:translate(-2%,6%)}100%{transform:translate(0,0)}
+}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:89;background:radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,.55) 100%)}
+
+/* ---------- Halo lumière ---------- */
+.halo{position:fixed;left:0;top:0;width:560px;height:560px;margin:-280px 0 0 -280px;border-radius:50%;pointer-events:none;z-index:88;
+  background:radial-gradient(circle, rgba(236,214,170,.13) 0%, rgba(216,166,90,.06) 30%, transparent 65%);
+  mix-blend-mode:screen;opacity:0;transition:opacity .6s var(--ease);will-change:transform}
+.halo.on{opacity:1}
+
+/* ---------- Fondu au noir ---------- */
+.fondu{position:fixed;inset:0;background:#000;z-index:150;pointer-events:none;opacity:1;transition:opacity .7s var(--ease)}
+.fondu.ouvert{opacity:0}
+
+/* ---------- Navigation ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem var(--pad);mix-blend-mode:difference;color:#fff}
+.nav .marque{font-family:var(--serif);font-style:italic;font-size:1.25rem;text-decoration:none;letter-spacing:.01em}
+.nav ul{display:flex;gap:clamp(1rem,2.4vw,2.4rem);list-style:none;margin:0;padding:0}
+.nav a{text-decoration:none;font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.nav ul a{position:relative;padding:.3rem 0}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav ul a:hover::after,.nav ul a:focus-visible::after{transform:scaleX(1);transform-origin:left}
+.burger{display:none;background:none;border:0;color:#fff;font:inherit;font-size:11px;letter-spacing:.22em;text-transform:uppercase;padding:.5rem 0;cursor:pointer}
+
+/* ---------- Titres lettre par lettre ---------- */
+.split .l{display:inline-block;opacity:0;transform:translateY(.45em) rotate(4deg);filter:blur(6px);transition:opacity .9s var(--ease), transform 1.1s var(--ease), filter .9s var(--ease);transition-delay:calc(var(--i) * 38ms + var(--d, 0ms))}
+.split .mot{display:inline-block;white-space:nowrap}
+.split.vu .l{opacity:1;transform:none;filter:none}
+
+.label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gris)}
+.label b{color:var(--ambre);font-weight:400}
+
+/* ---------- Accueil ---------- */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-rows:1fr auto;padding:0 var(--pad);overflow:hidden;isolation:isolate}
+.hero__img{position:absolute;inset:0;z-index:-2;background:radial-gradient(ellipse at 70% 30%, #2a2520 0%, #0d0c0b 55%, #050505 100%)}
+.hero__img img{width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.1) brightness(.5);transform:scale(1.12);animation:respire 22s ease-in-out infinite alternate}
+@keyframes respire{to{transform:scale(1.02) translate3d(-1.5%,1%,0)}}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg, rgba(5,5,5,.85) 0%, rgba(5,5,5,.15) 30%, rgba(5,5,5,.25) 60%, var(--noir) 100%)}
+.cadre{position:absolute;left:0;right:0;height:clamp(28px,6vh,64px);background:#000;z-index:1;transition:height 1.6s var(--ease)}
+.cadre--h{top:0}.cadre--b{bottom:0}
+body.pret .cadre{height:0}
+.hero__contenu{align-self:end;padding-bottom:clamp(2rem,7vh,5rem);padding-top:6rem}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.4rem,14.5vw,15rem);line-height:.86;letter-spacing:-.035em;margin:.4rem 0 0}
+.hero h1 em{font-style:italic;color:var(--gris-clair)}
+.hero__pied{display:flex;justify-content:space-between;align-items:end;gap:2rem;flex-wrap:wrap;margin-top:2.2rem}
+.hero__pied p{max-width:34ch;margin:0;color:var(--gris-clair)}
+.defile{display:flex;align-items:center;gap:.9rem;text-decoration:none}
+.defile span:last-child{width:1px;height:48px;background:linear-gradient(var(--blanc),transparent);animation:goutte 2.4s var(--ease) infinite;transform-origin:top}
+@keyframes goutte{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.timecode{position:absolute;right:var(--pad);top:5rem;font-size:11px;letter-spacing:.2em;color:var(--gris);text-align:right}
+.timecode .rec{display:inline-block;width:7px;height:7px;border-radius:50%;background:#c4382b;margin-right:.5rem;vertical-align:middle;animation:rec 1.6s steps(2) infinite}
+@keyframes rec{50%{opacity:0}}
+
+/* ---------- Sections ---------- */
+section{position:relative;scroll-margin-top:4.5rem}
+#accueil,#series{scroll-margin-top:0}
+.bloc{padding:clamp(5rem,14vh,10rem) var(--pad)}
+.entete{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:1.5rem;margin-bottom:clamp(2rem,6vh,4rem)}
+.entete h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,8vw,7.5rem);line-height:.9;letter-spacing:-.03em;margin:.6rem 0 0}
+.entete h2 em{font-style:italic;color:var(--gris-clair)}
+.revele{opacity:0;transform:translateY(30px);transition:opacity 1.2s var(--ease), transform 1.2s var(--ease)}
+.revele.vu{opacity:1;transform:none}
+
+/* ---------- Séries : galerie horizontale ---------- */
+.series{background:var(--noir)}
+.series__epingle{height:var(--h, 400vh)}
+.series__scene{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.series__haut{display:flex;justify-content:space-between;align-items:end;padding:0 var(--pad);margin-bottom:clamp(1rem,3vh,2rem);gap:1rem}
+.series__haut h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,5.5rem);line-height:.9;margin:.4rem 0 0;letter-spacing:-.03em}
+.series__haut h2 em{font-style:italic;color:var(--gris-clair)}
+.compteur{font-family:var(--serif);font-size:clamp(1.6rem,3.2vw,2.8rem);font-variant-numeric:tabular-nums;white-space:nowrap;line-height:1}
+.compteur .cur{display:inline-block;min-width:1.3em;text-align:right}
+.compteur .sep{color:var(--gris);font-style:italic;margin:0 .25em}
+.compteur .tot{color:var(--gris)}
+.piste{display:flex;gap:clamp(1rem,2.5vw,2.5rem);padding:0 var(--pad);will-change:transform;align-items:center}
+.vue{flex:0 0 auto;margin:0;position:relative;cursor:zoom-in;background:none;border:0;padding:0;color:inherit;font:inherit;text-align:left}
+.vue .boite{position:relative;overflow:hidden;background:linear-gradient(135deg,#1b1916,#0b0b0a 70%);height:min(58vh,560px)}
+.vue.p .boite{aspect-ratio:4/5}
+.vue.l .boite{aspect-ratio:3/2}
+.vue.s .boite{aspect-ratio:1/1}
+.vue .boite::before{content:attr(data-num);position:absolute;inset:auto auto 1rem 1rem;font-family:var(--serif);font-style:italic;font-size:3rem;color:rgba(236,232,223,.07);z-index:0}
+.vue img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;filter:grayscale(.35) contrast(1.08) brightness(.82);transform:scale(1.08);transition:transform 1.4s var(--ease), filter 1s var(--ease), opacity .8s;opacity:0}
+.vue img.ok{opacity:1}
+.vue img.ko{display:none}
+.vue:hover img,.vue:focus-visible img{transform:scale(1);filter:grayscale(0) contrast(1.05) brightness(.95)}
+.vue figcaption{display:flex;justify-content:space-between;gap:1rem;margin-top:.9rem;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+.vue figcaption strong{color:var(--blanc);font-weight:400}
+.vue.actif figcaption strong{color:var(--ambre)}
+.barre{margin:clamp(1.2rem,4vh,2.4rem) var(--pad) 0;height:1px;background:rgba(236,232,223,.14);position:relative}
+.barre i{position:absolute;inset:0;background:var(--blanc);transform-origin:left;transform:scaleX(0)}
+.astuce{padding:0 var(--pad);margin-top:.9rem;display:flex;justify-content:space-between}
+.chapitre{display:block;margin-top:.5rem}
+
+/* ---------- À propos ---------- */
+.apropos{display:grid;grid-template-columns:5fr 7fr;gap:clamp(2rem,6vw,7rem);align-items:center}
+.portrait{position:relative;aspect-ratio:4/5;background:linear-gradient(160deg,#1e1b17,#080807);overflow:hidden}
+.portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.75)}
+.portrait figcaption{position:absolute;left:1rem;bottom:1rem;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gris-clair)}
+.apropos h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,4.6rem);line-height:1;letter-spacing:-.025em;margin:.8rem 0 2rem}
+.apropos h2 em{font-style:italic;color:var(--gris-clair)}
+.apropos p{max-width:56ch;color:var(--gris-clair);margin:0 0 1.2rem}
+.citation{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,2.4vw,1.9rem);line-height:1.3;color:var(--blanc);border-left:1px solid var(--ambre);padding-left:1.4rem;margin:2.4rem 0 0;max-width:30ch}
+.materiel{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem;padding:0;list-style:none}
+.materiel li{font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(236,232,223,.18);padding:.45rem .8rem;color:var(--gris-clair)}
+
+/* ---------- Prestations ---------- */
+.presta{list-style:none;margin:0;padding:0;border-top:1px solid rgba(236,232,223,.14)}
+.presta li{border-bottom:1px solid rgba(236,232,223,.14);display:grid;grid-template-columns:4rem minmax(0,1.2fr) minmax(0,1.6fr) auto;gap:clamp(1rem,3vw,3rem);align-items:baseline;padding:clamp(1.5rem,4vh,2.4rem) 0;position:relative;transition:padding .6s var(--ease)}
+.presta li::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(216,166,90,.07),transparent 70%);opacity:0;transition:opacity .6s var(--ease);pointer-events:none}
+.presta li:hover::before{opacity:1}
+.presta li:hover{padding-left:1rem}
+.presta .n{font-size:11px;color:var(--gris);letter-spacing:.2em}
+.presta h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,3.2vw,2.8rem);line-height:1;margin:0;letter-spacing:-.02em}
+.presta p{margin:0;color:var(--gris-clair);max-width:52ch}
+.presta .prix{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ambre);white-space:nowrap}
+
+/* ---------- Contact ---------- */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(2rem,6vw,7rem)}
+.contact h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.8rem,8vw,7.5rem);line-height:.88;letter-spacing:-.035em;margin:.6rem 0 2rem}
+.contact h2 em{font-style:italic;color:var(--gris-clair)}
+.coord{list-style:none;padding:0;margin:2rem 0 0;display:grid;gap:1.2rem}
+.coord span{display:block}
+.coord a{text-decoration:none;font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem);border-bottom:1px solid rgba(236,232,223,.2);transition:border-color .4s}
+.coord a:hover{border-color:var(--ambre)}
+.coord .val{font-family:var(--serif);font-size:clamp(1.3rem,2.2vw,1.8rem)}
+form{display:grid;gap:1.6rem;align-content:start}
+.champ{position:relative}
+.champ label{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gris);margin-bottom:.4rem}
+.champ input,.champ textarea,.champ select{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(236,232,223,.25);color:var(--blanc);font:inherit;font-size:16px;padding:.6rem 0;border-radius:0;transition:border-color .4s;-webkit-appearance:none;appearance:none}
+.champ select{background-image:linear-gradient(45deg,transparent 50%,var(--gris) 50%),linear-gradient(135deg,var(--gris) 50%,transparent 50%);background-position:calc(100% - 10px) 55%,calc(100% - 5px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+.champ select option{background:var(--noir-2);color:var(--blanc)}
+.champ textarea{min-height:120px;resize:vertical}
+.champ input:focus,.champ textarea:focus,.champ select:focus{outline:none;border-color:var(--ambre)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem}
+.consent{display:flex;gap:.8rem;align-items:flex-start;font-size:12px;color:var(--gris)}
+.consent input{margin-top:.25rem;accent-color:var(--ambre)}
+.btn{justify-self:start;display:inline-flex;align-items:center;gap:1rem;background:var(--blanc);color:var(--noir);border:0;font:inherit;font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:1.1rem 1.6rem;cursor:pointer;position:relative;overflow:hidden;transition:color .5s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ambre);transform:translateY(101%);transition:transform .5s var(--ease)}
+.btn:hover::before,.btn:focus-visible::before{transform:none}
+.btn span{position:relative}
+.retour{font-size:13px;color:var(--ambre);min-height:1.5em;margin:0}
+
+footer{padding:2.5rem var(--pad) calc(2.5rem + env(safe-area-inset-bottom));border-top:1px solid rgba(236,232,223,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gris)}
+footer a{text-decoration:none}
+.geant{font-family:var(--serif);font-style:italic;font-size:clamp(4rem,19vw,19rem);line-height:.8;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(236,232,223,.16);padding:0 var(--pad);margin:0;white-space:nowrap;overflow:hidden;user-select:none}
+
+/* ---------- Lightbox ---------- */
+.lb{position:fixed;inset:0;z-index:160;background:#000;display:grid;grid-template-rows:auto 1fr auto;opacity:0;visibility:hidden;transition:opacity .6s var(--ease), visibility 0s linear .6s;touch-action:pan-y}
+.lb.ouvert{opacity:1;visibility:visible;transition:opacity .6s var(--ease), visibility 0s}
+.lb__haut,.lb__bas{display:flex;justify-content:space-between;align-items:center;padding:1rem var(--pad);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gris);gap:1rem}
+.lb__scene{position:relative;display:flex;align-items:center;justify-content:center;padding:0 var(--pad);min-height:0}
+.lb__cadre{position:relative;max-width:100%;max-height:100%;height:100%;width:100%;display:flex;align-items:center;justify-content:center}
+.lb__cadre .fond{position:absolute;inset:6% 10%;background:radial-gradient(ellipse,#1a1815,#000 70%);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;color:rgba(236,232,223,.18);font-size:clamp(1.2rem,3vw,2rem);text-align:center;padding:1rem}
+.lb__cadre img{position:relative;max-width:100%;max-height:100%;object-fit:contain;transition:opacity .45s var(--ease), transform .6s var(--ease)}
+.lb__cadre img.ko{display:none}
+.lb.change .lb__cadre img{opacity:0;transform:scale(.985)}
+.lb button{background:none;border:0;color:var(--blanc);font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:.6rem}
+.lb__nav{position:absolute;top:0;bottom:0;width:22%;font-size:1.5rem!important;display:flex;align-items:center;opacity:.5;transition:opacity .3s}
+.lb__nav:hover,.lb__nav:focus-visible{opacity:1}
+.lb__prev{left:0;justify-content:flex-start;padding-left:var(--pad)!important}
+.lb__next{right:0;justify-content:flex-end;padding-right:var(--pad)!important}
+.lb__titre{color:var(--blanc);font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:1.05rem}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 820px){
+  body{font-size:14px}
+  .nav ul{position:fixed;inset:0;flex-direction:column;justify-content:center;align-items:flex-start;gap:1.4rem;padding:0 var(--pad);background:var(--noir);transform:translateY(-100%);transition:transform .7s var(--ease);mix-blend-mode:normal}
+  .nav.ouvert{mix-blend-mode:normal}
+  .nav.ouvert ul{transform:none}
+  .nav ul a{font-family:var(--serif);font-size:2.6rem;letter-spacing:-.01em;text-transform:none;font-style:italic}
+  .burger{display:block;position:relative;z-index:2}
+  .nav .marque{position:relative;z-index:2}
+  .timecode{top:4.4rem}
+  .series__epingle{height:auto!important}
+  .series__scene{position:relative;height:auto;padding:clamp(4rem,10vh,6rem) 0 3rem}
+  .piste{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:.4rem;scroll-padding:0 var(--pad)}
+  .piste::-webkit-scrollbar{display:none}
+  .piste::after{content:"";flex:0 0 1px}
+  .vue{scroll-snap-align:start}
+  .vue .boite{height:auto;width:78vw}
+  .vue.l .boite{width:86vw}
+  .apropos,.contact{grid-template-columns:1fr}
+  .portrait{max-width:420px}
+  .presta li{grid-template-columns:2.4rem minmax(0,1fr);row-gap:.6rem}
+  .presta li p,.presta li .prix{grid-column:2}
+  .presta li:hover{padding-left:0}
+  .duo{grid-template-columns:1fr}
+  .entete{grid-template-columns:1fr}
+  .lb__nav{width:30%}
+}
+
+/* ---------- Mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0ms!important}
+  .grain{display:none}
+  .halo{display:none}
+  .split .l{opacity:1;transform:none;filter:none}
+  .revele{opacity:1;transform:none}
+  .cadre{display:none}
+  .series__epingle{height:auto!important}
+  .series__scene{position:relative;height:auto;padding:6rem 0 3rem}
+  .piste{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory}
+  .vue{scroll-snap-align:start}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#contenu">Aller au contenu</a>
+<div class="fondu" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+<div class="halo" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="marque" href="#accueil" data-fondu>Mathis Orvane</a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  <ul id="menu">
+    <li><a href="#series" data-fondu>Séries</a></li>
+    <li><a href="#apropos" data-fondu>À propos</a></li>
+    <li><a href="#prestations" data-fondu>Prestations</a></li>
+    <li><a href="#contact" data-fondu>Contact</a></li>
+  </ul>
+</header>
+
+<main id="contenu">
+  <!-- ============ ACCUEIL ============ -->
+  <section class="hero" id="accueil" aria-label="Accueil">
+    <div class="hero__img">
+      <img alt="Crête de montagne sous la lune, à la tombée de la nuit"
+        src="https://images.unsplash.com/photo-1546514355-7fdc90ccbd03?w=1600&q=80&auto=format&fit=crop"
+        srcset="https://images.unsplash.com/photo-1546514355-7fdc90ccbd03?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1546514355-7fdc90ccbd03?w=1600&q=80&auto=format&fit=crop 1600w"
+        sizes="100vw" fetchpriority="high" onerror="this.remove()">
+    </div>
+    <div class="cadre cadre--h" aria-hidden="true"></div>
+    <div class="cadre cadre--b" aria-hidden="true"></div>
+    <p class="timecode" aria-hidden="true"><span class="rec"></span><span id="tc">00:00:00:00</span><br>Bobine 01 — Nuit</p>
+    <div class="hero__contenu">
+      <p class="label revele">Photographe — <b>Nuit, brume &amp; rivages</b></p>
+      <h1 class="split" data-split>La nuit, <em>lentement.</em></h1>
+      <div class="hero__pied revele">
+        <p>Je photographie ce qui reste quand la lumière s'en va&nbsp;: crêtes sous la lune, forêts noyées de brume, rivages à l'heure bleue.</p>
+        <a class="defile label" href="#series" data-fondu><span>Entrer dans les séries</span><span aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SÉRIES ============ -->
+  <section class="series" id="series" aria-labelledby="titre-series">
+    <div class="series__epingle" id="epingle">
+      <div class="series__scene">
+        <div class="series__haut">
+          <div>
+            <p class="label">Séries — <b id="chapitre">Nocturnes</b></p>
+            <h2 class="split" id="titre-series" data-split>Trois <em>séries</em></h2>
+          </div>
+          <p class="compteur" aria-live="polite"><span class="sr-only">Image </span><span class="cur" id="cur">01</span><span class="sep">/</span><span class="tot" id="tot">18</span></p>
+        </div>
+        <div class="piste" id="piste" tabindex="0" aria-label="Galerie, faites défiler pour parcourir les images"></div>
+        <div class="barre" aria-hidden="true"><i id="barre"></i></div>
+        <div class="astuce label"><span>Cliquez ou touchez pour agrandir</span><span id="astuce-dir">Défilez ↓</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ À PROPOS ============ -->
+  <section class="bloc" id="apropos" aria-labelledby="titre-apropos">
+    <div class="apropos">
+      <figure class="portrait revele" style="margin:0">
+        <img loading="lazy" alt="Homme assis seul au bout d'un ponton, face à l'eau grise"
+          src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1600&q=80&auto=format&fit=crop"
+          srcset="https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=800&q=80&auto=format&fit=crop 800w, https://images.unsplash.com/photo-1508672019048-805c876b67e2?w=1600&q=80&auto=format&fit=crop 1600w"
+          sizes="(max-width: 820px) 90vw, 40vw" onerror="this.remove()">
+        <figcaption>Autoportrait, ponton — heure bleue</figcaption>
+      </figure>
+      <div>
+        <p class="label">À propos</p>
+        <h2 class="split" id="titre-apropos" data-split>Attendre que <em>le paysage</em> se taise.</h2>
+        <div class="revele">
+          <p>Je m'appelle Mathis Orvane. Je travaille presque exclusivement aux heures où l'on range les appareils&nbsp;: avant l'aube, après le coucher du soleil, par temps de brouillard. Le trépied, la patience et le silence font l'essentiel de mon métier.</p>
+          <p>Mes images sont pensées comme des plans de cinéma&nbsp;: un cadre, une lumière, une durée. Je les tire sur papier baryté, en petites éditions, et je réponds à des commandes éditoriales ou de marques qui cherchent cette atmosphère.</p>
+          <p class="citation">«&nbsp;Une photographie de nuit, c'est un long plan-séquence plié en une seule image.&nbsp;»</p>
+          <ul class="materiel" aria-label="Pratiques">
+            <li>Poses longues</li><li>Moyen format</li><li>Tirages barytés</li><li>Repérages nocturnes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRESTATIONS ============ -->
+  <section class="bloc" id="prestations" aria-labelledby="titre-presta" style="padding-top:0">
+    <div class="entete">
+      <div>
+        <p class="label">Prestations</p>
+        <h2 class="split" id="titre-presta" data-split>Ce que je <em>peux faire</em> pour vous</h2>
+      </div>
+    </div>
+    <ul class="presta">
+      <li class="revele"><span class="n">01</span><h3>Tirages d'art</h3><p>Éditions limitées, numérotées et signées. Papier baryté ou fine art, encadrement sur conseil, pour particuliers, hôtels et lieux de caractère.</p><span class="prix">Sur devis</span></li>
+      <li class="revele"><span class="n">02</span><h3>Commandes éditoriales</h3><p>Reportages de paysage pour magazines, livres et campagnes&nbsp;: repérage, prise de vue de nuit ou à l'aube, post-production soignée.</p><span class="prix">Sur devis</span></li>
+      <li class="revele"><span class="n">03</span><h3>Images pour les marques</h3><p>Une atmosphère cinématographique pour un lieu, un domaine, un produit. Livraison en série cohérente, droits adaptés à votre usage.</p><span class="prix">Sur devis</span></li>
+      <li class="revele"><span class="n">04</span><h3>Ateliers de nuit</h3><p>Petits groupes, sur le terrain&nbsp;: poses longues, lecture de la lumière faible, composition. Tous niveaux, matériel de base suffisant.</p><span class="prix">Sur devis</span></li>
+    </ul>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="bloc" id="contact" aria-labelledby="titre-contact" style="padding-top:0">
+    <div class="contact">
+      <div>
+        <p class="label">Contact</p>
+        <h2 class="split" id="titre-contact" data-split>Parlons de <em>votre projet</em></h2>
+        <p class="revele" style="color:var(--gris-clair);max-width:44ch">Décrivez-moi votre idée, votre lieu ou votre calendrier&nbsp;: je vous réponds sous quelques jours avec une proposition sur devis.</p>
+        <ul class="coord revele">
+          <li><span class="label">Téléphone</span><a href="tel:+33600000000">06 XX XX XX XX</a></li>
+          <li><span class="label">Courriel</span><a href="mailto:contact@exemple.fr">contact@exemple.fr</a></li>
+          <li><span class="label">Atelier</span><span class="val">XX rue de l'Exemple, 00000 Ville</span></li>
+        </ul>
+      </div>
+      <form id="form" class="revele" novalidate>
+        <div class="duo">
+          <div class="champ"><label for="nom">Nom</label><input id="nom" name="nom" autocomplete="name" required></div>
+          <div class="champ"><label for="mail">Courriel</label><input id="mail" name="mail" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="champ"><label for="objet">Votre demande</label>
+          <select id="objet" name="objet">
+            <option>Tirage d'art</option><option>Commande éditoriale</option><option>Images pour une marque</option><option>Atelier de nuit</option><option>Autre</option>
+          </select>
+        </div>
+        <div class="champ"><label for="msg">Message</label><textarea id="msg" name="msg" required></textarea></div>
+        <label class="consent"><input type="checkbox" required id="rgpd"> J'accepte que mes informations soient utilisées pour répondre à ma demande.</label>
+        <button class="btn" type="submit"><span>Envoyer</span><span aria-hidden="true">→</span></button>
+        <p class="retour" id="retour" role="status"></p>
+      </form>
+    </div>
+  </section>
+  <p class="geant" aria-hidden="true">Fin.</p>
+</main>
+
+<footer>
+  <span>© <span id="an"></span> Mathis Orvane — maquette</span>
+  <span>Photos&nbsp;: Unsplash</span>
+  <a href="#accueil" data-fondu>Retour au début ↑</a>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image en plein écran" aria-hidden="true">
+  <div class="lb__haut"><span id="lb-serie">Série</span><button type="button" id="lb-fermer">Fermer ✕</button></div>
+  <div class="lb__scene">
+    <div class="lb__cadre"><div class="fond" id="lb-fond"></div><img id="lb-img" alt=""></div>
+    <button type="button" class="lb__nav lb__prev" id="lb-prev" aria-label="Image précédente">←</button>
+    <button type="button" class="lb__nav lb__next" id="lb-next" aria-label="Image suivante">→</button>
+  </div>
+  <div class="lb__bas"><span class="lb__titre" id="lb-titre"></span><span id="lb-cpt">01 / 18</span></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var U = "https://images.unsplash.com/photo-";
+  var Q = "&q=80&auto=format&fit=crop";
+  var PHOTOS = [
+    ["1536431311719-398b6704d4cc","Nocturnes","Crête sous les étoiles","Montagne de nuit","l"],
+    ["1546514355-7fdc90ccbd03","Nocturnes","Lune basse","Lune au-dessus d'une crête","p"],
+    ["1505765050516-f72dcac9c60e","Nocturnes","Masse noire","Montagne sombre","l"],
+    ["1500534623283-312aade485b7","Nocturnes","Dernières lueurs","Silhouettes de montagnes au couchant","l"],
+    ["1586348943529-beaae6c28db9","Nocturnes","Lisière","Arbres en contre-jour au bord de l'eau","p"],
+    ["1492496913980-501348b61469","Nocturnes","Veilleur","Silhouette dans un flou de lumières","s"],
+    ["1470071459604-3b5ec3a7fe05","Brumes","Sommet voilé","Sommet dans le brouillard","l"],
+    ["1418065460487-3e41a6c84dc5","Brumes","Palmes fantômes","Palmiers noyés dans la brume","p"],
+    ["1500534314209-a25ddb2bd429","Brumes","Couches","Montagnes sous une brume blanche","l"],
+    ["1444877466744-dc2f2af2b931","Brumes","Cathédrale","Lumière entre de grands arbres","p"],
+    ["1523712999610-f77fbcfc3843","Brumes","Rai","Forêt traversée d'un rayon","l"],
+    ["1455218873509-8097305ee378","Brumes","Pose longue","Chute d'eau en forêt, pose longue","s"],
+    ["1488711500009-f9111944b1ab","Rivages","Chute","Grande cascade","p"],
+    ["1527489377706-5bf97e608852","Rivages","Fil d'eau","Rivière en pose longue","l"],
+    ["1562095241-8c6714fd4178","Rivages","Récif","Rocher dans l'océan","l"],
+    ["1474524955719-b9f87c50ce47","Rivages","Heure dorée","Rivage au soleil rasant","l"],
+    ["1500375592092-40eb2168fd21","Rivages","Ressac","Vague sur la plage","p"],
+    ["1508672019048-805c876b67e2","Rivages","Ponton","Homme assis sur un ponton gris","s"]
+  ];
+  var N = PHOTOS.length;
+  var reduit = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var mobile = window.matchMedia("(max-width: 820px)");
+  var pad = function(n){ return (n < 10 ? "0" : "") + n; };
+  var $ = function(s){ return document.querySelector(s); };
+
+  document.getElementById("an").textContent = new Date().getFullYear();
+
+  /* ---------- Grain (tuile générée une fois) ---------- */
+  try{
+    var c = document.createElement("canvas"); c.width = c.height = 180;
+    var x = c.getContext("2d"), d = x.createImageData(180,180);
+    for (var i = 0; i < d.data.length; i += 4){ var v = Math.random()*255|0; d.data[i]=d.data[i+1]=d.data[i+2]=v; d.data[i+3]=255; }
+    x.putImageData(d,0,0);
+    $(".grain").style.backgroundImage = "url(" + c.toDataURL() + ")";
+  }catch(e){}
+
+  /* ---------- Découpe lettre par lettre ---------- */
+  function decouper(el){
+    var k = 0;
+    (function marche(n){
+      Array.prototype.slice.call(n.childNodes).forEach(function(ch){
+        if (ch.nodeType === 3){
+          var frag = document.createDocumentFragment();
+          ch.textContent.split(/(\s+)/).forEach(function(m){
+            if (!m) return;
+            if (/^\s+$/.test(m)){ frag.appendChild(document.createTextNode(" ")); return; }
+            var mot = document.createElement("span"); mot.className = "mot";
+            Array.from(m).forEach(function(lt){
+              var s = document.createElement("span"); s.className = "l"; s.textContent = lt;
+              s.style.setProperty("--i", k++); s.setAttribute("aria-hidden","true"); mot.appendChild(s);
+            });
+            frag.appendChild(mot);
+          });
+          n.replaceChild(frag, ch);
+        } else if (ch.nodeType === 1){ marche(ch); }
+      });
+    })(el);
+  }
+  document.querySelectorAll("[data-split]").forEach(function(el){
+    el.setAttribute("aria-label", el.textContent.replace(/\s+/g," ").trim());
+    decouper(el);
+  });
+
+  /* ---------- Révélations au défilement ---------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add("vu"); io.unobserve(e.target); } });
+  }, {threshold:.18, rootMargin:"0px 0px -6% 0px"});
+  document.querySelectorAll(".revele,[data-split]").forEach(function(el){ io.observe(el); });
+
+  /* ---------- Galerie ---------- */
+  var piste = $("#piste");
+  PHOTOS.forEach(function(p, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "vue " + p[4]; b.dataset.i = i;
+    b.setAttribute("aria-label", "Agrandir : " + p[2] + " (" + p[1] + ")");
+    b.innerHTML =
+      '<div class="boite" data-num="' + pad(i+1) + '">' +
+        '<img loading="lazy" decoding="async" alt="' + p[3] + '" ' +
+        'src="' + U + p[0] + '?w=1600' + Q + '" ' +
+        'srcset="' + U + p[0] + '?w=800' + Q + ' 800w, ' + U + p[0] + '?w=1600' + Q + ' 1600w" ' +
+        'sizes="(max-width: 820px) 86vw, 60vw">' +
+      '</div>' +
+      '<figcaption><strong>' + pad(i+1) + ' — ' + p[2] + '</strong><span>' + p[1] + '</span></figcaption>';
+    piste.appendChild(b);
+  });
+  piste.querySelectorAll("img").forEach(function(im){
+    if (im.complete && im.naturalWidth) im.classList.add("ok");
+    im.addEventListener("load", function(){ im.classList.add("ok"); });
+    im.addEventListener("error", function(){ im.classList.add("ko"); });
+  });
+  $("#tot").textContent = pad(N);
+  var vues = Array.prototype.slice.call(piste.children);
+  var epingle = $("#epingle"), barre = $("#barre"), cur = $("#cur"), chap = $("#chapitre");
+  var actuel = -1;
+
+  function marquer(idx){
+    idx = Math.max(0, Math.min(N-1, idx));
+    if (idx === actuel) return;
+    actuel = idx;
+    cur.textContent = pad(idx+1);
+    chap.textContent = PHOTOS[idx][1];
+    vues.forEach(function(v, j){ v.classList.toggle("actif", j === idx); });
+  }
+
+  function modeEpingle(){ return !mobile.matches && !reduit.matches; }
+  var distance = 0;
+  function mesurer(){
+    if (modeEpingle()){
+      distance = Math.max(0, piste.scrollWidth - window.innerWidth);
+      epingle.style.setProperty("--h", (window.innerHeight + distance) + "px");
+      $("#astuce-dir").textContent = "Défilez ↓";
+    } else {
+      epingle.style.removeProperty("--h");
+      piste.style.transform = "";
+      $("#astuce-dir").textContent = "Glissez →";
+    }
+    rendu();
+  }
+  function rendu(){
+    if (modeEpingle()){
+      var r = epingle.getBoundingClientRect();
+      var total = epingle.offsetHeight - window.innerHeight;
+      var p = total > 0 ? Math.min(1, Math.max(0, -r.top / total)) : 0;
+      piste.style.transform = "translate3d(" + (-p * distance).toFixed(1) + "px,0,0)";
+      barre.style.transform = "scaleX(" + p + ")";
+      // image la plus proche du centre de l'écran
+      var centre = window.innerWidth / 2, best = 0, bd = Infinity;
+      vues.forEach(function(v, j){ var b = v.getBoundingClientRect(); var dd = Math.abs(b.left + b.width/2 - centre); if (dd < bd){ bd = dd; best = j; } });
+      marquer(best);
+    } else {
+      var max = piste.scrollWidth - piste.clientWidth;
+      var q = max > 0 ? piste.scrollLeft / max : 0;
+      barre.style.transform = "scaleX(" + q + ")";
+      var gauche = piste.getBoundingClientRect().left, b2 = 0, d2 = Infinity;
+      vues.forEach(function(v, j){ var dd = Math.abs(v.getBoundingClientRect().left - gauche - parseFloat(getComputedStyle(piste).paddingLeft)); if (dd < d2){ d2 = dd; b2 = j; } });
+      marquer(q > .995 ? N-1 : b2);
+    }
+  }
+  var tic = false;
+  function demande(){ if (!tic){ tic = true; requestAnimationFrame(function(){ tic = false; rendu(); }); } }
+  window.addEventListener("scroll", demande, {passive:true});
+  piste.addEventListener("scroll", demande, {passive:true});
+  window.addEventListener("resize", mesurer);
+  [mobile, reduit].forEach(function(m){ (m.addEventListener ? m.addEventListener("change", mesurer) : m.addListener(mesurer)); });
+  window.addEventListener("load", mesurer);
+  mesurer();
+
+  /* Clavier sur la piste (mode carrousel) */
+  piste.addEventListener("keydown", function(e){
+    if (modeEpingle()) return;
+    if (e.key === "ArrowRight" || e.key === "ArrowLeft"){
+      e.preventDefault();
+      var t = vues[Math.max(0, Math.min(N-1, actuel + (e.key === "ArrowRight" ? 1 : -1)))];
+      piste.scrollTo({left: t.offsetLeft - parseFloat(getComputedStyle(piste).paddingLeft), behavior: reduit.matches ? "auto" : "smooth"});
+    }
+  });
+
+  /* ---------- Halo qui suit la souris ---------- */
+  var halo = $(".halo");
+  if (window.matchMedia("(pointer: fine)").matches && !reduit.matches){
+    var hx = innerWidth/2, hy = innerHeight/2, tx = hx, ty = hy, anim = false;
+    window.addEventListener("pointermove", function(e){
+      tx = e.clientX; ty = e.clientY; halo.classList.add("on");
+      if (!anim){ anim = true; requestAnimationFrame(boucle); }
+    }, {passive:true});
+    document.addEventListener("pointerleave", function(){ halo.classList.remove("on"); });
+    function boucle(){
+      hx += (tx - hx) * .12; hy += (ty - hy) * .12;
+      halo.style.transform = "translate3d(" + hx.toFixed(1) + "px," + hy.toFixed(1) + "px,0)";
+      if (Math.abs(tx-hx) > .3 || Math.abs(ty-hy) > .3) requestAnimationFrame(boucle); else anim = false;
+    }
+  }
+
+  /* ---------- Timecode ---------- */
+  var tc = $("#tc"), t0 = performance.now();
+  if (!reduit.matches){
+    setInterval(function(){
+      var s = (performance.now() - t0) / 1000;
+      tc.textContent = pad(Math.floor(s/3600)) + ":" + pad(Math.floor(s/60)%60) + ":" + pad(Math.floor(s)%60) + ":" + pad(Math.floor(s*24)%24);
+    }, 1000/24);
+  }
+
+  /* ---------- Fondu au noir ---------- */
+  var fondu = $(".fondu");
+  function ouvrirScene(){ document.body.classList.add("pret"); fondu.classList.add("ouvert"); }
+  if (document.readyState === "complete") setTimeout(ouvrirScene, 80); else window.addEventListener("load", function(){ setTimeout(ouvrirScene, 80); });
+  setTimeout(ouvrirScene, 1500); // sécurité si une ressource traîne
+
+  var nav = $("#nav"), burger = $(".burger");
+  function fermerMenu(){ nav.classList.remove("ouvert"); burger.setAttribute("aria-expanded","false"); burger.textContent = "Menu"; }
+  burger.addEventListener("click", function(){
+    var o = nav.classList.toggle("ouvert");
+    burger.setAttribute("aria-expanded", o ? "true" : "false");
+    burger.textContent = o ? "Fermer" : "Menu";
+  });
+  document.querySelectorAll("a[data-fondu]").forEach(function(a){
+    a.addEventListener("click", function(e){
+      var cible = document.querySelector(a.getAttribute("href"));
+      if (!cible) return;
+      e.preventDefault(); fermerMenu();
+      var aller = function(){
+        var y = cible.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({top: y, behavior: "auto"});
+        history.replaceState(null, "", a.getAttribute("href"));
+      };
+      if (reduit.matches){ aller(); return; }
+      fondu.classList.remove("ouvert");
+      setTimeout(function(){ aller(); setTimeout(function(){ fondu.classList.add("ouvert"); }, 120); }, 650);
+    });
+  });
+
+  /* ---------- Lightbox ---------- */
+  var lb = $("#lb"), lbImg = $("#lb-img"), lbFond = $("#lb-fond"), idxLb = 0, dernierFocus = null;
+  lbImg.addEventListener("error", function(){ lbImg.classList.add("ko"); });
+  lbImg.addEventListener("load", function(){ lbImg.classList.remove("ko"); });
+  function charger(i){
+    var p = PHOTOS[i];
+    lbImg.classList.remove("ko");
+    lbImg.src = U + p[0] + "?w=1600" + Q;
+    lbImg.srcset = U + p[0] + "?w=800" + Q + " 800w, " + U + p[0] + "?w=1600" + Q + " 1600w";
+    lbImg.sizes = "100vw";
+    lbImg.alt = p[3];
+    lbFond.textContent = p[2];
+    $("#lb-titre").textContent = p[2];
+    $("#lb-serie").textContent = "Série — " + p[1];
+    $("#lb-cpt").textContent = pad(i+1) + " / " + pad(N);
+  }
+  function montrer(i){
+    var n = (i + N) % N;
+    if (reduit.matches){ idxLb = n; charger(n); return; }
+    lb.classList.add("change");
+    setTimeout(function(){ idxLb = n; charger(n); requestAnimationFrame(function(){ lb.classList.remove("change"); }); }, 280);
+  }
+  function ouvrirLb(i){
+    dernierFocus = document.activeElement;
+    idxLb = i; charger(i);
+    lb.classList.add("ouvert"); lb.setAttribute("aria-hidden","false");
+    document.documentElement.style.overflow = "hidden";
+    setTimeout(function(){ $("#lb-fermer").focus(); }, 50);
+  }
+  function fermerLb(){
+    lb.classList.remove("ouvert"); lb.setAttribute("aria-hidden","true");
+    document.documentElement.style.overflow = "";
+    if (dernierFocus) dernierFocus.focus({preventScroll:true});
+  }
+  piste.addEventListener("click", function(e){
+    var v = e.target.closest(".vue"); if (v && !glisse) ouvrirLb(+v.dataset.i);
+  });
+  $("#lb-fermer").addEventListener("click", fermerLb);
+  $("#lb-prev").addEventListener("click", function(){ montrer(idxLb - 1); });
+  $("#lb-next").addEventListener("click", function(){ montrer(idxLb + 1); });
+  document.addEventListener("keydown", function(e){
+    if (!lb.classList.contains("ouvert")) return;
+    if (e.key === "Escape") fermerLb();
+    else if (e.key === "ArrowRight") montrer(idxLb + 1);
+    else if (e.key === "ArrowLeft") montrer(idxLb - 1);
+    else if (e.key === "Tab"){
+      var f = Array.prototype.slice.call(lb.querySelectorAll("button"));
+      var i = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(i + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+    }
+  });
+  /* Swipe dans la lightbox */
+  var sx = null, sy = 0;
+  lb.addEventListener("touchstart", function(e){ sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  lb.addEventListener("touchend", function(e){
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) montrer(idxLb + (dx < 0 ? 1 : -1));
+    else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) fermerLb();
+    sx = null;
+  }, {passive:true});
+  /* Évite d'ouvrir la lightbox après un glissé sur le carrousel */
+  var glisse = false, gx = 0;
+  piste.addEventListener("pointerdown", function(e){ gx = e.clientX; glisse = false; });
+  piste.addEventListener("pointermove", function(e){ if (Math.abs(e.clientX - gx) > 8) glisse = true; });
+
+  /* ---------- Formulaire (maquette) ---------- */
+  $("#form").addEventListener("submit", function(e){
+    e.preventDefault();
+    var f = e.target, ok = f.checkValidity();
+    $("#retour").textContent = ok
+      ? "Merci, votre message est prêt. (Maquette : aucun envoi réel.)"
+      : "Merci de remplir votre nom, un courriel valide, votre message et d'accepter la mention.";
+    if (!ok){ var inv = f.querySelector(":invalid"); if (inv) inv.focus(); }
+  });
+})();
+</script>
+</body>
+</html>

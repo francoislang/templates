@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Maquettes boutique de vêtements — comparaison</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.5 system-ui,sans-serif;background:#16171b;color:#eee}
+  header{padding:18px 24px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #2a2c33}
+  h1{font-size:17px;margin:0 16px 0 0}
+  button{background:#24262d;color:#ddd;border:1px solid #33363f;border-radius:999px;padding:7px 14px;cursor:pointer;font:inherit}
+  button.on{background:#c4682c;border-color:#c4682c;color:#fff}
+  .vue{margin-left:auto;display:flex;gap:8px}
+  main{display:flex;gap:24px;padding:24px;justify-content:center;align-items:flex-start}
+  .cadre{background:#000;border-radius:10px;overflow:hidden;box-shadow:0 10px 40px #0008;transition:width .3s}
+  iframe{border:0;display:block;width:100%;height:calc(100vh - 150px)}
+  .desktop{width:min(1280px,100%)}
+  .mobile{width:390px}
+  .info{max-width:300px;font-size:14px;color:#aaa}
+  .info h2{color:#fff;font-size:18px;margin:0 0 6px}
+  a{color:#e69a63}
+  @media (max-width:900px){.info{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Maquettes boutique de vêtements</h1>
+  <div id="choix"></div>
+  <div class="vue">
+    <button data-v="desktop" class="on">Ordinateur</button>
+    <button data-v="mobile">Mobile</button>
+  </div>
+</header>
+<main>
+  <div class="cadre desktop" id="cadre"><iframe id="f" title="maquette"></iframe></div>
+  <div class="info" id="info"></div>
+</main>
+<script>
+const M=[
+ {d:"editorial",n:"A. Éditorial",p:"Ormée",t:"Magazine papier : couverture WebGL, sommaire numéroté, arrivages en galerie qui penche, lookbook filtrable dont la vignette s'ouvre en double page, sélection avec image qui suit la souris, mise de côté avec ticket."},
+ {d:"nuit",n:"B. Nuit",p:"La Veilleuse",t:"La vitrine allumée la nuit : préchargeur néon, lueur ambrée WebGL, récit de 5 silhouettes en fondus, mise de côté animée (la pièce glisse dans un sac, ticket numéroté), statut ouvert/fermé en direct."},
+ {d:"portant",n:"C. Portant",p:"Lisière",t:"Le geste du portant : hero en tissu qui ondule, arrivages qui se balancent selon la vitesse, lookbook au doigt sans fin, guide des tailles avec silhouette de dos et repères animés."},
+ {d:"brut",n:"D. Brut",p:"Cimaise",t:"Concept store galerie d'art : grille suisse, lettres brouillées, bandeau géant, liste des nouveautés avec image qui suit la souris puis fiche pièce, agenda des ventes privées, pied de page en mode « difference »."}
+];
+const f=document.getElementById('f'),info=document.getElementById('info'),choix=document.getElementById('choix');
+function voir(i){const m=M[i];f.src=m.d+'/index.html';
+ info.innerHTML=`<h2>${m.n}</h2><p><b>${m.p}</b> (fictif)</p><p>${m.t}</p><p><a href="${m.d}/index.html" target="_blank">Ouvrir en plein écran ↗</a></p>`;
+ [...choix.children].forEach((b,j)=>b.classList.toggle('on',j==i));history.replaceState(null,'','#'+m.d);}
+M.forEach((m,i)=>{const b=document.createElement('button');b.textContent=m.n;b.onclick=()=>voir(i);choix.append(b);});
+document.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{document.getElementById('cadre').className='cadre '+b.dataset.v;
+ document.querySelectorAll('[data-v]').forEach(x=>x.classList.toggle('on',x==b));});
+voir(Math.max(0,M.findIndex(m=>'#'+m.d==location.hash)));
+</script>
+</body>
+</html>
